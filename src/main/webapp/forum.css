@@ -1,15 +1,17 @@
 :root {
     --font_size_all:1rem;
-    --font_weight_all:400;
+    --font_weight_all:500;
     --color_backgroud:#f68e2e;
     --font_family: "Poppins", sans-serif;
-    --color: #1C1C1C;
+    --color: rgba(0, 0, 0, 0.8);
+    --line_height: 1.2rem;
 }
 *{
     font-size: var(--font_size_all);
     font-weight: var(--font_weight_all);
     font-family: var(--font_family);
     color: var(--color);
+    line-height: var(--line_height);
  }
 .bd{
     border-bottom: 3px solid var(--color_backgroud);
@@ -53,5 +55,5 @@
     display: inline-block;
 }
 .btn {
-    
+    background-color: #f68e2e;
 }

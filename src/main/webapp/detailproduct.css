@@ -1,3 +1,16 @@
-.bg {
-   
+
+
+.titleProduct {
+    font-size: 1.35rem;
+    line-height: 1.5rem;
+}
+.amount-sold {
+    font-size: .875rem;
+    color: #767676;
+    margin-top: 10px;
+}
+.price {
+    color: var(--color_backgroud);
+    font-size: 1.5rem;
+    font-weight: 500;
 }
