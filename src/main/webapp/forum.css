@@ -1,0 +1,57 @@
+:root {
+    --font_size_all:1rem;
+    --font_weight_all:400;
+    --color_backgroud:#f68e2e;
+    --font_family: "Poppins", sans-serif;
+    --color: #1C1C1C;
+}
+*{
+    font-size: var(--font_size_all);
+    font-weight: var(--font_weight_all);
+    font-family: var(--font_family);
+    color: var(--color);
+ }
+.bd{
+    border-bottom: 3px solid var(--color_backgroud);
+}
+.form-search{
+    position: relative;
+}
+.form-search .btn{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.hv {
+    transition: 0.4s;
+}
+.hv a {
+    color: var(--color);
+}
+.hv:hover > a{
+   color:var(--color_backgroud);
+}
+.dropdown-item:hover {
+    color:var(--color_backgroud);
+}
+.list-group-item-action:hover {
+    color:var(--color_backgroud);
+    
+}
+.cate {
+    display: flex;
+    background-color: var(--color_backgroud);
+  
+}
+.cate .icon-bar{
+    margin-right: 5px;
+    margin-left: 17px;
+    padding-top: 2px;
+}
+.cate .cateList {
+    padding-top: 2px;
+    display: inline-block;
+}
+.btn {
+    
+}
