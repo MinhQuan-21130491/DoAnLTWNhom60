@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng Nhập</title>
+    <style>
+        body{
+            font-size: 17px;
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        form{
+            width: 400px;
+            height: 250px;
+            margin: auto;
+        }
+        h3{
+            text-align: center;
+        }
+        #rePass{
+            margin-left: 20px;
+            font-size: 14px;
+        }
+        #idFormInput{
+
+            width: 350px;
+            height: 40px;
+            margin-bottom: 20px;
+            margin-left: 20px;
+
+        }
+        #idFormPass{
+            width: 350px;
+            height: 40px;
+            margin-bottom: 20px;
+            margin-left: 20px;
+
+        }
+        p{
+            text-align: center;
+            font-size: 14px;
+
+        }
+        #idMK{
+            text-align: right;
+            margin-right: 20px;
+        }
+        #idFormSubmit{
+            height: 30px;
+            margin-left: 160px;
+            background-color: #f68e2e;
+            color: black;
+            border: none;
+            margin-bottom: 10px;
+        }
+        .thongtin{
+            border: 2px solid #f68e2e;
+            margin-top: -100px;
+        }
+        img{
+            width: 300px;
+            margin-top: -50px;
+            float: left;
+            margin-left: -50px;
+        }
+
+        #wrapper{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 650px;
+        }
+    </style>
+</head>
+<body>
+
+      <div id="wrapper"> <!-- Toàn bộ phần đăng nhập-->
+          <form id="form-login" action="">
+              <div>
+                  <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/393391152_208027392306653_4287583286038172734_n.png?_nc_cat=106&ccb=1-7&_nc_sid=510075&_nc_ohc=j-cDDctPUZcAX_OYW5u&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AdQtLWCPR3-OIOvJwAx_zky171bVj7SA3uUW7rnpGvMp_A&oe=65561255">
+              </div>
+              <div class="thongtin">
+                  <h3 class="heading"> ĐĂNG NHẬP </h3>
+
+                <!-- Nhập tên để đăng nhập-->
+              <div class="form-group">
+              <input class="form-input" id="idFormInput" type="text" placeholder="Tên tài khoản">
+              </div>
+
+              <!-- Nhập password để đăng nhập tài khoản-->
+              <div class="form-group">
+                  <input class="form-pass" id="idFormPass" type="password" placeholder="Mật khẩu">
+
+              </div>
+                  <div id="rePass">
+                      <input type="checkbox" id="idCheck" value="Nhớ mật khẩu">
+                      <label class="checkInput" for="idCheck"> Nhớ mật khẩu </label>
+                  </div>
+
+              <div class="form-group" id="idFPass">
+                  <p id="idMK">
+                  <a href=""> Quên mật khẩu? </a>
+                  </p>
+              </div>
+
+              <!-- Ấn nút đăng nhập để tiến hành đăng nhập vào trang-->
+              <div>
+                  <input class="form-submit" id="idFormSubmit" type="submit" value="Đăng nhập">
+              </div>
+
+                  <div class="form-group" id="idDK">
+                      <p>
+
+                          <a href=""> Bạn chưa có tài khoản? </a>
+                      </p>
+                  </div>
+              </div>
+
+          </form>
+      </div>
+
+</body>
+</html>
