@@ -1,59 +1,18 @@
-:root {
-    --font_size_all:1rem;
-    --font_weight_all:500;
-    --color_backgroud:#f68e2e;
-    --font_family: "Poppins", sans-serif;
-    --color: rgba(0, 0, 0, 0.8);
-    --line_height: 1.2rem;
-}
-*{
-    font-size: var(--font_size_all);
-    font-weight: var(--font_weight_all);
-    font-family: var(--font_family);
-    color: var(--color);
-    line-height: var(--line_height);
- }
-.bd{
-    border-bottom: 3px solid var(--color_backgroud);
-}
-.form-search{
-    position: relative;
-}
-.form-search .btn{
-    position: absolute;
-    top: 0;
-    right: 0;
-}
-.hv {
-    transition: 0.4s;
-}
-.hv a {
-    color: var(--color);
-}
-.hv:hover > a{
-   color:var(--color_backgroud);
-}
-.dropdown-item:hover {
-    color:var(--color_backgroud);
-}
-.list-group-item-action:hover {
-    color:var(--color_backgroud);
-    
-}
+
+
 .cate {
     display: flex;
     background-color: var(--color_backgroud);
+    cursor: pointer;
   
 }
 .cate .icon-bar{
     margin-right: 5px;
-    margin-left: 17px;
-    padding-top: 2px;
+    margin-left: 12px;
+    padding-top: 6px;
 }
 .cate .cateList {
-    padding-top: 2px;
+    padding-top: 4px;
     display: inline-block;
 }
-.btn {
-    background-color: #f68e2e;
-}
+h5
