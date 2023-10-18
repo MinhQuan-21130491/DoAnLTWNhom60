@@ -70,17 +70,12 @@ h1{
     padding: 10px;
     border-radius:5px ;
 }
-.form-date{
-    margin-left: 10px;
+#birthday{
+    width: 360px;
+
 }
-.date{
-    display: flex;
-    margin: 0;
-    padding: 0;
-}
-.date select{
-    padding:5px;
-}
+
+
 .add_info .form-group{
     padding-top: 0;
 }
