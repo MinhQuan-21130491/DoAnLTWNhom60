@@ -14,6 +14,7 @@
             width: 400px;
             height: 250px;
             margin: auto;
+            position: absolute;
         }
         h3{
             text-align: center;
@@ -45,20 +46,24 @@
         #idMK{
             text-align: right;
             margin-right: 20px;
+
         }
-        #idFormSubmit{
+        button{
             height: 30px;
             margin-left: 160px;
             background-color: #f68e2e;
             color: black;
             border: none;
             margin-bottom: 10px;
+
         }
         .thongtin{
             border: 2px solid #f68e2e;
             margin-top: -100px;
+
         }
         img{
+
             width: 300px;
             margin-top: -50px;
             float: left;
@@ -66,6 +71,7 @@
         }
 
         #wrapper{
+            position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -85,16 +91,16 @@
 
                 <!-- Nhập tên để đăng nhập-->
               <div class="form-group">
-              <input class="form-input" id="idFormInput" type="text" placeholder="Tên tài khoản">
+              <input class="form-input" id="idFormInput" name="idFormInput" type="text" placeholder="Tên tài khoản">
               </div>
 
               <!-- Nhập password để đăng nhập tài khoản-->
               <div class="form-group">
-                  <input class="form-pass" id="idFormPass" type="password" placeholder="Mật khẩu">
+                  <input class="form-pass" id="idFormPass" name="idFormPass" type="password" placeholder="Mật khẩu">
 
               </div>
                   <div id="rePass">
-                      <input type="checkbox" id="idCheck" value="Nhớ mật khẩu">
+                      <input type="checkbox" id="idCheck" name="idCheck" value="Nhớ mật khẩu">
                       <label class="checkInput" for="idCheck"> Nhớ mật khẩu </label>
                   </div>
 
@@ -106,7 +112,7 @@
 
               <!-- Ấn nút đăng nhập để tiến hành đăng nhập vào trang-->
               <div>
-                  <input class="form-submit" id="idFormSubmit" type="submit" value="Đăng nhập">
+                  <button onclick="my_submit()"> Đăng nhập </button>
               </div>
 
                   <div class="form-group" id="idDK">
@@ -119,6 +125,24 @@
 
           </form>
       </div>
+      <script>
+          function my_submit () {
+              let idFormInput = "idFormInput";
+              let idFormPass= "idFormPass";
+              let inputElement = document.getElementById(idFormInput);
+              let passElement = document.getElementById(idFormPass);
+              if(inputElement.value !== ""){
+                  if(inputElement.value.length < 8){
+                      alert("Vui lòng nhập tên nhiều hơn hoặc trên 8 ký tự");
+                      inputElement.focus();
+                  }
+              }else{
+                  alert("Vui lòng nhập tên đăng nhập");
+                  inputElement.focus();
+              }
 
+          }
+
+      </script>
 </body>
 </html>
