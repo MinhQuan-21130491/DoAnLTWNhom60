@@ -41,6 +41,7 @@ td {
     border: none;
     padding:8px 30px;
     background-color: #f84444;
+    font-size: 20px;
 }
 .plus, .minus {
     border: none;

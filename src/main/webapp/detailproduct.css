@@ -48,14 +48,6 @@
     text-align: center;
 }
 
-.ac {
-    display: flex;
-    width: 400px;
-    margin-top: 25px;
-}
- .add-cart {
-     width: 50%;
-}
  .add-cart button {
      padding: 10px;
      border:1px solid var(--color_backgroud);
@@ -72,5 +64,6 @@
     padding: 10px 20px;
     background-color: var(--color_backgroud);
     border: none;
+    border-radius: 3px;
 
 }

@@ -1,0 +1,10 @@
+
+.text-color {
+    color: var(--color_backgroud);
+}
+.changeInfor #btnChangeInfor {
+    border: none;
+    padding: 10px 20px;
+    background-color: var(--color_backgroud);
+    border-radius: 5px;
+}
