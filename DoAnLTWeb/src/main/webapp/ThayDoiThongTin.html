@@ -7,19 +7,23 @@
     body{
          font-size: 17px;
          font-family: sans-serif;
+         font-weight: 400;
          margin: 0;
          padding: 0;
     }
     form{
+        background-color: #fcad6d;
+        position: absolute;
         margin: auto;
-        border: 1px solid black;
-        width: 700px;
+        border: 2px solid #cbcaca;
+        width: 600px;
         height: 450px;
     }
     #HienThiNS{
 
     }
     #HienThiDC{
+
 
     }
     #HienThiSDT{
@@ -28,27 +32,41 @@
     #HienThiGmail{
 
     }
-    #HienThiTen{
-        margin-bottom: 20px;
-    }
     label{
         margin-left: 20px;
+        height: 35px;
+        display: flex;
 
     }
     input{
+        border: 1px solid #cbcaca;
+        margin-bottom: 15px;
         width: 400px;
         height: 35px;
+        border-radius: 5px;
+
     }
 
 
-    h3, div, p{
+    h3{
+        margin-left: 5px;
+        text-align: center;
 
     }
     #submit{
+        border: 2px solid #cbcaca;
+        background-color: #d76802;
+        margin-top: 20px;
+        width: 60px;
+        height: 35px;
 
     }
 
     .changeInF{
+        position: relative;
+        display: flex;
+        justify-content: center;
+
 
 
     }
@@ -59,12 +77,12 @@
           <form id="changeNam">
               <table>
                   <tr>
-                      <h3> Thay đổi thông tin tài khoản </h3>
+                      <h3> Thay đổi thông tin </h3>
                   </tr>
 
                   <tr id="changeName">
                           <td>
-                          <label>Tên đăng nhập </label>
+                              <label id="lName"><strong>Tên đăng nhập </strong></label>
                           </td>
                           <td>
                           <div>
@@ -76,7 +94,7 @@
 
 
                   <tr id="changegGmail">
-                      <td> <label>Gmail</label></td>
+                      <td> <label> <strong>Gmail </strong></label></td>
                       <td>
                           <div>
                                <input id="HienThiGmail" name="GmailHT" type="email">
@@ -86,18 +104,19 @@
               </tr>
 
               <tr id="changeSDT">
-                  <td><label>Số điện thoại</label></td>
+                  <td><label> <strong> Số điện thoại </strong></label></td>
                   <td> <div><input id="HienThiSDT" name="SDTHT" type="tel"></div> </td>
               </tr>
 
               <tr id="changeDC">
-                  <td><label>Địa chỉ nhận</label></td>
+                  <td><label> <strong>Địa chỉ nhận</strong></label></td>
                   <td><div><input id="HienThiDC" name="DCHT" type="text"></div></td>
               </tr>
 
+
               <tr id="changeNgaySinh">
                   <td>
-                      <label>Ngày sinh</label></td>
+                      <label><strong>Ngày sinh</strong></label></td>
                   <td> <div>   <input id="HienThiNS" name="HienThiNS" type="date"></div>
                   </td>
               </tr>
@@ -108,7 +127,7 @@
 
                   <td>
                       <div>
-                  <button id="submit" name="SB" type="submit">LƯU </button></div>
+                          <button id="submit" name="SB" type="submit"> <strong>LƯU </strong></button></div>
                   </td>
 
               </tr>
