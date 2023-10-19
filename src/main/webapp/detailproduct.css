@@ -7,11 +7,19 @@
     color: #767676;
     margin-top: 10px;
 }
+.delivery {
+    display: inline-block;
+    color: #767676;
+}
+#address{
+    margin-left: 25px;
+}
 .amount-product {
-    margin-top: 80px;
+    margin-top: 60px;
     width: 200px;
     display: flex;
 }
+
 .t{
     position: relative;
     top: 6px;
@@ -43,7 +51,7 @@
 .ac {
     display: flex;
     width: 400px;
-    margin-top: 30px;
+    margin-top: 25px;
 }
  .add-cart {
      width: 50%;
