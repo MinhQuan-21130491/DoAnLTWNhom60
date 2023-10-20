@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Quên mật khẩu </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            font-size: 17px;
+            font-family: sans-serif;
+            font-weight: 400;
+        }
+        i{
+            color: #f68e2e;
+            float: left;
+            width: 30px;
+            height: 20px;
+        }
+        button{
+            width: 350px;
+            height: 40px;
+            margin-left: 30px;
+            background-color: #f68e2e;
+            border-radius: 5px;
+            border: none;
+
+        }
+        input{
+            border: 1px solid darkgrey;
+            border-radius: 5px;
+            margin-left: 30px;
+            width: 350px;
+            height: 40px;
+            margin-bottom: 20px;
+        }
+        #formRePass {
+            height: 220px;
+            text-align: center;
+            width: 500px;
+            box-sizing: border-box;
+            box-shadow: 0 3px 10px 0 rgba(0,0,0,.14);
+        }
+        #idHeader h3{
+            padding-left: 200px;
+        }
+        #idHeader form{
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+        #idHeader{
+            position: relative;
+            box-shadow: 0 3px 10px 0 rgba(0,0,0,.14);
+            width: 100%;
+            height: 65px;
+            margin: 0;
+            padding: 0;
+            background-color: #f68e2e;
+        }
+        #idHeader img{
+            position: absolute;
+            width: 300px;
+            float: left;
+            margin-left: -40px;
+        }
+        #container{
+            margin-top: 20px;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+      <div id="idHeader">
+          <form>
+              <header>
+                  <a href="">
+                  <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/393391152_208027392306653_4287583286038172734_n.png?_nc_cat=106&ccb=1-7&_nc_sid=510075&_nc_ohc=j-cDDctPUZcAX_OYW5u&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AdQtLWCPR3-OIOvJwAx_zky171bVj7SA3uUW7rnpGvMp_A&oe=65561255">
+                  </a>
+                  <h3 style="color: white"> Đặt lại mật khẩu </h3>
+              </header>
+          </form>
+      </div>
+
+      <div id="container">
+          <form id="formRePass">
+              <div id="reTitlePass">
+                  <a href=""><i class="fas fa-arrow-left"></i> </a>
+              <h4>  Đặt lại mật khẩu </h4>
+              </div>
+              <div>
+                  <input id="idName" name="idName" type="text" placeholder="Tên tài khoản">
+              </div>
+
+              <button id="submit" style="color: white" onclick="my_submit()"> TIẾP THEO </button>
+          </form>
+      </div>
+
+      <script>
+          function my_submit () {
+              let idName = "idName";
+              let inputElement = document.getElementById(idName);
+              if(inputElement.value === ""){
+                  alert("Vui lòng nhập tên đăng nhập");
+                  inputElement.focus();
+                  }
+
+          }
+      </script>
+
+</body>
+</html>

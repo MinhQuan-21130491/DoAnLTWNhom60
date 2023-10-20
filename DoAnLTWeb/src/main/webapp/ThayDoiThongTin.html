@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Thay đổi thông tin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <style>
     body{
+        background-color: #dad8d8;
          font-size: 17px;
          font-family: sans-serif;
          font-weight: 400;
@@ -12,30 +14,18 @@
          padding: 0;
     }
     form{
-        background-color: #fcad6d;
+        background-color: white;
         position: absolute;
         margin: auto;
-        border: 2px solid #cbcaca;
+        border: 2px solid #d76802;
         width: 600px;
         height: 450px;
-    }
-    #HienThiNS{
-
-    }
-    #HienThiDC{
-
-
-    }
-    #HienThiSDT{
-
-    }
-    #HienThiGmail{
-
     }
     label{
         margin-left: 20px;
         height: 35px;
         display: flex;
+        opacity: 0.6;
 
     }
     input{
@@ -46,12 +36,26 @@
         border-radius: 5px;
 
     }
+    i{
+        margin-left: 20px;
+        color: #f68e2e;
+    }
 
 
     h3{
         margin-left: 5px;
         text-align: center;
 
+    }
+    #submitHuy{
+        width: 60px;
+        height: 35px;
+        float: right;
+        margin-top: 20px;
+        border: none;
+        background-color: white;
+        color: #d76802;
+        text-decoration: underline;
     }
     #submit{
         border: 2px solid #cbcaca;
@@ -63,9 +67,11 @@
     }
 
     .changeInF{
+        width: 100%;
         position: relative;
         display: flex;
         justify-content: center;
+        background-color: #d76802;
 
 
 
@@ -77,7 +83,8 @@
           <form id="changeNam">
               <table>
                   <tr>
-                      <h3> Thay đổi thông tin </h3>
+                      <td><i class="fas fa-arrow-left"></i></td>
+                      <td><h3> Thay đổi thông tin </h3></td>
                   </tr>
 
                   <tr id="changeName">
@@ -127,13 +134,43 @@
 
                   <td>
                       <div>
-                          <button id="submit" name="SB" type="submit"> <strong>LƯU </strong></button></div>
+                          <button id="submit" name="SB" onclick="my_function()"> <strong>LƯU </strong></button>
+                          <button id="submitHuy" name="SBH" type="submit"> <strong>HUỶ </strong></button>
+                      </div>
                   </td>
 
               </tr>
               </table>
           </form>
+
       </div>
+
+<script>
+    function my_function () {
+        let HienThiTen = "HienThiTen";
+        let HienThiGmail = "HienThiGmail";
+        let HienThiSDT = "HienThiSDT";
+        let HienThiDC = "HienThiDC";
+        let HienThiNS = "HienThiNS";
+
+        let tenElement = document.getElementById(HienThiTen);
+        let gmailElement = document.getElementById(HienThiGmail);
+        let sdtElement = document.getElementById(HienThiSDT);
+        let dcElement = document.getElementById(HienThiDC);
+        let nsElement = document.getElementById(HienThiNS);
+
+        if (tenElement.value !== "") {
+            if (tenElement.value.length < 8) {
+                alert("Vui lòng nhập tên nhiều hơn hoặc 8 ký tự");
+                tenElement.focus();
+            }
+        } else {
+            alert("Vui lòng nhập thông tin");
+            tenElement.focus();
+        }
+
+    }
+</script>
 
 </body>
 </html>
