@@ -2,147 +2,142 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Đăng Nhập</title>
-    <style>
-        body{
-            font-size: 17px;
-            font-family: sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        form{
-            width: 400px;
-            height: 250px;
-            margin: auto;
-            position: absolute;
-        }
-        h3{
-            text-align: center;
-        }
-        #rePass{
-            margin-left: 20px;
-            font-size: 14px;
-        }
-        #idFormInput{
-
-            width: 350px;
-            height: 40px;
-            margin-bottom: 20px;
-            margin-left: 20px;
-
-        }
-        #idFormPass{
-            width: 350px;
-            height: 40px;
-            margin-bottom: 20px;
-            margin-left: 20px;
-
-        }
-        p{
-            text-align: center;
-            font-size: 14px;
-
-        }
-        #idMK{
-            text-align: right;
-            margin-right: 20px;
-
-        }
-        button{
-            height: 30px;
-            margin-left: 160px;
-            background-color: #f68e2e;
-            color: black;
-            border: none;
-            margin-bottom: 10px;
-
-        }
-        .thongtin{
-            border: 2px solid #f68e2e;
-            margin-top: -100px;
-
-        }
-        img{
-
-            width: 300px;
-            margin-top: -50px;
-            float: left;
-            margin-left: -50px;
-        }
-
-        #wrapper{
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 650px;
-        }
-    </style>
+    <title>Title</title>
 </head>
+<style>
+    body {
+        font-size: 17px;
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: rgba(245, 245, 245, 1);; /* Thay đổi màu nền của trang */
+    }
+
+    #wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    #form-login {
+        width: 400px;
+        height: auto;
+        background-color: white;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #form-login img {
+        width: 300px;
+        display: block;
+        margin: 0 auto;
+    }
+    .heading {
+        font-size: 24px;
+        margin-bottom: 20px;
+        margin-top: 10px; /* Thêm dòng này để đưa tiêu đề lên trên */
+    }
+
+
+
+    .thongtin {
+        text-align: center;
+    }
+
+    .form-group {
+        margin-bottom: 25px;
+    }
+
+    .form-input,
+    .form-pass {
+        width: 100%;
+        height: 45px;
+
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .heading {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    button {
+        width: 100%;
+        height: 40px;
+        background-color: #f68e2e;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    a {
+        text-decoration: none;
+        color: #f68e2e;
+    }
+    .error{
+        float: left;
+        font-size: 12px;
+        margin-top: 4px;
+        color: red;
+    }
+</style>
 <body>
+<div id="wrapper">
+    <form id="form-login" action="http://google.com" onsubmit="return my_submit()">
+        <div id="imgHinh">
+            <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/393391152_208027392306653_4287583286038172734_n.png?_nc_cat=106&ccb=1-7&_nc_sid=510075&_nc_ohc=j-cDDctPUZcAX_OYW5u&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AdQtLWCPR3-OIOvJwAx_zky171bVj7SA3uUW7rnpGvMp_A&oe=65561255">
+        </div>
+        <div class="thongtin">
+            <h3 class="heading">ĐĂNG NHẬP</h3>
+            <div class="form-group">
+                <input class="form-input" id="idFormInput" name="idFormInput" type="text" placeholder="Tên tài khoản">
+                <div class="error" id="inputError"  ></div>
+            </div>
+            <div class="form-group">
+                <input class="form-pass" id="idFormPass" name="idFormPass" type="password" placeholder="Mật khẩu">
+                <div class="error" id="passError"></div>
+            </div>
+            <div class="form-group" id="idFPass">
+                <p id="idMK">
+                    <a href="#">Quên mật khẩu?</a>
+                </p>
+            </div>
+            <div>
+                <button onclick="my_submit()">Đăng nhập</button>
+            </div>
+            <div class="form-group" id="idDK">
+                <p><a href="#">Bạn chưa có tài khoản?</a></p>
+            </div>
+        </div>
+    </form>
+</div>
 
-      <div id="wrapper"> <!-- Toàn bộ phần đăng nhập-->
-          <form id="form-login" action="">
-              <div>
-                  <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/393391152_208027392306653_4287583286038172734_n.png?_nc_cat=106&ccb=1-7&_nc_sid=510075&_nc_ohc=j-cDDctPUZcAX_OYW5u&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AdQtLWCPR3-OIOvJwAx_zky171bVj7SA3uUW7rnpGvMp_A&oe=65561255">
-              </div>
-              <div class="thongtin">
-                  <h3 class="heading"> ĐĂNG NHẬP </h3>
+<script>
+    function my_submit () {
+        var flag = true;
+        let inputElement = document.getElementById("idFormInput");
+        let passElement = document.getElementById("idFormPass");
+        let inputError = document.getElementById("inputError");
+        let passError = document.getElementById("passError");
+        inputError.textContent = "";
+        passError.textContent = "";
+        if(inputElement.value === ""){
+            inputError.textContent = "*Vui lòng nhập tên đăng nhập!";
+            flag =  false;
+        }else if (!/^[\w\s\u0300-\u036F]+$/u.test(inputElement.value)) {
+            inputError.textContent = "*Tên đăng nhập chỉ được chứa số và chữ cái!";
+            flag = false;
+        }
+        if (passElement.value === ""){
+            passError.textContent = "*Vui lòng nhập mật khâu!";
+            flag =  false;
+        }
+        return flag;
+    }
 
-                <!-- Nhập tên để đăng nhập-->
-              <div class="form-group">
-              <input class="form-input" id="idFormInput" name="idFormInput" type="text" placeholder="Tên tài khoản">
-              </div>
-
-              <!-- Nhập password để đăng nhập tài khoản-->
-              <div class="form-group">
-                  <input class="form-pass" id="idFormPass" name="idFormPass" type="password" placeholder="Mật khẩu">
-
-              </div>
-                  <div id="rePass">
-                      <input type="checkbox" id="idCheck" name="idCheck" value="Nhớ mật khẩu">
-                      <label class="checkInput" for="idCheck"> Nhớ mật khẩu </label>
-                  </div>
-
-              <div class="form-group" id="idFPass">
-                  <p id="idMK">
-                  <a href=""> Quên mật khẩu? </a>
-                  </p>
-              </div>
-
-              <!-- Ấn nút đăng nhập để tiến hành đăng nhập vào trang-->
-              <div>
-                  <button onclick="my_submit()"> Đăng nhập </button>
-              </div>
-
-                  <div class="form-group" id="idDK">
-                      <p>
-
-                          <a href=""> Bạn chưa có tài khoản? </a>
-                      </p>
-                  </div>
-              </div>
-
-          </form>
-      </div>
-      <script>
-          function my_submit () {
-              let idFormInput = "idFormInput";
-              let idFormPass= "idFormPass";
-              let inputElement = document.getElementById(idFormInput);
-              let passElement = document.getElementById(idFormPass);
-              if(inputElement.value !== ""){
-                  if(inputElement.value.length < 8){
-                      alert("Vui lòng nhập tên nhiều hơn hoặc trên 8 ký tự");
-                      inputElement.focus();
-                  }
-              }else{
-                  alert("Vui lòng nhập tên đăng nhập");
-                  inputElement.focus();
-              }
-
-          }
-
-      </script>
+</script>
 </body>
 </html>
