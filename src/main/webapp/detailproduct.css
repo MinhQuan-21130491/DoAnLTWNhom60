@@ -2,31 +2,19 @@
     font-size: 1.35rem;
     line-height: 1.5rem;
 }
-.amount-sold {
-    font-size: .875rem;
-    color: #767676;
-    margin-top: 10px;
-}
-.delivery {
-    display: inline-block;
-    color: #767676;
-}
+
 #address{
     margin-left: 25px;
 }
 .amount-product {
-    margin-top: 60px;
+    margin-top: 30px;
     width: 200px;
     display: flex;
 }
-
 .t{
     position: relative;
     top: 6px;
     width: 40%;
-}
-.t p {
-    color: #767676;
 }
 .dai {
     width: 60%;
