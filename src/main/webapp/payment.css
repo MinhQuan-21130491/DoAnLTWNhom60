@@ -1,7 +1,5 @@
 
-.text-color {
-    color: var(--color_backgroud);
-}
+
 .changeInfor #btnChangeInfor {
     border: none;
     padding: 10px 20px;

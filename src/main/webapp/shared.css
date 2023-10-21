@@ -23,8 +23,17 @@ body {
     border-radius: 5px;
     box-shadow: 1px 1px 1px rgb(224, 221, 221);
 }
+.bgcolor-gray{
+    background-color: rgba(245, 245, 245, 1);
+}
 .bd {
     border-bottom: 3px solid var(--color_backgroud);
+}
+.text-color {
+    color: var(--color_backgroud);
+}
+.bgcolor-orange {
+    background-color: var(--color_backgroud);
 }
 
 .form-search {

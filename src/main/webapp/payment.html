@@ -145,7 +145,7 @@
     </div>
 </header>
 <div class="container">
-    <div class="row mt-5 p-2 bgcolor">
+    <div class="row mt-3 p-2 bgcolor">
         <div class="col-lg-4 col-sm-6 my-1">
             <h5 class="text-color">THÔNG TIN KHÁCH HÀNG <i class="fa fa-user-circle-o text-color"
                                                            aria-hidden="true"></i></i></h5>
@@ -245,40 +245,39 @@
             </table>
         </div>
     </div>
-    <div class="row bgcolor mt-3 p-2 mb-5">
-        <div class="row">
-            <div class="col-lg-12 mt-2 ps-3 pe-0">
-                <h5>PHƯƠNG THỨC THANH TOÁN</h5>
-                <hr class = "p-0"/>
-            </div>
+    <div class="row bgcolor mt-3 p-2 mb-3">
+        <div class="col-lg-12 mt-1 bdm ">
+            <h5>PHƯƠNG THỨC THANH TOÁN</h5>
         </div>
-        <div class="row p-0">
-            <div class="col-lg-8 col-sm-4 col-3"></div>
-            <div class="col-lg-4 col-sm-8 col-9 mt-1 ps-5 pe-0">
-                <input class="" type="radio" id="cash" name="pay" value="Tiền mặt"><label for="cash">Tiền mặt <i
-                    class="fa fa-money" aria-hidden="true"></i> </label>
-                <input class="ms-3" type="radio" id="bank" name="pay" value="Thẻ tín dụng"><label for="bank">Thẻ tín
-                dụng <i class="fa fa-cc-visa" aria-hidden="true"></i></label>
-                <div class=" mt-3">
-                    <p class="mb-3 color-gray">Tổng tiền hàng:
-                        <span class="float-end">
+        <div class="col-lg-12 my-1">
+            <div class="row">
+                <div class="col-lg-8 col-sm-4 col-3"></div>
+                <div class="col-lg-4 col-sm-8 col-9 mt-1 ps-5">
+                    <input class="" type="radio" id="cash" name="pay" value="Tiền mặt"><label for="cash">Tiền mặt <i
+                        class="fa fa-money" aria-hidden="true"></i> </label>
+                    <input class="ms-3" type="radio" id="bank" name="pay" value="Thẻ tín dụng"><label for="bank">Thẻ tín
+                    dụng <i class="fa fa-cc-visa" aria-hidden="true"></i></label>
+                    <div class=" mt-3">
+                        <p class="mb-3 color-gray">Tổng tiền hàng:
+                            <span class="float-end">
                             <span> ₫</span>
                             <span id="totalMoney"></span>
                         </span>
-                    </p>
-                    <p class="mb-3 color-gray">Tiền vận chuyển:
-                        <span class="float-end" id="moneyShip">₫0</span></p>
-                    <p class="mb-3 color-gray">Tổng thanh toán:
-                        <span class="float-end">
+                        </p>
+                        <p class="mb-3 color-gray">Tiền vận chuyển:
+                            <span class="float-end" id="moneyShip">₫0</span></p>
+                        <p class="mb-3 color-gray">Tổng thanh toán:
+                            <span class="float-end">
                             <span class="price "> ₫</span>
                             <span class="price" id="totalPay"></span>
                         </span>
-                    </p>
-                </div>
-                <div class="pay text-end mt-2">
-                    <a href=#>
-                        <button id="btnPay">Đặt hàng</button>
-                    </a>
+                        </p>
+                    </div>
+                    <div class="pay text-end mt-2">
+                        <a href=#>
+                            <button id="btnPay">Đặt hàng</button>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
