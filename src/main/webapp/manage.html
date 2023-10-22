@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý tài khoản</title>
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+            crossorigin="anonymous">
+    <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"></script>
+    <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+            integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+          integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="shared.css">
+    <link rel="stylesheet" href="manage.css">
+</head>
+<body>
+<header>
+    <div class="container-fluid bgcolor-orange" >
+        <div class="container ">
+            <div class="row ">
+                <div class="col-lg-2 d-flex align-items-center justify-content-center">
+                    <a class ="nav-link" href="#"> <img class="w-100 me-1" src="image/SimP (5) (1).png">
+                    </a>
+                </div>
+                <div class="col-lg-7 col-sm-12 py-2 mt-1">
+                    <form class = "">
+                        <div class="form-search">
+                            <input class="form-control border-0" type="search"
+                                   placeholder="Nội dung tìm kiếm" aria-label="Search">
+                            <button class="btn border-0" type="submit">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-3 py-3 d-flex align-items-center d-sm-none d-none d-lg-block">
+                    <ul class="d-flex m-0 list-unstyled justify-content-end">
+                        <li class="px-3"><a class="nav-link active" aria-current="page" href="#"><i class="fa fa-phone" aria-hidden="true"></i></a></li>
+                        <li class="px-3"><a class="nav-link" href="#"><i
+                                class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
+                        <li class="px-3"><a class="nav-link" href="#"><i
+                                class="fa fa-instagram" aria-hidden="true"></i></i></a></li>
+                        <li class="px-3"><a class="nav-link" href="#"><i
+                                class="fa fa-twitter" aria-hidden="true"></i></i></a></li>
+
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-luid bd">
+        <div class="container ">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light py-2 ">
+                <div class="container-fluid px-0">
+                    <button class="navbar-toggler" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
+                            aria-controls="navbarTogglerDemo01" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                        <div class="col-md-9">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item hv "><a class="nav-link ps-0 "
+                                                            aria-current="page" href="#">Trang chủ</a></li>
+                                <li class="nav-item hv"><a class="nav-link" href="#">Giới
+                                    thiệu</a></li>
+                                <li class="nav-item dropdown hv"><a
+                                        class="nav-link dropdown-toggle" href="#" id=""
+                                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Sản phẩm </a>
+                                    <ul class="dropdown-menu" aria-labelledby="">
+                                        <li><a class="dropdown-item" href="#">Ghế văn phòng</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item" href="#">Ghế thư giãn</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item" href="#">Ghế trang trí</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item" href="#">Ghế gaming</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item hv d-lg-none ">
+                                    <ul class="navbar-nav justify-content-end">
+                                        <li class="nav-item dropdown hv"><a
+                                                class="nav-link dropdown-toggle" href="#"
+                                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Tài khoản </a>
+                                            <ul class="dropdown-menu" aria-labelledby="">
+                                                <li><a class="dropdown-item" href="#">Đăng nhập</a></li>
+                                                <li>
+                                                    <hr class="dropdown-divider">
+                                                </li>
+                                                <li><a class="dropdown-item" href="#">Đăng kí</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3  d-lg-block d-md-none d-none">
+                            <ul class="navbar-nav justify-content-end">
+                                <li class="nav-item dropdown hv"><a
+                                        class="nav-link dropdown-toggle" href="#"
+                                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Tài khoản </a>
+                                    <ul class="dropdown-menu" aria-labelledby="">
+                                        <li><a class="dropdown-item" href="#">Đăng nhập</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item" href="#">Đăng kí</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<div class="container-fluid">
+    <div class="container my-3">
+        <div class="row">
+            <!--menu-left-->
+            <div class="col-lg-3">
+                <div class="list-group d-none d-md-none d-lg-block ">
+                    <div class="cate" id="cate">
+                        <div class="icon-bar">
+                            <i class="fa fa-bars" aria-hidden="true"></i>
+                        </div>
+                        <div class="cateList" id ="cateList">
+                            <h5>DANH MỤC QUẢN LÝ </h5>
+                        </div>
+                    </div>
+                    <div class="typeManage" id ="typeManage" >
+                        <a href="#" class="list-group-item list-group-item-action">Quản lý tài khoản</a>
+                        <a href="#" class="list-group-item list-group-item-action">Quản lý sản phẩm</a>
+                        <a href="#" class="list-group-item list-group-item-action">Quản lý hóa đơn</a>
+                        <a href="#" class="list-group-item list-group-item-action">Quản lý doanh thu</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 bgcolor " id ="mngAccount">
+                <div class="row mt-2">
+                    <div class="col-lg-6">
+                        <h5 >Quản lý tài khoản</h5>
+                    </div>
+                    <div class="col-lg-6 text-end">
+                        <a href="#"><button class="btnAdd bgcolor    bd-full"><i class="fa fa-plus-circle text-color" aria-hidden="true"></i></button></a>
+                    </div>
+                </div>
+                <hr>
+              <div class="row">
+                  <div class="col-lg-12">
+                      <table>
+                          <thead>
+                                <tr>
+                                    <td>ID</td>
+                                    <td>NHÂN VIÊN</td>
+                                    <td>ADMIN</td>
+                                    <td>EMAIL</td>
+                                    <td>XÁC THỰC</td>
+                                    <td>TRẠNG THÁI</td>
+                                    <td>XÓA</td>
+                                    <td>KHÓA</td>
+                                </tr>
+                          </thead>
+                          <tbody>
+                                <tr>
+                                    <td>
+                                        <span>1</span>
+                                    </td>
+
+                                    <td>
+                                        <span>0</span>
+                                    </td>
+                                    <td>
+                                        <span>1</span>
+                                    </td>
+                                    <td>
+                                        <span>qle29202@gmail.com</span>
+                                    </td>
+                                    <td >
+                                        <span>1</span>
+                                    </td>
+                                    <td class = "status">
+                                        <span></span>
+                                    </td>
+                                    <td>
+                                        <button class="delete" ><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                    </td>
+                                    <td>
+                                        <button class="block" ><i class="fa fa-lock" aria-hidden="true"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>1</span>
+                                    </td>
+
+                                    <td>
+                                        <span>0</span>
+                                    </td>
+                                    <td>
+                                        <span>1</span>
+                                    </td>
+                                    <td>
+                                        <span>qle29202@gmail.com</span>
+                                    </td>
+                                    <td >
+                                        <span>1</span>
+                                    </td>
+                                    <td class = "status">
+                                        <span></span>
+                                    </td>
+                                    <td>
+                                        <button class="delete" ><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                    </td>
+                                    <td>
+                                        <button class="block" ><i class="fa fa-lock" aria-hidden="true"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>1</span>
+                                    </td>
+
+                                    <td>
+                                        <span>0</span>
+                                    </td>
+                                    <td>
+                                        <span>1</span>
+                                    </td>
+                                    <td>
+                                        <span>qle29202@gmail.com</span>
+                                    </td>
+                                    <td >
+                                        <span>1</span>
+                                    </td>
+                                    <td class = "status">
+                                        <span></span>
+                                    </td>
+                                    <td>
+                                        <button class="delete" ><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                    </td>
+                                    <td>
+                                        <button class="block" ><i class="fa fa-lock" aria-hidden="true"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>5</span>
+                                    </td>
+
+                                    <td>
+                                        <span>0</span>
+                                    </td>
+                                    <td>
+                                        <span>1</span>
+                                    </td>
+                                    <td>
+                                        <span>qle29202@gmail.com</span>
+                                    </td>
+                                    <td >
+                                        <span>1</span>
+                                    </td>
+                                    <td class = "status">
+                                        <span></span>
+                                    </td>
+                                    <td>
+                                        <button class="delete" ><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                    </td>
+                                    <td>
+                                        <button class="block" ><i class="fa fa-lock" aria-hidden="true"></i></button>
+                                    </td>
+                                </tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+
+            </div>
+            <div class="col-lg-9 bgcolor d-none " id ="mngProduct">
+                <div class="row mt-2">
+                    <div class="col-lg-6">
+                        <h5 >Quản lý sản phẩm</h5>
+                    </div>
+                    <div class="col-lg-6 text-end">
+                        <a href="#"><button class="btnAdd bgcolor    bd-full"><i class="fa fa-plus-circle text-color" aria-hidden="true"></i></button></a>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table class="mt-4">
+                            <tr>
+                                <td class="sp">ID</td>
+                                <td class="sp">SẢN PHẨM</td>
+                                <td>ĐƠN GIÁ</td>
+                                <td>MÀU SẮC</td>
+                                <td>VẬT LIỆU</td>
+                                <td>KÍCH THƯỚC</td>
+                                <td>CHỈNH SỬA</td>
+                                <td>XÓA</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span>1</span>
+                                </td>
+                                <td>
+                                    <div class="item">
+                                        <div class="item_img">
+                                            <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
+                                                 class="card-img-top img_p_cart" alt="..."/>
+                                        </div>
+                                        <span class="item_text">Ghế massage siêu cấp pro</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    ₫<span>1000000</span>
+                                </td>
+                                <td>
+                                    <span>Màu đen</span>
+                                </td>
+                                <td>
+                                    <span>Hợp kim, bọc da</span>
+                                </td>
+                                <td>
+                                    <span>100x50x70</span>
+                                </td>
+                                <td>
+                                    <button class="edit "><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                                </td>
+                                <td>
+                                    <button class="delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script>
+    $(document).ready(function () {
+        // ẩn hiển danh mục quản lý
+        $('#cate').click(function () {
+            var typeManage = $('#typeManage');
+            if (typeManage.css("display") === "none") {
+                typeManage.css("display", "block");
+            } else {
+                typeManage.css("display", "none");
+            }
+        });
+        // xóa account
+        $('.delete').click(function () {
+            $(this).closest('tr').remove();
+        })
+        $('.block').click(function () {
+            var state = $(this).closest('tr').find('.status span');
+            if(state.text() == 'Khóa') {
+                state.text(" ");
+                $(this).html("<i class=\"fa fa-lock\" aria-hidden=\"true\"></i>");
+            }else {
+                state.text("Khóa")
+                $(this).html("<i class=\"fa fa-unlock-alt\" aria-hidden=\"true\"></i>");
+            }
+        })
+        // Chọn danh mục quản lý
+        $('#typeManage a').click(function () {
+            var selectedType = $(this).text();
+            $('#typeManage a').css('color', '')
+            $(this).css('color', '#f68e2e');
+            if (selectedType === "Quản lý tài khoản") {
+
+                $('#mngAccount').removeClass('d-none');
+                $('#mngProduct').addClass('d-none');
+            } else if (selectedType === "Quản lý sản phẩm") {
+                $('#mngAccount').addClass('d-none');
+                $('#mngProduct').removeClass('d-none');
+            }
+        });
+
+
+    });
+</script>
+</html>
