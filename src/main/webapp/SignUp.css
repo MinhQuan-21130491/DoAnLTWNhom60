@@ -104,4 +104,7 @@ button{
     /* CSS cho màn hình nhỏ hơn hoặc bằng 768px */
 }
 /*---------------------------------------------------*/
+.error{
+    font-size: 12px;
+}
 
