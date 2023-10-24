@@ -17,53 +17,53 @@
       <div class="changeInF">
           <form id="changeNam" onsubmit="return my_function()">
                <table>
-                   <tr><td colspan="4"><h3> THAY ĐỔI THÔNG TIN </h3></td></tr>
+                   <tr><td colspan="4"><h4 style="font-weight: 400"> THAY ĐỔI THÔNG TIN </h4></td></tr>
                    <tr id="changeName">
-                       <td><label id="lName" >Tên đăng nhập</label></td>
+                       <td><label id="lName">Tên đăng nhập</label></td>
                        <td>
-                           <div>
+                           <div id="InName">
+                                <div class="error" id="tenError"  ></div>
                                 <input id="HienThiTen" name="TenHT" type="text">
-                               <div class="error" id="tenError"  ></div>
                            </div>
                        </td>
                    </tr>
                    <tr id="changegGmail">
-                        <td> <label> Gmail</label></td>
+                        <td> <label id="lGmail"> Gmail</label></td>
                        <td>
-                           <div>
-                                <input id="HienThiGmail" name="GmailHT" type="email">
-                                <div class="error" id="gmailError"  ></div>
+                           <div id="InGmail">
+                               <div class="error" id="gmailError"  ></div>
+                               <input id="HienThiGmail" name="GmailHT" type="text">
                            </div>
                        </td>
                    </tr>
                    <tr id="changeSDT">
-                       <td><label> Số điện thoại </label></td>
+                       <td><label id="lSDT"> Số điện thoại </label></td>
                        <td>
-                           <div>
-                               <input id="HienThiSDT" name="SDTHT" type="tel">
+                           <div id="InSDT">
                                <div class="error" id="sdtError"  ></div>
+                               <input id="HienThiSDT" name="SDTHT" type="tel">
                            </div>
                        </td>
                    </tr>
                    <tr id="changeDC">
-                       <td><label> Địa chỉ nhận</label></td>
+                       <td><label id="lDiaChi"> Địa chỉ nhận</label></td>
                        <td>
-                           <div>
+                           <div id="InDiaChi">
+                               <div class="error" id="DCError" ></div>
                                <input id="HienThiDC" name="DCHT" type="text">
-                               <div class="error" id="DCError"  ></div>
                            </div>
                        </td>
                    </tr>
                    <tr id="changeNgaySinh">
-                       <td><label>Ngày sinh</label></td>
+                       <td><label id="lNS">Ngày sinh</label></td>
                        <td>
-                           <div>
-                               <input id="HienThiNS" name="HienThiNS" type="date">
+                           <div id="InNS">
                                <div class="error" id="NSError"  ></div>
+                               <input id="HienThiNS" name="HienThiNS" type="date">
                            </div>
                        </td>
                    </tr>
-                   <tr>
+                   <tr id="SubmitSB">
                        <td><label></label></td>
                        <td>
                            <div><button id="submit" name="SB" onclick="my_function()" style="color: white"> LƯU </button></div>
@@ -101,9 +101,15 @@
         if (gmailElement.value === ""){
             gmailError.textContent = "*Vui lòng nhập gmail!";
             flag =  false;
+        }else if (!/^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(gmailElement.value)) {
+            gmailError.textContent = "*Gmail không hợp lệ, phải là định dạng @gmail.com!";
+            flag =  false;
         }
         if( sdtElement.value.length === 0){
             sdtError.textContent = "*Vui lòng nhập số điện thoại!";
+            flag =  false;
+        }else if (sdtElement.value.length !== 10) {
+            sdtError.textContent = "*Số điện thoại không hợp lệ!";
             flag =  false;
         }
         if( dcElement.value.length === 0){
