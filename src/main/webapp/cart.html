@@ -24,7 +24,7 @@
       crossorigin="anonymous" referrerpolicy="no-referrer"/>
 <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="cart.css">
 <body>
 <header>
@@ -79,11 +79,11 @@
                         <div class="col-md-9">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li class="nav-item hv "><a class="nav-link ps-0 "
-                                                            aria-current="page" href="#">Trang chủ</a></li>
+                                                            aria-current="page" href="home.html">Trang chủ</a></li>
                                 <li class="nav-item hv"><a class="nav-link" href="#">Giới
                                     thiệu</a></li>
                                 <li class="nav-item dropdown hv"><a
-                                        class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                                        class="nav-link dropdown-toggle" href="#"
                                         role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Sản phẩm </a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -105,7 +105,7 @@
                                 <li class="nav-item hv d-lg-none ">
                                     <ul class="navbar-nav justify-content-end">
                                         <li class="nav-item dropdown hv"><a
-                                                class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                                                class="nav-link dropdown-toggle" href="#"
                                                 role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             Tài khoản </a>
                                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -144,7 +144,7 @@
     </div>
 </header>
 <div class="container">
-    <div class="row bgcolor my-5">
+    <div class="row bgcolor my-3">
         <div class="col-lg-12">
             <table class="mt-4">
                 <tr>
@@ -263,6 +263,61 @@
         </div>
     </div>
 </div>
+<footer>
+    <div class="container-fluid bgcolor-orange ">
+        <div class="container pb-3">
+            <div class="row py-3 float-xs-center" >
+                <div class="col-lg-3 col-md-6 col-sm-6 ">
+                    <h5 class="">DANH MỤC</h5>
+                    <hr class ="w-50 ">
+                    <ul class="navbar-nav ">
+                        <a class="nav-link link" href=""><li>Ghế văn phòng</li></a>
+                        <a class="nav-link link" href=""><li>Ghế thư giãn</li></a>
+                        <a class="nav-link link" href=""><li>Ghế trang trí</li></a>
+                        <a class="nav-link link" href=""><li>Ghế gaming</li></a>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 ">
+                    <h5>LIÊN HỆ VỚI SHOP</h5>
+                    <hr class ="w-50 ">
+                    <ul class="navbar-nav ">
+                        <a class="nav-link link" href=""><li>Hướng dẫn đặt hàng</li></a>
+                        <a class="nav-link link" href=""><li>Thông tin thanh toán</li></a>
+                        <a class="nav-link link" href=""><li>Chính sách giao nhận hàng</li></a>
+                        <a class="nav-link link" href=""><li>Liên hệ</li></a>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <h5 class ="">THEO DÕI CHÚNG TÔI</h5>
+                    <hr class ="w-50">
+                    <ul class="navbar-nav">
+                        <li class="px-3"><a class="nav-link link" href="#"><i
+                                class="fa fa-facebook-official" aria-hidden="true"></i> FaceBook</a></li>
+                        <li class="px-3"><a class="nav-link link" href="#"><i
+                                class="fa fa-instagram" aria-hidden="true"></i></i> Instagram</a></li>
+                        <li class="px-3"><a class="nav-link link" href="#"><i
+                                class="fa fa-twitter" aria-hidden="true"></i></i>Twitter</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <h5 class = "">THÔNG TIN SHOP</h5>
+                    <hr class ="w-50 ">
+                    <ul class="navbar-nav ">
+                        <a class="nav-link link" href=""><li><i class="fa fa-map-marker" aria-hidden="true"></i> 230A Tô Ngọc Vân, Phường Linh Xuân, Thành phố Thủ Đức</li></a>
+                        <a class="nav-link link" href=""><li><i class="fa fa-envelope" aria-hidden="true"></i> homedecorsqn@gmail.com</li></a>
+                        <a class="nav-link link" href=""><li><i class="fa fa-phone" aria-hidden="true"></i> 0812295775</li></a>
+                        <a class="nav-link link" href=""><li><i class="fa fa-fax" aria-hidden="true"></i>0812295775</li></a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row bgcolor-gray">
+            <div class="col text-center color-gray">
+                Nhom 60 &copy;2023. All rights reserved.
+            </div>
+        </div>
+    </div>
+</footer>
 </body>
 <script>
     $(document).ready(function () {
@@ -298,11 +353,8 @@
             $('tr').each(function () {
                 var moneyText = $(this).find('td:eq(1) span').text();
                 var amountText = $(this).find('.amount').val();
-
                 var money = parseFloat(moneyText);
                 var amount = parseFloat(amountText);
-
-
                 if (!isNaN(money) && !isNaN(amount)) {
                     totalMoney += money * amount;
                 }

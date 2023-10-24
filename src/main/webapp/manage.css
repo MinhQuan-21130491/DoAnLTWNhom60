@@ -1,17 +1,41 @@
 .btnAdd {
     padding: 5px 10px;
 }
-.block {
-    border-radius: 5px;
-    border: none;
-    padding:8px 30px;
-    background-color: #f84444;
-    font-size: 20px;
+.pst {
+    position: relative;
 }
-.edit {
-    border-radius: 5px;
-    border: none;
-    padding:8px 30px;
-    background-color: #0d6efd;
-    font-size: 20px;
+.pst {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 45%;
+    transform: translate(-50%, -50%);
 }
+
+.form {
+    width: 120%;
+    margin:auto;
+}
+.save {
+    padding: 10px 20px;
+    background-color: var(--color_backgroud);
+    border: none;
+    border-radius: 3px;
+}
+.bgcolor-form {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 3px 10px 0 rgba(0,0,0,.4);
+}
+textarea {
+    height: 118px;
+}
+.back{
+    cursor: pointer;
+}
+@media screen and (max-width: 992px) {
+    .typeManage {
+        display: none;
+    }
+}
+
