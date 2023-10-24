@@ -13,19 +13,23 @@ $(document).ready(function () {
             $("#errUser").text('');
         }
         if (email === "") {
-            $("#errEmail").text(' (*)Vui lòng nhập Email!');
+            $("#errEmail").text(' (*)Vui lòng nhập Gmail!');
             $('#errEmail').attr('style', 'color:red');
             condition = false;
         } else if (!email.match(emailReg)) {
-            $('#errEmail').text('Vui lòng nhập địa chỉ email hợp lệ!');
+            $('#errEmail').text('Vui lòng nhập địa chỉ Gmail hợp lệ!');
             $('#errEmail').attr('style', 'color:red')
             condition = false;
-        } else {
+        }
+        else{
+            $("#errUser").text('');
+        }
+        if(email !== "" && user !== "") {
             $('#errEmail').text('');
             alert('xac minh thanh cong');
         }
         if (condition) {
-            $(this).send();
+            $(this).submit();
         }
         event.preventDefault();
 

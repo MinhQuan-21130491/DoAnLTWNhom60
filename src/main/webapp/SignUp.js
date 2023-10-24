@@ -65,11 +65,11 @@ $(document).ready(function () {
             $("#errTell").text('');
         }
         if(email===""){
-            $("#errEmail").text(' (*)Vui lòng nhập Email!');
+            $("#errEmail").text(' (*)Vui lòng nhập Gmail!');
             $('#errEmail').attr('style', 'color:red');
             condition = false;
         }else if(!email.match(emailReg)){
-            $("#errEmail").text(' (*)Email không hợp lệ!');
+            $("#errEmail").text(' (*)Gmail không hợp lệ!');
             $('#errEmail').attr('style', 'color:red');
             condition = false;
         }else{
@@ -83,13 +83,12 @@ $(document).ready(function () {
             $("#errDate").text('');
         }
         if(address===""){
-            $("#errAd").text(' (*)Vui lòng nhập ngày sinh!');
+            $("#errAd").text(' (*)Vui lòng nhập địa chỉ của bạn!');
             $('#errAd').attr('style', 'color:red');
             condition = false;
         }else{
             $("#errAd").text('');
         }
-
         if (condition) {
             $(this).submit();
         }

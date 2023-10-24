@@ -30,22 +30,35 @@ $(document).ready(function (){
         var condition=true;
 
         if(password ===""){
-            $("#errPW").text(' (*)Vui long nhap mat khau');
+            $("#errPW").text(' (*)Vui lòng nhập mật khẩu hiện tại');
             $('#errPW').attr('style','color:red');
+
             condition=false;
+
         }else{
             $("#errPW").text('');
         }
-        if(newpassword===password){
+        if(newpassword===""){
+            $("#errNPW").text(' (*)Vui lòng nhập mật khẩu mới');
+            $('#errNPW').attr('style','color:red');
+            condition=false;
+        }else if(newpassword===password){
             $("#errNPW").text(' (*)Mật khẩu mới trùng với mật khẩu hiện tại');
             $('#errNPW').attr('style','color:red');
             condition=false;
         } else{
-        $("#errPW").text('');
+            $("#errPW").text('');
         }
-        if(newpassword===repassword){
+        if(repassword===""){
+            $("#errReNPW").text(' (*)Vui lòng nhập lại mật khẩu mới');
+            $('#errReNPW').attr('style','color:red');
+            condition=false;
+        } else{
+            $("#errReNPW").text('');
+        }
+        if(newpassword===repassword && newpassword!==""){
            alert('doi mat khau thanh cong');
-           return;
+
         }
         if(condition) {
             $(this).submit();
