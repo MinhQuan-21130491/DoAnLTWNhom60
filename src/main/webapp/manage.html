@@ -143,7 +143,7 @@
     <div class="container ">
         <div class="row">
             <!--menu-left-->
-            <div class="col-lg-3 p-0 mb-2 ">
+            <div class="col-lg-3 p-0 mb-2 pe-2">
                 <div class="list-group  ">
                     <div class="cate" id="cate">
                         <div class="icon-bar">
@@ -165,9 +165,6 @@
                 <div class="row mt-2">
                     <div class="col-lg-6">
                         <h5 >Quản lý tài khoản</h5>
-                    </div>
-                    <div class="col-lg-6 text-end">
-                        <a href="#"><button class="btnAdd bgcolor  bd-full" id ="btnAddAccount"><i class="fa fa-plus-circle text-color" aria-hidden="true" title="Thêm tài khoản"></i></button></a>
                     </div>
                 </div>
                 <hr>
@@ -211,11 +208,11 @@
                                         <div class="d-flex w-100">
                                             <a href="#"><button class="delete btnAdd bgcolor bd-full" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true"></i></button></a>
                                             <a href ="#"><button class="block btnAdd bgcolor bd-full mx-1" ><i class="fa fa-lock text-color" title="Khóa" aria-hidden="true"></i></button></a>
-                                            <a href = "#"><button class="edit btnAdd bgcolor bd-full"><i class="fa fa-pencil text-color" title="Chỉnh sửa" aria-hidden="true"></i></button></a>
+                                            <a href = "#"><button class="editAccount btnAdd bgcolor bd-full"><i class="fa fa-pencil text-color" title="Chỉnh sửa" aria-hidden="true"></i></button></a>
                                         </div>
                                     </td>
                                     <td>
-                                        <a href = "#"><button class="edit btnAdd bgcolor bd-full"><i class="fa fa-info text-color px-1" title="Chi tiết" aria-hidden="true"></i></button></a>
+                                        <button class="detail btnAdd bgcolor bd-full" ><i class="fa fa-info text-color px-1" title="Chi tiết" aria-hidden="true"></i></button>
                                     </td>
                                 </tr>
                           </tbody>
@@ -275,7 +272,7 @@
                                 <td>
                                     <div class="d-flex justify-content-center">
                                       <button class="delete btnAdd bgcolor bd-full me-1" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true"></i></button>
-                                        <button class="edit btnAdd bgcolor bd-full"><i class="fa fa-pencil text-color" title="Chỉnh sửa" aria-hidden="true"></i></button>
+                                        <button class="editProduct btnAdd bgcolor bd-full"><i class="fa fa-pencil text-color" title="Chỉnh sửa" aria-hidden="true"></i></button>
                                     </div>
                                 </td>
                                 <td>
@@ -588,7 +585,7 @@
             }
          })
         // mở giao diện chỉnh sửa sản phẩm
-        $('.edit').click(function () {
+        $('.editProduct').click(function () {
             if( $('#pstEdit').css('display')==='none') {
                 $('#pstEdit').css('display', 'block');
                 $('header, footer').css('opacity', '0.4');
