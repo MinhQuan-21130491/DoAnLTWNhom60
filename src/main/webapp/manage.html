@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Quản lý tài khoản</title>
+    <title>Quản lý</title>
     <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -46,12 +46,12 @@
                 </div>
                 <div class="col-lg-3 py-3 d-flex align-items-center d-sm-none d-none d-lg-block">
                     <ul class="d-flex m-0 list-unstyled justify-content-end">
-                        <li class="px-3"><a class="nav-link active" aria-current="page" href="#"><i class="fa fa-phone" aria-hidden="true"></i></a></li>
-                        <li class="px-3"><a class="nav-link" href="#"><i
+                        <li class="px-3 pt-1"><a class="nav-link active" aria-current="page" href="#"><i class="fa fa-phone" aria-hidden="true"></i></a></li>
+                        <li class="px-3 pt-1"><a class="nav-link" href="#"><i
                                 class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
-                        <li class="px-3"><a class="nav-link" href="#"><i
+                        <li class="px-3 pt-1"><a class="nav-link" href="#"><i
                                 class="fa fa-instagram" aria-hidden="true"></i></i></a></li>
-                        <li class="px-3"><a class="nav-link" href="#"><i
+                        <li class="px-3 pt-1"><a class="nav-link" href="#"><i
                                 class="fa fa-twitter" aria-hidden="true"></i></i></a></li>
 
                     </ul>
@@ -148,7 +148,7 @@
                             <i class="fa fa-bars" aria-hidden="true"></i>
                         </div>
                         <div class="cateList d-flex align-items-center justify-content-center p-0" id ="cateList">
-                            <h5 class ="my-2">DANH MỤC SẢN PHẨM </h5>
+                            <h5 class ="my-2 cateP">DANH MỤC QUẢN LÝ </h5>
                         </div>
                     </div>
                     <div class="typeManage " id ="typeManage" >
@@ -165,9 +165,20 @@
             <!--giao diện quản lý tài khoản-->
             <div class="col-lg-9 bgcolor " id ="mngAccount">
             </div>
+            <!--end giao diện quản lý tài khoản -->
             <!--giao diện quản lý sản phẩm-->
             <div class="col-lg-9 bgcolor d-none " id ="mngProduct">
-        </div>
+            </div>
+            <!--end giao diện quản lý sản phẩm-->
+            <!--giao diện quản lý bán hàng-->
+            <div class="col-lg-9 bgcolor d-none " id ="mngSale">
+            </div>
+            <!--end giao diện quản lý bán hàng -->
+            <!--giao diện quản lý hóa đơn-->
+            <div class="col-lg-9 bgcolor d-none " id ="mngInvoice">
+            </div>
+            <!--end giao diện quản lý hóa đơn -->
+
         </div>
     </div>
 </div>
@@ -235,9 +246,17 @@
 <!--edit product-->
 <section class="my-3 pst" id = "pstEditProduct">
 </section>
+<!--end edit product-->
+<!--detail product-->
+<section class="my-3 pst" id = "pstDetailProduct">
+</section>
+<!--end detail product-->
+
+<!--edit account-->
 <section class="my-3 pst" id = "pstEditAccount">
 </section>
-<!--edit add product-->
+<!--end edit account-->
+
 </body>
 <script>
     $(document).ready(function () {
@@ -269,7 +288,7 @@
                         pstEditAccount.css('display', 'block')
                         pstEditAccount.css('opacity', '1')
                         $('header, footer').css('opacity', '0.4');
-                       // $('.container-fluid').css('opacity', '0.4');
+                        $('.container-fluid').css('opacity', '0.4');
                         $('.back').click(function () {
                             if(pstEditAccount.css('display')==='block' ) {
                                 pstEditAccount.css('display', 'none');
@@ -299,7 +318,7 @@
         //load giao diện quản lý sản phẩm
         $('#mngProduct').load('manage-product.html', function () {
             // hiển thị giao diện chỉnh sửa sản phẩm khi ấn vào button chỉnh sửa sản phẩm
-            $('.editProduct').click(function (){
+            $('.editProduct').click(function () {
                 // var id = $(this).closest('tr').find('td:eq(0) span').text();
                 // console.log(typeof id)
                 // var productName = $(this).closest('tr').find('td:eq(1) .item_text').text();
@@ -340,14 +359,14 @@
                 // //JSON.stringify chuyển kiểu js thành json(tất cả thành string)
                 // localStorage.setItem('productToEdit', JSON.stringify(productData));
 
-                var pstEditProduct = $('#pstEditProduct')
-                if(pstEditProduct.css('display')==='none') {
+                var pstEditProduct = $('#pstEditProduct');
+                if (pstEditProduct.css('display') === 'none') {
                     pstEditProduct.load('editproduct.html', function () {
                         pstEditProduct.css('display', 'block')
                         $('header, footer').css('opacity', '0.4');
                         $('.container-fluid').css('opacity', '0.4');
                         $('.back').click(function () {
-                            if(pstEditProduct.css('display')==='block' ) {
+                            if (pstEditProduct.css('display') === 'block') {
                                 pstEditProduct.css('display', 'none');
                                 $('header, footer').css('opacity', '1');
                                 $('.container-fluid').css('opacity', '1');
@@ -356,6 +375,7 @@
                     });
                 }
             })
+
             // hiển thị giao diện thêm sản phẩm khi ấn vào button thêm sản phẩm
             $('#btnAddProduct').click(function (){
                 var pstAddProduct = $('#pstAddProduct')
@@ -374,8 +394,28 @@
                     });
                 }
             })
-
+                $('.detailProduct').click(function () {
+                    var pstDetailProduct = $('#pstDetailProduct');
+                    if(pstDetailProduct.css('display')==='none') {
+                        pstDetailProduct.load('detailproductshow.html', function () {
+                            pstDetailProduct.css('display', 'block')
+                            $('header, footer').css('opacity', '0.4');
+                            $('.container-fluid').css('opacity', '0.4');
+                            $('.back').click(function () {
+                                if(pstDetailProduct.css('display')==='block' ) {
+                                    pstDetailProduct.css('display', 'none');
+                                    $('header, footer').css('opacity', '1');
+                                    $('.container-fluid').css('opacity', '1');
+                                }
+                            })
+                        });
+                    }
+                })
         })
+        //load giao diện quản lý bán hàng
+        $('#mngSale').load('manage-sale.html')
+        //load giao diện quản lý hóa đơn
+        $('#mngInvoice').load('manage-invoice.html')
         // Chọn danh mục quản lý
         $('#typeManage a').click(function () {
             var selectedType = $(this).text();
@@ -384,9 +424,23 @@
             if (selectedType === "Quản lý tài khoản") {
                 $('#mngAccount').removeClass('d-none');
                 $('#mngProduct').addClass('d-none');
+                $('#mngSale').addClass('d-none');
+                $('#mngInvoice').addClass('d-none');
             } else if (selectedType === "Quản lý sản phẩm") {
                 $('#mngAccount').addClass('d-none');
+                $('#mngSale').addClass('d-none');
+                $('#mngInvoice').addClass('d-none');
                 $('#mngProduct').removeClass('d-none');
+            }else if (selectedType === "Quản lý bán hàng") {
+                $('#mngProduct').addClass('d-none');
+                $('#mngAccount').addClass('d-none');
+                $('#mngInvoice').addClass('d-none');
+                $('#mngSale').removeClass('d-none');
+            }else if (selectedType === "Quản lý hóa đơn") {
+                $('#mngProduct').addClass('d-none');
+                $('#mngAccount').addClass('d-none');
+                $('#mngSale').addClass('d-none');
+                $('#mngInvoice').removeClass('d-none');
             }
         });
         })

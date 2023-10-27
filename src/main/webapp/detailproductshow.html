@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết sản phẩm</title>
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+            crossorigin="anonymous">
+    <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"></script>
+    <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+            integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+          integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="detailproduct.css">
+</head>
+<body>
+<div class="container bgcolor-form">
+    <div class="row p-4">
+        <span class="d-none" id ="id"></span>
+        <i class="fa fa-arrow-left text-color back" aria-hidden="true"></i>
+        <h5 class="text-center title">CHI TIẾT SẢN PHẨM</h5>
+        <hr>
+        <div class="col-md-6 col-sm-6 col-6">
+            <div class="row pt-2">
+                <div class="col-md-8">
+                    <img src="https://anphat.com.vn/media/product/40998_sihoo_m18_black_grey__2_.JPG" alt=""
+                         class="img_p" id="img_center">
+                </div>
+                <div class="col-md-4 d-none d-sm-none d-md-block">
+                    <img src="https://i.pinimg.com/236x/28/02/b8/2802b872a06a99b8576dff4af0403723.jpg?fbclid=IwAR0AGtm9P18DGDrpzcnKZFmbaepyaS7_yzOTHX5jfolMiJD8VgEJ5K1HqEI"
+                         alt=""
+                         class="img_p_detail"
+                         onmouseover="changeImg('https://i.pinimg.com/236x/28/02/b8/2802b872a06a99b8576dff4af0403723.jpg?fbclid=IwAR0AGtm9P18DGDrpzcnKZFmbaepyaS7_yzOTHX5jfolMiJD8VgEJ5K1HqEI')">
+                    <img src="https://i.pinimg.com/236x/bb/be/90/bbbe9068896348d6ab9a7fffd06f5828.jpg?fbclid=IwAR3a0JkYfqdqHb6Angr_5owVHkV3RiKK7mdswjIv_t5ro2TUrUolQByhbGk"
+                         alt=""
+                         class="img_p_detail"
+                         onmouseover="changeImg('https://i.pinimg.com/236x/bb/be/90/bbbe9068896348d6ab9a7fffd06f5828.jpg?fbclid=IwAR3a0JkYfqdqHb6Angr_5owVHkV3RiKK7mdswjIv_t5ro2TUrUolQByhbGk')">
+                    <img src="https://i.pinimg.com/564x/c0/8d/43/c08d432a2d040829cae57cd31c7726a7.jpg?fbclid=IwAR2V0qO9Z2t9BG7hpYX-2EGnkPdlg74cOd5qU55H7SxONL-BNLEpvqSmLck"
+                         alt=""
+                         class="img_p_detail"
+                         onmouseover="changeImg('https://i.pinimg.com/564x/c0/8d/43/c08d432a2d040829cae57cd31c7726a7.jpg?fbclid=IwAR2V0qO9Z2t9BG7hpYX-2EGnkPdlg74cOd5qU55H7SxONL-BNLEpvqSmLck')">
+                </div>
+                <div class="my-3">
+                    <label class="form-label">Mô tả</label>
+                    <textarea type="text" class="form-control" id="desEdit" name="desEdit" readonly>
+
+                    </textarea>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-6">
+            <div class="mb-3">
+                <label class="form-label">Tên sản phẩm</label>
+                <input type="text" class="form-control" id="nameProductEdit" name="nameProductEdit" readonly>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Giá tiền</label>
+                <input type="text" class="form-control" id="priceProductEdit" name="priceProductEdit" readonly>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Thể loại</label>
+                <input type="text" class="form-control" id="cateType" name="priceProductEdit" readonly>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Vận chuyển</label>
+                <input type="text" class="form-control" id="deliveryEdit" name="deliveryEdit" readonly>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-4 mb-3">
+                    <label class="form-label">Chiều dài</label>
+                    <input type="number" class="form-control" id="lengthEdit" name="lengthEdit"readonly>
+                </div>
+                <div class="col-md-4 col-4 mb-3">
+                    <label class="form-label">Chiều rộng</label>
+                    <input type="number" class="form-control" id="widthEdit" name="widthEdit"readonly>
+                </div>
+                <div class="col-md-4 col-4 mb-3">
+                    <label class="form-label">Chiều cao</label>
+                    <input type="number" class="form-control" id="heightEdit" name="heightEdit"readonly>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-4 mb-3">
+                    <label class="form-label">Vật liệu</label>
+                    <input type="text" class="form-control" id="materialEdit" name="materialEdit"readonly>
+                </div>
+                <div class="col-md-4 col-4 mb-3">
+                    <label class="form-label">Màu sắc</label>
+                    <input type="text" class="form-control" id="colorEdit" name="colorEdit"readonly>
+                </div>
+                <div class="col-md-4 col-4 mb-3">
+                    <label class="form-label">Số lượng</label>
+                    <input type="number" class="form-control" id="amountEdit" name="amountEdit"readonly>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+</body>
+</html>

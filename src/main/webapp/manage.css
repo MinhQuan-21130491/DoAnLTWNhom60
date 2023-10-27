@@ -1,25 +1,25 @@
 .btnAdd {
     padding: 5px 10px;
 }
-.pst {
-    position: relative;
-}
+
 .pst {
     display: none;
     position: absolute;
     top: 50%;
-    left: 45%;
+    left: 50%;
     transform: translate(-50%, -50%);
 }
-
 .form {
-    width: 120%;
+    width: 100%;
     margin:auto;
 }
 .save {
     padding: 10px 20px;
     background-color: var(--color_backgroud);
     border: none;
+    font-weight: 700;
+    font-size: 1rem;
+    color: white;
     border-radius: 3px;
 }
 .bgcolor-form {
@@ -33,9 +33,21 @@ textarea {
 .back{
     cursor: pointer;
 }
+.title {
+    font-weight: 700;
+}
 @media screen and (max-width: 992px) {
     .typeManage {
         display: none;
+    }
+
+}
+@media screen and (max-width: 576px) {
+    .form {
+        width: 120%;
+    }
+    .pst {
+        left: 45%;
     }
 }
 
