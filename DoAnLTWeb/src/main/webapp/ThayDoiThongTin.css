@@ -1,6 +1,7 @@
 body {
-    font-size: 20px;
-    font-family: sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    font-family: Arial, Tahoma, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f2f2f2;
@@ -35,11 +36,12 @@ header img {
 
 }
 
-h4 {
+h5 {
+    font-weight: 700;
+    font-size: 1.25rem;
     margin-top: 0;
     text-align: center;
 }
-
 table {
     width: 100%;
 }
@@ -49,11 +51,18 @@ table td {
     vertical-align: center;
 }
 label {
+    margin-top: 10px;
     font-weight: 400;
     width: 140px;
     margin-right: 15px;
     display: block; /* Để label nằm trên cùng một dòng với input */
-    margin-bottom: 5px;/* Tạo khoảng cách giữa label và input */
+    margin-bottom: 5px; /* Tạo khoảng cách giữa label và input */
+}
+#lGmail, #lSDT, #lDiaChi, #lNS{
+    padding-bottom: 10px;
+}
+#lName{
+    padding-top: 25px;
 }
 input:focus{
     outline-color: rgba(194, 219, 254, 1);
@@ -64,15 +73,16 @@ input[type="text"],
 input[type="email"],
 input[type="tel"],
 input[type="date"] {
+    margin-bottom: 8px;
     width: 95%;
     height: 30px;
     padding: 5px;
     border: 1px solid #ccc;
-    border-radius: 3px;
+    border-radius: 5px;
 }
 .error {
     width: 330px;
-    height: 10px;
+    height: 25px;
     float: left;
     color: #ff0000;
     font-size: 12px;
@@ -82,6 +92,7 @@ input[type="date"] {
 #submit {
     float: right;
     background-color: #f68e2e;
+    font-weight: 700;
     color: white;
     border: none;
     padding: 10px 20px;

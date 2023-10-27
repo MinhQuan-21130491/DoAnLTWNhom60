@@ -17,7 +17,7 @@
       <div class="changeInF">
           <form id="changeNam" onsubmit="return my_function()">
                <table>
-                   <tr><td colspan="4"><h4 style="font-weight: 400"> THAY ĐỔI THÔNG TIN </h4></td></tr>
+                   <tr><td colspan="4"><h5 style="font-weight: 700"> THAY ĐỔI THÔNG TIN </h5></td></tr>
                    <tr id="changeName">
                        <td><label id="lName">Tên đăng nhập</label></td>
                        <td>
@@ -31,7 +31,6 @@
                         <td> <label id="lGmail"> Gmail</label></td>
                        <td>
                            <div id="InGmail">
-                               <div class="error" id="gmailError"  ></div>
                                <input id="HienThiGmail" name="GmailHT" type="text">
                            </div>
                        </td>
@@ -40,7 +39,6 @@
                        <td><label id="lSDT"> Số điện thoại </label></td>
                        <td>
                            <div id="InSDT">
-                               <div class="error" id="sdtError"  ></div>
                                <input id="HienThiSDT" name="SDTHT" type="tel">
                            </div>
                        </td>
@@ -49,7 +47,6 @@
                        <td><label id="lDiaChi"> Địa chỉ nhận</label></td>
                        <td>
                            <div id="InDiaChi">
-                               <div class="error" id="DCError" ></div>
                                <input id="HienThiDC" name="DCHT" type="text">
                            </div>
                        </td>
@@ -58,7 +55,6 @@
                        <td><label id="lNS">Ngày sinh</label></td>
                        <td>
                            <div id="InNS">
-                               <div class="error" id="NSError"  ></div>
                                <input id="HienThiNS" name="HienThiNS" type="date">
                            </div>
                        </td>
@@ -83,41 +79,19 @@
         let dcElement = document.getElementById("HienThiDC");
         let nsElement = document.getElementById( "HienThiNS");
         let tenError = document.getElementById( "tenError");
-        let gmailError = document.getElementById( "gmailError");
-        let sdtError = document.getElementById( "sdtError");
-        let DCError = document.getElementById( "DCError");
-        let NSError = document.getElementById( "NSError");
 
         tenError.textContent = "";
-        gmailError.textContent = "";
-        sdtError.textContent = "";
-        DCError.textContent = "";
-        NSError.textContent = "";
 
-        if(tenElement.value === ""){
-            tenError.textContent = "*Vui lòng nhập tên đăng nhập!";
+        if(tenElement.value === "" && gmailElement.value === "" &&
+            sdtElement.value.length === 0 && dcElement.value.length === 0 && nsElement.value.length === 0){
+            tenError.textContent = "*Thông tin không hợp lệ! Vui lòng nhập thông tin";
             flag =  false;
-        }
-        if (gmailElement.value === ""){
-            gmailError.textContent = "*Vui lòng nhập gmail!";
-            flag =  false;
+
         }else if (!/^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(gmailElement.value)) {
-            gmailError.textContent = "*Gmail không hợp lệ, phải là định dạng @gmail.com!";
-            flag =  false;
-        }
-        if( sdtElement.value.length === 0){
-            sdtError.textContent = "*Vui lòng nhập số điện thoại!";
+            tenError.textContent = "*Gmail không hợp lệ, phải là định dạng @gmail.com!";
             flag =  false;
         }else if (sdtElement.value.length !== 10) {
-            sdtError.textContent = "*Số điện thoại không hợp lệ!";
-            flag =  false;
-        }
-        if( dcElement.value.length === 0){
-            DCError.textContent = "*Vui lòng nhập địa chỉ!";
-            flag =  false;
-        }
-        if( nsElement.value.length === 0){
-            NSError.textContent = "*Vui lòng nhập ngày sinh!";
+            tenError.textContent = "*Số điện thoại không hợp lệ!";
             flag =  false;
         }
         return flag;
