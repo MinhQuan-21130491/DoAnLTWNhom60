@@ -41,14 +41,14 @@ body {
     text-align: center;
 }
 
-.form-group {
+.form-group-p {
     margin-bottom: 25px;
 }
 input:focus{
     outline-color: rgba(194, 219, 254, 1);
 
 }
-.form-input,
+.form-input ,
 .form-pass {
     width: 388px;
     padding-left: 10px;
