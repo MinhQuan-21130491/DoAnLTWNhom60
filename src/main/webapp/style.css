@@ -165,7 +165,7 @@ table {
     text-align: center;
 }
 tr {
-    border-bottom:1px solid #dedbdb;
+    border-bottom:1px solid #dedbdb !important;
 }
 td {
     padding:20px 0;
