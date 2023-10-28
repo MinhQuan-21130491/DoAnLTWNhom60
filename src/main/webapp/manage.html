@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -155,7 +156,7 @@
                         <a href="#" class="list-group-item list-group-item-action">Quản lý tài khoản</a>
                         <a href="#" class="list-group-item list-group-item-action">Quản lý sản phẩm</a>
                         <a href="#" class="list-group-item list-group-item-action">Quản lý nhà cung cấp</a>
-                        <a href="#" class="list-group-item list-group-item-action">Quản lý phân loại</a>
+                        <a href="#" class="list-group-item list-group-item-action">Quản lý danh mục</a>
                         <a href="#" class="list-group-item list-group-item-action">Quản lý bán hàng</a>
                         <a href="#" class="list-group-item list-group-item-action">Quản lý hóa đơn</a>
                         <a href="#" class="list-group-item list-group-item-action">Quản lý doanh thu</a>
@@ -178,6 +179,10 @@
             <div class="col-lg-9 bgcolor d-none " id ="mngInvoice">
             </div>
             <!--end giao diện quản lý hóa đơn -->
+            <!--giao diện quản lý danh mục-->
+            <div class="col-lg-9 bgcolor d-none " id ="mngCate">
+            </div>
+            <!--end giao diện quản lý danh mục -->
 
         </div>
     </div>
@@ -394,28 +399,32 @@
                     });
                 }
             })
-                $('.detailProduct').click(function () {
-                    var pstDetailProduct = $('#pstDetailProduct');
-                    if(pstDetailProduct.css('display')==='none') {
-                        pstDetailProduct.load('detailproductshow.html', function () {
-                            pstDetailProduct.css('display', 'block')
-                            $('header, footer').css('opacity', '0.4');
-                            $('.container-fluid').css('opacity', '0.4');
-                            $('.back').click(function () {
-                                if(pstDetailProduct.css('display')==='block' ) {
-                                    pstDetailProduct.css('display', 'none');
-                                    $('header, footer').css('opacity', '1');
-                                    $('.container-fluid').css('opacity', '1');
-                                }
-                            })
-                        });
-                    }
-                })
+            $('.detailProduct').click(function () {
+                var pstDetailProduct = $('#pstDetailProduct');
+                if(pstDetailProduct.css('display')==='none') {
+                    pstDetailProduct.load('detailproductshow.html', function () {
+                        pstDetailProduct.css('display', 'block')
+                        $('header, footer').css('opacity', '0.4');
+                        $('.container-fluid').css('opacity', '0.4');
+                        $('.back').click(function () {
+                            if(pstDetailProduct.css('display')==='block' ) {
+                                pstDetailProduct.css('display', 'none');
+                                $('header, footer').css('opacity', '1');
+                                $('.container-fluid').css('opacity', '1');
+                            }
+                        })
+                    });
+                }
+            })
         })
         //load giao diện quản lý bán hàng
         $('#mngSale').load('manage-sale.html')
         //load giao diện quản lý hóa đơn
         $('#mngInvoice').load('manage-invoice.html')
+        // load giao diện quản lý danh mục
+        $('#mngCate').load('manage-cate.html', function() {
+
+        })
         // Chọn danh mục quản lý
         $('#typeManage a').click(function () {
             var selectedType = $(this).text();
@@ -426,23 +435,34 @@
                 $('#mngProduct').addClass('d-none');
                 $('#mngSale').addClass('d-none');
                 $('#mngInvoice').addClass('d-none');
+                $('#mngCate').addClass('d-none');
             } else if (selectedType === "Quản lý sản phẩm") {
                 $('#mngAccount').addClass('d-none');
                 $('#mngSale').addClass('d-none');
                 $('#mngInvoice').addClass('d-none');
                 $('#mngProduct').removeClass('d-none');
+                $('#mngCate').addClass('d-none');
             }else if (selectedType === "Quản lý bán hàng") {
                 $('#mngProduct').addClass('d-none');
                 $('#mngAccount').addClass('d-none');
                 $('#mngInvoice').addClass('d-none');
                 $('#mngSale').removeClass('d-none');
+                $('#mngCate').addClass('d-none');
             }else if (selectedType === "Quản lý hóa đơn") {
                 $('#mngProduct').addClass('d-none');
                 $('#mngAccount').addClass('d-none');
                 $('#mngSale').addClass('d-none');
                 $('#mngInvoice').removeClass('d-none');
+                $('#mngCate').addClass('d-none');
+            }else if (selectedType === "Quản lý danh mục") {
+                $('#mngProduct').addClass('d-none');
+                $('#mngAccount').addClass('d-none');
+                $('#mngSale').addClass('d-none');
+                $('#mngInvoice').addClass('d-none');
+                $('#mngCate').removeClass('d-none');
             }
+
         });
-        })
+    })
 </script>
 </html>
