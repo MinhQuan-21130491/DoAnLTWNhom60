@@ -71,31 +71,52 @@
 
 </div>
 <script>
-    function my_function () {
+    function my_function() {
         var flag = true;
         let tenElement = document.getElementById("HienThiTen");
         let gmailElement = document.getElementById("HienThiGmail");
         let sdtElement = document.getElementById("HienThiSDT");
         let dcElement = document.getElementById("HienThiDC");
-        let nsElement = document.getElementById( "HienThiNS");
-        let tenError = document.getElementById( "tenError");
+        let nsElement = document.getElementById("HienThiNS");
+        let tenError = document.getElementById("tenError");
 
         tenError.textContent = "";
 
-        if(tenElement.value === "" && gmailElement.value === "" &&
-            sdtElement.value.length === 0 && dcElement.value.length === 0 && nsElement.value.length === 0){
+        if (tenElement.value.trim() === "" &&
+            gmailElement.value.trim() === "" &&
+            sdtElement.value.trim() === "" &&
+            dcElement.value.trim() === "" &&
+            nsElement.value.trim() === "") {
             tenError.textContent = "*Thông tin không hợp lệ! Vui lòng nhập thông tin";
-            flag =  false;
-
-        }else if (!/^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(gmailElement.value)) {
-            tenError.textContent = "*Gmail không hợp lệ, phải là định dạng @gmail.com!";
-            flag =  false;
-        }else if (sdtElement.value.length !== 10) {
-            tenError.textContent = "*Số điện thoại không hợp lệ!";
-            flag =  false;
+            flag = false;
+        } else {
+            if (tenElement.value.trim() === "") {
+                tenError.textContent = "*Bạn chưa nhập tên!";
+                flag = false;
+            } else if (gmailElement.value.trim() === "") {
+                tenError.textContent = "*Bạn chưa nhập Gmail!";
+                flag = false;
+            } else if (sdtElement.value.trim() === "") {
+                tenError.textContent = "*Bạn chưa nhập số điện thoại!";
+                flag = false;
+            } else if (dcElement.value.trim() === "") {
+                tenError.textContent = "*Bạn chưa nhập địa chỉ!";
+                flag = false;
+            } else if (nsElement.value.trim() === "") {
+                tenError.textContent = "*Bạn chưa chọn ngày sinh!";
+                flag = false;
+            } else if (!/^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(gmailElement.value)) {
+                tenError.textContent = "*Gmail không hợp lệ (example@gmail.com!)";
+                flag = false;
+            } else if (sdtElement.value.trim().length !== 10 || !/^\d{10}$/.test(sdtElement.value)) {
+                tenError.textContent = "*Số điện thoại không hợp lệ!";
+                flag = false;
+            }
         }
+
         return flag;
     }
+
 
 </script>
 </body>
