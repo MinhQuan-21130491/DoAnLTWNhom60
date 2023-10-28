@@ -53,10 +53,16 @@ $(document).ready(function (){
             $("#errReNPW").text(' (*)Vui lòng nhập lại mật khẩu mới');
             $('#errReNPW').attr('style','color:red');
             condition=false;
-        } else{
+        } else if(repassword!==newpassword){
+            $("#errReNPW").text(' (*)Mật khẩu mới không chính xác');
+            $('#errReNPW').attr('style','color:red');
+            condition=false;
+        }
+        else{
             $("#errReNPW").text('');
         }
-        if(newpassword===repassword && newpassword!==""){
+        if(newpassword===repassword && newpassword!=="" && newpassword!== password){
+
            alert('doi mat khau thanh cong');
 
         }

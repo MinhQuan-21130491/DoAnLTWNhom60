@@ -24,10 +24,8 @@ $(document).ready(function () {
         else{
             $("#errUser").text('');
         }
-        if(email !== "" && user !== "") {
-            $('#errEmail').text('');
-            alert('xac minh thanh cong');
-        }
+
+
         if (condition) {
             $(this).submit();
         }
