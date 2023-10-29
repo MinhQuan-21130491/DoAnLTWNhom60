@@ -32,9 +32,11 @@ header {
     right: 0;
     z-index: 10;
 }
-
 footer {
     margin-top: auto;
+}
+.lgr {
+    color:white;
 }
 .bgcolor {
     background-color: white;
@@ -69,7 +71,7 @@ footer {
 }
 
 .hv a {
-    color: var(--color);
+    color: #000;
 }
 
 .hv:hover > a {
@@ -185,11 +187,14 @@ td {
         margin-top: 127px;
     }
 
+
+
 }
 @media screen and (max-width: 992px) {
     .mgt {
         margin-top: 240px;
     }
+
 }
 
 
