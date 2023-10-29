@@ -44,6 +44,14 @@
                         <input type="text" class="form-input" placeholder="Nhập họ và tên" name="name" id="name"/>
                     </div>
                     <div class="form-group">
+                        <label>Giới tính</label><span class="error" id="errGender"></span>
+                        <div id="gender">
+                            Nam<input type="radio" name="gender" value="male" checked>
+                            Nữ <input type="radio" name="gender" value="male">
+                            Khác <input type="radio" name="gender" value="male">
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="phone_number">Số điện thoại</label><span class="error" id="errTell"></span>
                         <input type="text" class="form-input" placeholder="Nhập số điện thoại" name="phone_number"
                                id="phone_number" inputmode="numeric"/>

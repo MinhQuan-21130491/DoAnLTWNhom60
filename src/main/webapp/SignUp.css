@@ -67,7 +67,11 @@ h5 {
 .form-group input:focus {
     outline-color: rgba(194, 219, 254, 1);
 }
-
+#gender{
+    width: 100%;
+    display: flex;
+    margin-left:5px;
+}
 .add_info .form-group {
     padding-top: 0;
 }
