@@ -25,7 +25,6 @@ $(document).ready(function () {
             $("#errUser").text('');
         }
 
-
         if (condition) {
             $(this).submit();
         }
