@@ -25,6 +25,14 @@ body {
     display: flex;
     flex-direction: column;
 }
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+}
+
 footer {
     margin-top: auto;
 }
@@ -95,17 +103,7 @@ footer {
 .card-body .detail {
     position: absolute;
     bottom: 32px;
-    right: 60px;
-    font-size: 25px;
-    color: var(--color_backgroud);
-    transform: scale(0);
-    transition: 0.2s;
-}
-
-.card-body .cart {
-    position: absolute;
-    bottom: 32px;
-    right: 22px;
+    right: 15px;
     font-size: 25px;
     color: var(--color_backgroud);
     transform: scale(0);
@@ -120,9 +118,6 @@ footer {
     transform: scale(1);
 }
 
-.card:hover .card-body .cart {
-    transform: scale(1);
-}
 
 .price {
     color: var(--color_backgroud);
@@ -155,7 +150,6 @@ footer {
 }
 .link:hover {
     text-decoration: underline;
-
 }
 .bd-full {
     border: 1px solid var(--color_backgroud) ;
@@ -185,6 +179,17 @@ td {
 .item_text {
     display: flex;
     align-items: center;
+}
+@media screen and (min-width: 992px) {
+    .mgt {
+        margin-top: 127px;
+    }
+
+}
+@media screen and (max-width: 992px) {
+    .mgt {
+        margin-top: 240px;
+    }
 }
 
 
