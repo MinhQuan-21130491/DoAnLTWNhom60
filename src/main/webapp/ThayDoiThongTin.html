@@ -3,21 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Thay Đổi Thông Tin</title>
-    <script src="https://code.jquery.com/jquery-3.7.1.js"
-            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="ThayDoiThongTin.css">
-
 </head>
 <body>
-<!--header-->
-<header></header>
-<!--end header-->
 <div class="changeInF">
     <form id="changeNam" onsubmit="return check()">
         <table>
             <thead>
-            <tr ><td id="head" colspan="4"><h5 style="font-weight: 700; padding-top: 20px"> THAY ĐỔI THÔNG TIN </h5></td></tr>
+            <tr ><td id="head" colspan="4"><h5 style="font-weight: 700"> THAY ĐỔI THÔNG TIN </h5></td></tr>
             </thead>
             <tbody id="container">
             <tr id="changeName">
@@ -65,23 +58,16 @@
             <tr id="SubmitSB">
                 <td><label></label></td>
                 <td>
-                    <div><button id="submit" name="SB" onclick="my_function()" style="color: white; margin-bottom: 20px"> LƯU </button></div>
+                    <div><button id="submit" name="SB" onclick="my_function()" style="color: white"> LƯU </button></div>
                 </td>
 
             </tr>
         </table>
     </form>
+
 </div>
-<!--footer-->
-<footer></footer>
-<!--end footer-->
 <script>
-    $(document).ready(function () {
-        //load header
-        $('header').load('header.html')
-        //load footer
-        $('footer').load('footer.html')
-    })
+
     function check() {
         var flag = true;
         var tenElement = document.getElementById("HienThiTen");
