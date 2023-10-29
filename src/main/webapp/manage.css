@@ -37,6 +37,7 @@ textarea {
 .title {
     font-weight: 700;
 }
+
 @media screen and (max-width: 992px) {
     .typeManage {
         display: none;

@@ -26,12 +26,17 @@ body {
     flex-direction: column;
 }
 header {
+    height: 124.03px;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 10;
 }
+.mgt {
+    margin-top: 140px;
+}
+
 footer {
     margin-top: auto;
 }
@@ -181,20 +186,6 @@ td {
 .item_text {
     display: flex;
     align-items: center;
-}
-@media screen and (min-width: 992px) {
-    .mgt {
-        margin-top: 127px;
-    }
-
-
-
-}
-@media screen and (max-width: 992px) {
-    .mgt {
-        margin-top: 240px;
-    }
-
 }
 
 
