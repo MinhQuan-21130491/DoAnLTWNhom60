@@ -43,14 +43,7 @@
                         <label>Họ Tên</label><span class="error" id="errName"></span>
                         <input type="text" class="form-input" placeholder="Nhập họ và tên" name="name" id="name"/>
                     </div>
-                    <div class="form-group">
-                        <label>Giới tính</label><span class="error" id="errGender"></span>
-                        <div id="gender">
-                            Nam<input type="radio" name="gender" value="male" checked>
-                            Nữ <input type="radio" name="gender" value="male">
-                            Khác <input type="radio" name="gender" value="male">
-                        </div>
-                    </div>
+
                     <div class="form-group">
                         <label for="phone_number">Số điện thoại</label><span class="error" id="errTell"></span>
                         <input type="text" class="form-input" placeholder="Nhập số điện thoại" name="phone_number"
@@ -63,6 +56,14 @@
                     <div class="form-group">
                         <label>Ngày sinh</label><span class="error" id="errDate"></span>
                         <input type="date" class="form-input" name="birthday" id="birthday"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Giới tính</label><span class="error" id="errGender"></span>
+                        <div id="gender">
+                            <label>Nam</label><input type="radio" name="gender" value="male" class="gender" checked >
+                            <label>Nữ</label> <input type="radio" name="gender" value="male" class="gender">
+                            <label>Khác</label> <input type="radio" name="gender" value="male" class="gender">
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="address">Địa chỉ</label><span class="error" id="errAd"></span>
