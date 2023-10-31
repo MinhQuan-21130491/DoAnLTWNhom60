@@ -1,5 +1,5 @@
 body {
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: 500;
     line-height: 1.2rem;
     font-family: Arial, Tahoma, sans-serif;
@@ -14,13 +14,12 @@ body {
 
 }
 
-.container {
+.contain {
     box-sizing: border-box;
     box-shadow: 0 3px 10px 0 rgba(0, 0, 0, .14);
     width: 400px;
     background: #FFFFFF;
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
     border-radius: 5px;
 }
 
@@ -28,7 +27,7 @@ h5 {
     margin: 0;
     color: black;
     font-weight: 700;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     text-align: center;
 }
 
@@ -36,7 +35,7 @@ h5 {
     padding-top: 20px;
 }
 
-.container form {
+.contain form {
     margin-bottom: 20px;
 }
 
@@ -59,7 +58,7 @@ h5 {
     width: 100%;
     margin-top: 5px;
     border-radius: 5px;
-    border: solid 3px #d7d3d3;
+    border: 1px solid #ccc;
     padding: 10px 0;
     text-indent: 5px;
 }
