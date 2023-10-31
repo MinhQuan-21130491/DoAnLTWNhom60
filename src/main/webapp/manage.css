@@ -10,10 +10,6 @@
     transform: translate(-50%, -50%);
     z-index: 11;
 }
-.form {
-    width: 100%;
-    margin:auto;
-}
 .save {
     padding: 10px 20px;
     background-color: var(--color_backgroud);
@@ -42,12 +38,15 @@ textarea {
     .typeManage {
         display: none;
     }
+    textarea {
+        height: 156px;
+    }
 
 }
 @media screen and (max-width: 576px) {
-    .form {
-        width: 120%;
-    }
+     textarea {
+         height: 156px;
+     }
     .pst {
         left: 45%;
     }

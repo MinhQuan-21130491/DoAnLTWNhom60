@@ -4,7 +4,7 @@
     <div class="container mt-3 pb-3">
         <div class="row py-3 float-xs-center" >
             <div class="col-lg-3 col-md-6 col-sm-6 ">
-                <h5 class="">DANH MỤC</h5>
+                <h5 class="">DANH MỤC SẢN PHẨM</h5>
                 <hr class ="w-50 ">
                 <ul class="navbar-nav ">
                     <a class="nav-link link" href=""><li>Ghế văn phòng</li></a>
@@ -14,13 +14,14 @@
                 </ul>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 ">
-                <h5>LIÊN HỆ VỚI SHOP</h5>
+                <h5>VỀ CHÚNG TÔI</h5>
                 <hr class ="w-50 ">
                 <ul class="navbar-nav ">
-                    <a class="nav-link link" href=""><li>Hướng dẫn đặt hàng</li></a>
-                    <a class="nav-link link" href=""><li>Thông tin thanh toán</li></a>
-                    <a class="nav-link link" href=""><li>Chính sách giao nhận hàng</li></a>
-                    <a class="nav-link link" href=""><li>Liên hệ</li></a>
+                    <a class="nav-link link" href="GioiThieuWebsite.html"><li>Giới thiệu</li></a>
+                    <a class="nav-link link" href="GioiThieuWebsite.html#policy"><li>Bảo hành</li></a>
+                    <a class="nav-link link" href="GioiThieuWebsite.html#policy"><li>Đổi trả</li></a>
+                    <a class="nav-link link" href="GioiThieuWebsite.html#contact"><li>Liên hệ</li></a>
+
                 </ul>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
@@ -36,13 +37,12 @@
                 </ul>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
-                <h5 class = "">THÔNG TIN SHOP</h5>
+                <h5 class = "">THÔNG TIN LIÊN HỆ</h5>
                 <hr class ="w-50 ">
                 <ul class="navbar-nav ">
-                    <a class="nav-link link" href=""><li><i class="fa fa-map-marker" aria-hidden="true"></i> 230A Tô Ngọc Vân, Phường Linh Xuân, Thành phố Thủ Đức</li></a>
-                    <a class="nav-link link" href=""><li><i class="fa fa-envelope" aria-hidden="true"></i> homedecorsqn@gmail.com</li></a>
-                    <a class="nav-link link" href=""><li><i class="fa fa-phone" aria-hidden="true"></i> 0812295775</li></a>
-                    <a class="nav-link link" href=""><li><i class="fa fa-fax" aria-hidden="true"></i>0812295775</li></a>
+                   <li class="nav-link"><i class="fa fa-map-marker" aria-hidden="true"></i> 230A Tô Ngọc Vân, Phường Linh Xuân, Thành phố Thủ Đức</li>
+                   <li class="nav-link" ><i class="fa fa-envelope" aria-hidden="true"></i> homedecorsqn@gmail.com</li>
+                    <li class="nav-link" ><i class="fa fa-phone" aria-hidden="true"></i> 0812295775</li>
                 </ul>
             </div>
         </div>
@@ -53,4 +53,28 @@
         </div>
     </div>
 </div>
+<script>
+    // chuyển hướng tới mục chính sách mua hàng trong trang giới thiệu
+    $(document).ready(function () {
+        if (window.location.hash === "#policy") {
+            var targetElement = $('#policy');
+            if (targetElement.length > 0) {
+                $('html, body').animate({
+                    scrollTop: targetElement.offset().top
+                }, 1000); // 1000 milliseconds = 1 second (điều này tạo hiệu ứng trượt mượt)
+            }
+        }
+        // chuyển hướng tới mục thông tin liên hệ
+        if (window.location.hash === "#contact") {
+            var targetElement = $('#contact');
+
+            if (targetElement.length > 0) {
+                $('html, body').animate({
+                    scrollTop: targetElement.offset().top
+                }, 1000); // 1000 milliseconds = 1 second (điều này tạo hiệu ứng trượt mượt)
+            }
+        }
+
+    });
+</script>
 </html>

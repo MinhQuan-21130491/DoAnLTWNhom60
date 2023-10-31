@@ -50,6 +50,7 @@
             </div>
             <!--giao diện quản lý tài khoản-->
             <div class="col-lg-9 bgcolor " id ="mngAccount">
+
             </div>
             <!--end giao diện quản lý tài khoản -->
             <!--giao diện quản lý sản phẩm-->
@@ -76,27 +77,6 @@
 <footer>
 </footer>
 <!--end footer-->
-<!--add product-->
-<section class="my-3 pst" id ="pstAddProduct">
-</section>
-<!--end add product-->
-<!--edit product-->
-<section class="my-3 pst" id = "pstEditProduct">
-</section>
-<!--end edit product-->
-<!--detail product-->
-<section class="my-3 pst" id = "pstDetailProduct">
-</section>
-<!--end detail product-->
-<!--edit account-->
-<section class="my-3 pst" id = "pstEditAccount">
-</section>
-<!--end edit account-->
-<!--edit cate-->
-<section class="my-3 pst" id = "pstEditCate">
-</section>
-<!--end edit cate-->
-
 </body>
 <script>
     $(document).ready(function () {
@@ -122,98 +102,11 @@
             })
         }
         setColorFirt();
-
         //load giao diện quản lý tài khoản
         $('#mngAccount').load('manage-account.html', function () {
-            $('.editAccount').click(function (){
-                var pstEditAccount = $('#pstEditAccount')
-                if(pstEditAccount.css('display')==='none') {
-                    pstEditAccount.load('editaccount.html', function () {
-                        pstEditAccount.css('display', 'block')
-                        pstEditAccount.css('opacity', '1')
-                        $('header, footer').css('opacity', '0.4');
-                        $('.container-fluid').css('opacity', '0.4');
-                        $('.back').click(function () {
-                            if(pstEditAccount.css('display')==='block' ) {
-                                pstEditAccount.css('display', 'none');
-                                $('header, footer').css('opacity', '1');
-                                $('.container-fluid').css('opacity', '1');
-                            }
-                        })
-                    });
-                }
-            })
-            // xóa account
-            $('.delete').click(function () {
-                $(this).closest('tr').remove();
-            })
-            //chặn account
-            $('.block').click(function () {
-                var state = $(this).closest('tr').find('.status span');
-                if(state.text() == 'Khóa') {
-                    state.text(" ");
-                    $(this).html("<i class=\"fa fa-lock text-color\" aria-hidden=\"true\"></i>");
-                }else {
-                    state.text("Khóa")
-                    $(this).html("<i class=\"fa fa-unlock-alt text-color\" aria-hidden=\"true\"></i>");
-                }
-            })
         })
         //load giao diện quản lý sản phẩm
         $('#mngProduct').load('manage-product.html', function () {
-            // hiển thị giao diện chỉnh sửa sản phẩm khi ấn vào button chỉnh sửa sản phẩm
-            $('.editProduct').click(function () {
-                var pstEditProduct = $('#pstEditProduct');
-                if (pstEditProduct.css('display') === 'none') {
-                    pstEditProduct.load('editproduct.html', function () {
-                        pstEditProduct.css('display', 'block')
-                        $('header, footer').css('opacity', '0.4');
-                        $('.container-fluid').css('opacity', '0.4');
-                        $('.back').click(function () {
-                            if (pstEditProduct.css('display') === 'block') {
-                                pstEditProduct.css('display', 'none');
-                                $('header, footer').css('opacity', '1');
-                                $('.container-fluid').css('opacity', '1');
-                            }
-                        })
-                    });
-                }
-            })
-            // hiển thị giao diện thêm sản phẩm khi ấn vào button thêm sản phẩm
-            $('#btnAddProduct').click(function (){
-                var pstAddProduct = $('#pstAddProduct')
-                if(pstAddProduct.css('display')==='none') {
-                    pstAddProduct.load('addproduct.html', function () {
-                        pstAddProduct.css('display', 'block')
-                        $('header, footer').css('opacity', '0.4');
-                        $('.container-fluid').css('opacity', '0.4');
-                        $('.back').click(function () {
-                            if(pstAddProduct.css('display')==='block' ) {
-                                pstAddProduct.css('display', 'none');
-                                $('header, footer').css('opacity', '1');
-                                $('.container-fluid').css('opacity', '1');
-                            }
-                        })
-                    });
-                }
-            })
-            $('.detailProduct').click(function () {
-                var pstDetailProduct = $('#pstDetailProduct');
-                if(pstDetailProduct.css('display')==='none') {
-                    pstDetailProduct.load('detailproductshow.html', function () {
-                        pstDetailProduct.css('display', 'block')
-                        $('header, footer').css('opacity', '0.4');
-                        $('.container-fluid').css('opacity', '0.4');
-                        $('.back').click(function () {
-                            if(pstDetailProduct.css('display')==='block' ) {
-                                pstDetailProduct.css('display', 'none');
-                                $('header, footer').css('opacity', '1');
-                                $('.container-fluid').css('opacity', '1');
-                            }
-                        })
-                    });
-                }
-            })
         })
         //load giao diện quản lý bán hàng
         $('#mngSale').load('manage-sale.html')
@@ -221,29 +114,6 @@
         $('#mngInvoice').load('manage-invoice.html')
         // load giao diện quản lý danh mục
         $('#mngCate').load('manage-cate.html', function() {
-            // chọn chỉnh sửa danh mục
-            $('.editCate').click(function () {
-                var pstEditCate = $('#pstEditCate');
-                if (pstEditCate.css('display') === 'none') {
-                    pstEditCate.load('editManage-cate.html', function () {
-                        pstEditCate.css('display', 'block')
-                        $('header, footer').css('opacity', '0.4');
-                        $('.container-fluid').css('opacity', '0.4');
-                        $('.back').click(function () {
-                            if (pstEditCate.css('display') === 'block') {
-                                pstEditCate.css('display', 'none');
-                                $('header, footer').css('opacity', '1');
-                                $('.container-fluid').css('opacity', '1');
-                            }
-                        })
-                    });
-                }
-            })
-            // chọn xóa danh mục
-                $('.delete').click(function () {
-                    $(this).closest('tr').remove();
-                })
-
         })
         // Chọn danh mục quản lý
         $('#typeManage a').click(function () {
