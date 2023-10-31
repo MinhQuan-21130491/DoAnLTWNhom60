@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quên mật khẩu</title>
+    <script src = "https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+    <!--    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
+    <script src="ForgetPW.js"></script>
+    <link rel="stylesheet" href="SignUp.css">
+</head>
+<body>
+<section class="signup">
+    <!-- <img src="images/signup-bg.jpg" alt=""> -->
+    <div class="container">
+        <div class="signup-content">
+            <form  id="signup-form" class="signup-form">
+                <h5>QUÊN MẬT KHẨU</h5>
+                <div class="form-SignUp">
+                    <div class="form-group">
+                        <label>Tên đăng nhập</label><span class="error" id="errUser"></span>
+                        <input type="text" class="form-input" placeholder="Nhập tên đăng nhập" name="user_name"
+                               id="user_name"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Gmail</label><span class="error" id="errEmail"></span>
+                        <input type="text" class="form-input" placeholder="Nhập Gmail" name="email" id="email"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit">
+                        <div>XÁC NHẬN</div>
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

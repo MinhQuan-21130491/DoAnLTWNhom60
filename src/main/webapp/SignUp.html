@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng kí</title>
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="SignUp.css">
+    <script src="https://code.jquery.com/jquery-2.2.4.js"
+            integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+    <!--    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
+    <script src="SignUp.js"></script>
+    <link rel="stylesheet" href="SignUp.css">
+
+</head>
+<body>
+<section class="signup">
+    <!-- <img src="images/signup-bg.jpg" alt=""> -->
+    <div class="container">
+        <div class="signup-content">
+            <form method="POST" id="signup-form" class="signup-form">
+                <h5>ĐĂNG KÍ</h5>
+                <div class="form-SignUp">
+                    <div class="title">THÔNG TIN ĐĂNG NHẬP</div>
+                    <div class="form-group">
+                        <label>Tên đăng nhập</label><span class="error" id="errUser"></span>
+                        <input type="text" class="form-input" placeholder="Nhập tên đăng nhập" name="user_name"
+                               id="user_name"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Mật khẩu</label><span class="error" id="errPW"></span>
+                        <input type="password" class="form-input" placeholder="Nhập mật khẩu" name="password"
+                               id="password"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="re_password">Nhập lại mật khẩu</label><span class="error" id="errRePW"></span>
+                        <input type="password" class="form-input" placeholder="Nhập lại mật khẩu" name="re_password"
+                               id="re_password"/>
+                    </div>
+                </div>
+                <div class="form-info">
+                    <div class="title">THÔNG TIN KHÁCH HÀNG</div>
+                    <div class="form-group">
+                        <label>Họ Tên</label><span class="error" id="errName"></span>
+                        <input type="text" class="form-input" placeholder="Nhập họ và tên" name="name" id="name"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone_number">Số điện thoại</label><span class="error" id="errTell"></span>
+                        <input type="text" class="form-input" placeholder="Nhập số điện thoại" name="phone_number"
+                               id="phone_number" inputmode="numeric"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Gmail</label><span class="error" id="errEmail"></span>
+                        <input type="text" class="form-input" placeholder="Nhập Gmail" name="email" id="email"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Ngày sinh</label><span class="error" id="errDate"></span>
+                        <input type="date" class="form-input" name="birthday" id="birthday"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Giới tính</label><span class="error" id="errGender"></span>
+                        <div id="gender">
+                            <label>Nam</label><input type="radio" name="gender" value="male" class="gender" checked >
+                            <label>Nữ</label> <input type="radio" name="gender" value="male" class="gender">
+                            <label>Khác</label> <input type="radio" name="gender" value="male" class="gender">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Địa chỉ</label><span class="error" id="errAd"></span>
+                        <input type="text" class="form-input" placeholder="Nhập địa chỉ của bạn" name="address"
+                               id="address"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit">
+                        <div>ĐĂNG KÍ</div>
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</section>
+
+
+</body>
+</html>

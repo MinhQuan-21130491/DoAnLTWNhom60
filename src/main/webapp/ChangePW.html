@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Đổi mật khẩu</title>
+
+    <link rel="stylesheet" href="SignUp.css">
+
+    <script src = "https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+    <!--    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
+    <script src="ChangePW.js"></script>
+</head>
+<body>
+<section class="signup">
+    <!-- <img src="images/signup-bg.jpg" alt=""> -->
+    <div class="container">
+        <div class="signup-content">
+            <form id="signup-form" class="signup-form" >
+                <h5>ĐỔI MẬT KHẨU</h5>
+                <div class="form-SignUp">
+                    <div class="title">Thông tin đăng nhập</div>
+                    <div class="form-group">
+                        <label>Mật khẩu hiện tại</label><span class="error" id="errPW"></span>
+                        <input type="password" class="form-input" placeholder="Nhập mật khẩu hiện tại" name="password"
+                               id="password"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="re_password">Mật khẩu mới</label><span class="error" id="errNPW"></span>
+                        <input type="password" class="form-input" placeholder="Nhập mật khẩu mới" name="new_password"
+                               id="new_password"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="re_password">Xác nhận mật khẩu</label></label><span class="error" id="errReNPW"></span>
+                        <input type="password" class="form-input" placeholder="Nhập lại mật khẩu mới" name="re_password"
+                               id="re_password"/>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <button type="submit">
+                        <div>ĐỔI MẬT KHẨU</div>
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
