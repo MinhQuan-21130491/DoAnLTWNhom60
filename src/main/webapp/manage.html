@@ -69,7 +69,10 @@
             <div class="col-lg-9 bgcolor d-none " id ="mngCate">
             </div>
             <!--end giao diện quản lý danh mục -->
-
+            <!--giao diện quản lý nhà cung cấp-->
+            <div class="col-lg-9 bgcolor d-none " id ="mngSup">
+            </div>
+            <!--end giao diện quản lý nhà cung cấp -->
         </div>
     </div>
 </div>
@@ -115,6 +118,9 @@
         // load giao diện quản lý danh mục
         $('#mngCate').load('manage-cate.html', function() {
         })
+        // load giao diện quản lý nhà cung cấp
+        $('#mngSup').load('manage-supplier.html', function() {
+        })
         // Chọn danh mục quản lý
         $('#typeManage a').click(function () {
             var selectedType = $(this).text();
@@ -126,30 +132,43 @@
                 $('#mngSale').addClass('d-none');
                 $('#mngInvoice').addClass('d-none');
                 $('#mngCate').addClass('d-none');
+                $('#mngSup').addClass('d-none');
             } else if (selectedType === "Quản lý sản phẩm") {
                 $('#mngAccount').addClass('d-none');
                 $('#mngSale').addClass('d-none');
                 $('#mngInvoice').addClass('d-none');
                 $('#mngProduct').removeClass('d-none');
                 $('#mngCate').addClass('d-none');
+                $('#mngSup').addClass('d-none');
             }else if (selectedType === "Quản lý bán hàng") {
                 $('#mngProduct').addClass('d-none');
                 $('#mngAccount').addClass('d-none');
                 $('#mngInvoice').addClass('d-none');
                 $('#mngSale').removeClass('d-none');
                 $('#mngCate').addClass('d-none');
+                $('#mngSup').addClass('d-none');
             }else if (selectedType === "Quản lý hóa đơn") {
                 $('#mngProduct').addClass('d-none');
                 $('#mngAccount').addClass('d-none');
                 $('#mngSale').addClass('d-none');
                 $('#mngInvoice').removeClass('d-none');
                 $('#mngCate').addClass('d-none');
+                $('#mngSup').addClass('d-none');
             }else if (selectedType === "Quản lý danh mục") {
                 $('#mngProduct').addClass('d-none');
                 $('#mngAccount').addClass('d-none');
                 $('#mngSale').addClass('d-none');
                 $('#mngInvoice').addClass('d-none');
                 $('#mngCate').removeClass('d-none');
+                $('#mngSup').addClass('d-none');
+            }
+            else if (selectedType === "Quản lý nhà cung cấp") {
+                $('#mngProduct').addClass('d-none');
+                $('#mngAccount').addClass('d-none');
+                $('#mngSale').addClass('d-none');
+                $('#mngInvoice').addClass('d-none');
+                $('#mngCate').addClass('d-none');
+                $('#mngSup').removeClass('d-none');
             }
 
         })
