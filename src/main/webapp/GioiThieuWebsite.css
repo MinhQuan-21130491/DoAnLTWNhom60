@@ -1,4 +1,6 @@
-
+ body {
+     overflow: visible !important;
+ }
 .anhPhoto {
     text-align: center; /* Center the contents horizontally */
     display: flex;

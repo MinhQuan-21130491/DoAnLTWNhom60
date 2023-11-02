@@ -22,12 +22,14 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <script src="https://code.jquery.com/jquery-3.7.1.js"
             integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-
     <link rel="stylesheet" href="GioiThieuWebsite.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<!--header-->
 <header></header>
+<!--end header-->
+<!--page content-->
 <div class="container mgt">
     <div id="para">
         <div id="Part2">
@@ -61,21 +63,106 @@
         </div>
           </div>
     <div id="policy">
-        <h5> CHÍNH SÁCH MUA HÀNG </h5>
-        <p><strong>Bảo hành:</strong> <span id="contentGuarantee">2</span> năm kể từ ngày mua hàng.</p>
+        <h5> CHÍNH SÁCH MUA HÀNG <button class="editPolicy btnAdd bgcolor bd-full me-1"><i class="fa fa-pencil text-color" title="Chỉnh sửa chính sách mua hàng" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editPolicy"></i></button>
+        </h5>
+        <p><strong>Bảo hành:</strong> <span id="contentGuarantee">24</span> tháng kể từ ngày mua hàng.</p>
         <p><strong>Đổi trả:</strong> trong vòng <span id="exchangeProduct">1</span> tháng kể từ ngày mua hàng, với điều
             kiện là hàng hóa bị lỗi khi vận chuyển hoặc do nhà sản xuất, chúng tôi sẽ không chịu trách nhiệm đổi trả
             hàng hóa nếu lỗi là do phía khách hàng.</p>
     </div>
+<!--    edit policy-->
+    <div class="modal fade" id="editPolicy" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm ">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <form class="form " action="" method="post">
+                        <div class="row px-2">
+                            <div class=" text-end">
+                                <button type="button" class="btn-close " data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <h5 class="text-center">CHỈNH SỬA CHÍNH SÁCH</h5>
+                            <hr>
+                            <div class="col-md-12 m-auto">
+                                <div class="mb-3 ">
+                                    <label class="form-label pe-3" for="monthGua">Bảo hành</label>
+                                    <input  type="number" class="month" id = "monthGua" name ="monthGua"> tháng
+                                </div>
+                                <div class="mb-3 ">
+                                    <label class="form-label pe-3" for="monthChange">Đổi trả</label>
+                                    <input  type="number" class="month" id = "monthChange" name ="monthChange"> tháng
+                                </div>
+                            </div>
+                            <div class="row p-0">
+                                <div class="col-md-12 p-0">
+                                    <div class="text-end">
+                                        <button class="save " type="submit">LƯU</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--end edit policy-->
     <div id="contact">
-        <h5> THÔNG TIN LIÊN HỆ </h5>
+        <h5> THÔNG TIN LIÊN HỆ <button class="editContact btnAdd bgcolor bd-full me-1"><i class="fa fa-pencil text-color" title="Chỉnh sửa thông tin liên hệ" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editContact"></i></button> </h5>
         <p><strong>Địa chỉ:</strong> <span id="address">230A Tô Ngọc Vân, Phường Linh Xuân, Thành phố Thủ Đức</span>.
         </p>
         <p><strong>Gmail:</strong> <span id="gmail">homedecorsqn@gmail.com</span></p>
         <p><strong>Số điện thoại:</strong> <span id="phoneNumber">0812295775</span></p>
     </div>
+    <!--edit contact-->
+    <div class="modal fade" id="editContact" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <form class="form " action="" method="post">
+                        <div class="row px-2">
+                            <span class="d-none" id="id"></span>
+                            <div class=" text-end">
+                                <button type="button" class="btn-close " data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <h5 class="text-center">CHỈNH SỬA THÔNG TIN LIÊN HỆ</h5>
+                            <hr>
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Địa chỉ</label>
+                                    <input type="text" class="form-control" id="editAddress">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Gmail</label>
+                                    <input type="text" class="form-control" id="editGmail"
+                                           name="priceProductEdit">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Số điện thoại</label>
+                                    <input type="text" class="form-control" id="editPhoneNumber"
+                                           name="priceProductEdit">
+                                </div>
+                            </div>
+                            <div class="row p-0">
+                                <div class="col-md-12 p-0">
+                                    <div class="text-end">
+                                        <button class="save " type="submit">LƯU</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--    end edit contact-->
 </div>
+<!--end page content-->
+<!--footer-->
 <footer></footer>
+<!--end footer-->
 <script>
 $(document).ready(function () {
     //load header

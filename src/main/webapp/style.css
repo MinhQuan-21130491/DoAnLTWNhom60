@@ -3,7 +3,7 @@
     --font_weight_all: 500;
     --color_backgroud: #f68e2e;
     --font_family: "Poppins", sans-serif;
-    --color: rgba(0, 0, 0, 0.8);
+    --color: #212529;
     --line_height: 1.2rem;
     --color_gray:#767676;
 }
@@ -18,13 +18,14 @@
 html {
     height: 100%;
 }
-
 body {
     background-color: rgba(245, 245, 245, 1);
     min-height: 100%;
     display: flex;
     flex-direction: column;
+    padding: 0 !important;
 }
+
 header {
     height: 124.03px;
     position: fixed;
@@ -60,7 +61,6 @@ footer {
 .bgcolor-orange {
     background-color: var(--color_backgroud);
 }
-
 .form-search {
     position: relative;
 }
@@ -70,7 +70,6 @@ footer {
     top: 0;
     right: 0;
 }
-
 .hv {
     transition: 0.4s;
 }
@@ -102,12 +101,10 @@ footer {
     height: 500px;
     object-fit: cover;
 }
-
 .card-body {
     position: relative;
 }
-
-.card-body .detail {
+.card-body .cart {
     position: absolute;
     bottom: 32px;
     right: 15px;
@@ -116,23 +113,20 @@ footer {
     transform: scale(0);
     transition: 0.2s;
 }
-
-.card:hover {
+.card:hover  {
     border: 1px solid #f68e2e;
+    transform: scale(1.02);
+    transition: 0.3s;
 }
-
-.card:hover .card-body .detail {
+.card:hover .card-body .cart {
     transform: scale(1);
 }
-
-
 .price {
     color: var(--color_backgroud);
     font-size: 1.5rem;
     font-weight: 500;
     margin-top: 27px;
 }
-
 .img_p_detail {
     width: 100%;
     height: 100px;
@@ -187,6 +181,21 @@ td {
     display: flex;
     align-items: center;
 }
+.save {
+    padding: 10px 20px;
+    background-color: var(--color_backgroud);
+    border: none;
+    font-weight: 700;
+    font-size: 1rem;
+    color: white;
+    border-radius: 3px;
+}
+.month {
+    width: 40px;
+    border-radius: 5px;
+    border: 1px solid  #dedbdb;
+}
+
 
 
 

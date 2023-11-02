@@ -10,15 +10,7 @@
     transform: translate(-50%, -50%);
     z-index: 11;
 }
-.save {
-    padding: 10px 20px;
-    background-color: var(--color_backgroud);
-    border: none;
-    font-weight: 700;
-    font-size: 1rem;
-    color: white;
-    border-radius: 3px;
-}
+
 .bgcolor-form {
     background-color: white;
     border-radius: 5px;
