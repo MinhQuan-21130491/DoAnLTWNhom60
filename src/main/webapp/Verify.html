@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Quên mật khẩu</title>
-    <script src = "https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+    <title>Xác minh</title>
+    <script src="https://code.jquery.com/jquery-2.2.4.js"
+            integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
     <!--    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
-
+    <script src="ChangePW.js"></script>
     <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -25,36 +26,37 @@
           integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="SignUp.css">
-    </head>
-<body>
 
-<section class="signup mgt">
+
+</head>
+<body>
+<section class="signup">
     <!-- <img src="images/signup-bg.jpg" alt=""> -->
     <div class="contain">
         <div class="signup-content">
-            <form  id="signup-form" class="signup-form">
-                <h5>QUÊN MẬT KHẨU</h5>
-                <div class="form-SignUp">
+            <form id="signup-form" class="signup-form" action="ForgetPW.html">
+                <img src="images/verify.jpg" alt="" width="400px">
+                <h5>Xác minh Gmail của bạn</h5>
+                <div class="verify">
+                    <p class="text-group" style="margin-bottom: 0">Chúng tôi đã gửi mã xác thực đến <span id="gmail" class="text-primary"
+                                                                                 name="gmail">abc@gmail.com</span></p>
+                    <p>Vui lòng nhập mã để xác thực tài khoản của bạn</p>
                     <div class="form-group">
-                        <label>Tên đăng nhập</label><span class="error" id="errUser"></span>
-                        <input type="text" class="form-input" placeholder="Nhập tên đăng nhập" name="user_name"
-                               id="user_name"/>
+                        <span class="error" id="errVerify"></span>
+                        <input type="text" class="form-input" placeholder="Nhập mã xác nhận ở đây" name="verify"
+                               id="verify"/>
                     </div>
-                    <div class="form-group">
-                        <label>Gmail</label><span class="error" id="errEmail"></span>
-                        <input type="text" class="form-input" placeholder="Nhập Gmail" name="email" id="email"/>
-                    </div>
+                    <p class="text-group"><a href="">Nhấn vào đây</a> nếu bạn không nhận được Email</p>
                 </div>
                 <div class="form-group">
-                    <button type="submit">
+                    <button type="submit" id="confirm" >
                         XÁC NHẬN
                     </button>
                 </div>
-
             </form>
         </div>
     </div>
 </section>
-<script src="ForgetPW.js"></script>
+<script src="Verify.js"></script>
 </body>
 </html>
