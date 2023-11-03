@@ -55,26 +55,26 @@
 </div>
 <script>
     // chuyển hướng tới mục chính sách mua hàng trong trang giới thiệu
-    $(document).ready(function () {
-        if (window.location.hash === "#policy") {
-            var targetElement = $('#policy');
-            if (targetElement.length > 0) {
-                $('html, body').animate({
-                    scrollTop: targetElement.offset().top
-                }, 1000); // 1000 milliseconds = 1 second (điều này tạo hiệu ứng trượt mượt)
-            }
-        }
-        // chuyển hướng tới mục thông tin liên hệ
-        if (window.location.hash === "#contact") {
-            var targetElement = $('#contact');
-
-            if (targetElement.length > 0) {
-                $('html, body').animate({
-                    scrollTop: targetElement.offset().top
-                }, 1000); // 1000 milliseconds = 1 second (điều này tạo hiệu ứng trượt mượt)
-            }
-        }
-
-    });
+    // $(document).ready(function () {
+    //     if (window.location.hash === "#policy") {
+    //         var targetElement = $('#policy');
+    //         if (targetElement.length > 0) {
+    //             $('html, body').animate({
+    //                 scrollTop: targetElement.offset().top
+    //             }, 1000); // 1000 milliseconds = 1 second (điều này tạo hiệu ứng trượt mượt)
+    //         }
+    //     }
+    //     // chuyển hướng tới mục thông tin liên hệ
+    //     if (window.location.hash === "#contact") {
+    //         var targetElement = $('#contact');
+    //
+    //         if (targetElement.length > 0) {
+    //             $('html, body').animate({
+    //                 scrollTop: targetElement.offset().top
+    //             }, 1000); // 1000 milliseconds = 1 second (điều này tạo hiệu ứng trượt mượt)
+    //         }
+    //     }
+    //
+    // });
 </script>
 </html>
