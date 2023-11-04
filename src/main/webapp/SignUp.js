@@ -87,6 +87,7 @@ $(document).ready(function () {
         }else{
             $("#errAd").text('');
         }
+
         if (condition) {
             $(this).submit();
         }
@@ -94,3 +95,13 @@ $(document).ready(function () {
 
     })
 })
+
+function showBtnResgis() {
+    var acp = document.getElementById("acp");
+    var cf = document.getElementById("confirm");
+    if(acp.checked) {
+        cf.style.display = 'block';
+    }else {
+        cf.style.display = 'none';
+    }
+}

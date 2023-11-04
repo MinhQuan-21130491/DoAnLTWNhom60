@@ -70,18 +70,56 @@ h5 {
 .add_info .form-group {
     padding-top: 0;
 }
+.checkbox{
+    display:flex;
+    margin-left: 15px;
 
+}
+.checkbox a{
+    margin-left: 5px;
+    text-decoration-line: none;
+    color:#F68E2E;
+    font-size: 0.75rem;
+}
+.checkbox input{
+    background-color: #F68E2E;
+    padding:10px;
+}
 button {
     margin-bottom: 10px;
-    background: darkorange;
+    background: #F68E2E;
     color: white;
     padding:10px;
     padding-right: 16px;
     font-weight: 700;
     border: none;
-    cursor: pointer;
     text-align: center;
     border-radius: 5px;
     width: 100%;
 }
+
+.contain-menu{
+     width: 900px;
+     display:flex;
+    margin:auto;
+
+ }
+header h4{
+    margin-top:auto;
+    margin-bottom: auto;
+}
+/*---------------------------------------------------*/
+.verify{
+    margin:10px;
+
+}
+.verify a{
+    text-decoration-line: none;
+    color:#F68E2E;
+}
+.verify p{
+    text-align: center;
+}
+
+
 
