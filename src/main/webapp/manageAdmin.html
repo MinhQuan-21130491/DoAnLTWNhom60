@@ -209,8 +209,6 @@
                                 <td>GMAIL</td>
                                 <td>XÁC THỰC</td>
                                 <td>TRẠNG THÁI</td>
-
-
                             </tr>
                             </thead>
                             <tbody>
@@ -239,7 +237,7 @@
                                         <button class="delete btnAdd bgcolor bd-full" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true"></i></button>
                                         <button class="block btnAdd bgcolor bd-full mx-1" ><i class="fa fa-lock text-color" title="Khóa" aria-hidden="true"></i></button>
                                         <button class="editAccount btnAdd bgcolor bd-full me-1"><i class="fa fa-pencil text-color" title="Chỉnh sửa quyền truy cập" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editAccount"></i></button>
-                                        <button class="detailAccount btnAdd bgcolor bd-full" ><i class="fa fa-info text-color px-1" title="Chi tiết" aria-hidden="true"></i></button>
+                                        <button class="detailAccount btnAdd bgcolor bd-full" ><i class="fa fa-info text-color px-1" title="Chi tiết" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#detailAccount"></i></button>
                                     </div>
 
                                 </td>
@@ -276,6 +274,49 @@
                         </div>
                     </div>
                 </div>
+                <div class="modal fade" id="detailAccount" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="row p-4">
+                                    <div class=" text-end">
+                                        <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <h5 class="text-center title">CHI TIẾT TÀI KHOẢN</h5>
+                                    <hr>
+                                    <div class="col-md-12">
+                                        <div class="mb-3">
+                                            <label class="form-label"> Tên khách hàng </label>
+                                            <input type="text" class="form-control" id="nameAccountDetail" name="nameAccountDetail" readonly>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Số điện thoại</label>
+                                            <input type="text" class="form-control" id="phoneAccountDetail" name="phoneAccountDetail" readonly>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Gmail</label>
+                                            <input type="text" class="form-control" id="gmailAccountDetail" name="gmailAccountDetail">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Ngày sinh</label>
+                                            <input type="text" class="form-control" id="dateAccountDetail" name="dateAccountDetail" readonly>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Giới tính</label>
+                                            <input type="text" class="form-control" id="genderAccountDetail" name="genderAccountDetail" readonly>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label">Địa chỉ</label>
+                                            <input type="text" class="form-control" id="addressAccountDetail" name="addressAccountDetail" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <!--end giao diện quản lý tài khoản -->
             <!--giao diện quản lý sản phẩm-->
@@ -471,7 +512,7 @@
                                                 </div>
                                                 <div class="my-3">
                                                     <label class="form-label">Mô tả</label>
-                                                    <textarea type="text" class="form-control" id="desdetail" name="desEdit" readonly>
+                                                    <textarea type="text" class="form-control" id="desdetail" name="desdetail" readonly>
                     </textarea>
                                                 </div>
                                             </div>
@@ -479,47 +520,47 @@
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Tên sản phẩm</label>
-                                                <input type="text" class="form-control" id="nameProductdetail" name="nameProductEdit" readonly>
+                                                <input type="text" class="form-control" id="nameProductdetail" name="nameProductdetail" readonly>
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Giá tiền</label>
-                                                <input type="text" class="form-control" id="priceProductdetail" name="priceProductEdit" readonly>
+                                                <input type="text" class="form-control" id="priceProductdetail" name="priceProductdetail" readonly>
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Thể loại</label>
-                                                <input type="text" class="form-control" id="cateTypedetail" name="priceProductEdit" readonly>
+                                                <input type="text" class="form-control" id="cateTypedetail" name="cateTypedetail" readonly>
                                             </div>
 
                                             <div class="mb-3">
                                                 <label class="form-label">Vận chuyển</label>
-                                                <input type="text" class="form-control" id="deliverydetail" name="deliveryEdit" readonly>
+                                                <input type="text" class="form-control" id="deliverydetail" name="deliverydetail" readonly>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-4 col-4 mb-3">
                                                     <label class="form-label">Chiều dài</label>
-                                                    <input type="number" class="form-control" id="lengthdetail" name="lengthEdit"readonly>
+                                                    <input type="number" class="form-control" id="lengthdetail" name="lengthdetail"readonly>
                                                 </div>
                                                 <div class="col-md-4 col-4 mb-3">
                                                     <label class="form-label">Chiều rộng</label>
-                                                    <input type="number" class="form-control" id="widthdetail" name="widthEdit"readonly>
+                                                    <input type="number" class="form-control" id="widthdetail" name="widthdetail"readonly>
                                                 </div>
                                                 <div class="col-md-4 col-4 mb-3">
                                                     <label class="form-label">Chiều cao</label>
-                                                    <input type="number" class="form-control" id="heightdetail" name="heightEdit"readonly>
+                                                    <input type="number" class="form-control" id="heightdetail" name="heightdetail"readonly>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-4 col-4 mb-3">
                                                     <label class="form-label">Vật liệu</label>
-                                                    <input type="text" class="form-control" id="materialdetail" name="materialEdit"readonly>
+                                                    <input type="text" class="form-control" id="materialdetail" name="materialdetail"readonly>
                                                 </div>
                                                 <div class="col-md-4 col-4 mb-3">
                                                     <label class="form-label">Màu sắc</label>
-                                                    <input type="text" class="form-control" id="colordetail" name="colorEdit"readonly>
+                                                    <input type="text" class="form-control" id="colordetail" name="colordetail"readonly>
                                                 </div>
                                                 <div class="col-md-4 col-4 mb-3">
                                                     <label class="form-label">Số lượng</label>
-                                                    <input type="number" class="form-control" id="amountdetail" name="amountEdit"readonly>
+                                                    <input type="number" class="form-control" id="amountdetail" name="amountdetail"readonly>
                                                 </div>
                                             </div>
                                         </div>
@@ -761,7 +802,7 @@
                         <h5 >Quản lý danh mục</h5>
                     </div>
                     <div class="col-lg-6 text-end">
-                        <button class="btnAdd bgcolor bd-full" id ="btnAddCate"><i class="fa fa-plus-circle text-color" aria-hidden="true" title="Thêm sản phẩm"></i></button>
+                        <button class="btnAdd bgcolor bd-full" id ="btnAddCate"><i class="fa fa-plus-circle text-color" aria-hidden="true" title="Thêm danh mục" data-bs-toggle="modal" data-bs-target="#addCate"></i></button>
                     </div>
                 </div>
                 <hr>
@@ -772,7 +813,6 @@
                             <tr>
                                 <td>ID</td>
                                 <td>TÊN</td>
-
                             </tr>
                             </thead>
                             <tbody>
@@ -788,7 +828,6 @@
                                         <button class="delete btnAdd bgcolor bd-full me-1" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true"></i></button>
                                         <button class="editCate btnAdd bgcolor bd-full "><i class="fa fa-pencil text-color" title="Chỉnh sửa danh mục" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editCate"></i></button>
                                     </div>
-
                                 </td>
                             </tr>
                             </tbody>
@@ -813,7 +852,7 @@
                                             </div>
                                         </div>
                                         <div class="row p-0">
-                                            <div class="col-lg-12 text-end">
+                                            <div class="col-lg-12 text-end p-0">
                                                 <button class="save" type="submit">LƯU</button>
                                             </div>
                                         </div>
@@ -823,6 +862,35 @@
                         </div>
                     </div>
                 </div>
+                <div class="modal fade" id="addCate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog ">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <form action="" method="post">
+                                    <div class="row px-2">
+                                        <div class=" text-end">
+                                            <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>                                        <h5 class="text-center">THÊM DANH MỤC</h5>
+                                        <hr>
+                                        <div class="col-md-12">
+                                            <div class="mb-3">
+                                                <label class="form-label">Tên danh mục</label>
+                                                <input type="text" class="form-control" id="nameCateAdd" name="nameCateAdd">
+                                            </div>
+
+                                        </div>
+                                        <div class="row p-0">
+                                            <div class="col-lg-12 text-end p-0">
+                                                <button class="save" type="submit">LƯU</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <!--end giao diện quản lý danh mục -->
             <!--giao diện quản lý nhà cung cấp-->
@@ -832,7 +900,7 @@
                         <h5 >Quản lý nhà cung cấp</h5>
                     </div>
                     <div class="col-lg-6 text-end">
-                        <button class="btnAdd bgcolor bd-full" id ="btnAddSupplier"><i class="fa fa-plus-circle text-color" aria-hidden="true" title="Thêm sản phẩm" data-bs-toggle="modal" data-bs-target="#addProduct"></i></button>
+                        <button class="btnAdd bgcolor bd-full" id ="btnAddSupplier"><i class="fa fa-plus-circle text-color" aria-hidden="true" title="Thêm sản phẩm" data-bs-toggle="modal" data-bs-target="#addSup"></i></button>
                     </div>
                 </div>
                 <hr>
@@ -926,6 +994,62 @@
                                             <div class="col-md-12 p-0">
                                                 <div class="text-end">
                                                     <button class="save " type="submit">LƯU</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="addSup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog ">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <form class="form" action="" method="post">
+                                    <div class="row p-4">
+                                        <div class=" text-end">
+                                            <button type="button" class="btn-close " data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <h5 class="text-center">CHỈNH SỬA NHÀ CUNG CẤP</h5>
+                                        <hr>
+                                        <div class="col-md-12">
+                                            <div class="mb-3">
+                                                <label class="form-label">Tên nhà cung cấp</label>
+                                                <input type="text" class="form-control" id="nameSupAdd" name="nameSupAdd">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Địa chỉ</label>
+                                                <input type="text" class="form-control" id="addressSupAdd" name="addressSupAdd">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Số điện thoại</label>
+                                                <input type="text" class="form-control" id="phoneSupAdd" name="phoneSupAdd">
+                                            </div>
+
+
+                                            <div class="mb-3">
+                                                <label class="form-label">Gmail</label>
+                                                <input type="text" class="form-control" id="gmailSupAdd" name="gmailSupAdd">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Phân phối cho</label>
+                                                <select class="form-control" name="cateChairAdd" id="cateChairAdd">
+                                                    <option value="Ghế văn phòng">Ghế văn phòng</option>
+                                                    <option value="Ghế thư giãn">Ghế thư giãn</option>
+                                                    <option value="Ghế trang trí">Ghế trang trí</option>
+                                                    <option value="Ghế gaming">Ghế gaming</option>
+                                                </select>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="row p-0">
+                                            <div class="col-md-12 p-0">
+                                                <div class="text-end">
+                                                    <button class="save " type="submit">Lưu</button>
                                                 </div>
                                             </div>
                                         </div>
