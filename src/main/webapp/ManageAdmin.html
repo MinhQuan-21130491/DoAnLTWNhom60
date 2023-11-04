@@ -22,8 +22,8 @@
           integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="manage.css">
+    <link rel="stylesheet" href="css/Style.css">
+    <link rel="stylesheet" href="css/Manage.css">
 </head>
 <body>
 <header>
@@ -64,8 +64,8 @@
                                 <div class="col-md-12 col-lg-4 col-sm-12">
                                     <ul class="navbar-nav w-100  mb-2 mb-lg-0">
                                         <li class="nav-item hv "><a class="nav-link ps-0 "
-                                                                    aria-current="page" href=home.html>Trang chủ</a></li>
-                                        <li class="nav-item hv"><a class="nav-link" href="GioiThieuWebsite.html">Giới
+                                                                    aria-current="page" href=HomePage.html>Trang chủ</a></li>
+                                        <li class="nav-item hv"><a class="nav-link" href="IntroWebsite.html">Giới
                                             thiệu</a></li>
                                         <li class="nav-item dropdown hv"><a
                                                 class="nav-link dropdown-toggle" href="#" id=""
@@ -94,7 +94,7 @@
                                                         role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                     Tài khoản </a>
                                                     <ul class="dropdown-menu" aria-labelledby="">
-                                                        <li><a class="dropdown-item" href="dangNhap.html">Đăng nhập</a></li>
+                                                        <li><a class="dropdown-item" href="SignIn.html">Đăng nhập</a></li>
                                                         <li>
                                                             <hr class="dropdown-divider">
                                                         </li>
@@ -126,7 +126,7 @@
                                                 role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             Tài khoản </a>
                                             <ul class="dropdown-menu" aria-labelledby="">
-                                                <li><a class="dropdown-item" href="dangNhap.html">Đăng nhập</a></li>
+                                                <li><a class="dropdown-item" href="SignIn.html">Đăng nhập</a></li>
                                                 <li>
                                                     <hr class="dropdown-divider">
                                                 </li>
@@ -1084,10 +1084,10 @@
                     <h5>VỀ CHÚNG TÔI</h5>
                     <hr class ="w-50 ">
                     <ul class="navbar-nav ">
-                        <a class="nav-link link" href="GioiThieuWebsite.html"><li>Giới thiệu</li></a>
-                        <a class="nav-link link" href="GioiThieuWebsite.html#policy"><li>Bảo hành</li></a>
-                        <a class="nav-link link" href="GioiThieuWebsite.html#policy"><li>Đổi trả</li></a>
-                        <a class="nav-link link" href="GioiThieuWebsite.html#contact"><li>Liên hệ</li></a>
+                        <a class="nav-link link" href="IntroWebsite.html"><li>Giới thiệu</li></a>
+                        <a class="nav-link link" href="IntroWebsite.html#policy"><li>Bảo hành</li></a>
+                        <a class="nav-link link" href="IntroWebsite.html#policy"><li>Đổi trả</li></a>
+                        <a class="nav-link link" href="IntroWebsite.html#contact"><li>Liên hệ</li></a>
 
                     </ul>
                 </div>
@@ -1126,9 +1126,9 @@
 <script>
     $(document).ready(function () {
         //load header
-        // $('header').load('header.html')
+        // $('header').load('Header.html')
         //load footer
-        // $('footer').load('footer.html')
+        // $('footer').load('Footer.html')
         // ẩn hiển danh mục quản lý
         $('#cate').click(function () {
             var typeManage = $('#typeManage');
@@ -1148,7 +1148,7 @@
         }
         setColorFirt();
         //load giao diện quản lý tài khoản
-        // $('#mngAccount').load('manage-account.html', function () {
+        // $('#mngAccount').load('ManageAccount.html', function () {
         // })
         // mã script của quản lý tài khoản
         $('.delete').click(function () {
@@ -1166,7 +1166,7 @@
             }
         })
         //load giao diện quản lý sản phẩm
-        // $('#mngProduct').load('manage-product.html', function () {
+        // $('#mngProduct').load('ManageProduct.html', function () {
         // })
         // mã script của giao diiện sản phẩm
         $('.img_p_detail').each(function () {
@@ -1175,14 +1175,14 @@
             })
         })
         //load giao diện quản lý bán hàng
-        // $('#mngSale').load('manage-sale.html')
+        // $('#mngSale').load('ManageSale.html')
         //load giao diện quản lý hóa đơn
-        // $('#mngInvoice').load('manage-invoice.html')
+        // $('#mngInvoice').load('ManageInvoice.html')
         // load giao diện quản lý danh mục
-        // $('#mngCate').load('manage-cate.html', function() {
+        // $('#mngCate').load('ManageCate.html', function() {
         // })
         // load giao diện quản lý nhà cung cấp
-        // $('#mngSup').load('manage-supplier.html', function() {
+        // $('#mngSup').load('ManageSupplier.html', function() {
         // })
         // Chọn danh mục quản lý
         $('#typeManage a').click(function () {
