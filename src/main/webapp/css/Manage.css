@@ -1,0 +1,46 @@
+.btnAdd {
+    padding: 5px 10px;
+}
+
+.pst {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 11;
+}
+
+.bgcolor-form {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 3px 10px 0 rgba(0,0,0,.4);
+}
+textarea {
+    height: 118px;
+}
+.back{
+    cursor: pointer;
+}
+.title {
+    font-weight: 700;
+}
+
+@media screen and (max-width: 992px) {
+    .typeManage {
+        display: none;
+    }
+    textarea {
+        height: 156px;
+    }
+
+}
+@media screen and (max-width: 576px) {
+     textarea {
+         height: 156px;
+     }
+    .pst {
+        left: 45%;
+    }
+}
+
