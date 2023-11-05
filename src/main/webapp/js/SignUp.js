@@ -8,9 +8,6 @@ $(document).ready(function () {
         var email = $('#email').val();
         var date = $('#birthday').val();
         var address = $('#address').val();
-
-
-
         var condition = true;
         var nameReg = /^[A-Za-zÀ-ỹ\s]+$/;
         var emailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;

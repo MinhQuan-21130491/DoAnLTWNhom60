@@ -1,0 +1,14 @@
+
+
+.changeInfor #btnChangeInfor {
+    border: none;
+    padding: 10px 20px;
+    background-color: var(--color_backgroud);
+    border-radius: 5px;
+}
+.pay #btnPay {
+    border: none;
+    padding: 10px 20px;
+    background-color: var(--color_backgroud);
+    border-radius: 5px;
+}

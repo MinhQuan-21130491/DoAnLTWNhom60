@@ -2,7 +2,6 @@ $(document).ready(function () {
     $('#signup-form').submit(function (event) {
         var user = $('#user_name').val();
         var email = $('#email').val();
-
         var condition = true;
         var emailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         if (user === "") {
@@ -24,7 +23,6 @@ $(document).ready(function () {
         else{
             $("#errUser").text('');
         }
-
         if (condition) {
             $(this).submit();
         }
