@@ -1,9 +1,6 @@
-body{
-    font-size: 17px;
-    font-family: Arial, Tahoma, sans-serif;
-    margin: 0;
-    padding: 0;
-}
+ body {
+     overflow: visible !important;
+ }
 .anhPhoto {
     text-align: center; /* Center the contents horizontally */
     display: flex;
@@ -19,11 +16,4 @@ body{
 h5{
     font-weight: 700;
     font-size: 1.25rem;
-}
-form{
-    width: 80%;
-    height: 90vh;
-    margin: auto;
-    margin-top: 10px;
-    justify-content: center;
 }
