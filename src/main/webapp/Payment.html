@@ -203,10 +203,10 @@
             <table class="mt-4">
                 <tr>
                     <td class="sp">SẢN PHẨM</td>
-                    <td>ĐƠN GIÁ</td>
                     <td>MÀU SẮC</td>
                     <td>VẬT LIỆU</td>
                     <td>KÍCH THƯỚC</td>
+                    <td>ĐƠN GIÁ</td>
                     <td>SỐ LƯỢNG</td>
                     <td>THÀNH TIỀN</td>
                 </tr>
@@ -221,9 +221,6 @@
                         </div>
                     </td>
                     <td>
-                        ₫<span>1000000</span>
-                    </td>
-                    <td>
                         <span>Màu đen</span>
                     </td>
                     <td>
@@ -231,6 +228,9 @@
                     </td>
                     <td>
                         <span>100x50x70</span>
+                    </td>
+                    <td>
+                        ₫<span>1.000.000</span>
                     </td>
                     <td>
                         <span>2</span>
@@ -250,9 +250,6 @@
                         </div>
                     </td>
                     <td>
-                        ₫<span>1000000</span>
-                    </td>
-                    <td>
                         <span>Màu đen</span>
                     </td>
                     <td>
@@ -260,6 +257,9 @@
                     </td>
                     <td>
                         <span>100x50x70</span>
+                    </td>
+                    <td>
+                        ₫<span>1.000.000</span>
                     </td>
                     <td>
                         <span>1</span>
@@ -373,11 +373,14 @@
         function updateTotalMoney() {
             $('tr').each(function () {
                 var amountText = $(this).find('td:eq(5) span').text();
-                var priceText = $(this).find('td:eq(1) span').text();
+                var priceText = $(this).find('td:eq(4) span').text();
+                priceText = priceText.replace(/\./g, "");
                 var amount = parseInt(amountText);
                 var price = parseInt(priceText);
-
-                $(this).find('td:eq(6) span').text(amount * price);
+                var total = amount * price;
+                total = total.toLocaleString('en-US');
+                total = total.replace(/\,/g, ".")
+                $(this).find('td:eq(6) span').text(total);
             })
         }
 
@@ -386,11 +389,14 @@
             var total = 0;
             $('tr').each(function () {
                 var moneyText = $(this).find('td:eq(6) span').text();
+                moneyText = moneyText.replace(/\./g, "");
                 var money = parseInt(moneyText);
                 if (!isNaN(money)) {
                     total += money;
                 }
             })
+            total = total.toLocaleString('en-US');
+            total = total.replace(/\,/g, ".")
             $('#totalMoney').text(total);
             $('#totalPay').text(total);
         }

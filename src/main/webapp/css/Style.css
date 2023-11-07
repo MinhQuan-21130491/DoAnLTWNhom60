@@ -195,6 +195,10 @@ td {
     border-radius: 5px;
     border: 1px solid  #dedbdb;
 }
+table tbody tr:hover {
+    background-color: rgba(245, 245, 245, 1);
+}
+
 
 
 
