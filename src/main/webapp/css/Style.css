@@ -159,6 +159,9 @@ table {
     width: 100%;
     text-align: center;
 }
+.mheight {
+    max-height: 400px;
+}
 tr {
     border-bottom:1px solid #dedbdb !important;
 }
