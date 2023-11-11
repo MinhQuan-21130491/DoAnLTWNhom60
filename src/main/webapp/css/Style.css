@@ -25,7 +25,6 @@ body {
     flex-direction: column;
     padding: 0 !important;
 }
-
 header {
     height: 124.03px;
     position: fixed;
@@ -43,6 +42,9 @@ footer {
 }
 .lgr {
     color:white;
+}
+.hd {
+    height: 62.5px;
 }
 .bgcolor {
     background-color: white;
@@ -159,6 +161,9 @@ table {
     width: 100%;
     text-align: center;
 }
+.mheight {
+    max-height: 400px;
+}
 tr {
     border-bottom:1px solid #dedbdb !important;
 }
@@ -195,6 +200,10 @@ td {
     border-radius: 5px;
     border: 1px solid  #dedbdb;
 }
+table > tbody > tr:hover {
+    background-color: rgba(245, 245, 245, 1);
+}
+
 
 
 

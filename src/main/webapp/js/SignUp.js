@@ -63,11 +63,11 @@ $(document).ready(function () {
             $("#errTell").text('');
         }
         if(email===""){
-            $("#errEmail").text(' (*)Vui lòng nhập Gmail!');
+            $("#errEmail").text(' (*)Vui lòng nhập Email!');
             $('#errEmail').attr('style', 'color:red');
             condition = false;
         }else if(!email.match(emailReg)){
-            $("#errEmail").text(' (*)Gmail không hợp lệ!');
+            $("#errEmail").text(' (*)Email không hợp lệ!');
             $('#errEmail').attr('style', 'color:red');
             condition = false;
         }else{

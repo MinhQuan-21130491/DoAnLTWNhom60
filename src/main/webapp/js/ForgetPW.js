@@ -12,11 +12,11 @@ $(document).ready(function () {
             $("#errUser").text('');
         }
         if (email === "") {
-            $("#errEmail").text(' (*)Vui lòng nhập Gmail!');
+            $("#errEmail").text(' (*)Vui lòng nhập Email!');
             $('#errEmail').attr('style', 'color:red');
             condition = false;
         } else if (!email.match(emailReg)) {
-            $('#errEmail').text('Vui lòng nhập địa chỉ Gmail hợp lệ!');
+            $('#errEmail').text('Vui lòng nhập địa chỉ Email hợp lệ!');
             $('#errEmail').attr('style', 'color:red')
             condition = false;
         }

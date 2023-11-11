@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="css/Style.css">
 </head>
 <body>
-<header>
+<header class="hd">
     <div class="container-fluid bgcolor-orange">
         <div class="container ">
             <div class="row ">
@@ -58,7 +58,7 @@
             <h5 class="heading">ĐĂNG NHẬP</h5>
             <div class="form-group-p">
                 <div class="error" id="inputError"></div>
-                <input class="form-input" id="idFormInput" name="idFormInput" type="text" placeholder="Tên tài khoản">
+                <input class="form-input" id="idFormInput" name="idFormInput" type="text" placeholder="Tên đăng nhập">
             </div>
             <div class="form-group-p">
                 <input class="form-pass" id="idFormPass" name="idFormPass" type="password" placeholder="Mật khẩu">
@@ -70,12 +70,11 @@
                 <button id="submitDangNhap">ĐĂNG NHẬP</button>
             </div>
             <div class="form-group-p" id="idDK">
-                <p><a href="">Bạn chưa có tài khoản?</a></p>
+                <p>Bạn chưa có tài khoản?<a href=""> Đăng ký</a></p>
             </div>
         </div>
     </form>
 </div>
-
 <script>
     function my_submit() {
         var flag = true;
