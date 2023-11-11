@@ -295,17 +295,16 @@
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Email</label>
-                                            <input type="text" class="form-control" id="emailAccountDetail" name="emailAccountDetail">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Ngày sinh</label>
-                                            <input type="text" class="form-control" id="dateAccountDetail" name="dateAccountDetail" readonly>
+                                            <input type="text" class="form-control" id="EmailAccountDetail" name="EmailAccountDetail">
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Giới tính</label>
                                             <input type="text" class="form-control" id="genderAccountDetail" name="genderAccountDetail" readonly>
                                         </div>
-
+                                        <div class="mb-3">
+                                            <label class="form-label">Ngày sinh</label>
+                                            <input type="text" class="form-control" id="dateAccountDetail" name="dateAccountDetail" readonly>
+                                        </div>
                                         <div class="mb-3">
                                             <label class="form-label">Địa chỉ</label>
                                             <input type="text" class="form-control" id="addressAccountDetail" name="addressAccountDetail" readonly>
@@ -788,7 +787,7 @@
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content ">
                             <div class="modal-body">
-                                <form class="form " action="" method="post">
+                                <form id="formAddProduct" action="" method="post">
                                     <div class="row px-2">
                                         <div class=" text-end">
                                             <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
@@ -806,7 +805,7 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Giá bán</label>
-                                                <input type="text" class="form-control" id="delivery" name="delivery">
+                                                    <input type="text" class="form-control" id="delivery" name="delivery">
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Thể loại</label>
@@ -872,7 +871,7 @@
                                         <div class="row p-0">
                                             <div class="col-md-12 p-0">
                                                 <div class="text-end">
-                                                    <button class="save " type="submit">LƯU</button>
+                                                    <button class="save "type="submit">LƯU</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -1190,20 +1189,19 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Địa chỉ</label>
-                                                <input type="text" class="form-control" id="address"
-                                                       name="address">
+                                                <input type="text" class="form-control" id="addressSupEdit" name="addressSupEdit">
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Số điện thoại</label>
-                                                <input type="text" class="form-control" id="phoneNumber" name="phoneNumber">
+                                                <input type="text" class="form-control" id="phoneNumberSupEdit" name="phoneNumberSupEdit">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Gmail</label>
-                                                <input type="text" class="form-control" id="gmail" name="gmail">
+                                                <label class="form-label">Email</label>
+                                                <input type="text" class="form-control" id="emailSupEdit" name="emailSupEdit">
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Cung cấp loại</label>
-                                                <select class="form-control" name="cateChairEdit" >
+                                                <select class="form-control" name="cateChairSupEdit" >
                                                     <option value="Ghế văn phòng">Ghế văn phòng</option>
                                                     <option value="Ghế thư giãn">Ghế thư giãn</option>
                                                     <option value="Ghế trang trí">Ghế trang trí</option>
@@ -1234,7 +1232,7 @@
                                             <button type="button" class="btn-close " data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                         </div>
-                                        <h5 class="text-center">CHỈNH SỬA NHÀ CUNG CẤP</h5>
+                                        <h5 class="text-center">THÊM NHÀ CUNG CẤP</h5>
                                         <hr>
                                         <div class="col-md-12">
                                             <div class="mb-3">
@@ -1257,7 +1255,7 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Phân phối cho</label>
-                                                <select class="form-control" name="cateChairAdd" id="cateChairAdd">
+                                                <select class="form-control" name="cateChairSupAdd" id="cateChairSupAdd">
                                                     <option value="Ghế văn phòng">Ghế văn phòng</option>
                                                     <option value="Ghế thư giãn">Ghế thư giãn</option>
                                                     <option value="Ghế trang trí">Ghế trang trí</option>
@@ -1456,6 +1454,16 @@
             }
 
         })
+        $('#formAddProduct').submit(function (event) {
+            event.preventDefault();
+            var condition = true;
+            if($('#nameProduct').val() == ""){
+                condition = false;
+
+                $('#nameProduct').css('border', '2px solid #f26060')
+            };
+        })
+
 
     })
 </script>
