@@ -11,7 +11,7 @@ $(document).ready(function (){
             condition=false;
         }else{
             $("#errPW").text('');
-            condition = true;
+
         }
         if(newpassword===""){
             $("#errNPW").text(' (*)Vui lòng nhập mật khẩu mới');
@@ -23,7 +23,7 @@ $(document).ready(function (){
             condition=false;
         } else{
             $("#errPW").text('');
-            condition = true;
+
         }
         if(repassword===""){
             $("#errReNPW").text(' (*)Vui lòng nhập lại mật khẩu mới');
@@ -36,7 +36,7 @@ $(document).ready(function (){
         }
         else{
             $("#errReNPW").text('');
-            condition = true;
+
         }
         if(newpassword===repassword && newpassword!=="" && newpassword!== password){
            alert('doi mat khau thanh cong');

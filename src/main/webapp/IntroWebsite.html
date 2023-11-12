@@ -232,7 +232,7 @@
         <div class="modal-dialog modal-sm ">
             <div class="modal-content">
                 <div class="modal-body">
-                    <form class="form " action="" method="post">
+                    <form class="form " action="" method="post" onsubmit="editGua()">
                         <div class="row px-2">
                             <div class=" text-end">
                                 <button type="button" class="btn-close " data-bs-dismiss="modal"
@@ -281,7 +281,7 @@
         <div class="modal-dialog ">
             <div class="modal-content">
                 <div class="modal-body">
-                    <form class="form " action="" method="post">
+                    <form class="form " action="" method="post" onsubmit="return editContact()">
                         <div class="row px-2">
                             <span class="d-none" id="id"></span>
                             <div class=" text-end">
@@ -402,65 +402,66 @@
 </footer>
 <!--end footer-->
 <script>
-    $(document).ready(function () {
-        $('.form').submit(function (event) {
-            var monthGua = $('#monthGua').val();
-            var monthChange = $('#monthChange').val();
-            var address = $('#editAddress').val();
-            var email = $('#editEmail').val();
-            var phone = $('#editPhoneNumber').val();
+    function  editGua() {
+        var monthGua = document.getElementById("monthGua");
+        var monthChange = document.getElementById("monthChange");
 
-            var emailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-            var tellReg = /^\d{10}$/;
+        var flag = true;
 
-            var condition = true;
+        if(monthGua.value ="") {
+            flag = false;
+            monthGua.style.borderColor = 'red';
+        }else {
+            monthGua.style.borderColor = 'dee2e6';
+        }
+        if(monthChange.value ="") {
+            flag = false;
+            monthChange.style.borderColor = 'red';
+        }else {
+            monthChange.style.borderColor = 'dee2e6';
+        }
+        return flag;
+    }
+    function editContact() {
 
-            if (monthGua === "") {
-                $('#monthGua').attr('style', 'border-color:red');
-                condition = false;
+        var address = document.getElementById("editAddress");
+        var email = document.getElementById("editEmail");
+        var phone =document.getElementById("editPhoneNumber");
 
-            } else {
-                $('#monthGua').attr('style', 'border-color:#dee2e6');
-            }
-            if (monthChange === "") {
-                $('#monthChange').attr('style', 'border-color:red');
-                condition = false;
-            } else {
-                $('#monthChange').attr('style', 'border-color:#dee2e6');
-            }
-            if (address === "") {
-                $("#errEditAddress").text(' (*)Vui lòng nhập địa chỉ!');
-                condition = false;
-            } else {
-                $("#errEditAddress").text('');
-            }
-            if (email === "") {
-                $("#errEditEmail").text(' (*)Vui lòng nhập Email!');
-                condition = false;
-            } else if(!email.match(emailReg)){
-                $("#errEditEmail").text(' (*)Email không hợp lệ!');
-                condition = false;
-            }
-            else {
-                $("#errEditEmail").text('');
-            }
-            if (phone === "") {
-                $("#errEditPhoneNumber").text(' (*)Vui lòng nhập số điện thoại!');
-                condition = false;
-            } else if(!phone.match(tellReg)){
-                $("#errEditPhoneNumber").text(' (*)Số điện thoại không hợp lệ!');
-                condition = false;
-            }
-            else {
-                $("#errEditPhoneNumber").text('');
-            }
+        var errorAddress = document.getElementById("errEditAddress");
+        var errEditEmail = document.getElementById("errEditEmail");
+        var errEditPhoneNumber = document.getElementById("errEditPhoneNumber");
 
-            if (condition) {
-                $(this).submit();
-            }
-            event.preventDefault();
-        })
-    });
+        var flag = true;
+        var emailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        var tellReg = /^\d{10}$/;
+
+        if(address.value === "") {
+            errorAddress.innerHTML ='(*)Vui lòng nhập địa chỉ!'
+            flag = false;
+        }else {
+            errorAddress.innerHTML ='';
+        }
+        if(email.value === "") {
+            errEditEmail.innerHTML ='(*)Vui lòng nhập email!'
+            flag = false;
+        }else if(!email.value.match(emailReg)){
+            errEditEmail.innerHTML ='(*)Email không hợp lệ!';
+            flag = false;
+        }else{
+            errEditEmail.innerHTML = '';
+        }
+        if(phone.value === "") {
+            errEditPhoneNumber.innerHTML ='(*)Vui lòng nhập số điện thoại!'
+            flag = false;
+        }else if(!phone.value.match(tellReg)){
+            errEditPhoneNumber.innerHTML ='(*)Số điện thoại không hợp lệ!';
+            flag = false;
+        }else{
+            errEditPhoneNumber.innerHTML = '';
+        }
+        return flag;
+    }
 </script>
 </body>
 

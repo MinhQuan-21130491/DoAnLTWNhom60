@@ -10,7 +10,7 @@ $(document).ready(function () {
             condition = false;
         } else {
             $("#errUser").text('');
-            condition = true;
+
         }
         if (email === "") {
             $("#errEmail").text(' (*)Vui lòng nhập Email!');
@@ -22,7 +22,7 @@ $(document).ready(function () {
         }
         else{
             $("#errUser").text('');
-            condition = true;
+
         }
         if (condition) {
             $(this).submit();
