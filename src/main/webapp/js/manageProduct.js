@@ -325,8 +325,6 @@ $(document).ready(function () {
         var nameCate = $('#nameCateEdit').val();
         if (nameCate === "") {
             $("#errNameCate").text(' (*)Vui lòng nhập danh mục!');
-            $('#errNameCate').attr('style', 'font-size:12px');
-            $('#nameCateEdit').attr('style', 'border-color:red');
             condition = false;
         }
         else{
@@ -345,8 +343,6 @@ $(document).ready(function () {
         var nameCate = $('#nameCateEdit').val();
         if (nameCate === "") {
             $("#errNameCateAdd").text(' (*)Vui lòng nhập danh mục mới!');
-            $('#errNameCateAdd').attr('style', 'font-size:12px');
-            $('#nameCateEdit').attr('style', 'border-color:red');
             condition = false;
         }
         else{
