@@ -596,7 +596,7 @@
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content ">
                             <div class="modal-body">
-                                <form class ="" action="" method="post">
+                                <form class ="editProduct" action="" method="post" >
                                     <div class="row px-2">
                                         <span class="d-none" id ="id"></span>
                                         <div class=" text-end">
@@ -606,16 +606,16 @@
                                         <hr>
                                         <div class="col-md-6 col-sm-6 col-6">
                                             <div class="mb-3">
-                                                <label class="form-label">Tên sản phẩm</label>
+                                                <label class="form-label">Tên sản phẩm</label><span id="errNamePEdit"  class="text-danger"></span>
                                                 <input type="text" class="form-control" id="nameProductEdit" name="nameProductEdit">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Giá nhập</label>
-                                                <input type="text" class="form-control" id="priceProductEdit" name="priceProductEdit">
+                                                <label class="form-label">Giá nhập (₫)</label><span id="errImpPriceEdit"  class="text-danger"></span>
+                                                <input type="text" class="form-control" id="priceImpProductEdit" name="priceProduct">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Giá bán</label>
-                                                <input type="text" class="form-control" id="deliveryEdit" name="deliveryEdit">
+                                                <label class="form-label">Giá bán (₫)</label><span id="errPriceEdit"  class="text-danger"></span>
+                                                <input type="text" class="form-control" id="priceProductEdit" name="delivery">
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label" id = "cateTypeEdit">Thể loại</label>
@@ -627,39 +627,38 @@
                                                 </select>
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Mô tả</label>
+                                                <label class="form-label">Mô tả</label><span id="errDesEdit"  class="text-danger"></span>
                                                 <textarea type="text" class="form-control" id="desEdit" name="desEdit"></textarea>
                                             </div>
-
                                         </div>
                                         <div class="col-md-6 col-sm-6 col-6">
                                             <div class="mb-3">
-                                                <label class="form-label">Hình ảnh 1</label>
+                                                <label class="form-label">Hình ảnh 1</label><span id="errImg1Edit"  class="text-danger"></span>
                                                 <input type="text" class="form-control" id="image1Edit" name="image1Edit">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Hình ảnh 2</label>
+                                                <label class="form-label">Hình ảnh 2</label><span id="errImg2Edit"  class="text-danger"></span>
                                                 <input type="text" class="form-control" id="image2Edit" name="image2Edit">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Hình ảnh 3</label>
+                                                <label class="form-label">Hình ảnh 3</label><span id="errImg3Edit"  class="text-danger"></span>
                                                 <input type="text" class="form-control" id="image3Edit" name="image3Edit">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Hình ảnh 4</label>
+                                                <label class="form-label">Hình ảnh 4</label><span id="errImg4Edit"  class="text-danger"></span>
                                                 <input type="text" class="form-control" id="image4Edit" name="image4Edit">
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Chiều dài</label>
+                                                    <label class="form-label">Chiều dài<span class="fs">(cm)</span></label>
                                                     <input type="number" class="form-control" id="lengthEdit" name="lengthEdit">
                                                 </div>
                                                 <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Chiều rộng</label>
+                                                    <label class="form-label">Chiều rộng<span class="fs">(cm)</span></label>
                                                     <input type="number" class="form-control" id="widthEdit" name="widthEdit">
                                                 </div>
                                                 <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Chiều cao</label>
+                                                    <label class="form-label">Chiều cao<span class="fs">(cm)</span></label>
                                                     <input type="number" class="form-control" id="heightEdit" name="heightEdit">
                                                 </div>
                                             </div>
@@ -736,12 +735,12 @@
                                                 <input type="text" class="form-control" id="nameProductdetail" name="nameProductdetail" readonly>
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Giá nhập</label>
-                                                <input type="text" class="form-control" id="priceProductdetail" name="priceProductdetail" readonly>
+                                                <label class="form-label">Giá nhập (₫)</label>
+                                                <input type="text" class="form-control" id="priceImpProductdetail" name="priceImpProductdetail" readonly>
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Giá bán</label>
-                                                <input type="text" class="form-control" id="deliverydetail" name="deliverydetail" readonly>
+                                                <label class="form-label">Giá bán (₫)</label>
+                                                <input type="text" class="form-control" id="priceProductDetail" name="priceProductDetail" readonly>
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Thể loại</label>
@@ -749,15 +748,15 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Chiều dài</label>
+                                                    <label class="form-label">Chiều dài<span class="fs">(cm)</span></label>
                                                     <input type="number" class="form-control" id="lengthdetail" name="lengthdetail"readonly>
                                                 </div>
                                                 <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Chiều rộng</label>
+                                                    <label class="form-label">Chiều rộng<span class="fs">(cm)</span></label>
                                                     <input type="number" class="form-control" id="widthdetail" name="widthdetail"readonly>
                                                 </div>
                                                 <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Chiều cao</label>
+                                                    <label class="form-label">Chiều cao<span class="fs">(cm)</span></label>
                                                     <input type="number" class="form-control" id="heightdetail" name="heightdetail"readonly>
                                                 </div>
                                             </div>
@@ -787,7 +786,7 @@
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content ">
                             <div class="modal-body">
-                                <form id="formAddProduct" action="" method="post">
+                                <form class="form " action="" method="post" id="add-product">
                                     <div class="row px-2">
                                         <div class=" text-end">
                                             <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
@@ -796,16 +795,16 @@
                                         <hr>
                                         <div class="col-md-6 col-sm-6 col-6">
                                             <div class="mb-3">
-                                                <label class="form-label">Tên sản phẩm</label>
+                                                <label class="form-label">Tên sản phẩm</label><span id="errNameP" class="text-danger"></span>
                                                 <input type="text" class="form-control" id="nameProduct" name="nameProduct">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Giá nhập</label>
-                                                <input type="text" class="form-control" id="priceProduct" name="priceProduct">
+                                                <label class="form-label">Giá nhập (₫)</label><span id="errImpPriceAdd"  class="text-danger"></span>
+                                                <input type="text" class="form-control" id="priceImpProductAdd" name="priceProduct">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Giá bán</label>
-                                                    <input type="text" class="form-control" id="delivery" name="delivery">
+                                                <label class="form-label">Giá bán (₫)</label><span id="errPriceAdd"  class="text-danger"></span>
+                                                <input type="text" class="form-control" id="priceProductAdd" name="delivery">
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Thể loại</label>
@@ -817,39 +816,39 @@
                                                 </select>
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Mô tả</label>
+                                                <label class="form-label">Mô tả</label><span id="errDes"  class="text-danger"></span>
                                                 <textarea type="text" class="form-control" id="des" name="des"></textarea>
                                             </div>
 
                                         </div>
                                         <div class="col-md-6 col-sm-6 col-6">
                                             <div class="mb-3">
-                                                <label class="form-label">Hình ảnh 1</label>
+                                                <label class="form-label">Hình ảnh 1</label><span id="errImg1" class="text-danger"></span>
                                                 <input type="text" class="form-control" id="image1" name="image1">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Hình ảnh 2</label>
+                                                <label class="form-label">Hình ảnh 2</label><span id="errImg2"  class="text-danger"></span>
                                                 <input type="text" class="form-control" id="image2" name="image2">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Hình ảnh 3</label>
+                                                <label class="form-label">Hình ảnh 3</label><span id="errImg3"  class="text-danger"></span>
                                                 <input type="text" class="form-control" id="image3" name="image3">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Hình ảnh 4</label>
+                                                <label class="form-label">Hình ảnh 4</label><span id="errImg4"  class="text-danger"></span>
                                                 <input type="text" class="form-control" id="image4" name="image4">
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Chiều dài</label>
+                                                    <label class="form-label">Chiều dài<span class="fs">(cm)</span></label>
                                                     <input type="number" class="form-control" id="length" name="length">
                                                 </div>
                                                 <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Chiều rộng</label>
+                                                    <label class="form-label">Chiều rộng<span class="fs">(cm)</span></label>
                                                     <input type="number" class="form-control" id="width" name="width">
                                                 </div>
                                                 <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Chiều cao</label>
+                                                    <label class="form-label">Chiều cao<span class="fs">(cm)</span></label>
                                                     <input type="number" class="form-control" id="height" name="height">
                                                 </div>
                                             </div>
@@ -871,7 +870,7 @@
                                         <div class="row p-0">
                                             <div class="col-md-12 p-0">
                                                 <div class="text-end">
-                                                    <button class="save "type="submit">LƯU</button>
+                                                    <button class="save " type="submit">LƯU</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -1058,7 +1057,7 @@
                     <div class="modal-dialog ">
                         <div class="modal-content">
                             <div class="modal-body">
-                                <form class="form" action="" method="post">
+                                <form class="cateEdit" id="cateEdit" action="" method="post">
                                     <div class="row px-2">
                                         <div class=" text-end">
                                             <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
@@ -1067,7 +1066,7 @@
                                         <hr>
                                         <div class="col-md-12">
                                             <div class="mb-3">
-                                                <label class="form-label">Tên danh mục</label>
+                                                <label class="form-label">Tên danh mục</label><span id="errNameCate" class="text-danger"></span>
                                                 <input type="text" class="form-control" id="nameCateEdit" name="nameCateEdit">
                                             </div>
                                         </div>
@@ -1086,15 +1085,16 @@
                     <div class="modal-dialog ">
                         <div class="modal-content">
                             <div class="modal-body">
-                                <form action="" method="post">
+                                <form id="add-Cate" action="" method="post">
                                     <div class="row px-2">
                                         <div class=" text-end">
                                             <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>                                        <h5 class="text-center">THÊM DANH MỤC</h5>
+                                        </div>
+                                        <h5 class="text-center">THÊM DANH MỤC</h5>
                                         <hr>
                                         <div class="col-md-12">
                                             <div class="mb-3">
-                                                <label class="form-label">Tên danh mục</label>
+                                                <label class="form-label">Tên danh mục</label><span id="errNameCateAdd" class="text-danger"></span>
                                                 <input type="text" class="form-control" id="nameCateAdd" name="nameCateAdd">
                                             </div>
 
@@ -1174,7 +1174,7 @@
                     <div class="modal-dialog ">
                         <div class="modal-content">
                             <div class="modal-body">
-                                <form class="form " action="" method="post">
+                                <form class="form " id="supEdit" action="" method="post">
                                     <div class="row px-2">
                                         <div class=" text-end">
                                             <button type="button" class="btn-close " data-bs-dismiss="modal"
@@ -1184,19 +1184,19 @@
                                         <hr>
                                         <div class="col-md-12">
                                             <div class="mb-3">
-                                                <label class="form-label">Tên nhà cung cấp</label>
+                                                <label class="form-label">Tên nhà cung cấp</label><span id="errNameSupEdit" class="text-danger"></span>
                                                 <input type="text" class="form-control" id="nameSupEdit" name="nameSupEdit">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Địa chỉ</label>
+                                                <label class="form-label">Địa chỉ</label><span id="errAddEdit" class="text-danger"></span>
                                                 <input type="text" class="form-control" id="addressSupEdit" name="addressSupEdit">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Số điện thoại</label>
+                                                <label class="form-label">Số điện thoại</label><span id="errphoneNumberSupEdit" class="text-danger"></span>
                                                 <input type="text" class="form-control" id="phoneNumberSupEdit" name="phoneNumberSupEdit">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Email</label>
+                                                <label class="form-label">Email</label><span id="errEmailSupEdit" class="text-danger"></span>
                                                 <input type="text" class="form-control" id="emailSupEdit" name="emailSupEdit">
                                             </div>
                                             <div class="mb-3">
@@ -1226,7 +1226,7 @@
                     <div class="modal-dialog ">
                         <div class="modal-content">
                             <div class="modal-body">
-                                <form class="form" action="" method="post">
+                                <form class="form" id="supAdd" action="" method="post">
                                     <div class="row p-4">
                                         <div class=" text-end">
                                             <button type="button" class="btn-close " data-bs-dismiss="modal"
@@ -1236,21 +1236,21 @@
                                         <hr>
                                         <div class="col-md-12">
                                             <div class="mb-3">
-                                                <label class="form-label">Tên nhà cung cấp</label>
+                                                <label class="form-label">Tên nhà cung cấp</label><span id="errNameSupAdd" class="text-danger"></span>
                                                 <input type="text" class="form-control" id="nameSupAdd" name="nameSupAdd">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Địa chỉ</label>
+                                                <label class="form-label">Địa chỉ</label><span id="errAddressSupAdd" class="text-danger"></span>
                                                 <input type="text" class="form-control" id="addressSupAdd" name="addressSupAdd">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Số điện thoại</label>
+                                                <label class="form-label">Số điện thoại</label><span id="errphoneSupAdd" class="text-danger"></span>
                                                 <input type="text" class="form-control" id="phoneSupAdd" name="phoneSupAdd">
                                             </div>
 
 
                                             <div class="mb-3">
-                                                <label class="form-label">Email</label>
+                                                <label class="form-label">Email</label><span id="errEmailSupAdd" class="text-danger"></span>
                                                 <input type="text" class="form-control" id="emailSupAdd" name="emailSupAdd">
                                             </div>
                                             <div class="mb-3">
@@ -1454,17 +1454,18 @@
             }
 
         })
-        $('#formAddProduct').submit(function (event) {
-            event.preventDefault();
-            var condition = true;
-            if($('#nameProduct').val() == ""){
-                condition = false;
-
-                $('#nameProduct').css('border', '2px solid #f26060')
-            };
-        })
+        // $('#formAddProduct').submit(function (event) {
+        //     event.preventDefault();
+        //     var condition = true;
+        //     if($('#nameProduct').val() == ""){
+        //         condition = false;
+        //
+        //         $('#nameProduct').css('border', '2px solid #f26060')
+        //     };
+        // })
 
 
     })
 </script>
+<script src="js/manage.js"></script>
 </html>
