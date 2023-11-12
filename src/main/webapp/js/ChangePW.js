@@ -11,6 +11,7 @@ $(document).ready(function (){
             condition=false;
         }else{
             $("#errPW").text('');
+
         }
         if(newpassword===""){
             $("#errNPW").text(' (*)Vui lòng nhập mật khẩu mới');
@@ -22,6 +23,7 @@ $(document).ready(function (){
             condition=false;
         } else{
             $("#errPW").text('');
+
         }
         if(repassword===""){
             $("#errReNPW").text(' (*)Vui lòng nhập lại mật khẩu mới');
@@ -34,6 +36,7 @@ $(document).ready(function (){
         }
         else{
             $("#errReNPW").text('');
+
         }
         if(condition) {
             $(this).submit();

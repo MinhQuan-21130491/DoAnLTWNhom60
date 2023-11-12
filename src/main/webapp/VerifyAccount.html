@@ -23,8 +23,6 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="css/SignUp.css">
     <link rel="stylesheet" href="css/Style.css">
-
-
 </head>
 <body>
 <header class = "hd">
@@ -55,7 +53,9 @@
     <!-- <img src="images/signup-bg.jpg" alt=""> -->
     <div class="contain">
         <div class="signup-content">
-            <form id="signup-form" class="signup-form" action="HomePage.html">
+
+            <form id="verify-form" class="signup-form" action="" onsubmit="return verifyAccount()">
+
                 <div class="text-end pe-4">
                     <a class="text-decoration-none" href="HomePage.html">Bỏ qua</a>
                 </div>
@@ -66,8 +66,8 @@
                                                                                  name="gmail">abc@gmail.com</span></p>
                     <p class="">Vui lòng nhập mã để xác thực tài khoản của bạn</p>
                     <p class="mb-0">Mã xác thực chỉ có hiệu lực trong vòng 1 tiếng</p>
-                    <div class="form-group">
-                        <span class="error" id="errVerify"></span>
+                    <div class="form-group text-center">
+                        <span class="text-danger" id="errVerify"></span>
                         <input type="text" class="form-input" placeholder="Nhập mã xác thực ở đây" name="verify"
                                id="verify"/>
                     </div>
@@ -82,6 +82,17 @@
         </div>
     </div>
 </section>
-<script src="js/Verify.js"></script>
+<script>
+    function verifyAccount() {
+        var verifyVal = document.getElementById("verify");
+        var error = document.getElementById("errVerify");
+        var flag = true;
+        if(verifyVal.value == "") {
+            flag = false;
+            error.innerHTML = '(*)Vui lòng nhập mã xác thực!';
+        }
+        return flag;
+    }
+</script>
 </body>
 </html>
