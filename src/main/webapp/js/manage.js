@@ -1,7 +1,6 @@
 
 //them san pham
 $(document).ready(function () {
-
     $('#add-product').submit(function (event) {
         var nameP = $('#nameProduct').val();
         var priceImp = $('#priceImpProductAdd').val();
@@ -131,9 +130,6 @@ $(document).ready(function () {
     })
 
 });
-
-//chinh sua san pham
-$(document).ready(function () {
     $('#editProduct').submit(function (event) {
 
         var nameP = $('#nameProductEdit').val();
@@ -276,19 +272,15 @@ $(document).ready(function () {
         event.preventDefault();
 
     })
-})
 //chinh sua danh muc
-$(document).ready(function () {
     $('#cateEdit').submit(function (event) {
         var nameCate = $('#nameCateEdit').val();
         if (nameCate === "") {
             $("#errNameCate").text(' (*)Vui lòng nhập danh mục!');
-            $('#errNameCate').attr('style', 'font-size:12px');
-            $('#nameCateEdit').attr('style', 'border-color:red');
             condition = false;
         }
         else{
-            $('#errNameCate').attr('style', 'border-color:#dee2e6');
+            $('#errNameCate').text('');
         }
         if (condition) {
             $(this).submit();
@@ -296,19 +288,15 @@ $(document).ready(function () {
         event.preventDefault();
 
     })
-})
 // them danh muc
-$(document).ready(function () {
     $('#add-Cate').submit(function (event) {
         var nameCate = $('#nameCateEdit').val();
         if (nameCate === "") {
             $("#errNameCateAdd").text(' (*)Vui lòng nhập danh mục mới!');
-            $('#errNameCateAdd').attr('style', 'font-size:12px');
-            $('#nameCateEdit').attr('style', 'border-color:red');
             condition = false;
         }
         else{
-            $('#errNameCateAdd').attr('style', 'border-color:#dee2e6');
+            $('#errNameCateAdd').text('');
         }
         if (condition) {
             $(this).submit();
@@ -316,7 +304,6 @@ $(document).ready(function () {
         event.preventDefault();
 
     })
-})
 //chinh sua nha cung cap
 $(document).ready(function () {
     $('#supEdit').submit(function (event) {
