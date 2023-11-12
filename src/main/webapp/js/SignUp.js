@@ -11,7 +11,7 @@ $(document).ready(function () {
         var condition = true;
         var nameReg = /^[A-Za-zÀ-ỹ\s]+$/;
         var emailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        var tellReg = /^\d{10}/;
+        var tellReg = /^\d{10}$/;
 
         if (user === "") {
             $("#errUser").text(' (*)Vui lòng nhập tên đăng nhập!');
@@ -19,6 +19,7 @@ $(document).ready(function () {
             condition = false;
         }else{
             $("#errUser").text('');
+            condition = true;
         }
         if(password===""){
             $("#errPW").text(' (*)Vui lòng nhập mật khẩu!');
@@ -26,6 +27,7 @@ $(document).ready(function () {
             condition = false;
         }else{
             $("#errPW").text('');
+            condition = true;
         }
         if(rePW === ""){
             $("#errRePW").text(' (*)Vui lòng nhập lại mật khẩu!');
@@ -37,6 +39,7 @@ $(document).ready(function () {
             condition = false;
         }else{
             $("#errRePW").text('');
+            condition = true;
         }
         if(name===""){
             $("#errName").text(' (*)Vui lòng nhập tên!');
@@ -49,6 +52,7 @@ $(document).ready(function () {
         }
         }else{
             $("#errName").text('');
+            condition = true;
         }
         if(tell===""){
             $("#errTell").text(' (*)Vui lòng nhập số điện thoại!');
@@ -61,6 +65,7 @@ $(document).ready(function () {
         }
         else{
             $("#errTell").text('');
+            condition = true;
         }
         if(email===""){
             $("#errEmail").text(' (*)Vui lòng nhập Email!');
@@ -72,6 +77,7 @@ $(document).ready(function () {
             condition = false;
         }else{
             $("#errEmail").text('');
+            condition = true;
         }
         if(date===""){
             $("#errDate").text(' (*)Vui lòng nhập ngày sinh!');
@@ -79,6 +85,7 @@ $(document).ready(function () {
             condition = false;
         }else{
             $("#errDate").text('');
+            condition = true;
         }
         if(address===""){
             $("#errAd").text(' (*)Vui lòng nhập địa chỉ của bạn!');
@@ -86,6 +93,7 @@ $(document).ready(function () {
             condition = false;
         }else{
             $("#errAd").text('');
+            condition = true;
         }
 
         if (condition) {

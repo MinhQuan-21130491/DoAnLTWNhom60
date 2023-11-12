@@ -14,6 +14,7 @@ $(document).ready(function (){
         }
         else{
             $("#errUser").text('');
+            condition = true;
         }
         if(condition) {
             $(this).submit();

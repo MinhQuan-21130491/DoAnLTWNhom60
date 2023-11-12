@@ -98,7 +98,7 @@
                     -mật khẩu: 1*/
             /*khách hàng -tài khoản: khachhang1
                     -mật khẩu: 1*/
-        } else if ((inputElement.value !== "root" || inputElement.value !== "nhanvien1" || inputElement.value !== "khachhang1") && passElement.value !== "1") {
+        } else if ((inputElement.value !== "root" || inputElement.value !== "nhanvien1" || inputElement.value !== "khachhang1") || passElement.value !== "1") {
             inputError.textContent = "Tài khoản hoặc mật khẩu chưa chính xác!";
             flag = false;
         }
