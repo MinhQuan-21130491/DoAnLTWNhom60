@@ -2,11 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Xác minh</title>
-    <script src="https://code.jquery.com/jquery-2.2.4.js"
-            integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
-    <!--    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
-    <script src="js/ChangePW.js"></script>
+    <title>Xác thực tài khoản</title>
     <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -31,7 +27,7 @@
 
 </head>
 <body>
-<header>
+<header class = "hd">
     <div class="container-fluid bgcolor-orange">
         <div class="container ">
             <div class="row ">
@@ -59,22 +55,23 @@
     <!-- <img src="images/signup-bg.jpg" alt=""> -->
     <div class="contain">
         <div class="signup-content">
-            <form id="signup-form" class="signup-form" action="ForgetPW.html">
+            <form id="verify-form" class="signup-form" action="" onsubmit="return verifyAccount()">
                 <div class="text-end pe-4">
-                    <a class="text-decoration-none" href="">Bỏ qua</a>
+                    <a class="text-decoration-none" href="HomePage.html">Bỏ qua</a>
                 </div>
                 <img src="images/verify.jpg" alt="" width="400px">
-                <h5>Xác minh Gmail của bạn</h5>
+                <h5>Xác thực tài khoản của bạn</h5>
                 <div class="verify">
                     <p class="text-group" style="margin-bottom: 0">Chúng tôi đã gửi mã xác thực đến <span id="gmail" class="text-primary"
                                                                                  name="gmail">abc@gmail.com</span></p>
-                    <p>Vui lòng nhập mã để xác thực tài khoản của bạn</p>
-                    <div class="form-group">
-                        <span class="error" id="errVerify"></span>
-                        <input type="text" class="form-input" placeholder="Nhập mã xác nhận ở đây" name="verify"
+                    <p class="">Vui lòng nhập mã để xác thực tài khoản của bạn</p>
+                    <p class="mb-0">Mã xác thực chỉ có hiệu lực trong vòng 1 tiếng</p>
+                    <div class="form-group text-center">
+                        <span class="text-danger" id="errVerify"></span>
+                        <input type="text" class="form-input" placeholder="Nhập mã xác thực ở đây" name="verify"
                                id="verify"/>
                     </div>
-                    <p class="text-group"><a href="">Nhấn vào đây</a> nếu bạn không nhận được Gmail</p>
+                    <p class="text-group"><a href="">Nhấn vào đây</a> nếu bạn không nhận được Email</p>
                 </div>
                 <div class="form-group">
                     <button type="submit" id="confirm" >
@@ -85,6 +82,17 @@
         </div>
     </div>
 </section>
-<script src="js/Verify.js"></script>
+<script>
+    function verifyAccount() {
+        var verifyVal = document.getElementById("verify");
+        var error = document.getElementById("errVerify");
+        var flag = true;
+        if(verifyVal.value == "") {
+            flag = false;
+            error.innerHTML = '(*)Vui lòng nhập mã xác thực!';
+        }
+        return flag;
+    }
+</script>
 </body>
 </html>

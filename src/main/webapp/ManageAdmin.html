@@ -199,14 +199,14 @@
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col-lg-12 overflow-hidden">
+                    <div class="col-lg-12 overflow-auto mheight">
                         <table>
                             <thead>
                             <tr>
                                 <td>ID</td>
                                 <td>ADMIN</td>
                                 <td>NHÂN VIÊN</td>
-                                <td>GMAIL</td>
+                                <td>EMAIL</td>
                                 <td>XÁC THỰC</td>
                                 <td>TRẠNG THÁI</td>
                             </tr>
@@ -294,18 +294,17 @@
                                             <input type="text" class="form-control" id="phoneAccountDetail" name="phoneAccountDetail" readonly>
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label">Gmail</label>
-                                            <input type="text" class="form-control" id="gmailAccountDetail" name="gmailAccountDetail">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Ngày sinh</label>
-                                            <input type="text" class="form-control" id="dateAccountDetail" name="dateAccountDetail" readonly>
+                                            <label class="form-label">Email</label>
+                                            <input type="text" class="form-control" id="EmailAccountDetail" name="EmailAccountDetail">
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Giới tính</label>
                                             <input type="text" class="form-control" id="genderAccountDetail" name="genderAccountDetail" readonly>
                                         </div>
-
+                                        <div class="mb-3">
+                                            <label class="form-label">Ngày sinh</label>
+                                            <input type="text" class="form-control" id="dateAccountDetail" name="dateAccountDetail" readonly>
+                                        </div>
                                         <div class="mb-3">
                                             <label class="form-label">Địa chỉ</label>
                                             <input type="text" class="form-control" id="addressAccountDetail" name="addressAccountDetail" readonly>
@@ -331,18 +330,20 @@
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col-lg-12 overflow-hidden">
-                        <table >
-                            <tr>
-                                <td class="sp">ID</td>
-                                <td class="sp">SẢN PHẨM</td>
-                                <td>GIÁ NHẬP</td>
-                                <td>GIÁ BÁN</td>
-                                <td>MÀU SẮC</td>
-                                <td>SỐ LƯỢNG</td>
-
-                            </tr>
-                            <tr>
+                    <div class="col-lg-12 overflow-auto mheight" >
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td class="sp">ID</td>
+                                    <td class="sp">SẢN PHẨM</td>
+                                    <td>GIÁ NHẬP</td>
+                                    <td>GIÁ BÁN</td>
+                                    <td>MÀU SẮC</td>
+                                    <td>SỐ LƯỢNG</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
                                 <td>
                                     <span>1</span>
                                 </td>
@@ -356,10 +357,10 @@
                                     </div>
                                 </td>
                                 <td>
-                                    ₫<span>1000000</span>
+                                    ₫<span>1.000.000</span>
                                 </td>
                                 <td>
-                                    ₫<span>1200000</span>
+                                    ₫<span>1.200.000</span>
                                 </td>
                                 <td>
                                     <span>Màu đen</span>
@@ -377,6 +378,217 @@
                                 </td>
 
                             </tr>
+                                <tr>
+                                <td>
+                                    <span>1</span>
+                                </td>
+                                <td>
+                                    <div class="item">
+                                        <div class="item_img">
+                                            <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
+                                                 class="card-img-top img_p_cart" alt="..."/>
+                                        </div>
+                                        <span class="item_text">Ghế massage siêu cấp prO</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    ₫<span>1.000.000</span>
+                                </td>
+                                <td>
+                                    ₫<span>1.200.000</span>
+                                </td>
+                                <td>
+                                    <span>Màu đen</span>
+                                </td>
+
+                                <td>
+                                    <span>50</span>
+                                </td>
+                                <td>
+                                    <div class="d-flex justify-content-center">
+                                        <button class="delete btnAdd bgcolor bd-full" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true" ></i></button>
+                                        <button class="editProduct btnAdd bgcolor bd-full mx-1"><i class="fa fa-pencil text-color" title="Chỉnh sửa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editProduct"></i></button>
+                                        <button class="detailProduct btnAdd bgcolor bd-full"><i class="fa fa-info text-color px-1" title="Chi tiết" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#detailProduct"></i></button>
+                                    </div>
+                                </td>
+
+                            </tr>
+                                <tr>
+                                <td>
+                                    <span>1</span>
+                                </td>
+                                <td>
+                                    <div class="item">
+                                        <div class="item_img">
+                                            <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
+                                                 class="card-img-top img_p_cart" alt="..."/>
+                                        </div>
+                                        <span class="item_text">Ghế massage siêu cấp prO</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    ₫<span>1.000.000</span>
+                                </td>
+                                <td>
+                                    ₫<span>1.200.000</span>
+                                </td>
+                                <td>
+                                    <span>Màu đen</span>
+                                </td>
+
+                                <td>
+                                    <span>50</span>
+                                </td>
+                                <td>
+                                    <div class="d-flex justify-content-center">
+                                        <button class="delete btnAdd bgcolor bd-full" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true" ></i></button>
+                                        <button class="editProduct btnAdd bgcolor bd-full mx-1"><i class="fa fa-pencil text-color" title="Chỉnh sửa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editProduct"></i></button>
+                                        <button class="detailProduct btnAdd bgcolor bd-full"><i class="fa fa-info text-color px-1" title="Chi tiết" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#detailProduct"></i></button>
+                                    </div>
+                                </td>
+
+                            </tr>
+                                <tr>
+                                <td>
+                                    <span>1</span>
+                                </td>
+                                <td>
+                                    <div class="item">
+                                        <div class="item_img">
+                                            <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
+                                                 class="card-img-top img_p_cart" alt="..."/>
+                                        </div>
+                                        <span class="item_text">Ghế massage siêu cấp prO</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    ₫<span>1.000.000</span>
+                                </td>
+                                <td>
+                                    ₫<span>1.200.000</span>
+                                </td>
+                                <td>
+                                    <span>Màu đen</span>
+                                </td>
+
+                                <td>
+                                    <span>50</span>
+                                </td>
+                                <td>
+                                    <div class="d-flex justify-content-center">
+                                        <button class="delete btnAdd bgcolor bd-full" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true" ></i></button>
+                                        <button class="editProduct btnAdd bgcolor bd-full mx-1"><i class="fa fa-pencil text-color" title="Chỉnh sửa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editProduct"></i></button>
+                                        <button class="detailProduct btnAdd bgcolor bd-full"><i class="fa fa-info text-color px-1" title="Chi tiết" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#detailProduct"></i></button>
+                                    </div>
+                                </td>
+
+                            </tr>
+                                <tr>
+                                <td>
+                                    <span>1</span>
+                                </td>
+                                <td>
+                                    <div class="item">
+                                        <div class="item_img">
+                                            <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
+                                                 class="card-img-top img_p_cart" alt="..."/>
+                                        </div>
+                                        <span class="item_text">Ghế massage siêu cấp prO</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    ₫<span>1.000.000</span>
+                                </td>
+                                <td>
+                                    ₫<span>1.200.000</span>
+                                </td>
+                                <td>
+                                    <span>Màu đen</span>
+                                </td>
+
+                                <td>
+                                    <span>50</span>
+                                </td>
+                                <td>
+                                    <div class="d-flex justify-content-center">
+                                        <button class="delete btnAdd bgcolor bd-full" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true" ></i></button>
+                                        <button class="editProduct btnAdd bgcolor bd-full mx-1"><i class="fa fa-pencil text-color" title="Chỉnh sửa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editProduct"></i></button>
+                                        <button class="detailProduct btnAdd bgcolor bd-full"><i class="fa fa-info text-color px-1" title="Chi tiết" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#detailProduct"></i></button>
+                                    </div>
+                                </td>
+
+                            </tr>
+                                <tr>
+                                <td>
+                                    <span>1</span>
+                                </td>
+                                <td>
+                                    <div class="item">
+                                        <div class="item_img">
+                                            <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
+                                                 class="card-img-top img_p_cart" alt="..."/>
+                                        </div>
+                                        <span class="item_text">Ghế massage siêu cấp prO</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    ₫<span>1.000.000</span>
+                                </td>
+                                <td>
+                                    ₫<span>1.200.000</span>
+                                </td>
+                                <td>
+                                    <span>Màu đen</span>
+                                </td>
+
+                                <td>
+                                    <span>50</span>
+                                </td>
+                                <td>
+                                    <div class="d-flex justify-content-center">
+                                        <button class="delete btnAdd bgcolor bd-full" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true" ></i></button>
+                                        <button class="editProduct btnAdd bgcolor bd-full mx-1"><i class="fa fa-pencil text-color" title="Chỉnh sửa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editProduct"></i></button>
+                                        <button class="detailProduct btnAdd bgcolor bd-full"><i class="fa fa-info text-color px-1" title="Chi tiết" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#detailProduct"></i></button>
+                                    </div>
+                                </td>
+
+                            </tr>
+                                <tr>
+                                <td>
+                                    <span>1</span>
+                                </td>
+                                <td>
+                                    <div class="item">
+                                        <div class="item_img">
+                                            <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
+                                                 class="card-img-top img_p_cart" alt="..."/>
+                                        </div>
+                                        <span class="item_text">Ghế massage siêu cấp prO</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    ₫<span>1.000.000</span>
+                                </td>
+                                <td>
+                                    ₫<span>1.200.000</span>
+                                </td>
+                                <td>
+                                    <span>Màu đen</span>
+                                </td>
+
+                                <td>
+                                    <span>50</span>
+                                </td>
+                                <td>
+                                    <div class="d-flex justify-content-center">
+                                        <button class="delete btnAdd bgcolor bd-full" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true" ></i></button>
+                                        <button class="editProduct btnAdd bgcolor bd-full mx-1"><i class="fa fa-pencil text-color" title="Chỉnh sửa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editProduct"></i></button>
+                                        <button class="detailProduct btnAdd bgcolor bd-full"><i class="fa fa-info text-color px-1" title="Chi tiết" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#detailProduct"></i></button>
+                                    </div>
+                                </td>
+
+                            </tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -384,7 +596,7 @@
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content ">
                             <div class="modal-body">
-                                <form class ="" action="" method="post">
+                                <form class ="editProduct" action="" method="post" id ="edit-Product" onsubmit="return editProduct()" >
                                     <div class="row px-2">
                                         <span class="d-none" id ="id"></span>
                                         <div class=" text-end">
@@ -394,16 +606,16 @@
                                         <hr>
                                         <div class="col-md-6 col-sm-6 col-6">
                                             <div class="mb-3">
-                                                <label class="form-label">Tên sản phẩm</label>
+                                                <label class="form-label">Tên sản phẩm</label><span id="errNamePEdit"  class="text-danger"></span>
                                                 <input type="text" class="form-control" id="nameProductEdit" name="nameProductEdit">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Giá nhập</label>
-                                                <input type="text" class="form-control" id="priceProductEdit" name="priceProductEdit">
+                                                <label class="form-label">Giá nhập (₫)</label><span id="errImpPriceEdit"  class="text-danger"></span>
+                                                <input type="text" class="form-control" id="priceImpProductEdit" name="priceProduct">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Giá bán</label>
-                                                <input type="text" class="form-control" id="deliveryEdit" name="deliveryEdit">
+                                                <label class="form-label">Giá bán (₫)</label><span id="errPriceEdit"  class="text-danger"></span>
+                                                <input type="text" class="form-control" id="priceProductEdit" name="delivery">
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label" id = "cateTypeEdit">Thể loại</label>
@@ -415,39 +627,38 @@
                                                 </select>
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Mô tả</label>
+                                                <label class="form-label">Mô tả</label><span id="errDesEdit"  class="text-danger"></span>
                                                 <textarea type="text" class="form-control" id="desEdit" name="desEdit"></textarea>
                                             </div>
-
                                         </div>
                                         <div class="col-md-6 col-sm-6 col-6">
                                             <div class="mb-3">
-                                                <label class="form-label">Hình ảnh 1</label>
+                                                <label class="form-label">Hình ảnh 1</label><span id="errImg1Edit"  class="text-danger"></span>
                                                 <input type="text" class="form-control" id="image1Edit" name="image1Edit">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Hình ảnh 2</label>
+                                                <label class="form-label">Hình ảnh 2</label><span id="errImg2Edit"  class="text-danger"></span>
                                                 <input type="text" class="form-control" id="image2Edit" name="image2Edit">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Hình ảnh 3</label>
+                                                <label class="form-label">Hình ảnh 3</label><span id="errImg3Edit"  class="text-danger"></span>
                                                 <input type="text" class="form-control" id="image3Edit" name="image3Edit">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Hình ảnh 4</label>
+                                                <label class="form-label">Hình ảnh 4</label><span id="errImg4Edit"  class="text-danger"></span>
                                                 <input type="text" class="form-control" id="image4Edit" name="image4Edit">
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Chiều dài</label>
+                                                    <label class="form-label">Chiều dài<span class="fs">(cm)</span></label>
                                                     <input type="number" class="form-control" id="lengthEdit" name="lengthEdit">
                                                 </div>
                                                 <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Chiều rộng</label>
+                                                    <label class="form-label">Chiều rộng<span class="fs">(cm)</span></label>
                                                     <input type="number" class="form-control" id="widthEdit" name="widthEdit">
                                                 </div>
                                                 <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Chiều cao</label>
+                                                    <label class="form-label">Chiều cao<span class="fs">(cm)</span></label>
                                                     <input type="number" class="form-control" id="heightEdit" name="heightEdit">
                                                 </div>
                                             </div>
@@ -524,12 +735,12 @@
                                                 <input type="text" class="form-control" id="nameProductdetail" name="nameProductdetail" readonly>
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Giá nhập</label>
-                                                <input type="text" class="form-control" id="priceProductdetail" name="priceProductdetail" readonly>
+                                                <label class="form-label">Giá nhập (₫)</label>
+                                                <input type="text" class="form-control" id="priceImpProductdetail" name="priceImpProductdetail" readonly>
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Giá bán</label>
-                                                <input type="text" class="form-control" id="deliverydetail" name="deliverydetail" readonly>
+                                                <label class="form-label">Giá bán (₫)</label>
+                                                <input type="text" class="form-control" id="priceProductDetail" name="priceProductDetail" readonly>
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Thể loại</label>
@@ -537,15 +748,15 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Chiều dài</label>
+                                                    <label class="form-label">Chiều dài<span class="fs">(cm)</span></label>
                                                     <input type="number" class="form-control" id="lengthdetail" name="lengthdetail"readonly>
                                                 </div>
                                                 <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Chiều rộng</label>
+                                                    <label class="form-label">Chiều rộng<span class="fs">(cm)</span></label>
                                                     <input type="number" class="form-control" id="widthdetail" name="widthdetail"readonly>
                                                 </div>
                                                 <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Chiều cao</label>
+                                                    <label class="form-label">Chiều cao<span class="fs">(cm)</span></label>
                                                     <input type="number" class="form-control" id="heightdetail" name="heightdetail"readonly>
                                                 </div>
                                             </div>
@@ -575,7 +786,7 @@
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content ">
                             <div class="modal-body">
-                                <form class="form " action="" method="post">
+                                <form  action="" method="post" id="add-product" onsubmit="return addProduct()">
                                     <div class="row px-2">
                                         <div class=" text-end">
                                             <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
@@ -584,16 +795,16 @@
                                         <hr>
                                         <div class="col-md-6 col-sm-6 col-6">
                                             <div class="mb-3">
-                                                <label class="form-label">Tên sản phẩm</label>
+                                                <label class="form-label">Tên sản phẩm</label><span id="errNameP" class="text-danger"></span>
                                                 <input type="text" class="form-control" id="nameProduct" name="nameProduct">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Giá nhập</label>
-                                                <input type="text" class="form-control" id="priceProduct" name="priceProduct">
+                                                <label class="form-label">Giá nhập (₫)</label><span id="errImpPriceAdd"  class="text-danger"></span>
+                                                <input type="text" class="form-control" id="priceImpProductAdd" name="priceProduct">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Giá bán</label>
-                                                <input type="text" class="form-control" id="delivery" name="delivery">
+                                                <label class="form-label">Giá bán (₫)</label><span id="errPriceAdd"  class="text-danger"></span>
+                                                <input type="text" class="form-control" id="priceProductAdd" name="delivery">
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Thể loại</label>
@@ -605,39 +816,39 @@
                                                 </select>
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Mô tả</label>
+                                                <label class="form-label">Mô tả</label><span id="errDes"  class="text-danger"></span>
                                                 <textarea type="text" class="form-control" id="des" name="des"></textarea>
                                             </div>
 
                                         </div>
                                         <div class="col-md-6 col-sm-6 col-6">
                                             <div class="mb-3">
-                                                <label class="form-label">Hình ảnh 1</label>
+                                                <label class="form-label">Hình ảnh 1</label><span id="errImg1" class="text-danger"></span>
                                                 <input type="text" class="form-control" id="image1" name="image1">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Hình ảnh 2</label>
+                                                <label class="form-label">Hình ảnh 2</label><span id="errImg2"  class="text-danger"></span>
                                                 <input type="text" class="form-control" id="image2" name="image2">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Hình ảnh 3</label>
+                                                <label class="form-label">Hình ảnh 3</label><span id="errImg3"  class="text-danger"></span>
                                                 <input type="text" class="form-control" id="image3" name="image3">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Hình ảnh 4</label>
+                                                <label class="form-label">Hình ảnh 4</label><span id="errImg4"  class="text-danger"></span>
                                                 <input type="text" class="form-control" id="image4" name="image4">
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Chiều dài</label>
+                                                    <label class="form-label">Chiều dài<span class="fs">(cm)</span></label>
                                                     <input type="number" class="form-control" id="length" name="length">
                                                 </div>
                                                 <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Chiều rộng</label>
+                                                    <label class="form-label">Chiều rộng<span class="fs">(cm)</span></label>
                                                     <input type="number" class="form-control" id="width" name="width">
                                                 </div>
                                                 <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Chiều cao</label>
+                                                    <label class="form-label">Chiều cao<span class="fs">(cm)</span></label>
                                                     <input type="number" class="form-control" id="height" name="height">
                                                 </div>
                                             </div>
@@ -677,74 +888,77 @@
                     <div class="col-lg-6">
                         <h5 >Quản lý bán hàng</h5>
                     </div>
-
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col-lg-12 overflow-hidden">
+                    <div class="col-lg-12 overflow-auto mheight">
                         <table >
-                            <tr>
-                                <td class="sp">ID</td>
-                                <td class="sp">SẢN PHẨM</td>
-                                <td>ĐƠN GIÁ</td>
-                                <td>MÀU SẮC</td>
-                                <td>KÍCH THƯỚC</td>
-                                <td>ĐÃ BÁN</td>
+                            <thead>
+                                <tr>
+                                    <td class="sp">ID</td>
+                                    <td class="sp">SẢN PHẨM</td>
+                                    <td>ĐƠN GIÁ</td>
+                                    <td>MÀU SẮC</td>
+                                    <td>KÍCH THƯỚC</td>
+                                    <td>ĐÃ BÁN</td>
 
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span>1</span>
-                                </td>
-                                <td>
-                                    <div class="item">
-                                        <div class="item_img">
-                                            <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
-                                                 class="card-img-top img_p_cart" alt="..."/>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span>1</span>
+                                    </td>
+                                    <td>
+                                        <div class="item">
+                                            <div class="item_img">
+                                                <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
+                                                     class="card-img-top img_p_cart" alt="..."/>
+                                            </div>
+                                            <span class="item_text">Ghế massage siêu cấp pro</span>
                                         </div>
-                                        <span class="item_text">Ghế massage siêu cấp pro</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    ₫<span>1000000</span>
-                                </td>
-                                <td>
-                                    <span>Màu đen</span>
-                                </td>
-                                <td>
-                                    <span>100x50x70</span>
-                                </td>
-                                <td>
-                                    <span>50</span>
-                                </td>
+                                    </td>
+                                    <td>
+                                        ₫<span>1.000.000</span>
+                                    </td>
+                                    <td>
+                                        <span>Màu đen</span>
+                                    </td>
+                                    <td>
+                                        <span>100x50x70</span>
+                                    </td>
+                                    <td>
+                                        <span>50</span>
+                                    </td>
 
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span>2</span>
-                                </td>
-                                <td>
-                                    <div class="item">
-                                        <div class="item_img">
-                                            <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
-                                                 class="card-img-top img_p_cart" alt="..."/>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>2</span>
+                                    </td>
+                                    <td>
+                                        <div class="item">
+                                            <div class="item_img">
+                                                <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
+                                                     class="card-img-top img_p_cart" alt="..."/>
+                                            </div>
+                                            <span class="item_text">Ghế gaming siêu cấp pro</span>
                                         </div>
-                                        <span class="item_text">Ghế gaming siêu cấp pro</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    ₫<span>500000</span>
-                                </td>
-                                <td>
-                                    <span>Màu trắng đen</span>
-                                </td>
-                                <td>
-                                    <span>100x50x70</span>
-                                </td>
-                                <td>
-                                    <span>50</span>
-                                </td>
-                            </tr>
+                                    </td>
+                                    <td>
+                                        ₫<span>500.000</span>
+                                    </td>
+                                    <td>
+                                        <span>Màu trắng đen</span>
+                                    </td>
+                                    <td>
+                                        <span>100x50x70</span>
+                                    </td>
+                                    <td>
+                                        <span>50</span>
+                                    </td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -761,17 +975,20 @@
                 </div>
                 <hr class = "mt-1">
                 <div class="row">
-                    <div class="col-lg-12 overflow-hidden">
+                    <div class="col-lg-12 overflow-auto mheight">
                         <table >
-                            <tr>
-                                <td class="sp">ID</td>
-                                <td class="sp">MÃ KHÁCH HÀNG</td>
-                                <td>MÃ SẢN PHẨM</td>
-                                <td>NGÀY XUẤT</td>
-                                <td>ĐƠN GIÁ</td>
-                                <td>SỐ LƯỢNG</td>
-                            </tr>
-                            <tr>
+                            <thead>
+                                <tr>
+                                    <td class="sp">ID</td>
+                                    <td class="sp">MÃ KHÁCH HÀNG</td>
+                                    <td>MÃ SẢN PHẨM</td>
+                                    <td>NGÀY XUẤT</td>
+                                    <td>SỐ LƯỢNG</td>
+                                    <td>ĐƠN GIÁ</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
                                 <td>
                                     <span>2</span>
                                 </td>
@@ -785,12 +1002,13 @@
                                     <span>28/02/2023</span>
                                 </td>
                                 <td>
-                                    ₫<span>50000</span>
-                                </td>
-                                <td>
                                     <span>50</span>
                                 </td>
+                                <td>
+                                    ₫<span>50.000</span>
+                                </td>
                             </tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -808,7 +1026,7 @@
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col-lg-12 overflow-hidden">
+                    <div class="col-lg-12 overflow-auto mheight">
                         <table>
                             <thead>
                             <tr>
@@ -839,7 +1057,7 @@
                     <div class="modal-dialog ">
                         <div class="modal-content">
                             <div class="modal-body">
-                                <form class="form" action="" method="post">
+                                <form class="cateEdit" id="cateEdit" action="" method="post" onsubmit="return editCate()">
                                     <div class="row px-2">
                                         <div class=" text-end">
                                             <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
@@ -848,7 +1066,7 @@
                                         <hr>
                                         <div class="col-md-12">
                                             <div class="mb-3">
-                                                <label class="form-label">Tên danh mục</label>
+                                                <label class="form-label">Tên danh mục</label><span id="errNameCate" class="text-danger"></span>
                                                 <input type="text" class="form-control" id="nameCateEdit" name="nameCateEdit">
                                             </div>
                                         </div>
@@ -867,15 +1085,16 @@
                     <div class="modal-dialog ">
                         <div class="modal-content">
                             <div class="modal-body">
-                                <form action="" method="post">
+                                <form id="add-Cate" action="" method="post" onsubmit="return addCate()">
                                     <div class="row px-2">
                                         <div class=" text-end">
                                             <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>                                        <h5 class="text-center">THÊM DANH MỤC</h5>
+                                        </div>
+                                        <h5 class="text-center">THÊM DANH MỤC</h5>
                                         <hr>
                                         <div class="col-md-12">
                                             <div class="mb-3">
-                                                <label class="form-label">Tên danh mục</label>
+                                                <label class="form-label">Tên danh mục</label><span id="errNameCateAdd" class="text-danger"></span>
                                                 <input type="text" class="form-control" id="nameCateAdd" name="nameCateAdd">
                                             </div>
 
@@ -906,7 +1125,7 @@
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col-lg-12 overflow-hidden">
+                    <div class="col-lg-12 overflow-auto mheight">
                         <table>
                             <thead>
                             <tr>
@@ -914,7 +1133,7 @@
                                 <td>TÊN NCC</td>
                                 <td>ĐỊA CHỈ</td>
                                 <td>SỐ ĐIỆN THOẠI</td>
-                                <td>GMAIL</td>
+                                <td>EMAIL</td>
                                 <td>PHÂN PHỐI CHO</td>
                             </tr>
                             </thead>
@@ -955,7 +1174,7 @@
                     <div class="modal-dialog ">
                         <div class="modal-content">
                             <div class="modal-body">
-                                <form class="form " action="" method="post">
+                                <form class="form " id="supEdit" action="" method="post" onsubmit="return editSup()">
                                     <div class="row px-2">
                                         <div class=" text-end">
                                             <button type="button" class="btn-close " data-bs-dismiss="modal"
@@ -965,25 +1184,24 @@
                                         <hr>
                                         <div class="col-md-12">
                                             <div class="mb-3">
-                                                <label class="form-label">Tên nhà cung cấp</label>
+                                                <label class="form-label">Tên nhà cung cấp</label><span id="errNameSupEdit" class="text-danger"></span>
                                                 <input type="text" class="form-control" id="nameSupEdit" name="nameSupEdit">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Địa chỉ</label>
-                                                <input type="text" class="form-control" id="address"
-                                                       name="address">
+                                                <label class="form-label">Địa chỉ</label><span id="errAddEdit" class="text-danger"></span>
+                                                <input type="text" class="form-control" id="addressSupEdit" name="addressSupEdit">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Số điện thoại</label>
-                                                <input type="text" class="form-control" id="phoneNumber" name="phoneNumber">
+                                                <label class="form-label">Số điện thoại</label><span id="errphoneNumberSupEdit" class="text-danger"></span>
+                                                <input type="text" class="form-control" id="phoneNumberSupEdit" name="phoneNumberSupEdit">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Gmail</label>
-                                                <input type="text" class="form-control" id="gmail" name="gmail">
+                                                <label class="form-label">Email</label><span id="errEmailSupEdit" class="text-danger"></span>
+                                                <input type="text" class="form-control" id="emailSupEdit" name="emailSupEdit">
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Cung cấp loại</label>
-                                                <select class="form-control" name="cateChairEdit" >
+                                                <select class="form-control" name="cateChairSupEdit" >
                                                     <option value="Ghế văn phòng">Ghế văn phòng</option>
                                                     <option value="Ghế thư giãn">Ghế thư giãn</option>
                                                     <option value="Ghế trang trí">Ghế trang trí</option>
@@ -1008,36 +1226,36 @@
                     <div class="modal-dialog ">
                         <div class="modal-content">
                             <div class="modal-body">
-                                <form class="form" action="" method="post">
+                                <form class="form" id="supAdd" action="" method="post" onsubmit="return addSup()">
                                     <div class="row p-4">
                                         <div class=" text-end">
                                             <button type="button" class="btn-close " data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                         </div>
-                                        <h5 class="text-center">CHỈNH SỬA NHÀ CUNG CẤP</h5>
+                                        <h5 class="text-center">THÊM NHÀ CUNG CẤP</h5>
                                         <hr>
                                         <div class="col-md-12">
                                             <div class="mb-3">
-                                                <label class="form-label">Tên nhà cung cấp</label>
+                                                <label class="form-label">Tên nhà cung cấp</label><span id="errNameSupAdd" class="text-danger"></span>
                                                 <input type="text" class="form-control" id="nameSupAdd" name="nameSupAdd">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Địa chỉ</label>
+                                                <label class="form-label">Địa chỉ</label><span id="errAddressSupAdd" class="text-danger"></span>
                                                 <input type="text" class="form-control" id="addressSupAdd" name="addressSupAdd">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Số điện thoại</label>
+                                                <label class="form-label">Số điện thoại</label><span id="errphoneSupAdd" class="text-danger"></span>
                                                 <input type="text" class="form-control" id="phoneSupAdd" name="phoneSupAdd">
                                             </div>
 
 
                                             <div class="mb-3">
-                                                <label class="form-label">Gmail</label>
-                                                <input type="text" class="form-control" id="gmailSupAdd" name="gmailSupAdd">
+                                                <label class="form-label">Email</label><span id="errEmailSupAdd" class="text-danger"></span>
+                                                <input type="text" class="form-control" id="emailSupAdd" name="emailSupAdd">
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Phân phối cho</label>
-                                                <select class="form-control" name="cateChairAdd" id="cateChairAdd">
+                                                <select class="form-control" name="cateChairSupAdd" id="cateChairSupAdd">
                                                     <option value="Ghế văn phòng">Ghế văn phòng</option>
                                                     <option value="Ghế thư giãn">Ghế thư giãn</option>
                                                     <option value="Ghế trang trí">Ghế trang trí</option>
@@ -1236,7 +1454,416 @@
             }
 
         })
+        // $('#formAddProduct').submit(function (event) {
+        //     event.preventDefault();
+        //     var condition = true;
+        //     if($('#nameProduct').val() == ""){
+        //         condition = false;
+        //
+        //         $('#nameProduct').css('border', '2px solid #f26060')
+        //     };
+        // })
+
 
     })
+</script>
+<script>
+    function addProduct() {
+        var flag = true;
+        var nameP = document.getElementById("nameProduct");
+        var priceImp = document.getElementById("priceImpProductAdd");
+        var price = document.getElementById("priceProductAdd");
+        var des = document.getElementById("des");
+        var img1 = document.getElementById("image1");
+        var img2 = document.getElementById("image2");
+        var img3 = document.getElementById("image3");
+        var img4 = document.getElementById("image4");
+        var length = document.getElementById("length");
+        var width = document.getElementById("width");
+        var height = document.getElementById("height");
+        var material = document.getElementById("material");
+        var color = document.getElementById("color");
+        var amount = document.getElementById("amount");
+        var priceReg = /^\d+$/;
+
+        var errNameP = document.getElementById("errNameP");
+        var errImpPriceAdd = document.getElementById("errImpPriceAdd");
+        var errPriceAdd = document.getElementById("errPriceAdd");
+        var errDes = document.getElementById("errDes");
+        var errImg1 = document.getElementById("errImg1");
+        var errImg2 = document.getElementById("errImg2");
+        var errImg3 = document.getElementById("errImg3");
+        var errImg4 = document.getElementById("errImg4");
+
+        if (nameP.value === "") {
+            errNameP.innerHTML = '(*)Vui lòng nhập tên sản phẩm';
+            flag = false;
+        } else {
+            errNameP.innerHTML = '';
+        }
+        //giá nhập
+        if (priceImp.value === "") {
+            errImpPriceAdd.innerHTML = ' (*)Vui lòng nhập giá sản phẩm!';
+            flag = false;
+        } else if (!priceImp.value.match(priceReg)) {
+            errImpPriceAdd.innerHTML = ' (*)Giá tiền không hợp lệ!';
+            flag = false;
+        } else {
+            errImpPriceAdd.innerHTML = '';
+        }
+        //giá bán
+        if (price.value === "") {
+            errPriceAdd.innerHTML = ' (*)Vui lòng nhập giá bán!';
+            flag = false;
+        } else if (!price.value.match(priceReg)) {
+            errPriceAdd.innerHTML = ' (*)Giá tiền không hợp lệ!';
+            flag = false;
+        } else {
+            errPriceAdd.innerHTML = '';
+        }
+        //mô tả
+        if (des.value === "") {
+            errDes.innerHTML = ' (*)Vui lòng nhập mô tả sản phẩm!';
+            flag = false;
+        } else {
+            errDes.innerHTML = ''
+        }
+        //hình 1
+        if (img1.value === "") {
+            errImg1.innerHTML = ' (*)Vui lòng nhập đường dẫn hình ảnh 1!';
+            flag = false;
+        } else {
+            errImg1.innerHTML = '';
+        }
+        //hình 2
+        if (img2.value === "") {
+            errImg2.innerHTML = ' (*)Vui lòng nhập đường dẫn hình ảnh 2!';
+            flag = false;
+        } else {
+            errImg2.innerHTML = '';
+        }
+        //hình 3
+        if (img3.value === "") {
+            errImg3.innerHTML = ' (*)Vui lòng nhập đường dẫn hình ảnh 3!';
+            flag = false;
+        } else {
+            errImg3.innerHTML = '';
+        }
+        //hình 4
+        if (img4.value === "") {
+            errImg4.innerHTML = ' (*)Vui lòng nhập đường dẫn hình ảnh 4!';
+            flag = false;
+        } else {
+            errImg4.innerHTML = '';
+        }
+        //length
+        if (length.value === "") {
+            length.style.borderColor = 'red';
+            flag = false;
+        } else {
+            length.style.borderColor = '#dee2e6';
+        }
+        //width
+        if (width.value === "") {
+            width.style.borderColor = 'red';
+            flag = false;
+        } else {
+            width.style.borderColor = '#dee2e6';
+        }
+        //height
+        if (height.value === "") {
+            height.style.borderColor = 'red';
+            flag = false;
+        } else {
+            height.style.borderColor = '#dee2e6';
+        }
+        //material
+        if (material.value === "") {
+            material.style.borderColor = 'red';
+            flag = false;
+        } else {
+            material.style.borderColor = '#dee2e6';
+        }
+        //color
+        if (color.value === "") {
+            color.style.borderColor = 'red';
+            flag = false;
+        } else {
+            color.style.borderColor = '#dee2e6';
+        }
+        //amount
+        if (amount.value === "") {
+            amount.style.borderColor = 'red';
+            flag = false;
+        } else {
+            amount.style.borderColor = '#dee2e6';
+        }
+        console.log(flag)
+        return flag;
+
+
+    }
+
+    function editProduct() {
+        var flag = true;
+        var nameP = document.getElementById("nameProductEdit");
+        var priceImp = document.getElementById("priceImpProductEdit");
+        var price = document.getElementById("priceProductEdit");
+        var des = document.getElementById("desEdit");
+        var img1 = document.getElementById("image1Edit");
+        var img2 = document.getElementById("image2Edit");
+        var img3 = document.getElementById("image3Edit");
+        var img4 = document.getElementById("image4Edit");
+        var length = document.getElementById("lengthEdit");
+        var width = document.getElementById("widthEdit");
+        var height = document.getElementById("heightEdit");
+        var material = document.getElementById("materialEdit");
+        var color = document.getElementById("colorEdit");
+        var amount = document.getElementById("amountEdit");
+        var priceReg = /^\d+$/;
+
+        var errNameP = document.getElementById("errNamePEdit");
+        var errImpPriceAdd = document.getElementById("errImpPriceEdit");
+        var errPriceAdd = document.getElementById("errPriceEdit");
+        var errDes = document.getElementById("errDesEdit");
+        var errImg1 = document.getElementById("errImg1Edit");
+        var errImg2 = document.getElementById("errImg2Edit");
+        var errImg3 = document.getElementById("errImg3Edit");
+        var errImg4 = document.getElementById("errImg4Edit");
+
+        if (nameP.value === "") {
+            errNameP.innerHTML = '(*)Vui lòng nhập tên sản phẩm';
+            flag = false;
+        } else {
+            errNameP.innerHTML = '';
+        }
+        //giá nhập
+        if (priceImp.value === "") {
+            errImpPriceAdd.innerHTML = ' (*)Vui lòng nhập giá sản phẩm!';
+            flag = false;
+        } else if (!priceImp.value.match(priceReg)) {
+            errImpPriceAdd.innerHTML = ' (*)Giá tiền không hợp lệ!';
+            flag = false;
+        } else {
+            errImpPriceAdd.innerHTML = '';
+        }
+        //giá bán
+        if (price.value === "") {
+            errPriceAdd.innerHTML = ' (*)Vui lòng nhập giá bán!';
+            flag = false;
+        } else if (!price.value.match(priceReg)) {
+            errPriceAdd.innerHTML = ' (*)Giá tiền không hợp lệ!';
+            flag = false;
+        } else {
+            errPriceAdd.innerHTML = '';
+        }
+        //mô tả
+        if (des.value === "") {
+            errDes.innerHTML = ' (*)Vui lòng nhập mô tả sản phẩm!';
+            flag = false;
+        } else {
+            errDes.innerHTML = ''
+        }
+        //hình 1
+        if (img1.value === "") {
+            errImg1.innerHTML = ' (*)Vui lòng nhập đường dẫn hình ảnh 1!';
+            flag = false;
+        } else {
+            errImg1.innerHTML = '';
+        }
+        //hình 2
+        if (img2.value === "") {
+            errImg2.innerHTML = ' (*)Vui lòng nhập đường dẫn hình ảnh 2!';
+            flag = false;
+        } else {
+            errImg2.innerHTML = '';
+        }
+        //hình 3
+        if (img3.value === "") {
+            errImg3.innerHTML = ' (*)Vui lòng nhập đường dẫn hình ảnh 3!';
+            flag = false;
+        } else {
+            errImg3.innerHTML = '';
+        }
+        //hình 4
+        if (img4.value === "") {
+            errImg4.innerHTML = ' (*)Vui lòng nhập đường dẫn hình ảnh 4!';
+            flag = false;
+        } else {
+            errImg4.innerHTML = '';
+        }
+        //length
+        if (length.value === "") {
+            length.style.borderColor = 'red';
+            flag = false;
+        } else {
+            length.style.borderColor = '#dee2e6';
+        }
+        //width
+        if (width.value === "") {
+            width.style.borderColor = 'red';
+            flag = false;
+        } else {
+            width.style.borderColor = '#dee2e6';
+        }
+        //height
+        if (height.value === "") {
+            height.style.borderColor = 'red';
+            flag = false;
+        } else {
+            height.style.borderColor = '#dee2e6';
+        }
+        //material
+        if (material.value === "") {
+            material.style.borderColor = 'red';
+            flag = false;
+        } else {
+            material.style.borderColor = '#dee2e6';
+        }
+        //color
+        if (color.value === "") {
+            color.style.borderColor = 'red';
+            flag = false;
+        } else {
+            color.style.borderColor = '#dee2e6';
+        }
+        //amount
+        if (amount.value === "") {
+            amount.style.borderColor = 'red';
+            flag = false;
+        } else {
+            amount.style.borderColor = '#dee2e6';
+        }
+        console.log(flag)
+        return flag;
+
+
+    }
+
+    function editSup() {
+        var name = document.getElementById("nameSupEdit");
+        var address = document.getElementById("addressSupEdit");
+        var phone = document.getElementById("phoneNumberSupEdit");
+        var email = document.getElementById("emailSupEdit");
+
+        var errNameSup = document.getElementById("errNameSupEdit");
+        var errAdd = document.getElementById("errAddEdit");
+        var errphoneNumberSup = document.getElementById("errphoneNumberSupEdit");
+        var errEmailSup = document.getElementById("errEmailSupEdit");
+
+        var emailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        var tellReg = /^\d{10}$/;
+        var flag = false;
+
+        if (name.value === "") {
+            flag = false;
+            errNameSup.innerHTML = ' (*)Vui lòng nhập tên nhà cung cấp!';
+        } else {
+            errNameSup.innerHTML = '';
+        }
+        if (address.value === "") {
+            flag = false;
+            errAdd.innerHTML = ' (*)Vui lòng nhập địa chỉ!';
+        } else {
+            errAdd.innerHTML = '';
+        }
+        if (phone.value === "") {
+            errphoneNumberSup.innerHTML = '(*)Vui lòng nhập số điện thoại nhà cung cấp!';
+            flag = false;
+        } else if (!phone.value.match(tellReg)) {
+            flag = false;
+            errphoneNumberSup.innerHTML = '(*)Số điện thoại không hợp lệ!';
+        } else {
+            errphoneNumberSup.innerHTML = ''
+        }
+        if (email.value === "") {
+            errEmailSup.innerHTML = '(*)Vui lòng nhập Email nhà cung cấp!';
+            flag = false;
+        }
+        else if (!email.value.match(emailReg)) {
+            flag = false;
+            errEmailSup.innerHTML = '(*)Email không hợp lệ!';
+        } else {
+            errEmailSup.innerHTML = ''
+        }
+
+        return flag;
+
+
+    }
+    function addSup() {
+        var name = document.getElementById("nameSupAdd");
+        var address = document.getElementById("addressSupAdd");
+        var phone = document.getElementById("phoneSupAdd");
+        var email = document.getElementById("emailSupAdd");
+
+        var errNameSup = document.getElementById("errNameSupAdd");
+        var errAdd = document.getElementById("errAddressSupAdd");
+        var errphoneNumberSup = document.getElementById("errphoneSupAdd");
+        var errEmailSup = document.getElementById("errEmailSupAdd");
+
+        var emailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        var tellReg = /^\d{10}$/;
+        var flag = false;
+
+        if (name.value === "") {
+            flag = false;
+            errNameSup.innerHTML = ' (*)Vui lòng nhập tên nhà cung cấp!';
+        } else {
+            errNameSup.innerHTML = '';
+        }
+        if (address.value === "") {
+            flag = false;
+            errAdd.innerHTML = ' (*)Vui lòng nhập địa chỉ!';
+        } else {
+            errAdd.innerHTML = '';
+        }
+        if (phone.value === "") {
+            errphoneNumberSup.innerHTML = '(*)Vui lòng nhập số điện thoại nhà cung cấp!';
+            flag = false;
+        } else if (!phone.value.match(tellReg)) {
+            flag = false;
+            errphoneNumberSup.innerHTML = '(*)Số điện thoại không hợp lệ!';
+        } else {
+            errphoneNumberSup.innerHTML = ''
+        }
+        if (email.value === "") {
+            errEmailSup.innerHTML = '(*)Vui lòng nhập Email nhà cung cấp!';
+            flag = false;
+        }
+        else if (!email.value.match(emailReg)) {
+            flag = false;
+            errEmailSup.innerHTML = '(*)Email không hợp lệ!';
+        } else {
+            errEmailSup.innerHTML = ''
+        }
+
+        return flag;
+
+
+    }
+
+    function addCate() {
+        var flag = true;
+        var name = document.getElementById("nameCateAdd");
+        var error = document.getElementById("errNameCateAdd");
+        if(name.value === "") {
+            error.innerHTML = ' (*)Vui lòng nhập danh mục mới!';
+            flag = false;
+        }
+        return flag;
+
+    }
+    function editCate() {
+        var flag = true;
+        var name = document.getElementById("nameCateEdit");
+        var error = document.getElementById("errNameCate");
+        if(name.value === "") {
+            error.innerHTML = ' (*)Vui lòng nhập danh mục mới!';
+            flag = false;
+        }
+
+        return flag;
+    }
 </script>
 </html>

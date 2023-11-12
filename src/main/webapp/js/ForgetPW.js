@@ -10,18 +10,19 @@ $(document).ready(function () {
             condition = false;
         } else {
             $("#errUser").text('');
+
         }
         if (email === "") {
-            $("#errEmail").text(' (*)Vui lòng nhập Gmail!');
-            $('#errEmail').attr('style', 'color:red');
+            $("#errEmail").text(' (*)Vui lòng nhập Email!');
+            $('#errEmail')
             condition = false;
         } else if (!email.match(emailReg)) {
-            $('#errEmail').text('Vui lòng nhập địa chỉ Gmail hợp lệ!');
-            $('#errEmail').attr('style', 'color:red')
+            $('#errEmail').text('(*)Email không hợp lệ!');
             condition = false;
         }
         else{
             $("#errUser").text('');
+
         }
         if (condition) {
             $(this).submit();
