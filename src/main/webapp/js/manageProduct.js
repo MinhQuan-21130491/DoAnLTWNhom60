@@ -37,7 +37,10 @@ $(document).ready(function () {
             $('#errPrice').attr('style', 'font-size:12px');
             $('#priceProduct').attr('style', 'border-color:red');
             condition = false;
-        } else {
+        }else if(price.isNaN()){
+            $("#errPrice").text(' (*)Giá tiền không hợp lệ!');
+        }
+        else {
             $("#errPrice").text('');
             $('#priceProduct').attr('style', 'border-color:#dee2e6');
         }
@@ -370,54 +373,42 @@ $(document).ready(function () {
         //ten nha cung cap
         if (nameSup === "") {
             $("#errNameSupEdit").text(' (*)Vui lòng nhập tên nhà cung cấp!');
-            $('#errNameSupEdit').attr('style', 'font-size:12px');
-            $('#nameSupEdit').attr('style', 'border-color:red');
             condition = false;
         }
         else{
             $("#errNameSupEdit").text('');
-            $('#nameSupEdit').attr('style', 'border-color:#dee2e6');
+
         }
         // dia chi nha cung cap
         if (address === "") {
             $("#errAddEdit").text(' (*)Vui lòng nhập địa chỉ nhà cung cấp!');
-            $('#errAddEdit').attr('style', 'font-size:12px');
-            $('#addressSupEdit').attr('style', 'border-color:red');
+
             condition = false;
         }
         else{
             $("#errAddEdit").text('');
-            $('#addressSupEdit').attr('style', 'border-color:#dee2e6');
         }
         //so dien thoai
         if (phone === "") {
             $("#errphoneNumberSupEdit").text(' (*)Vui lòng nhập số điện thoại nhà cung cấp!');
-            $('#errphoneNumberSupEdit').attr('style', 'font-size:12px');
-            $('#phoneNumberSupEdit').attr('style', 'border-color:red');
             condition = false;
         }else if(!phone.match(tellReg)){
             $("#errphoneNumberSupEdit").text(' (*)Số điện thoại không hợp lệ!');
-            $('#errphoneNumberSupEdit').attr('style', 'font-size:12px');
             condition = false;
         }
         else{
             $("#errphoneNumberSupEdit").text('');
-            $('#phoneNumberSupEdit').attr('style', 'border-color:#dee2e6');
         }
         //email
         if (email === "") {
             $("#errEmailSupEdit").text(' (*)Vui lòng nhập Email nhà cung cấp!');
-            $('#errEmailSupEdit').attr('style', 'font-size:12px');
-            $('#emailSupEdit').attr('style', 'border-color:red');
             condition = false;
         }else if(!email.match(emailReg)){
             $("#errEmailSupEdit").text(' (*)Email không hợp lệ!');
-            $('#errEmailSupEdit').attr('style', 'font-size:12px');
             condition = false;
         }
         else{
             $("#errEmailSupEdit").text('');
-            $('#emailSupEdit').attr('style', 'border-color:#dee2e6');
         }
         if (condition) {
             $(this).submit();
@@ -440,54 +431,41 @@ $(document).ready(function () {
         //ten nha cung cap
         if (nameSup === "") {
             $("#errNameSupAdd").text(' (*)Vui lòng nhập tên nhà cung cấp!');
-            $('#errNameSupAdd').attr('style', 'font-size:12px');
-            $('#nameSupAdd').attr('style', 'border-color:red');
             condition = false;
         }
         else{
             $("#errNameSupAdd").text('');
-            $('#nameSupAdd').attr('style', 'border-color:#dee2e6');
         }
         // dia chi nha cung cap
         if (address === "") {
             $("#errAddressSupAdd").text(' (*)Vui lòng nhập địa chỉ nhà cung cấp!');
-            $('#errAddressSupAdd').attr('style', 'font-size:12px');
-            $('#addressSupAdd').attr('style', 'border-color:red');
             condition = false;
         }
         else{
             $("#errAddressSupAdd").text('');
-            $('#addressSupAdd').attr('style', 'border-color:#dee2e6');
         }
         //so dien thoai
         if (phone === "") {
             $("#errphoneSupAdd").text(' (*)Vui lòng nhập số điện thoại nhà cung cấp!');
-            $('#errphoneSupAdd').attr('style', 'font-size:12px');
-            $('#phoneSupAdd').attr('style', 'border-color:red');
             condition = false;
         }else if(!phone.match(tellReg)){
             $("#errphoneSupAdd").text(' (*)Số điện thoại không hợp lệ!');
-            $('#errphoneSupAdd').attr('style', 'font-size:12px');
             condition = false;
         }
         else{
             $("#errphoneSupAdd").text('');
-            $('#phoneSupAdd').attr('style', 'border-color:#dee2e6');
         }
         //email
         if (email === "") {
             $("#errEmailSupAdd").text(' (*)Vui lòng nhập Email nhà cung cấp!');
-            $('#errEmailSupAdd').attr('style', 'font-size:12px');
-            $('#emailSupAdd').attr('style', 'border-color:red');
+
             condition = false;
         }else if(!email.match(emailReg)){
             $("#errEmailSupAdd").text(' (*)Email không hợp lệ!');
-            $('#errEmailSupAdd').attr('style', 'font-size:12px');
             condition = false;
         }
         else{
             $("#errEmailSupAdd").text('');
-            $('#emailSupAdd').attr('style', 'border-color:#dee2e6');
         }
         if (condition) {
             $(this).submit();
