@@ -203,6 +203,12 @@ td {
 table > tbody > tr:hover {
     background-color: rgba(245, 245, 245, 1);
 }
+.text-danger{
+    font-size: 14px;
+}
+.fs {
+    font-size: 12px;
+}
 
 
 

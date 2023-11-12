@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Đăng kí</title>
-    <!-- Font Icon -->
     <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -58,17 +57,17 @@
                     <div class="form-SignUp">
                         <div class="title fw-bold">THÔNG TIN ĐĂNG NHẬP</div>
                         <div class="form-group">
-                            <label>Tên đăng nhập</label><span class="error" id="errUser"></span>
+                            <label>Tên đăng nhập</label><span class="text-danger" id="errUser"></span>
                             <input type="text" class="form-input" placeholder="Nhập tên đăng nhập" name="user_name"
                                    id="user_name"/>
                         </div>
                         <div class="form-group">
-                            <label>Mật khẩu</label><span class="error" id="errPW"></span>
+                            <label>Mật khẩu</label><span class="text-danger" id="errPW"></span>
                             <input type="password" class="form-input" placeholder="Nhập mật khẩu" name="password"
                                    id="password"/>
                         </div>
                         <div class="form-group">
-                            <label for="re_password">Nhập lại mật khẩu</label><span class="error" id="errRePW"></span>
+                            <label for="re_password">Nhập lại mật khẩu</label><span class="text-danger" id="errRePW"></span>
                             <input type="password" class="form-input" placeholder="Nhập lại mật khẩu" name="re_password"
                                    id="re_password"/>
                         </div>
@@ -76,21 +75,21 @@
                     <div class="form-info">
                         <div class="title fw-bold">THÔNG TIN KHÁCH HÀNG</div>
                         <div class="form-group">
-                            <label>Họ Tên</label><span class="error" id="errName"></span>
+                            <label>Họ Tên</label><span class="text-danger" id="errName"></span>
                             <input type="text" class="form-input" placeholder="Nhập họ và tên" name="name" id="name"/>
                         </div>
 
                         <div class="form-group">
-                            <label for="phone_number">Số điện thoại</label><span class="error" id="errTell"></span>
+                            <label for="phone_number">Số điện thoại</label><span class="text-danger" id="errTell"></span>
                             <input type="text" class="form-input" placeholder="Nhập số điện thoại" name="phone_number"
                                    id="phone_number" inputmode="numeric"/>
                         </div>
                         <div class="form-group">
-                            <label>Email</label><span class="error" id="errEmail"></span>
+                            <label>Email</label><span class="text-danger" id="errEmail"></span>
                             <input type="text" class="form-input" placeholder="Nhập Email" name="email" id="email"/>
                         </div>
                         <div class="form-group">
-                            <label>Giới tính</label><span class="error" id="errGender"></span>
+                            <label>Giới tính</label><span class="text-danger" id="errGender"></span>
                             <div id="gender">
                                 <label for="male">Nam</label><input type="radio" id="male" name="gender" value="Nam" class="gender" checked >
                                 <label for="female">Nữ</label> <input type="radio" id="female" name="gender" value="Nữ" class="gender">
@@ -98,11 +97,11 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label>Ngày sinh</label><span class="error" id="errDate"></span>
+                            <label>Ngày sinh</label><span class="text-danger" id="errDate"></span>
                             <input type="date" class="form-input" name="birthday" id="birthday"/>
                         </div>
                         <div class="form-group">
-                            <label for="address" >Địa chỉ</label><span class="error" id="errAd"></span>
+                            <label for="address" >Địa chỉ</label><span class="text-danger" id="errAd"></span>
                             <input type="text" class="form-input" placeholder="Nhập địa chỉ của bạn" name="address"
                                    id="address"/>
                         </div>
