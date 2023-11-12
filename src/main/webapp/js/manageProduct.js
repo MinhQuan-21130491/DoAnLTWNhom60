@@ -37,8 +37,6 @@ $(document).ready(function () {
             $('#errPrice').attr('style', 'font-size:12px');
             $('#priceProduct').attr('style', 'border-color:red');
             condition = false;
-        }else if(price.isNaN()){
-            $("#errPrice").text(' (*)Giá tiền không hợp lệ!');
         }
         else {
             $("#errPrice").text('');
