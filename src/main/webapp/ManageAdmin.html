@@ -610,8 +610,12 @@
                                                 <input type="text" class="form-control" id="nameProductEdit" name="nameProductEdit">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Giá tiền</label><span id="errPriceEdit"  class="text-danger"></span>
-                                                <input type="text" class="form-control" id="priceProductEdit" name="priceProductEdit">
+                                                <label class="form-label">Giá nhập (₫)</label><span id="errImpPriceEdit"  class="text-danger"></span>
+                                                <input type="text" class="form-control" id="priceImpProductEdit" name="priceProduct">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Giá bán (₫)</label><span id="errPriceEdit"  class="text-danger"></span>
+                                                <input type="text" class="form-control" id="priceProductEdit" name="delivery">
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label" id = "cateTypeEdit">Thể loại</label>
@@ -625,10 +629,6 @@
                                             <div class="mb-3">
                                                 <label class="form-label">Mô tả</label><span id="errDesEdit"  class="text-danger"></span>
                                                 <textarea type="text" class="form-control" id="desEdit" name="desEdit"></textarea>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Vận chuyển</label><span id="errDeliveryEdit"  class="text-danger"></span>
-                                                <input type="text" class="form-control" id="deliveryEdit" name="deliveryEdit">
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-sm-6 col-6">
@@ -650,15 +650,15 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Chiều dài</label>
+                                                    <label class="form-label">Chiều dài<span class="fs">(cm)</span></label>
                                                     <input type="number" class="form-control" id="lengthEdit" name="lengthEdit">
                                                 </div>
                                                 <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Chiều rộng</label>
+                                                    <label class="form-label">Chiều rộng<span class="fs">(cm)</span></label>
                                                     <input type="number" class="form-control" id="widthEdit" name="widthEdit">
                                                 </div>
                                                 <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Chiều cao</label>
+                                                    <label class="form-label">Chiều cao<span class="fs">(cm)</span></label>
                                                     <input type="number" class="form-control" id="heightEdit" name="heightEdit">
                                                 </div>
                                             </div>
@@ -735,12 +735,12 @@
                                                 <input type="text" class="form-control" id="nameProductdetail" name="nameProductdetail" readonly>
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Giá nhập</label>
-                                                <input type="text" class="form-control" id="priceProductdetail" name="priceProductdetail" readonly>
+                                                <label class="form-label">Giá nhập (₫)</label>
+                                                <input type="text" class="form-control" id="priceImpProductdetail" name="priceImpProductdetail" readonly>
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Giá bán</label>
-                                                <input type="text" class="form-control" id="deliverydetail" name="deliverydetail" readonly>
+                                                <label class="form-label">Giá bán (₫)</label>
+                                                <input type="text" class="form-control" id="priceProductDetail" name="priceProductDetail" readonly>
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Thể loại</label>
@@ -748,15 +748,15 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Chiều dài</label>
+                                                    <label class="form-label">Chiều dài<span class="fs">(cm)</span></label>
                                                     <input type="number" class="form-control" id="lengthdetail" name="lengthdetail"readonly>
                                                 </div>
                                                 <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Chiều rộng</label>
+                                                    <label class="form-label">Chiều rộng<span class="fs">(cm)</span></label>
                                                     <input type="number" class="form-control" id="widthdetail" name="widthdetail"readonly>
                                                 </div>
                                                 <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Chiều cao</label>
+                                                    <label class="form-label">Chiều cao<span class="fs">(cm)</span></label>
                                                     <input type="number" class="form-control" id="heightdetail" name="heightdetail"readonly>
                                                 </div>
                                             </div>
@@ -795,16 +795,16 @@
                                         <hr>
                                         <div class="col-md-6 col-sm-6 col-6">
                                             <div class="mb-3">
-                                                <label class="form-label">Tên sản phẩm</label><span id="errNameP"  class="text-danger"></span>
+                                                <label class="form-label">Tên sản phẩm</label><span id="errNameP" class="text-danger"></span>
                                                 <input type="text" class="form-control" id="nameProduct" name="nameProduct">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Giá nhập</label><span id="errPrice"  class="text-danger"></span>
-                                                <input type="text" class="form-control" id="priceProduct" name="priceProduct">
+                                                <label class="form-label">Giá nhập (₫)</label><span id="errImpPriceAdd"  class="text-danger"></span>
+                                                <input type="text" class="form-control" id="priceImpProductAdd" name="priceProduct">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Giá bán</label><span id="errDelivery"  class="text-danger"></span>
-                                                <input type="text" class="form-control" id="delivery" name="delivery">
+                                                <label class="form-label">Giá bán (₫)</label><span id="errPriceAdd"  class="text-danger"></span>
+                                                <input type="text" class="form-control" id="priceProductAdd" name="delivery">
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Thể loại</label>
@@ -840,15 +840,15 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Chiều dài</label>
+                                                    <label class="form-label">Chiều dài<span class="fs">(cm)</span></label>
                                                     <input type="number" class="form-control" id="length" name="length">
                                                 </div>
                                                 <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Chiều rộng</label>
+                                                    <label class="form-label">Chiều rộng<span class="fs">(cm)</span></label>
                                                     <input type="number" class="form-control" id="width" name="width">
                                                 </div>
                                                 <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Chiều cao</label>
+                                                    <label class="form-label">Chiều cao<span class="fs">(cm)</span></label>
                                                     <input type="number" class="form-control" id="height" name="height">
                                                 </div>
                                             </div>
@@ -1467,5 +1467,5 @@
 
     })
 </script>
-<script src="js/manageProduct.js"></script>
+<script src="js/manage.js"></script>
 </html>
