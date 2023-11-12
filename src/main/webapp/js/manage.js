@@ -34,6 +34,7 @@ $(document).ready(function () {
             condition = false;
         }else {
             $("#errImpPriceAdd").text('');
+            condition = true;
         }
         //giá bán
         if (price === "") {
@@ -44,6 +45,7 @@ $(document).ready(function () {
             condition = false;
         }else {
             $("#errPriceAdd").text('');
+            condition = true;
         }
         //mô tả
         if (des === "") {
@@ -51,6 +53,7 @@ $(document).ready(function () {
             condition = false;
         } else {
             $("#errDes").text('');
+            condition = true;
         }
         //hình 1
         if (img1 === "") {
@@ -58,6 +61,7 @@ $(document).ready(function () {
             condition = false;
         } else {
             $("#errImg1").text('');
+            condition = true;
         }
         //hình 2
         if (img2 === "") {
@@ -65,6 +69,7 @@ $(document).ready(function () {
             condition = false;
         } else {
             $("#errImg2").text('');
+            condition = true;
         }
         //hình 3
         if (img3 === "") {
@@ -72,6 +77,7 @@ $(document).ready(function () {
             condition = false;
         } else {
             $("#errImg3").text('');
+            condition = true;
         }
         //hình 4
         if (img4 === "") {
@@ -79,6 +85,7 @@ $(document).ready(function () {
             condition = false;
         } else {
             $("#errImg4").text('');
+            condition = true;
         }
         //length
         if (length === "") {
@@ -86,6 +93,7 @@ $(document).ready(function () {
             condition = false;
         } else {
             $('#length').attr('style', 'border-color:#dee2e6');
+            condition = true;
         }
         //width
         if (width === "") {
@@ -93,6 +101,7 @@ $(document).ready(function () {
             condition = false;
         } else {
             $('#width').attr('style', 'border-color:#dee2e6');
+            condition = true;
         }
         //height
         if (height === "") {
@@ -100,6 +109,7 @@ $(document).ready(function () {
             condition = false;
         } else {
             $('#height').attr('style', 'border-color:#dee2e6');
+            condition = true;
         }
         //material
         if (material === "") {
@@ -107,6 +117,7 @@ $(document).ready(function () {
             condition = false;
         } else {
             $('#material').attr('style', 'border-color:#dee2e6');
+            condition = true;
         }
         //color
         if (color === "") {
@@ -114,6 +125,7 @@ $(document).ready(function () {
             condition = false;
         } else {
             $('#color').attr('style', 'border-color:#dee2e6');
+            condition = true;
         }
         //amount
         if (amount === "") {
@@ -121,6 +133,7 @@ $(document).ready(function () {
             condition = false;
         } else {
             $('#amount').attr('style', 'border-color:#dee2e6');
+            condition = true;
         }
         if (condition) {
             $(this).submit();
@@ -129,7 +142,7 @@ $(document).ready(function () {
 
     })
 
-});
+
     $('#editProduct').submit(function (event) {
 
         var nameP = $('#nameProductEdit').val();
@@ -156,6 +169,7 @@ $(document).ready(function () {
             condition = false;
         } else {
             $("#errNamePEdit").text('');
+            condition = true;
         }
         //giá nhập
         if (priceImp === "") {
@@ -166,6 +180,7 @@ $(document).ready(function () {
             condition = false;
         } else{
             $("#errImpPriceEdit").text('');
+            condition = true;
         }
         //gia ban
         if (price === "") {
@@ -176,6 +191,7 @@ $(document).ready(function () {
                 condition = false;
         }else{
             $("#errPriceEdit").text('');
+            condition = true;
         }
         //mô tả
         if (des === "") {
@@ -184,6 +200,7 @@ $(document).ready(function () {
         }
         else{
             $("#errDesEdit").text('');
+            condition = true;
         }
         //hình 1
         if (img1 === "") {
@@ -192,7 +209,7 @@ $(document).ready(function () {
         }
         else{
             $("#errImg1Edit").text('');
-
+            condition = true;
         }
         //hình 2
         if (img2 === "") {
@@ -201,6 +218,7 @@ $(document).ready(function () {
         }
         else{
             $("#errImg2Edit").text('');
+            condition = true;
         }
         //hình 3
         if (img3 === "") {
@@ -209,6 +227,7 @@ $(document).ready(function () {
         }
         else{
             $("#errImg3Edit").text('');
+            condition = true;
         }
         //hình 4
         if (img4 === "") {
@@ -217,6 +236,7 @@ $(document).ready(function () {
         }
         else{
             $("#errImg4Edit").text('');
+            condition = true;
         }
         //length
         if (length === "" ) {
@@ -225,6 +245,7 @@ $(document).ready(function () {
         }
         else{
             $('#lengthEdit').attr('style', 'border-color:#dee2e6');
+            condition = true;
         }
         //width
         if (width === "") {
@@ -233,6 +254,7 @@ $(document).ready(function () {
         }
         else{
             $('#widthEdit').attr('style', 'border-color:#dee2e6');
+            condition = true;
         }
         //height
         if (height === "") {
@@ -241,6 +263,7 @@ $(document).ready(function () {
         }
         else{
             $('#heightEdit').attr('style', 'border-color:#dee2e6');
+            condition = true;
         }
         //material
         if (material === "") {
@@ -249,6 +272,7 @@ $(document).ready(function () {
         }
         else{
             $('#materialEdit').attr('style', 'border-color:#dee2e6');
+            condition = true;
         }
         //color
         if (color === "") {
@@ -257,6 +281,7 @@ $(document).ready(function () {
         }
         else{
             $('#colorEdit').attr('style', 'border-color:#dee2e6');
+            condition = true;
         }
         //amount
         if (amount === "") {
@@ -265,6 +290,7 @@ $(document).ready(function () {
         }
         else{
             $("#errImg4Edit").text('');
+            condition = true;
         }
         if (condition) {
             $(this).submit();
@@ -281,6 +307,7 @@ $(document).ready(function () {
         }
         else{
             $('#errNameCate').text('');
+            condition = true;
         }
         if (condition) {
             $(this).submit();
@@ -290,13 +317,14 @@ $(document).ready(function () {
     })
 // them danh muc
     $('#add-Cate').submit(function (event) {
-        var nameCate = $('#nameCateEdit').val();
+        var nameCate = $('#nameCateAdd').val();
         if (nameCate === "") {
             $("#errNameCateAdd").text(' (*)Vui lòng nhập danh mục mới!');
             condition = false;
         }
         else{
             $('#errNameCateAdd').text('');
+            condition = true;
         }
         if (condition) {
             $(this).submit();
@@ -312,7 +340,7 @@ $(document).ready(function () {
         var email = $('#emailSupEdit').val();
 
         var emailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        var tellReg = /^\d{10}/;
+        var tellReg = /^\d{10}$/;
 
         //ten nha cung cap
         if (nameSup === "") {
@@ -321,16 +349,16 @@ $(document).ready(function () {
         }
         else{
             $("#errNameSupEdit").text('');
-
+            condition = true;
         }
         // dia chi nha cung cap
         if (address === "") {
             $("#errAddEdit").text(' (*)Vui lòng nhập địa chỉ nhà cung cấp!');
-
             condition = false;
         }
         else{
             $("#errAddEdit").text('');
+            condition = true;
         }
         //so dien thoai
         if (phone === "") {
@@ -342,6 +370,7 @@ $(document).ready(function () {
         }
         else{
             $("#errphoneNumberSupEdit").text('');
+            condition = true;
         }
         //email
         if (email === "") {
@@ -353,6 +382,7 @@ $(document).ready(function () {
         }
         else{
             $("#errEmailSupEdit").text('');
+            condition = true;
         }
         if (condition) {
             $(this).submit();
@@ -370,7 +400,7 @@ $(document).ready(function () {
         var email = $('#emailSupAdd').val();
 
         var emailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        var tellReg = /^\d{10}/;
+        var tellReg = /^\d{10}$/;
 
         //ten nha cung cap
         if (nameSup === "") {
@@ -379,6 +409,7 @@ $(document).ready(function () {
         }
         else{
             $("#errNameSupAdd").text('');
+            condition = true;
         }
         // dia chi nha cung cap
         if (address === "") {
@@ -387,6 +418,7 @@ $(document).ready(function () {
         }
         else{
             $("#errAddressSupAdd").text('');
+            condition = true;
         }
         //so dien thoai
         if (phone === "") {
@@ -398,6 +430,7 @@ $(document).ready(function () {
         }
         else{
             $("#errphoneSupAdd").text('');
+            condition = true;
         }
         //email
         if (email === "") {
@@ -410,13 +443,14 @@ $(document).ready(function () {
         }
         else{
             $("#errEmailSupAdd").text('');
+            condition = true;
         }
         if (condition) {
             $(this).submit();
         }
         event.preventDefault();
 })
-
+});
 
 
 
