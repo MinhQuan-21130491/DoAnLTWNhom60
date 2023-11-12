@@ -35,9 +35,6 @@ $(document).ready(function (){
         else{
             $("#errReNPW").text('');
         }
-        if(newpassword===repassword && newpassword!=="" && newpassword!== password){
-           alert('doi mat khau thanh cong');
-        }
         if(condition) {
             $(this).submit();
         }

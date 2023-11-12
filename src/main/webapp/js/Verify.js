@@ -13,7 +13,8 @@ $(document).ready(function (){
             condition = false;
         }
         else{
-            $("#errUser").text('');
+            $("#errVerify").text('');
+            condition=true;
         }
         if(condition) {
             $(this).submit();

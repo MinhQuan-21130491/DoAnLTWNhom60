@@ -11,7 +11,7 @@ $(document).ready(function () {
         var condition = true;
         var nameReg = /^[A-Za-zÀ-ỹ\s]+$/;
         var emailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        var tellReg = /^\d{10}/;
+        var tellReg = /^\d{10}$/;
 
         if (user === "") {
             $("#errUser").text(' (*)Vui lòng nhập tên đăng nhập!');
@@ -87,7 +87,6 @@ $(document).ready(function () {
         }else{
             $("#errAd").text('');
         }
-
         if (condition) {
             $(this).submit();
         }
