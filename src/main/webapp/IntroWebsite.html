@@ -232,7 +232,7 @@
         <div class="modal-dialog modal-sm ">
             <div class="modal-content">
                 <div class="modal-body">
-                    <form class="form " action="" method="post" onsubmit="editGua()">
+                    <form class="form " action="" method="post" onsubmit="return editGua()">
                         <div class="row px-2">
                             <div class=" text-end">
                                 <button type="button" class="btn-close " data-bs-dismiss="modal"
@@ -408,17 +408,17 @@
 
         var flag = true;
 
-        if(monthGua.value ="") {
+        if(monthGua.value === "") {
             flag = false;
             monthGua.style.borderColor = 'red';
         }else {
-            monthGua.style.borderColor = 'dee2e6';
+            monthGua.style.borderColor = '#dee2e6';
         }
-        if(monthChange.value ="") {
+        if(monthChange.value === "") {
             flag = false;
             monthChange.style.borderColor = 'red';
         }else {
-            monthChange.style.borderColor = 'dee2e6';
+            monthChange.style.borderColor = '#dee2e6';
         }
         return flag;
     }
