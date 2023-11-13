@@ -172,8 +172,12 @@
 <div class="container mgt">
     <div class="row p-2 bgcolor">
         <div class="col-lg-4 col-sm-6 my-1">
-            <h5 class="text-color">THÔNG TIN KHÁCH HÀNG <i class="fa fa-user-circle-o text-color"
-                                                           aria-hidden="true"></i></i></h5>
+            <h5 class="text-color"><i class="fa fa-user-circle-o text-color" aria-hidden="true"></i> THÔNG TIN KHÁCH HÀNG
+                <button class="btnAdd bgcolor bd-full me-1" id ="editInFor" ><i class="fa fa-pencil text-color"
+                                                                                 title="Chỉnh sửa thông tin liên hệ"
+                                                                                 aria-hidden="true" data-bs-toggle="modal"
+                                                                                 data-bs-target="#editContact"></i></button>
+            </h5>
             <div class="mt-3">
                 <label for="fullName">Họ tên:</label> <span id="fullName">Minh Quân</span>
             </div>
@@ -185,15 +189,13 @@
             </div>
         </div>
         <div class="col-lg-6 col-sm-6 mt-1 ">
-            <h5 class="text-color">ĐỊA CHỈ NHẬN HÀNG <i class="fa fa-map-marker text-color" aria-hidden="true"></i></h5>
-            <span class="mt-3 d-block" id="address">Trường Đại Học Khoa Học Tự Nhiên đường A2, Phường Linh Trung, Thành Phố Thủ Đức, TP. Hồ Chí Minh</span>
-        </div>
-        <div class="col-lg-2   d-flex align-items-center justify-content-end">
-            <div class="changeInfor ">
-                <a href="#">
-                    <button id="btnChangeInfor">Thay đổi</button>
-                </a>
-            </div>
+            <h5 class="text-color"> <i class="fa fa-map-marker text-color" aria-hidden="true"></i> ĐỊA CHỈ NHẬN HÀNG
+                <button class=" btnAdd bgcolor bd-full me-1 " id ="editAddress"><i class="fa fa-pencil text-color"
+                                                                                 title="Chỉnh sửa thông tin liên hệ"
+                                                                                 aria-hidden="true" data-bs-toggle="modal"
+                                                                                 data-bs-target="#editContact"></i></button>
+            </h5>
+            <span class="mt-3 d-block" id="address">Trường Đại Học Khoa Học Tự Nhiên đường A2, Phường Linh Trung, Thành Phố Thủ Đức, TP. Hồ Chí Minh </span>
         </div>
     </div>
     <div class="row bgcolor mt-3 overflow-hidden">
