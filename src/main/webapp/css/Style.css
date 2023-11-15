@@ -204,6 +204,9 @@ table > tbody > tr:hover {
     cursor: pointer;
     background-color: rgba(245, 245, 245, 1);
 }
+table > tbody > tr >td {
+    font-weight: var(--font_weight_all);
+}
 .text-danger{
     font-size: 14px;
 }

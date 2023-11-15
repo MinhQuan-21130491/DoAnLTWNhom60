@@ -27,6 +27,7 @@
 <link rel="stylesheet" href="css/Style.css">
 <link rel="stylesheet" href="css/Cart.css">
 <link rel="stylesheet" href="css/Payment.css">
+<link rel="stylesheet" href="css/ChangeInfor.css">
 <body>
 <!--header-->
 <header>
@@ -171,13 +172,8 @@
 <!--page content-->
 <div class="container mgt">
     <div class="row p-2 bgcolor">
-        <div class="col-lg-4 col-sm-6 my-1">
-            <h5 class="text-color"><i class="fa fa-user-circle-o text-color" aria-hidden="true"></i> THÔNG TIN KHÁCH HÀNG
-                <button class="btnAdd bgcolor bd-full me-1" id ="editInFor" ><i class="fa fa-pencil text-color"
-                                                                                 title="Chỉnh sửa thông tin liên hệ"
-                                                                                 aria-hidden="true" data-bs-toggle="modal"
-                                                                                 data-bs-target="#editContact"></i></button>
-            </h5>
+        <div class="col-lg-4 col-sm-4 my-1">
+            <h5 class="text-color"><i class="fa fa-user-circle-o text-color" aria-hidden="true"></i> THÔNG TIN KHÁCH HÀNG</h5>
             <div class="mt-3">
                 <label for="fullName">Họ tên:</label> <span id="fullName">Minh Quân</span>
             </div>
@@ -189,13 +185,124 @@
             </div>
         </div>
         <div class="col-lg-6 col-sm-6 mt-1 ">
-            <h5 class="text-color"> <i class="fa fa-map-marker text-color" aria-hidden="true"></i> ĐỊA CHỈ NHẬN HÀNG
-                <button class=" btnAdd bgcolor bd-full me-1 " id ="editAddress"><i class="fa fa-pencil text-color"
-                                                                                 title="Chỉnh sửa thông tin liên hệ"
-                                                                                 aria-hidden="true" data-bs-toggle="modal"
-                                                                                 data-bs-target="#editContact"></i></button>
-            </h5>
+            <h5 class="text-color"> <i class="fa fa-map-marker text-color" aria-hidden="true"></i> ĐỊA CHỈ NHẬN HÀNG</h5>
             <span class="mt-3 d-block" id="address">Trường Đại Học Khoa Học Tự Nhiên đường A2, Phường Linh Trung, Thành Phố Thủ Đức, TP. Hồ Chí Minh </span>
+        </div>
+        <div class="col-lg-2 col-sm-2 mt-1 text-end">
+            <button class="btnAdd bgcolor bd-full" id ="editInFor" data-bs-toggle="modal"
+                    data-bs-target="#changeInfor"><i class="fa fa-pencil text-color "
+                                                                            title="Chỉnh sửa thông tin liên hệ"
+                                                                            aria-hidden="true"></i></button>
+        </div>
+        <div class="modal fade" id="changeInfor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content ">
+                    <div class="modal-body">
+                            <form id="changeNam" onsubmit="return check()">
+                                <table>
+                                    <thead>
+                                    <div class=" text-end">
+                                        <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <tr>
+                                        <td colspan ="4">
+                                            <h5 class = "pt-3 pb-1"> THAY ĐỔI THÔNG TIN </h5>
+                                            <div class="text-danger text-center w-100" id="error"></div>
+                                        </td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2">
+                                            <label class="w-100">Tài khoản đã xác thực <i class="fa fa-check-circle text-success" aria-hidden="true"></i></label>
+                                            <label class="w-100 d-none">Tài khoản của bạn chưa xác thực, <a href="#">xác thực ngay</a></label>
+                                        </td>
+                                    </tr>
+                                    <tr id="changeName">
+                                        <td >
+                                            <label>Họ và tên</label>
+                                        </td>
+                                        <td class="w-50">
+                                            <div id="InName">
+                                                <input id="HienThiTen" name="TenHT" type="text">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr id="changeSDT">
+                                        <td>
+                                            <label> Số điện thoại </label>
+                                        </td>
+                                        <td>
+                                            <div id="InSDT">
+                                                <input id="HienThiSDT" name="SDTHT" type="text">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr id="changegGmail">
+                                        <td>
+                                            <label>Email</label>
+                                        </td>
+                                        <td>
+                                            <div id="InGmail">
+                                                <input id="HienThiGmail" name="GmailHT" type="text">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label>Giới tính</label>
+                                        </td>
+                                        <td >
+                                            <div class = "gender">
+                                                <label class="ms-0" for="male">Nam</label><input type="radio" id="male" name="gender" value="Nam"  checked >
+                                                <label for="female">Nữ</label> <input type="radio" id="female" name="gender" value="Nữ" >
+                                                <label for="other">Khác</label> <input type="radio" id="other" name="gender" value="Khác">
+                                            </div>
+                                        </td>
+                                    </tr>
+
+
+                                    <tr id="changeNgaySinh">
+                                        <td>
+                                            <label>Ngày sinh</label>
+                                        </td>
+                                        <td>
+                                            <div id="InNS">
+                                                <input id="HienThiNS" name="HienThiNS" type="date">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr id="changeDC">
+                                        <td>
+                                            <label> Địa chỉ</label>
+                                        </td>
+                                        <td>
+                                            <div id="InDiaChi">
+                                                <input id="HienThiDC" name="DCHT" type="text">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr id="changeDCReceive">
+                                        <td>
+                                            <label> Địa chỉ nhận hàng</label>
+                                        </td>
+                                        <td>
+                                            <div id="">
+                                                <input id="HienThiDCReice" name="DCHT" type="text">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr id="SubmitSB">
+                                        <td colspan="2">
+                                            <div><button id="submit" name="SB" onclick="my_function()" style="color: white"> LƯU </button></div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="row bgcolor mt-3 overflow-hidden">
