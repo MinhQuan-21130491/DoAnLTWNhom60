@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <div class="container-fluid bgcolor-orange" >
@@ -13,9 +15,9 @@
                     <li class="px-3 pt-1"><a class="nav-link" href="#"><i
                             class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
                     <li class="px-3 pt-1"><a class="nav-link" href="#"><i
-                            class="fa fa-instagram" aria-hidden="true"></i></i></a></li>
+                            class="fa fa-instagram" aria-hidden="true"></i></a></li>
                     <li class="px-3 pt-1"><a class="nav-link" href="#"><i
-                            class="fa fa-twitter" aria-hidden="true"></i></i></a></li>
+                            class="fa fa-twitter" aria-hidden="true"></i></a></li>
                 </ul>
             </div>
         </div>
@@ -37,8 +39,8 @@
                     <div class="col-md-12 col-lg-4 col-sm-12">
                         <ul class="navbar-nav w-100  mb-2 mb-lg-0">
                             <li class="nav-item hv "><a class="nav-link ps-0 "
-                                                        aria-current="page" href=HomePage.html>Trang chủ</a></li>
-                            <li class="nav-item hv"><a class="nav-link" href="IntroWebsite.html">Giới
+                                                        aria-current="page" href=HomePage.jsp>Trang chủ</a></li>
+                            <li class="nav-item hv"><a class="nav-link" href="IntroWebsite.jsp">Giới
                                 thiệu</a></li>
                             <li class="nav-item dropdown hv"><a
                                     class="nav-link dropdown-toggle" href="#" id=""
@@ -67,7 +69,7 @@
                                             role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         Tài khoản </a>
                                         <ul class="dropdown-menu" aria-labelledby="">
-                                            <li><a class="dropdown-item" href="SignIn.html">Đăng nhập</a></li>
+                                            <li><a class="dropdown-item" href="SignIn.jsp">Đăng nhập</a></li>
                                             <li>
                                                 <hr class="dropdown-divider">
                                             </li>
@@ -99,7 +101,7 @@
                                     role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Tài khoản </a>
                                 <ul class="dropdown-menu" aria-labelledby="">
-                                    <li><a class="dropdown-item" href="SignIn.html">Đăng nhập</a></li>
+                                    <li><a class="dropdown-item" href="SignIn.jsp">Đăng nhập</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>

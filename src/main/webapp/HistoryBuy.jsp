@@ -1,31 +1,31 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Giỏ hàng</title>
+    <title>Lịch sử mua hàng</title>
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+            crossorigin="anonymous">
+    <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"></script>
+    <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+            integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+          integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/Style.css">
+    <link rel="stylesheet" href="css/Manage.css">
 </head>
-<link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
-        crossorigin="anonymous">
-<script
-        src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
-<script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
-        integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
-        crossorigin="anonymous"></script>
-
-<link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
-      integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
-      crossorigin="anonymous" referrerpolicy="no-referrer"/>
-<script src="https://code.jquery.com/jquery-3.7.1.js"
-        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="css/Style.css">
-<link rel="stylesheet" href="css/Cart.css">
 <body>
 <!--header-->
 <header>
@@ -42,9 +42,9 @@
                         <li class="px-3 pt-1"><a class="nav-link" href="#"><i
                                 class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
                         <li class="px-3 pt-1"><a class="nav-link" href="#"><i
-                                class="fa fa-instagram" aria-hidden="true"></i></i></a></li>
+                                class="fa fa-instagram" aria-hidden="true"></i></a></li>
                         <li class="px-3 pt-1"><a class="nav-link" href="#"><i
-                                class="fa fa-twitter" aria-hidden="true"></i></i></a></li>
+                                class="fa fa-twitter" aria-hidden="true"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -66,8 +66,8 @@
                                 <div class="col-md-12 col-lg-4 col-sm-12">
                                     <ul class="navbar-nav w-100  mb-2 mb-lg-0">
                                         <li class="nav-item hv "><a class="nav-link ps-0 "
-                                                                    aria-current="page" href=HomePage.html>Trang chủ</a></li>
-                                        <li class="nav-item hv"><a class="nav-link" href="IntroWebsite.html">Giới
+                                                                    aria-current="page" href=HomePage.jsp>Trang chủ</a></li>
+                                        <li class="nav-item hv"><a class="nav-link" href="IntroWebsite.jsp">Giới
                                             thiệu</a></li>
                                         <li class="nav-item dropdown hv"><a
                                                 class="nav-link dropdown-toggle" href="#" id=""
@@ -96,7 +96,7 @@
                                                         role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                     Tài khoản </a>
                                                     <ul class="dropdown-menu" aria-labelledby="">
-                                                        <li><a class="dropdown-item" href="SignIn.html">Đăng nhập</a></li>
+                                                        <li><a class="dropdown-item" href="SignIn.jsp">Đăng nhập</a></li>
                                                         <li>
                                                             <hr class="dropdown-divider">
                                                         </li>
@@ -128,7 +128,7 @@
                                                 role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             Tài khoản </a>
                                             <ul class="dropdown-menu" aria-labelledby="">
-                                                <li><a class="dropdown-item" href="SignIn.html">Đăng nhập</a></li>
+                                                <li><a class="dropdown-item" href="SignIn.jsp">Đăng nhập</a></li>
                                                 <li>
                                                     <hr class="dropdown-divider">
                                                 </li>
@@ -169,64 +169,65 @@
     </div>
 </header>
 <!--end header-->
-<div class="container mgt">
-    <div class="row bgcolor">
-        <div class="col-lg-12">
-            <table class="mt-4">
+<div class="container bgcolor mgt">
+    <div class="row mt-2">
+        <div class="col-lg-4">
+            <h5 >Lịch sử mua hàng <i class="fa fa-clock-o" aria-hidden="true"></i></h5>
+        </div>
+        <div class="col-lg-8 pt-4   ">
+            <label for="filter">Ngày mua hàng:</label> <input type="date" id="filter">
+            <button class="bd-full bgcolor-orange ms-2 rounded-1" id="btnFilter">Lọc</button>
+        </div>
+    </div>
+    <hr class="mt-1">
+    <div class="row">
+        <div class="col-lg-12 overflow-hidden">
+            <table>
                 <thead>
-                    <tr>
-                        <td class="sp">SẢN PHẨM</td>
-                        <td>MÀU SẮC</td>
-                        <td>VẬT LIỆU</td>
-                        <td>KÍCH THƯỚC</td>
-                        <td>ĐƠN GIÁ</td>
-                        <td>SỐ LƯỢNG</td>
-                        <td>XÓA</td>
-                    </tr>
+                <tr>
+                    <td>MÃ HÓA ĐƠN</td>
+                    <td>TÊN SẢN PHẨM</td>
+                    <td>NGÀY MUA</td>
+                    <td>SỐ LƯỢNG</td>
+                    <td>ĐƠN GIÁ</td>
+                    <td>TỔNG TIỀN</td>
+                </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            <div class="item">
-                                <div class="item_img">
-                                    <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
-                                         class="card-img-top img_p_cart" alt="..."/>
-                                </div>
-                                <span class="item_text">Ghế massage siêu cấp pro</span>
+                <tr>
+                    <td>
+                        <span>2</span>
+                    </td>
+                    <td>
+                        <div class="item">
+                            <div class="item_img">
+                                <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
+                                     class="card-img-top img_p_cart" alt="..."/>
                             </div>
-                        </td>
-                        <td>
-                            <span>Màu đen</span>
-                        </td>
-                        <td>
-                            <span>Hợp kim, bọc da</span>
-                        </td>
-                        <td>
-                            <span>100x50x70</span>
-                        </td>
-                        <td>
-                            ₫<span>1.000.000</span>
-                        </td>
-                        <td>
-                            <input type="text" class="amount" value="1"/>
-                            <button class="minus">-</button>
-                            <button class="plus">+</button>
-                        </td>
-                        <td>
-                            <button class="delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                        </td>
-                    </tr>
-
+                            <span class="item_text">Ghế massage siêu cấp prO</span>
+                        </div>
+                    </td>
+                    <td>
+                        <span>06/11/2023</span>
+                    </td>
+                    <td>
+                        <span>50</span>
+                    </td>
+                    <td>
+                        ₫<span>51.200</span>
+                    </td>
+                    <td>
+                        ₫<span></span>
+                    </td>
+                    <td>
+                        <div class="d-flex w-100 justify-content-center">
+                            <a href="DetailProduct.jsp" class="btnAdd bgcolor bd-full me-1"><i class="fa fa-repeat text-color" aria-hidden="true" title="Mua lại"></i></a>
+                            <button class="delete btnAdd bgcolor bd-full me-1"><i class="fa fa-trash-o text-color" title="Xóa" aria-hidden="true"></i></button>
+                        </div>
+                    </td>
+                </tr>
                 </tbody>
             </table>
-            <div class="totalPay mt-4 text-end">
-                <span id="tt">THÀNH TIỀN: </span> ₫<span id="total"></span>
-            </div>
-            <div class="pay my-2">
-                <a href=#>
-                    <button id="btnPay">Thanh toán</button>
-                </a>
-            </div>
         </div>
     </div>
 </div>
@@ -249,10 +250,10 @@
                     <h5>VỀ CHÚNG TÔI</h5>
                     <hr class ="w-50 ">
                     <ul class="navbar-nav ">
-                        <a class="nav-link link" href="IntroWebsite.html"><li>Giới thiệu</li></a>
-                        <a class="nav-link link" href="IntroWebsite.html#policy"><li>Bảo hành</li></a>
-                        <a class="nav-link link" href="IntroWebsite.html#policy"><li>Đổi trả</li></a>
-                        <a class="nav-link link" href="IntroWebsite.html#contact"><li>Liên hệ</li></a>
+                        <a class="nav-link link" href="IntroWebsite.jsp"><li>Giới thiệu</li></a>
+                        <a class="nav-link link" href="IntroWebsite.jsp#policy"><li>Bảo hành</li></a>
+                        <a class="nav-link link" href="IntroWebsite.jsp#policy"><li>Đổi trả</li></a>
+                        <a class="nav-link link" href="IntroWebsite.jsp#contact"><li>Liên hệ</li></a>
 
                     </ul>
                 </div>
@@ -287,58 +288,25 @@
     </div>
 </footer>
 <!--end footer-->
-</body>
 <script>
     $(document).ready(function () {
-        // Lặp qua từng cặp nút "plus" và "minus" để xử lý riêng lẻ cho từng sản phẩm
-        $('.plus').click(function () {
-            var amountInput = $(this).siblings('.amount');
-            var count = parseInt(amountInput.val()) || 0;
-            count++;
-            amountInput.val(count);
-            calculateTotal()
-        });
-
-        $('.minus').click(function () {
-            var amountInput = $(this).siblings('.amount');
-            var count = parseInt(amountInput.val()) || 0;
-            if (count > 0) {
-                count--;
-                amountInput.val(count);
-                calculateTotal()
-            }
-        });
-        // Xóa sản phẩm trong giỏ hàng
+        // tính tổng tiền
+        $('tr').each(function () {
+            var amount = $(this).find('td:eq(3) span').text();
+            var price = $(this).find('td:eq(4) span').text();
+            price = price.replace(/\./g, "");
+            var amountValue = parseInt(amount);
+            var priceValue = parseFloat(price);
+            var total = amountValue * priceValue;
+            total = total.toLocaleString('en-US');
+            total = total.replace(/\,/g, ".")
+            $(this).find('td:eq(5) span').text(total);
+        })
+        //xóa lịch sử
         $('.delete').click(function () {
             $(this).closest('tr').remove();
-            calculateTotal(); //Gọi lại hàm tính tổng khi xóa
         })
-
-        //Tính tổng tiền khi load qua trang giỏ hàng
-        function calculateTotal() {
-            var totalMoney = 0;
-            var money = 0;
-            var amount = 0;
-            $('tr').each(function () {
-                var moneyText = $(this).find('td:eq(4) span').text();
-                var amountText = $(this).find('.amount').val();
-                moneyText = moneyText.replace(/\./g, "");
-                var money = parseFloat(moneyText);
-                var amount = parseFloat(amountText);
-                if (!isNaN(money) && !isNaN(amount)) {
-                    totalMoney += money * amount;
-                }
-            });
-            totalMoney = totalMoney.toLocaleString('en-US');
-            totalMoney = totalMoney.replace(/\,/g, ".")
-            $('#total').text(totalMoney);
-        }
-        // Gọi hàm tính tổng tiền khi tải trang
-        calculateTotal()
-            //load header
-        //    $('header').load('Header.html')
-            //load footer
-          //  $('footer').load('Footer.html')
-    });
+    })
 </script>
+</body>
 </html>

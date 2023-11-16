@@ -1,3 +1,7 @@
+<%@ page import="model.Product" %>
+<%@ page import="model.Image" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +29,6 @@
     <link rel="stylesheet" href="slider/owlcarousel//assets/owl.theme.default.min.css">
     <script src="https://code.jquery.com/jquery-3.7.1.js"
             integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-    <script src="jquery.min.js"></script>
     <script src="slider/owlcarousel/owl.carousel.min.js"></script>
 
     <link rel="stylesheet" href="css/Style.css">
@@ -47,9 +50,9 @@
                         <li class="px-3 pt-1"><a class="nav-link" href="#"><i
                                 class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
                         <li class="px-3 pt-1"><a class="nav-link" href="#"><i
-                                class="fa fa-instagram" aria-hidden="true"></i></i></a></li>
+                                class="fa fa-instagram" aria-hidden="true"></i></a></li>
                         <li class="px-3 pt-1"><a class="nav-link" href="#"><i
-                                class="fa fa-twitter" aria-hidden="true"></i></i></a></li>
+                                class="fa fa-twitter" aria-hidden="true"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -71,8 +74,8 @@
                                 <div class="col-md-12 col-lg-4 col-sm-12">
                                     <ul class="navbar-nav w-100  mb-2 mb-lg-0">
                                         <li class="nav-item hv "><a class="nav-link ps-0 "
-                                                                    aria-current="page" href=HomePage.html>Trang chủ</a></li>
-                                        <li class="nav-item hv"><a class="nav-link" href="IntroWebsite.html">Giới
+                                                                    aria-current="page" href=HomePage.jsp>Trang chủ</a></li>
+                                        <li class="nav-item hv"><a class="nav-link" href="IntroWebsite.jsp">Giới
                                             thiệu</a></li>
                                         <li class="nav-item dropdown hv"><a
                                                 class="nav-link dropdown-toggle" href="#" id=""
@@ -101,7 +104,7 @@
                                                         role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                     Tài khoản </a>
                                                     <ul class="dropdown-menu" aria-labelledby="">
-                                                        <li><a class="dropdown-item" href="SignIn.html">Đăng nhập</a></li>
+                                                        <li><a class="dropdown-item" href="SignIn.jsp">Đăng nhập</a></li>
                                                         <li>
                                                             <hr class="dropdown-divider">
                                                         </li>
@@ -133,7 +136,7 @@
                                                 role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             Tài khoản </a>
                                             <ul class="dropdown-menu" aria-labelledby="">
-                                                <li><a class="dropdown-item" href="SignIn.html">Đăng nhập</a></li>
+                                                <li><a class="dropdown-item" href="SignIn.jsp">Đăng nhập</a></li>
                                                 <li>
                                                     <hr class="dropdown-divider">
                                                 </li>
@@ -175,82 +178,32 @@
 </header>
 <!--end header-->
 <!--Chi tiết sản phẩm-->
+<%Product product = (Product) request.getAttribute("product");
+if(product != null) {%>
 <div class="container-fluid mgt">
     <div class="container bgcolor ">
         <!--Thông tin sản phẩm-->
         <div class="d-md-none d-sm-block d-block pt-2 " >
-            <span class="titleProduct " name ="titleProduct">Ghế gấu len cừu cao cấp</span>
+            <span class="nameProduct" name ="nameProduct"><%=product.getName()%></span>
             <p class="t" name ="amount-sold">300 Đã bán</p>
-            <p class="price" name ="price">₫1.000.000</p>
+            <p class="price" name ="price">₫<%=product.getPriceFormatted()%></p>
         </div>
         <!--end thông tin sản phẩm-->
         <div class="row">
             <div class="col-md-12 col-lg-9">
                 <div class="row">
-<!--                    <div class="d-sm-block d-block d-md-none mb-1 ">-->
-<!--                        <div id="carouselExampleIndicators" class="carousel slide">-->
-<!--                            <div class="carousel-inner justify-content-center">-->
-<!--                                <div class="carousel-item active">-->
-<!--                                    <img src="https://i.pinimg.com/564x/c4/d8/88/c4d8881ff372b46b2b9f98ae07d9886a.jpg?fbclid=IwAR3IaLiZdjN8O1zRRdalNeYNS5Wgy2529oHe5LyjCl6U_Qr0mGRw0dGaHas"-->
-<!--                                         class="d-block img_p_slide" alt="...">-->
-<!--                                </div>-->
-<!--                                <div class="carousel-item">-->
-<!--                                    <img src="https://i.pinimg.com/236x/28/02/b8/2802b872a06a99b8576dff4af0403723.jpg?fbclid=IwAR0AGtm9P18DGDrpzcnKZFmbaepyaS7_yzOTHX5jfolMiJD8VgEJ5K1HqEI"-->
-<!--                                         class="d-block img_p_slide" alt="...">-->
-<!--                                </div>-->
-<!--                                <div class="carousel-item">-->
-<!--                                    <img src="https://i.pinimg.com/236x/bb/be/90/bbbe9068896348d6ab9a7fffd06f5828.jpg?fbclid=IwAR3a0JkYfqdqHb6Angr_5owVHkV3RiKK7mdswjIv_t5ro2TUrUolQByhbGk"-->
-<!--                                         class="d-block img_p_slide" alt="...">-->
-<!--                                </div>-->
-<!--                                <div class="carousel-item">-->
-<!--                                    <img src="https://i.pinimg.com/564x/c0/8d/43/c08d432a2d040829cae57cd31c7726a7.jpg?fbclid=IwAR2V0qO9Z2t9BG7hpYX-2EGnkPdlg74cOd5qU55H7SxONL-BNLEpvqSmLck"-->
-<!--                                         class="d-block img_p_slide" alt="...">-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <button class="carousel-control-prev" type="button"-->
-<!--                                    data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">-->
-<!--                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
-<!--                                <span class="visually-hidden">Previous</span>-->
-<!--                            </button>-->
-<!--                            <button class="carousel-control-next" type="button"-->
-<!--                                    data-bs-target="#carouselExampleIndicators" data-bs-slide="next">-->
-<!--                                <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
-<!--                                <span class="visually-hidden">Next</span>-->
-<!--                            </button>-->
-<!--                        </div>-->
-<!--                    </div>-->
                     <!--Hình sản phẩm-->
                     <div class="col-lg-5 col-md-7  ">
                         <div class="row pt-3">
                             <div class="col-md-12">
-                                <img src="https://i.pinimg.com/564x/c4/d8/88/c4d8881ff372b46b2b9f98ae07d9886a.jpg" alt=""
-                                     class="img_p" id="img_center">
+                                <img src="<%=product.getImages().get(0).getUrl()%>" alt=""
+                                     class="img_p2" id="img_center">
                             </div>
                             <div class="col-md-12 mt-3">
                                 <div class="owl-carousel">
-                                    <div class="pe-2" ><img src="https://i.pinimg.com/236x/28/02/b8/2802b872a06a99b8576dff4af0403723.jpg?fbclid=IwAR0AGtm9P18DGDrpzcnKZFmbaepyaS7_yzOTHX5jfolMiJD8VgEJ5K1HqEI"
-                                                                           alt=""
-                                                                         class="img_p_detail"
-                                                                          onmouseover="changeImg('https://i.pinimg.com/236x/28/02/b8/2802b872a06a99b8576dff4af0403723.jpg?fbclid=IwAR0AGtm9P18DGDrpzcnKZFmbaepyaS7_yzOTHX5jfolMiJD8VgEJ5K1HqEI')">
-                                    </div>
-                                    <div class="pe-2" >
-                                        <img src="https://i.pinimg.com/236x/bb/be/90/bbbe9068896348d6ab9a7fffd06f5828.jpg?fbclid=IwAR3a0JkYfqdqHb6Angr_5owVHkV3RiKK7mdswjIv_t5ro2TUrUolQByhbGk"
-                                                                               alt=""
-                                                                               class="img_p_detail"
-                                                                               onmouseover="changeImg('https://i.pinimg.com/236x/bb/be/90/bbbe9068896348d6ab9a7fffd06f5828.jpg?fbclid=IwAR3a0JkYfqdqHb6Angr_5owVHkV3RiKK7mdswjIv_t5ro2TUrUolQByhbGk')">
-                                    </div >
-                                    <div class="pe-2">
-                                        <img src="https://i.pinimg.com/564x/c0/8d/43/c08d432a2d040829cae57cd31c7726a7.jpg?fbclid=IwAR2V0qO9Z2t9BG7hpYX-2EGnkPdlg74cOd5qU55H7SxONL-BNLEpvqSmLck"
-                                                                              alt=""
-                                                                              class="img_p_detail"
-                                                                              onmouseover="changeImg('https://i.pinimg.com/564x/c0/8d/43/c08d432a2d040829cae57cd31c7726a7.jpg?fbclid=IwAR2V0qO9Z2t9BG7hpYX-2EGnkPdlg74cOd5qU55H7SxONL-BNLEpvqSmLck')">
-                                    </div>
-                                    <div class="pe-2">
-                                        <img src="https://i.pinimg.com/564x/c0/8d/43/c08d432a2d040829cae57cd31c7726a7.jpg?fbclid=IwAR2V0qO9Z2t9BG7hpYX-2EGnkPdlg74cOd5qU55H7SxONL-BNLEpvqSmLck"
-                                                                              alt=""
-                                                                              class="img_p_detail"
-                                                                              onmouseover="changeImg('https://i.pinimg.com/564x/c0/8d/43/c08d432a2d040829cae57cd31c7726a7.jpg?fbclid=IwAR2V0qO9Z2t9BG7hpYX-2EGnkPdlg74cOd5qU55H7SxONL-BNLEpvqSmLck')">
-                                    </div>
+                                    <%for(Image img: product.getImages()) { %>
+                                        <div class="pe-2" ><img src="<%=img.getUrl()%>" alt="" class="img_p_detail" onmouseover="changeImg('<%=img.getUrl()%>')"></div>
+                                    <%}%>
                                 </div>
                             </div>
                         </div>
@@ -260,15 +213,15 @@
                     <div class="col-lg-7 col-md-5">
                         <div class="row mt-3">
                             <div class="col-lg-12 d-md-block d-sm-none d-none">
-                                <span class="titleProduct" name ="titleProduct">Ghế gấu len cừu cao cấp</span>
+                                <span class="nameProduct" name ="nameProduct"><%=product.getName()%></span>
                                 <p class="m-0 mb-4" ><span class="t color-gray" name ="amount-sold">300</span> <span class="t color-gray"> Đã bán</span> </p>
-                                <p class="price m-0 mb-4" name ="price">₫1.000.000</p>
+                                <p class="price m-0 mb-4" name ="price">₫<%=product.getPriceFormatted()%></p>
 
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12 ">
-                                <p class = "color-gray m-0 mb-4 "><span class = "color-gray "  id ="pavailabel">200</span> sản phẩm có sẵn</p>
+                                <p class = "color-gray m-0 mb-4 "><%=product.getQuantity()%> sản phẩm có sẵn</p>
                                 <span class="color-gray">Vận chuyển <i class="fa fa-truck" aria-hidden="true"></i> <span id ="address">Thủ Đức</span> </span>
                                 <div class="amount-product my-4">
                                     <div class="t">
@@ -301,26 +254,23 @@
                         </div>
                         <!--end thông tin sản phẩm-->
                     </div>
-                    <div class="row mt-5">
-                        <div class="col-lg-12">
-                            <h4>MÔ TẢ SẢN PHẨM</h4>
-                            <p id="description" name="description">Ghế gấu siêu xinh, phong cách Hàn Quốc với thiết kế
-                                đơn giản, cao cấp.
-                                Ghế chất liệu len cừu mềm mại, êm ái, không gây kích ứng da cho trẻ.
-                                Giúp trẻ đa dạng trò chơi, phát triển toàn diện.</p>
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-lg-12">
-                            <h4>CHI TIẾT SẢN PHẨM</h4>
-                            <p id="length" name="length">-Chiều dài:</p>
-                            <p id="width" name="width">-Chiều rộng:</p>
-                            <p id="height" name="height">-Chiều cao:</p>
-                            <p id="material" name="material">-Vật liệu:</p>
-                            <p id="color" name="color">-Màu sắc:</p>
-                        </div>
-                    </div>
                 </div>
+                    <div class="row mt-2">
+                        <div class="col-md-12">
+                            <h5>MÔ TẢ SẢN PHẨM</h5>
+                            <p class="mb-2">- <%=product.getDescription()%></p>
+                        </div>
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col-md-12">
+                            <h5>CHI TIẾT SẢN PHẨM</h5>
+                            <p>- Chiều dài: <%=product.getLength()%>cm</p>
+                            <p>- Chiều rộng: <%=product.getWidth()%>cm</p>
+                            <p>- Chiều cao: <%=product.getHeight()%>cm</p>
+                            <p>- Vật liệu: <%=product.getMaterial()%></p>
+                            <p>- Màu sắc: <%=product.getColor()%></p>
+                        </div>
+                    </div>
             </div>
             <div class="col-md-3 d-lg-block d-md-none d-sm-none d-none pt-3">
                 <h5 class="m-0 text-center" id="titleCate">SẢN PHẨM TƯƠNG TỰ</h5>
@@ -333,13 +283,14 @@
                         <h5 class="card-title">Ghế gấu lông cừu</h5>
                         <p class="card-text">
                         <p class="price">₫1.000.000</p></p>
-                        <a href="Cart.html"><i class="fa fa-shopping-cart cart" aria-hidden="true" title ="Thêm vào giỏ hàng"></i></a>
+                        <a href="Cart.jsp"><i class="fa fa-shopping-cart cart" aria-hidden="true" title ="Thêm vào giỏ hàng"></i></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<%}%>
 <!--footer-->
 <footer>
     <div class="container-fluid bgcolor-orange ">
@@ -359,10 +310,10 @@
                     <h5>VỀ CHÚNG TÔI</h5>
                     <hr class ="w-50 ">
                     <ul class="navbar-nav ">
-                        <a class="nav-link link" href="IntroWebsite.html"><li>Giới thiệu</li></a>
-                        <a class="nav-link link" href="IntroWebsite.html#policy"><li>Bảo hành</li></a>
-                        <a class="nav-link link" href="IntroWebsite.html#policy"><li>Đổi trả</li></a>
-                        <a class="nav-link link" href="IntroWebsite.html#contact"><li>Liên hệ</li></a>
+                        <a class="nav-link link" href="IntroWebsite.jsp"><li>Giới thiệu</li></a>
+                        <a class="nav-link link" href="IntroWebsite.jsp#policy"><li>Bảo hành</li></a>
+                        <a class="nav-link link" href="IntroWebsite.jsp#policy"><li>Đổi trả</li></a>
+                        <a class="nav-link link" href="IntroWebsite.jsp#contact"><li>Liên hệ</li></a>
 
                     </ul>
                 </div>
@@ -407,9 +358,9 @@
     $(document).ready(function () {
         $(".owl-carousel").owlCarousel();
         //load header
-      //  $('header').load('Header.html')
+      //  $('header').load('Header.jsp')
         //load footer
-     //   $('footer').load('Footer.html')
+     //   $('footer').load('Footer.jsp')
         var count = 0;
         var increase = $('#increase');
         var decrease = $('#decrease');

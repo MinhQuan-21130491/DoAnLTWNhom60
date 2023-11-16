@@ -1,7 +1,16 @@
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="model.Product" %>
+<%@ page import="model.Category" %>
+<%@ page import="model.CategoryService" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+<%--<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>--%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Language" content="vi">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang chủ</title>
     <link
@@ -41,9 +50,9 @@
                         <li class="px-3 pt-1"><a class="nav-link" href="#"><i
                                 class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
                         <li class="px-3 pt-1"><a class="nav-link" href="#"><i
-                                class="fa fa-instagram" aria-hidden="true"></i></i></a></li>
+                                class="fa fa-instagram" aria-hidden="true"></i></a></li>
                         <li class="px-3 pt-1"><a class="nav-link" href="#"><i
-                                class="fa fa-twitter" aria-hidden="true"></i></i></a></li>
+                                class="fa fa-twitter" aria-hidden="true"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -66,7 +75,7 @@
                                     <ul class="navbar-nav w-100  mb-2 mb-lg-0">
                                         <li class="nav-item hv "><a class="nav-link ps-0 "
                                                                     aria-current="page" href=HomePage.html>Trang chủ</a></li>
-                                        <li class="nav-item hv"><a class="nav-link" href="IntroWebsite.html">Giới
+                                        <li class="nav-item hv"><a class="nav-link" href="IntroWebsite.jsp">Giới
                                             thiệu</a></li>
                                         <li class="nav-item dropdown hv"><a
                                                 class="nav-link dropdown-toggle" href="#" id=""
@@ -95,7 +104,7 @@
                                                         role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                     Tài khoản </a>
                                                     <ul class="dropdown-menu" aria-labelledby="">
-                                                        <li><a class="dropdown-item" href="SignIn.html">Đăng nhập</a></li>
+                                                        <li><a class="dropdown-item" href="SignIn.jsp">Đăng nhập</a></li>
                                                         <li>
                                                             <hr class="dropdown-divider">
                                                         </li>
@@ -127,7 +136,7 @@
                                                 role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             Tài khoản </a>
                                             <ul class="dropdown-menu" aria-labelledby="">
-                                                <li><a class="dropdown-item" href="SignIn.html">Đăng nhập</a></li>
+                                                <li><a class="dropdown-item" href="SignIn.jsp">Đăng nhập</a></li>
                                                 <li>
                                                     <hr class="dropdown-divider">
                                                 </li>
@@ -183,24 +192,26 @@
                     </div>
                 </div>
                 <div class="typeChair" id ="typeChair" >
-                <a href="#" class="list-group-item list-group-item-action">Ghế văn phòng </a>
-                <a href="#" class="list-group-item list-group-item-action">Ghế thư giãn</a>
-                <a href="#" class="list-group-item list-group-item-action">Ghế trang trí</a>
-                <a href="#" class="list-group-item list-group-item-action">Ghế gaming</a>
+                    <%ArrayList<Category> listCate = (ArrayList<Category>) request.getAttribute("listCate");%>
+                        <%if(!listCate.isEmpty()) {%>
+                             <%for(Category c: listCate) {%>
+                                  <a href="#" class="list-group-item list-group-item-action"><%=c.getName()%></a>
+                            <%}
+                        }%>
                 </div>
             </div>
             <div class="mt-3 d-none d-md-none d-lg-block ">
                 <h5 class="m-0 text-center" id="titleCate">SẢN PHẨM MỚI NHẤT</h5>
                 <hr class = "mt-2 mb-2"/>
                 <div class="card">
-                    <a href="DetailProduct.html">
+                    <a href="DetailProduct.jsp">
                         <img src=" https://i.pinimg.com/564x/c4/d8/88/c4d8881ff372b46b2b9f98ae07d9886a.jpg" class="card-img-top img_p" alt="...">
                     </a>
                     <div class="card-body">
                         <h5 class="card-title">Ghế gấu len cừu cao cấp</h5>
                         <p class="card-text">
                         <p class="price">₫1.000.000</p></p>
-                        <a href="Cart.html"><i class="fa fa-shopping-cart cart" aria-hidden="true" title ="Thêm vào giỏ hàng"></i></a>
+                        <a href="Cart.jsp"><i class="fa fa-shopping-cart cart" aria-hidden="true" title ="Thêm vào giỏ hàng"></i></a>
                     </div>
                 </div>
             </div>
@@ -208,14 +219,14 @@
                 <h5 class="m-0 text-center" >SẢN PHẨM BÁN CHẠY NHẤT</h5>
                 <hr class = "mt-2 mb-2"/>
                 <div class="card">
-                    <a href="DetailProduct.html">
+                    <a href="DetailProduct.jsp">
                         <img src="https://down-vn.img.susercontent.com/file/sg-11134201-7r9a2-llujnaskifkp71" class="card-img-top img_p" alt="...">
                     </a>
                     <div class="card-body">
                         <h5 class="card-title">Ghế xoay</h5>
                         <p class="card-text">
                         <p class="price">₫1.000.000</p></p>
-                        <a href="Cart.html"><i class="fa fa-shopping-cart cart" aria-hidden="true" title ="Thêm vào giỏ hàng"></i></a>
+                        <a href="Cart.jsp"><i class="fa fa-shopping-cart cart" aria-hidden="true" title ="Thêm vào giỏ hàng"></i></a>
                     </div>
                 </div>
             </div>
@@ -342,88 +353,29 @@
             </div>
             <!--end carousel-->
             <!--product-->
-            <div class="row mt-3">
-                <h5 class = "m-0 ">DANH SÁCH SẢN PHẨM</h5>
-                <div class="col-lg-4 col-sm-6 mt-3">
-                    <div class="card">
-                        <a href="DetailProduct.html">
-                        <img src=" https://i.pinimg.com/236x/27/50/7c/27507ccedd97a1940a2d19e09a3e593c.jpg" class="card-img-top img_p" alt="...">
-                        </a>
-                        <div class="card-body">
-                            <h5 class="card-title">Ghế Papasan</h5>
-                            <p class="card-text">
-                            <p class="price">₫1.000.000</p></p>
-                            <a href="Cart.html"><i class="fa fa-shopping-cart cart" aria-hidden="true" title ="Thêm vào giỏ hàng"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 mt-3">
-                    <div class="card">
-                        <a href="DetailProduct.html">
-                        <img src="https://homeoffice.com.vn/images/detailed/47/ghe-sofa-don-vang-dong-nem-xanh-gsd68046-01_hq87-34.jpeg" class="card-img-top img_p" alt="...">
-                        </a>
-                        <div class="card-body">
-                            <h5 class="card-title">Ghế tựa trang trí </h5>
-                            <p class="card-text">
-                            <p class="price">₫1.000.000</p></p>
-                            <a href="Cart.html"><i class="fa fa-shopping-cart cart" aria-hidden="true" title ="Thêm vào giỏ hàng"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 mt-3">
-                    <div class="card">
-                        <a href="DetailProduct.html">
-                        <img src="https://down-vn.img.susercontent.com/file/sg-11134201-22120-grkmwu1es6kv78" class="card-img-top img_p" alt="...">
-                        </a>
-                        <div class="card-body">
-                            <h5 class="card-title">Ghế máy tính trang trí </h5>
-                            <p class="card-text">
-                            <p class="price">₫1.000.000</p></p>
-                            <a href="Cart.html"><i class="fa fa-shopping-cart cart" aria-hidden="true" title ="Thêm vào giỏ hàng"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 mt-3">
-                    <div class="card">
-                        <a href="DetailProduct.html">
-                        <img src="https://down-vn.img.susercontent.com/file/sg-11134201-22120-grkmwu1es6kv78" class="card-img-top img_p" alt="...">
-                        </a>
-                        <div class="card-body">
-                            <h5 class="card-title">Ghế máy tính trang trí </h5>
-                            <p class="card-text">
-                            <p class="price">₫1.000.000</p></p>
-                            <a href="Cart.html"><i class="fa fa-shopping-cart cart" aria-hidden="true" title ="Thêm vào giỏ hàng"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 mt-3">
-                    <div class="card">
-                        <a href="DetailProduct.html">
-                        <img src="https://down-vn.img.susercontent.com/file/sg-11134201-22120-grkmwu1es6kv78" class="card-img-top img_p" alt="...">
-                        </a>
-                        <div class="card-body">
-                            <h5 class="card-title">Ghế máy tính trang trí </h5>
-                            <p class="card-text">
-                            <p class="price">₫1.000.000</p></p>
-                            <a href="Cart.html"><i class="fa fa-shopping-cart cart" aria-hidden="true" title ="Thêm vào giỏ hàng"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 mt-3">
-                    <div class="card">
-                        <a href="DetailProduct.html">
-                        <img src="https://down-vn.img.susercontent.com/file/sg-11134201-22120-grkmwu1es6kv78" class="card-img-top img_p" alt="...">
-                        </a>
-                        <div class="card-body">
-                            <h5 class="card-title">Ghế máy tính trang trí </h5>
-                            <p class="card-text">
-                            <p class="price">₫1.000.000</p></p>
-                            <a href="Cart.html"><i class="fa fa-shopping-cart cart" aria-hidden="true" title ="Thêm vào giỏ hàng"></i></a>
-                        </div>
-                    </div>
-                </div>
+            <h5 class = "mt-3 ">DANH SÁCH SẢN PHẨM</h5>
+            <div class="row" id="content">
+                  <%ArrayList<Product> listProduct = (ArrayList<Product>) request.getAttribute("listP");%>
+                    <%if(!listProduct.isEmpty()) {%>
+                        <%for(Product p: listProduct) {%>
+                            <div class="col-lg-4 col-sm-6 mt-3 product">
+                                <div class="card">
+                                    <a href="detail-product?pid=<%=p.getIdProduct()%>">
+                                        <img src="<%=p.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="...">
+                                    </a>
+                                    <div class="card-body">
+                                        <h5 class="card-title"><%=p.getName()%></h5>
+                                        <p class="card-text">
+                                        <p class="price">₫<%=p.getPriceFormatted()%></p>
+                                        <a href="Cart.jsp"><i class="fa fa-shopping-cart cart" aria-hidden="true" title="Thêm vào giỏ hàng"></i></a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        <%}
+                    }%>
             </div>
-            <button class="mt-3 bgcolor-orange border border-0 rounded-1 px-3 py-2">Tải thêm</button>
+            <button class="mt-3 bgcolor-orange border border-0 rounded-1 px-3 py-2" onclick="loadMore()">Tải thêm</button>
         </div>
 
     </div>
@@ -449,10 +401,10 @@
                     <h5>VỀ CHÚNG TÔI</h5>
                     <hr class ="w-50 ">
                     <ul class="navbar-nav ">
-                        <a class="nav-link link" href="IntroWebsite.html"><li>Giới thiệu</li></a>
-                        <a class="nav-link link" href="IntroWebsite.html#policy"><li>Bảo hành</li></a>
-                        <a class="nav-link link" href="IntroWebsite.html#policy"><li>Đổi trả</li></a>
-                        <a class="nav-link link" href="IntroWebsite.html#contact"><li>Liên hệ</li></a>
+                        <a class="nav-link link" href="IntroWebsite.jsp"><li>Giới thiệu</li></a>
+                        <a class="nav-link link" href="IntroWebsite.jsp#policy"><li>Bảo hành</li></a>
+                        <a class="nav-link link" href="IntroWebsite.jsp#policy"><li>Đổi trả</li></a>
+                        <a class="nav-link link" href="IntroWebsite.jsp#contact"><li>Liên hệ</li></a>
 
                     </ul>
                 </div>
@@ -498,11 +450,22 @@
                 typeChair.css("display", "none");
             }
         })
-        //load header
-       // $('header').load('Header.html')
-        //load footer
-       // $('footer').load('Footer.html')
+
     });
+    function loadMore() {
+            var count = document.getElementsByClassName("product").length;
+            $.ajax({
+                url: "loadMore",
+                method: "GET",
+                data: {
+                    exits: count
+                },
+                success: function(data){
+                var row = document.getElementById("content");
+                row.innerHTML += data;
+                },
+            });
+    }
 </script>
 </body>
 </html>

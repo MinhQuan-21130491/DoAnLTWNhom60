@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <div class="container-fluid bgcolor-orange ">
@@ -17,10 +19,10 @@
                 <h5>VỀ CHÚNG TÔI</h5>
                 <hr class ="w-50 ">
                 <ul class="navbar-nav ">
-                    <a class="nav-link link" href="IntroWebsite.html"><li>Giới thiệu</li></a>
-                    <a class="nav-link link" href="IntroWebsite.html#policy"><li>Bảo hành</li></a>
-                    <a class="nav-link link" href="IntroWebsite.html#policy"><li>Đổi trả</li></a>
-                    <a class="nav-link link" href="IntroWebsite.html#contact"><li>Liên hệ</li></a>
+                    <a class="nav-link link" href="IntroWebsite.jsp"><li>Giới thiệu</li></a>
+                    <a class="nav-link link" href="IntroWebsite.jsp#policy"><li>Bảo hành</li></a>
+                    <a class="nav-link link" href="IntroWebsite.jsp#policy"><li>Đổi trả</li></a>
+                    <a class="nav-link link" href="IntroWebsite.jsp#contact"><li>Liên hệ</li></a>
 
                 </ul>
             </div>

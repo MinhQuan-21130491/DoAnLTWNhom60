@@ -1,4 +1,5 @@
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,9 +45,9 @@
                         <li class="px-3 pt-1"><a class="nav-link" href="#"><i
                                 class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
                         <li class="px-3 pt-1"><a class="nav-link" href="#"><i
-                                class="fa fa-instagram" aria-hidden="true"></i></i></a></li>
+                                class="fa fa-instagram" aria-hidden="true"></i></a></li>
                         <li class="px-3 pt-1"><a class="nav-link" href="#"><i
-                                class="fa fa-twitter" aria-hidden="true"></i></i></a></li>
+                                class="fa fa-twitter" aria-hidden="true"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -68,8 +69,8 @@
                                 <div class="col-md-12 col-lg-4 col-sm-12">
                                     <ul class="navbar-nav w-100  mb-2 mb-lg-0">
                                         <li class="nav-item hv "><a class="nav-link ps-0 "
-                                                                    aria-current="page" href=HomePage.html>Trang chủ</a></li>
-                                        <li class="nav-item hv"><a class="nav-link" href="IntroWebsite.html">Giới
+                                                                    aria-current="page" href=HomePage.jsp>Trang chủ</a></li>
+                                        <li class="nav-item hv"><a class="nav-link" href="IntroWebsite.jsp">Giới
                                             thiệu</a></li>
                                         <li class="nav-item dropdown hv"><a
                                                 class="nav-link dropdown-toggle" href="#" id=""
@@ -98,7 +99,7 @@
                                                         role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                     Tài khoản </a>
                                                     <ul class="dropdown-menu" aria-labelledby="">
-                                                        <li><a class="dropdown-item" href="SignIn.html">Đăng nhập</a></li>
+                                                        <li><a class="dropdown-item" href="SignIn.jsp">Đăng nhập</a></li>
                                                         <li>
                                                             <hr class="dropdown-divider">
                                                         </li>
@@ -130,7 +131,7 @@
                                                 role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             Tài khoản </a>
                                             <ul class="dropdown-menu" aria-labelledby="">
-                                                <li><a class="dropdown-item" href="SignIn.html">Đăng nhập</a></li>
+                                                <li><a class="dropdown-item" href="SignIn.jsp">Đăng nhập</a></li>
                                                 <li>
                                                     <hr class="dropdown-divider">
                                                 </li>
@@ -454,7 +455,7 @@
                                             <div class="row pt-2">
                                                 <div class="col-md-12 col-sm-8 col-8">
                                                     <img src="https://anphat.com.vn/media/product/40998_sihoo_m18_black_grey__2_.JPG" alt=""
-                                                         class="img_p" id="img_center">
+                                                         class="img_p2" id="img_center">
                                                 </div>
                                                 <div class="col-md-12 mt-3">
                                                     <div class="owl-carousel">
@@ -1034,10 +1035,10 @@
                     <h5>VỀ CHÚNG TÔI</h5>
                     <hr class ="w-50 ">
                     <ul class="navbar-nav ">
-                        <a class="nav-link link" href="IntroWebsite.html"><li>Giới thiệu</li></a>
-                        <a class="nav-link link" href="IntroWebsite.html#policy"><li>Bảo hành</li></a>
-                        <a class="nav-link link" href="IntroWebsite.html#policy"><li>Đổi trả</li></a>
-                        <a class="nav-link link" href="IntroWebsite.html#contact"><li>Liên hệ</li></a>
+                        <a class="nav-link link" href="IntroWebsite.jsp"><li>Giới thiệu</li></a>
+                        <a class="nav-link link" href="IntroWebsite.jsp#policy"><li>Bảo hành</li></a>
+                        <a class="nav-link link" href="IntroWebsite.jsp#policy"><li>Đổi trả</li></a>
+                        <a class="nav-link link" href="IntroWebsite.jsp#contact"><li>Liên hệ</li></a>
 
                     </ul>
                 </div>
@@ -1076,9 +1077,9 @@
 <script>
     $(document).ready(function () {
         //load header
-        // $('header').load('Header.html')
+        // $('header').load('Header.jsp')
         //load footer
-        // $('footer').load('Footer.html')
+        // $('footer').load('Footer.jsp')
         // ẩn hiển danh mục quản lý
         $('#cate').click(function () {
             var typeManage = $('#typeManage');

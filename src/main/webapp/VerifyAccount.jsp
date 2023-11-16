@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,7 +59,7 @@
         <div class="signup-content">
             <form id="verify-form" class="signup-form" action="" onsubmit="return verifyAccount()">
                 <div class="text-end pe-4">
-                    <a class="text-decoration-none" href="HomePage.html">Bỏ qua</a>
+                    <a class="text-decoration-none" href="HomePage.jsp">Bỏ qua</a>
                 </div>
                 <img src="images/verify.jpg" alt="" width="400px">
                 <h5>Xác thực tài khoản của bạn</h5>
