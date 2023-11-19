@@ -35,6 +35,10 @@
     <link rel="stylesheet" href="css/Style.css">
 </head>
 <body>
+<%
+    String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+            + request.getContextPath();
+%>
 <!--header-->
 <header>
         <jsp:include page="Header.jsp"></jsp:include>
@@ -56,9 +60,9 @@
                 </div>
                 <div class="typeChair" id ="typeChair" >
                     <%ArrayList<Category> listCate = (ArrayList<Category>) request.getAttribute("listCate");%>
-                        <%if(!listCate.isEmpty()) {%>
+                        <%if(!listCate.isEmpty() && listCate != null) {%>
                              <%for(Category c: listCate) {%>
-                                  <a href="#" class="list-group-item list-group-item-action"><%=c.getName()%></a>
+                                  <a href="#" class="list-group-item list-group-item-action lt" onclick="loadProductByIdCate('<%=c.getId()%>')"><%=c.getName()%></a>
                             <%}
                         }%>
                 </div>
@@ -82,7 +86,7 @@
                 <h5 class="m-0 text-center" >SẢN PHẨM BÁN CHẠY NHẤT</h5>
                 <hr class = "mt-2 mb-2"/>
                 <div class="card">
-                    <a href="DetailProduct.jsp">
+                    <a href="<%=url%>/DetailProduct.jsp">
                         <img src="https://down-vn.img.susercontent.com/file/sg-11134201-7r9a2-llujnaskifkp71" class="card-img-top img_p" alt="...">
                     </a>
                     <div class="card-body">
@@ -219,11 +223,11 @@
             <h5 class = "mt-3 ">DANH SÁCH SẢN PHẨM</h5>
             <div class="row" id="content">
                   <%ArrayList<Product> listProduct = (ArrayList<Product>) request.getAttribute("listP");%>
-                    <%if(!listProduct.isEmpty()) {%>
+                    <%if(!listProduct.isEmpty() && listProduct != null) {%>
                         <%for(Product p: listProduct) {%>
                             <div class="col-lg-4 col-sm-6 mt-3 product">
                                 <div class="card">
-                                    <a href="detail-product?pid=<%=p.getIdProduct()%>">
+                                    <a href="<%=url%>/detail-product?pid=<%=p.getIdProduct()%>">
                                         <img src="<%=p.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="...">
                                     </a>
                                     <div class="card-body">
@@ -260,21 +264,40 @@
                 typeChair.css("display", "none");
             }
         })
-
+        $('.lt').click(function () {
+            $('.lt').css('color', '');
+            $(this).css('color', '#f68e2e')
+        })
     });
-    function loadMore() {
+    var idCateCurrent;
+    function loadMore(idCate) {
             var count = document.getElementsByClassName("product").length;
             $.ajax({
                 url: "loadMore",
                 method: "GET",
                 data: {
-                    exits: count
+                    exits: count,
+                    idCate: idCateCurrent
                 },
                 success: function(data){
                 var row = document.getElementById("content");
                 row.innerHTML += data;
                 },
             });
+    }
+    function loadProductByIdCate(idCate) {
+        $.ajax({
+            url: "loadProductByIdCate",
+            method: "GET",
+            data: {
+                cid: idCate
+            },
+            success: function(data){
+                var row = document.getElementById("content");
+                row.innerHTML = data;
+            },
+        });
+        idCateCurrent = idCate;
     }
 </script>
 </body>

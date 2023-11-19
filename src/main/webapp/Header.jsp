@@ -2,6 +2,10 @@
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
+<%
+    String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+            + request.getContextPath();
+%>
     <div class="container-fluid bgcolor-orange" >
         <div class="container ">
             <div class="row ">
@@ -82,10 +86,9 @@
 
                                 </div>
                                 <div class="col-lg-6 col-sm-8 col-8 bd-full  rounded-2 d-md-none d-sm-none d-none d-lg-block">
-                                    <form class = "">
+                                    <form action="<%=url%>/loadProductByName" method="get">
                                         <div class="form-search">
-                                            <input class="form-control border-0" type="search"
-                                                   placeholder="Nội dung tìm kiếm" aria-label="Search">
+                                            <input class="form-control border-0" type="text" placeholder="Nội dung tìm kiếm" aria-label="Search" name ="search">
                                             <button class="btn border-0" type="submit">
                                                 <i class="fa fa-search" aria-hidden="true"></i>
                                             </button>
@@ -119,10 +122,9 @@
                 <div class="col-md-10 col-sm-10 col-10 d-lg-none " style="padding: 11px 0" >
                     <div class="row">
                         <div class="col-md-10 col-sm-10 col-10 bd-full rounded-2   ">
-                            <form class = "">
+                            <form action="<%=url%>/loadProductByName" method="get">
                                 <div class="form-search">
-                                    <input class="form-control border-0" type="search"
-                                           placeholder="Nội dung tìm kiếm" aria-label="Search">
+                                    <input class="form-control border-0" type="text " placeholder="Nội dung tìm kiếm" aria-label="Search" name ="search">
                                     <button class="btn border-0" type="submit">
                                         <i class="fa fa-search" aria-hidden="true"></i>
                                     </button>

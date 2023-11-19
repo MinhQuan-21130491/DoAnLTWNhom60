@@ -13,6 +13,10 @@ public class CategoryService {
             instance = new CategoryService();
         return instance;
     }
+    /*
+     load danh sách danh mục sản phẩm
+     @return ArrayList<Category>
+    */
     public ArrayList<Category> listCategory() {
         return DAOCategory.listCategory();
     }

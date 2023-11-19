@@ -10,6 +10,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class DAOCategory {
+    /*
+   load danh sách danh mục sản phẩm
+   @return ArrayList<Category>
+    */
     public static ArrayList<Category> listCategory() {
         ArrayList<Category> list = new ArrayList<>();
         Connection connection = JDBCUtil.getConnection();
