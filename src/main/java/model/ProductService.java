@@ -63,6 +63,15 @@ public class ProductService {
         }
         return listProduct;
     }
+    /*Lấy ra sản phẩm mới nhất dựa vào id lớn nhất của sản phẩm
+    @return Product
+    */
+    public Product latestProduct() {
+        Product product = DAOProduct.latestProduct();
+        ArrayList<Image> listImageOfProduct = DAOProduct.listImageOfProduct(product);
+        product.setImages(listImageOfProduct);
+        return product;
+    }
     public static void main(String[] args) {
 //        System.out.println(ProductService.getInstance().listSixProduct(0));
     }

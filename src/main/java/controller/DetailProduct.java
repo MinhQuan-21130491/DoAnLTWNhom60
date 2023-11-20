@@ -1,4 +1,6 @@
 package controller;
+import model.Category;
+import model.CategoryService;
 import model.Product;
 import model.ProductService;
 import javax.servlet.ServletException;

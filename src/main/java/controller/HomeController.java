@@ -22,6 +22,10 @@ public class HomeController extends HttpServlet {
         //load danh mục
         ArrayList<Category> listCategory = CategoryService.getInstance().listCategory();
         request.setAttribute("listCate", listCategory);
+        //load product mới nhất
+        Product latestProduct = ProductService.getInstance().latestProduct();
+        request.setAttribute("latestP", latestProduct);
+        request.setAttribute("hiddenLoadmore", "block");
         try {
             request.getRequestDispatcher("HomePage.jsp").forward(request,response);
         } catch (ServletException e) {

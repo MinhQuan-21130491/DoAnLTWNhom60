@@ -49,7 +49,7 @@
     <div class="row">
         <!-- menu left -->
         <div class="col-lg-3">
-            <div class="list-group d-none d-md-none d-lg-block ">
+            <div class="list-group ">
                 <div class="cate" id="cate">
                     <div class="icon-bar my-2 py-1">
                         <i class="fa fa-bars" aria-hidden="true"></i>
@@ -71,15 +71,18 @@
                 <h5 class="m-0 text-center" id="titleCate">SẢN PHẨM MỚI NHẤT</h5>
                 <hr class = "mt-2 mb-2"/>
                 <div class="card">
-                    <a href="DetailProduct.jsp">
-                        <img src=" https://i.pinimg.com/564x/c4/d8/88/c4d8881ff372b46b2b9f98ae07d9886a.jpg" class="card-img-top img_p" alt="...">
-                    </a>
-                    <div class="card-body">
-                        <h5 class="card-title">Ghế gấu len cừu cao cấp</h5>
-                        <p class="card-text">
-                        <p class="price">₫1.000.000</p></p>
-                        <a href="Cart.jsp"><i class="fa fa-shopping-cart cart" aria-hidden="true" title ="Thêm vào giỏ hàng"></i></a>
-                    </div>
+                    <%Product latestProduct = (Product) request.getAttribute("latestP");
+                      if(latestProduct != null) {%>
+                            <a href="<%=url%>/detail-product?pid=<%=latestProduct.getIdProduct()%>">
+                                <img src="<%=latestProduct.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="">
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title"><%=latestProduct.getName()%></h5>
+                                <p class="card-text">
+                                <p class="price">₫<%=latestProduct.getPriceFormatted()%></p>
+                                <a href="Cart.jsp"><i class="fa fa-shopping-cart cart" aria-hidden="true" title ="Thêm vào giỏ hàng"></i></a>
+                            </div>
+                    <%}%>
                 </div>
             </div>
             <div class="mt-3 d-none d-md-none d-lg-block     ">
@@ -100,7 +103,7 @@
         </div>
         <!-- end menu left -->
         <!-- carousel -->
-        <div class="col-lg-9">
+        <div class="col-lg-9 ">
             <div class="filter d-flex text-center">
                 <div class="pt-2 pe-4">
                     <i class="fa fa-filter" aria-hidden="true"></i> <span>Lọc:</span>
@@ -182,7 +185,7 @@
                     </ul>
                 </div>
             </div>
-            <div id="carouselExampleIndicators" class="carousel slide"
+            <div id="carouselExampleIndicators" class="carousel slide d-none d-md-none d-lg-block "
                  data-bs-ride="carousel">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleIndicators"
@@ -220,12 +223,15 @@
             </div>
             <!--end carousel-->
             <!--product-->
-            <h5 class = "mt-3 ">DANH SÁCH SẢN PHẨM</h5>
+            <h5 class = "mt-3 mb-0">DANH SÁCH SẢN PHẨM</h5>
+            <%String exits = request.getAttribute("exits") +"";
+              exits = (exits.equals("null"))?" ":exits ;%>
+            <h6 class="text-center text-color mt-2 mb-0" id="exits"><%=exits%></h6>
             <div class="row" id="content">
                   <%ArrayList<Product> listProduct = (ArrayList<Product>) request.getAttribute("listP");%>
                     <%if(!listProduct.isEmpty() && listProduct != null) {%>
                         <%for(Product p: listProduct) {%>
-                            <div class="col-lg-4 col-sm-6 mt-3 product">
+                            <div class="col-lg-4 col-sm-6 col-6 mt-3 product">
                                 <div class="card">
                                     <a href="<%=url%>/detail-product?pid=<%=p.getIdProduct()%>">
                                         <img src="<%=p.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="...">
@@ -242,7 +248,8 @@
                         <%}
                     }%>
             </div>
-            <button class="mt-3 bgcolor-orange border border-0 rounded-1 px-3 py-2" onclick="loadMore()">Tải thêm</button>
+            <%String display = request.getAttribute("hiddenLoadmore") +"";%>
+            <button class="mt-3 bgcolor-orange border border-0 rounded-1 px-3 py-2 d-<%=display%>" id="loadMore" onclick="loadMore()">Tải thêm</button>
         </div>
 
     </div>
@@ -269,23 +276,25 @@
             $(this).css('color', '#f68e2e')
         })
     });
-    var idCateCurrent;
-    function loadMore(idCate) {
-            var count = document.getElementsByClassName("product").length;
-            $.ajax({
-                url: "loadMore",
-                method: "GET",
-                data: {
-                    exits: count,
-                    idCate: idCateCurrent
-                },
-                success: function(data){
-                var row = document.getElementById("content");
-                row.innerHTML += data;
-                },
-            });
+        var idCateCurrent;
+        function loadMore() {
+        var count = document.getElementsByClassName("product").length;
+        $.ajax({
+        url: "loadMore",
+        method: "GET",
+        data: {
+        exits: count,
+        idCate: idCateCurrent
+    },
+        success: function(data){
+        var row = document.getElementById("content");
+        row.innerHTML += data;
+    },
+    });
     }
-    function loadProductByIdCate(idCate) {
+        function loadProductByIdCate(idCate) {
+        document.getElementById("loadMore").classList.remove("d-none")
+        document.getElementById("exits").classList.add("d-none");
         $.ajax({
             url: "loadProductByIdCate",
             method: "GET",

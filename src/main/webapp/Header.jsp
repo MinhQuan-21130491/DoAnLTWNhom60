@@ -1,3 +1,5 @@
+<%@ page import="model.Category" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -40,32 +42,11 @@
                                 <span class="navbar-toggler-icon"></span>
                             </button>
                             <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                                <div class="col-md-12 col-lg-4 col-sm-12">
+                                <div class="col-md-12 col-lg-3 col-sm-12">
                                     <ul class="navbar-nav w-100  mb-2 mb-lg-0">
-                                        <li class="nav-item hv "><a class="nav-link ps-0 "
-                                                                    aria-current="page" href=HomePage.html>Trang chủ</a></li>
-                                        <li class="nav-item hv"><a class="nav-link" href="IntroWebsite.jsp">Giới
-                                            thiệu</a></li>
-                                        <li class="nav-item dropdown hv"><a
-                                                class="nav-link dropdown-toggle" href="#" id=""
-                                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Sản phẩm </a>
-                                            <ul class="dropdown-menu" aria-labelledby="">
-                                                <li><a class="dropdown-item" href="#">Ghế văn phòng</a></li>
-                                                <li>
-                                                    <hr class="dropdown-divider">
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Ghế thư giãn</a></li>
-                                                <li>
-                                                    <hr class="dropdown-divider">
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Ghế trang trí</a></li>
-                                                <li>
-                                                    <hr class="dropdown-divider">
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Ghế gaming</a></li>
-                                            </ul>
-                                        </li>
+                                        <li class="nav-item hv "><a class="nav-link ps-0 " aria-current="page" href=HomePage.html>Trang chủ</a></li>
+                                        <li class="nav-item hv"><a class="nav-link" href="IntroWebsite.jsp">Giới thiệu</a></li>
+                                        <li class="nav-item hv"><a class="nav-link" href="IntroWebsite.jsp#contact">Liên hệ</a></li>
                                         <li class="nav-item hv d-lg-none ">
                                             <ul class="navbar-nav justify-content-end ">
                                                 <li class="nav-item dropdown hv"><a
@@ -85,7 +66,7 @@
                                     </ul>
 
                                 </div>
-                                <div class="col-lg-6 col-sm-8 col-8 bd-full  rounded-2 d-md-none d-sm-none d-none d-lg-block">
+                                <div class="col-lg-7 col-sm-8 col-8 bd-full  rounded-2 d-md-none d-sm-none d-none d-lg-block">
                                     <form action="<%=url%>/loadProductByName" method="get">
                                         <div class="form-search">
                                             <input class="form-control border-0" type="text" placeholder="Nội dung tìm kiếm" aria-label="Search" name ="search">

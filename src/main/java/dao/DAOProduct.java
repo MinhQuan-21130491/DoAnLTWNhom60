@@ -77,6 +77,7 @@ public class DAOProduct {
                 int quantity = resultSet.getInt("quantity");
                 product = new Product(idProduct, idCate, name, priceImport, price,description,color,material,width,height,lenght,quantity);
             }
+            JDBCUtil.closeConnection(connection);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -100,6 +101,7 @@ public class DAOProduct {
                 Image img = new Image(url);
                 re.add(img);
             }
+            JDBCUtil.closeConnection(connection);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -138,6 +140,7 @@ public class DAOProduct {
                 Product product = new Product(idProduct, idCate, name, priceImport, price,description,color,material,width,height,lenght,quantity);
                 list.add(product);
             }
+            JDBCUtil.closeConnection(connection);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -151,12 +154,22 @@ public class DAOProduct {
     public static ArrayList<Product> listProductByName(String nameProduct) {
         ArrayList<Product> list = new ArrayList<>();
         Connection connection = JDBCUtil.getConnection();
-        String sql = "select p.id, p.idCate, p.name, p.price, p.priceImport, p.quantity, p.color, p.material, p.description, p.height, p.width, p.length"+
-        " from products as p"+
-        " where p.name LIKE '%' ? '%'";
+        // Tách từng từ trong chuỗi tìm kiếm
+        String[] tuKhoa = nameProduct.split("\\s+");
+        // Xây dựng câu truy vấn SQL động dựa trên số lượng từ khóa
+        StringBuilder sqlBuilder = new StringBuilder("SELECT p.id, p.idCate, p.name, p.price, p.priceImport, p.quantity, p.color, p.material, p.description, p.height, p.width, p.length FROM products AS p WHERE");
+        for (int i = 0; i < tuKhoa.length; i++) {
+            sqlBuilder.append(" p.name COLLATE utf8mb4_general_ci LIKE ?");
+            if (i < tuKhoa.length - 1) {
+                sqlBuilder.append(" AND");
+            }
+        }
         try {
-            PreparedStatement pr = connection.prepareStatement(sql);
-            pr.setString(1, nameProduct);
+            PreparedStatement pr = connection.prepareStatement(sqlBuilder.toString());
+            // Thiết lập tham số cho mỗi từ khóa
+            for (int i = 0; i < tuKhoa.length; i++) {
+                pr.setString(i + 1, "%" + tuKhoa[i] + "%");
+            }
             ResultSet resultSet = pr.executeQuery();
             while (resultSet.next()) {
                 int idProduct = resultSet.getInt("id");
@@ -169,18 +182,54 @@ public class DAOProduct {
                 String material = resultSet.getString("material");
                 double width = resultSet.getDouble("width");
                 double height = resultSet.getDouble("height");
-                double lenght = resultSet.getDouble("length");
+                double length = resultSet.getDouble("length");
                 int quantity = resultSet.getInt("quantity");
-                Product product = new Product(idProduct, idCate, name, priceImport, price,description,color,material,width,height,lenght,quantity);
+                Product product = new Product(idProduct, idCate, name, priceImport, price, description, color, material, width, height, length, quantity);
                 list.add(product);
             }
+            JDBCUtil.closeConnection(connection);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return list;
     }
+    /*Lấy ra sản phẩm mới nhất dựa vào id lớn nhất của sản phẩm
+    @return Product
+    */
+    public static Product latestProduct() {
+        Product product = null;
+        Connection connection = JDBCUtil.getConnection();
+        String sql = "select p.id,p.idCate, p.name, p.price, p.priceImport, p.quantity, p.color, p.material, p.description, p.height, p.width, p.length " +
+                "from products as p " +
+                "where p.id = (select Max(id)" +
+                "              from products) ";
+        try {
+        PreparedStatement pr = connection.prepareStatement(sql);
+        ResultSet resultSet = pr.executeQuery();
+        while (resultSet.next()) {
+            int idProduct = resultSet.getInt("id");
+            int idCate = resultSet.getInt("idCate");
+            String name = resultSet.getString("name");
+            int priceImport = resultSet.getInt("priceImport");
+            int price = resultSet.getInt("price");
+            String description = resultSet.getString("description");
+            String color = resultSet.getString("color");
+            String material = resultSet.getString("material");
+            double width = resultSet.getDouble("width");
+            double height = resultSet.getDouble("height");
+            double length = resultSet.getDouble("length");
+            int quantity = resultSet.getInt("quantity");
+            product = new Product(idProduct, idCate, name, priceImport, price, description, color, material, width, height, length, quantity);
+        }
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
+    }
+        return product;
+    }
+
+
 
     public static void main(String[] args) {
-        System.out.println(DAOProduct.listProductByName("bập bênh"));
+        System.out.println(latestProduct());
     }
  }
