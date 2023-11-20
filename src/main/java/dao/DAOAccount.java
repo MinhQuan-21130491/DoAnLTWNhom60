@@ -189,6 +189,21 @@ public class DAOAccount {
         JDBCUtil.closeConnection(connection);
         return verifyAccount;
     }
+    public static int updateVerifyCode(int newCode, int idAccount) {
+        int re = 0;
+        Connection connection = JDBCUtil.getConnection();
+        String sql ="update verify_account set verifyCode =? where idAccount =?";
+        try {
+            PreparedStatement pr = connection.prepareStatement(sql);
+            pr.setInt(1, newCode);
+            pr.setInt(2, idAccount);
+            re = pr.executeUpdate();
+            JDBCUtil.closeConnection(connection);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return re;
+    }
 
     public static void main(String[] args) {
     System.out.println(selectVerifyAccountByIdAccount(14));

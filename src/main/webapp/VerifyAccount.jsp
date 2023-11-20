@@ -54,15 +54,16 @@
     </div>
 </header>
 <section class="signup mt-5">
-    <%String email =(String)request.getAttribute("email");
+    <%String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+      String email =(String)request.getAttribute("email");
       String err =(String)request.getAttribute("errCode");
       email = (email == null)?" ": email;
       err = (err == null)?" ": err;%>
     <div class="contain">
         <div class="signup-content">
-            <form id="verify-form" class="signup-form" action="verifyAccount" onsubmit="return verifyAccount()">
+            <form id="verify-form" class="signup-form" action="<%=url%>/verifyAccount" method ="GET" onsubmit="return verifyAccount()">
                 <div class="text-end pe-4">
-                    <a class="text-decoration-none" href="HomePage.jsp">Bỏ qua</a>
+                    <a class="text-decoration-none" href="<%=url%>/SignIn.jsp">Bỏ qua</a>
                 </div>
                 <img src="images/verify.jpg" alt="" width="400px">
                 <h5>Xác thực tài khoản của bạn</h5>
@@ -75,7 +76,7 @@
                         <span class="text-danger" id="errVerify"><%=err%></span>
                         <input type="text" class="form-input" placeholder="Nhập mã xác thực ở đây" name="verify" id="verify"/>
                     </div>
-                    <p class="text-group"><a href="">Nhấn vào đây</a> để nhận lại mã xác thực</p>
+                    <p class="text-group"><a href="<%=url%>/reVerifyCode?email=<%=email%>">Nhấn vào đây</a> để nhận lại mã xác thực</p>
                 </div>
                 <div class="form-group">
                     <button type="submit" id="confirm" >XÁC NHẬN</button>
