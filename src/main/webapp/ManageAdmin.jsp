@@ -1,4 +1,5 @@
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,150 +22,17 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
           integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/Style.css">
+    <link rel="stylesheet" href="slider/owlcarousel/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="slider/owlcarousel//assets/owl.theme.default.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="jquery.min.js"></script>
+    <script src="slider/owlcarousel/owl.carousel.min.js"></script>    <link rel="stylesheet" href="css/Style.css">
     <link rel="stylesheet" href="css/Manage.css">
 </head>
 <body>
 <header>
-    <div class="container-fluid bgcolor-orange" >
-        <div class="container ">
-            <div class="row ">
-                <div class="col-md-9 col-sm-9 col-8 col-4 d-flex align-items-center  ">
-                    <a class ="nav-link" href="#"> <img style="width: 150px" src="image/logoWeb.png">
-                    </a>
-                </div>
-                <div class="col-md-3 col-sm-3 col-4 py-3 px-0 d-flex align-items-center justify-content-end">
-                    <ul class="d-flex m-0 list-unstyled justify-content-end">
-                        <li class="px-3 pt-1"><a class="nav-link active" aria-current="page" href="#"><i class="fa fa-phone" aria-hidden="true"></i></a></li>
-                        <li class="px-3 pt-1"><a class="nav-link" href="#"><i
-                                class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
-                        <li class="px-3 pt-1"><a class="nav-link" href="#"><i
-                                class="fa fa-instagram" aria-hidden="true"></i></i></a></li>
-                        <li class="px-3 pt-1"><a class="nav-link" href="#"><i
-                                class="fa fa-twitter" aria-hidden="true"></i></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container-luid bd bgcolor">
-        <div class="container p-0 ">
-            <div class="row">
-                <div class="col-lg-12 col-md-2 col-sm-2 col-2">
-                    <nav class="navbar navbar-expand-lg navbar-light bg-light pt-2 ">
-                        <div class="container-fluid px-0">
-                            <button class="navbar-toggler mt-1 " type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
-                                    aria-controls="navbarTogglerDemo01" aria-expanded="false"
-                                    aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                                <div class="col-md-12 col-lg-4 col-sm-12">
-                                    <ul class="navbar-nav w-100  mb-2 mb-lg-0">
-                                        <li class="nav-item hv "><a class="nav-link ps-0 "
-                                                                    aria-current="page" href=HomePage.html>Trang chủ</a></li>
-                                        <li class="nav-item hv"><a class="nav-link" href="IntroWebsite.html">Giới
-                                            thiệu</a></li>
-                                        <li class="nav-item dropdown hv"><a
-                                                class="nav-link dropdown-toggle" href="#" id=""
-                                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Sản phẩm </a>
-                                            <ul class="dropdown-menu" aria-labelledby="">
-                                                <li><a class="dropdown-item" href="#">Ghế văn phòng</a></li>
-                                                <li>
-                                                    <hr class="dropdown-divider">
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Ghế thư giãn</a></li>
-                                                <li>
-                                                    <hr class="dropdown-divider">
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Ghế trang trí</a></li>
-                                                <li>
-                                                    <hr class="dropdown-divider">
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Ghế gaming</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="nav-item hv d-lg-none ">
-                                            <ul class="navbar-nav justify-content-end ">
-                                                <li class="nav-item dropdown hv"><a
-                                                        class="nav-link dropdown-toggle" href="#"
-                                                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    Tài khoản </a>
-                                                    <ul class="dropdown-menu" aria-labelledby="">
-                                                        <li><a class="dropdown-item" href="SignIn.html">Đăng nhập</a></li>
-                                                        <li>
-                                                            <hr class="dropdown-divider">
-                                                        </li>
-                                                        <li><a class="dropdown-item" href="#">Đăng kí</a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-
-                                </div>
-                                <div class="col-lg-6 col-sm-8 col-8 bd-full  rounded-2 d-md-none d-sm-none d-none d-lg-block">
-                                    <form class = "">
-                                        <div class="form-search">
-                                            <input class="form-control border-0" type="search"
-                                                   placeholder="Nội dung tìm kiếm" aria-label="Search">
-                                            <button class="btn border-0" type="submit">
-                                                <i class="fa fa-search" aria-hidden="true"></i>
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="col-lg-2  d-lg-block d-md-none d-none ">
-                                    <ul class="navbar-nav justify-content-end">
-                                        <li class="nav-item hv pe-2"><a class="nav-link" href="#"><button class = "position-relative border-0 bg-light "><i class="fa fa-shopping-cart" aria-hidden="true" style="font-size: 25px"></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">99+<span class="visually-hidden">unread messages</span></span>
-                                        </button> </a> </li>
-                                        <li class="nav-item dropdown hv  d-flex align-items-center"><a
-                                                class="nav-link dropdown-toggle" href="#"
-                                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Tài khoản </a>
-                                            <ul class="dropdown-menu" aria-labelledby="">
-                                                <li><a class="dropdown-item" href="SignIn.html">Đăng nhập</a></li>
-                                                <li>
-                                                    <hr class="dropdown-divider">
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Đăng kí</a></li>
-                                            </ul>
-                                        </li>
-
-                                    </ul>
-
-                                </div>
-                            </div>
-                        </div>
-                    </nav>
-                </div>
-                <div class="col-md-10 col-sm-10 col-10 d-lg-none " style="padding: 11px 0" >
-                    <div class="row">
-                        <div class="col-md-10 col-sm-10 col-10 bd-full rounded-2   ">
-                            <form class = "">
-                                <div class="form-search">
-                                    <input class="form-control border-0" type="search"
-                                           placeholder="Nội dung tìm kiếm" aria-label="Search">
-                                    <button class="btn border-0" type="submit">
-                                        <i class="fa fa-search" aria-hidden="true"></i>
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="col-md-2 col-sm-2 col-2 ps-2 d-flex align-items-center">
-                            <a class="nav-link" href="#">
-                                <button class = "position-relative border-0 bg-light "><i class="fa fa-shopping-cart" aria-hidden="true" style="font-size: 25px"></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">99+<span class="visually-hidden">unread messages</span></span>
-                                </button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <jsp:include page="Header.jsp"></jsp:include>
 </header>
 <div class="container-fluid mgt">
     <div class="container ">
@@ -199,49 +67,32 @@
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col-lg-12 overflow-auto mheight">
+                    <div class="col-lg-12 overflow-auto">
                         <table>
                             <thead>
-                            <tr>
-                                <td>ID</td>
-                                <td>ADMIN</td>
-                                <td>NHÂN VIÊN</td>
-                                <td>EMAIL</td>
-                                <td>XÁC THỰC</td>
-                                <td>TRẠNG THÁI</td>
-                            </tr>
+                                <tr>
+                                    <td>ID</td>
+                                    <td>CHỨC VỤ</td>
+                                    <td>EMAIL</td>
+                                    <td>XÁC THỰC</td>
+                                    <td>TRẠNG THÁI</td>
+                                </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>
-                                    <span>1</span>
-                                </td>
-
-                                <td>
-                                    <span>0</span>
-                                </td>
-                                <td>
-                                    <span>1</span>
-                                </td>
-                                <td>
-                                    <span>qle29202@gmail.com</span>
-                                </td>
-                                <td >
-                                    <span>1</span>
-                                </td>
-                                <td class = "status">
-                                    <span></span>
-                                </td>
-                                <td>
-                                    <div class="d-flex w-100 justify-content-center">
-                                        <button class="delete btnAdd bgcolor bd-full" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true"></i></button>
-                                        <button class="block btnAdd bgcolor bd-full mx-1" ><i class="fa fa-lock text-color" title="Khóa" aria-hidden="true"></i></button>
-                                        <button class="editAccount btnAdd bgcolor bd-full me-1"><i class="fa fa-pencil text-color" title="Chỉnh sửa quyền truy cập" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editAccount"></i></button>
-                                        <button class="detailAccount btnAdd bgcolor bd-full" ><i class="fa fa-info text-color px-1" title="Chi tiết" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#detailAccount"></i></button>
-                                    </div>
-
-                                </td>
-                            </tr>
+                                <tr data-bs-toggle="modal" data-bs-target="#detailAccount">
+                                    <td>1</td>
+                                    <td>Admin</td>
+                                    <td>qle29202@gmail.com</td>
+                                    <td >1</td>
+                                    <td class = "status"></td>
+                                    <td>
+                                        <div class="d-flex w-100 justify-content-center">
+                                            <button class="delete btnAdd bgcolor bd-full" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#"></i></button>
+                                            <button class="block btnAdd bgcolor bd-full mx-1" ><i class="fa fa-lock text-color" title="Khóa" aria-hidden="true"></i></button>
+                                            <button class="editAccount btnAdd bgcolor bd-full me-1"><i class="fa fa-pencil text-color" title="Chỉnh sửa quyền truy cập" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editAccount"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -258,7 +109,6 @@
                                         <h5 class="text-center title">QUYỀN TRUY CẬP</h5>
                                         <hr>
                                         <div class="col-md-12 text-center">
-                                            <input type="checkbox" id ="admin" name="per" value="Admin"><label for="admin">Admin</label>
                                             <input class ="ms-4" type="checkbox" id ="staff" name="per" value="Nhân viên"><label for="staff">Nhân viên</label>
                                         </div>
                                         <div class="row p-0">
@@ -315,7 +165,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
             <!--end giao diện quản lý tài khoản -->
             <!--giao diện quản lý sản phẩm-->
@@ -334,8 +183,8 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <td class="sp">ID</td>
-                                    <td class="sp">SẢN PHẨM</td>
+                                    <td>ID</td>
+                                    <td>SẢN PHẨM</td>
                                     <td>GIÁ NHẬP</td>
                                     <td>GIÁ BÁN</td>
                                     <td>MÀU SẮC</td>
@@ -343,10 +192,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                <td>
-                                    <span>1</span>
-                                </td>
+                                <tr  data-bs-toggle ="modal" data-bs-target="#detailProduct">
+                                <td>1</td>
                                 <td>
                                     <div class="item">
                                         <div class="item_img">
@@ -356,244 +203,23 @@
                                         <span class="item_text">Ghế massage siêu cấp prO</span>
                                     </div>
                                 </td>
-                                <td>
-                                    ₫<span>1.000.000</span>
-                                </td>
-                                <td>
-                                    ₫<span>1.200.000</span>
-                                </td>
-                                <td>
-                                    <span>Màu đen</span>
-                                </td>
-
-                                <td>
-                                    <span>50</span>
-                                </td>
+                                <td>₫<span>1.000.000</span></td>
+                                <td>₫<span>1.200.000</span></td>
+                                <td>Màu đen</td>
+                                <td>50</td>
                                 <td>
                                     <div class="d-flex justify-content-center">
-                                        <button class="delete btnAdd bgcolor bd-full" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true" ></i></button>
+                                        <button class="delete btnAdd bgcolor bd-full" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="" ></i></button>
                                         <button class="editProduct btnAdd bgcolor bd-full mx-1"><i class="fa fa-pencil text-color" title="Chỉnh sửa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editProduct"></i></button>
-                                        <button class="detailProduct btnAdd bgcolor bd-full"><i class="fa fa-info text-color px-1" title="Chi tiết" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#detailProduct"></i></button>
                                     </div>
                                 </td>
-
-                            </tr>
-                                <tr>
-                                <td>
-                                    <span>1</span>
-                                </td>
-                                <td>
-                                    <div class="item">
-                                        <div class="item_img">
-                                            <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
-                                                 class="card-img-top img_p_cart" alt="..."/>
-                                        </div>
-                                        <span class="item_text">Ghế massage siêu cấp prO</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    ₫<span>1.000.000</span>
-                                </td>
-                                <td>
-                                    ₫<span>1.200.000</span>
-                                </td>
-                                <td>
-                                    <span>Màu đen</span>
-                                </td>
-
-                                <td>
-                                    <span>50</span>
-                                </td>
-                                <td>
-                                    <div class="d-flex justify-content-center">
-                                        <button class="delete btnAdd bgcolor bd-full" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true" ></i></button>
-                                        <button class="editProduct btnAdd bgcolor bd-full mx-1"><i class="fa fa-pencil text-color" title="Chỉnh sửa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editProduct"></i></button>
-                                        <button class="detailProduct btnAdd bgcolor bd-full"><i class="fa fa-info text-color px-1" title="Chi tiết" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#detailProduct"></i></button>
-                                    </div>
-                                </td>
-
-                            </tr>
-                                <tr>
-                                <td>
-                                    <span>1</span>
-                                </td>
-                                <td>
-                                    <div class="item">
-                                        <div class="item_img">
-                                            <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
-                                                 class="card-img-top img_p_cart" alt="..."/>
-                                        </div>
-                                        <span class="item_text">Ghế massage siêu cấp prO</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    ₫<span>1.000.000</span>
-                                </td>
-                                <td>
-                                    ₫<span>1.200.000</span>
-                                </td>
-                                <td>
-                                    <span>Màu đen</span>
-                                </td>
-
-                                <td>
-                                    <span>50</span>
-                                </td>
-                                <td>
-                                    <div class="d-flex justify-content-center">
-                                        <button class="delete btnAdd bgcolor bd-full" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true" ></i></button>
-                                        <button class="editProduct btnAdd bgcolor bd-full mx-1"><i class="fa fa-pencil text-color" title="Chỉnh sửa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editProduct"></i></button>
-                                        <button class="detailProduct btnAdd bgcolor bd-full"><i class="fa fa-info text-color px-1" title="Chi tiết" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#detailProduct"></i></button>
-                                    </div>
-                                </td>
-
-                            </tr>
-                                <tr>
-                                <td>
-                                    <span>1</span>
-                                </td>
-                                <td>
-                                    <div class="item">
-                                        <div class="item_img">
-                                            <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
-                                                 class="card-img-top img_p_cart" alt="..."/>
-                                        </div>
-                                        <span class="item_text">Ghế massage siêu cấp prO</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    ₫<span>1.000.000</span>
-                                </td>
-                                <td>
-                                    ₫<span>1.200.000</span>
-                                </td>
-                                <td>
-                                    <span>Màu đen</span>
-                                </td>
-
-                                <td>
-                                    <span>50</span>
-                                </td>
-                                <td>
-                                    <div class="d-flex justify-content-center">
-                                        <button class="delete btnAdd bgcolor bd-full" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true" ></i></button>
-                                        <button class="editProduct btnAdd bgcolor bd-full mx-1"><i class="fa fa-pencil text-color" title="Chỉnh sửa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editProduct"></i></button>
-                                        <button class="detailProduct btnAdd bgcolor bd-full"><i class="fa fa-info text-color px-1" title="Chi tiết" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#detailProduct"></i></button>
-                                    </div>
-                                </td>
-
-                            </tr>
-                                <tr>
-                                <td>
-                                    <span>1</span>
-                                </td>
-                                <td>
-                                    <div class="item">
-                                        <div class="item_img">
-                                            <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
-                                                 class="card-img-top img_p_cart" alt="..."/>
-                                        </div>
-                                        <span class="item_text">Ghế massage siêu cấp prO</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    ₫<span>1.000.000</span>
-                                </td>
-                                <td>
-                                    ₫<span>1.200.000</span>
-                                </td>
-                                <td>
-                                    <span>Màu đen</span>
-                                </td>
-
-                                <td>
-                                    <span>50</span>
-                                </td>
-                                <td>
-                                    <div class="d-flex justify-content-center">
-                                        <button class="delete btnAdd bgcolor bd-full" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true" ></i></button>
-                                        <button class="editProduct btnAdd bgcolor bd-full mx-1"><i class="fa fa-pencil text-color" title="Chỉnh sửa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editProduct"></i></button>
-                                        <button class="detailProduct btnAdd bgcolor bd-full"><i class="fa fa-info text-color px-1" title="Chi tiết" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#detailProduct"></i></button>
-                                    </div>
-                                </td>
-
-                            </tr>
-                                <tr>
-                                <td>
-                                    <span>1</span>
-                                </td>
-                                <td>
-                                    <div class="item">
-                                        <div class="item_img">
-                                            <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
-                                                 class="card-img-top img_p_cart" alt="..."/>
-                                        </div>
-                                        <span class="item_text">Ghế massage siêu cấp prO</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    ₫<span>1.000.000</span>
-                                </td>
-                                <td>
-                                    ₫<span>1.200.000</span>
-                                </td>
-                                <td>
-                                    <span>Màu đen</span>
-                                </td>
-
-                                <td>
-                                    <span>50</span>
-                                </td>
-                                <td>
-                                    <div class="d-flex justify-content-center">
-                                        <button class="delete btnAdd bgcolor bd-full" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true" ></i></button>
-                                        <button class="editProduct btnAdd bgcolor bd-full mx-1"><i class="fa fa-pencil text-color" title="Chỉnh sửa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editProduct"></i></button>
-                                        <button class="detailProduct btnAdd bgcolor bd-full"><i class="fa fa-info text-color px-1" title="Chi tiết" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#detailProduct"></i></button>
-                                    </div>
-                                </td>
-
-                            </tr>
-                                <tr>
-                                <td>
-                                    <span>1</span>
-                                </td>
-                                <td>
-                                    <div class="item">
-                                        <div class="item_img">
-                                            <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
-                                                 class="card-img-top img_p_cart" alt="..."/>
-                                        </div>
-                                        <span class="item_text">Ghế massage siêu cấp prO</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    ₫<span>1.000.000</span>
-                                </td>
-                                <td>
-                                    ₫<span>1.200.000</span>
-                                </td>
-                                <td>
-                                    <span>Màu đen</span>
-                                </td>
-
-                                <td>
-                                    <span>50</span>
-                                </td>
-                                <td>
-                                    <div class="d-flex justify-content-center">
-                                        <button class="delete btnAdd bgcolor bd-full" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true" ></i></button>
-                                        <button class="editProduct btnAdd bgcolor bd-full mx-1"><i class="fa fa-pencil text-color" title="Chỉnh sửa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editProduct"></i></button>
-                                        <button class="detailProduct btnAdd bgcolor bd-full"><i class="fa fa-info text-color px-1" title="Chi tiết" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#detailProduct"></i></button>
-                                    </div>
-                                </td>
-
                             </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
                 <div class="modal fade" id="editProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
+                    <div class="modal-dialog modal-md">
                         <div class="modal-content ">
                             <div class="modal-body">
                                 <form class ="editProduct" action="" method="post" id ="edit-Product" onsubmit="return editProduct()" >
@@ -604,7 +230,7 @@
                                         </div>
                                         <h5 class=" pb-2 text-center title">CHỈNH SỬA SẢN PHẨM</h5>
                                         <hr>
-                                        <div class="col-md-6 col-sm-6 col-6">
+                                        <div class="col-md-12">
                                             <div class="mb-3">
                                                 <label class="form-label">Tên sản phẩm</label><span id="errNamePEdit"  class="text-danger"></span>
                                                 <input type="text" class="form-control" id="nameProductEdit" name="nameProductEdit">
@@ -627,26 +253,8 @@
                                                 </select>
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Mô tả</label><span id="errDesEdit"  class="text-danger"></span>
-                                                <textarea type="text" class="form-control" id="desEdit" name="desEdit"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-sm-6 col-6">
-                                            <div class="mb-3">
-                                                <label class="form-label">Hình ảnh 1</label><span id="errImg1Edit"  class="text-danger"></span>
+                                                <label class="form-label">Hình ảnh</label><span id="errImg1Edit"  class="text-danger"></span>
                                                 <input type="text" class="form-control" id="image1Edit" name="image1Edit">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Hình ảnh 2</label><span id="errImg2Edit"  class="text-danger"></span>
-                                                <input type="text" class="form-control" id="image2Edit" name="image2Edit">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Hình ảnh 3</label><span id="errImg3Edit"  class="text-danger"></span>
-                                                <input type="text" class="form-control" id="image3Edit" name="image3Edit">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Hình ảnh 4</label><span id="errImg4Edit"  class="text-danger"></span>
-                                                <input type="text" class="form-control" id="image4Edit" name="image4Edit">
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-4 col-4 mb-3">
@@ -676,6 +284,10 @@
                                                     <input type="number" class="form-control" id="amountEdit" name="amountEdit">
                                                 </div>
                                             </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Mô tả</label><span id="errDesEdit"  class="text-danger"></span>
+                                                <textarea type="text" class="form-control" id="desEdit" name="desEdit"></textarea>
+                                            </div>
                                         </div>
                                         <div class="row p-0">
                                             <div class="col-md-12 p-0">
@@ -704,31 +316,40 @@
                                         <hr>
                                         <div class="col-md-6 col-sm-12 col-12">
                                             <div class="row pt-2">
-                                                <div class="col-md-8 col-sm-8 col-8">
+                                                <div class="col-md-12 col-sm-8 col-8">
                                                     <img src="https://anphat.com.vn/media/product/40998_sihoo_m18_black_grey__2_.JPG" alt=""
-                                                         class="img_p" id="img_center">
+                                                         class="img_p2" id="img_center">
                                                 </div>
-                                                <div class="col-md-4 col-sm-4 col-4">
-                                                    <img src="https://i.pinimg.com/236x/28/02/b8/2802b872a06a99b8576dff4af0403723.jpg?fbclid=IwAR0AGtm9P18DGDrpzcnKZFmbaepyaS7_yzOTHX5jfolMiJD8VgEJ5K1HqEI"
-                                                         alt=""
-                                                         class="img_p_detail"
-                                                         onmouseover="changeImg('https://i.pinimg.com/236x/28/02/b8/2802b872a06a99b8576dff4af0403723.jpg?fbclid=IwAR0AGtm9P18DGDrpzcnKZFmbaepyaS7_yzOTHX5jfolMiJD8VgEJ5K1HqEI')">
-                                                    <img src="https://i.pinimg.com/236x/bb/be/90/bbbe9068896348d6ab9a7fffd06f5828.jpg?fbclid=IwAR3a0JkYfqdqHb6Angr_5owVHkV3RiKK7mdswjIv_t5ro2TUrUolQByhbGk"
-                                                         alt=""
-                                                         class="img_p_detail"
-                                                         onmouseover="changeImg('https://i.pinimg.com/236x/bb/be/90/bbbe9068896348d6ab9a7fffd06f5828.jpg?fbclid=IwAR3a0JkYfqdqHb6Angr_5owVHkV3RiKK7mdswjIv_t5ro2TUrUolQByhbGk')">
-                                                    <img src="https://i.pinimg.com/564x/c0/8d/43/c08d432a2d040829cae57cd31c7726a7.jpg?fbclid=IwAR2V0qO9Z2t9BG7hpYX-2EGnkPdlg74cOd5qU55H7SxONL-BNLEpvqSmLck"
-                                                         alt=""
-                                                         class="img_p_detail"
-                                                         onmouseover="changeImg('https://i.pinimg.com/564x/c0/8d/43/c08d432a2d040829cae57cd31c7726a7.jpg?fbclid=IwAR2V0qO9Z2t9BG7hpYX-2EGnkPdlg74cOd5qU55H7SxONL-BNLEpvqSmLck')">
-                                                </div>
-                                                <div class="my-3">
-                                                    <label class="form-label">Mô tả</label>
-                                                    <textarea type="text" class="form-control" id="desdetail" name="desdetail" readonly>
-                    </textarea>
+                                                <div class="col-md-12 mt-3">
+                                                    <div class="owl-carousel">
+                                                        <div class="pe-2" ><img src="https://i.pinimg.com/236x/28/02/b8/2802b872a06a99b8576dff4af0403723.jpg?fbclid=IwAR0AGtm9P18DGDrpzcnKZFmbaepyaS7_yzOTHX5jfolMiJD8VgEJ5K1HqEI"
+                                                                                alt=""
+                                                                                class="img_p_detail"
+                                                                                onmouseover="changeImg('https://i.pinimg.com/236x/28/02/b8/2802b872a06a99b8576dff4af0403723.jpg?fbclid=IwAR0AGtm9P18DGDrpzcnKZFmbaepyaS7_yzOTHX5jfolMiJD8VgEJ5K1HqEI')">
+                                                        </div>
+                                                        <div class="pe-2" >
+                                                            <img src="https://i.pinimg.com/236x/bb/be/90/bbbe9068896348d6ab9a7fffd06f5828.jpg?fbclid=IwAR3a0JkYfqdqHb6Angr_5owVHkV3RiKK7mdswjIv_t5ro2TUrUolQByhbGk"
+                                                                 alt=""
+                                                                 class="img_p_detail"
+                                                                 onmouseover="changeImg('https://i.pinimg.com/236x/bb/be/90/bbbe9068896348d6ab9a7fffd06f5828.jpg?fbclid=IwAR3a0JkYfqdqHb6Angr_5owVHkV3RiKK7mdswjIv_t5ro2TUrUolQByhbGk')">
+                                                        </div >
+                                                        <div class="pe-2">
+                                                            <img src="https://i.pinimg.com/564x/c0/8d/43/c08d432a2d040829cae57cd31c7726a7.jpg?fbclid=IwAR2V0qO9Z2t9BG7hpYX-2EGnkPdlg74cOd5qU55H7SxONL-BNLEpvqSmLck"
+                                                                 alt=""
+                                                                 class="img_p_detail"
+                                                                 onmouseover="changeImg('https://i.pinimg.com/564x/c0/8d/43/c08d432a2d040829cae57cd31c7726a7.jpg?fbclid=IwAR2V0qO9Z2t9BG7hpYX-2EGnkPdlg74cOd5qU55H7SxONL-BNLEpvqSmLck')">
+                                                        </div>
+                                                        <div class="pe-2">
+                                                            <img src="https://i.pinimg.com/564x/c0/8d/43/c08d432a2d040829cae57cd31c7726a7.jpg?fbclid=IwAR2V0qO9Z2t9BG7hpYX-2EGnkPdlg74cOd5qU55H7SxONL-BNLEpvqSmLck"
+                                                                 alt=""
+                                                                 class="img_p_detail"
+                                                                 onmouseover="changeImg('https://i.pinimg.com/564x/c0/8d/43/c08d432a2d040829cae57cd31c7726a7.jpg?fbclid=IwAR2V0qO9Z2t9BG7hpYX-2EGnkPdlg74cOd5qU55H7SxONL-BNLEpvqSmLck')">
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                            </div>
+
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Tên sản phẩm</label>
@@ -773,6 +394,11 @@
                                                     <label class="form-label">Số lượng</label>
                                                     <input type="number" class="form-control" id="amountdetail" name="amountdetail"readonly>
                                                 </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Mô tả</label>
+                                                    <textarea type="text" class="form-control" id="desdetail" name="desdetail" readonly>
+                                                    </textarea>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -783,7 +409,7 @@
                     </div>
                 </div>
                 <div class="modal fade" id="addProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
+                    <div class="modal-dialog modal-md">
                         <div class="modal-content ">
                             <div class="modal-body">
                                 <form  action="" method="post" id="add-product" onsubmit="return addProduct()">
@@ -793,7 +419,7 @@
                                         </div>
                                         <h5 class="text-center title">  THÊM SẢN PHẨM</h5>
                                         <hr>
-                                        <div class="col-md-6 col-sm-6 col-6">
+                                        <div class="col-md-12">
                                             <div class="mb-3">
                                                 <label class="form-label">Tên sản phẩm</label><span id="errNameP" class="text-danger"></span>
                                                 <input type="text" class="form-control" id="nameProduct" name="nameProduct">
@@ -816,27 +442,8 @@
                                                 </select>
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Mô tả</label><span id="errDes"  class="text-danger"></span>
-                                                <textarea type="text" class="form-control" id="des" name="des"></textarea>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-md-6 col-sm-6 col-6">
-                                            <div class="mb-3">
-                                                <label class="form-label">Hình ảnh 1</label><span id="errImg1" class="text-danger"></span>
+                                                <label class="form-label">Hình ảnh</label><span id="errImg1" class="text-danger"></span>
                                                 <input type="text" class="form-control" id="image1" name="image1">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Hình ảnh 2</label><span id="errImg2"  class="text-danger"></span>
-                                                <input type="text" class="form-control" id="image2" name="image2">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Hình ảnh 3</label><span id="errImg3"  class="text-danger"></span>
-                                                <input type="text" class="form-control" id="image3" name="image3">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Hình ảnh 4</label><span id="errImg4"  class="text-danger"></span>
-                                                <input type="text" class="form-control" id="image4" name="image4">
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-4 col-4 mb-3">
@@ -865,6 +472,10 @@
                                                     <label class="form-label">Số lượng</label>
                                                     <input type="number" class="form-control" id="amount" name="amount">
                                                 </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Mô tả</label><span id="errDes"  class="text-danger"></span>
+                                                <textarea type="text" class="form-control" id="des" name="des"></textarea>
                                             </div>
                                         </div>
                                         <div class="row p-0">
@@ -895,8 +506,8 @@
                         <table >
                             <thead>
                                 <tr>
-                                    <td class="sp">ID</td>
-                                    <td class="sp">SẢN PHẨM</td>
+                                    <td>ID</td>
+                                    <td>SẢN PHẨM</td>
                                     <td>ĐƠN GIÁ</td>
                                     <td>MÀU SẮC</td>
                                     <td>KÍCH THƯỚC</td>
@@ -906,9 +517,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>
-                                        <span>1</span>
-                                    </td>
+                                    <td>1</td>
                                     <td>
                                         <div class="item">
                                             <div class="item_img">
@@ -921,42 +530,9 @@
                                     <td>
                                         ₫<span>1.000.000</span>
                                     </td>
-                                    <td>
-                                        <span>Màu đen</span>
-                                    </td>
-                                    <td>
-                                        <span>100x50x70</span>
-                                    </td>
-                                    <td>
-                                        <span>50</span>
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span>2</span>
-                                    </td>
-                                    <td>
-                                        <div class="item">
-                                            <div class="item_img">
-                                                <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
-                                                     class="card-img-top img_p_cart" alt="..."/>
-                                            </div>
-                                            <span class="item_text">Ghế gaming siêu cấp pro</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        ₫<span>500.000</span>
-                                    </td>
-                                    <td>
-                                        <span>Màu trắng đen</span>
-                                    </td>
-                                    <td>
-                                        <span>100x50x70</span>
-                                    </td>
-                                    <td>
-                                        <span>50</span>
-                                    </td>
+                                    <td>Màu đen</td>
+                                    <td>100x50x70</td>
+                                    <td>50</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -975,43 +551,80 @@
                 </div>
                 <hr class = "mt-1">
                 <div class="row">
-                    <div class="col-lg-12 overflow-auto mheight">
+                    <div class="col-lg-12 overflow-auto">
                         <table >
                             <thead>
                                 <tr>
-                                    <td class="sp">ID</td>
-                                    <td class="sp">MÃ KHÁCH HÀNG</td>
-                                    <td>MÃ SẢN PHẨM</td>
+                                    <td>ID</td>
+                                    <td>MÃ KHÁCH HÀNG</td>
                                     <td>NGÀY XUẤT</td>
-                                    <td>SỐ LƯỢNG</td>
-                                    <td>ĐƠN GIÁ</td>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr data-bs-toggle="modal" data-bs-target="#detailInvoice">
+                                <td>2</td>
+                                <td>1</td>
+                                <td>28/02/2023</td>
                                 <td>
-                                    <span>2</span>
-                                </td>
-                                <td>
-                                    <span>1</span>
-                                </td>
-                                <td>
-                                    <span>1</span>
-                                </td>
-                                <td>
-                                    <span>28/02/2023</span>
-                                </td>
-                                <td>
-                                    <span>50</span>
-                                </td>
-                                <td>
-                                    ₫<span>50.000</span>
+                                    <button class="delete btnAdd bgcolor bd-full" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#" ></i></button>
                                 </td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
+                <div class="modal fade" id="detailInvoice" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content ">
+                            <div class="modal-body">
+                                <div class="container">
+                                    <div class="row ">
+                                        <div class=" text-end">
+                                            <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <h5 class="pb-2 text-center title">CHI TIẾT HOÁ ĐƠN</h5>
+                                        <hr>
+                                        <div class="col-md-12">
+                                            <p class="fw-bold">Tên khách hàng: <span id="nameCus">Minh Quân</span></p>
+                                            <p class="fw-bold">Số điện thoại: <span id="phoneCus">0812295775</span> </p>
+                                            <p class="fw-bold">Email: <span id="emailCus">qle29210@gmail.com</span></p>
+                                            <p class="fw-bold">Địa chỉ: <span id="addressCus">230A Tô Ngọc Vân</span> </p>
+                                            <p class="fw-bold">Phí vận chuyển: ₫<span id="transFee">0</span> </p>
+                                            <p class="fw-bold">Phương thức thanh toán: <span id="payMethod">Thanh toán khi nhận hàng</span> </p>
+                                            <table  class="table table-bordered">
+                                                <thead>
+                                                <tr>
+                                                    <td>STT</td>
+                                                    <td>MÃ SẢN PHẨM</td>
+                                                    <td>TÊN SẢN PHẨM</td>
+                                                    <td>SỐ LƯỢNG</td>
+                                                    <td>ĐƠN GIÁ</td>
+                                                    <td>THÀNH TIỀN</td>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>1</td>
+                                                    <td>Ghế vip</td>
+                                                    <td>1</td>
+                                                    <td>₫<span>2.000.000</span></td>
+                                                    <td>₫<span>2.000.000</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="fw-bold">TỔNG TIỀN</td>
+                                                    <td colspan="5">₫<span>2.000.000</span></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <!--end giao diện quản lý hóa đơn -->
             <!--giao diện quản lý danh mục-->
@@ -1036,15 +649,11 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td>
-                                    <span>1</span>
-                                </td>
-                                <td >
-                                    <span>Ghế trang trí</span>
-                                </td>
+                                <td>1</td>
+                                <td >Ghế trang trí</td>
                                 <td>
                                     <div class="d-flex w-100 justify-content-center">
-                                        <button class="delete btnAdd bgcolor bd-full me-1" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true"></i></button>
+                                        <button class="delete btnAdd bgcolor bd-full me-1" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true" data-bs-toggle="modal" data-bs-target=""></i></button>
                                         <button class="editCate btnAdd bgcolor bd-full "><i class="fa fa-pencil text-color" title="Chỉnh sửa danh mục" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editCate"></i></button>
                                     </div>
                                 </td>
@@ -1128,44 +737,30 @@
                     <div class="col-lg-12 overflow-auto mheight">
                         <table>
                             <thead>
-                            <tr>
-                                <td>ID</td>
-                                <td>TÊN NCC</td>
-                                <td>ĐỊA CHỈ</td>
-                                <td>SỐ ĐIỆN THOẠI</td>
-                                <td>EMAIL</td>
-                                <td>PHÂN PHỐI CHO</td>
-                            </tr>
+                                <tr>
+                                    <td>ID</td>
+                                    <td>TÊN NCC</td>
+                                    <td>ĐỊA CHỈ</td>
+                                    <td>SỐ ĐIỆN THOẠI</td>
+                                    <td>EMAIL</td>
+                                    <td>PHÂN PHỐI CHO</td>
+                                </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>
-                                    <span>1</span>
-                                </td>
-
-                                <td>
-                                    <span>SimpleHome</span>
-                                </td>
-                                <td>
-                                    <span> 280 Lương Định Của, Q.2, TP.HCM</span>
-                                </td>
-                                <td>
-                                    <span>0123456789</span>
-                                </td>
-                                <td >
-                                    <span>simplehome@gmail.com</span>
-                                </td>
-                                <td>
-                                    <span>Ghế văn phòng</span>
-                                </td>
-                                <td>
-                                    <div class="d-flex w-100 justify-content-center">
-                                        <button class="delete btnAdd bgcolor bd-full me-1" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true" ></i></button>
-                                        <button class="editAccount btnAdd bgcolor bd-full "><i class="fa fa-pencil text-color" title="Chỉnh sửa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editSup"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-
+                                <tr>
+                                    <td>1</td>
+                                    <td>SimpleHome</td>
+                                    <td>280 Lương Định Của, Q.2, TP.HCM</td>
+                                    <td>0123456789</td>
+                                    <td>simplehome@gmail.com</td>
+                                    <td>Ghế văn phòng</td>
+                                    <td>
+                                        <div class="d-flex w-100 justify-content-center">
+                                            <button class="delete btnAdd bgcolor bd-full me-1" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="" ></i></button>
+                                            <button class="editAccount btnAdd bgcolor bd-full "><i class="fa fa-pencil text-color" title="Chỉnh sửa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editSup"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -1286,68 +881,16 @@
 </div>
 <!--footer-->
 <footer>
-    <div class="container-fluid bgcolor-orange ">
-        <div class="container mt-3 pb-3">
-            <div class="row py-3 float-xs-center" >
-                <div class="col-lg-3 col-md-6 col-sm-6 ">
-                    <h5 class="">DANH MỤC SẢN PHẨM</h5>
-                    <hr class ="w-50 ">
-                    <ul class="navbar-nav ">
-                        <a class="nav-link link" href=""><li>Ghế văn phòng</li></a>
-                        <a class="nav-link link" href=""><li>Ghế thư giãn</li></a>
-                        <a class="nav-link link" href=""><li>Ghế trang trí</li></a>
-                        <a class="nav-link link" href=""><li>Ghế gaming</li></a>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 ">
-                    <h5>VỀ CHÚNG TÔI</h5>
-                    <hr class ="w-50 ">
-                    <ul class="navbar-nav ">
-                        <a class="nav-link link" href="IntroWebsite.html"><li>Giới thiệu</li></a>
-                        <a class="nav-link link" href="IntroWebsite.html#policy"><li>Bảo hành</li></a>
-                        <a class="nav-link link" href="IntroWebsite.html#policy"><li>Đổi trả</li></a>
-                        <a class="nav-link link" href="IntroWebsite.html#contact"><li>Liên hệ</li></a>
-
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <h5 class ="">THEO DÕI CHÚNG TÔI</h5>
-                    <hr class ="w-50">
-                    <ul class="navbar-nav">
-                        <li class="px-3"><a class="nav-link link" href="#"><i
-                                class="fa fa-facebook-official" aria-hidden="true"></i> FaceBook</a></li>
-                        <li class="px-3"><a class="nav-link link" href="#"><i
-                                class="fa fa-instagram" aria-hidden="true"></i></i> Instagram</a></li>
-                        <li class="px-3"><a class="nav-link link" href="#"><i
-                                class="fa fa-twitter" aria-hidden="true"></i></i>Twitter</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <h5 class = "">THÔNG TIN LIÊN HỆ</h5>
-                    <hr class ="w-50 ">
-                    <ul class="navbar-nav ">
-                        <li class="nav-link"><i class="fa fa-map-marker" aria-hidden="true"></i> 230A Tô Ngọc Vân, Phường Linh Xuân, Thành phố Thủ Đức</li>
-                        <li class="nav-link" ><i class="fa fa-envelope" aria-hidden="true"></i> homedecorsqn@gmail.com</li>
-                        <li class="nav-link" ><i class="fa fa-phone" aria-hidden="true"></i> 0812295775</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="row bgcolor-gray">
-            <div class="col text-center color-gray">
-                Nhom 60 &copy;2023. All rights reserved.
-            </div>
-        </div>
-    </div>
+    <jsp:include page="Footer.jsp"></jsp:include>
 </footer>
 <!--end footer-->
 </body>
 <script>
     $(document).ready(function () {
         //load header
-        // $('header').load('Header.html')
+        // $('header').load('Header.jsp')
         //load footer
-        // $('footer').load('Footer.html')
+        // $('footer').load('Footer.jsp')
         // ẩn hiển danh mục quản lý
         $('#cate').click(function () {
             var typeManage = $('#typeManage');
@@ -1366,16 +909,13 @@
             })
         }
         setColorFirt();
-        //load giao diện quản lý tài khoản
-        // $('#mngAccount').load('ManageAccount.html', function () {
-        // })
-        // mã script của quản lý tài khoản
+        //xoá 1 dòng
         $('.delete').click(function () {
             $(this).closest('tr').remove();
         })
         //chặn account
         $('.block').click(function () {
-            var state = $(this).closest('tr').find('.status span');
+            var state = $(this).closest('tr').find('.status');
             if(state.text() == 'Khóa') {
                 state.text(" ");
                 $(this).html("<i class=\"fa fa-lock text-color\" aria-hidden=\"true\"></i>");
@@ -1384,25 +924,11 @@
                 $(this).html("<i class=\"fa fa-unlock-alt text-color\" aria-hidden=\"true\"></i>");
             }
         })
-        //load giao diện quản lý sản phẩm
-        // $('#mngProduct').load('ManageProduct.html', function () {
-        // })
-        // mã script của giao diiện sản phẩm
         $('.img_p_detail').each(function () {
             $(this).hover(function () {
                 $('#img_center').attr('src', $(this).attr('src'));
             })
         })
-        //load giao diện quản lý bán hàng
-        // $('#mngSale').load('ManageSale.html')
-        //load giao diện quản lý hóa đơn
-        // $('#mngInvoice').load('ManageInvoice.html')
-        // load giao diện quản lý danh mục
-        // $('#mngCate').load('ManageCate.html', function() {
-        // })
-        // load giao diện quản lý nhà cung cấp
-        // $('#mngSup').load('ManageSupplier.html', function() {
-        // })
         // Chọn danh mục quản lý
         $('#typeManage a').click(function () {
             var selectedType = $(this).text();
@@ -1452,19 +978,8 @@
                 $('#mngCate').addClass('d-none');
                 $('#mngSup').removeClass('d-none');
             }
-
         })
-        // $('#formAddProduct').submit(function (event) {
-        //     event.preventDefault();
-        //     var condition = true;
-        //     if($('#nameProduct').val() == ""){
-        //         condition = false;
-        //
-        //         $('#nameProduct').css('border', '2px solid #f26060')
-        //     };
-        // })
-
-
+        $(".owl-carousel").owlCarousel();
     })
 </script>
 <script>
@@ -1475,9 +990,6 @@
         var price = document.getElementById("priceProductAdd");
         var des = document.getElementById("des");
         var img1 = document.getElementById("image1");
-        var img2 = document.getElementById("image2");
-        var img3 = document.getElementById("image3");
-        var img4 = document.getElementById("image4");
         var length = document.getElementById("length");
         var width = document.getElementById("width");
         var height = document.getElementById("height");
@@ -1491,10 +1003,6 @@
         var errPriceAdd = document.getElementById("errPriceAdd");
         var errDes = document.getElementById("errDes");
         var errImg1 = document.getElementById("errImg1");
-        var errImg2 = document.getElementById("errImg2");
-        var errImg3 = document.getElementById("errImg3");
-        var errImg4 = document.getElementById("errImg4");
-
         if (nameP.value === "") {
             errNameP.innerHTML = '(*)Vui lòng nhập tên sản phẩm';
             flag = false;
@@ -1528,33 +1036,12 @@
         } else {
             errDes.innerHTML = ''
         }
-        //hình 1
+        //hình
         if (img1.value === "") {
-            errImg1.innerHTML = ' (*)Vui lòng nhập đường dẫn hình ảnh 1!';
+            errImg1.innerHTML = ' (*)Vui lòng nhập đường dẫn các hình ảnh';
             flag = false;
         } else {
             errImg1.innerHTML = '';
-        }
-        //hình 2
-        if (img2.value === "") {
-            errImg2.innerHTML = ' (*)Vui lòng nhập đường dẫn hình ảnh 2!';
-            flag = false;
-        } else {
-            errImg2.innerHTML = '';
-        }
-        //hình 3
-        if (img3.value === "") {
-            errImg3.innerHTML = ' (*)Vui lòng nhập đường dẫn hình ảnh 3!';
-            flag = false;
-        } else {
-            errImg3.innerHTML = '';
-        }
-        //hình 4
-        if (img4.value === "") {
-            errImg4.innerHTML = ' (*)Vui lòng nhập đường dẫn hình ảnh 4!';
-            flag = false;
-        } else {
-            errImg4.innerHTML = '';
         }
         //length
         if (length.value === "") {
@@ -1611,9 +1098,6 @@
         var price = document.getElementById("priceProductEdit");
         var des = document.getElementById("desEdit");
         var img1 = document.getElementById("image1Edit");
-        var img2 = document.getElementById("image2Edit");
-        var img3 = document.getElementById("image3Edit");
-        var img4 = document.getElementById("image4Edit");
         var length = document.getElementById("lengthEdit");
         var width = document.getElementById("widthEdit");
         var height = document.getElementById("heightEdit");
@@ -1627,9 +1111,7 @@
         var errPriceAdd = document.getElementById("errPriceEdit");
         var errDes = document.getElementById("errDesEdit");
         var errImg1 = document.getElementById("errImg1Edit");
-        var errImg2 = document.getElementById("errImg2Edit");
-        var errImg3 = document.getElementById("errImg3Edit");
-        var errImg4 = document.getElementById("errImg4Edit");
+
 
         if (nameP.value === "") {
             errNameP.innerHTML = '(*)Vui lòng nhập tên sản phẩm';
@@ -1664,33 +1146,12 @@
         } else {
             errDes.innerHTML = ''
         }
-        //hình 1
+        //hình
         if (img1.value === "") {
-            errImg1.innerHTML = ' (*)Vui lòng nhập đường dẫn hình ảnh 1!';
+            errImg1.innerHTML = ' (*)Vui lòng nhập đường dẫn các hình ảnh';
             flag = false;
         } else {
             errImg1.innerHTML = '';
-        }
-        //hình 2
-        if (img2.value === "") {
-            errImg2.innerHTML = ' (*)Vui lòng nhập đường dẫn hình ảnh 2!';
-            flag = false;
-        } else {
-            errImg2.innerHTML = '';
-        }
-        //hình 3
-        if (img3.value === "") {
-            errImg3.innerHTML = ' (*)Vui lòng nhập đường dẫn hình ảnh 3!';
-            flag = false;
-        } else {
-            errImg3.innerHTML = '';
-        }
-        //hình 4
-        if (img4.value === "") {
-            errImg4.innerHTML = ' (*)Vui lòng nhập đường dẫn hình ảnh 4!';
-            flag = false;
-        } else {
-            errImg4.innerHTML = '';
         }
         //length
         if (length.value === "") {
