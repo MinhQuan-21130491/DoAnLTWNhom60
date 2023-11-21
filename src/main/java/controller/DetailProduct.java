@@ -1,15 +1,13 @@
 package controller;
-import model.Category;
-import model.CategoryService;
 import model.Product;
-import model.ProductService;
+import service.ProductService;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
+
 @WebServlet(name = "detail-product", value = "/detail-product")
 public class DetailProduct extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {

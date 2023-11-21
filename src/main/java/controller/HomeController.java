@@ -1,8 +1,8 @@
 package controller;
 import model.Category;
-import model.CategoryService;
+import service.CategoryService;
 import model.Product;
-import model.ProductService;
+import service.ProductService;
 import java.io.*;
 import java.util.ArrayList;
 import javax.servlet.ServletException;

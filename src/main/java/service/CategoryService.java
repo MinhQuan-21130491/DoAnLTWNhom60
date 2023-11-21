@@ -1,6 +1,7 @@
-package model;
+package service;
 
 import dao.DAOCategory;
+import model.Category;
 
 import java.util.ArrayList;
 

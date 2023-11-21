@@ -1,5 +1,8 @@
-package model;
+package service;
 import dao.DAOProduct;
+import model.Image;
+import model.Product;
+
 import java.util.ArrayList;
 public class ProductService {
     static ProductService instance;
