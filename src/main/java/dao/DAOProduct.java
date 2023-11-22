@@ -246,10 +246,10 @@ public class DAOProduct {
     }
         return list;
     }
-    public static ArrayList<Product> listProductByFil(String command, int priceFil, String colorFil, String materialFil) {
+    public static ArrayList<Product> listProductByFil(String command, int priceFil, String colorFil, String materialFil, int id) {
         ArrayList<Product> list = new ArrayList<>();
         try (Connection connection = JDBCUtil.getConnection();
-             PreparedStatement pr = createPreparedStatement(connection,command, priceFil, colorFil, materialFil);
+             PreparedStatement pr = createPreparedStatement(connection,command, priceFil, colorFil, materialFil, id);
              ResultSet resultSet = pr.executeQuery()) {
             while (resultSet.next()) {
                 int idProduct = resultSet.getInt("id");
@@ -273,16 +273,22 @@ public class DAOProduct {
         }
         return list;
     }
-    private static PreparedStatement createPreparedStatement(Connection connection,String command, int priceFil, String colorFil, String materialFil) throws SQLException {
-        String sql = "SELECT p.id, p.idCate, p.name, p.price, p.priceImport, p.quantity, p.color, p.material, p.description, p.height, p.width, p.length " +
-                "FROM products AS p " +
-                "WHERE ";
+    private static PreparedStatement createPreparedStatement(Connection connection,String command, int priceFil, String colorFil, String materialFil, int idCate) throws SQLException {
+        String sql ="";
+        if(idCate == 0) {
+           sql = "SELECT p.id, p.idCate, p.name, p.price, p.priceImport, p.quantity, p.color, p.material, p.description, p.height, p.width, p.length " +
+                    "FROM products AS p " +
+                    "WHERE ";
+        }else {
+            sql = "SELECT p.id, p.idCate, p.name, p.price, p.priceImport, p.quantity, p.color, p.material, p.description, p.height, p.width, p.length " +
+                    "FROM ( SELECT id, idCate, name, price, priceImport, quantity, color, material, description, height, width, length  from products where idCate =" + idCate +" ) as p " +
+                    "WHERE ";
+        }
         if (priceFil != 0) {
             if(command.equalsIgnoreCase("D")) {
                 sql += "p.price < ? ";
             }else if(command.equalsIgnoreCase("T")) {
                 sql += "p.price > ? ";
-
             }
         }
         if (!colorFil.isEmpty()) {
@@ -311,6 +317,6 @@ public class DAOProduct {
         return pr;
     }
     public static void main(String[] args) {
-    System.out.println(listProductByFil("T",5000000, "Cam", ""));
+    System.out.println(listProductByFil("D", 5000000, "", "", 4).size());
     }
  }

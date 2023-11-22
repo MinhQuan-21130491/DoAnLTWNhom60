@@ -261,6 +261,7 @@
     var color ="";
     var material ="";
     var command = "";
+    var idCateCurrent;
     $(document).ready(function () {
         // ẩn hiện thanh danh mục
         $('#cate').click(function () {
@@ -281,22 +282,21 @@
             price = priceText.replace(/[^\d]/g, ''); // Loại bỏ tất cả các ký tự không phải là số
             command = priceText.charAt(0);
             console.log(command);
-            filterProduct(command, price, color, material);
+            filterProduct(command, price, color, material, idCateCurrent);
 
         })
         $('.colorFil').click(function () {
             var selectedColor = $(this).text();
             color = selectedColor;
-            filterProduct(command, price, color, material);
+            filterProduct(command, price, color, material, idCateCurrent);
         })
         $('.materialFil').click(function () {
             var selectedMate = $(this).text();
             material = selectedMate;
-            filterProduct(command, price, color, material);
+            filterProduct(command, price, color, material, idCateCurrent);
         })
     });
-    var idCateCurrent;
-        function  filterProduct(command,price, color, material, idCate) {
+        function  filterProduct(command,price, color, material) {
             document.getElementById("loadMore").classList.add("d-none");
             $.ajax({
                 url: "filterProduct",
@@ -306,7 +306,7 @@
                   price: price,
                   material: material,
                   command: command,
-                  // idCate: idCate
+                  idCate: idCateCurrent
                 },
                 success: function(data){
                     var row = document.getElementById("content");

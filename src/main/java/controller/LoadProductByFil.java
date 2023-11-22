@@ -25,7 +25,12 @@ public class LoadProductByFil extends HttpServlet {
         String color = request.getParameter("color")+"";
         String material = request.getParameter("material")+"";
         String command = request.getParameter("command")+"";
-        ArrayList<Product> listProduct = ProductService.getInstance().listProductByFil(command,price, color, material);
+        String idCateText = request.getParameter("idCate");
+        int idCate = 0;
+        if(idCateText != null) {
+            idCate = Integer.parseInt(idCateText);
+        }
+        ArrayList<Product> listProduct = ProductService.getInstance().listProductByFil(command,price, color, material, idCate );
         PrintWriter out = response.getWriter();
         for(Product p: listProduct){
             out.println(" <div class=\"col-lg-4 col-sm-6 mt-3 product\">\n" +

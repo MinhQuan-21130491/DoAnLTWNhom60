@@ -120,9 +120,9 @@ pageEncoding="UTF-8"%>
                                         </td>
                                         <td >
                                             <div class = "gender">
-                                                <label class="ms-0" for="male">Nam</label><input type="radio" id="male" name="gender" value="Nam"  checked >
+                                                <label class="ms-0" for="male">Nam</label><input class="mx-2"  type="radio" id="male" name="gender" value="Nam"  checked >
                                                 <label for="female">Nữ</label> <input class="mx-2" type="radio" id="female" name="gender" value="Nữ" >
-                                                <label for="other">Khác</label> <input type="radio" id="other" name="gender" value="Khác">
+                                                <label for="other">Khác</label> <input class="mx-2" type="radio" id="other" name="gender" value="Khác">
                                             </div>
                                         </td>
                                     </tr>

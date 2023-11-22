@@ -84,8 +84,8 @@ public class ProductService {
     public ArrayList<String> listColorP() {
       return DAOProduct.listColorP();
     }
-    public ArrayList<Product> listProductByFil(String command, int priceFil, String colorFil, String materialFil) {
-        ArrayList<Product> listProduct = DAOProduct.listProductByFil(command, priceFil, colorFil, materialFil);
+    public ArrayList<Product> listProductByFil(String command, int priceFil, String colorFil, String materialFil, int idCate) {
+        ArrayList<Product> listProduct = DAOProduct.listProductByFil(command, priceFil, colorFil, materialFil, idCate);
         ArrayList<Image> listImageOfProduct = null;
         for(Product p:listProduct) {
             listImageOfProduct = DAOProduct.listImageOfProduct(p);
