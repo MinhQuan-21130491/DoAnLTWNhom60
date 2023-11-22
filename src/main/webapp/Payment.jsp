@@ -40,19 +40,19 @@ pageEncoding="UTF-8"%>
 <div class="container mgt">
     <div class="row p-2 bgcolor">
         <div class="col-lg-4 col-sm-4 my-1">
-            <h5 class="text-color"><i class="fa fa-user-circle-o text-color" aria-hidden="true"></i> THÔNG TIN KHÁCH HÀNG</h5>
+            <h5 class="text-color text-start"><i class="fa fa-user-circle-o text-color" aria-hidden="true"></i> THÔNG TIN KHÁCH HÀNG</h5>
             <div class="mt-3">
-                <label for="fullName">Họ tên:</label> <span id="fullName">Minh Quân</span>
+                <label for="fullName">Họ tên: <span id="fullName">Minh Quân</span></label>
             </div>
             <div class="mt-2">
-                <label for="phoneNumber">Số điện thoại:</label> <span id="phoneNumber">0811295775</span>
+                <label for="phoneNumber">Số điện thoại: <span id="phoneNumber">0811295775</span></label>
             </div>
             <div class="mt-2">
                 <label for="email">Email:</label> <span id="email">qle29210@gmail.com</span>
             </div>
         </div>
         <div class="col-lg-6 col-sm-6 mt-1 ">
-            <h5 class="text-color"> <i class="fa fa-map-marker text-color" aria-hidden="true"></i> ĐỊA CHỈ NHẬN HÀNG</h5>
+            <h5 class="text-color text-start"> <i class="fa fa-map-marker text-color" aria-hidden="true"></i> ĐỊA CHỈ NHẬN HÀNG</h5>
             <span class="mt-3 d-block" id="address">Trường Đại Học Khoa Học Tự Nhiên đường A2, Phường Linh Trung, Thành Phố Thủ Đức, TP. Hồ Chí Minh </span>
         </div>
         <div class="col-lg-2 col-sm-2 mt-1 text-end">
@@ -120,9 +120,9 @@ pageEncoding="UTF-8"%>
                                         </td>
                                         <td >
                                             <div class = "gender">
-                                                <label class="ms-0" for="male">Nam</label><input type="radio" id="male" name="gender" value="Nam"  checked >
-                                                <label for="female">Nữ</label> <input type="radio" id="female" name="gender" value="Nữ" >
-                                                <label for="other">Khác</label> <input type="radio" id="other" name="gender" value="Khác">
+                                                <label class="ms-0" for="male">Nam</label><input class="mx-2"  type="radio" id="male" name="gender" value="Nam"  checked >
+                                                <label for="female">Nữ</label> <input class="mx-2" type="radio" id="female" name="gender" value="Nữ" >
+                                                <label for="other">Khác</label> <input class="mx-2" type="radio" id="other" name="gender" value="Khác">
                                             </div>
                                         </td>
                                     </tr>
