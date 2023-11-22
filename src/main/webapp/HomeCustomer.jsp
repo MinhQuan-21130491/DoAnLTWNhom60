@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,7 +28,6 @@
     <link rel="stylesheet" href="css/Style.css">
 </head>
 <body>
-<!--header-->
 <header>
     <div class="container-fluid bgcolor-orange" >
         <div class="container ">
@@ -41,9 +42,9 @@
                         <li class="px-3 pt-1"><a class="nav-link" href="#"><i
                                 class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
                         <li class="px-3 pt-1"><a class="nav-link" href="#"><i
-                                class="fa fa-instagram" aria-hidden="true"></i></i></a></li>
+                                class="fa fa-instagram" aria-hidden="true"></i></a></li>
                         <li class="px-3 pt-1"><a class="nav-link" href="#"><i
-                                class="fa fa-twitter" aria-hidden="true"></i></i></a></li>
+                                class="fa fa-twitter" aria-hidden="true"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -65,8 +66,8 @@
                                 <div class="col-md-12 col-lg-4 col-sm-12">
                                     <ul class="navbar-nav w-100  mb-2 mb-lg-0">
                                         <li class="nav-item hv "><a class="nav-link ps-0 "
-                                                                    aria-current="page" href=HomePage.html>Trang chủ</a></li>
-                                        <li class="nav-item hv"><a class="nav-link" href="IntroWebsite.html">Giới
+                                                                    aria-current="page" href=HomePage.jsp>Trang chủ</a></li>
+                                        <li class="nav-item hv"><a class="nav-link" href="IntroWebsite.jsp">Giới
                                             thiệu</a></li>
                                         <li class="nav-item dropdown hv"><a
                                                 class="nav-link dropdown-toggle" href="#" id=""
@@ -95,11 +96,20 @@
                                                         role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                     Tài khoản </a>
                                                     <ul class="dropdown-menu" aria-labelledby="">
-                                                        <li><a class="dropdown-item" href="SignIn.html">Đăng nhập</a></li>
+                                                        <li class ="dropdown-item"> Xin chào: <span class = "fw-bold " class = "name">MinhQuan</span></li>
                                                         <li>
                                                             <hr class="dropdown-divider">
                                                         </li>
-                                                        <li><a class="dropdown-item" href="#">Đăng kí</a></li>
+                                                        <li><a class="dropdown-item" href="#">Lịch sử mua hàng</a></li><li>
+                                                        <hr class="dropdown-divider">
+                                                        <li><a class="dropdown-item" href="#">Thay đổi thông tin</a></li><li>
+                                                        <hr class="dropdown-divider">
+                                                    </li>
+                                                        <li><a class="dropdown-item" href="#">Đổi mật khẩu</a></li>
+                                                        <li>
+                                                            <hr class="dropdown-divider">
+                                                        </li>
+                                                        <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
                                                     </ul>
                                                 </li>
                                             </ul>
@@ -127,11 +137,20 @@
                                                 role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             Tài khoản </a>
                                             <ul class="dropdown-menu" aria-labelledby="">
-                                                <li><a class="dropdown-item" href="SignIn.html">Đăng nhập</a></li>
+                                                <li class ="dropdown-item"> Xin chào: <span class = "fw-bold " class = "name">MinhQuan</span></li>
                                                 <li>
                                                     <hr class="dropdown-divider">
                                                 </li>
-                                                <li><a class="dropdown-item" href="#">Đăng kí</a></li>
+                                                <li><a class="dropdown-item" href="#">Lịch sử mua hàng</a></li><li>
+                                                <hr class="dropdown-divider">
+                                                <li><a class="dropdown-item" href="#">Thay đổi thông tin</a></li><li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                                <li><a class="dropdown-item" href="#">Đổi mật khẩu</a></li>
+                                                <li>
+                                                    <hr class="dropdown-divider">
+                                                </li>
+                                                <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
                                             </ul>
                                         </li>
 
@@ -167,8 +186,6 @@
         </div>
     </div>
 </header>
-<!--end header-->
-<!--page content-->
 <div class="container p-0 mgt" >
     <div class="row">
         <!-- menu left -->
@@ -183,24 +200,24 @@
                     </div>
                 </div>
                 <div class="typeChair" id ="typeChair" >
-                <a href="#" class="list-group-item list-group-item-action">Ghế văn phòng </a>
-                <a href="#" class="list-group-item list-group-item-action">Ghế thư giãn</a>
-                <a href="#" class="list-group-item list-group-item-action">Ghế trang trí</a>
-                <a href="#" class="list-group-item list-group-item-action">Ghế gaming</a>
+                    <a href="#" class="list-group-item list-group-item-action">Ghế văn phòng </a>
+                    <a href="#" class="list-group-item list-group-item-action">Ghế thư giãn</a>
+                    <a href="#" class="list-group-item list-group-item-action">Ghế trang trí</a>
+                    <a href="#" class="list-group-item list-group-item-action">Ghế gaming</a>
                 </div>
             </div>
             <div class="mt-3 d-none d-md-none d-lg-block ">
                 <h5 class="m-0 text-center" id="titleCate">SẢN PHẨM MỚI NHẤT</h5>
                 <hr class = "mt-2 mb-2"/>
                 <div class="card">
-                    <a href="DetailProduct.html">
+                    <a href="DetailProduct.jsp">
                         <img src=" https://i.pinimg.com/564x/c4/d8/88/c4d8881ff372b46b2b9f98ae07d9886a.jpg" class="card-img-top img_p" alt="...">
                     </a>
                     <div class="card-body">
                         <h5 class="card-title">Ghế gấu len cừu cao cấp</h5>
                         <p class="card-text">
                         <p class="price">₫1.000.000</p></p>
-                        <a href="Cart.html"><i class="fa fa-shopping-cart cart" aria-hidden="true" title ="Thêm vào giỏ hàng"></i></a>
+                        <a href="Cart.jsp"><i class="fa fa-shopping-cart cart" aria-hidden="true" title ="Thêm vào giỏ hàng"></i></a>
                     </div>
                 </div>
             </div>
@@ -208,14 +225,14 @@
                 <h5 class="m-0 text-center" >SẢN PHẨM BÁN CHẠY NHẤT</h5>
                 <hr class = "mt-2 mb-2"/>
                 <div class="card">
-                    <a href="DetailProduct.html">
+                    <a href="DetailProduct.jsp">
                         <img src="https://down-vn.img.susercontent.com/file/sg-11134201-7r9a2-llujnaskifkp71" class="card-img-top img_p" alt="...">
                     </a>
                     <div class="card-body">
                         <h5 class="card-title">Ghế xoay</h5>
                         <p class="card-text">
                         <p class="price">₫1.000.000</p></p>
-                        <a href="Cart.html"><i class="fa fa-shopping-cart cart" aria-hidden="true" title ="Thêm vào giỏ hàng"></i></a>
+                        <a href="Cart.jsp"><i class="fa fa-shopping-cart cart" aria-hidden="true" title ="Thêm vào giỏ hàng"></i></a>
                     </div>
                 </div>
             </div>
@@ -317,12 +334,12 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="image/slide1.jpg"
-                                class="d-block img_p" alt="...">
+                        <img  src="image/slide1.jpg"
+                              class="d-block img_p" alt="...">
                     </div>
                     <div class="carousel-item">
                         <img src="image/slide2.jpg"
-                                class="d-block img_p" alt="...">
+                             class="d-block img_p" alt="...">
                     </div>
                     <div class="carousel-item">
                         <img src="image/slide3.jpg"
@@ -346,89 +363,88 @@
                 <h5 class = "m-0 ">DANH SÁCH SẢN PHẨM</h5>
                 <div class="col-lg-4 col-sm-6 mt-3">
                     <div class="card">
-                        <a href="DetailProduct.html">
-                        <img src=" https://i.pinimg.com/236x/27/50/7c/27507ccedd97a1940a2d19e09a3e593c.jpg" class="card-img-top img_p" alt="...">
+                        <a href="DetailProduct.jsp">
+                            <img src=" https://i.pinimg.com/236x/27/50/7c/27507ccedd97a1940a2d19e09a3e593c.jpg" class="card-img-top img_p" alt="...">
                         </a>
                         <div class="card-body">
                             <h5 class="card-title">Ghế Papasan</h5>
                             <p class="card-text">
                             <p class="price">₫1.000.000</p></p>
-                            <a href="Cart.html"><i class="fa fa-shopping-cart cart" aria-hidden="true" title ="Thêm vào giỏ hàng"></i></a>
+                            <a href="Cart.jsp"><i class="fa fa-shopping-cart cart" aria-hidden="true" title ="Thêm vào giỏ hàng"></i></a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6 mt-3">
                     <div class="card">
-                        <a href="DetailProduct.html">
-                        <img src="https://homeoffice.com.vn/images/detailed/47/ghe-sofa-don-vang-dong-nem-xanh-gsd68046-01_hq87-34.jpeg" class="card-img-top img_p" alt="...">
+                        <a href="DetailProduct.jsp">
+                            <img src="https://homeoffice.com.vn/images/detailed/47/ghe-sofa-don-vang-dong-nem-xanh-gsd68046-01_hq87-34.jpeg" class="card-img-top img_p" alt="...">
                         </a>
                         <div class="card-body">
                             <h5 class="card-title">Ghế tựa trang trí </h5>
                             <p class="card-text">
                             <p class="price">₫1.000.000</p></p>
-                            <a href="Cart.html"><i class="fa fa-shopping-cart cart" aria-hidden="true" title ="Thêm vào giỏ hàng"></i></a>
+                            <a href="Cart.jsp"><i class="fa fa-shopping-cart cart" aria-hidden="true" title ="Thêm vào giỏ hàng"></i></a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6 mt-3">
                     <div class="card">
-                        <a href="DetailProduct.html">
-                        <img src="https://down-vn.img.susercontent.com/file/sg-11134201-22120-grkmwu1es6kv78" class="card-img-top img_p" alt="...">
+                        <a href="DetailProduct.jsp">
+                            <img src="https://down-vn.img.susercontent.com/file/sg-11134201-22120-grkmwu1es6kv78" class="card-img-top img_p" alt="...">
                         </a>
                         <div class="card-body">
                             <h5 class="card-title">Ghế máy tính trang trí </h5>
                             <p class="card-text">
                             <p class="price">₫1.000.000</p></p>
-                            <a href="Cart.html"><i class="fa fa-shopping-cart cart" aria-hidden="true" title ="Thêm vào giỏ hàng"></i></a>
+                            <a href="Cart.jsp"><i class="fa fa-shopping-cart cart" aria-hidden="true" title ="Thêm vào giỏ hàng"></i></a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6 mt-3">
                     <div class="card">
-                        <a href="DetailProduct.html">
-                        <img src="https://down-vn.img.susercontent.com/file/sg-11134201-22120-grkmwu1es6kv78" class="card-img-top img_p" alt="...">
+                        <a href="DetailProduct.jsp">
+                            <img src="https://down-vn.img.susercontent.com/file/sg-11134201-22120-grkmwu1es6kv78" class="card-img-top img_p" alt="...">
                         </a>
                         <div class="card-body">
                             <h5 class="card-title">Ghế máy tính trang trí </h5>
                             <p class="card-text">
                             <p class="price">₫1.000.000</p></p>
-                            <a href="Cart.html"><i class="fa fa-shopping-cart cart" aria-hidden="true" title ="Thêm vào giỏ hàng"></i></a>
+                            <a href="Cart.jsp"><i class="fa fa-shopping-cart cart" aria-hidden="true" title ="Thêm vào giỏ hàng"></i></a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6 mt-3">
                     <div class="card">
-                        <a href="DetailProduct.html">
-                        <img src="https://down-vn.img.susercontent.com/file/sg-11134201-22120-grkmwu1es6kv78" class="card-img-top img_p" alt="...">
+                        <a href="DetailProduct.jsp">
+                            <img src="https://down-vn.img.susercontent.com/file/sg-11134201-22120-grkmwu1es6kv78" class="card-img-top img_p" alt="...">
                         </a>
                         <div class="card-body">
                             <h5 class="card-title">Ghế máy tính trang trí </h5>
                             <p class="card-text">
                             <p class="price">₫1.000.000</p></p>
-                            <a href="Cart.html"><i class="fa fa-shopping-cart cart" aria-hidden="true" title ="Thêm vào giỏ hàng"></i></a>
+                            <a href="Cart.jsp"><i class="fa fa-shopping-cart cart" aria-hidden="true" title ="Thêm vào giỏ hàng"></i></a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6 mt-3">
                     <div class="card">
-                        <a href="DetailProduct.html">
-                        <img src="https://down-vn.img.susercontent.com/file/sg-11134201-22120-grkmwu1es6kv78" class="card-img-top img_p" alt="...">
+                        <a href="DetailProduct.jsp">
+                            <img src="https://down-vn.img.susercontent.com/file/sg-11134201-22120-grkmwu1es6kv78" class="card-img-top img_p" alt="...">
                         </a>
                         <div class="card-body">
                             <h5 class="card-title">Ghế máy tính trang trí </h5>
                             <p class="card-text">
                             <p class="price">₫1.000.000</p></p>
-                            <a href="Cart.html"><i class="fa fa-shopping-cart cart" aria-hidden="true" title ="Thêm vào giỏ hàng"></i></a>
+                            <a href="Cart.jsp"><i class="fa fa-shopping-cart cart" aria-hidden="true" title ="Thêm vào giỏ hàng"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
             <button class="mt-3 bgcolor-orange border border-0 rounded-1 px-3 py-2">Tải thêm</button>
         </div>
-
     </div>
-
 </div>
+
 <!-- End Page content -->
 <!--footer-->
 <footer>
@@ -449,10 +465,10 @@
                     <h5>VỀ CHÚNG TÔI</h5>
                     <hr class ="w-50 ">
                     <ul class="navbar-nav ">
-                        <a class="nav-link link" href="IntroWebsite.html"><li>Giới thiệu</li></a>
-                        <a class="nav-link link" href="IntroWebsite.html#policy"><li>Bảo hành</li></a>
-                        <a class="nav-link link" href="IntroWebsite.html#policy"><li>Đổi trả</li></a>
-                        <a class="nav-link link" href="IntroWebsite.html#contact"><li>Liên hệ</li></a>
+                        <a class="nav-link link" href="IntroWebsite.jsp"><li>Giới thiệu</li></a>
+                        <a class="nav-link link" href="IntroWebsite.jsp#policy"><li>Bảo hành</li></a>
+                        <a class="nav-link link" href="IntroWebsite.jsp#policy"><li>Đổi trả</li></a>
+                        <a class="nav-link link" href="IntroWebsite.jsp#contact"><li>Liên hệ</li></a>
 
                     </ul>
                 </div>
@@ -487,6 +503,7 @@
     </div>
 </footer>
 <!--end footer-->
+</body>
 <script>
     $(document).ready(function () {
         // ẩn hiện thanh danh mục
@@ -498,11 +515,28 @@
                 typeChair.css("display", "none");
             }
         })
-        //load header
-       // $('header').load('Header.html')
-        //load footer
-       // $('footer').load('Footer.html')
+        // chuyển hướng tới mục chính sách mua hàng trong trang giới thiệu
+        if (window.location.hash === "#policy") {
+            var targetElement = $('#policy');
+            if (targetElement.length > 0) {
+                $('html, body').animate({
+                    scrollTop: targetElement.offset().top
+                }, 1000); // 1000 milliseconds = 1 second (điều này tạo hiệu ứng trượt mượt)
+            }
+        }
+        // chuyển hướng tới mục thông tin liên hệ
+        if (window.location.hash === "#contact") {
+            var targetElement = $('#contact');
+
+            if (targetElement.length > 0) {
+                $('html, body').animate({
+                    scrollTop: targetElement.offset().top
+                }, 1000); // 1000 milliseconds = 1 second (điều này tạo hiệu ứng trượt mượt)
+            }
+        }
     });
 </script>
+</html>
+
 </body>
 </html>

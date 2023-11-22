@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Xác thực tài khoản</title>
+    <title>Đổi mật khẩu</title>
+    <script src = "https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
     <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -25,24 +26,23 @@
     <link rel="stylesheet" href="css/Style.css">
 </head>
 <body>
-<header class = "hd">
-    <div class="container-fluid bgcolor-orange">
+<header>
+    <div class="container-fluid bgcolor-orange" >
         <div class="container ">
             <div class="row ">
                 <div class="col-md-9 col-sm-9 col-8 col-4 d-flex align-items-center  ">
-                    <a class="nav-link" href="#"> <img style="width: 150px" src="image/logoWeb.png">
+                    <a class ="nav-link" href="#"> <img style="width: 150px" src="image/logoWeb.png">
                     </a>
                 </div>
                 <div class="col-md-3 col-sm-3 col-4 py-3 px-0 d-flex align-items-center justify-content-end">
                     <ul class="d-flex m-0 list-unstyled justify-content-end">
-                        <li class="px-3 pt-1"><a class="nav-link active" aria-current="page" href="#"><i
-                                class="fa fa-phone" aria-hidden="true"></i></a></li>
+                        <li class="px-3 pt-1"><a class="nav-link active" aria-current="page" href="#"><i class="fa fa-phone" aria-hidden="true"></i></a></li>
                         <li class="px-3 pt-1"><a class="nav-link" href="#"><i
                                 class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
                         <li class="px-3 pt-1"><a class="nav-link" href="#"><i
-                                class="fa fa-instagram" aria-hidden="true"></i></i></a></li>
+                                class="fa fa-instagram" aria-hidden="true"></i></a></li>
                         <li class="px-3 pt-1"><a class="nav-link" href="#"><i
-                                class="fa fa-twitter" aria-hidden="true"></i></i></a></li>
+                                class="fa fa-twitter" aria-hidden="true"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -53,46 +53,34 @@
     <!-- <img src="images/signup-bg.jpg" alt=""> -->
     <div class="contain">
         <div class="signup-content">
-
-            <form id="verify-form" class="signup-form" action="" onsubmit="return verifyAccount()">
-
-                <div class="text-end pe-4">
-                    <a class="text-decoration-none" href="HomePage.html">Bỏ qua</a>
-                </div>
-                <img src="images/verify.jpg" alt="" width="400px">
-                <h5>Xác thực tài khoản của bạn</h5>
-                <div class="verify">
-                    <p class="text-group" style="margin-bottom: 0">Chúng tôi đã gửi mã xác thực đến <span id="gmail" class="text-primary"
-                                                                                 name="gmail">abc@gmail.com</span></p>
-                    <p class="">Vui lòng nhập mã để xác thực tài khoản của bạn</p>
-                    <p class="mb-0">Mã xác thực chỉ có hiệu lực trong vòng 1 tiếng</p>
-                    <div class="form-group text-center">
-                        <span class="text-danger" id="errVerify"></span>
-                        <input type="text" class="form-input" placeholder="Nhập mã xác thực ở đây" name="verify"
-                               id="verify"/>
+            <form id="signup-form" class="signup-form" action="SignUp.html" >
+                <h5>ĐỔI MẬT KHẨU</h5>
+                <div class="form-SignUp">
+                    <div class="form-group">
+                        <label>Mật khẩu hiện tại</label><span class="text-danger" id="errPW"></span>
+                        <input type="password" class="form-input" placeholder="Nhập mật khẩu hiện tại" name="password"
+                               id="password"/>
                     </div>
-                    <p class="text-group"><a href="">Nhấn vào đây</a> nếu bạn không nhận được Email</p>
+                    <div class="form-group">
+                        <label for="re_password">Mật khẩu mới</label><span class="text-danger" id="errNPW"></span>
+                        <input type="password" class="form-input" placeholder="Nhập mật khẩu mới" name="new_password"
+                               id="new_password"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="re_password">Xác nhận mật khẩu</label><span class="text-danger" id="errReNPW"></span>
+                        <input type="password" class="form-input" placeholder="Nhập lại mật khẩu mới" name="re_password"
+                               id="re_password"/>
+                    </div>
+
                 </div>
                 <div class="form-group">
-                    <button type="submit" id="confirm" >
-                        XÁC NHẬN
-                    </button>
+                    <button type="submit">XÁC NHẬN</button>
                 </div>
+
             </form>
         </div>
     </div>
 </section>
-<script>
-    function verifyAccount() {
-        var verifyVal = document.getElementById("verify");
-        var error = document.getElementById("errVerify");
-        var flag = true;
-        if(verifyVal.value == "") {
-            flag = false;
-            error.innerHTML = '(*)Vui lòng nhập mã xác thực!';
-        }
-        return flag;
-    }
-</script>
+<script src="js/ChangePW.js"></script>
 </body>
 </html>

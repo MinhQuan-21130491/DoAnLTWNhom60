@@ -1,8 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Quên mật khẩu</title>
+    <title>Xác thực tài khoản</title>
     <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -16,27 +18,27 @@
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
             integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
             crossorigin="anonymous"></script>
+
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
           integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <script src="https://code.jquery.com/jquery-3.7.1.js"
-            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/SignUp.css">
     <link rel="stylesheet" href="css/Style.css">
-    </head>
+</head>
 <body>
-<header>
-    <div class="container-fluid bgcolor-orange" >
+<header class = "hd">
+    <div class="container-fluid bgcolor-orange">
         <div class="container ">
             <div class="row ">
                 <div class="col-md-9 col-sm-9 col-8 col-4 d-flex align-items-center  ">
-                    <a class ="nav-link" href="#"> <img style="width: 150px" src="image/logoWeb.png">
+                    <a class="nav-link" href="#"> <img style="width: 150px" src="image/logoWeb.png">
                     </a>
                 </div>
                 <div class="col-md-3 col-sm-3 col-4 py-3 px-0 d-flex align-items-center justify-content-end">
                     <ul class="d-flex m-0 list-unstyled justify-content-end">
-                        <li class="px-3 pt-1"><a class="nav-link active" aria-current="page" href="#"><i class="fa fa-phone" aria-hidden="true"></i></a></li>
+                        <li class="px-3 pt-1"><a class="nav-link active" aria-current="page" href="#"><i
+                                class="fa fa-phone" aria-hidden="true"></i></a></li>
                         <li class="px-3 pt-1"><a class="nav-link" href="#"><i
                                 class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
                         <li class="px-3 pt-1"><a class="nav-link" href="#"><i
@@ -53,29 +55,46 @@
     <!-- <img src="images/signup-bg.jpg" alt=""> -->
     <div class="contain">
         <div class="signup-content">
-            <form  id="signup-form" class="signup-form" action="SignIn.html">
-                <h5>QUÊN MẬT KHẨU</h5>
-                <div class="form-SignUp">
-                    <div class="form-group">
-                        <label>Tên đăng nhập</label><span class="text-danger" id="errUser"></span>
-                        <input type="text" class="form-input" placeholder="Nhập tên đăng nhập" name="user_name"
-                               id="user_name"/>
+
+            <form id="verify-form" class="signup-form" action="" onsubmit="return verifyAccount()">
+
+                <div class="text-end pe-4">
+                    <a class="text-decoration-none" href="HomePage.jsp">Bỏ qua</a>
+                </div>
+                <img src="images/verify.jpg" alt="" width="400px">
+                <h5>Xác thực tài khoản của bạn</h5>
+                <div class="verify">
+                    <p class="text-group" style="margin-bottom: 0">Chúng tôi đã gửi mã xác thực đến <span id="gmail" class="text-primary"
+                                                                                 name="gmail">abc@gmail.com</span></p>
+                    <p class="">Vui lòng nhập mã để xác thực tài khoản của bạn</p>
+                    <p class="mb-0">Mã xác thực chỉ có hiệu lực trong vòng 1 tiếng</p>
+                    <div class="form-group text-center">
+                        <span class="text-danger" id="errVerify"></span>
+                        <input type="text" class="form-input" placeholder="Nhập mã xác thực ở đây" name="verify"
+                               id="verify"/>
                     </div>
-                    <div class="form-group">
-                        <label>Email</label><span class="text-danger" id="errEmail"></span>
-                        <input type="text" class="form-input" placeholder="Nhập Email" name="email" id="email"/>
-                    </div>
+                    <p class="text-group"><a href="">Nhấn vào đây</a> nếu bạn không nhận được Email</p>
                 </div>
                 <div class="form-group">
-                    <button type="submit">
+                    <button type="submit" id="confirm" >
                         XÁC NHẬN
                     </button>
                 </div>
-
             </form>
         </div>
     </div>
 </section>
-<script src="js/ForgetPW.js"></script>
+<script>
+    function verifyAccount() {
+        var verifyVal = document.getElementById("verify");
+        var error = document.getElementById("errVerify");
+        var flag = true;
+        if(verifyVal.value == "") {
+            flag = false;
+            error.innerHTML = '(*)Vui lòng nhập mã xác thực!';
+        }
+        return flag;
+    }
+</script>
 </body>
 </html>

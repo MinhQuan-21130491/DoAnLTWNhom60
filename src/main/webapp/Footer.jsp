@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <div class="container-fluid bgcolor-orange ">
@@ -17,11 +19,10 @@
                 <h5>VỀ CHÚNG TÔI</h5>
                 <hr class ="w-50 ">
                 <ul class="navbar-nav ">
-                    <a class="nav-link link" href="IntroWebsite.html"><li>Giới thiệu</li></a>
-                    <a class="nav-link link" href="IntroWebsite.html#policy"><li>Bảo hành</li></a>
-                    <a class="nav-link link" href="IntroWebsite.html#policy"><li>Đổi trả</li></a>
-                    <a class="nav-link link" href="IntroWebsite.html#contact"><li>Liên hệ</li></a>
-
+                    <a class="nav-link link" href="IntroWebsite.jsp"><li>Giới thiệu</li></a>
+                    <a class="nav-link link" href="IntroWebsite.jsp#policy"><li>Bảo hành</li></a>
+                    <a class="nav-link link" href="IntroWebsite.jsp#policy"><li>Đổi trả</li></a>
+                    <a class="nav-link link" href="IntroWebsite.jsp#contact"><li>Liên hệ</li></a>
                 </ul>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
@@ -40,8 +41,8 @@
                 <h5 class = "">THÔNG TIN LIÊN HỆ</h5>
                 <hr class ="w-50 ">
                 <ul class="navbar-nav ">
-                   <li class="nav-link"><i class="fa fa-map-marker" aria-hidden="true"></i> 230A Tô Ngọc Vân, Phường Linh Xuân, Thành phố Thủ Đức</li>
-                   <li class="nav-link" ><i class="fa fa-envelope" aria-hidden="true"></i> homedecorsqn@gmail.com</li>
+                    <li class="nav-link"><i class="fa fa-map-marker" aria-hidden="true"></i> 230A Tô Ngọc Vân, Phường Linh Xuân, Thành phố Thủ Đức</li>
+                    <li class="nav-link" ><i class="fa fa-envelope" aria-hidden="true"></i> homedecorsqn@gmail.com</li>
                     <li class="nav-link" ><i class="fa fa-phone" aria-hidden="true"></i> 0812295775</li>
                 </ul>
             </div>
@@ -53,28 +54,4 @@
         </div>
     </div>
 </div>
-<script>
-    // chuyển hướng tới mục chính sách mua hàng trong trang giới thiệu
-    // $(document).ready(function () {
-    //     if (window.location.hash === "#policy") {
-    //         var targetElement = $('#policy');
-    //         if (targetElement.length > 0) {
-    //             $('html, body').animate({
-    //                 scrollTop: targetElement.offset().top
-    //             }, 1000); // 1000 milliseconds = 1 second (điều này tạo hiệu ứng trượt mượt)
-    //         }
-    //     }
-    //     // chuyển hướng tới mục thông tin liên hệ
-    //     if (window.location.hash === "#contact") {
-    //         var targetElement = $('#contact');
-    //
-    //         if (targetElement.length > 0) {
-    //             $('html, body').animate({
-    //                 scrollTop: targetElement.offset().top
-    //             }, 1000); // 1000 milliseconds = 1 second (điều này tạo hiệu ứng trượt mượt)
-    //         }
-    //     }
-    //
-    // });
-</script>
 </html>
