@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,16 +42,16 @@
                         <li class="px-3 pt-1"><a class="nav-link" href="#"><i
                                 class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
                         <li class="px-3 pt-1"><a class="nav-link" href="#"><i
-                                class="fa fa-instagram" aria-hidden="true"></i></i></a></li>
+                                class="fa fa-instagram" aria-hidden="true"></i></a></li>
                         <li class="px-3 pt-1"><a class="nav-link" href="#"><i
-                                class="fa fa-twitter" aria-hidden="true"></i></i></a></li>
+                                class="fa fa-twitter" aria-hidden="true"></i></a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 </header>
-<div class="changeInF 1">
+<div class="changeInF">
     <form id="changeNam" onsubmit="return check()">
         <table>
             <thead>
@@ -128,6 +130,16 @@
                     <td>
                         <div id="InDiaChi">
                             <input id="HienThiDC" name="DCHT" type="text">
+                        </div>
+                    </td>
+                </tr>
+                <tr id="changeDCReceive">
+                    <td>
+                        <label> Địa chỉ nhận hàng</label>
+                    </td>
+                    <td>
+                        <div id="">
+                            <input id="HienThiDCReice" name="DCHT" type="text">
                         </div>
                     </td>
                 </tr>
