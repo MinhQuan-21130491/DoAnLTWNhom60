@@ -27,7 +27,7 @@ table td {
 tr{
     border-bottom:none !important; ;
 }
-label {
+td >label {
     margin: 5px 0 0 18px;
     font-weight: 400;
     width: 140px;

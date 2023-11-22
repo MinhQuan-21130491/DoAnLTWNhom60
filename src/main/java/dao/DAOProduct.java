@@ -226,10 +226,91 @@ public class DAOProduct {
     }
         return product;
     }
+    /*Lấy ra danh sách màu của sản phẩm
+    @return ArrayList<String>
+    */
+    public static ArrayList<String> listColorP() {
+        ArrayList<String> list = new ArrayList<>();
+        Connection connection = JDBCUtil.getConnection();
+        String sql = "select distinct(color) from products ";
+        try {
+        PreparedStatement pr = connection.prepareStatement(sql);
+        ResultSet resultSet = pr.executeQuery();
+        String color = null;
+        while (resultSet.next()) {
+             color = resultSet.getString("color");
+             list.add(color);
+        }
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
+    }
+        return list;
+    }
+    public static ArrayList<Product> listProductByFil(String command, int priceFil, String colorFil, String materialFil) {
+        ArrayList<Product> list = new ArrayList<>();
+        try (Connection connection = JDBCUtil.getConnection();
+             PreparedStatement pr = createPreparedStatement(connection,command, priceFil, colorFil, materialFil);
+             ResultSet resultSet = pr.executeQuery()) {
+            while (resultSet.next()) {
+                int idProduct = resultSet.getInt("id");
+                int idCate = resultSet.getInt("idCate");
+                String name = resultSet.getString("name");
+                int priceImport = resultSet.getInt("priceImport");
+                int price = resultSet.getInt("price");
+                String description = resultSet.getString("description");
+                String color = resultSet.getString("color");
+                String material = resultSet.getString("material");
+                double width = resultSet.getDouble("width");
+                double height = resultSet.getDouble("height");
+                double lenght = resultSet.getDouble("length");
+                int quantity = resultSet.getInt("quantity");
+                Product product = new Product(idProduct, idCate, name, priceImport, price,description,color,material,width,height,lenght,quantity);
+                list.add(product);
+            }
 
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
+    private static PreparedStatement createPreparedStatement(Connection connection,String command, int priceFil, String colorFil, String materialFil) throws SQLException {
+        String sql = "SELECT p.id, p.idCate, p.name, p.price, p.priceImport, p.quantity, p.color, p.material, p.description, p.height, p.width, p.length " +
+                "FROM products AS p " +
+                "WHERE ";
+        if (priceFil != 0) {
+            if(command.equalsIgnoreCase("D")) {
+                sql += "p.price < ? ";
+            }else if(command.equalsIgnoreCase("T")) {
+                sql += "p.price > ? ";
 
-
+            }
+        }
+        if (!colorFil.isEmpty()) {
+            if (priceFil != 0) {
+                sql += "AND ";
+            }
+            sql += "p.color = ? ";
+        }
+        if (!materialFil.isEmpty()) {
+            if (priceFil != 0 || !colorFil.isEmpty()) {
+                sql += "AND ";
+            }
+            sql += " p.material COLLATE utf8mb4_general_ci LIKE ? "; // Sử dụng LIKE và thêm dấu ?
+        }
+        PreparedStatement pr = connection.prepareStatement(sql);
+        int parameterIndex = 1;
+        if (priceFil != 0) {
+            pr.setInt(parameterIndex++, priceFil);
+        }
+        if (!colorFil.isEmpty()) {
+            pr.setString(parameterIndex++, colorFil);
+        }
+        if (!materialFil.isEmpty()) {
+            pr.setString(parameterIndex, "%" + materialFil + "%"); // Thêm dấu % vào giữa chuỗi tìm kiếm
+        }
+        return pr;
+    }
     public static void main(String[] args) {
-        System.out.println(latestProduct());
+    System.out.println(listProductByFil("T",5000000, "Cam", ""));
     }
  }

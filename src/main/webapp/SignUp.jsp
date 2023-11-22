@@ -103,9 +103,14 @@
                             <input type="date" class="form-input" name="birthday" id="birthday"/>
                         </div>
                         <div class="form-group">
-                            <label for="address" >Địa chỉ</label><span class="text-danger" id="errAd"></span>
+                            <label for="address" >Địa chỉ</label><span class="text-danger" id="errAdd"></span>
                             <input type="text" class="form-input" placeholder="Nhập địa chỉ của bạn" name="address"
                                    id="address"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="addRecei" >Địa chỉ nhận hàng</label><span class="text-danger" id="errAddRecei"></span>
+                            <input type="text" class="form-input" placeholder="Nhập địa chỉ của bạn" name="address"
+                                   id="addRecei"/>
                         </div>
                         <div class="checkbox">
                             <input type="checkbox" name="acp" id="acp" onclick="showBtnResgis()"><label for="acp" class="ps-2 text-color">Bạn đồng ý với các điều khoản của HomeDecor</label>
