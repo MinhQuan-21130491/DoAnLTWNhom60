@@ -441,10 +441,6 @@
                                                     <option value="Ghế gaming">Ghế gaming</option>
                                                 </select>
                                             </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Hình ảnh</label><span id="errImg1" class="text-danger"></span>
-                                                <input type="text" class="form-control" id="image1" name="image1">
-                                            </div>
                                             <div class="row">
                                                 <div class="col-md-4 col-4 mb-3">
                                                     <label class="form-label">Chiều dài<span class="fs">(cm)</span></label>
@@ -476,6 +472,15 @@
                                             <div class="mb-3">
                                                 <label class="form-label">Mô tả</label><span id="errDes"  class="text-danger"></span>
                                                 <textarea type="text" class="form-control" id="des" name="des"></textarea>
+                                            </div>
+                                            <div  id = "image">
+                                                <label class="form-label">Hình ảnh</label><span id="errImg1" class="text-danger"></span>
+                                                <div class="mb-3">
+                                                    <input type="file" class="form-control" name="image">
+                                                </div>
+                                            </div>
+                                            <div class="text-end mb-3">
+                                                <button type ="button" class="btnAdd bgcolor bd-full" id ="btnAddImage" onclick="addInput()"><i class="fa fa-plus-circle text-color" aria-hidden="true" title="Thêm hình ảnh" ></i></button>
                                             </div>
                                         </div>
                                         <div class="row p-0">
@@ -989,7 +994,7 @@
         var priceImp = document.getElementById("priceImpProductAdd");
         var price = document.getElementById("priceProductAdd");
         var des = document.getElementById("des");
-        var img1 = document.getElementById("image1");
+        var images = document.getElementsByName("image")
         var length = document.getElementById("length");
         var width = document.getElementById("width");
         var height = document.getElementById("height");
@@ -1004,44 +1009,46 @@
         var errDes = document.getElementById("errDes");
         var errImg1 = document.getElementById("errImg1");
         if (nameP.value === "") {
-            errNameP.innerHTML = '(*)Vui lòng nhập tên sản phẩm';
+            errNameP.innerHTML = '*Vui lòng nhập tên sản phẩm';
             flag = false;
         } else {
             errNameP.innerHTML = '';
         }
         //giá nhập
         if (priceImp.value === "") {
-            errImpPriceAdd.innerHTML = ' (*)Vui lòng nhập giá sản phẩm!';
+            errImpPriceAdd.innerHTML = ' *Vui lòng nhập giá sản phẩm!';
             flag = false;
         } else if (!priceImp.value.match(priceReg)) {
-            errImpPriceAdd.innerHTML = ' (*)Giá tiền không hợp lệ!';
+            errImpPriceAdd.innerHTML = ' *Giá tiền không hợp lệ!';
             flag = false;
         } else {
             errImpPriceAdd.innerHTML = '';
         }
         //giá bán
         if (price.value === "") {
-            errPriceAdd.innerHTML = ' (*)Vui lòng nhập giá bán!';
+            errPriceAdd.innerHTML = ' *Vui lòng nhập giá bán!';
             flag = false;
         } else if (!price.value.match(priceReg)) {
-            errPriceAdd.innerHTML = ' (*)Giá tiền không hợp lệ!';
+            errPriceAdd.innerHTML = ' *Giá tiền không hợp lệ!';
             flag = false;
         } else {
             errPriceAdd.innerHTML = '';
         }
         //mô tả
         if (des.value === "") {
-            errDes.innerHTML = ' (*)Vui lòng nhập mô tả sản phẩm!';
+            errDes.innerHTML = ' *Vui lòng nhập mô tả sản phẩm!';
             flag = false;
         } else {
             errDes.innerHTML = ''
         }
         //hình
-        if (img1.value === "") {
-            errImg1.innerHTML = ' (*)Vui lòng nhập đường dẫn các hình ảnh';
-            flag = false;
-        } else {
-            errImg1.innerHTML = '';
+        for (var i = 0; i < images.length; i++) {
+            if (images[i].value === "") {
+                errImg1.innerHTML = ' *Vui lòng nhập đường dẫn các hình ảnh';
+                flag = false;
+            } else {
+                errImg1.innerHTML = '';
+            }
         }
         //length
         if (length.value === "") {
@@ -1087,8 +1094,6 @@
         }
         console.log(flag)
         return flag;
-
-
     }
 
     function editProduct() {
@@ -1114,41 +1119,41 @@
 
 
         if (nameP.value === "") {
-            errNameP.innerHTML = '(*)Vui lòng nhập tên sản phẩm';
+            errNameP.innerHTML = '*Vui lòng nhập tên sản phẩm';
             flag = false;
         } else {
             errNameP.innerHTML = '';
         }
         //giá nhập
         if (priceImp.value === "") {
-            errImpPriceAdd.innerHTML = ' (*)Vui lòng nhập giá sản phẩm!';
+            errImpPriceAdd.innerHTML = ' *Vui lòng nhập giá sản phẩm!';
             flag = false;
         } else if (!priceImp.value.match(priceReg)) {
-            errImpPriceAdd.innerHTML = ' (*)Giá tiền không hợp lệ!';
+            errImpPriceAdd.innerHTML = ' *Giá tiền không hợp lệ!';
             flag = false;
         } else {
             errImpPriceAdd.innerHTML = '';
         }
         //giá bán
         if (price.value === "") {
-            errPriceAdd.innerHTML = ' (*)Vui lòng nhập giá bán!';
+            errPriceAdd.innerHTML = ' *Vui lòng nhập giá bán!';
             flag = false;
         } else if (!price.value.match(priceReg)) {
-            errPriceAdd.innerHTML = ' (*)Giá tiền không hợp lệ!';
+            errPriceAdd.innerHTML = ' *Giá tiền không hợp lệ!';
             flag = false;
         } else {
             errPriceAdd.innerHTML = '';
         }
         //mô tả
         if (des.value === "") {
-            errDes.innerHTML = ' (*)Vui lòng nhập mô tả sản phẩm!';
+            errDes.innerHTML = ' *Vui lòng nhập mô tả sản phẩm!';
             flag = false;
         } else {
             errDes.innerHTML = ''
         }
         //hình
         if (img1.value === "") {
-            errImg1.innerHTML = ' (*)Vui lòng nhập đường dẫn các hình ảnh';
+            errImg1.innerHTML = ' *Vui lòng nhập đường dẫn các hình ảnh';
             flag = false;
         } else {
             errImg1.innerHTML = '';
@@ -1197,8 +1202,6 @@
         }
         console.log(flag)
         return flag;
-
-
     }
 
     function editSup() {
@@ -1218,32 +1221,32 @@
 
         if (name.value === "") {
             flag = false;
-            errNameSup.innerHTML = ' (*)Vui lòng nhập tên nhà cung cấp!';
+            errNameSup.innerHTML = ' *Vui lòng nhập tên nhà cung cấp!';
         } else {
             errNameSup.innerHTML = '';
         }
         if (address.value === "") {
             flag = false;
-            errAdd.innerHTML = ' (*)Vui lòng nhập địa chỉ!';
+            errAdd.innerHTML = ' *Vui lòng nhập địa chỉ!';
         } else {
             errAdd.innerHTML = '';
         }
         if (phone.value === "") {
-            errphoneNumberSup.innerHTML = '(*)Vui lòng nhập số điện thoại nhà cung cấp!';
+            errphoneNumberSup.innerHTML = ' *Vui lòng nhập số điện thoại nhà cung cấp!';
             flag = false;
         } else if (!phone.value.match(tellReg)) {
             flag = false;
-            errphoneNumberSup.innerHTML = '(*)Số điện thoại không hợp lệ!';
+            errphoneNumberSup.innerHTML = ' *Số điện thoại không hợp lệ!';
         } else {
             errphoneNumberSup.innerHTML = ''
         }
         if (email.value === "") {
-            errEmailSup.innerHTML = '(*)Vui lòng nhập Email nhà cung cấp!';
+            errEmailSup.innerHTML = ' *Vui lòng nhập Email nhà cung cấp!';
             flag = false;
         }
         else if (!email.value.match(emailReg)) {
             flag = false;
-            errEmailSup.innerHTML = '(*)Email không hợp lệ!';
+            errEmailSup.innerHTML = ' *Email không hợp lệ!';
         } else {
             errEmailSup.innerHTML = ''
         }
@@ -1269,32 +1272,32 @@
 
         if (name.value === "") {
             flag = false;
-            errNameSup.innerHTML = ' (*)Vui lòng nhập tên nhà cung cấp!';
+            errNameSup.innerHTML = ' *Vui lòng nhập tên nhà cung cấp!';
         } else {
             errNameSup.innerHTML = '';
         }
         if (address.value === "") {
             flag = false;
-            errAdd.innerHTML = ' (*)Vui lòng nhập địa chỉ!';
+            errAdd.innerHTML = ' *Vui lòng nhập địa chỉ!';
         } else {
             errAdd.innerHTML = '';
         }
         if (phone.value === "") {
-            errphoneNumberSup.innerHTML = '(*)Vui lòng nhập số điện thoại nhà cung cấp!';
+            errphoneNumberSup.innerHTML = ' *Vui lòng nhập số điện thoại nhà cung cấp!';
             flag = false;
         } else if (!phone.value.match(tellReg)) {
             flag = false;
-            errphoneNumberSup.innerHTML = '(*)Số điện thoại không hợp lệ!';
+            errphoneNumberSup.innerHTML = ' *Số điện thoại không hợp lệ!';
         } else {
             errphoneNumberSup.innerHTML = ''
         }
         if (email.value === "") {
-            errEmailSup.innerHTML = '(*)Vui lòng nhập Email nhà cung cấp!';
+            errEmailSup.innerHTML = ' *Vui lòng nhập Email nhà cung cấp!';
             flag = false;
         }
         else if (!email.value.match(emailReg)) {
             flag = false;
-            errEmailSup.innerHTML = '(*)Email không hợp lệ!';
+            errEmailSup.innerHTML = ' *Email không hợp lệ!';
         } else {
             errEmailSup.innerHTML = ''
         }
@@ -1309,7 +1312,7 @@
         var name = document.getElementById("nameCateAdd");
         var error = document.getElementById("errNameCateAdd");
         if(name.value === "") {
-            error.innerHTML = ' (*)Vui lòng nhập danh mục mới!';
+            error.innerHTML = ' *Vui lòng nhập danh mục mới!';
             flag = false;
         }
         return flag;
@@ -1320,11 +1323,18 @@
         var name = document.getElementById("nameCateEdit");
         var error = document.getElementById("errNameCate");
         if(name.value === "") {
-            error.innerHTML = ' (*)Vui lòng nhập danh mục mới!';
+            error.innerHTML = ' *Vui lòng nhập danh mục mới!';
             flag = false;
         }
 
         return flag;
+    }
+    function addInput() {
+        var container = document.getElementById('image');
+        var newInput = document.createElement('div');
+        newInput.className = 'mb-3';
+        newInput.innerHTML = '<input type="file" class="form-control" name="image"">';
+        container.appendChild(newInput);
     }
 </script>
 </html>
