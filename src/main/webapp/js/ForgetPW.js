@@ -5,7 +5,7 @@ $(document).ready(function () {
         var condition = true;
         var emailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         if (user === "") {
-            $("#errUser").text(' (*)Vui lòng nhập tên đăng nhập!');
+            $("#errUser").text('Vui lòng nhập tên đăng nhập!');
             $('#errUser').attr('style', 'color:red');
             condition = false;
         } else {
@@ -13,11 +13,11 @@ $(document).ready(function () {
 
         }
         if (email === "") {
-            $("#errEmail").text(' (*)Vui lòng nhập Email!');
+            $("#errEmail").text('Vui lòng nhập Email!');
             $('#errEmail')
             condition = false;
         } else if (!email.match(emailReg)) {
-            $('#errEmail').text('(*)Email không hợp lệ!');
+            $('#errEmail').text('Email không hợp lệ!');
             condition = false;
         }
         else{

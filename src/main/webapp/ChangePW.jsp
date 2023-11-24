@@ -59,17 +59,17 @@
                 <h5>ĐỔI MẬT KHẨU</h5>
                 <div class="form-SignUp">
                     <div class="form-group">
-                        <label>Mật khẩu hiện tại</label><span class="text-danger" id="errPW"></span>
+                        <label>Mật khẩu hiện tại<span class="text-danger">*</span></label><span class="text-danger" id="errPW"></span>
                         <input type="password" class="form-input" placeholder="Nhập mật khẩu hiện tại" name="password"
                                id="password"/>
                     </div>
                     <div class="form-group">
-                        <label for="re_password">Mật khẩu mới</label><span class="text-danger" id="errNPW"></span>
+                        <label for="re_password">Mật khẩu mới<span class="text-danger">*</span></label><span class="text-danger" id="errNPW"></span>
                         <input type="password" class="form-input" placeholder="Nhập mật khẩu mới" name="new_password"
                                id="new_password"/>
                     </div>
                     <div class="form-group">
-                        <label for="re_password">Xác nhận mật khẩu</label><span class="text-danger" id="errReNPW"></span>
+                        <label for="re_password">Xác nhận mật khẩu<span class="text-danger">*</span></label><span class="text-danger" id="errReNPW"></span>
                         <input type="password" class="form-input" placeholder="Nhập lại mật khẩu mới" name="re_password"
                                id="re_password"/>
                     </div>

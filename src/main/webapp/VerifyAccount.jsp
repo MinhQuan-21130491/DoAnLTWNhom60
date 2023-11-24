@@ -44,9 +44,9 @@
                         <li class="px-3 pt-1"><a class="nav-link" href="#"><i
                                 class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
                         <li class="px-3 pt-1"><a class="nav-link" href="#"><i
-                                class="fa fa-instagram" aria-hidden="true"></i></i></a></li>
+                                class="fa fa-instagram" aria-hidden="true"></i></a></li>
                         <li class="px-3 pt-1"><a class="nav-link" href="#"><i
-                                class="fa fa-twitter" aria-hidden="true"></i></i></a></li>
+                                class="fa fa-twitter" aria-hidden="true"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -54,31 +54,31 @@
     </div>
 </header>
 <section class="signup mt-5">
-    <!-- <img src="images/signup-bg.jpg" alt=""> -->
+    <%String email =(String)request.getAttribute("email");
+      String err =(String)request.getAttribute("errCode");
+      email = (email == null)?" ": email;
+      err = (err == null)?" ": err;%>
     <div class="contain">
         <div class="signup-content">
-            <form id="verify-form" class="signup-form" action="" onsubmit="return verifyAccount()">
+            <form id="verify-form" class="signup-form" action="verifyAccount" onsubmit="return verifyAccount()">
                 <div class="text-end pe-4">
                     <a class="text-decoration-none" href="HomePage.jsp">Bỏ qua</a>
                 </div>
                 <img src="images/verify.jpg" alt="" width="400px">
                 <h5>Xác thực tài khoản của bạn</h5>
                 <div class="verify">
-                    <p class="text-group" style="margin-bottom: 0">Chúng tôi đã gửi mã xác thực đến <span id="gmail" class="text-primary"
-                                                                                 name="gmail">abc@gmail.com</span></p>
+                    <p class="text-group" style="margin-bottom: 0">Chúng tôi đã gửi mã xác thực đến <span class="text-primary" id="email"><%=email%></span></p>
+                    <input type="text" name="email" value ="<%=email%>"class="d-none">
                     <p class="">Vui lòng nhập mã để xác thực tài khoản của bạn</p>
-                    <p class="mb-0">Mã xác thực chỉ có hiệu lực trong vòng 1 tiếng</p>
+                    <p class="mb-0">Mã xác thực chỉ có hiệu lực trong vòng 10 phút</p>
                     <div class="form-group text-center">
-                        <span class="text-danger" id="errVerify"></span>
-                        <input type="text" class="form-input" placeholder="Nhập mã xác thực ở đây" name="verify"
-                               id="verify"/>
+                        <span class="text-danger" id="errVerify"><%=err%></span>
+                        <input type="text" class="form-input" placeholder="Nhập mã xác thực ở đây" name="verify" id="verify"/>
                     </div>
-                    <p class="text-group"><a href="">Nhấn vào đây</a> nếu bạn không nhận được Email</p>
+                    <p class="text-group"><a href="">Nhấn vào đây</a> để nhận lại mã xác thực</p>
                 </div>
                 <div class="form-group">
-                    <button type="submit" id="confirm" >
-                        XÁC NHẬN
-                    </button>
+                    <button type="submit" id="confirm" >XÁC NHẬN</button>
                 </div>
             </form>
         </div>

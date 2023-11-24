@@ -45,9 +45,23 @@
           <version>RELEASE</version>
           <scope>compile</scope>
       </dependency>
-
+      <dependency>
+          <groupId>com.sun.mail</groupId>
+          <artifactId>javax.mail</artifactId>
+          <version>1.6.2</version> <!-- (hoặc phiên bản mới nhất) -->
+      </dependency>
   </dependencies>
   <build>
     <finalName>DoanLTWNhom60</finalName>
+      <plugins>
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <configuration>
+                  <source>8</source>
+                  <target>8</target>
+              </configuration>
+          </plugin>
+      </plugins>
   </build>
 </project>
