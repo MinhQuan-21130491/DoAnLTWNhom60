@@ -59,12 +59,12 @@
                 <h5>QUÊN MẬT KHẨU</h5>
                 <div class="form-SignUp">
                     <div class="form-group">
-                        <label>Tên đăng nhập</label><span class="text-danger" id="errUser"></span>
+                        <label>Tên đăng nhập<span class="text-danger">*</span></label><span class="text-danger" id="errUser"></span>
                         <input type="text" class="form-input" placeholder="Nhập tên đăng nhập" name="user_name"
                                id="user_name"/>
                     </div>
                     <div class="form-group">
-                        <label>Email</label><span class="text-danger" id="errEmail"></span>
+                        <label>Email<span class="text-danger">*</span></label><span class="text-danger" id="errEmail"></span>
                         <input type="text" class="form-input" placeholder="Nhập Email" name="email" id="email"/>
                     </div>
                 </div>

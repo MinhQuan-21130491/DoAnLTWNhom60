@@ -4,6 +4,8 @@ import model.Image;
 import model.Product;
 
 import java.util.ArrayList;
+import java.util.Date;
+
 public class ProductService {
     static ProductService instance;
     private ProductService() {
@@ -74,6 +76,22 @@ public class ProductService {
         ArrayList<Image> listImageOfProduct = DAOProduct.listImageOfProduct(product);
         product.setImages(listImageOfProduct);
         return product;
+    }
+    /*
+   load danh sách màu sản phẩm để thực hiện lọc sản phẩm
+   @return ArrayList<String>
+   */
+    public ArrayList<String> listColorP() {
+      return DAOProduct.listColorP();
+    }
+    public ArrayList<Product> listProductByFil(String command, int priceFil, String colorFil, String materialFil, int idCate) {
+        ArrayList<Product> listProduct = DAOProduct.listProductByFil(command, priceFil, colorFil, materialFil, idCate);
+        ArrayList<Image> listImageOfProduct = null;
+        for(Product p:listProduct) {
+            listImageOfProduct = DAOProduct.listImageOfProduct(p);
+            p.setImages(listImageOfProduct);
+        }
+        return listProduct;
     }
     public static void main(String[] args) {
 //        System.out.println(ProductService.getInstance().listSixProduct(0));

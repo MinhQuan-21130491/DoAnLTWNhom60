@@ -6,7 +6,7 @@ $(document).ready(function (){
         var repassword =$('#re_password').val();
         var condition=true;
         if(password ===""){
-            $("#errPW").text(' (*)Vui lòng nhập mật khẩu hiện tại');
+            $("#errPW").text('Vui lòng nhập mật khẩu hiện tại');
             $('#errPW').attr('style','color:red');
             condition=false;
         }else{
@@ -14,11 +14,11 @@ $(document).ready(function (){
 
         }
         if(newpassword===""){
-            $("#errNPW").text(' (*)Vui lòng nhập mật khẩu mới');
+            $("#errNPW").text('Vui lòng nhập mật khẩu mới');
             $('#errNPW').attr('style','color:red');
             condition=false;
         }else if(newpassword===password){
-            $("#errNPW").text(' (*)Mật khẩu mới trùng với mật khẩu hiện tại');
+            $("#errNPW").text('Mật khẩu mới trùng với mật khẩu hiện tại');
             $('#errNPW').attr('style','color:red');
             condition=false;
         } else{
@@ -26,11 +26,11 @@ $(document).ready(function (){
 
         }
         if(repassword===""){
-            $("#errReNPW").text(' (*)Vui lòng nhập lại mật khẩu mới');
+            $("#errReNPW").text('Vui lòng nhập lại mật khẩu mới');
             $('#errReNPW').attr('style','color:red');
             condition=false;
         } else if(repassword!==newpassword){
-            $("#errReNPW").text(' (*)Mật khẩu mới không chính xác');
+            $("#errReNPW").text('Mật khẩu mới không chính xác');
             $('#errReNPW').attr('style','color:red');
             condition=false;
         }
