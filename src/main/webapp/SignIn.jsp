@@ -54,7 +54,7 @@
 <div class="mt-5 sigin">
     <form id="form-login" action="" onsubmit="return my_submit()">
         <div id="imgHinh">
-            <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/393391152_208027392306653_4287583286038172734_n.png?_nc_cat=106&ccb=1-7&_nc_sid=510075&_nc_ohc=j-cDDctPUZcAX_OYW5u&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AdQtLWCPR3-OIOvJwAx_zky171bVj7SA3uUW7rnpGvMp_A&oe=65561255">
+            <img src="image/logoWeb.png">
         </div>
         <div class="thongtin">
             <h5 class="heading">ĐĂNG NHẬP</h5>

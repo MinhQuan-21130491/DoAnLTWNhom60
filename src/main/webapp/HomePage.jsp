@@ -67,6 +67,24 @@
                         }%>
                 </div>
             </div>
+<%--            <div class=" d-none d-md-none d-lg-block mt-3 bg-light border border-1 ">--%>
+<%--                <div class="cate bg-light border-bottom">--%>
+<%--                    <div class="icon-bar my-2 py-1">--%>
+<%--                        <i class="fa fa-filter" aria-hidden="true"></i>--%>
+<%--                    </div>--%>
+<%--                    <div class="cateList d-flex align-items-center justify-content-center p-0" >--%>
+<%--                        <h5 class ="my-2">TÌM THEO</h5>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--                <div class="ps-2">--%>
+<%--                    <h6 class="my-2 fw-bold">Giá sản phẩm</h6>--%>
+<%--                    <div class="mb-2"><input type="checkbox" value ="500000" id="below500000"> <label for="below500000">Dưới ₫500.000</label></div>--%>
+<%--                    <div class="mb-2"><input type="checkbox" value ="1000000" id="below1000000"> <label for="below1000000">Dưới ₫1.000.000</label></div>--%>
+<%--                    <div class="mb-2"><input type="checkbox" value ="5000000" id="below5000000"> <label for="below5000000">Dưới ₫5.000.000</label></div>--%>
+<%--                    <div class="mb-2"><input type="checkbox" value ="10000000" id="below10000000"> <label for="below10000000">Dưới ₫10.000.000</label></div>--%>
+<%--                    <div class="mb-2"><input type="checkbox" value ="Tren10000000" id="above10000000"> <label for="above10000000">Trên ₫10.000.000</label></div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
             <div class="mt-3 d-none d-md-none d-lg-block ">
                 <h5 class="m-0 text-center" id="titleCate">SẢN PHẨM MỚI NHẤT</h5>
                 <hr class = "mt-2 mb-2"/>
@@ -110,76 +128,54 @@
                 </div>
                 <div class="option pe-2">
                     <ul class="navbar-nav ps-2">
-                        <li class="nav-item dropdown hv"><a
-                                class="nav-link dropdown-toggle" href="#"
-                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Giá </a>
+                        <li class="nav-item dropdown hv">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Giá </a>
                             <ul class="dropdown-menu" aria-labelledby="">
-                                <li><a class="dropdown-item" href="#">Dưới 500.000</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">Dưới 1.000.000</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">Dưới 10.000.000</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">Trên 10.000.000</a></li>
+                                <li><a class="dropdown-item priceFil" href="#">Dưới ₫500.000</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item priceFil" href="#">Dưới ₫1.000.000</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item priceFil" href="#">Dưới ₫5.000.000</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item priceFil" href="#">Dưới ₫10.000.000</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item priceFil" href="#">Trên ₫10.000.000</a></li>
                             </ul>
                         </li>
                     </ul>
                 </div>
                 <div class="option pe-2">
                     <ul class="navbar-nav ps-2">
-                        <li class="nav-item dropdown hv"><a
-                                class="nav-link dropdown-toggle" href="#"
-                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Màu sắc </a>
+                        <li class="nav-item dropdown hv">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Màu sắc </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Nâu</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">Xám</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">Trắng</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">Đỏ</a></li>
+                                <%ArrayList<String> listColor = (ArrayList<String>) request.getAttribute("listColorP");
+                                    if(listColor != null && !listColor.isEmpty()) {
+                                        for (String color: listColor) {%>
+                                <li><a class="dropdown-item colorFil" href="#"><%=color%></a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <%}
+                                }%>
                             </ul>
                         </li>
                     </ul>
                 </div>
                 <div class="option pe-2">
                     <ul class="navbar-nav ps-2">
-                        <li class="nav-item dropdown hv"><a
-                                class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Vật liệu </a>
+                        <li class="nav-item dropdown hv">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Vật liệu </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Gỗ</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">Inox</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">Sắt</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">Nhựa</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">Nhôm</a></li>
+                                <li><a class="dropdown-item materialFil" href="#">Gỗ</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item materialFil" href="#">Sắt</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item materialFil" href="#">Thép</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item materialFil" href="#">Da</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item materialFil" href="#">Vải</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item materialFil" href="#">Tre</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -261,6 +257,11 @@
 </footer>
 <!--end footer-->
 <script>
+    var price ="";
+    var color ="";
+    var material ="";
+    var command = "";
+    var idCateCurrent;
     $(document).ready(function () {
         // ẩn hiện thanh danh mục
         $('#cate').click(function () {
@@ -275,8 +276,44 @@
             $('.lt').css('color', '');
             $(this).css('color', '#f68e2e')
         })
+        $('.priceFil').click(function () {
+            var selectedPrice = $(this).text();
+            var priceText = selectedPrice;
+            price = priceText.replace(/[^\d]/g, ''); // Loại bỏ tất cả các ký tự không phải là số
+            command = priceText.charAt(0);
+            console.log(command);
+            filterProduct(command, price, color, material, idCateCurrent);
+
+        })
+        $('.colorFil').click(function () {
+            var selectedColor = $(this).text();
+            color = selectedColor;
+            filterProduct(command, price, color, material, idCateCurrent);
+        })
+        $('.materialFil').click(function () {
+            var selectedMate = $(this).text();
+            material = selectedMate;
+            filterProduct(command, price, color, material, idCateCurrent);
+        })
     });
-        var idCateCurrent;
+        function  filterProduct(command,price, color, material) {
+            document.getElementById("loadMore").classList.add("d-none");
+            $.ajax({
+                url: "filterProduct",
+                method: "GET",
+                data: {
+                  color: color,
+                  price: price,
+                  material: material,
+                  command: command,
+                  idCate: idCateCurrent
+                },
+                success: function(data){
+                    var row = document.getElementById("content");
+                    row.innerHTML = data;
+                },
+            });
+        }
         function loadMore() {
         var count = document.getElementsByClassName("product").length;
         $.ajax({

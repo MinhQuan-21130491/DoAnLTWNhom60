@@ -26,6 +26,9 @@ public class HomeController extends HttpServlet {
         Product latestProduct = ProductService.getInstance().latestProduct();
         request.setAttribute("latestP", latestProduct);
         request.setAttribute("hiddenLoadmore", "block");
+        //load màu sản phẩm
+        ArrayList<String> listColorP = ProductService.getInstance().listColorP();
+        request.setAttribute("listColorP", listColorP);
         try {
             request.getRequestDispatcher("HomePage.jsp").forward(request,response);
         } catch (ServletException e) {
