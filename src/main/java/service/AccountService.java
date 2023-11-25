@@ -52,5 +52,8 @@ public class AccountService {
     public  VerifyAccount selectVerifyAccountByIdAccount(int idAccount) {
        return DAOAccount.selectVerifyAccountByIdAccount(idAccount);
     }
+    public static int updateVerifyCode(int newCode, int idAccount) {
+        return DAOAccount.updateVerifyCode(newCode,idAccount);
+    }
 
-}
+    }
