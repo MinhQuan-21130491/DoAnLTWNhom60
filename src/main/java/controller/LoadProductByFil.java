@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import org.json.JSONObject;
+import org.json.JSONArray;
 
 @WebServlet(name = "filterProduct", value = "/filterProduct")
 public class LoadProductByFil extends HttpServlet {
@@ -32,23 +34,20 @@ public class LoadProductByFil extends HttpServlet {
         }
         ArrayList<Product> listProduct = ProductService.getInstance().listProductByFil(command,price, color, material, idCate );
         PrintWriter out = response.getWriter();
-        for(Product p: listProduct){
-            out.println(" <div class=\"col-lg-4 col-sm-6 mt-3 product\">\n" +
-                    "                            <div class=\"card\">\n" +
-                    "                                <a href=\"detail-product?pid="+p.getIdProduct()+"\">\n" +
-                    "                                    <img src=\""+p.getImages().get(0).getUrl()+"\" class=\"card-img-top img_p\" alt=\"...\">\n" +
-                    "                                </a>\n" +
-                    "                                <div class=\"card-body\">\n" +
-                    "                                    <h5 class=\"card-title\">"+p.getName()+"</h5>\n" +
-                    "                                    <p class=\"card-text\">\n" +
-                    "                                    <p class=\"price\">₫"+p.getPriceFormatted()+"\n" +
-                    "                                    <a href=\"Cart.jsp\"><i class=\"fa fa-shopping-cart cart\" aria-hidden=\"true\" title=\"Thêm vào giỏ hàng\"></i></a>\n" +
-                    "                                    </p>\n" +
-                    "                                </div>\n" +
-                    "                            </div>\n" +
-                    "                        </div>");
-        }
+        JSONObject jsonResponse = new JSONObject();
+        JSONArray htmlDataArray = new JSONArray();
+        for (Product p : listProduct) {
+            JSONObject productJSON = new JSONObject();
+            productJSON.put("idProduct", p.getIdProduct());
+            productJSON.put("imageUrl", p.getImages().get(0).getUrl());
+            productJSON.put("name", p.getName());
+            productJSON.put("priceFormatted", p.getPriceFormatted());
 
+            htmlDataArray.put(productJSON);
+        }
+        jsonResponse.put("htmlData", htmlDataArray);
+        jsonResponse.put("productExits", listProduct.size());
+        out.println(jsonResponse.toString());
     }
 }
 

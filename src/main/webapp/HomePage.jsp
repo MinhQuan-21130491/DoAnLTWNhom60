@@ -296,24 +296,47 @@
             filterProduct(command, price, color, material, idCateCurrent);
         })
     });
-        function  filterProduct(command,price, color, material) {
-            document.getElementById("loadMore").classList.add("d-none");
-            $.ajax({
-                url: "filterProduct",
-                method: "GET",
-                data: {
-                  color: color,
-                  price: price,
-                  material: material,
-                  command: command,
-                  idCate: idCateCurrent
-                },
-                success: function(data){
-                    var row = document.getElementById("content");
-                    row.innerHTML = data;
-                },
-            });
-        }
+    function filterProduct(command, price, color, material) {
+        document.getElementById("loadMore").classList.add("d-none");
+        $.ajax({
+            url: "filterProduct",
+            method: "GET",
+            data: {
+                color: color,
+                price: price,
+                material: material,
+                command: command,
+                idCate: idCateCurrent
+            },
+            success: function (data) {
+                var jsonData = JSON.parse(data);
+
+                var htmlData = jsonData.htmlData;
+                var productExits = jsonData.productExits;
+                var exists = document.getElementById("exits");
+                exists.innerHTML = "CÓ " + productExits + " KẾT QUẢ TÌM KIẾM PHÙ HỢP"
+                var row = document.getElementById("content");
+                row.innerHTML = ""; // Clear existing content
+                for (var i = 0; i < htmlData.length; i++) {
+                    var p = htmlData[i];
+                    row.innerHTML += "<div class=\"col-lg-4 col-sm-6 mt-3 product\">\n" +
+                        "                            <div class=\"card\">\n" +
+                        "                                <a href=\"detail-product?pid=" + p.idProduct + "\">\n" +
+                        "                                    <img src=\"" + p.imageUrl + "\" class=\"card-img-top img_p\" alt=\"...\">\n" +
+                        "                                </a>\n" +
+                        "                                <div class=\"card-body\">\n" +
+                        "                                    <h5 class=\"card-title\">" + p.name + "</h5>\n" +
+                        "                                    <p class=\"card-text\">\n" +
+                        "                                    <p class=\"price\">₫" + p.priceFormatted + "\n" +
+                        "                                    <a href=\"Cart.jsp\"><i class=\"fa fa-shopping-cart cart\" aria-hidden=\"true\" title=\"Thêm vào giỏ hàng\"></i></a>\n" +
+                        "                                    </p>\n" +
+                        "                                </div>\n" +
+                        "                            </div>\n" +
+                        "                        </div>";
+                }
+            },
+        });
+    }
         function loadMore() {
         var count = document.getElementsByClassName("product").length;
         $.ajax({
