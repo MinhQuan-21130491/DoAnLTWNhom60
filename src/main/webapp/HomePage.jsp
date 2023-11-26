@@ -45,6 +45,11 @@
 </header>
 <!--end header-->
 <!--page content-->
+<%
+    ArrayList<String> listColor = (ArrayList<String>) request.getAttribute("listColorP");
+    ArrayList<Product> listProductByName = (ArrayList<Product>) request.getAttribute("listProductByName");
+    if (listProductByName == null || listProductByName.isEmpty()) {
+%>
 <div class="container p-0 mgt" >
     <div class="row">
         <!-- menu left -->
@@ -62,48 +67,64 @@
                     <%ArrayList<Category> listCate = (ArrayList<Category>) request.getAttribute("listCate");%>
                         <%if(!listCate.isEmpty() && listCate != null) {%>
                              <%for(Category c: listCate) {%>
-                                  <a href="#" class="list-group-item list-group-item-action lt" onclick="loadProductByIdCate('<%=c.getId()%>')"><%=c.getName()%></a>
+                                  <a href="#" class="list-group-item list-group-item-action" onclick="loadProductByIdCate('<%=c.getId()%>')"><%=c.getName()%></a>
                             <%}
                         }%>
                 </div>
             </div>
-<%--            <div class=" d-none d-md-none d-lg-block mt-3 bg-light border border-1 ">--%>
-<%--                <div class="cate bg-light border-bottom">--%>
-<%--                    <div class="icon-bar my-2 py-1">--%>
-<%--                        <i class="fa fa-filter" aria-hidden="true"></i>--%>
-<%--                    </div>--%>
-<%--                    <div class="cateList d-flex align-items-center justify-content-center p-0" >--%>
-<%--                        <h5 class ="my-2">TÌM THEO</h5>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--                <div class="ps-2">--%>
-<%--                    <h6 class="my-2 fw-bold">Giá sản phẩm</h6>--%>
-<%--                    <div class="mb-2"><input type="checkbox" value ="500000" id="below500000"> <label for="below500000">Dưới ₫500.000</label></div>--%>
-<%--                    <div class="mb-2"><input type="checkbox" value ="1000000" id="below1000000"> <label for="below1000000">Dưới ₫1.000.000</label></div>--%>
-<%--                    <div class="mb-2"><input type="checkbox" value ="5000000" id="below5000000"> <label for="below5000000">Dưới ₫5.000.000</label></div>--%>
-<%--                    <div class="mb-2"><input type="checkbox" value ="10000000" id="below10000000"> <label for="below10000000">Dưới ₫10.000.000</label></div>--%>
-<%--                    <div class="mb-2"><input type="checkbox" value ="Tren10000000" id="above10000000"> <label for="above10000000">Trên ₫10.000.000</label></div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
+            <div class=" d-none d-md-none d-lg-block mt-3 bg-light border border-1 ">
+                <div class="cate border-bottom" id ="filProduct">
+                    <div class="icon-bar my-2 py-1">
+                        <i class="fa fa-filter" aria-hidden="true"></i>
+                    </div>
+                    <div class="cateList d-flex align-items-center justify-content-center p-0"  >
+                        <h5 class ="my-2">TÌM THEO</h5>
+                    </div>
+                </div>
+                <div class="ps-2" id ="selectFil">
+                    <h6 class="my-2 fw-bold">Giá sản phẩm</h6>
+                    <div class="mb-2"><input type="radio" name ="price" value ="D500000" id="below500000"> <label class="lbhv" for="below500000">Dưới ₫500.000</label></div>
+                    <div class="mb-2"><input type="radio" name ="price" value ="D1000000" id="below1000000"> <label class="lbhv" for="below1000000">Dưới ₫1.000.000</label></div>
+                    <div class="mb-2"><input type="radio" name ="price" value ="D5000000" id="below5000000"> <label class="lbhv" for="below5000000">Dưới ₫5.000.000</label></div>
+                    <div class="mb-2"><input type="radio" name ="price" value ="D10000000" id="below10000000"> <label class="lbhv" for="below10000000">Dưới ₫10.000.000</label></div>
+                    <div class="mb-2"><input type="radio"  name ="price" value ="Tren10000000" id="above10000000"> <label class="lbhv" for="above10000000">Trên ₫10.000.000</label></div>
+                    <h6 class="my-2 fw-bold">Màu sản phẩm</h6>
+                        <%if(listColor != null && !listColor.isEmpty()) {
+                            for (String color: listColor) {%>
+                    <div class="mb-2"><input type="radio" name="color" id ="<%=color%>" value ="<%=color%>"> <label class="lbhv" for ="<%=color%>"><%=color%></label></div>
+                    <%}
+                    }%>
+                    <h6 class="my-2 fw-bold">Vật liệu</h6>
+                    <div class="mb-2"><input type="radio" name ="material" id="wood" value ="Gỗ"> <label class="lbhv" for="wood">Gỗ</label></div>
+                    <div class="mb-2"><input type="radio" name ="material" id="iron" value ="Sắt"> <label class="lbhv" for="iron">Sắt</label></div>
+                    <div class="mb-2"><input type="radio" name ="material" id="steel"value ="Thép" > <label class="lbhv" for="steel">Thép</label></div>
+                    <div class="mb-2"><input type="radio" name ="material" id="leather" value ="Da" > <label class="lbhv" for="leather">Da</label></div>
+                    <div class="mb-2"><input type="radio" name ="material" id="fabric" value ="Vải"> <label class="lbhv" for="fabric">Vải</label></div>
+                    <div class="mb-2"><input type="radio" name ="material" id="bamboo" value ="Tre"> <label class="lbhv" for="bamboo">Tre</label></div>
+                    <div class="mb-2"><input type="radio" name ="material" id="plastic" value ="Nhựa"> <label class="lbhv" for="plastic">Nhựa</label></div>
+                </div>
+            </div>
             <div class="mt-3 d-none d-md-none d-lg-block ">
                 <h5 class="m-0 text-center" id="titleCate">SẢN PHẨM MỚI NHẤT</h5>
                 <hr class = "mt-2 mb-2"/>
                 <div class="card">
-                    <%Product latestProduct = (Product) request.getAttribute("latestP");
-                      if(latestProduct != null) {%>
-                            <a href="<%=url%>/detail-product?pid=<%=latestProduct.getIdProduct()%>">
-                                <img src="<%=latestProduct.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="">
-                            </a>
-                            <div class="card-body">
-                                <h5 class="card-title"><%=latestProduct.getName()%></h5>
-                                <p class="card-text">
-                                <p class="price">₫<%=latestProduct.getPriceFormatted()%></p>
-                                <a href="Cart.jsp"><i class="fa fa-shopping-cart cart" aria-hidden="true" title ="Thêm vào giỏ hàng"></i></a>
-                            </div>
+                    <%
+                        Product latestProduct = (Product) request.getAttribute("latestP");
+                        if (latestProduct != null) {
+                    %>
+                    <a href="<%=url%>/detail-product?pid=<%=latestProduct.getIdProduct()%>">
+                        <img src="<%=latestProduct.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title"><%=latestProduct.getName()%></h5>
+                        <p class="card-text">
+                        <p class="price">₫<%=latestProduct.getPriceFormatted()%></p>
+                        <a href="Cart.jsp"><i class="fa fa-shopping-cart cart" aria-hidden="true" title="Thêm vào giỏ hàng"></i></a>
+                    </div>
                     <%}%>
                 </div>
             </div>
-            <div class="mt-3 d-none d-md-none d-lg-block     ">
+            <div class="mt-3 d-none d-md-none d-lg-block">
                 <h5 class="m-0 text-center" >SẢN PHẨM BÁN CHẠY NHẤT</h5>
                 <hr class = "mt-2 mb-2"/>
                 <div class="card">
@@ -122,7 +143,7 @@
         <!-- end menu left -->
         <!-- carousel -->
         <div class="col-lg-9 ">
-            <div class="filter d-flex text-center">
+            <div class="filter d-flex text-center d-lg-none">
                 <div class="pt-2 pe-4">
                     <i class="fa fa-filter" aria-hidden="true"></i> <span>Lọc:</span>
                 </div>
@@ -149,13 +170,16 @@
                         <li class="nav-item dropdown hv">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Màu sắc </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <%ArrayList<String> listColor = (ArrayList<String>) request.getAttribute("listColorP");
-                                    if(listColor != null && !listColor.isEmpty()) {
-                                        for (String color: listColor) {%>
+                                <%
+                                    if (listColor != null && !listColor.isEmpty()) {
+                                        for (String color : listColor) {
+                                %>
                                 <li><a class="dropdown-item colorFil" href="#"><%=color%></a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <%}
-                                }%>
+                                <%
+                                        }
+                                    }
+                                %>
                             </ul>
                         </li>
                     </ul>
@@ -220,36 +244,64 @@
             <!--end carousel-->
             <!--product-->
             <h5 class = "mt-3 mb-0">DANH SÁCH SẢN PHẨM</h5>
-            <%String exits = request.getAttribute("exits") +"";
-              exits = (exits.equals("null"))?" ":exits ;%>
-            <h6 class="text-center text-color mt-2 mb-0" id="exits"><%=exits%></h6>
+            <h6 class="text-center text-color mt-2 mb-0" id="exits"></h6>
             <div class="row" id="content">
-                  <%ArrayList<Product> listProduct = (ArrayList<Product>) request.getAttribute("listP");%>
-                    <%if(!listProduct.isEmpty() && listProduct != null) {%>
-                        <%for(Product p: listProduct) {%>
-                            <div class="col-lg-4 col-sm-6 col-6 mt-3 product">
-                                <div class="card">
-                                    <a href="<%=url%>/detail-product?pid=<%=p.getIdProduct()%>">
-                                        <img src="<%=p.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="...">
-                                    </a>
-                                    <div class="card-body">
-                                        <h5 class="card-title"><%=p.getName()%></h5>
-                                        <p class="card-text">
-                                        <p class="price">₫<%=p.getPriceFormatted()%></p>
-                                        <a href="Cart.jsp"><i class="fa fa-shopping-cart cart" aria-hidden="true" title="Thêm vào giỏ hàng"></i></a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        <%}
-                    }%>
+                <%ArrayList<Product> listProduct = (ArrayList<Product>) request.getAttribute("listP");%>
+                <%if (!listProduct.isEmpty() && listProduct != null) {%>
+                <%for (Product p : listProduct) {%>
+                <div class="col-lg-4 col-sm-6 col-6 mt-3 product">
+                    <div class="card">
+                        <a href="<%=url%>/detail-product?pid=<%=p.getIdProduct()%>">
+                            <img src="<%=p.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="...">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title"><%=p.getName()%></h5>
+                            <p class="card-text">
+                                <p class="price">₫<%=p.getPriceFormatted()%></p>
+                                <a href="Cart.jsp"><i class="fa fa-shopping-cart cart" aria-hidden="true" title="Thêm vào giỏ hàng"></i></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <%
+                        }
+                    }
+                %>
             </div>
             <%String display = request.getAttribute("hiddenLoadmore") +"";%>
             <button class="mt-3 bgcolor-orange border border-0 rounded-1 px-3 py-2 d-<%=display%>" id="loadMore" onclick="loadMore()">Tải thêm</button>
         </div>
-
     </div>
 </div>
+<%}else {%>
+<%
+    String exits = request.getAttribute("exits") + "";
+    exits = (exits.equals("null")) ? " " : exits;
+%>
+<div class="container p-0 mgt">
+    <h6 class="text-center text-color mt-2 mb-0"><%=exits%></h6>
+    <div class="col-md-12">
+        <div class="row">
+            <%for(Product p: listProductByName) {%>
+            <div class="col-md-3 col-sm-4 col-4 mt-3 product">
+                <div class="card">
+                    <a href="<%=url%>/detail-product?pid=<%=p.getIdProduct()%>">
+                        <img src="<%=p.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="...">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title"><%=p.getName()%></h5>
+                        <p class="card-text">
+                        <p class="price">₫<%=p.getPriceFormatted()%></p>
+                        <a href="Cart.jsp"><i class="fa fa-shopping-cart cart" aria-hidden="true" title="Thêm vào giỏ hàng"></i></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        <%}%>
+    </div>
+    </div>
+</div>
+<%}%>
 <!-- End Page content -->
 <!--footer-->
 <footer>
@@ -263,7 +315,7 @@
     var command = "";
     var idCateCurrent;
     $(document).ready(function () {
-        // ẩn hiện thanh danh mục
+        // ẩn hiện danh mục
         $('#cate').click(function () {
             var typeChair = $('#typeChair');
             if (typeChair.css("display") === "none") {
@@ -272,29 +324,48 @@
                 typeChair.css("display", "none");
             }
         })
+        // ẩn hiện lọc sản phẩm
+        $('#filProduct').click(function () {
+            var selectFil = $('#selectFil');
+            if (selectFil.css("display") === "none") {
+                selectFil.css("display", "block");
+            } else {
+                selectFil.css("display", "none");
+            }
+        })
         $('.lt').click(function () {
             $('.lt').css('color', '');
             $(this).css('color', '#f68e2e')
         })
         $('.priceFil').click(function () {
-            var selectedPrice = $(this).text();
-            var priceText = selectedPrice;
+            var priceText = $(this).text();
             price = priceText.replace(/[^\d]/g, ''); // Loại bỏ tất cả các ký tự không phải là số
             command = priceText.charAt(0);
-            console.log(command);
             filterProduct(command, price, color, material, idCateCurrent);
-
-        })
+        });
+        $('input[name="price"]').change(function(){
+            var priceText = $('input[name="price"]:checked').val();
+            price = priceText.replace(/[^\d]/g, ''); // Loại bỏ tất cả các ký tự không phải là số
+            command = priceText.charAt(0);
+            filterProduct(command, price, color, material, idCateCurrent);
+        });
         $('.colorFil').click(function () {
-            var selectedColor = $(this).text();
-            color = selectedColor;
+            color = $(this).text();
             filterProduct(command, price, color, material, idCateCurrent);
-        })
+        });
+        $('input[name="color"]').change(function(){
+            color = $('input[name="color"]:checked').val();
+            filterProduct(command, price, color, material, idCateCurrent);
+        });
         $('.materialFil').click(function () {
-            var selectedMate = $(this).text();
-            material = selectedMate;
+            material = $(this).text();
             filterProduct(command, price, color, material, idCateCurrent);
-        })
+        });
+        $('input[name="material"]').change(function(){
+            material = $('input[name="material"]:checked').val();
+            filterProduct(command, price, color, material, idCateCurrent);
+        });
+
     });
     function filterProduct(command, price, color, material) {
         document.getElementById("loadMore").classList.add("d-none");
@@ -314,7 +385,7 @@
                 var htmlData = jsonData.htmlData;
                 var productExits = jsonData.productExits;
                 var exists = document.getElementById("exits");
-                exists.innerHTML = "CÓ " + productExits + " KẾT QUẢ TÌM KIẾM PHÙ HỢP"
+                exists.innerHTML = "CÓ " + productExits + " KẾT QUẢ TÌM KIẾM PHÙ HỢP";
                 var row = document.getElementById("content");
                 row.innerHTML = ""; // Clear existing content
                 for (var i = 0; i < htmlData.length; i++) {
