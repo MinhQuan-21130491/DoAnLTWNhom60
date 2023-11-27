@@ -90,7 +90,10 @@ footer {
 
 .list-group-item-action:hover {
     color: var(--color_backgroud);
-
+}
+.lbhv:hover {
+    color: var(--color_backgroud);
+    cursor: pointer;
 }
 .img_p {
     width: 100%;
@@ -216,6 +219,9 @@ table > tbody > tr >td {
 }
 .fs {
     font-size: 12px;
+}
+#selectFil {
+    display: none;
 }
 
 

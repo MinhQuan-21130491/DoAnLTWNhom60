@@ -16,9 +16,9 @@ public class LoadMoreProduct extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("html/text; charset= UTF-8");
         String exist = request.getParameter("exits");
-        String idCate = request.getParameter("idCate");
+        int idCate = Integer.parseInt(request.getParameter("idCate"));
         PrintWriter out = response.getWriter();
-        if (idCate == null) {
+        if (idCate == 0) {
             ArrayList<Product> listSixProduct = ProductService.getInstance().listSixProduct(Integer.parseInt(exist));
             for (Product p : listSixProduct) {
                 out.println(" <div class=\"col-lg-4 col-sm-6 col-6 mt-3 product\">\n" +
@@ -37,7 +37,7 @@ public class LoadMoreProduct extends HttpServlet {
                         "                        </div>");
             }
         }else {
-            ArrayList<Product> listProductByIdCate = ProductService.getInstance().listProductByIdCate(Integer.parseInt(idCate),Integer.parseInt(exist));
+            ArrayList<Product> listProductByIdCate = ProductService.getInstance().listProductByIdCate(idCate,Integer.parseInt(exist));
             for (Product p : listProductByIdCate) {
                 out.println(" <div class=\"col-lg-4 col-sm-6 mt-3 product\">\n" +
                         "                            <div class=\"card\">\n" +
