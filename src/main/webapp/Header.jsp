@@ -121,16 +121,16 @@
                 currentIndex = (currentIndex + 1) % (placeholderText.length + 1);
             }
 
-            // Set an interval to repeatedly call updatePlaceholder every 50 milliseconds
+            // set interval để lặp lại sau mỗi 100ms
             var intervalId = setInterval(updatePlaceholder, 100);
 
-            // Stop the animation when the input is focused
+            // stop hành động lặp khi ấn vào
             inputElement.focus(function(){
                 clearInterval(intervalId);
                 inputElement.attr("placeholder", placeholderText);
             });
 
-            // Restart the animation when the input loses focus
+            // restart lại hành động lặp khi không ấn vào nữa
             inputElement.blur(function(){
                 currentIndex = 0;
                 intervalId = setInterval(updatePlaceholder, 100);

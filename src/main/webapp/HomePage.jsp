@@ -67,7 +67,7 @@
                     <%ArrayList<Category> listCate = (ArrayList<Category>) request.getAttribute("listCate");%>
                         <%if(!listCate.isEmpty() && listCate != null) {%>
                              <%for(Category c: listCate) {%>
-                                  <a href="#" class="list-group-item list-group-item-action" onclick="loadProductByIdCate('<%=c.getId()%>')"><%=c.getName()%></a>
+                                  <a href="#" class="list-group-item list-group-item-action lt" onclick="loadProductByIdCate('<%=c.getId()%>')"><%=c.getName()%></a>
                             <%}
                         }%>
                 </div>
@@ -143,68 +143,6 @@
         <!-- end menu left -->
         <!-- carousel -->
         <div class="col-lg-9 ">
-            <div class="filter d-flex text-center d-lg-none">
-                <div class="pt-2 pe-4">
-                    <i class="fa fa-filter" aria-hidden="true"></i> <span>Lọc:</span>
-                </div>
-                <div class="option pe-2">
-                    <ul class="navbar-nav ps-2">
-                        <li class="nav-item dropdown hv">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Giá </a>
-                            <ul class="dropdown-menu" aria-labelledby="">
-                                <li><a class="dropdown-item priceFil" href="#">Dưới ₫500.000</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item priceFil" href="#">Dưới ₫1.000.000</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item priceFil" href="#">Dưới ₫5.000.000</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item priceFil" href="#">Dưới ₫10.000.000</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item priceFil" href="#">Trên ₫10.000.000</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <div class="option pe-2">
-                    <ul class="navbar-nav ps-2">
-                        <li class="nav-item dropdown hv">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Màu sắc </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <%
-                                    if (listColor != null && !listColor.isEmpty()) {
-                                        for (String color : listColor) {
-                                %>
-                                <li><a class="dropdown-item colorFil" href="#"><%=color%></a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <%
-                                        }
-                                    }
-                                %>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <div class="option pe-2">
-                    <ul class="navbar-nav ps-2">
-                        <li class="nav-item dropdown hv">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Vật liệu </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item materialFil" href="#">Gỗ</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item materialFil" href="#">Sắt</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item materialFil" href="#">Thép</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item materialFil" href="#">Da</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item materialFil" href="#">Vải</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item materialFil" href="#">Tre</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
             <div id="carouselExampleIndicators" class="carousel slide d-none d-md-none d-lg-block "
                  data-bs-ride="carousel">
                 <div class="carousel-indicators">
@@ -313,7 +251,8 @@
     var color ="";
     var material ="";
     var command = "";
-    var idCateCurrent;
+    var idCateCurrent = 0;
+    var backProduct = 0;
     $(document).ready(function () {
         // ẩn hiện danh mục
         $('#cate').click(function () {
@@ -334,36 +273,94 @@
             }
         })
         $('.lt').click(function () {
-            $('.lt').css('color', '');
-            $(this).css('color', '#f68e2e')
+            var unCheckedRadio = $('input[type="radio"][name="price"]:checked, input[type="radio"][name="color"]:checked, input[type="radio"][name="material"]:checked');
+            unCheckedRadio.prop('checked', false);
+            if(backProduct === idCateCurrent) {
+                $(this).css('color', 'black');
+                loadProduct();
+                backProduct = 0;
+                idCateCurrent = 0;
+            }else {
+                price = "";
+                color = "";
+                material = "";
+                command = "";
+                $('.lt').css('color', '');
+                $(this).css('color', '#f68e2e')
+                backProduct = idCateCurrent;
+            }
         })
-        $('.priceFil').click(function () {
-            var priceText = $(this).text();
-            price = priceText.replace(/[^\d]/g, ''); // Loại bỏ tất cả các ký tự không phải là số
-            command = priceText.charAt(0);
-            filterProduct(command, price, color, material, idCateCurrent);
+        var preChecked = null;
+        $('input[name="price"]').click(function(){
+                var checked = $('input[name="price"]:checked');
+            if(preChecked && checked.is(preChecked)) {
+                checked.prop('checked', false);
+                preChecked = null;
+                price = "";
+                command = "";
+                console.log(idCateCurrent)
+                if(color !== "" || material !== "") {
+                    console.log(color, price)
+                    filterProduct(command, price, color, material, idCateCurrent)
+                }else if(color !== "" && material !== ""){
+                    filterProduct(command, price, color, material, idCateCurrent)
+                }else if(idCateCurrent !== 0) {
+                    loadProductByIdCate(idCateCurrent);
+                }else {
+                    loadProduct();
+                }
+            }else {
+                $('#exits').removeClass("d-none");
+                var priceText = checked.val();
+                price = priceText.replace(/[^\d]/g, ''); // Loại bỏ tất cả các ký tự không phải là số
+                command = priceText.charAt(0);
+                filterProduct(command, price, color, material, idCateCurrent);
+                preChecked = checked;
+            }
         });
-        $('input[name="price"]').change(function(){
-            var priceText = $('input[name="price"]:checked').val();
-            price = priceText.replace(/[^\d]/g, ''); // Loại bỏ tất cả các ký tự không phải là số
-            command = priceText.charAt(0);
-            filterProduct(command, price, color, material, idCateCurrent);
+        $('input[name="color"]').click(function(){
+            var checked = $('input[name="color"]:checked');
+            if(preChecked && checked.is(preChecked)) {
+                checked.prop('checked', false);
+                preChecked = null;
+                color = "";
+                if(price !== "" || material !== "") {
+                    filterProduct(command, price, color, material, idCateCurrent)
+                }else if(price !== "" && material !== ""){
+                    filterProduct(command, price, color, material, idCateCurrent)
+                }else if(idCateCurrent !== 0) {
+                    loadProductByIdCate(idCateCurrent);
+                }else {
+                    loadProduct();
+                }
+            }else {
+                $('#exits').removeClass("d-none");
+                color = checked.val();
+                filterProduct(command, price, color, material, idCateCurrent);
+                preChecked = checked;
+            }
         });
-        $('.colorFil').click(function () {
-            color = $(this).text();
-            filterProduct(command, price, color, material, idCateCurrent);
-        });
-        $('input[name="color"]').change(function(){
-            color = $('input[name="color"]:checked').val();
-            filterProduct(command, price, color, material, idCateCurrent);
-        });
-        $('.materialFil').click(function () {
-            material = $(this).text();
-            filterProduct(command, price, color, material, idCateCurrent);
-        });
-        $('input[name="material"]').change(function(){
-            material = $('input[name="material"]:checked').val();
-            filterProduct(command, price, color, material, idCateCurrent);
+        $('input[name="material"]').click(function(){
+            var checked = $('input[name="material"]:checked');
+            if(preChecked && checked.is(preChecked)) {
+                checked.prop('checked', false);
+                preChecked = null;
+                material = "";
+                if(price !== "" || color !== "") {
+                    filterProduct(command, price, color, material, idCateCurrent)
+                }else if(price !== "" && color !== ""){
+                    filterProduct(command, price, color, material, idCateCurrent)
+                }else if(idCateCurrent !== 0) {
+                    loadProductByIdCate(idCateCurrent);
+                }else {
+                    loadProduct();
+                }
+            }else {
+                $('#exits').removeClass("d-none");
+                material = checked.val();
+                filterProduct(command, price, color, material, idCateCurrent);
+                    preChecked = checked;
+            }
         });
 
     });
@@ -438,6 +435,18 @@
             },
         });
         idCateCurrent = idCate;
+    }
+        function loadProduct() {
+        document.getElementById("loadMore").classList.remove("d-none")
+        document.getElementById("exits").classList.add("d-none");
+        $.ajax({
+            url: "loadProduct",
+            method: "GET",
+            success: function(data){
+                var row = document.getElementById("content");
+                row.innerHTML = data;
+            },
+        });
     }
 </script>
 </body>
