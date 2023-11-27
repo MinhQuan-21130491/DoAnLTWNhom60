@@ -55,7 +55,7 @@
     <!-- <img src="images/signup-bg.jpg" alt=""> -->
     <div class="contain">
         <div class="signup-content">
-            <form  id="signup-form" class="signup-form" action="SignIn.html">
+            <form  id="signup-form" class="signup-form" action="forgetPassword" method="post">
                 <h5>QUÊN MẬT KHẨU</h5>
                 <div class="form-SignUp">
                     <div class="form-group">
