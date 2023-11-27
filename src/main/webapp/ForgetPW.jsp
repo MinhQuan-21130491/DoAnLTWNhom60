@@ -55,18 +55,18 @@
     <!-- <img src="images/signup-bg.jpg" alt=""> -->
     <div class="contain">
         <div class="signup-content">
-
+            <%
+                String userName = (String) request.getAttribute("userName");
+                String email = (String) request.getAttribute("email");
+                userName = (userName == null)? "": userName;
+                email = (email == null)? "": email;
+                String errUserName = (String)request.getAttribute("errUser");
+                String errEmail = (String)request.getAttribute("errEmail");
+                errUserName =(errUserName == null)?"":errUserName;
+                errEmail =(errEmail == null)?"":errEmail;
+            %>
             <form  id="signup-form" class="signup-form" action="forgetPassword" method="post">
-                <%
-                    String userName = (String) request.getAttribute("userName");
-                    String email = (String) request.getAttribute("email");
-                    userName = (userName == null)? "": userName;
-                    email = (email == null)? "": email;
-                    String errUserName = (String)request.getAttribute("errUser");
-                    String errEmail = (String)request.getAttribute("errEmail");
-                    errUserName =(errUserName == null)?"":errUserName;
-                    errEmail =(errEmail == null)?"":errEmail;
-                %>
+
                 <h5>QUÊN MẬT KHẨU</h5>
                 <div class="form-SignUp">
                     <div class="form-group">

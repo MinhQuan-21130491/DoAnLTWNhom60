@@ -5,6 +5,7 @@ $(document).ready(function (){
         var newpassword =$('#new_password').val();
         var repassword =$('#re_password').val();
         var condition=true;
+        var passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*()-+])(?=.*[0-9]).{8,}$/;
         if(password ===""){
             $("#errPW").text('Vui lòng nhập mật khẩu hiện tại');
             $('#errPW').attr('style','color:red');
@@ -21,7 +22,7 @@ $(document).ready(function (){
             $("#errNPW").text('Mật khẩu mới trùng với mật khẩu hiện tại');
             $('#errNPW').attr('style','color:red');
             condition=false;
-        } else{
+        }else{
             $("#errPW").text('');
 
         }

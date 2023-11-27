@@ -3,19 +3,16 @@ package controller;
 import javax.servlet.http.*;
 
 import model.Account;
-import model.VerifyAccount;
+
 import service.AccountService;
 import util.Email;
 import util.Encrypt;
-import util.NumberRandom;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import java.io.IOException;
 import java.security.SecureRandom;
-import java.sql.Date;
-import java.time.LocalDateTime;
+
 @WebServlet(name = "forgetPassword", value = "/forgetPassword")
 public class ForgetPassword extends HttpServlet {
     final static String lowerCase = "abcdefghijklmnopqrstuvwxyz";
