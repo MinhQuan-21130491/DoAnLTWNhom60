@@ -1,14 +1,15 @@
 package model;
 
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 public class Product {
     private int idProduct;
     private int idCate;
     private String name;
-    private int priceImport;
-    private int price;
+    private double priceImport;
+    private double price;
     private String description;
     private String color;
     private String material;
@@ -21,7 +22,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(int idProduct, int idCate, String name, int priceImport, int price, String description, String color, String material, double width, double height, double length, int quantity, ArrayList<Image> images) {
+    public Product(int idProduct, int idCate, String name, double priceImport, double price, String description, String color, String material, double width, double height, double length, int quantity, ArrayList<Image> images) {
         this.idProduct = idProduct;
         this.idCate = idCate;
         this.name = name;
@@ -36,7 +37,7 @@ public class Product {
         this.quantity = quantity;
         this.images = images;
     }
-    public Product(int idProduct, int idCate, String name, int priceImport, int price, String description, String color, String material, double width, double height, double length, int quantity) {
+    public Product(int idProduct, int idCate, String name, double priceImport, double price, String description, String color, String material, double width, double height, double length, int quantity) {
         this.idProduct = idProduct;
         this.idCate = idCate;
         this.name = name;
@@ -75,7 +76,7 @@ public class Product {
         this.name = name;
     }
 
-    public int getPriceImport() {
+    public double getPriceImport() {
         return priceImport;
     }
 
@@ -83,11 +84,11 @@ public class Product {
         this.priceImport = priceImport;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
     public String getPriceFormatted() {
-        // Sử dụng DecimalFormat để định dạng số
+       //  Sử dụng DecimalFormat để định dạng số
         DecimalFormat decimalFormat = new DecimalFormat("###,###,##0");
         return decimalFormat.format(price);
     }
@@ -176,5 +177,15 @@ public class Product {
                 ", quantity=" + quantity +
                 ", images=" + images +
                 '}';
+    }
+
+    public static void main(String[] args) {
+        Product p = new Product();
+        NumberFormat nF
+                = NumberFormat
+                .getCurrencyInstance();
+
+        // Print amount in defined currency
+//        System.out.println(nF.format(price));
     }
 }

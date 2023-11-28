@@ -29,8 +29,8 @@ public class DAOProduct {
                 int idProduct = resultSet.getInt("id");
                 int idCate = resultSet.getInt("idCate");
                 String name = resultSet.getString("name");
-                int priceImport = resultSet.getInt("priceImport");
-                int price = resultSet.getInt("price");
+                double priceImport = resultSet.getDouble("priceImport");
+                double price = resultSet.getDouble("price");
                 String description = resultSet.getString("description");
                 String color = resultSet.getString("color");
                 String material = resultSet.getString("material");
@@ -66,8 +66,8 @@ public class DAOProduct {
                 int idProduct = resultSet.getInt("id");
                 int idCate = resultSet.getInt("idCate");
                 String name = resultSet.getString("name");
-                int priceImport = resultSet.getInt("priceImport");
-                int price = resultSet.getInt("price");
+                double priceImport = resultSet.getDouble("priceImport");
+                double price = resultSet.getDouble("price");
                 String description = resultSet.getString("description");
                 String color = resultSet.getString("color");
                 String material = resultSet.getString("material");
@@ -128,8 +128,8 @@ public class DAOProduct {
                 int idProduct = resultSet.getInt("id");
                 int idCate = resultSet.getInt("idCate");
                 String name = resultSet.getString("name");
-                int priceImport = resultSet.getInt("priceImport");
-                int price = resultSet.getInt("price");
+                double priceImport = resultSet.getDouble("priceImport");
+                double price = resultSet.getDouble("price");
                 String description = resultSet.getString("description");
                 String color = resultSet.getString("color");
                 String material = resultSet.getString("material");
@@ -175,8 +175,8 @@ public class DAOProduct {
                 int idProduct = resultSet.getInt("id");
                 int idCate = resultSet.getInt("idCate");
                 String name = resultSet.getString("name");
-                int priceImport = resultSet.getInt("priceImport");
-                int price = resultSet.getInt("price");
+                double priceImport = resultSet.getDouble("priceImport");
+                double price = resultSet.getDouble("price");
                 String description = resultSet.getString("description");
                 String color = resultSet.getString("color");
                 String material = resultSet.getString("material");
@@ -210,8 +210,8 @@ public class DAOProduct {
             int idProduct = resultSet.getInt("id");
             int idCate = resultSet.getInt("idCate");
             String name = resultSet.getString("name");
-            int priceImport = resultSet.getInt("priceImport");
-            int price = resultSet.getInt("price");
+            double priceImport = resultSet.getDouble("priceImport");
+            double price = resultSet.getDouble("price");
             String description = resultSet.getString("description");
             String color = resultSet.getString("color");
             String material = resultSet.getString("material");
@@ -246,7 +246,7 @@ public class DAOProduct {
     }
         return list;
     }
-    public static ArrayList<Product> listProductByFil(String command, int priceFil, String colorFil, String materialFil, int id) {
+    public static ArrayList<Product> listProductByFil(String command, double priceFil, String colorFil, String materialFil, int id) {
         ArrayList<Product> list = new ArrayList<>();
         try (Connection connection = JDBCUtil.getConnection();
              PreparedStatement pr = createPreparedStatement(connection,command, priceFil, colorFil, materialFil, id);
@@ -255,8 +255,8 @@ public class DAOProduct {
                 int idProduct = resultSet.getInt("id");
                 int idCate = resultSet.getInt("idCate");
                 String name = resultSet.getString("name");
-                int priceImport = resultSet.getInt("priceImport");
-                int price = resultSet.getInt("price");
+                double priceImport = resultSet.getDouble("priceImport");
+                double price = resultSet.getDouble("price");
                 String description = resultSet.getString("description");
                 String color = resultSet.getString("color");
                 String material = resultSet.getString("material");
@@ -273,7 +273,7 @@ public class DAOProduct {
         }
         return list;
     }
-    private static PreparedStatement createPreparedStatement(Connection connection,String command, int priceFil, String colorFil, String materialFil, int idCate) throws SQLException {
+    private static PreparedStatement createPreparedStatement(Connection connection,String command, double priceFil, String colorFil, String materialFil, int idCate) throws SQLException {
         String sql ="";
         if(idCate == 0) {
            sql = "SELECT p.id, p.idCate, p.name, p.price, p.priceImport, p.quantity, p.color, p.material, p.description, p.height, p.width, p.length " +
@@ -306,7 +306,7 @@ public class DAOProduct {
         PreparedStatement pr = connection.prepareStatement(sql);
         int parameterIndex = 1;
         if (priceFil != 0) {
-            pr.setInt(parameterIndex++, priceFil);
+            pr.setDouble(parameterIndex++, priceFil);
         }
         if (!colorFil.isEmpty()) {
             pr.setString(parameterIndex++, colorFil);

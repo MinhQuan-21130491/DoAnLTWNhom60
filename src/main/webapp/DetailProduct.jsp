@@ -1,5 +1,6 @@
 <%@ page import="model.Product" %>
 <%@ page import="model.Image" %>
+<%@ page import="java.text.NumberFormat" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -41,8 +42,11 @@
 </header>
 <!--end header-->
 <!--Chi tiết sản phẩm-->
-<%Product product = (Product) request.getAttribute("product");
-if(product != null) {%>
+<%
+    NumberFormat nF = NumberFormat.getCurrencyInstance();
+    Product product = (Product) request.getAttribute("product");
+    if (product != null) {
+%>
 <div class="container-fluid mgt">
     <div class="container bgcolor ">
         <!--Thông tin sản phẩm-->
@@ -78,7 +82,7 @@ if(product != null) {%>
                             <div class="col-lg-12 d-md-block d-sm-none d-none">
                                 <span class="nameProduct" name ="nameProduct"><%=product.getName()%></span>
                                 <p class="m-0 mb-4" ><span class="t color-gray" name ="amount-sold">300</span> <span class="t color-gray"> Đã bán</span> </p>
-                                <p class="price m-0 mb-4" name ="price">₫<%=product.getPriceFormatted()%></p>
+                                <p class="price m-0 mb-4" name ="price"><%=nF.format(product.getPrice())%></p>
 
                             </div>
                         </div>

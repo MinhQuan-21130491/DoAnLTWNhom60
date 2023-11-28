@@ -1,5 +1,6 @@
+<%@ page import="java.text.NumberFormat" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,6 +38,7 @@ pageEncoding="UTF-8"%>
 </header>
 <!--end header-->
 <!--page content-->
+<% NumberFormat nF = NumberFormat.getCurrencyInstance();%>
 <div class="container mgt">
     <div class="row p-2 bgcolor">
         <div class="col-lg-4 col-sm-4 my-1">
