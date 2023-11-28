@@ -1,3 +1,5 @@
+<%@ page import="java.util.Date" %>
+<%@ page import="java.io.Serializable" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -52,102 +54,120 @@
     </div>
 </header>
 <div class="changeInF">
-    <form id="changeNam" onsubmit="return check()">
+    <%
+        String name = (String) request.getAttribute("name");
+        String phoneNumber = (String) request.getAttribute("phoneNumber");
+        String email = (String) request.getAttribute("email");
+        String gender = (String) request.getAttribute("gender");
+        Serializable birthDay = (Date) request.getAttribute("birthDay");
+        String address = (String) request.getAttribute("address");
+        String addressReceive =(String) request.getAttribute("addressReceive");
+        name = (name == null)? "": name;
+        phoneNumber = (phoneNumber == null)? "": phoneNumber;
+        email = (email == null)? "": email;
+        gender = (gender == null)? "": gender;
+        birthDay = (birthDay == null)? "": birthDay;
+        address = (address == null)? "": address;
+        addressReceive = (addressReceive == null)? "": addressReceive;
+        String err = (String) request.getAttribute("err");
+        err = (err == null)? "": err;
+    %>
+    <form id="changeNam" onsubmit="return check()" action="changeInfor" method="post">
         <table>
             <thead>
             <tr>
                 <td colspan ="4">
                     <h5 class = "pt-3 pb-1"> THAY ĐỔI THÔNG TIN </h5>
-                    <div class="text-danger text-center w-100" id="error"></div>
+                    <div class="text-danger text-center w-100" id="error"><%=err%></div>
                 </td>
             </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td colspan="2">
-                        <label class="w-100">Tài khoản đã xác thực <i class="fa fa-check-circle text-success" aria-hidden="true"></i></label>
-                        <label class="w-100 d-none">Tài khoản của bạn chưa xác thực, <a href="#">xác thực ngay</a></label>
-                    </td>
-                </tr>
-                <tr id="changeName">
-                    <td >
-                        <label>Họ và tên</label>
-                    </td>
-                    <td class="w-50">
-                        <div id="InName">
-                            <input id="HienThiTen" name="TenHT" type="text">
-                        </div>
-                    </td>
-                </tr>
-                <tr id="changeSDT">
-                    <td>
-                        <label> Số điện thoại </label>
-                    </td>
-                    <td>
-                        <div id="InSDT">
-                            <input id="HienThiSDT" name="SDTHT" type="text">
-                        </div>
-                    </td>
-                </tr>
-                <tr id="changegGmail">
-                    <td>
-                        <label>Email</label>
-                    </td>
-                    <td>
-                        <div id="InGmail">
-                            <input id="HienThiGmail" name="GmailHT" type="text">
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label>Giới tính</label>
-                    </td>
-                    <td >
-                        <div class = "gender">
-                            <label class="ms-0" for="male">Nam</label><input type="radio" id="male" name="gender" value="Nam"  checked >
-                            <label for="female">Nữ</label> <input type="radio" id="female" name="gender" value="Nữ" >
-                            <label for="other">Khác</label> <input type="radio" id="other" name="gender" value="Khác">
-                        </div>
-                    </td>
-                </tr>
+            <tr>
+                <td colspan="2">
+                    <label class="w-100">Tài khoản đã xác thực <i class="fa fa-check-circle text-success" aria-hidden="true"></i></label>
+                    <label class="w-100 d-none">Tài khoản của bạn chưa xác thực, <a href="#">xác thực ngay</a></label>
+                </td>
+            </tr>
+            <tr id="changeName">
+                <td >
+                    <label>Họ và tên</label>
+                </td>
+                <td class="w-50">
+                    <div id="InName">
+                        <input id="HienThiTen" name="TenHT" type="text" value="<%=name%>">
+                    </div>
+                </td>
+            </tr>
+            <tr id="changeSDT">
+                <td>
+                    <label> Số điện thoại </label>
+                </td>
+                <td>
+                    <div id="InSDT">
+                        <input id="HienThiSDT" name="SDTHT" type="text" value="<%=phoneNumber%>">
+                    </div>
+                </td>
+            </tr>
+            <tr id="changegGmail">
+                <td>
+                    <label>Email</label>
+                </td>
+                <td>
+                    <div id="InGmail">
+                        <input id="HienThiGmail" name="GmailHT" type="text" value="<%=email%>">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Giới tính</label>
+                </td>
+                <td >
+                    <div class = "gender">
+                        <label class="ms-0" for="male">Nam</label><input type="radio" id="male" name="gender" value="Nam"  checked >
+                        <label for="female">Nữ</label> <input type="radio" id="female" name="gender" value="Nữ" >
+                        <label for="other">Khác</label> <input type="radio" id="other" name="gender" value="Khác">
+                    </div>
+                </td>
+            </tr>
 
 
-                <tr id="changeNgaySinh">
-                    <td>
-                        <label>Ngày sinh</label>
-                    </td>
-                    <td>
-                        <div id="InNS">
-                            <input id="HienThiNS" name="HienThiNS" type="date">
-                        </div>
-                    </td>
-                </tr>
-                <tr id="changeDC">
-                    <td>
-                        <label> Địa chỉ</label>
-                    </td>
-                    <td>
-                        <div id="InDiaChi">
-                            <input id="HienThiDC" name="DCHT" type="text">
-                        </div>
-                    </td>
-                </tr>
-                <tr id="changeDCReceive">
-                    <td>
-                        <label> Địa chỉ nhận hàng</label>
-                    </td>
-                    <td>
-                        <div id="">
-                            <input id="HienThiDCReice" name="DCHT" type="text">
-                        </div>
-                    </td>
-                </tr>
-                <tr id="SubmitSB">
-                    <td colspan="2">
-                        <div><button id="submit" name="SB" onclick="my_function()" style="color: white"> LƯU </button></div>
-                    </td>
-                </tr>
+            <tr id="changeNgaySinh">
+                <td>
+                    <label>Ngày sinh</label>
+                </td>
+                <td>
+                    <div id="InNS">
+                        <input id="HienThiNS" name="HienThiNS" type="date" value="<%=birthDay%>">
+                    </div>
+                </td>
+            </tr>
+            <tr id="changeDC">
+                <td>
+                    <label> Địa chỉ</label>
+                </td>
+                <td>
+                    <div id="InDiaChi">
+                        <input id="HienThiDC" name="DCHT" type="text" value="<%=address%>">
+                    </div>
+                </td>
+            </tr>
+            <tr id="changeDCReceive">
+                <td>
+                    <label> Địa chỉ nhận hàng</label>
+                </td>
+                <td>
+                    <div id="">
+                        <input id="HienThiDCReice" name="DCNHHT" type="text" value="<%=addressReceive%>">
+                    </div>
+                </td>
+            </tr>
+            <tr id="SubmitSB">
+                <td colspan="2">
+                    <div><button id="submit" name="SB" onclick="my_function()" style="color: white"> LƯU </button></div>
+                </td>
+            </tr>
             </tbody>
         </table>
     </form>

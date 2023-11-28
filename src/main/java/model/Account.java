@@ -57,6 +57,9 @@ public class Account {
     public Account() {
     }
 
+    public Account(String userName, String password) {
+    }
+
     public int getId() {
         return id;
     }

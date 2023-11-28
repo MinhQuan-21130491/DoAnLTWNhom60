@@ -2,6 +2,7 @@ package dao;
 
 import model.Account;
 import model.VerifyAccount;
+import util.Encrypt;
 import util.JDBCUtil;
 import java.sql.Date;
 import java.sql.Connection;
@@ -45,6 +46,37 @@ public class DAOAccount {
             throw new RuntimeException(e);
         }
         return re;
+    }
+    public static Account selectById(Account account) {
+        Account re = null;
+        try{
+            // Tạo kết nối đến database
+            Connection connection = JDBCUtil.getConnection();
+            // Tạo đối tượng statement
+            String sql = "select a.id,a.name, a.userName, a.password, a.gender, a.phoneNumber, a.birthDay, a.address, a.addressReceive, a.email " +
+                    "from accounts as a " +
+                    "where a.email =? ";
+            PreparedStatement pr = connection.prepareStatement(sql);
+            pr.setString(1, account.getUserName());
+            // Thực thi câu lệnh sql
+            ResultSet resultSet = pr.executeQuery();
+            while (resultSet.next()){
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                String userName = resultSet.getString("userName");
+                String password = resultSet.getString("password");
+                String gender = resultSet.getString("gender");
+                String phoneNumber = resultSet.getString("phoneNumber");
+                String email = resultSet.getString("email");
+                Date birthDay = resultSet.getDate("birthDay");
+                String address = resultSet.getString("address");
+                String addressReceive = resultSet.getString("addressReceive");
+                account = new Account(id, name, userName, password, email, phoneNumber, gender, birthDay, address, addressReceive);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return account;
     }
 
     public static int registerAccount(Account a) {
@@ -166,6 +198,7 @@ public class DAOAccount {
         return account;
     }
 
+
     public static VerifyAccount selectVerifyAccountByIdAccount(int idAccount) {
         VerifyAccount verifyAccount = null;
         Connection connection = JDBCUtil.getConnection();
@@ -204,7 +237,71 @@ public class DAOAccount {
         }
         return re;
     }
+    // Kiểm tra tên đăng nhập
+    public static Account checkLogin(Account account){
+        Account re = null;
+        try {
+            Connection connection = JDBCUtil.getConnection();
+            // Truy vấn SELECT để lấy thông tin của người dùng
+            String sql = "SELECT id, name, userName, password, email, phoneNumber, gender, birthDay, address, addressReceive, role, status FROM accounts WHERE userName=?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, account.getUserName());
+            ResultSet resultSet = statement.executeQuery();
 
+            // Kiểm tra kết quả
+            if (resultSet.next()) {
+                String storedPassword = resultSet.getString("password");
+                // Mật khẩu đã nhập và mật khẩu trong cơ sở dữ liệu
+                String inputPasswordHash = Encrypt.toSHA1(account.getPassword());
+
+                // So sánh mật khẩu đã nhập với mật khẩu trong cơ sở dữ liệu
+                if (storedPassword.equals(inputPasswordHash)) {
+                    // Trả về đối tượng Account nếu đăng nhập thành công
+                    int id = resultSet.getInt("id");
+                    String name = resultSet.getString("name");
+                    String email = resultSet.getString("email");
+                    String phoneNumber = resultSet.getString("phoneNumber");
+                    String gender = resultSet.getString("gender");
+                    Date birthDay = resultSet.getDate("birthDay");
+                    String address = resultSet.getString("address");
+                    String addressReceive = resultSet.getString("addressReceive");
+                    int role = resultSet.getInt("role");
+                    boolean status = resultSet.getBoolean("status");
+
+                    re = new Account(id, name, account.getUserName(), storedPassword, email, phoneNumber, gender, birthDay, address, addressReceive, role, status);
+                }
+            }
+            JDBCUtil.closeConnection(connection);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return re;
+    }
+
+    // Thay đổi thông tin khách hàng
+    public static int updateInfor(Account account) {
+        int re = 0;
+        Connection connection = JDBCUtil.getConnection();
+        String sql = "UPDATE Account " +
+                "SET name=?, phoneNumber=?, email=?, gender=?, birthDay=?, address=?, addressReceive=? " +
+                "WHERE id=?";
+        try (PreparedStatement pr = connection.prepareStatement(sql)) {
+            pr.setString(1, account.getName());
+            pr.setString(2, account.getPhoneNumber());
+            pr.setString(3, account.getEmail());
+            pr.setString(4, account.getGender());
+            pr.setDate(5, account.getBirthDay());
+            pr.setString(6, account.getAddress());
+            pr.setString(7, account.getAddressReceive());
+            pr.setInt(8, account.getId());
+            re = pr.executeUpdate();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            JDBCUtil.closeConnection(connection);
+        }
+        return re;
+    }
     public static void main(String[] args) {
     System.out.println(selectVerifyAccountByIdAccount(14));
     }

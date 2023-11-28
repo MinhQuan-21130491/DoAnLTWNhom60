@@ -52,18 +52,26 @@
     </div>
 </header>
 <div class="mt-5 sigin">
-    <form id="form-login" action="" onsubmit="return my_submit()">
+    <%
+        String userName = (String) request.getAttribute("userName");
+        String password = (String) request.getAttribute("password");
+        userName = (userName == null)? "": userName;
+        password = (password == null)? "": password;
+        String err = (String) request.getAttribute("err");
+        err =(err == null)?"":err;
+    %>
+    <form id="form-login" action="signInAccount" onsubmit="return my_submit()" method="post">
         <div id="imgHinh">
-            <img src="image/logoWeb.png">
+            <img src="image/logo.png">
         </div>
         <div class="thongtin">
             <h5 class="heading">ĐĂNG NHẬP</h5>
             <div class="form-group-p">
-                <div class="text-danger pb-2" id="inputError"></div>
-                <input class="form-input" id="idFormInput" name="idFormInput" type="text" placeholder="Tên đăng nhập">
+                <div class="text-danger pb-2" id="inputError"><%=err%></div>
+                <input class="form-input" id="idFormInput" name="idFormInput" type="text" placeholder="Tên đăng nhập" value ="<%=userName%>">
             </div>
             <div class="form-group-p">
-                <input class="form-pass" id="idFormPass" name="idFormPass" type="password" placeholder="Mật khẩu">
+                <input class="form-pass" id="idFormPass" name="idFormPass" type="password" placeholder="Mật khẩu" value ="<%=password%>">
             </div>
             <div class="form-group-p" id="idFPass">
                 <p id="idMK"><a href="">Quên mật khẩu?</a></p>
@@ -100,7 +108,9 @@
                     -mật khẩu: 1*/
             /*khách hàng -tài khoản: khachhang1
                     -mật khẩu: 1*/
-        } else if ((inputElement.value !== "root" || inputElement.value !== "nhanvien1" || inputElement.value !== "khachhang1") && passElement.value !== "1") {
+
+        } /*
+        else if ((inputElement.value !== "root" || inputElement.value !== "nhanvien1" || inputElement.value !== "khachhang1") && passElement.value !== "1") {
             inputError.textContent = "Tài khoản hoặc mật khẩu chưa chính xác!";
             flag = false;
         }
@@ -113,7 +123,14 @@
                 formLogin.action = "homeCustomer.html"
             }
         }
+
+        if (flag) {
+            // Nếu tất cả là hợp lệ, thay đổi action và cho phép form submit
+            document.getElementById("form-login").action = "HomePage.jsp";
+        }*/
         return flag;
+
+
     }
 </script>
 </body>
