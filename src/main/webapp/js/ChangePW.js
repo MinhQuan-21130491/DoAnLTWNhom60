@@ -22,6 +22,14 @@ $(document).ready(function (){
             $("#errNPW").text('Mật khẩu mới trùng với mật khẩu hiện tại');
             $('#errNPW').attr('style','color:red');
             condition=false;
+        }else if(newpassword.length < 6 || password.length > 50){
+            $("#errNPW").text('Mật khẩu dài từ 6 đến 50 ký tự!');
+            $('#errNPW').attr('style', 'color:red');
+            condition = false;
+        }else if(!newpassword.match(passwordRegex)){
+            $("#errNPW").text('Mật khẩu có ít nhất 1 chữ hoa, 1 ký tự đặc biệt và 1 số!');
+            $('#errNPW').attr('style', 'color:red');
+            condition = false;
         }else{
             $("#errPW").text('');
 

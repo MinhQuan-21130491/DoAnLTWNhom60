@@ -25,24 +25,31 @@ public class ChangePassword extends HttpServlet{
         String password = req.getParameter("password");
         String newpassword = req.getParameter("new_password");
         String repassword = req.getParameter("re_password");
+        String passEncrypt = Encrypt.toSHA1(password);
         String repassEncrypt = Encrypt.toSHA1(repassword);
         String err = "";
         HttpSession session = req.getSession();
         Account account = (Account) session.getAttribute("auth");
+//        String username = "sangcs321";
+//        Account account = AccountService.getInstance().selectAccountByUserName(username);
 
-        if(password.equals(account.getPassword())){
+        if(account==null){
+            err="Bạn chưa đăng nhập";
+            req.setAttribute("errPass",err);
+        }
+        if(passEncrypt.equals(account.getPassword())){
             AccountService.updatePassword(repassEncrypt,account.getId());
             session.setAttribute("password",newpassword);
         }else{
-            err="Mật khẩu không chính xác!";
+            err="Mật khẩu hiện tại không chính xác!";
             req.setAttribute("errPass",err);
         }
         try {
             String url = "";
             if(err.length() == 0) {
-                url = "ChangePW.jsp";
-            }else {
                 url = "SignIn.jsp";
+            }else {
+                url = "ChangePW.jsp";
             }
             req.getRequestDispatcher(url).forward(req,resp);
         } catch (ServletException e) {

@@ -7,6 +7,7 @@ import model.Account;
 import service.AccountService;
 import util.Email;
 import util.Encrypt;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,9 +20,10 @@ public class ForgetPassword extends HttpServlet {
     final static String upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     final static String number = "0123456789";
     final static String special = "!@#$&$%*+,-./:;()<=>[]^_`{}|~";
+
     public static String generateRandomString() {
         SecureRandom random = new SecureRandom();
-        StringBuilder randomString= new StringBuilder();
+        StringBuilder randomString = new StringBuilder();
         randomString.append(lowerCase.charAt(random.nextInt(lowerCase.length())));
 
         // Thêm ít nhất một chữ hoa
@@ -44,52 +46,65 @@ public class ForgetPassword extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doPost(req,resp);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("UTF-8");
-        resp.setCharacterEncoding("UTF-8");
-//        resp.setContentType("html/text; charset= UTF-8");
-        String username = req.getParameter("user_name");
-        String email = req.getParameter("email");
-        req.setAttribute("user_name", username);
-        req.setAttribute("email", email);
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        //resp.setContentType("html/text; charset= UTF-8");
+        String username = request.getParameter("user_name");
+        String email = request.getParameter("email");
+        request.setAttribute("user_name", username);
+        request.setAttribute("email", email);
         String err = "";
-
+        String url = "";
         if (!AccountService.getInstance().checkExistUserName(username)) {
             err = "Tên tài khoản không tồn tại!";
-            req.setAttribute("errUserName", err);
+            request.setAttribute("errUserName", err);
+            url = "/ForgetPW.jsp";
+            request.getRequestDispatcher(url).forward(request, response);
         } else if (!AccountService.getInstance().checkExistEmail(email)) {
             err = "Email không tồn tại!";
-            req.setAttribute("errEmail", err);
-        }else{
+            request.setAttribute("errEmail", err);
+            url = "/ForgetPW.jsp";
+            request.getRequestDispatcher(url).forward(request, response);
+        } else {
             Account account = AccountService.getInstance().selectAccountByUserName(username);
             String newpassword = generateRandomString();
             String pwEncrypt = Encrypt.toSHA1(newpassword);
-            if(AccountService.updatePassword(pwEncrypt,account.getId())>0){
-                Email.sendEmail(account.getEmail(),"Mật khẩu mới của bạn","Thông tin đăng nhập HomeDecor:\n"+"-Tên đăng nhập: "+username+"\n"+"-Mật khẩu mới: "+newpassword);
-
-            };
-        }
-        try {
-            String url = "";
-            if(err.length() == 0) {
-                url = "ForgetPW.jsp";
-            }else {
-                url = "SignIn.jsp";
+            if (AccountService.updatePassword(pwEncrypt, account.getId()) > 0) {
+                Email.sendEmail(account.getEmail(), "Mật khẩu mới của bạn", "Thông tin đăng nhập HomeDecor:"+"<br>" + "-Tên đăng nhập: " + username + "<br>" + "-Mật khẩu mới: " + newpassword);
+                url = "/SignIn.jsp";
+                request.getRequestDispatcher(url).forward(request, response);
             }
-            req.getRequestDispatcher(url).forward(req,resp);
-        } catch (ServletException e) {
-            throw new RuntimeException(e);
         }
+        ;
+//        }
+//        try {
+//            String url = "";
+//            if (err.length() == 0) {
+//                url = "ForgetPW.jsp";
+//            } else {
+//                url = "SignIn.jsp";
+//            }
+//            req.getRequestDispatcher(url).forward(req, resp);
+//        } catch (ServletException e) {
+//            throw new RuntimeException(e);
+//        }
 
     }
 
     public static void main(String[] args) {
-
+//        String username = "abc";
+//        String err = "";
+//
+//        if (!AccountService.getInstance().checkExistUserName(username)) {
+//            err = "Tên tài khoản không tồn tại!";
+//            System.out.println(err);
+//        }
     }
 
 }

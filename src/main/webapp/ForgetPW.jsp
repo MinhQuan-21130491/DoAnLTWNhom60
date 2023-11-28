@@ -56,11 +56,11 @@
     <div class="contain">
         <div class="signup-content">
             <%
-                String userName = (String) request.getAttribute("userName");
+                String userName = (String) request.getAttribute("user_name");
                 String email = (String) request.getAttribute("email");
                 userName = (userName == null)? "": userName;
                 email = (email == null)? "": email;
-                String errUserName = (String)request.getAttribute("errUser");
+                String errUserName = (String)request.getAttribute("errUserName");
                 String errEmail = (String)request.getAttribute("errEmail");
                 errUserName =(errUserName == null)?"":errUserName;
                 errEmail =(errEmail == null)?"":errEmail;

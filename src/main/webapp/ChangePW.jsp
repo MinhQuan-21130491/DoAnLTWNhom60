@@ -60,6 +60,7 @@
                 <h5>ĐỔI MẬT KHẨU</h5>
                 <div class="form-SignUp">
                     <%
+
                         String errPassword = (String)request.getAttribute("errPass");
                         errPassword =(errPassword == null)?"":errPassword;
                     %>

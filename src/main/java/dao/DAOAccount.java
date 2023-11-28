@@ -207,7 +207,7 @@ public class DAOAccount {
     public static int updatePassword( String passEnCrypt, int idAccount) {
         int re = 0;
         Connection connection = JDBCUtil.getConnection();
-        String sql ="update accounts set password =? where idAccount =?";
+        String sql ="update accounts set password =? where id =?";
         try {
             PreparedStatement pr = connection.prepareStatement(sql);
             pr.setString(1, passEnCrypt);
