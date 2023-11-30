@@ -61,5 +61,4 @@ public class AccountService {
     public static Account selectById(Account account){
         return DAOAccount.selectById(account);
     }
-
     }

@@ -1,5 +1,6 @@
 <%@ page import="java.util.Date" %>
 <%@ page import="java.io.Serializable" %>
+<%@ page import="model.Account" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -27,6 +28,7 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="css/Style.css">
     <link rel="stylesheet" href="css/ChangeInfor.css">
+
 </head>
 <body>
 <header class = "hd">
@@ -55,30 +57,33 @@
 </header>
 <div class="changeInF">
     <%
-        String name = (String) request.getAttribute("name");
-        String phoneNumber = (String) request.getAttribute("phoneNumber");
-        String email = (String) request.getAttribute("email");
-        String gender = (String) request.getAttribute("gender");
-        Serializable birthDay = (Date) request.getAttribute("birthDay");
-        String address = (String) request.getAttribute("address");
-        String addressReceive =(String) request.getAttribute("addressReceive");
-        name = (name == null)? "": name;
-        phoneNumber = (phoneNumber == null)? "": phoneNumber;
-        email = (email == null)? "": email;
-        gender = (gender == null)? "": gender;
-        birthDay = (birthDay == null)? "": birthDay;
-        address = (address == null)? "": address;
-        addressReceive = (addressReceive == null)? "": addressReceive;
+        Object object = session.getAttribute("account");
+        Account account = null;
+        if(object != null)
+            account = (Account) object;
+        if(account == null){
+    %> <p  style="text-align: center; margin-top: 15px"><a href="SignIn.jsp" >Bạn chưa đăng nhập</a></p>
+    <%}else{%>
+    <%
+        String name = account.getName();
+        String phoneNumber = account.getPhoneNumber();
+        String email = account.getEmail();
+        String gender = account.getGender();
+        Date birthDay = account.getBirthDay();
+        String address = account.getAddress();
+        String addressReceive = account.getAddressReceive();
+
         String err = (String) request.getAttribute("err");
-        err = (err == null)? "": err;
+        err =(err == null)?"":err;
+
     %>
-    <form id="changeNam" onsubmit="return check()" action="changeInfor" method="post">
+    <form id="changeNam" onsubmit="return check()" action="changeInfo" method="post">
         <table>
             <thead>
             <tr>
                 <td colspan ="4">
                     <h5 class = "pt-3 pb-1"> THAY ĐỔI THÔNG TIN </h5>
-                    <div class="text-danger text-center w-100" id="error"><%=err%></div>
+                        <div class="text-danger text-center w-100" id="error"><%=err%></div>
                 </td>
             </tr>
             </thead>
@@ -95,7 +100,7 @@
                 </td>
                 <td class="w-50">
                     <div id="InName">
-                        <input id="HienThiTen" name="TenHT" type="text" value="<%=name%>">
+                        <input id="HienThiTen" name="TenHT" type="text" value="<%= name%>">
                     </div>
                 </td>
             </tr>
@@ -125,14 +130,12 @@
                 </td>
                 <td >
                     <div class = "gender">
-                        <label class="ms-0" for="male">Nam</label><input type="radio" id="male" name="gender" value="Nam"  checked >
-                        <label for="female">Nữ</label> <input type="radio" id="female" name="gender" value="Nữ" >
-                        <label for="other">Khác</label> <input type="radio" id="other" name="gender" value="Khác">
+                        <label class="ms-0" for="male">Nam</label><input type="radio" id="male" name="gender" value="Nam" <%= gender.equals("Nam") ? "checked" : "" %> >
+                        <label for="female">Nữ</label> <input type="radio" id="female" name="gender" value="Nữ" <%= gender.equals("Nữ") ? "checked" : "" %>>
+                        <label for="other">Khác</label> <input type="radio" id="other" name="gender" value="Khác" <%= gender.equals("Khác") ? "checked" : "" %>>
                     </div>
                 </td>
             </tr>
-
-
             <tr id="changeNgaySinh">
                 <td>
                     <label>Ngày sinh</label>
@@ -171,6 +174,7 @@
             </tbody>
         </table>
     </form>
+    <%}%>
 </div>
 <script>
 

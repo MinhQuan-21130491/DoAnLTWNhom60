@@ -53,8 +53,8 @@
 </header>
 <div class="mt-5 sigin">
     <%
-        String userName = (String) request.getAttribute("userName");
-        String password = (String) request.getAttribute("password");
+        String userName = request.getParameter("idFormInput");
+        String password = request.getParameter("idFormPass");
         userName = (userName == null)? "": userName;
         password = (password == null)? "": password;
         String err = (String) request.getAttribute("err");

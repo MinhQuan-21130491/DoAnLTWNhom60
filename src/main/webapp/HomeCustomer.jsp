@@ -1,3 +1,4 @@
+<%@ page import="model.Account" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -100,9 +101,9 @@
                                                         <li>
                                                             <hr class="dropdown-divider">
                                                         </li>
-                                                        <li><a class="dropdown-item" href="#">Lịch sử mua hàng</a></li><li>
+                                                        <li><a class="dropdown-item" href="HistoryBuy.jsp">Lịch sử mua hàng</a></li><li>
                                                         <hr class="dropdown-divider">
-                                                        <li><a class="dropdown-item" href="#">Thay đổi thông tin</a></li><li>
+                                                        <li><a class="dropdown-item" href="ChangeInfo.jsp">Thay đổi thông tin</a></li><li>
                                                         <hr class="dropdown-divider">
                                                     </li>
                                                         <li><a class="dropdown-item" href="#">Đổi mật khẩu</a></li>
@@ -130,6 +131,17 @@
                                 </div>
                                 <div class="col-lg-2  d-lg-block d-md-none d-none ">
                                     <ul class="navbar-nav justify-content-end">
+                                        <%
+                                            Object object = session.getAttribute("account");
+                                            Account account = null;
+                                            if(object != null)
+                                                account = (Account) object;
+                                            if(account == null){
+                                        %>
+                                        <a href="SignIn.jsp"> Đăng nhập </a>
+                                        <%
+                                            }else{
+                                        %>
                                         <li class="nav-item hv pe-2"><a class="nav-link" href="#"><button class = "position-relative border-0 bg-light "><i class="fa fa-shopping-cart" aria-hidden="true" style="font-size: 25px"></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">99+<span class="visually-hidden">unread messages</span></span>
                                         </button> </a> </li>
                                         <li class="nav-item dropdown hv  d-flex align-items-center"><a
@@ -137,13 +149,13 @@
                                                 role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             Tài khoản </a>
                                             <ul class="dropdown-menu" aria-labelledby="">
-                                                <li class ="dropdown-item"> Xin chào: <span class = "fw-bold " class = "name">MinhQuan</span></li>
+                                                <li class ="dropdown-item"> Xin chào: <span class = "fw-bold " class = "name"><%= account.getName() %></span></li>
                                                 <li>
                                                     <hr class="dropdown-divider">
                                                 </li>
                                                 <li><a class="dropdown-item" href="#">Lịch sử mua hàng</a></li><li>
                                                 <hr class="dropdown-divider">
-                                                <li><a class="dropdown-item" href="#">Thay đổi thông tin</a></li><li>
+                                                <li><a class="dropdown-item" href="ChangeInfo.jsp">Thay đổi thông tin</a></li><li>
                                                 <hr class="dropdown-divider">
                                             </li>
                                                 <li><a class="dropdown-item" href="#">Đổi mật khẩu</a></li>
@@ -153,6 +165,7 @@
                                                 <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
                                             </ul>
                                         </li>
+                                        <% }%>
 
                                     </ul>
 

@@ -55,7 +55,7 @@ public class DAOAccount {
             // Tạo đối tượng statement
             String sql = "select a.id,a.name, a.userName, a.password, a.gender, a.phoneNumber, a.birthDay, a.address, a.addressReceive, a.email " +
                     "from accounts as a " +
-                    "where a.email =? ";
+                    "where a.userName =? ";
             PreparedStatement pr = connection.prepareStatement(sql);
             pr.setString(1, account.getUserName());
             // Thực thi câu lệnh sql
@@ -71,12 +71,13 @@ public class DAOAccount {
                 Date birthDay = resultSet.getDate("birthDay");
                 String address = resultSet.getString("address");
                 String addressReceive = resultSet.getString("addressReceive");
-                account = new Account(id, name, userName, password, email, phoneNumber, gender, birthDay, address, addressReceive);
+                re = new Account(id, name, userName, password, email, phoneNumber, gender, birthDay, address, addressReceive);
             }
+            JDBCUtil.closeConnection(connection);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return account;
+        return re;
     }
 
     public static int registerAccount(Account a) {
@@ -278,11 +279,12 @@ public class DAOAccount {
         return re;
     }
 
+
     // Thay đổi thông tin khách hàng
     public static int updateInfor(Account account) {
         int re = 0;
         Connection connection = JDBCUtil.getConnection();
-        String sql = "UPDATE Account " +
+        String sql = "UPDATE accounts " +
                 "SET name=?, phoneNumber=?, email=?, gender=?, birthDay=?, address=?, addressReceive=? " +
                 "WHERE id=?";
         try (PreparedStatement pr = connection.prepareStatement(sql)) {
