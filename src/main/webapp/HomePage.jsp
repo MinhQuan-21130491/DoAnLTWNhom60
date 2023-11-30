@@ -2,6 +2,7 @@
 <%@ page import="model.Product" %>
 <%@ page import="model.Category" %>
 <%@ page import="java.text.NumberFormat" %>
+<%@ page import="model.Cart" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,6 +47,7 @@
 <%
     NumberFormat nF = NumberFormat.getCurrencyInstance();
     ArrayList<String> listColor = (ArrayList<String>) request.getAttribute("listColorP");
+    Cart cart = (Cart) session.getAttribute("Cart");
 %>
 <div class="container p-0 mgt">
     <div class="row">
@@ -90,8 +92,18 @@
                         <p class="card-text">
                         <p class="price"><%=nF.format(latestProduct.getPrice())%>
                         </p>
-                        <a href="Cart.jsp"><i class="fa fa-shopping-cart cart" aria-hidden="true"
-                                              title="Thêm vào giỏ hàng"></i></a>
+                        <%
+                            int quantity = 1;
+                            if (cart != null) {
+                                if (cart.get(latestProduct.getIdProduct()) != null) {
+                                    quantity = cart.get(latestProduct.getIdProduct()).getQuantity() + 1;
+                                }
+                            } else {
+                                quantity = latestProduct.getQuantity();
+                            }
+                        %>
+                        <a href ="<%=url%>/cartController?id=<%=latestProduct.getIdProduct()%>&quantity=<%=quantity%>"><i class="fa fa-shopping-cart cart" aria-hidden="true" title="Thêm vào giỏ hàng"></i></a>
+
                     </div>
                     <%}%>
                 </div>
@@ -108,7 +120,7 @@
                         <h5 class="card-title">Ghế xoay</h5>
                         <p class="card-text">
                         <p class="price">₫1.000.000</p></p>
-                        <a href="Cart.jsp"><i class="fa fa-shopping-cart cart" aria-hidden="true"
+                        <a href =""><i class="fa fa-shopping-cart cart" aria-hidden="true"
                                               title="Thêm vào giỏ hàng"></i></a>
                     </div>
                 </div>
@@ -130,16 +142,13 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="image/slide1.jpg"
-                             class="d-block img_p" alt="...">
+                        <img src="image/slide1.jpg" class="d-block img_p" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="image/slide2.jpg"
-                             class="d-block img_p" alt="...">
+                        <img src="image/slide2.jpg" class="d-block img_p" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="image/slide3.jpg"
-                             class="d-block img_p" alt="...">
+                        <img src="image/slide3.jpg" class="d-block img_p" alt="...">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
@@ -169,11 +178,20 @@
                         <div class="card-body">
                             <h5 class="card-title"><%=p.getName()%>
                             </h5>
-                            <p class="card-text">`
+                            <p class="card-text">
                             <p class="price"><%=nF.format(p.getPrice())%>
                             </p>
-                            <a href="Cart.jsp"><i class="fa fa-shopping-cart cart" aria-hidden="true"
-                                                  title="Thêm vào giỏ hàng"></i></a>
+                            <%
+                                int quantity = 1;
+                                if (cart != null) {
+                                    if (cart.get(p.getIdProduct()) != null) {
+                                        quantity = cart.get(p.getIdProduct()).getQuantity() + 1;
+                                    }
+                                } else {
+                                    quantity = p.getQuantity();
+                                }
+                            %>
+                            <a href ="<%=url%>/cartController?id=<%=p.getIdProduct()%>&quantity=<%=quantity%>"><i class="fa fa-shopping-cart cart" aria-hidden="true" title="Thêm vào giỏ hàng"></i></a>
                             </p>
                         </div>
                     </div>

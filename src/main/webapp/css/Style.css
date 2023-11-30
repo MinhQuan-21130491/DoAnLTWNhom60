@@ -172,14 +172,13 @@ table {
     max-height: 400px;
 }
 tr {
-    border-bottom:1px solid #dedbdb !important;
+    border:1px solid #dedbdb !important;
 }
 td {
     padding:20px 0;
-    width: 12%;
     font-weight: 700;
+    border-right:1px solid #dedbdb !important;
 }
-
 .item{
     display: flex;
 }
@@ -220,6 +219,23 @@ table > tbody > tr >td {
 .fs {
     font-size: 12px;
 }
+th, td {
+    min-width: 130px;
+}
+.w40 {
+    min-width: 40px !important;
+}
+.w300 {
+    min-width: 300px !important;
+}
+.w260 {
+    min-width: 260px !important;
+}
+.w225 {
+    min-width: 225px !important;
+}
+
+
 
 
 

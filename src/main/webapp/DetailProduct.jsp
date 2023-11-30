@@ -1,6 +1,8 @@
 <%@ page import="model.Product" %>
 <%@ page import="model.Image" %>
 <%@ page import="java.text.NumberFormat" %>
+<%@ page import="model.Category" %>
+<%@ page import="model.Cart" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -43,12 +45,22 @@
 <!--end header-->
 <!--Chi tiết sản phẩm-->
 <%
+    String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+            + request.getContextPath();
+%>
+<%
     NumberFormat nF = NumberFormat.getCurrencyInstance();
+    Cart cart = (Cart) session.getAttribute("Cart");
     Product product = (Product) request.getAttribute("product");
     if (product != null) {
 %>
 <div class="container-fluid mgt">
-    <div class="container bgcolor ">
+    <div class="container">
+        <a href="<%=url%>/homePage" class="color-gray lbhv text-decoration-none">Trang chủ  <i class="fa fa-angle-right color-gray" aria-hidden="true"></i> </a>
+        <a href="<%=url%>/product"class="color-gray lbhv text-decoration-none">Sản phẩm  <i class="fa fa-angle-right color-gray" aria-hidden="true">  </i></a>
+        <span class="text-color"><%=product.getName()%></span>
+    </div>
+    <div class="container bgcolor mt-3">
         <!--Thông tin sản phẩm-->
         <div class="d-md-none d-sm-block d-block pt-2 " >
             <span class="nameProduct" name ="nameProduct"><%=product.getName()%></span>
@@ -88,7 +100,7 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-12 ">
-                                <p class = "color-gray m-0 mb-4 "><%=product.getQuantity()%> sản phẩm có sẵn</p>
+                                <p class = "color-gray m-0 mb-4 "><%=product.getQuantityAvailable()%> sản phẩm có sẵn</p>
                                 <span class="color-gray">Vận chuyển <i class="fa fa-truck" aria-hidden="true"></i> <span id ="address">Thủ Đức</span> </span>
                                 <div class="amount-product my-4">
                                     <div class="t">
@@ -131,9 +143,9 @@
                     <div class="row mt-1">
                         <div class="col-md-12">
                             <h5>CHI TIẾT SẢN PHẨM</h5>
-                            <p>- Chiều dài: <%=product.getLength()%>cm</p>
-                            <p>- Chiều rộng: <%=product.getWidth()%>cm</p>
-                            <p>- Chiều cao: <%=product.getHeight()%>cm</p>
+                            <p>- Chiều dài: <%=product.formatSize(product.getLength())%>cm</p>
+                            <p>- Chiều rộng: <%=product.formatSize(product.getWidth())%>cm</p>
+                            <p>- Chiều cao: <%=product.formatSize(product.getHeight())%>cm</p>
                             <p>- Vật liệu: <%=product.getMaterial()%></p>
                             <p>- Màu sắc: <%=product.getColor()%></p>
                         </div>

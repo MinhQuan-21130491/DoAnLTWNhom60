@@ -1,5 +1,6 @@
 package controller;
 
+import model.Cart;
 import model.Product;
 import service.ProductService;
 
@@ -7,8 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import org.json.JSONObject;
 import org.json.JSONArray;
@@ -32,20 +35,34 @@ public class LoadProductByFil extends HttpServlet {
         if(idCateText != null) {
             idCate = Integer.parseInt(idCateText);
         }
+        HttpSession session = request.getSession();
+        Cart cart = (Cart) session.getAttribute("Cart");
+        String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+        int quantity = 1;
         ArrayList<Product> listProduct = ProductService.getInstance().listProductByFil(command,price, color, material, idCate );
         PrintWriter out = response.getWriter();
         JSONObject jsonResponse = new JSONObject();
         JSONArray htmlDataArray = new JSONArray();
+        NumberFormat nF = NumberFormat.getCurrencyInstance();
         for (Product p : listProduct) {
+            if (cart != null) {
+                if (cart.get(p.getIdProduct()) != null) {
+                    quantity = cart.get(p.getIdProduct()).getQuantity() + 1;
+                }
+            } else {
+                quantity = p.getQuantity();
+            }
             JSONObject productJSON = new JSONObject();
             productJSON.put("idProduct", p.getIdProduct());
             productJSON.put("imageUrl", p.getImages().get(0).getUrl());
             productJSON.put("name", p.getName());
-            productJSON.put("priceFormatted", p.getPriceFormatted());
+            productJSON.put("price", nF.format(p.getPrice()));
+            productJSON.put("quantity", quantity);
             htmlDataArray.put(productJSON);
         }
         jsonResponse.put("htmlData", htmlDataArray);
         jsonResponse.put("productExits", listProduct.size());
+        jsonResponse.put("url", url);
         out.println(jsonResponse.toString());
     }
 }

@@ -16,13 +16,14 @@ public class Product {
     private double width;
     private double height;
     private double length;
+    private int quantityAvailable;
     private int quantity;
     private ArrayList<Image> images;
 
     public Product() {
     }
 
-    public Product(int idProduct, int idCate, String name, double priceImport, double price, String description, String color, String material, double width, double height, double length, int quantity, ArrayList<Image> images) {
+    public Product(int idProduct, int idCate, String name, double priceImport, double price, String description, String color, String material, double width, double height, double length, int quantity, int quantityAvailable, ArrayList<Image> images) {
         this.idProduct = idProduct;
         this.idCate = idCate;
         this.name = name;
@@ -35,9 +36,11 @@ public class Product {
         this.height = height;
         this.length = length;
         this.quantity = quantity;
+        this.quantityAvailable = quantityAvailable;
         this.images = images;
     }
-    public Product(int idProduct, int idCate, String name, double priceImport, double price, String description, String color, String material, double width, double height, double length, int quantity) {
+
+    public Product(int idProduct, int idCate, String name, double priceImport, double price, String description, String color, String material, double width, double height, double length, int quantity, int quantityAvailable) {
         this.idProduct = idProduct;
         this.idCate = idCate;
         this.name = name;
@@ -49,6 +52,7 @@ public class Product {
         this.width = width;
         this.height = height;
         this.length = length;
+        this.quantityAvailable = quantityAvailable;
         this.quantity = quantity;
     }
 
@@ -87,11 +91,7 @@ public class Product {
     public double getPrice() {
         return price;
     }
-    public String getPriceFormatted() {
-       //  Sử dụng DecimalFormat để định dạng số
-        DecimalFormat decimalFormat = new DecimalFormat("###,###,##0");
-        return decimalFormat.format(price);
-    }
+
     public void setPrice(int price) {
         this.price = price;
     }
@@ -137,7 +137,7 @@ public class Product {
     }
 
     public double getLength() {
-        return length;
+        return this.length;
     }
 
     public void setLength(double length) {
@@ -152,6 +152,22 @@ public class Product {
         this.quantity = quantity;
     }
 
+    public void setPriceImport(double priceImport) {
+        this.priceImport = priceImport;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public int getQuantityAvailable() {
+        return quantityAvailable;
+    }
+
+    public void setQuantityAvailable(int quantityAvailable) {
+        this.quantityAvailable = quantityAvailable;
+    }
+
     public ArrayList<Image> getImages() {
         return images;
     }
@@ -160,6 +176,22 @@ public class Product {
         this.images = images;
     }
 
+    public void quantityUp() {
+        this.quantity++;
+    }
+
+    public void quantityUp(int quantity) {
+        setQuantity(quantity);
+    }
+
+    public String formatSize(double size) {
+        // Tạo mẫu định dạng với hai chữ số sau dấu thập phân
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+
+        // Làm tròn số và áp dụng định dạng
+        String formattedNumber = decimalFormat.format(size);
+       return formattedNumber;
+    }
     @Override
     public String toString() {
         return "Product{" +

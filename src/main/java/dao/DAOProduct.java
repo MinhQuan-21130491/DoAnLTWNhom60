@@ -38,7 +38,7 @@ public class DAOProduct {
                 double height = resultSet.getDouble("height");
                 double lenght = resultSet.getDouble("length");
                 int quantity = resultSet.getInt("quantity");
-                Product product = new Product(idProduct, idCate, name, priceImport, price,description,color,material,width,height,lenght,quantity);
+                Product product = new Product(idProduct, idCate, name, priceImport, price,description,color,material,width,height,lenght,1,quantity);
                 re.add(product);
             }
             JDBCUtil.closeConnection(connection);
@@ -75,7 +75,7 @@ public class DAOProduct {
                 double height = resultSet.getDouble("height");
                 double lenght = resultSet.getDouble("length");
                 int quantity = resultSet.getInt("quantity");
-                product = new Product(idProduct, idCate, name, priceImport, price,description,color,material,width,height,lenght,quantity);
+                product = new Product(idProduct, idCate, name, priceImport, price,description,color,material,width,height,lenght,1, quantity);
             }
             JDBCUtil.closeConnection(connection);
         } catch (SQLException e) {
@@ -137,7 +137,7 @@ public class DAOProduct {
                 double height = resultSet.getDouble("height");
                 double lenght = resultSet.getDouble("length");
                 int quantity = resultSet.getInt("quantity");
-                Product product = new Product(idProduct, idCate, name, priceImport, price,description,color,material,width,height,lenght,quantity);
+                Product product = new Product(idProduct, idCate, name, priceImport, price,description,color,material,width,height,lenght,1,quantity);
                 list.add(product);
             }
             JDBCUtil.closeConnection(connection);
@@ -184,7 +184,7 @@ public class DAOProduct {
                 double height = resultSet.getDouble("height");
                 double length = resultSet.getDouble("length");
                 int quantity = resultSet.getInt("quantity");
-                Product product = new Product(idProduct, idCate, name, priceImport, price, description, color, material, width, height, length, quantity);
+                Product product = new Product(idProduct, idCate, name, priceImport, price, description, color, material, width, height, length,1, quantity);
                 list.add(product);
             }
             JDBCUtil.closeConnection(connection);
@@ -219,7 +219,7 @@ public class DAOProduct {
             double height = resultSet.getDouble("height");
             double length = resultSet.getDouble("length");
             int quantity = resultSet.getInt("quantity");
-            product = new Product(idProduct, idCate, name, priceImport, price, description, color, material, width, height, length, quantity);
+            product = new Product(idProduct, idCate, name, priceImport, price, description, color, material, width, height, length, 1, quantity);
         }
     } catch (SQLException e) {
         throw new RuntimeException(e);
@@ -264,7 +264,7 @@ public class DAOProduct {
                 double height = resultSet.getDouble("height");
                 double lenght = resultSet.getDouble("length");
                 int quantity = resultSet.getInt("quantity");
-                Product product = new Product(idProduct, idCate, name, priceImport, price,description,color,material,width,height,lenght,quantity);
+                Product product = new Product(idProduct, idCate, name, priceImport, price,description,color,material,width,height,lenght, 1,quantity);
                 list.add(product);
             }
 

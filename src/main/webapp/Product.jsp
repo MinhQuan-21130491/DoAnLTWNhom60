@@ -2,6 +2,7 @@
 <%@ page import="model.Product" %>
 <%@ page import="model.Category" %>
 <%@ page import="java.text.NumberFormat" %>
+<%@ page import="model.Cart" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,11 +46,15 @@
 <%
     NumberFormat nF = NumberFormat.getCurrencyInstance();
     ArrayList<String> listColor = (ArrayList<String>) request.getAttribute("listColorP");
+    ArrayList<Category> listCate = (ArrayList<Category>) request.getAttribute("listCate");
+    Cart cart = (Cart) session.getAttribute("Cart");
     ArrayList<Product> listProductByName = (ArrayList<Product>) request.getAttribute("listProductByName");
     if (listProductByName == null || listProductByName.isEmpty()) {
 %>
 <div class="container p-0 mgt" >
-    <div class="row">
+    <a href="<%=url%>/homePage" class="color-gray lbhv text-decoration-none">Trang chủ  <i class="fa fa-angle-right color-gray" aria-hidden="true"></i>  </a> <span class="text-color" id ="sp">Sản phẩm</span>
+    <span class="text-color" id ="nameCate"></span>
+    <div class="row mt-3">
         <!-- menu left -->
         <div class="col-lg-3">
             <div class="list-group ">
@@ -62,9 +67,10 @@
                     </div>
                 </div>
                 <div class="typeChair" id ="typeChair" >
-                    <%ArrayList<Category> listCate = (ArrayList<Category>) request.getAttribute("listCate");%>
-                    <%if(!listCate.isEmpty() && listCate != null) {%>
-                    <%for(Category c: listCate) {%>
+                    <%
+                        if (!listCate.isEmpty() && listCate != null) {
+                            for (Category c : listCate) {
+                    %>
                     <a href="#" class="list-group-item list-group-item-action lt" onclick="loadProductByIdCate('<%=c.getId()%>')"><%=c.getName()%></a>
                     <%}
                     }%>
@@ -121,8 +127,17 @@
                             <h5 class="card-title"><%=p.getName()%></h5>
                             <p class="card-text">
                             <p class="price"><%=nF.format(p.getPrice())%></p>
-                            <a href="Cart.jsp"><i class="fa fa-shopping-cart cart" aria-hidden="true" title="Thêm vào giỏ hàng"></i></a>
-                            </p>
+                            <%
+                                int quantity = 1;
+                                if (cart != null) {
+                                    if (cart.get(p.getIdProduct()) != null) {
+                                        quantity = cart.get(p.getIdProduct()).getQuantity() + 1;
+                                    }
+                                } else {
+                                    quantity = p.getQuantity();
+                                }
+                            %>
+                            <a href ="<%=url%>/cartController?id=<%=p.getIdProduct()%>&quantity=<%=quantity%>"><i class="fa fa-shopping-cart cart" aria-hidden="true" title="Thêm vào giỏ hàng"></i></a>                            </p>
                         </div>
                     </div>
                 </div>
@@ -158,7 +173,17 @@
                         <p class="card-text">
                         <p class="price"><%=nF.format(p.getPrice())%>
                         </p>
-                        <a href="Cart.jsp"><i class="fa fa-shopping-cart cart" aria-hidden="true" title="Thêm vào giỏ hàng"></i></a>
+                        <%
+                            int quantity = 1;
+                            if (cart != null) {
+                                if (cart.get(p.getIdProduct()) != null) {
+                                    quantity = cart.get(p.getIdProduct()).getQuantity() + 1;
+                                }
+                            } else {
+                                quantity = p.getQuantity();
+                            }
+                        %>
+                        <a href ="<%=url%>/cartController?id=<%=p.getIdProduct()%>&quantity=<%=quantity%>"><i class="fa fa-shopping-cart cart" aria-hidden="true" title="Thêm vào giỏ hàng"></i></a>
                         </p>
                     </div>
                 </div>
@@ -190,6 +215,11 @@
             }
         })
         $('.lt').click(function () {
+            $('#sp').removeClass("text-color");
+            $('#sp').addClass("color-gray")
+            var nameCate = $(this).text()
+            console.log(nameCate);
+            $('#nameCate').html('<i class="fa fa-angle-right color-gray" aria-hidden="true"></i> ' + nameCate);
             var unCheckedRadio = $('input[type="radio"][name="price"]:checked, input[type="radio"][name="color"]:checked, input[type="radio"][name="material"]:checked');
             unCheckedRadio.prop('checked', false);
             if (backProduct === idCateCurrent) {
@@ -197,6 +227,9 @@
                 loadProduct();
                 backProduct = 0;
                 idCateCurrent = 0;
+                $('#sp').removeClass("color-gray");
+                $('#sp').addClass("text-color")
+                $('#nameCate').html('');
             } else {
                 price = "";
                 color = "";
@@ -299,6 +332,7 @@
 
                 var htmlData = jsonData.htmlData;
                 var productExits = jsonData.productExits;
+                var url = jsonData.url;
                 var exists = document.getElementById("exits");
                 exists.innerHTML = "CÓ " + productExits + " KẾT QUẢ TÌM KIẾM PHÙ HỢP";
                 var row = document.getElementById("content");
@@ -313,8 +347,8 @@
                         "                                <div class=\"card-body\">\n" +
                         "                                    <h5 class=\"card-title\">" + p.name + "</h5>\n" +
                         "                                    <p class=\"card-text\">\n" +
-                        "                                    <p class=\"price\">₫" + p.priceFormatted + "\n" +
-                        "                                    <a href=\"Cart.jsp\"><i class=\"fa fa-shopping-cart cart\" aria-hidden=\"true\" title=\"Thêm vào giỏ hàng\"></i></a>\n" +
+                        "                                    <p class=\"price\">" + p.price + "\n" +
+                        "                                    <a href =\""+url+"/cartController?id="+p.idProduct+"&quantity="+p.quantity+"\"><i class=\"fa fa-shopping-cart cart\" aria-hidden=\"true\" title=\"Thêm vào giỏ hàng\"></i></a>\n" +
                         "                                    </p>\n" +
                         "                                </div>\n" +
                         "                            </div>\n" +
