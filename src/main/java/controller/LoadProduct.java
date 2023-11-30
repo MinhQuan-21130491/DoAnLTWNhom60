@@ -1,5 +1,6 @@
 package controller;
 
+import model.Cart;
 import model.Product;
 import service.ProductService;
 
@@ -7,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.NumberFormat;
@@ -20,8 +22,19 @@ public class LoadProduct extends HttpServlet {
         response.setContentType("html/text; charset= UTF-8");
         ArrayList<Product> listSixProduct = ProductService.getInstance().listSixProduct(0);
         PrintWriter out = response.getWriter();
+        HttpSession session = request.getSession();
+        Cart cart = (Cart) session.getAttribute("Cart");
         NumberFormat nF = NumberFormat.getCurrencyInstance();
+        String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+        int quantity = 1;
         for(Product p: listSixProduct){
+            if (cart != null) {
+                if (cart.get(p.getIdProduct()) != null) {
+                    quantity = cart.get(p.getIdProduct()).getQuantity() + 1;
+                }
+            } else {
+                quantity = p.getQuantity();
+            }
             out.println(" <div class=\"col-lg-4 col-sm-6 mt-3 product\">\n" +
                     "                            <div class=\"card\">\n" +
                     "                                <a href=\"detail-product?pid="+p.getIdProduct()+"\">\n" +
@@ -31,7 +44,7 @@ public class LoadProduct extends HttpServlet {
                     "                                    <h5 class=\"card-title\">"+p.getName()+"</h5>\n" +
                     "                                    <p class=\"card-text\">\n" +
                     "                                    <p class=\"price\">"+nF.format(p.getPrice())+"\n" +
-                    "                                    <a href=\"Cart.jsp\"><i class=\"fa fa-shopping-cart cart\" aria-hidden=\"true\" title=\"Thêm vào giỏ hàng\"></i></a>\n" +
+                    "                                    <a href =\""+url+"/cartController?id="+p.getIdProduct()+"&quantity="+quantity+"\"><i class=\"fa fa-shopping-cart cart\" aria-hidden=\"true\" title=\"Thêm vào giỏ hàng\"></i></a>\n" +
                     "                                    </p>\n" +
                     "                                </div>\n" +
                     "                            </div>\n" +
