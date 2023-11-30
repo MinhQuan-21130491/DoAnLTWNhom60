@@ -23,7 +23,7 @@ public class LoadProductByName extends HttpServlet {
         request.setAttribute("listProductByName", listProductByName);
         request.setAttribute("exits", "CÓ " + listProductByName.size() + " KẾT QUẢ TÌM KIẾM PHÙ HỢP VỚI TỪ KHÓA " + "'"+name + "'");
         try {
-            request.getRequestDispatcher("HomePage.jsp").forward(request,response);
+            request.getRequestDispatcher("Product.jsp").forward(request,response);
         } catch (ServletException e) {
             throw new RuntimeException(e);
         }
