@@ -419,7 +419,7 @@
                     <div class="modal-dialog modal-md">
                         <div class="modal-content ">
                             <div class="modal-body">
-                                <form  action="" method="post" id="add-product" onsubmit="return addProduct()">
+                                <form  action="addProduct" method="post" id="add-product" enctype="multipart/form-data" onsubmit="return addProduct()">
                                     <div class="row px-2">
                                         <div class=" text-end">
                                             <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
@@ -433,11 +433,11 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Giá nhập (₫)</label><span id="errImpPriceAdd"  class="text-danger"></span>
-                                                <input type="text" class="form-control" id="priceImpProductAdd" name="priceProduct">
+                                                <input type="text" class="form-control" id="priceImpProductAdd" name="priceImpProductAdd">
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Giá bán (₫)</label><span id="errPriceAdd"  class="text-danger"></span>
-                                                <input type="text" class="form-control" id="priceProductAdd" name="delivery">
+                                                <input type="text" class="form-control" id="priceProductAdd" name="priceProductAdd">
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Thể loại</label>

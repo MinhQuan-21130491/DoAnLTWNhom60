@@ -48,9 +48,9 @@ public class LoadProductByFil extends HttpServlet {
             if (cart != null) {
                 if (cart.get(p.getIdProduct()) != null) {
                     quantity = cart.get(p.getIdProduct()).getQuantity() + 1;
+                } else {
+                    quantity = p.getQuantity();
                 }
-            } else {
-                quantity = p.getQuantity();
             }
             JSONObject productJSON = new JSONObject();
             productJSON.put("idProduct", p.getIdProduct());

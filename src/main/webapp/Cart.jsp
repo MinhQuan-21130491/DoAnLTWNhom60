@@ -50,6 +50,11 @@
         <div class="col-lg-12">
             <table class="mt-4">
                 <thead>
+                <%
+                    String errQuantity = (String) request.getAttribute("errQuantity");
+                    errQuantity = (errQuantity == null) ? "" : errQuantity;
+                %>
+                <p class="mb-0 mt-4 text-danger text-center"><%=errQuantity%></p>
                     <tr>
                         <td class="w40">STT</td>
                         <td class="w300">SẢN PHẨM</td>

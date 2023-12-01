@@ -186,9 +186,9 @@
                                 if (cart != null) {
                                     if (cart.get(p.getIdProduct()) != null) {
                                         quantity = cart.get(p.getIdProduct()).getQuantity() + 1;
+                                    } else {
+                                        quantity = p.getQuantity();
                                     }
-                                } else {
-                                    quantity = p.getQuantity();
                                 }
                             %>
                             <a href ="<%=url%>/cartController?id=<%=p.getIdProduct()%>&quantity=<%=quantity%>"><i class="fa fa-shopping-cart cart" aria-hidden="true" title="Thêm vào giỏ hàng"></i></a>

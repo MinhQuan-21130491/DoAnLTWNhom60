@@ -28,9 +28,14 @@ public class CartController extends HttpServlet {
         int quantity = Integer.parseInt(quantityText);
         Cart c = (Cart) session.getAttribute("Cart");
         if(c == null) c= new Cart();
-        if(c.get(idProduct) != null) {
-            c.put(idProduct, quantity);
-        }else {
+        if (c.get(idProduct) != null) {
+            int quantityAvailable = c.get(idProduct).getQuantityAvailable();
+            if(quantity <= quantityAvailable) {
+                c.put(idProduct, quantity);
+            }else {
+                request.setAttribute("errQuantity","Trong kho chỉ còn lại " + quantityAvailable + " sản phẩm '" +c.get(idProduct).getName() +"'");
+            }
+        }else{
             Product p = ProductService.getInstance().getProductById(idProduct);
             if (p != null) c.put(p);
         }

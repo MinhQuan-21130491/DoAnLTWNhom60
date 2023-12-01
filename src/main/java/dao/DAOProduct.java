@@ -316,6 +316,45 @@ public class DAOProduct {
         }
         return pr;
     }
+    public static int insertProduct(Product p) {
+        int re = 0;
+        Connection connection = JDBCUtil.getConnection();
+        String sql = "insert into products(name, idCate, price, priceImport, quantity, color, material, description, height, width, length) " +
+                     "values(?,?,?,?,?,?,?,?,?,?,?)";
+        try {
+            PreparedStatement pr = connection.prepareStatement(sql);
+            pr.setString(1, p.getName());
+            pr.setInt(2, p.getIdCate());
+            pr.setDouble(3, p.getPrice());
+            pr.setDouble(4, p.getPriceImport());
+            pr.setInt(5, p.getQuantity());
+            pr.setString(6, p.getColor());
+            pr.setString(7, p.getMaterial());
+            pr.setString(8, p.getDescription());
+            pr.setDouble(9, p.getHeight());
+            pr.setDouble(10, p.getWidth());
+            pr.setDouble(11, p.getHeight());
+            re = pr.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return re;
+    }
+    public static int insertImageProduct(int id, String url) {
+        int re = 0;
+        Connection connection = JDBCUtil.getConnection();
+        String sql = "insert into images_product(idProduct, urlImage) " +
+                     "values(?,?)";
+        try {
+            PreparedStatement pr = connection.prepareStatement(sql);
+            pr.setInt(1,id);
+            pr.setString(2,url);
+            re = pr.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return re;
+    }
     public static void main(String[] args) {
     System.out.println(listProductByFil("D", 5000000, "", "", 4).size());
     }

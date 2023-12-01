@@ -24,9 +24,12 @@ public class UpdateQuantity extends HttpServlet {
         String quantityText = request.getParameter("quantity");
         int quantity = Integer.parseInt(quantityText);
         Cart c = (Cart) session.getAttribute("Cart");
-        if(c.get(idProduct) != null) {
+        int quantityAvailable = c.get(idProduct).getQuantityAvailable();
+        if(quantity <= quantityAvailable) {
                 c.put(idProduct, quantity);
-            }
+        }else {
+            request.setAttribute("errQuantity","Trong kho chỉ còn lại " + quantityAvailable + " sản phẩm " +c.get(idProduct).getName());
+        }
         try {
             request.getRequestDispatcher("Cart.jsp").forward(request,response);
         } catch (ServletException e) {

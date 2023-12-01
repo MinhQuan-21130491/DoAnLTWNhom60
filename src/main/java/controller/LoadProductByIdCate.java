@@ -29,9 +29,9 @@ public class LoadProductByIdCate extends HttpServlet {
             if (cart != null) {
                 if (cart.get(p.getIdProduct()) != null) {
                     quantity = cart.get(p.getIdProduct()).getQuantity() + 1;
+                } else {
+                    quantity = p.getQuantity();
                 }
-            } else {
-                quantity = p.getQuantity();
             }
             out.println(" <div class=\"col-lg-4 col-sm-6 mt-3 product\">\n" +
                     "                            <div class=\"card\">\n" +
