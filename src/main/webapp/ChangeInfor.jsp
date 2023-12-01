@@ -77,7 +77,7 @@
         err =(err == null)?"":err;
 
     %>
-    <form id="changeNam" onsubmit="return check()" action="changeInfo" method="post">
+    <form id="changeNam" onsubmit="return check()" action="changeInfor" method="post">
         <table>
             <thead>
             <tr>

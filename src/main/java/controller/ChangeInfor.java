@@ -1,59 +1,58 @@
 package controller;
 
-import dao.DAOAccount;
 import model.Account;
 import service.AccountService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Date;
 
 @WebServlet(name = "changeInfor", value = "/changeInfor")
-public class ChangeInfor {
+public class ChangeInfor extends HttpServlet {
     public ChangeInfor(){
         super();
     }
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String name = request.getParameter("TenHT");
-        String phoneNumber = request.getParameter("SDTHT");
-        String email = request.getParameter("GmailHT");
-        String gender = request.getParameter("gender");
-        Date birthDay = Date.valueOf(request.getParameter("HienThiNS"));
-        String address = request.getParameter("DCHT");
-        String addressReceive = request.getParameter("DCNHHT");
-
-        request.setAttribute("name", name);
-        request.setAttribute("phoneNumber", phoneNumber);
-        request.setAttribute("email", email);
-        request.setAttribute("gender", gender);
-        request.setAttribute("birthDay", birthDay);
-        request.setAttribute("address", address);
-        request.setAttribute("addressReceive", addressReceive);
-        String mess = "";
-        String url = "";
+        HttpSession session = request.getSession();
+        Object object = session.getAttribute("account");
         String err = "";
-        request.setAttribute("err", "Cập nhật không thành công!");
-        if (err.length() > 0) {
-            url = "/ChangeInfor.jsp";
-        } else {
-            Object object = request.getSession().getAttribute("account");
-            Account account = null;
-            if (object != null) {
-                account = (Account) object;
-                if (account != null) {
-                    int id = account.getId();
-                    Account acc = new Account(id, "", "", name, phoneNumber, email, gender, birthDay, address, addressReceive);
-                    AccountService.updateInfor(acc);
-                    Account acc1 = AccountService.selectById(acc);
-                    request.getSession().setAttribute("account", acc1);
-                    url = "/Homepage.jsp";
-                }
+        Account account = (Account) object;
+        try {
+            String name = request.getParameter("TenHT");
+            String phoneNumber = request.getParameter("SDTHT");
+            String email = request.getParameter("GmailHT");
+            String gender = request.getParameter("gender");
+            Date birthDay = Date.valueOf(request.getParameter("HienThiNS"));
+            String address = request.getParameter("DCHT");
+            String addressReceive = request.getParameter("DCNHHT");
+
+            // Lấy ra ID để xác định tài khoản cần cập nhật
+            int id = account.getId();
+            // Tạo đối tượng Account mới với thông tin mới
+            Account acc = new Account(id, "", "", name, phoneNumber, email, gender, birthDay, address, addressReceive);
+            //Trả về số dòng thay đổi
+            int re = AccountService.updateInfor(acc);
+            if(re > 0){ // tức là có thông tin thay đổi
+                // Lấy lại thông tin tài khoản đã cập nhật
+                Account UpdateAccount = AccountService.selectById(acc);
+                // Cập nhật session với thông tin mới
+                request.getSession().setAttribute("account", UpdateAccount);
+                // Chuyển hướng đến trang chính của khách hàng
+               // request.setAttribute("err", "Cập nhật thành công!");
+                request.getRequestDispatcher("HomeCustomer.jsp").forward(request, response);
+            }else{
+                // cập nhật không thành công
+                request.setAttribute("err", "Cập nhật không thành công!");
+                request.getRequestDispatcher("ChangeInfor.jsp").forward(request, response);
             }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
         }
 
-        request.getRequestDispatcher(url).forward(request, response);
-    }
-}

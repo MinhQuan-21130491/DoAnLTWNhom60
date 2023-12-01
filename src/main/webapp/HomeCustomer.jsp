@@ -103,7 +103,7 @@
                                                         </li>
                                                         <li><a class="dropdown-item" href="HistoryBuy.jsp">Lịch sử mua hàng</a></li><li>
                                                         <hr class="dropdown-divider">
-                                                        <li><a class="dropdown-item" href="ChangeInfo.jsp">Thay đổi thông tin</a></li><li>
+                                                        <li><a class="dropdown-item" href="ChangeInfor.jsp">Thay đổi thông tin</a></li><li>
                                                         <hr class="dropdown-divider">
                                                     </li>
                                                         <li><a class="dropdown-item" href="#">Đổi mật khẩu</a></li>
@@ -155,7 +155,7 @@
                                                 </li>
                                                 <li><a class="dropdown-item" href="#">Lịch sử mua hàng</a></li><li>
                                                 <hr class="dropdown-divider">
-                                                <li><a class="dropdown-item" href="ChangeInfo.jsp">Thay đổi thông tin</a></li><li>
+                                                <li><a class="dropdown-item" href="ChangeInfor.jsp">Thay đổi thông tin</a></li><li>
                                                 <hr class="dropdown-divider">
                                             </li>
                                                 <li><a class="dropdown-item" href="#">Đổi mật khẩu</a></li>
