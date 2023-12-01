@@ -148,10 +148,9 @@
         }
         // Gọi hàm tính tổng tiền khi tải trang
         calculateTotal()
-            //load header
+        //load header
         //    $('header').load('Header.jsp')
-            //load footer
-          //  $('footer').load('Footer.jsp')
+
     });
 </script>
 </html>
