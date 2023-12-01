@@ -26,6 +26,7 @@ public class AccountService {
     public boolean checkExistUserName(String userName) {
         return DAOAccount.checkExistUserName(userName);
     }
+    
     public boolean checkExistEmail(String email) {
         return DAOAccount.checkExistEmail(email);
     }
@@ -54,6 +55,7 @@ public class AccountService {
     public static int updateVerifyCode(int newCode, int idAccount) {
         return DAOAccount.updateVerifyCode(newCode,idAccount);
     }
+
     public static Account checkLogin(Account account) {
         return DAOAccount.checkLogin(account);
     }
