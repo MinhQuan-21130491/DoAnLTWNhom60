@@ -26,6 +26,7 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
           integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/Style.css">
     <link rel="stylesheet" href="css/ChangeInfor.css">
 
@@ -72,26 +73,28 @@
         Date birthDay = account.getBirthDay();
         String address = account.getAddress();
         String addressReceive = account.getAddressReceive();
-
-        String err = (String) request.getAttribute("err");
-        err =(err == null)?"":err;
-
+        String res = (String) request.getAttribute("res");
+        res =(res == null)?"":res;
     %>
-    <form id="changeNam" onsubmit="return check()" action="changeInfor" method="post">
+    <form id="changeNam" onsubmit="return check()" action="changeInfo" method="post">
         <table>
             <thead>
             <tr>
                 <td colspan ="4">
                     <h5 class = "pt-3 pb-1"> THAY ĐỔI THÔNG TIN </h5>
-                        <div class="text-danger text-center w-100" id="error"><%=err%></div>
+                    <p class="text-center w-100 mb-0" id="res"><%=res%></p>
                 </td>
             </tr>
             </thead>
             <tbody>
             <tr>
                 <td colspan="2">
+                    <%
+                        if (account.getVerifyAccount().isStateVerify()) {%>
                     <label class="w-100">Tài khoản đã xác thực <i class="fa fa-check-circle text-success" aria-hidden="true"></i></label>
-                    <label class="w-100 d-none">Tài khoản của bạn chưa xác thực, <a href="#">xác thực ngay</a></label>
+                    <%} else {%>
+                    <label class="w-100 ">Tài khoản của bạn chưa xác thực, <a href="VerifyAccount.jsp">xác thực ngay</a></label>
+                    <%}%>
                 </td>
             </tr>
             <tr id="changeName">
@@ -177,7 +180,14 @@
     <%}%>
 </div>
 <script>
-
+    $(document).ready(function () {
+        var res = $('#res');
+        if (res.text() === "Cập nhật thành công!") {
+            res.addClass("text-success");
+        } else {
+            res.addClass("text-danger");
+        }
+    });
     function check() {
         var flag = true;
         var tenElement = document.getElementById("HienThiTen");
@@ -185,33 +195,34 @@
         var sdtElement = document.getElementById("HienThiSDT");
         var dcElement = document.getElementById("HienThiDC");
         var nsElement = document.getElementById("HienThiNS");
-        var error = document.getElementById("error");
+        var error = document.getElementById("res");
 
         var gmailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         var phoneReg = /^\d{10}/;
         if(tenElement.value == "") {
-            error.innerHTML = "(*)Vui lòng nhập họ và tên!";
+            error.innerHTML = "Vui lòng nhập họ và tên!";
             flag = false;
         }else if(gmailElement.value == "") {
-            error.innerHTML = "(*)Vui lòng nhập Email!";
+            error.innerHTML = "Vui lòng nhập Email!";
             flag = false;
         }else if(!gmailElement.value.match(gmailReg)) {
-            error.innerHTML = "(*)Email không hợp lệ!";
+            error.innerHTML = "Email không hợp lệ!";
             flag = false;
         }else if(sdtElement.value == "") {
-            error.innerHTML = "(*)Vui lòng nhập số điện thoại!";
+            error.innerHTML = "Vui lòng nhập số điện thoại!";
             flag = false;
         }else if(!sdtElement.value.match(phoneReg)) {
-            error.innerHTML = "(*)Số điện thoại không hợp lệ!";
+            error.innerHTML = "Số điện thoại không hợp lệ!";
             flag = false;
         }
         else if(dcElement.value == "") {
-            error.innerHTML = "(*)Vui lòng nhập địa chỉ!";
+            error.innerHTML = "Vui lòng nhập địa chỉ!";
             flag = false;
         }else if(nsElement.value == "") {
-            error.innerHTML = "(*)Vui lòng chọn ngày sinh!";
+            error.innerHTML = "Vui lòng chọn ngày sinh!";
             flag = false;
         }
+        console.log(sdtElement.value);
         return flag;
     }
 </script>

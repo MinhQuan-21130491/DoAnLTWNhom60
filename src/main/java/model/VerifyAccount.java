@@ -23,6 +23,9 @@ public class VerifyAccount {
         this.timeCode = timeCode;
         this.stateVerify = stateVerify;
     }
+    public VerifyAccount(boolean stateVerify) {
+        this.stateVerify = stateVerify;
+    }
 
     public VerifyAccount() {
     }

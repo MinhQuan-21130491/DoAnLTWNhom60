@@ -1,6 +1,7 @@
 package controller;
 
 import model.Account;
+import model.VerifyAccount;
 import service.AccountService;
 
 import javax.servlet.ServletException;
@@ -14,50 +15,34 @@ import java.sql.Date;
 
 @WebServlet(name = "changeInfo", value = "/changeInfo")
 public class ChangeInfo extends HttpServlet {
-    public ChangeInfo(){
-        super();
-    }
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        HttpSession session = request.getSession();
-        Object object = session.getAttribute("account");
-        String err = "";
-        if (object != null && object instanceof Account) {
-            // Người dùng chưa đăng nhập, chuyển hướng đến trang đăng nhập
-            response.sendRedirect("SignIn.jsp");
-            return;
-        }
-        Account account = (Account) object;
-        try {
-            String name = request.getParameter("TenHT");
-            String phoneNumber = request.getParameter("SDTHT");
-            String email = request.getParameter("GmailHT");
-            String gender = request.getParameter("gender");
-            Date birthDay = Date.valueOf(request.getParameter("HienThiNS"));
-            String address = request.getParameter("DCHT");
-            String addressReceive = request.getParameter("DCNHHT");
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
 
-            // Lấy ra ID để xác định tài khoản cần cập nhật
-            int id = account.getId();
-            // Tạo đối tượng Account mới với thông tin mới
-            Account acc = new Account(id, "", "", name, phoneNumber, email, gender, birthDay, address, addressReceive);
-            //Trả về số dòng thay đổi
-            int re = AccountService.updateInfor(acc);
-            if(re > 0){ // tức là có thông tin thay đổi
-                // Lấy lại thông tin tài khoản đã cập nhật
-                Account UpdateAccount = AccountService.selectById(acc);
-                // Cập nhật session với thông tin mới
-                request.getSession().setAttribute("account", UpdateAccount);
-                // Chuyển hướng đến trang chính của khách hàng
-               // request.setAttribute("err", "Cập nhật thành công!");
-                request.getRequestDispatcher("HomeCustomer.jsp").forward(request, response);
-            }else{
-                // cập nhật không thành công
-                request.setAttribute("err", "Cập nhật không thành công!");
-                request.getRequestDispatcher("ChangeInfo.jsp").forward(request, response);
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        String name = request.getParameter("TenHT");
+        String phoneNumber = request.getParameter("SDTHT");
+        String email = request.getParameter("GmailHT");
+        String gender = request.getParameter("gender");
+        Date birthDay = Date.valueOf(request.getParameter("HienThiNS"));
+        String address = request.getParameter("DCHT");
+        String addressReceive = request.getParameter("DCNHHT");
+        String res = "";
+
+        HttpSession session = request.getSession();
+        Object obj = session.getAttribute("account");
+        Account account = (Account) obj;
+        Account accountNew = new Account(account.getId(), name, email, phoneNumber, gender, birthDay, address, addressReceive);
+        VerifyAccount vrf = AccountService.getInstance().getVrfOfAccount(account.getId());
+        accountNew.setVerifyAccount(vrf);
+        session.setAttribute("account", accountNew);
+        if (AccountService.getInstance().updateInfor(accountNew) > 0) {
+            res = "Cập nhật thành công!";
+        }else {
+            res ="Cập nhật thất bại!";
         }
+        request.setAttribute("res", res);
+        request.getRequestDispatcher("ChangeInfor.jsp").forward(request, response);
     }
-        }
+}
 

@@ -91,6 +91,7 @@
         let inputElement = document.getElementById("idFormInput");
         let passElement = document.getElementById("idFormPass");
         let inputError = document.getElementById("inputError");
+        var specialCharactersAndSpace = /[!@#$%^&*(),.?":{}|<> ]/;
         inputError.textContent = "";
         if (inputElement.value === "" && passElement.value === "") {
             inputError.textContent = "Bạn chưa nhập tên đăng nhập hoặc mật khẩu!";
@@ -98,39 +99,14 @@
         } else if (inputElement.value === "") {
             inputError.textContent = "Bạn chưa nhập tên đăng nhập!";
             flag = false;
+        } else if (specialCharactersAndSpace.test(inputValue.value)) {
+            inputError.textContent = "Tên tài khoản không hợp lệ!";
+            flag = false;
         } else if (passElement.value === "") {
             inputError.textContent = "Bạn chưa nhập mật khẩu!";
             flag = false;
-            //tạo ra sẵn 3 tài khoản cho admin, nhân viên, khách hàng để test chức năng đăng nhập cho từng phân quyền tài khoản
-            /*admin -tài khoản: root
-                    -mật khẩu: 1*/
-            /*nhân viên -tài khoản: nhanvien1
-                    -mật khẩu: 1*/
-            /*khách hàng -tài khoản: khachhang1
-                    -mật khẩu: 1*/
-
-        } /*
-        else if ((inputElement.value !== "root" || inputElement.value !== "nhanvien1" || inputElement.value !== "khachhang1") && passElement.value !== "1") {
-            inputError.textContent = "Tài khoản hoặc mật khẩu chưa chính xác!";
-            flag = false;
         }
-        if (flag) {
-            //giao diện của từng phân quyền
-            var formLogin = document.getElementById("form-login");
-            if (inputElement.value === "root" || inputElement.value === "nhanvien1") {
-                formLogin.action = "homeAdmin.html"
-            } else if (inputElement.value === "khachhang1") {
-                formLogin.action = "homeCustomer.html"
-            }
-        }
-
-        if (flag) {
-            // Nếu tất cả là hợp lệ, thay đổi action và cho phép form submit
-            document.getElementById("form-login").action = "HomePage.jsp";
-        }*/
         return flag;
-
-
     }
 </script>
 </body>
