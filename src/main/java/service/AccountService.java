@@ -26,7 +26,7 @@ public class AccountService {
     public boolean checkExistUserName(String userName) {
         return DAOAccount.checkExistUserName(userName);
     }
-
+    
     public boolean checkExistEmail(String email) {
         return DAOAccount.checkExistEmail(email);
     }
@@ -52,8 +52,18 @@ public class AccountService {
     public  VerifyAccount selectVerifyAccountByIdAccount(int idAccount) {
        return DAOAccount.selectVerifyAccountByIdAccount(idAccount);
     }
-    public static int updateVerifyCode(int newCode, int idAccount) {
+    public  int updateVerifyCode(int newCode, int idAccount) {
         return DAOAccount.updateVerifyCode(newCode,idAccount);
+    }
+    public  int updateInfor(Account account){ return DAOAccount.updateInfor(account);}
+    public  Account selectById(Account account){
+        return DAOAccount.selectById(account);
+    }
+    public Account getAccount(String userName, String password) {
+        return DAOAccount.getAccount(userName, password);
+    }
+    public VerifyAccount getVrfOfAccount(int idAccount) {
+        return  DAOAccount.getVrfOfAccount(idAccount);
     }
 
     }
