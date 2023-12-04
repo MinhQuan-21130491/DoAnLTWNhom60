@@ -21,4 +21,7 @@ public class CategoryService {
     public ArrayList<Category> listCategory() {
         return DAOCategory.listCategory();
     }
+    public Category getCategoryById(int id) {
+        return DAOCategory.getCategoryById(id);
+    }
 }

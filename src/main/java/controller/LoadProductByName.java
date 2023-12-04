@@ -20,17 +20,10 @@ public class LoadProductByName extends HttpServlet {
         String name = request.getParameter( "search");
         //load danh sách sản phẩm nếu sản phẩm đó có tên chứa chuỗi nhập vào thanh tìm kiếm
         ArrayList<Product> listProductByName = ProductService.getInstance().listProductByName(name);
-        request.setAttribute("listP", listProductByName);
-        //load danh mục
-        ArrayList<Category> listCategory = CategoryService.getInstance().listCategory();
-        request.setAttribute("listCate", listCategory);
-        //load product mới nhất
-        Product latestProduct = ProductService.getInstance().latestProduct();
-        request.setAttribute("latestP", latestProduct);
-        request.setAttribute("hiddenLoadmore", "none");
-        request.setAttribute("exits", "CÓ " + listProductByName.size() + " KẾT QUẢ TÌM KIẾM PHÙ HỢP");
+        request.setAttribute("listProductByName", listProductByName);
+        request.setAttribute("exits", "CÓ " + listProductByName.size() + " KẾT QUẢ TÌM KIẾM PHÙ HỢP VỚI TỪ KHÓA " + "'"+name + "'");
         try {
-            request.getRequestDispatcher("HomePage.jsp").forward(request,response);
+            request.getRequestDispatcher("Product.jsp").forward(request,response);
         } catch (ServletException e) {
             throw new RuntimeException(e);
         }

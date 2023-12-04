@@ -29,8 +29,8 @@ public class DAOProduct {
                 int idProduct = resultSet.getInt("id");
                 int idCate = resultSet.getInt("idCate");
                 String name = resultSet.getString("name");
-                int priceImport = resultSet.getInt("priceImport");
-                int price = resultSet.getInt("price");
+                double priceImport = resultSet.getDouble("priceImport");
+                double price = resultSet.getDouble("price");
                 String description = resultSet.getString("description");
                 String color = resultSet.getString("color");
                 String material = resultSet.getString("material");
@@ -38,7 +38,7 @@ public class DAOProduct {
                 double height = resultSet.getDouble("height");
                 double lenght = resultSet.getDouble("length");
                 int quantity = resultSet.getInt("quantity");
-                Product product = new Product(idProduct, idCate, name, priceImport, price,description,color,material,width,height,lenght,quantity);
+                Product product = new Product(idProduct, idCate, name, priceImport, price,description,color,material,width,height,lenght,1,quantity);
                 re.add(product);
             }
             JDBCUtil.closeConnection(connection);
@@ -66,8 +66,8 @@ public class DAOProduct {
                 int idProduct = resultSet.getInt("id");
                 int idCate = resultSet.getInt("idCate");
                 String name = resultSet.getString("name");
-                int priceImport = resultSet.getInt("priceImport");
-                int price = resultSet.getInt("price");
+                double priceImport = resultSet.getDouble("priceImport");
+                double price = resultSet.getDouble("price");
                 String description = resultSet.getString("description");
                 String color = resultSet.getString("color");
                 String material = resultSet.getString("material");
@@ -75,7 +75,7 @@ public class DAOProduct {
                 double height = resultSet.getDouble("height");
                 double lenght = resultSet.getDouble("length");
                 int quantity = resultSet.getInt("quantity");
-                product = new Product(idProduct, idCate, name, priceImport, price,description,color,material,width,height,lenght,quantity);
+                product = new Product(idProduct, idCate, name, priceImport, price,description,color,material,width,height,lenght,1, quantity);
             }
             JDBCUtil.closeConnection(connection);
         } catch (SQLException e) {
@@ -128,8 +128,8 @@ public class DAOProduct {
                 int idProduct = resultSet.getInt("id");
                 int idCate = resultSet.getInt("idCate");
                 String name = resultSet.getString("name");
-                int priceImport = resultSet.getInt("priceImport");
-                int price = resultSet.getInt("price");
+                double priceImport = resultSet.getDouble("priceImport");
+                double price = resultSet.getDouble("price");
                 String description = resultSet.getString("description");
                 String color = resultSet.getString("color");
                 String material = resultSet.getString("material");
@@ -137,7 +137,7 @@ public class DAOProduct {
                 double height = resultSet.getDouble("height");
                 double lenght = resultSet.getDouble("length");
                 int quantity = resultSet.getInt("quantity");
-                Product product = new Product(idProduct, idCate, name, priceImport, price,description,color,material,width,height,lenght,quantity);
+                Product product = new Product(idProduct, idCate, name, priceImport, price,description,color,material,width,height,lenght,1,quantity);
                 list.add(product);
             }
             JDBCUtil.closeConnection(connection);
@@ -175,8 +175,8 @@ public class DAOProduct {
                 int idProduct = resultSet.getInt("id");
                 int idCate = resultSet.getInt("idCate");
                 String name = resultSet.getString("name");
-                int priceImport = resultSet.getInt("priceImport");
-                int price = resultSet.getInt("price");
+                double priceImport = resultSet.getDouble("priceImport");
+                double price = resultSet.getDouble("price");
                 String description = resultSet.getString("description");
                 String color = resultSet.getString("color");
                 String material = resultSet.getString("material");
@@ -184,7 +184,7 @@ public class DAOProduct {
                 double height = resultSet.getDouble("height");
                 double length = resultSet.getDouble("length");
                 int quantity = resultSet.getInt("quantity");
-                Product product = new Product(idProduct, idCate, name, priceImport, price, description, color, material, width, height, length, quantity);
+                Product product = new Product(idProduct, idCate, name, priceImport, price, description, color, material, width, height, length,1, quantity);
                 list.add(product);
             }
             JDBCUtil.closeConnection(connection);
@@ -210,8 +210,8 @@ public class DAOProduct {
             int idProduct = resultSet.getInt("id");
             int idCate = resultSet.getInt("idCate");
             String name = resultSet.getString("name");
-            int priceImport = resultSet.getInt("priceImport");
-            int price = resultSet.getInt("price");
+            double priceImport = resultSet.getDouble("priceImport");
+            double price = resultSet.getDouble("price");
             String description = resultSet.getString("description");
             String color = resultSet.getString("color");
             String material = resultSet.getString("material");
@@ -219,7 +219,7 @@ public class DAOProduct {
             double height = resultSet.getDouble("height");
             double length = resultSet.getDouble("length");
             int quantity = resultSet.getInt("quantity");
-            product = new Product(idProduct, idCate, name, priceImport, price, description, color, material, width, height, length, quantity);
+            product = new Product(idProduct, idCate, name, priceImport, price, description, color, material, width, height, length, 1, quantity);
         }
     } catch (SQLException e) {
         throw new RuntimeException(e);
@@ -246,7 +246,7 @@ public class DAOProduct {
     }
         return list;
     }
-    public static ArrayList<Product> listProductByFil(String command, int priceFil, String colorFil, String materialFil, int id) {
+    public static ArrayList<Product> listProductByFil(String command, double priceFil, String colorFil, String materialFil, int id) {
         ArrayList<Product> list = new ArrayList<>();
         try (Connection connection = JDBCUtil.getConnection();
              PreparedStatement pr = createPreparedStatement(connection,command, priceFil, colorFil, materialFil, id);
@@ -255,8 +255,8 @@ public class DAOProduct {
                 int idProduct = resultSet.getInt("id");
                 int idCate = resultSet.getInt("idCate");
                 String name = resultSet.getString("name");
-                int priceImport = resultSet.getInt("priceImport");
-                int price = resultSet.getInt("price");
+                double priceImport = resultSet.getDouble("priceImport");
+                double price = resultSet.getDouble("price");
                 String description = resultSet.getString("description");
                 String color = resultSet.getString("color");
                 String material = resultSet.getString("material");
@@ -264,7 +264,7 @@ public class DAOProduct {
                 double height = resultSet.getDouble("height");
                 double lenght = resultSet.getDouble("length");
                 int quantity = resultSet.getInt("quantity");
-                Product product = new Product(idProduct, idCate, name, priceImport, price,description,color,material,width,height,lenght,quantity);
+                Product product = new Product(idProduct, idCate, name, priceImport, price,description,color,material,width,height,lenght, 1,quantity);
                 list.add(product);
             }
 
@@ -273,7 +273,7 @@ public class DAOProduct {
         }
         return list;
     }
-    private static PreparedStatement createPreparedStatement(Connection connection,String command, int priceFil, String colorFil, String materialFil, int idCate) throws SQLException {
+    private static PreparedStatement createPreparedStatement(Connection connection,String command, double priceFil, String colorFil, String materialFil, int idCate) throws SQLException {
         String sql ="";
         if(idCate == 0) {
            sql = "SELECT p.id, p.idCate, p.name, p.price, p.priceImport, p.quantity, p.color, p.material, p.description, p.height, p.width, p.length " +
@@ -306,7 +306,7 @@ public class DAOProduct {
         PreparedStatement pr = connection.prepareStatement(sql);
         int parameterIndex = 1;
         if (priceFil != 0) {
-            pr.setInt(parameterIndex++, priceFil);
+            pr.setDouble(parameterIndex++, priceFil);
         }
         if (!colorFil.isEmpty()) {
             pr.setString(parameterIndex++, colorFil);
@@ -316,7 +316,46 @@ public class DAOProduct {
         }
         return pr;
     }
+    public static int insertProduct(Product p) {
+        int re = 0;
+        Connection connection = JDBCUtil.getConnection();
+        String sql = "insert into products(name, idCate, price, priceImport, quantity, color, material, description, height, width, length) " +
+                     "values(?,?,?,?,?,?,?,?,?,?,?)";
+        try {
+            PreparedStatement pr = connection.prepareStatement(sql);
+            pr.setString(1, p.getName());
+            pr.setInt(2, p.getIdCate());
+            pr.setDouble(3, p.getPrice());
+            pr.setDouble(4, p.getPriceImport());
+            pr.setInt(5, p.getQuantity());
+            pr.setString(6, p.getColor());
+            pr.setString(7, p.getMaterial());
+            pr.setString(8, p.getDescription());
+            pr.setDouble(9, p.getHeight());
+            pr.setDouble(10, p.getWidth());
+            pr.setDouble(11, p.getHeight());
+            re = pr.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return re;
+    }
+    public static int insertImageProduct(int id, String url) {
+        int re = 0;
+        Connection connection = JDBCUtil.getConnection();
+        String sql = "insert into images_product(idProduct, urlImage) " +
+                     "values(?,?)";
+        try {
+            PreparedStatement pr = connection.prepareStatement(sql);
+            pr.setInt(1,id);
+            pr.setString(2,url);
+            re = pr.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return re;
+    }
     public static void main(String[] args) {
-    System.out.println(listProductByFil("D", 5000000, "", "", 4).size());
+   System.out.println(latestProduct());
     }
  }

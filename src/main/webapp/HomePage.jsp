@@ -1,16 +1,14 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="model.Product" %>
 <%@ page import="model.Category" %>
-<%@ page import="service.CategoryService" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<%--<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>--%>
+<%@ page import="java.text.NumberFormat" %>
+<%@ page import="model.Cart" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="Content-Language" content="vi">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang chủ</title>
     <link
@@ -31,7 +29,8 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
           integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/Style.css">
 </head>
 <body>
@@ -41,11 +40,16 @@
 %>
 <!--header-->
 <header>
-        <jsp:include page="Header.jsp"></jsp:include>
+    <jsp:include page="Header.jsp"></jsp:include>
 </header>
 <!--end header-->
 <!--page content-->
-<div class="container p-0 mgt" >
+<%
+    NumberFormat nF = NumberFormat.getCurrencyInstance();
+    ArrayList<String> listColor = (ArrayList<String>) request.getAttribute("listColorP");
+    Cart cart = (Cart) session.getAttribute("Cart");
+%>
+<div class="container p-0 mgt">
     <div class="row">
         <!-- menu left -->
         <div class="col-lg-3">
@@ -54,67 +58,70 @@
                     <div class="icon-bar my-2 py-1">
                         <i class="fa fa-bars" aria-hidden="true"></i>
                     </div>
-                    <div class="cateList d-flex align-items-center justify-content-center p-0" id ="cateList">
-                        <h5 class ="my-2">DANH MỤC SẢN PHẨM </h5>
+                    <div class="cateList d-flex align-items-center justify-content-center p-0" id="cateList">
+                        <h5 class="my-2">DANH MỤC SẢN PHẨM </h5>
                     </div>
                 </div>
-                <div class="typeChair" id ="typeChair" >
+                <div class="typeChair" id="typeChair">
                     <%ArrayList<Category> listCate = (ArrayList<Category>) request.getAttribute("listCate");%>
-                        <%if(!listCate.isEmpty() && listCate != null) {%>
-                             <%for(Category c: listCate) {%>
-                                  <a href="#" class="list-group-item list-group-item-action lt" onclick="loadProductByIdCate('<%=c.getId()%>')"><%=c.getName()%></a>
-                            <%}
-                        }%>
+                    <%if (!listCate.isEmpty() && listCate != null) {%>
+                    <%for (Category c : listCate) {%>
+                    <a href="#" class="list-group-item list-group-item-action lt"
+                       onclick="loadProductByIdCate('<%=c.getId()%>')"><%=c.getName()%>
+                    </a>
+                    <%
+                            }
+                        }
+                    %>
                 </div>
             </div>
-<%--            <div class=" d-none d-md-none d-lg-block mt-3 bg-light border border-1 ">--%>
-<%--                <div class="cate bg-light border-bottom">--%>
-<%--                    <div class="icon-bar my-2 py-1">--%>
-<%--                        <i class="fa fa-filter" aria-hidden="true"></i>--%>
-<%--                    </div>--%>
-<%--                    <div class="cateList d-flex align-items-center justify-content-center p-0" >--%>
-<%--                        <h5 class ="my-2">TÌM THEO</h5>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--                <div class="ps-2">--%>
-<%--                    <h6 class="my-2 fw-bold">Giá sản phẩm</h6>--%>
-<%--                    <div class="mb-2"><input type="checkbox" value ="500000" id="below500000"> <label for="below500000">Dưới ₫500.000</label></div>--%>
-<%--                    <div class="mb-2"><input type="checkbox" value ="1000000" id="below1000000"> <label for="below1000000">Dưới ₫1.000.000</label></div>--%>
-<%--                    <div class="mb-2"><input type="checkbox" value ="5000000" id="below5000000"> <label for="below5000000">Dưới ₫5.000.000</label></div>--%>
-<%--                    <div class="mb-2"><input type="checkbox" value ="10000000" id="below10000000"> <label for="below10000000">Dưới ₫10.000.000</label></div>--%>
-<%--                    <div class="mb-2"><input type="checkbox" value ="Tren10000000" id="above10000000"> <label for="above10000000">Trên ₫10.000.000</label></div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
             <div class="mt-3 d-none d-md-none d-lg-block ">
                 <h5 class="m-0 text-center" id="titleCate">SẢN PHẨM MỚI NHẤT</h5>
-                <hr class = "mt-2 mb-2"/>
+                <hr class="mt-2 mb-2"/>
                 <div class="card">
-                    <%Product latestProduct = (Product) request.getAttribute("latestP");
-                      if(latestProduct != null) {%>
-                            <a href="<%=url%>/detail-product?pid=<%=latestProduct.getIdProduct()%>">
-                                <img src="<%=latestProduct.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="">
-                            </a>
-                            <div class="card-body">
-                                <h5 class="card-title"><%=latestProduct.getName()%></h5>
-                                <p class="card-text">
-                                <p class="price">₫<%=latestProduct.getPriceFormatted()%></p>
-                                <a href="Cart.jsp"><i class="fa fa-shopping-cart cart" aria-hidden="true" title ="Thêm vào giỏ hàng"></i></a>
-                            </div>
+                    <%
+                        Product latestProduct = (Product) request.getAttribute("latestP");
+                        if (latestProduct != null) {
+                    %>
+                    <a href="<%=url%>/detail-product?pid=<%=latestProduct.getIdProduct()%>">
+                        <img src="<%=url%>/Products/<%=latestProduct.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title"><%=latestProduct.getName()%>
+                        </h5>
+                        <p class="card-text">
+                        <p class="price"><%=nF.format(latestProduct.getPrice())%>
+                        </p>
+                        <%
+                            int quantity = 1;
+                            if (cart != null) {
+                                if (cart.get(latestProduct.getIdProduct()) != null) {
+                                    quantity = cart.get(latestProduct.getIdProduct()).getQuantity() + 1;
+                                }
+                            } else {
+                                quantity = latestProduct.getQuantity();
+                            }
+                        %>
+                        <a href ="<%=url%>/cartController?id=<%=latestProduct.getIdProduct()%>&quantity=<%=quantity%>"><i class="fa fa-shopping-cart cart" aria-hidden="true" title="Thêm vào giỏ hàng"></i></a>
+
+                    </div>
                     <%}%>
                 </div>
             </div>
-            <div class="mt-3 d-none d-md-none d-lg-block     ">
-                <h5 class="m-0 text-center" >SẢN PHẨM BÁN CHẠY NHẤT</h5>
-                <hr class = "mt-2 mb-2"/>
+            <div class="mt-3 d-none d-md-none d-lg-block">
+                <h5 class="m-0 text-center">SẢN PHẨM BÁN CHẠY NHẤT</h5>
+                <hr class="mt-2 mb-2"/>
                 <div class="card">
                     <a href="<%=url%>/DetailProduct.jsp">
-                        <img src="https://down-vn.img.susercontent.com/file/sg-11134201-7r9a2-llujnaskifkp71" class="card-img-top img_p" alt="...">
+                        <img src="https://down-vn.img.susercontent.com/file/sg-11134201-7r9a2-llujnaskifkp71"
+                             class="card-img-top img_p" alt="...">
                     </a>
                     <div class="card-body">
                         <h5 class="card-title">Ghế xoay</h5>
                         <p class="card-text">
                         <p class="price">₫1.000.000</p></p>
-                        <a href="Cart.jsp"><i class="fa fa-shopping-cart cart" aria-hidden="true" title ="Thêm vào giỏ hàng"></i></a>
+                        <a href =""><i class="fa fa-shopping-cart cart" aria-hidden="true"
+                                              title="Thêm vào giỏ hàng"></i></a>
                     </div>
                 </div>
             </div>
@@ -122,65 +129,6 @@
         <!-- end menu left -->
         <!-- carousel -->
         <div class="col-lg-9 ">
-            <div class="filter d-flex text-center">
-                <div class="pt-2 pe-4">
-                    <i class="fa fa-filter" aria-hidden="true"></i> <span>Lọc:</span>
-                </div>
-                <div class="option pe-2">
-                    <ul class="navbar-nav ps-2">
-                        <li class="nav-item dropdown hv">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Giá </a>
-                            <ul class="dropdown-menu" aria-labelledby="">
-                                <li><a class="dropdown-item priceFil" href="#">Dưới ₫500.000</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item priceFil" href="#">Dưới ₫1.000.000</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item priceFil" href="#">Dưới ₫5.000.000</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item priceFil" href="#">Dưới ₫10.000.000</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item priceFil" href="#">Trên ₫10.000.000</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <div class="option pe-2">
-                    <ul class="navbar-nav ps-2">
-                        <li class="nav-item dropdown hv">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Màu sắc </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <%ArrayList<String> listColor = (ArrayList<String>) request.getAttribute("listColorP");
-                                    if(listColor != null && !listColor.isEmpty()) {
-                                        for (String color: listColor) {%>
-                                <li><a class="dropdown-item colorFil" href="#"><%=color%></a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <%}
-                                }%>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <div class="option pe-2">
-                    <ul class="navbar-nav ps-2">
-                        <li class="nav-item dropdown hv">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Vật liệu </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item materialFil" href="#">Gỗ</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item materialFil" href="#">Sắt</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item materialFil" href="#">Thép</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item materialFil" href="#">Da</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item materialFil" href="#">Vải</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item materialFil" href="#">Tre</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
             <div id="carouselExampleIndicators" class="carousel slide d-none d-md-none d-lg-block "
                  data-bs-ride="carousel">
                 <div class="carousel-indicators">
@@ -194,16 +142,13 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="image/slide1.jpg"
-                                class="d-block img_p" alt="...">
+                        <img src="image/slide1.jpg" class="d-block img_p" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="image/slide2.jpg"
-                                class="d-block img_p" alt="...">
+                        <img src="image/slide2.jpg" class="d-block img_p" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="image/slide3.jpg"
-                             class="d-block img_p" alt="...">
+                        <img src="image/slide3.jpg" class="d-block img_p" alt="...">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
@@ -219,35 +164,47 @@
             </div>
             <!--end carousel-->
             <!--product-->
-            <h5 class = "mt-3 mb-0">DANH SÁCH SẢN PHẨM</h5>
-            <%String exits = request.getAttribute("exits") +"";
-              exits = (exits.equals("null"))?" ":exits ;%>
-            <h6 class="text-center text-color mt-2 mb-0" id="exits"><%=exits%></h6>
+            <h5 class="mt-3 mb-0">DANH SÁCH SẢN PHẨM</h5>
+            <h6 class="text-center text-color mt-2 mb-0" id="exits"></h6>
             <div class="row" id="content">
-                  <%ArrayList<Product> listProduct = (ArrayList<Product>) request.getAttribute("listP");%>
-                    <%if(!listProduct.isEmpty() && listProduct != null) {%>
-                        <%for(Product p: listProduct) {%>
-                            <div class="col-lg-4 col-sm-6 col-6 mt-3 product">
-                                <div class="card">
-                                    <a href="<%=url%>/detail-product?pid=<%=p.getIdProduct()%>">
-                                        <img src="<%=p.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="...">
-                                    </a>
-                                    <div class="card-body">
-                                        <h5 class="card-title"><%=p.getName()%></h5>
-                                        <p class="card-text">
-                                        <p class="price">₫<%=p.getPriceFormatted()%></p>
-                                        <a href="Cart.jsp"><i class="fa fa-shopping-cart cart" aria-hidden="true" title="Thêm vào giỏ hàng"></i></a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        <%}
-                    }%>
+                <%ArrayList<Product> listProduct = (ArrayList<Product>) request.getAttribute("listP");
+                if (!listProduct.isEmpty() && listProduct != null) {
+                for (Product p : listProduct) {%>
+                <div class="col-lg-4 col-sm-6 col-6 mt-3 product">
+                    <div class="card">
+                        <a href="<%=url%>/detail-product?pid=<%=p.getIdProduct()%>">
+                            <img src="<%=url%>\Products\<%=p.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="...">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title"><%=p.getName()%>
+                            </h5>
+                            <p class="card-text">
+                            <p class="price"><%=nF.format(p.getPrice())%></p>
+                            <%
+                                int quantity = 1;
+                                if (cart != null) {
+                                    if (cart.get(p.getIdProduct()) != null) {
+                                        quantity = cart.get(p.getIdProduct()).getQuantity() + 1;
+                                    } else {
+                                        quantity = p.getQuantity();
+                                    }
+                                }
+                            %>
+                            <a href ="<%=url%>/cartController?id=<%=p.getIdProduct()%>&quantity=<%=quantity%>"><i class="fa fa-shopping-cart cart" aria-hidden="true" title="Thêm vào giỏ hàng"></i></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <%
+                        }
+                    }
+                %>
             </div>
-            <%String display = request.getAttribute("hiddenLoadmore") +"";%>
-            <button class="mt-3 bgcolor-orange border border-0 rounded-1 px-3 py-2 d-<%=display%>" id="loadMore" onclick="loadMore()">Tải thêm</button>
+            <%String display = request.getAttribute("hiddenLoadmore") + "";%>
+            <button class="mt-3 bgcolor-orange border border-0 rounded-1 px-3 py-2 d-<%=display%>" id="loadMore"
+                    onclick="loadMore()">Tải thêm
+            </button>
         </div>
-
     </div>
 </div>
 <!-- End Page content -->
@@ -257,13 +214,10 @@
 </footer>
 <!--end footer-->
 <script>
-    var price ="";
-    var color ="";
-    var material ="";
-    var command = "";
-    var idCateCurrent;
+    var idCateCurrent = 0;
+    var backProduct = 0;
     $(document).ready(function () {
-        // ẩn hiện thanh danh mục
+        // ẩn hiện danh mục
         $('#cate').click(function () {
             var typeChair = $('#typeChair');
             if (typeChair.css("display") === "none") {
@@ -273,63 +227,37 @@
             }
         })
         $('.lt').click(function () {
-            $('.lt').css('color', '');
-            $(this).css('color', '#f68e2e')
-        })
-        $('.priceFil').click(function () {
-            var selectedPrice = $(this).text();
-            var priceText = selectedPrice;
-            price = priceText.replace(/[^\d]/g, ''); // Loại bỏ tất cả các ký tự không phải là số
-            command = priceText.charAt(0);
-            console.log(command);
-            filterProduct(command, price, color, material, idCateCurrent);
-
-        })
-        $('.colorFil').click(function () {
-            var selectedColor = $(this).text();
-            color = selectedColor;
-            filterProduct(command, price, color, material, idCateCurrent);
-        })
-        $('.materialFil').click(function () {
-            var selectedMate = $(this).text();
-            material = selectedMate;
-            filterProduct(command, price, color, material, idCateCurrent);
+            var unCheckedRadio = $('input[type="radio"][name="price"]:checked, input[type="radio"][name="color"]:checked, input[type="radio"][name="material"]:checked');
+            unCheckedRadio.prop('checked', false);
+            if (backProduct === idCateCurrent) {
+                $(this).css('color', 'black');
+                loadProduct();
+                backProduct = 0;
+                idCateCurrent = 0;
+            } else {
+                $('.lt').css('color', '');
+                $(this).css('color', '#f68e2e')
+                backProduct = idCateCurrent;
+            }
         })
     });
-        function  filterProduct(command,price, color, material) {
-            document.getElementById("loadMore").classList.add("d-none");
-            $.ajax({
-                url: "filterProduct",
-                method: "GET",
-                data: {
-                  color: color,
-                  price: price,
-                  material: material,
-                  command: command,
-                  idCate: idCateCurrent
-                },
-                success: function(data){
-                    var row = document.getElementById("content");
-                    row.innerHTML = data;
-                },
-            });
-        }
-        function loadMore() {
+    function loadMore() {
         var count = document.getElementsByClassName("product").length;
         $.ajax({
-        url: "loadMore",
-        method: "GET",
-        data: {
-        exits: count,
-        idCate: idCateCurrent
-    },
-        success: function(data){
-        var row = document.getElementById("content");
-        row.innerHTML += data;
-    },
-    });
+            url: "loadMore",
+            method: "GET",
+            data: {
+                exits: count,
+                idCate: idCateCurrent
+            },
+            success: function (data) {
+                var row = document.getElementById("content");
+                row.innerHTML += data;
+            },
+        });
     }
-        function loadProductByIdCate(idCate) {
+
+    function loadProductByIdCate(idCate) {
         document.getElementById("loadMore").classList.remove("d-none")
         document.getElementById("exits").classList.add("d-none");
         $.ajax({
@@ -338,12 +266,25 @@
             data: {
                 cid: idCate
             },
-            success: function(data){
+            success: function (data) {
                 var row = document.getElementById("content");
                 row.innerHTML = data;
             },
         });
         idCateCurrent = idCate;
+    }
+
+    function loadProduct() {
+        document.getElementById("loadMore").classList.remove("d-none")
+        document.getElementById("exits").classList.add("d-none");
+        $.ajax({
+            url: "loadProduct",
+            method: "GET",
+            success: function (data) {
+                var row = document.getElementById("content");
+                row.innerHTML = data;
+            },
+        });
     }
 </script>
 </body>
