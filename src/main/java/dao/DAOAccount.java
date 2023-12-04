@@ -311,6 +311,21 @@ public class DAOAccount {
         }
         return verifyAccount;
     }
+    public static int updatePassword( String passEnCrypt, int idAccount) {
+        int re = 0;
+        Connection connection = JDBCUtil.getConnection();
+        String sql ="update accounts set password =? where id =?";
+        try {
+            PreparedStatement pr = connection.prepareStatement(sql);
+            pr.setString(1, passEnCrypt);
+            pr.setInt(2, idAccount);
+            re = pr.executeUpdate();
+            JDBCUtil.closeConnection(connection);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return re;
+    }
     public static void main(String[] args) {
     System.out.println(selectVerifyAccountByIdAccount(14));
     }

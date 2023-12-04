@@ -55,11 +55,17 @@
     <!-- <img src="images/signup-bg.jpg" alt=""> -->
     <div class="contain">
         <div class="signup-content">
-            <form id="signup-form" class="signup-form" action="SignUp.jsp" >
+
+            <form id="signup-form" class="signup-form" action="changePassword" method="post">
                 <h5>ĐỔI MẬT KHẨU</h5>
                 <div class="form-SignUp">
+                    <%
+
+                        String errPassword = (String)request.getAttribute("errPass");
+                        errPassword =(errPassword == null)?"":errPassword;
+                    %>
                     <div class="form-group">
-                        <label>Mật khẩu hiện tại<span class="text-danger">*</span></label><span class="text-danger" id="errPW"></span>
+                        <label>Mật khẩu hiện tại<span class="text-danger">*</span></label><span class="text-danger" id="errPW"><%=errPassword%></span>
                         <input type="password" class="form-input" placeholder="Nhập mật khẩu hiện tại" name="password"
                                id="password"/>
                     </div>
