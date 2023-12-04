@@ -24,6 +24,7 @@ public class Verify extends HttpServlet {
         String verifyCodeString = request.getParameter("verify");
         int verifyCode = Integer.parseInt(verifyCodeString);
         String email = request.getParameter("email");
+        String url = "";
         HttpSession session = request.getSession();
         Object obj = session.getAttribute("account");
         Account account = null;
@@ -47,12 +48,14 @@ public class Verify extends HttpServlet {
         }else {
             verifyAccount.setStateVerify(true);
             AccountService.getInstance().updateStateVerify(verifyAccount);
-           // account.setVerifyAccount(vrf);
-//            if(obj != null) {
-//                Account accountNew = new Account(account.getId(), account.getName(),account.getUserName(), account.getPassword(), account.getEmail(), ac )
-//            }
+            account.setVerifyAccount(verifyAccount);
+            if(obj != null) {
+                session.setAttribute("account", account);
+                url ="homePage";
+            }else{
+                url = "SignIn.jsp";
+            }
         }
-        String url = "SignIn.jsp";
         if(err.length() > 0) {
             url ="VerifyAccount.jsp";
         }

@@ -17,6 +17,21 @@ public class Account {
     private boolean status;
     private VerifyAccount verifyAccount;
 
+    public Account(Account a) {
+        this.id = a.id;
+        this.name = a.name;
+        this.userName = a.userName;
+        this.password = a.password;
+        this.email = a.email;
+        this.phoneNumber = a.phoneNumber;
+        this.gender = a.gender;
+        this.birthDay = a.birthDay;
+        this.address = a.address;
+        this.addressReceive = a.addressReceive;
+        this.role = a.role;
+        this.status = a.status;
+        this.verifyAccount = a.verifyAccount;
+    }
     public Account(int id, String name, String userName, String password, String email, String phoneNumber, String gender, Date birthDay, String address, String addressReceive, int role, boolean status) {
         this.id = id;
         this.name = name;
