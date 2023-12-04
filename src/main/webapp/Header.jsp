@@ -8,7 +8,6 @@
 <%
     String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
             + request.getContextPath();
-%>
 <% Object obj = session.getAttribute("account");
     Account account = null;%>
 <div class="container-fluid bgcolor-orange" >
@@ -216,6 +215,32 @@
             currentIndex = 0;
             intervalId = setInterval(updatePlaceholder, 100);
         });
+<script>
+        $(document).ready(function(){
+            var placeholderText = "Tìm kiếm sản phẩm theo tên";
+            var inputElement = $(".search");
+            var currentIndex = 0;
+
+            function updatePlaceholder() {
+                var currentText = placeholderText.substring(0, currentIndex);
+                inputElement.attr("placeholder", currentText);
+                currentIndex = (currentIndex + 1) % (placeholderText.length + 1);
+            }
+
+            // set interval để lặp lại sau mỗi 100ms
+            var intervalId = setInterval(updatePlaceholder, 100);
+
+            // stop hành động lặp khi ấn vào
+            inputElement.focus(function(){
+                clearInterval(intervalId);
+                inputElement.attr("placeholder", placeholderText);
+            });
+
+            // restart lại hành động lặp khi không ấn vào nữa
+            inputElement.blur(function(){
+                currentIndex = 0;
+                intervalId = setInterval(updatePlaceholder, 100);
+            });
     });
 </script>
 </html>

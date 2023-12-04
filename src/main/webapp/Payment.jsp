@@ -1,11 +1,11 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Thanh toán</title>
-</head>
 <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
         rel="stylesheet"
@@ -28,17 +28,23 @@ pageEncoding="UTF-8"%>
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="css/Style.css">
 <link rel="stylesheet" href="css/Cart.css">
-<link rel="stylesheet" href="css/Payment.css">
 <link rel="stylesheet" href="css/ChangeInfor.css">
+<link rel="stylesheet" href="css/Payment.css">
+</head>
 <body>
+<%
+    String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+            + request.getContextPath();
+%>
 <!--header-->
 <header>
     <jsp:include page="Header.jsp"></jsp:include>
 </header>
 <!--end header-->
 <!--page content-->
-<div class="container mgt">
-    <div class="row p-2 bgcolor">
+<div class="container p-0 mgt">
+    <a href="<%=url%>/homePage" class="color-gray lbhv text-decoration-none">Trang chủ  <i class="fa fa-angle-right color-gray" aria-hidden="true"></i>  </a> <span class="text-color">Thanh toán</span>
+    <div class="row p-2 mt-3 bgcolor">
         <div class="col-lg-4 col-sm-4 my-1">
             <h5 class="text-color text-start"><i class="fa fa-user-circle-o text-color" aria-hidden="true"></i> THÔNG TIN KHÁCH HÀNG</h5>
             <div class="mt-3">
@@ -126,8 +132,6 @@ pageEncoding="UTF-8"%>
                                             </div>
                                         </td>
                                     </tr>
-
-
                                     <tr id="changeNgaySinh">
                                         <td>
                                             <label>Ngày sinh</label>
@@ -171,12 +175,13 @@ pageEncoding="UTF-8"%>
             </div>
         </div>
     </div>
-    <div class="row bgcolor mt-3 overflow-hidden">
-        <div class="col-lg-12">
-            <table class="mt-4">
+    <div class="row bgcolor mt-3">
+        <div class="col-md-12 d-flex justify-content-center">
+            <table class="my-4 tb">
                 <thead>
-                    <tr>
-                        <td class="sp">SẢN PHẨM</td>
+                    <tr class="tr">
+                        <td class="w40">STT</td>
+                        <td class="w300">SẢN PHẨM</td>
                         <td>MÀU SẮC</td>
                         <td>VẬT LIỆU</td>
                         <td>KÍCH THƯỚC</td>
@@ -186,9 +191,10 @@ pageEncoding="UTF-8"%>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            <div class="item">
+                    <tr class="tr">
+                        <td class="w40">1</td>
+                        <td class="w300">
+                            <div class="item d-flex justify-content-center">
                                 <div class="item_img">
                                     <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
                                          class="card-img-top img_p_cart" alt="..."/>
@@ -215,51 +221,20 @@ pageEncoding="UTF-8"%>
                             ₫<span></span>
                         </td>
                     </tr>
-                    <tr>
-                        <td>
-                            <div class="item">
-                                <div class="item_img">
-                                    <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
-                                         class="card-img-top img_p_cart" alt="..."/>
-                                </div>
-                                <span class="item_text">Ghế massage siêu cấp pro</span>
-                            </div>
-                        </td>
-                        <td>
-                            <span>Màu đen</span>
-                        </td>
-                        <td>
-                            <span>Hợp kim, bọc da</span>
-                        </td>
-                        <td>
-                            <span>100x50x70</span>
-                        </td>
-                        <td>
-                            ₫<span>1.000.000</span>
-                        </td>
-                        <td>
-                            <span>1</span>
-                        </td>
-                        <td>
-                            ₫<span></span>
-                        </td>
-                    </tr>
                 </tbody>
             </table>
         </div>
     </div>
     <div class="row bgcolor mt-3 p-2">
-        <div class="col-lg-12 mt-1 bdm ">
+        <div class="col-lg-12 mt-1">
             <h5>PHƯƠNG THỨC THANH TOÁN</h5>
         </div>
         <div class="col-lg-12 my-1">
             <div class="row">
                 <div class="col-lg-8 col-sm-4 col-3"></div>
                 <div class="col-lg-4 col-sm-8 col-9 mt-1 ps-5">
-                    <input class="" type="radio" id="cash" name="pay" value="Tiền mặt"><label for="cash">Tiền mặt <i
-                        class="fa fa-money" aria-hidden="true"></i> </label>
-                    <input class="ms-3" type="radio" id="bank" name="pay" value="Thẻ tín dụng"><label for="bank">Thẻ tín
-                    dụng <i class="fa fa-cc-visa" aria-hidden="true"></i></label>
+                    <input class="" type="radio" id="cash" name="pay" value="Tiền mặt"><label for="cash">Tiền mặt <i class="fa fa-money" aria-hidden="true"></i> </label>
+                    <input class="ms-3" type="radio" id="bank" name="pay" value="Thẻ tín dụng"><label for="bank">Thẻ tín dụng <i class="fa fa-cc-visa" aria-hidden="true"></i></label>
                     <div class=" mt-3">
                         <p class="mb-3 color-gray">Tổng tiền hàng:
                             <span class="float-end">
@@ -295,23 +270,22 @@ pageEncoding="UTF-8"%>
 <script>
         function updateTotalMoney() {
             $('tr').each(function () {
-                var amountText = $(this).find('td:eq(5) span').text();
-                var priceText = $(this).find('td:eq(4) span').text();
+                var amountText = $(this).find('td:eq(6) span').text();
+                var priceText = $(this).find('td:eq(5) span').text();
                 priceText = priceText.replace(/\./g, "");
                 var amount = parseInt(amountText);
                 var price = parseInt(priceText);
                 var total = amount * price;
                 total = total.toLocaleString('en-US');
                 total = total.replace(/\,/g, ".")
-                $(this).find('td:eq(6) span').text(total);
+                $(this).find('td:eq(7) span').text(total);
             })
         }
-
         updateTotalMoney(); //gọi hàm tính thành tiền sau khi load web
         function totalMoneyPay() {
             var total = 0;
             $('tr').each(function () {
-                var moneyText = $(this).find('td:eq(6) span').text();
+                var moneyText = $(this).find('td:eq(7) span').text();
                 moneyText = moneyText.replace(/\./g, "");
                 var money = parseInt(moneyText);
                 if (!isNaN(money)) {
@@ -324,11 +298,6 @@ pageEncoding="UTF-8"%>
             $('#totalPay').text(total);
         }
         totalMoneyPay()
-        //load header
-       // $('header').load('Header.jsp')
-        //load footer
-        //$('footer').load('Footer.jsp')
 </script>
 </body>
-
 </html>

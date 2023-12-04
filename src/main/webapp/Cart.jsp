@@ -1,3 +1,7 @@
+<%@ page import="java.util.Iterator" %>
+<%@ page import="model.Product" %>
+<%@ page import="model.Cart" %>
+<%@ page import="java.text.NumberFormat" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -29,63 +33,105 @@
 <link rel="stylesheet" href="css/Style.css">
 <link rel="stylesheet" href="css/Cart.css">
 <body>
+<%
+    String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+            + request.getContextPath();
+%>
 <!--header-->
 <header>
     <jsp:include page="Header.jsp"></jsp:include>
 </header>
 <!--end header-->
 <div class="container mgt">
-    <div class="row bgcolor">
+    <a href="<%=url%>/homePage" class="color-gray lbhv text-decoration-none">Trang chủ  <i class="fa fa-angle-right color-gray" aria-hidden="true"></i>  </a> <span class="text-color">Giỏ hàng</span>
+    <% Cart cart = (Cart) session.getAttribute("Cart");
+        if (cart != null && !cart.list().isEmpty()) {%>
+    <div class="row bgcolor mt-3">
         <div class="col-lg-12">
             <table class="mt-4">
                 <thead>
                     <tr>
-                        <td class="sp">SẢN PHẨM</td>
+                        <td class="w40">STT</td>
+                        <td class="w300">SẢN PHẨM</td>
                         <td>MÀU SẮC</td>
                         <td>VẬT LIỆU</td>
                         <td>KÍCH THƯỚC</td>
                         <td>ĐƠN GIÁ</td>
                         <td>SỐ LƯỢNG</td>
-                        <td>XÓA</td>
+                        <td COLSPAN="2">THAO TÁC</td>
                     </tr>
                 </thead>
                 <tbody>
+                <%
+                    NumberFormat nF = NumberFormat.getCurrencyInstance();
+                    Iterator< Product> it = cart.list().iterator();
+                    int stt = 1;
+                    Product p;
+                    while(it.hasNext()) {
+                        p = it.next();
+                %>
                     <tr>
-                        <td>
-                            <div class="item">
+                        <td class="w40"><%=stt%></td>
+                        <td class="w300">
+                            <div class="item d-flex justify-content-center">
                                 <div class="item_img">
-                                    <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
-                                         class="card-img-top img_p_cart" alt="..."/>
+                                    <img src="<%=p.getImages().get(0).getUrl()%>" class="card-img-top img_p_cart" alt="..."/>
                                 </div>
-                                <span class="item_text">Ghế massage siêu cấp pro</span>
+                                <span class="item_text"><%=p.getName()%></span>
                             </div>
                         </td>
-                        <td>
-                            <span>Màu đen</span>
+                        <td >
+                            <%=p.getColor()%>
+                        </td>
+                        <td >
+                          <%=p.getMaterial()%>
+                        </td>
+                        <td >
+                            <%=p.formatSize(p.getLength())%>x<%=p.formatSize(p.getWidth())%>x<%=p.formatSize(p.getHeight())%>
+                        </td>
+                        <td >
+                            <%=nF.format(p.getPrice())%>
+                        </td>
+                        <td ><%=p.getQuantity()%></td>
+                        <td >
+                            <form action="updateQuantity" method="post">
+                                <input type="text" class="quantity" name="quantity"/>
+                                <input type="hidden" name="id" value="<%=p.getIdProduct()%>"/>
+                                <button class="update" type="submit" title="Cập nhật số lượng">Cập Nhật</button>
+                            </form>
                         </td>
                         <td>
-                            <span>Hợp kim, bọc da</span>
-                        </td>
-                        <td>
-                            <span>100x50x70</span>
-                        </td>
-                        <td>
-                            ₫<span>1.000.000</span>
-                        </td>
-                        <td>
-                            <input type="text" class="amount" value="1"/>
-                            <button class="minus">-</button>
-                            <button class="plus">+</button>
-                        </td>
-                        <td>
-                            <button class="delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                <button class="delete" title="Xóa sản phẩm" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#delProduct"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                <div class="modal fade" id="delProduct">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <form action="delProductInCart" method="post" >
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Xác nhận</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Bạn có chắc muốn xóa?</p>
+                                                    <input type="hidden" name="id"value="<%=p.getIdProduct()%>"/>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy bỏ</button>
+                                                    <button type="submit" class="btn btn-primary">Đồng ý</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                         </td>
                     </tr>
-
+                <%
+                        stt++;
+                    }
+                %>
                 </tbody>
             </table>
             <div class="totalPay mt-4 text-end">
-                <span id="tt">THÀNH TIỀN: </span> ₫<span id="total"></span>
+                <span id="tt">THÀNH TIỀN: </span>  <%=nF.format(cart.total())%>
             </div>
             <div class="pay my-2">
                 <a href=#>
@@ -94,7 +140,15 @@
             </div>
         </div>
     </div>
+    <%} else {%>
+    <div class="text-center mt-4 mb-3 fs-2 color-gray ">Giỏ hàng gì mà trống vậy nè >.<<a href="<%=url%>/product" class="text-color text-decoration-none fs-5"> Lấp đầy ở đây nè ^.^</a></div>
+    <div class="text-center mb-4">
+        <img src="image/cart-empty.png" alt="" class="imgbg">
+    </div>
+
+    <%}%>
 </div>
+
 <!--footer-->
 <footer>
     <jsp:include page="Footer.jsp"></jsp:include>
@@ -103,37 +157,18 @@
 </body>
 <script>
     $(document).ready(function () {
-        // Lặp qua từng cặp nút "plus" và "minus" để xử lý riêng lẻ cho từng sản phẩm
-        $('.plus').click(function () {
-            var amountInput = $(this).siblings('.amount');
-            var count = parseInt(amountInput.val()) || 0;
-            count++;
-            amountInput.val(count);
-            calculateTotal()
-        });
-
-        $('.minus').click(function () {
-            var amountInput = $(this).siblings('.amount');
-            var count = parseInt(amountInput.val()) || 0;
-            if (count > 0) {
-                count--;
-                amountInput.val(count);
-                calculateTotal()
-            }
-        });
-        // Xóa sản phẩm trong giỏ hàng
-        $('.delete').click(function () {
-            $(this).closest('tr').remove();
-            calculateTotal(); //Gọi lại hàm tính tổng khi xóa
-        })
-
+        // // Xóa sản phẩm trong giỏ hàng
+        // $('.delete').click(function () {
+        //     $(this).closest('tr').remove();
+        //     calculateTotal(); //Gọi lại hàm tính tổng khi xóa
+        // })
         //Tính tổng tiền khi load qua trang giỏ hàng
         function calculateTotal() {
             var totalMoney = 0;
             var money = 0;
             var amount = 0;
             $('tr').each(function () {
-                var moneyText = $(this).find('td:eq(4) span').text();
+                var moneyText = $(this).find('td:eq(5)').text();
                 var amountText = $(this).find('.amount').val();
                 moneyText = moneyText.replace(/\./g, "");
                 var money = parseFloat(moneyText);
@@ -148,9 +183,6 @@
         }
         // Gọi hàm tính tổng tiền khi tải trang
         calculateTotal()
-        //load header
-        //    $('header').load('Header.jsp')
-
     });
 </script>
 </html>

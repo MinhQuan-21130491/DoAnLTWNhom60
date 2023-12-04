@@ -1,7 +1,9 @@
 package controller;
+
 import model.Cart;
 import model.Product;
 import service.ProductService;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,20 +13,20 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.NumberFormat;
 import java.util.ArrayList;
-@WebServlet(name = "loadProductByIdCate", value = "/loadProductByIdCate")
-public class LoadProductByIdCate extends HttpServlet {
+
+@WebServlet(name = "loadProduct", value = "/loadProduct")
+public class LoadProduct extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("html/text; charset= UTF-8");
-        String cid = request.getParameter("cid");
-        ArrayList<Product> listSixProduct = ProductService.getInstance().listProductByIdCate(Integer.parseInt(cid), 0);
+        ArrayList<Product> listSixProduct = ProductService.getInstance().listSixProduct(0);
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession();
         Cart cart = (Cart) session.getAttribute("Cart");
+        NumberFormat nF = NumberFormat.getCurrencyInstance();
         String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
         int quantity = 1;
-        NumberFormat nF = NumberFormat.getCurrencyInstance();
         for(Product p: listSixProduct){
             if (cart != null) {
                 if (cart.get(p.getIdProduct()) != null) {
