@@ -24,7 +24,7 @@ public class ReVerify extends HttpServlet {
         String email = request.getParameter("email");
         Account account = AccountService.getInstance().selectAccountByEmail(email);
         String code = NumberRandom.getSoNgauNhien();
-        if(AccountService.updateVerifyCode(Integer.parseInt(code), account.getId()) > 0) {
+        if(AccountService.getInstance().updateVerifyCode(Integer.parseInt(code), account.getId()) > 0) {
             Email.sendEmail(account.getEmail(), "Xác thực tài khoản", "Mã xác thực tài khoản HomeDecor của bạn là: " + code);
             request.setAttribute("email", account.getEmail());
         }
