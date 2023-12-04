@@ -17,12 +17,15 @@ h5 {
 
 table {
     width: 100%;
+    border-collapse: unset !important;
+    overflow-x:unset ;
 }
 
 table td {
     margin: auto;
     padding: 5px 0;
     vertical-align: center;
+    border-right: none !important;
 }
 tr{
     border-bottom:none !important; ;
