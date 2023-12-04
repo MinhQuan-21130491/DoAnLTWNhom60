@@ -14,15 +14,13 @@ $(document).ready(function () {
         }
         if (email === "") {
             $("#errEmail").text('Vui lòng nhập Email!');
-            $('#errEmail')
+            $('#errEmail').attr('style', 'color:red');
             condition = false;
         } else if (!email.match(emailReg)) {
             $('#errEmail').text('Email không hợp lệ!');
             condition = false;
-        }
-        else{
+        } else {
             $("#errUser").text('');
-
         }
         if (condition) {
             $(this).submit();
