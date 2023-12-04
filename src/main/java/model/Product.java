@@ -55,6 +55,19 @@ public class Product {
         this.quantityAvailable = quantityAvailable;
         this.quantity = quantity;
     }
+    public Product(int idCate, String name, double priceImport, double price, String description, String color, String material, double width, double height, double length, int quantityAvailable) {
+        this.idCate = idCate;
+        this.name = name;
+        this.priceImport = priceImport;
+        this.price = price;
+        this.description = description;
+        this.color = color;
+        this.material = material;
+        this.width = width;
+        this.height = height;
+        this.length = length;
+        this.quantityAvailable = quantityAvailable;
+    }
 
     public int getIdProduct() {
         return idProduct;

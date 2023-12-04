@@ -187,6 +187,11 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-lg-12 overflow-auto mheight" >
+                        <%
+                            String res = (String) request.getAttribute("res");
+                            res = (res == null) ? "" : res;
+                        %>
+                        <input type="hidden" id="res"></input>
                         <table class="mb-3">
                             <thead>
                                 <tr>
@@ -473,7 +478,7 @@
                                                 </div>
                                                 <div class="col-md-4 col-4 mb-3">
                                                     <label class="form-label">Số lượng</label>
-                                                    <input type="number" class="form-control" id="amount" name="amount">
+                                                    <input type="number" class="form-control" id="quantity" name="quantity">
                                                 </div>
                                             </div>
                                             <div class="mb-3">
@@ -998,7 +1003,7 @@
         var height = document.getElementById("height");
         var material = document.getElementById("material");
         var color = document.getElementById("color");
-        var amount = document.getElementById("amount");
+        var quantity = document.getElementById("quantity");
         var priceReg = /^\d+$/;
 
         var errNameP = document.getElementById("errNameP");
@@ -1084,11 +1089,11 @@
             color.style.borderColor = '#dee2e6';
         }
         //amount
-        if (amount.value === "") {
-            amount.style.borderColor = 'red';
+        if (quantity.value === "") {
+            quantity.style.borderColor = 'red';
             flag = false;
         } else {
-            amount.style.borderColor = '#dee2e6';
+            quantity.style.borderColor = '#dee2e6';
         }
         console.log(flag)
         return flag;
@@ -1250,8 +1255,11 @@
         }
 
         return flag;
-
-
+    }
+    window.onload = function () {
+        if ($('#res').text() !== "") {
+            alert($('#res').text());
+        }
     }
     function addSup() {
         var name = document.getElementById("nameSupAdd");

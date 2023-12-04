@@ -65,7 +65,7 @@
         <div class="d-md-none d-sm-block d-block pt-2 " >
             <span class="nameProduct" name ="nameProduct"><%=product.getName()%></span>
             <p class="t" name ="amount-sold">300 Đã bán</p>
-            <p class="price" name ="price">₫<%=product.getPriceFormatted()%></p>
+            <p class="price" name ="price"><%=nF.format(product.getPrice())%></p>
         </div>
         <!--end thông tin sản phẩm-->
         <div class="row">
@@ -75,13 +75,15 @@
                     <div class="col-lg-5 col-md-7  ">
                         <div class="row pt-3">
                             <div class="col-md-12">
-                                <img src="<%=product.getImages().get(0).getUrl()%>" alt=""
+                                <img src="<%=url%>\Products\<%=product.getImages().get(0).getUrl()%>" alt=""
                                      class="img_p2" id="img_center">
                             </div>
                             <div class="col-md-12 mt-3">
                                 <div class="owl-carousel">
                                     <%for(Image img: product.getImages()) { %>
-                                        <div class="pe-2" ><img src="<%=img.getUrl()%>" alt="" class="img_p_detail" onmouseover="changeImg('<%=img.getUrl()%>')"></div>
+                                    <div class="pe-2">
+                                        <img src="<%=url%>/Products/<%=img.getUrl()%>" alt="" class="img_p_detail" onmouseover="changeImg('<%=url%>/Products/<%=img.getUrl()%>')">
+                                    </div>
                                     <%}%>
                                 </div>
                             </div>

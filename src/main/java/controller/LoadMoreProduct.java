@@ -36,10 +36,10 @@ public class LoadMoreProduct extends HttpServlet {
                         quantity = p.getQuantity();
                     }
                 }
-                out.println(" <div class=\"col-lg-4 col-sm-6 col-6 mt-3 product\">\n" +
+                out.println(" <div class=\"col-lg-4 col-sm-6 mt-3 product\">\n" +
                         "                            <div class=\"card\">\n" +
                         "                                <a href=\"detail-product?pid=" + p.getIdProduct() + "\">\n" +
-                        "                                    <img src=\"" + p.getImages().get(0).getUrl() + "\" class=\"card-img-top img_p\" alt=\"...\">\n" +
+                        "                                    <img src=\"" + url + "\\Products\\" + p.getImages().get(0).getUrl() + "\" class=\"card-img-top img_p\" alt=\"...\">" +
                         "                                </a>\n" +
                         "                                <div class=\"card-body\">\n" +
                         "                                    <h5 class=\"card-title\">" + p.getName() + "</h5>\n" +
@@ -64,7 +64,7 @@ public class LoadMoreProduct extends HttpServlet {
                 out.println(" <div class=\"col-lg-4 col-sm-6 mt-3 product\">\n" +
                         "                            <div class=\"card\">\n" +
                         "                                <a href=\"detail-product?pid=" + p.getIdProduct() + "\">\n" +
-                        "                                    <img src=\"" + p.getImages().get(0).getUrl() + "\" class=\"card-img-top img_p\" alt=\"...\">\n" +
+                        "                                    <img src=\"" + url + "\\Products\\" + p.getImages().get(0).getUrl() + "\" class=\"card-img-top img_p\" alt=\"...\">" +
                         "                                </a>\n" +
                         "                                <div class=\"card-body\">\n" +
                         "                                    <h5 class=\"card-title\">" + p.getName() + "</h5>\n" +

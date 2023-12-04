@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -22,7 +23,14 @@ public class ReVerify extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("html/text; charset= UTF-8");
         String email = request.getParameter("email");
-        Account account = AccountService.getInstance().selectAccountByEmail(email);
+        HttpSession session = request.getSession();
+        Object obj = session.getAttribute("account");
+        Account account = null;
+        if(obj != null) {
+            account = (Account) obj; //lấy ra account bằng session với trường hợp là đăng nhập rồi nhưng tài khoản chưa xác thực, xác thực lại
+        }else{
+            account = AccountService.getInstance().selectAccountByEmail(email);
+        }
         String code = NumberRandom.getSoNgauNhien();
         if(AccountService.updateVerifyCode(Integer.parseInt(code), account.getId()) > 0) {
             Email.sendEmail(account.getEmail(), "Xác thực tài khoản", "Mã xác thực tài khoản HomeDecor của bạn là: " + code);

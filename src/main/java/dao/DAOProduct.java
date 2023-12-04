@@ -356,6 +356,6 @@ public class DAOProduct {
         return re;
     }
     public static void main(String[] args) {
-    System.out.println(listProductByFil("D", 5000000, "", "", 4).size());
+   System.out.println(latestProduct());
     }
  }

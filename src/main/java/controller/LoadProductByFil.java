@@ -54,7 +54,7 @@ public class LoadProductByFil extends HttpServlet {
             }
             JSONObject productJSON = new JSONObject();
             productJSON.put("idProduct", p.getIdProduct());
-            productJSON.put("imageUrl", p.getImages().get(0).getUrl());
+            productJSON.put("imageUrl", url +"\\Products\\" +p.getImages().get(0).getUrl());
             productJSON.put("name", p.getName());
             productJSON.put("price", nF.format(p.getPrice()));
             productJSON.put("quantity", quantity);
