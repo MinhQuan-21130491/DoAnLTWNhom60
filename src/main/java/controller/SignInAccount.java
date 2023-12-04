@@ -30,8 +30,8 @@ public class SignInAccount extends HttpServlet {
         String password = request.getParameter("idFormPass");
         String err ="";
         if(AccountService.getInstance().checkExistUserName(userName)) {
-            String hashPass = Encrypt.toSHA1(password);
-            Account account = AccountService.getInstance().getAccount(userName, hashPass);
+            String encryptPass = Encrypt.toSHA1(password);
+            Account account = AccountService.getInstance().getAccount(userName, encryptPass);
             if(account != null) {
                 VerifyAccount vrf = AccountService.getInstance().getVrfOfAccount(account.getId());
                 account.setVerifyAccount(vrf);
