@@ -1,6 +1,8 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="model.Product" %>
 <%@ page import="java.text.NumberFormat" %>
+<%@ page import="model.Category" %>
+<%@ page import="service.CategoryService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -29,6 +31,8 @@
     <link rel="stylesheet" href="slider/owlcarousel//assets/owl.theme.default.min.css">
     <script src="https://code.jquery.com/jquery-3.7.1.js"
             integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <%--    <script src="jquery.min.js"></script>--%>
     <link rel="stylesheet" href="css/Style.css">
     <link rel="stylesheet" href="css/Manage.css">
@@ -664,26 +668,37 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-lg-12 overflow-auto mheight">
+                        <%
+                            ArrayList<Category> listCategory = CategoryService.getInstance().listCategory();
+                            int sttC = 1;
+                        %>
                         <table class="mb-3">
                             <thead>
-                            <tr>
+                            <tr >
                                 <td>STT</td>
                                 <td>ID</td>
                                 <td>TÊN</td>
                             </tr>
                             </thead>
-                            <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td >Ghế trang trí</td>
+                            <tbody id ="innerCategory">
+                            <% if (listCategory != null && !listCategory.isEmpty()) {
+                                for (Category c: listCategory) {%>
+                            <tr data-category-id="<%= c.getId() %>">
+                                <td><%=sttC%></td>
+                                <td><%=c.getId()%></td>
+                                <td ><%=c.getName()%></td>
                                 <td>
                                     <div class="d-flex w-100 justify-content-center">
-                                        <button class="delete btnAdd bgcolor bd-full me-1" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true" data-bs-toggle="modal" data-bs-target=""></i></button>
-                                        <button class="editCate btnAdd bgcolor bd-full "><i class="fa fa-pencil text-color" title="Chỉnh sửa danh mục" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editCate"></i></button>
+                                        <button class="delete btnAdd bgcolor bd-full me-1" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true" onclick="deleteCategory('<%=c.getId()%>')" data-bs-toggle="modal" data-bs-target=""></i></button>
+                                        <button class="editCate btnAdd bgcolor bd-full "><i class="fa fa-pencil text-color" title="Chỉnh sửa danh mục" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editCate" onclick="innerEditCategory('<%=c.getId()%>')"></i></button>
                                     </div>
                                 </td>
                             </tr>
+                            <%
+                                sttC++;
+                                }
+                                }
+                            %>
                             </tbody>
                         </table>
                     </div>
@@ -707,7 +722,7 @@
                                         </div>
                                         <div class="row p-0">
                                             <div class="col-lg-12 text-end p-0">
-                                                <button class="save" type="submit">LƯU</button>
+                                                <button class="save" type="button" onclick="editCate()">LƯU</button>
                                             </div>
                                         </div>
                                     </div>
@@ -720,10 +735,10 @@
                     <div class="modal-dialog ">
                         <div class="modal-content">
                             <div class="modal-body">
-                                <form id="add-Cate" action="" method="post" onsubmit="return addCate()">
+                                <form id="add-Cate" action="" method="post">
                                     <div class="row px-2">
                                         <div class=" text-end">
-                                            <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
+                                            <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"data-bs-target="#addCate"></button>
                                         </div>
                                         <h5 class="text-center">THÊM DANH MỤC</h5>
                                         <hr>
@@ -736,7 +751,7 @@
                                         </div>
                                         <div class="row p-0">
                                             <div class="col-lg-12 text-end p-0">
-                                                <button class="save" type="submit">LƯU</button>
+                                                <button class="save" type="button" onclick="addCate()">LƯU</button>
                                             </div>
                                         </div>
                                     </div>
@@ -1323,26 +1338,139 @@
     }
     function addCate() {
         var flag = true;
-        var name = document.getElementById("nameCateAdd");
+        var nameInput = document.getElementById("nameCateAdd");
         var error = document.getElementById("errNameCateAdd");
-        if(name.value === "") {
+
+        if (nameInput.value === "") {
             error.innerHTML = ' *Vui lòng nhập danh mục mới!';
             flag = false;
-        }
-        return flag;
-
-    }
-    function editCate() {
-        var flag = true;
-        var name = document.getElementById("nameCateEdit");
-        var error = document.getElementById("errNameCate");
-        if(name.value === "") {
-            error.innerHTML = ' *Vui lòng nhập danh mục mới!';
-            flag = false;
+        } else {
+            error.innerHTML = ''; // Xóa thông báo lỗi nếu trường nhập không trống
         }
 
-        return flag;
+        if (flag) {
+            var name = nameInput.value;
+            $.ajax({
+                url: 'addCategory',
+                type: 'POST',
+                data: { nameCateAdd: name }, // tên danh mục nhập vào
+                success: function (data) {
+                    try {
+                        var jsonData = JSON.parse(data);
+                        var res = jsonData.res;
+                        var htmlData = jsonData.htmlData;
+                        alert(res);
+                        // Cập nhật danh sách danh mục trên giao diện
+                        var row = document.getElementById("innerCategory");
+                        row.innerHTML = "";
+                        for (var i = 0; i < htmlData.length; i++) {
+                            var c = htmlData[i];
+                            row.innerHTML += "  <tr data-bs-toggle=\"modal\" data-bs-target=\"#editCate\" onclick=\"innerEditCategory('"+c.id+"')\">\n" +
+                                "    <td" + (i + 1) + "</td>\n" +
+                                "    <td>\n" +
+                                "        <span class=\"item_text\">" + c.nameCateAdd + "</span>\n" +
+                                "    </td>\n" +
+                                "    <td>\n" +
+                                "        <div class=\"d-flex justify-content-center\">\n" +
+                                "            <button class=\"delete btnAdd bgcolor bd-full\" title=\"Xóa\" aria-hidden=\"true\" onclick=\"deleteCategory('"+c.id+"')\" data-bs-toggle=\"modal\" data-bs-target=\"\"><i class=\"fa fa-trash-o text-color\"></i></button>\n" +
+                                "            <button class=\"editCategory btnAdd bgcolor bd-full mx-1\" data-bs-toggle=\"modal\" data-bs-target=\"#editCate\" onclick=\"innerEditCategory('"+c.id+"')\"><i class=\"fa fa-pencil text-color\" title=\"Chỉnh sửa\" aria-hidden=\"true\"></i></button>\n" +
+                                "        </div>\n" +
+                                "    </td>\n" +
+                                "  </tr>";
+                        }
+                    } catch (e) {
+                        console.error("Xảy ra lỗi khi xử lý phản hồi JSON:", e);
+                    }
+                },
+                error: function (error) {
+                    console.error("Xảy ra lỗi:", error);
+                }
+            });
+        }
+        return false; // Ngăn chặn sự kiện mặc định của biểu mẫu
     }
+    // var id = "";
+    // function editCate() {
+    //     var flag = true;
+    //     var name = document.getElementById("nameCateEdit");
+    //     var error = document.getElementById("errNameCate");
+    //
+    //     if (name.value === "") {
+    //         error.innerHTML = ' *Vui lòng nhập tên danh mục mới!';
+    //         flag = false;
+    //     } else {
+    //         error.innerHTML = ''; // Clear error message if there was any
+    //     }
+    //     if (flag) {
+    //         var formData = new FormData();
+    //         formData.append('nameCategoryEdit', name.value);
+    //         formData.append('id', id);
+    //         $.ajax({
+    //             url: 'editCategory',
+    //             type: 'POST',
+    //             data: formData,
+    //             contentType: false,
+    //             processData: false,
+    //             success: function(data) {
+    //                 try {
+    //                     var jsonData = JSON.parse(data);
+    //                     var htmlData = jsonData.htmlData;
+    //                     var res = jsonData.res;
+    //                     alert(res);
+    //                     // Cập nhật danh sách danh mục trên giao diện
+    //                     var row = document.getElementById("innerCategory");
+    //                     row.innerHTML = "";
+    //                     var htmlData = jsonData.htmlData;
+    //                     for (var i = 0; i < htmlData.length; i++) {
+    //                         var c = htmlData[i];
+    //                         row.innerHTML += "<tr>\n" +
+    //                             "    <td>" + (i + 1) + "</td>\n" +
+    //                             "    <td>" + c.id + "</td>\n" +
+    //                             "    <td>" + c.nameCateAdd + "</td>\n" +
+    //                             "    <td>\n" +
+    //                             "        <div class=\"d-flex w-100 justify-content-center\">\n" +
+    //                             "            <button class=\"delete btnAdd bgcolor bd-full me-1\"><i class=\"fa fa-trash-o text-color\" title=\"Xóa\" aria-hidden=\"true\" onclick=\"deleteCategory('" + c.id + "')\" data-bs-toggle=\"modal\" data-bs-target=\"\"></i></button>\n" +
+    //                             "            <button class=\"editCate btnAdd bgcolor bd-full\"><i class=\"fa fa-pencil text-color\" title=\"Chỉnh sửa danh mục\" aria-hidden=\"true\" data-bs-toggle=\"modal\" data-bs-target=\"#editCate\" onclick=\"innerEditCategory('" + c.id + "')\"></i></button>\n" +
+    //                             "        </div>\n" +
+    //                             "    </td>\n" +
+    //                             "</tr>";
+    //                     }
+    //                 } catch (e) {
+    //                     console.error("Xảy ra lỗi khi xử lý phản hồi JSON:", e);
+    //                 }
+    //             },
+    //             error: function(error) {
+    //                 console.error("Xảy ra lỗi:", error);
+    //             }
+    //         });
+    //     }
+    // }
+    // function innerEditCategory(categoryId) {
+    //     // Sử dụng AJAX để lấy thông tin chi tiết danh mục dựa trên ID
+    //     $.ajax({
+    //         url: '/loadDetailCategory',
+    //         type: 'GET',
+    //         data: { categoryId: categoryId },
+    //         success: function (data) {
+    //             try {
+    //                 var jsonData = JSON.parse(data);
+    //                 var category = jsonData.category;
+    //
+    //                 // Điền thông tin chi tiết vào form chỉnh sửa
+    //                 document.getElementById("nameCateEdit").value = category.name;
+    //                 // Lưu ID của danh mục đang chỉnh sửa
+    //                 id = category.id;
+    //                 // Gọi modal chỉnh sửa danh mục
+    //                 $('#editCate').modal('show');
+    //             } catch (e) {
+    //                 console.error("Xảy ra lỗi khi xử lý phản hồi JSON:", e);
+    //             }
+    //         },
+    //         error: function (error) {
+    //             console.error("Xảy ra lỗi:", error);
+    //         }
+    //     });
+    // }
     function addInput() {
         var container = document.getElementById('image');
         var newInput = document.createElement('div');
@@ -1407,6 +1535,119 @@
             img_center.src = newSrc;
         }
     }
+    function deleteCategory(categoryId) {
+        if (categoryId !== null && categoryId !== undefined) {
+            var confirmation = confirm("Bạn có chắc muốn xóa ?");
+            if (confirmation) {
+                $.ajax({
+                    type: "POST",
+                    url: "delCategory", // Đường dẫn tới Servlet xử lý xóa danh mục
+                    data: { id: categoryId },
+                    success: function (data) {
+                        var jsonData = JSON.parse(data);
+                        var htmlData = jsonData.htmlData;
+                        var res = jsonData.res;
+                        alert(res);
+                        var row = document.getElementById("innerCategory");
+                        row.innerHTML = ""; // Clear existing content
+                        for (var i = 0; i < htmlData.length; i++) {
+                            var c = htmlData[i];
+                            row.innerHTML += "<tr>" +
+                                "<td" + (i + 1) + "</td>" +
+                                "<td" +
+                                "<span>" + c.name + "</span>" +
+                                "</td>" +
+                                "<td>" +
+                                "<div class=\"d-flex justify-content-center\">" +
+                                "<button class=\"delete btnAdd bgcolor bd-full\" title=\"Xóa\" aria-hidden=\"true\" onclick=\"deleteCategory(" + c.id + ")\" data-bs-toggle=\"modal\" data-bs-target=\"\"><i class=\"fa fa-trash-o text-color\"></i></button>" +
+                                "<button class=\"editCategory btnAdd bgcolor bd-full mx-1\"><i class=\"fa fa-pencil text-color\" title=\"Chỉnh sửa\" aria-hidden=\"true\" data-bs-toggle=\"modal\" data-bs-target=\"#editCategory\"></i></button>" +
+                                "</div>" +
+                                "</td>" +
+                                "</tr>";
+                        }
+                    },
+                    error: function (error) {
+                        console.error("Lỗi khi xóa danh mục:", error);
+                    }
+                });
+            }
+        } else {
+            console.error("ID không tồn tại");
+        }
+    }
+    function innerEditCategory(categoryId) {
+        // Sử dụng AJAX để lấy thông tin chi tiết danh mục dựa trên ID
+        $.ajax({
+            url: '/loadDetailCategory',
+            type: 'GET',
+            data: { categoryId: categoryId },
+            success: function (data) {
+                try {
+                    var jsonData = JSON.parse(data);
+                    var category = jsonData.category;
+
+                    // Điền thông tin chi tiết vào form chỉnh sửa
+                    document.getElementById("nameCateEdit").value = category.name;
+                    // Lưu ID của danh mục đang chỉnh sửa
+                    id = categoryId;
+                    // Gọi modal chỉnh sửa danh mục
+                    $('#editCate').modal('show');
+                } catch (e) {
+                    console.error("Xảy ra lỗi khi xử lý phản hồi JSON:", e);
+                }
+            },
+            error: function (error) {
+                console.error("Xảy ra lỗi:", error);
+            }
+        });
+    }
+    function editCate() {
+        var flag = true;
+        var name = document.getElementById("nameCateEdit");
+        var error = document.getElementById("errNameCate");
+
+        if (name.value === "") {
+            error.innerHTML = ' *Vui lòng nhập tên danh mục mới!';
+            flag = false;
+        } else {
+            error.innerHTML = ''; // Clear error message if there was any
+        }
+        if (flag) {
+            var formData = new FormData();
+            formData.append('nameCategoryEdit', name.value);
+            formData.append('id', id);
+            $.ajax({
+                url: 'editCategory',
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    try {
+                        var jsonData = JSON.parse(data);
+                        var res = jsonData.res;
+                        alert(res);
+
+                        // Cập nhật tên danh mục trong bảng HTML
+                        var editedRow = document.getElementById("innerCategory").querySelector("tr[data-category-id='" + id + "']");
+                        editedRow.querySelector("td:nth-child(3)").innerHTML = name.value;
+
+                        // Đóng modal
+                        $('#editCate').modal('hide');
+                    } catch (e) {
+                        console.error("Xảy ra lỗi khi xử lý phản hồi JSON:", e);
+                    }
+                },
+                error: function(error) {
+                    console.error("Xảy ra lỗi:", error);
+                }
+            });
+        }
+    }
+
+
+
+
 </script>
 <script src="slider/owlcarousel/owl.carousel.min.js"></script>
 </html>

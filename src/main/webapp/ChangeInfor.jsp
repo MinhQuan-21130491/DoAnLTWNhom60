@@ -179,52 +179,52 @@
     </form>
     <%}%>
 </div>
-<script>
-    $(document).ready(function () {
-        var res = $('#res');
-        if (res.text() === "Cập nhật thành công!") {
-            res.addClass("text-success");
-        } else {
-            res.addClass("text-danger");
-        }
-    });
-    function check() {
-        var flag = true;
-        var tenElement = document.getElementById("HienThiTen");
-        var gmailElement = document.getElementById("HienThiGmail");
-        var sdtElement = document.getElementById("HienThiSDT");
-        var dcElement = document.getElementById("HienThiDC");
-        var nsElement = document.getElementById("HienThiNS");
-        var error = document.getElementById("res");
+<%--<script>--%>
+<%--    $(document).ready(function () {--%>
+<%--        var res = $('#res');--%>
+<%--        if (res.text() === "Cập nhật thành công!") {--%>
+<%--            res.addClass("text-success");--%>
+<%--        } else {--%>
+<%--            res.addClass("text-danger");--%>
+<%--        }--%>
+<%--    });--%>
+<%--    function check() {--%>
+<%--        var flag = true;--%>
+<%--        var tenElement = document.getElementById("HienThiTen");--%>
+<%--        var gmailElement = document.getElementById("HienThiGmail");--%>
+<%--        var sdtElement = document.getElementById("HienThiSDT");--%>
+<%--        var dcElement = document.getElementById("HienThiDC");--%>
+<%--        var nsElement = document.getElementById("HienThiNS");--%>
+<%--        var error = document.getElementById("res");--%>
 
-        var gmailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        var phoneReg = /^\d{10}/;
-        if(tenElement.value == "") {
-            error.innerHTML = "Vui lòng nhập họ và tên!";
-            flag = false;
-        }else if(gmailElement.value == "") {
-            error.innerHTML = "Vui lòng nhập Email!";
-            flag = false;
-        }else if(!gmailElement.value.match(gmailReg)) {
-            error.innerHTML = "Email không hợp lệ!";
-            flag = false;
-        }else if(sdtElement.value == "") {
-            error.innerHTML = "Vui lòng nhập số điện thoại!";
-            flag = false;
-        }else if(!sdtElement.value.match(phoneReg)) {
-            error.innerHTML = "Số điện thoại không hợp lệ!";
-            flag = false;
-        }
-        else if(dcElement.value == "") {
-            error.innerHTML = "Vui lòng nhập địa chỉ!";
-            flag = false;
-        }else if(nsElement.value == "") {
-            error.innerHTML = "Vui lòng chọn ngày sinh!";
-            flag = false;
-        }
-        console.log(sdtElement.value);
-        return flag;
-    }
-</script>
+<%--        var gmailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;--%>
+<%--        var phoneReg = /^\d{10}/;--%>
+<%--        if(tenElement.value == "") {--%>
+<%--            error.innerHTML = "Vui lòng nhập họ và tên!";--%>
+<%--            flag = false;--%>
+<%--        }else if(gmailElement.value == "") {--%>
+<%--            error.innerHTML = "Vui lòng nhập Email!";--%>
+<%--            flag = false;--%>
+<%--        }else if(!gmailElement.value.match(gmailReg)) {--%>
+<%--            error.innerHTML = "Email không hợp lệ!";--%>
+<%--            flag = false;--%>
+<%--        }else if(sdtElement.value == "") {--%>
+<%--            error.innerHTML = "Vui lòng nhập số điện thoại!";--%>
+<%--            flag = false;--%>
+<%--        }else if(!sdtElement.value.match(phoneReg)) {--%>
+<%--            error.innerHTML = "Số điện thoại không hợp lệ!";--%>
+<%--            flag = false;--%>
+<%--        }--%>
+<%--        else if(dcElement.value == "") {--%>
+<%--            error.innerHTML = "Vui lòng nhập địa chỉ!";--%>
+<%--            flag = false;--%>
+<%--        }else if(nsElement.value == "") {--%>
+<%--            error.innerHTML = "Vui lòng chọn ngày sinh!";--%>
+<%--            flag = false;--%>
+<%--        }--%>
+<%--        console.log(sdtElement.value);--%>
+<%--        return flag;--%>
+<%--    }--%>
+<%--</script>--%>
 </body>
 </html>

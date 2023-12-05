@@ -3,6 +3,7 @@ package service;
 import dao.DAOCategory;
 import model.Category;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CategoryService {
@@ -23,5 +24,26 @@ public class CategoryService {
     }
     public Category getCategoryById(int id) {
         return DAOCategory.getCategoryById(id);
+    }
+    //Thêm danh mục
+    public int insertCategory(Category c){ return  DAOCategory.insertCategory(c);}
+    //Xoá danh mục
+    public  int delCategory(int id) {
+        try {
+            return  DAOCategory.delCategory(id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    // Chỉnh sửa danh mục
+    public int editCategory(int id, String newName) {
+        try {
+            return DAOCategory.editCategory(id, newName);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public int updateCategory(Category c) throws SQLException {
+        return DAOCategory.updateCategory(c);
     }
 }
