@@ -70,7 +70,7 @@ public class Product {
         this.quantityAvailable = quantityAvailable;
     }
 
-    public Product(int idProduct, int idCate, String name, double priceImport, double price, String description, String color, String material, double width, double height, double length, int quantityAvailable, int quantity, boolean status) {
+    public Product(int idProduct, int idCate, String name, double priceImport, double price, String description, String color, String material, double width, double height, double length, int quantiy, int quantityAvailable, boolean status) {
         this.idProduct = idProduct;
         this.idCate = idCate;
         this.name = name;
@@ -218,7 +218,6 @@ public class Product {
     public String formatSize(double size) {
         // Tạo mẫu định dạng với hai chữ số sau dấu thập phân
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
-
         // Làm tròn số và áp dụng định dạng
         String formattedNumber = decimalFormat.format(size);
        return formattedNumber;

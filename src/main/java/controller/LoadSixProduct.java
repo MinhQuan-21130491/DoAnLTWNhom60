@@ -15,7 +15,7 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 
 @WebServlet(name = "loadProduct", value = "/loadProduct")
-public class LoadProduct extends HttpServlet {
+public class LoadSixProduct extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");

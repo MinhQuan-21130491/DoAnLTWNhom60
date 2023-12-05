@@ -1,3 +1,6 @@
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="model.Product" %>
+<%@ page import="java.text.NumberFormat" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -27,14 +30,14 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js"
             integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 <%--    <script src="jquery.min.js"></script>--%>
-    <script src="slider/owlcarousel/owl.carousel.min.js"></script>
     <link rel="stylesheet" href="css/Style.css">
     <link rel="stylesheet" href="css/Manage.css">
 </head>
 <body>
 <%
-    String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-            + request.getContextPath();
+    String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+    NumberFormat nF = NumberFormat.getCurrencyInstance();
+
 %>
 <%--header--%>
 <header>
@@ -199,6 +202,8 @@
                         <%
                             String res = (String) request.getAttribute("res");
                             res = (res == null) ? "" : res;
+                            ArrayList<Product> listAllProduct = (ArrayList<Product>) request.getAttribute("listAllProduct");
+                            int sttP = 1;
                         %>
                         <input type="hidden" id="res"></input>
                         <table class="mb-3">
@@ -213,21 +218,28 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr  data-bs-toggle ="modal" data-bs-target="#detailProduct">
-                                <td class="w40">1</td>
+                            <% if (listAllProduct != null && !listAllProduct.isEmpty()) {
+                                for (Product p: listAllProduct) {%>
+                                <tr id="detailProductRow" data-bs-toggle ="modal" data-bs-target="#detailProduct" onclick="detailProduct('<%=p.getIdProduct()%>')">
+                                    <input type="hidden" class ="idProduct" value="<%=p.getIdProduct()%>">
+                                <td class="w40"><%=sttP%></td>
                                 <td class="w260">
                                     <div class="item d-flex justify-content-center">
                                         <div class="item_img">
-                                            <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
+                                            <img src="<%=url%>/Products/<%=p.getImages().get(0).getUrl()%>"
                                                  class="card-img-top img_p_cart" alt="..."/>
                                         </div>
-                                        <span class="item_text">Ghế massage siêu cấp prO</span>
+                                        <span class="item_text"><%=p.getName()%></span>
                                     </div>
                                 </td>
-                                <td>₫<span>1.200.000</span></td>
-                                <td>Màu đen</td>
-                                <td>50</td>
-                                <td>Đang bán</td>
+                                <td><%=nF.format(p.getPrice())%></td>
+                                <td><%=p.getColor()%></td>
+                                <td><%=p.getQuantityAvailable()%></td>
+                                    <%if (p.isStatus()) {%>
+                                    <td>Đang bán</td>
+                                    <%} else {%>
+                                    <td>Ngưng bán</td>
+                                    <%}%>
                                 <td>
                                     <div class="d-flex justify-content-center">
                                         <button class="delete btnAdd bgcolor bd-full" title="Xóa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="" ><i class="fa fa-trash-o text-color"></i></button>
@@ -236,6 +248,11 @@
                                     </div>
                                 </td>
                             </tr>
+                            <%
+                                        sttP++;
+                                    }
+                                }
+                            %>
                             </tbody>
                         </table>
                     </div>
@@ -327,10 +344,9 @@
                 <div class="modal fade" id="detailProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content ">
-                            <div class="modal-body">
+                            <div class="modal-body" id="detail">
                                 <div class="container">
                                     <div class="row ">
-                                        <span class="d-none" id ="detail"></span>
                                         <div class=" text-end">
                                             <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
@@ -342,31 +358,9 @@
                                                     <img src="https://anphat.com.vn/media/product/40998_sihoo_m18_black_grey__2_.JPG" alt=""
                                                          class="img_p2" id="img_center">
                                                 </div>
-                                                <div class="col-md-12 mt-3">
-                                                    <div class="owl-carousel">
-                                                        <div class="pe-2" ><img src="https://i.pinimg.com/236x/28/02/b8/2802b872a06a99b8576dff4af0403723.jpg?fbclid=IwAR0AGtm9P18DGDrpzcnKZFmbaepyaS7_yzOTHX5jfolMiJD8VgEJ5K1HqEI"
-                                                                                alt=""
-                                                                                class="img_p_detail"
-                                                                                onmouseover="changeImg('https://i.pinimg.com/236x/28/02/b8/2802b872a06a99b8576dff4af0403723.jpg?fbclid=IwAR0AGtm9P18DGDrpzcnKZFmbaepyaS7_yzOTHX5jfolMiJD8VgEJ5K1HqEI')">
-                                                        </div>
-                                                        <div class="pe-2" >
-                                                            <img src="https://i.pinimg.com/236x/bb/be/90/bbbe9068896348d6ab9a7fffd06f5828.jpg?fbclid=IwAR3a0JkYfqdqHb6Angr_5owVHkV3RiKK7mdswjIv_t5ro2TUrUolQByhbGk"
-                                                                 alt=""
-                                                                 class="img_p_detail"
-                                                                 onmouseover="changeImg('https://i.pinimg.com/236x/bb/be/90/bbbe9068896348d6ab9a7fffd06f5828.jpg?fbclid=IwAR3a0JkYfqdqHb6Angr_5owVHkV3RiKK7mdswjIv_t5ro2TUrUolQByhbGk')">
-                                                        </div >
-                                                        <div class="pe-2">
-                                                            <img src="https://i.pinimg.com/564x/c0/8d/43/c08d432a2d040829cae57cd31c7726a7.jpg?fbclid=IwAR2V0qO9Z2t9BG7hpYX-2EGnkPdlg74cOd5qU55H7SxONL-BNLEpvqSmLck"
-                                                                 alt=""
-                                                                 class="img_p_detail"
-                                                                 onmouseover="changeImg('https://i.pinimg.com/564x/c0/8d/43/c08d432a2d040829cae57cd31c7726a7.jpg?fbclid=IwAR2V0qO9Z2t9BG7hpYX-2EGnkPdlg74cOd5qU55H7SxONL-BNLEpvqSmLck')">
-                                                        </div>
-                                                        <div class="pe-2">
-                                                            <img src="https://i.pinimg.com/564x/c0/8d/43/c08d432a2d040829cae57cd31c7726a7.jpg?fbclid=IwAR2V0qO9Z2t9BG7hpYX-2EGnkPdlg74cOd5qU55H7SxONL-BNLEpvqSmLck"
-                                                                 alt=""
-                                                                 class="img_p_detail"
-                                                                 onmouseover="changeImg('https://i.pinimg.com/564x/c0/8d/43/c08d432a2d040829cae57cd31c7726a7.jpg?fbclid=IwAR2V0qO9Z2t9BG7hpYX-2EGnkPdlg74cOd5qU55H7SxONL-BNLEpvqSmLck')">
-                                                        </div>
+                                                <div class="col-md-12 mt-3 imgdetail" >
+                                                    <div class="owl-carousel" id ="owl">
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -417,7 +411,7 @@
                                                 </div>
                                                 <div class="col-md-4 col-4 mb-3">
                                                     <label class="form-label">Số lượng</label>
-                                                    <input type="number" class="form-control" id="amountdetail" name="amountdetail"readonly>
+                                                    <input type="number" class="form-control" id="quantitydetail" name="amountdetail"readonly>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Mô tả</label>
@@ -428,7 +422,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -752,7 +745,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
             <!--end giao diện quản lý danh mục -->
             <!--giao diện quản lý nhà cung cấp-->
@@ -1110,7 +1102,7 @@
         } else {
             color.style.borderColor = '#dee2e6';
         }
-        //amount
+        //quantity
         if (quantity.value === "") {
             quantity.style.borderColor = 'red';
             flag = false;
@@ -1120,7 +1112,6 @@
         console.log(flag)
         return flag;
     }
-
     function editProduct() {
         var flag = true;
         var nameP = document.getElementById("nameProductEdit");
@@ -1228,7 +1219,6 @@
         console.log(flag)
         return flag;
     }
-
     function editSup() {
         var name = document.getElementById("nameSupEdit");
         var address = document.getElementById("addressSupEdit");
@@ -1329,12 +1319,8 @@
         } else {
             errEmailSup.innerHTML = ''
         }
-
         return flag;
-
-
     }
-
     function addCate() {
         var flag = true;
         var name = document.getElementById("nameCateAdd");
@@ -1364,5 +1350,63 @@
         newInput.innerHTML = '<input type="file" class="form-control" name="image"">';
         container.appendChild(newInput);
     }
+    // Sử dụng hàm này để tải chi tiết sản phẩm bằng AJAX
+    function loadProductDetails(productId) {
+        $.ajax({
+            type: "GET",
+            url: "loadDetailProduct",
+            data: {
+                idProduct: productId
+            },
+            success: function (data) {
+                // Cập nhật nội dung modal với dữ liệu JSON nhận được
+                updateModalContent(data);
+            },
+            error: function () {
+                console.error("Không thể tải chi tiết sản phẩm");
+            }
+        });
+    }
+
+    // Sử dụng hàm này để cập nhật nội dung modal
+    function updateModalContent(data) {
+        var p = data.product;
+        //Cập nhật các phần tử HTML với chi tiết sản phẩm
+        $("#idProductdetail").val(p.idProduct);
+        $("#nameProductdetail").val(p.name);
+        $("#priceImpProductdetail").val(p.priceImport);
+        $("#priceProductDetail").val(p.price);
+        $("#lengthdetail").val(p.length);
+        $("#widthdetail").val(p.width);
+        $("#heightdetail").val(p.height);
+        $("#materialdetail").val(p.material);
+        $("#cateTypedetail").val(p.typeCate)
+        $("#colordetail").val(p.color);
+        $("#quantitydetail").val(p.quantityAvailable);
+        $("#desdetail").val(p.description);
+        // cập nhật ảnh chính
+        $('#img_center').attr('src',p.imageCenter);
+        $('.owl-carousel').owlCarousel('destroy'); // Khởi tạo lại Owl Carousel
+        // Cập nhật carousel ảnh chi tiết
+        $(".owl-carousel").empty();
+        for (var img of p.imageDetail) {
+            $(".owl-carousel").append(`<div class="pe-2"><img src="Products/${img.url}" alt="" class="img_p_detail" onmouseover="changeImg('Products/${img.url}')"></div>`);
+        }
+        $('.owl-carousel').owlCarousel()
+        $('.owl-carousel').removeClass("owl-hidden");
+    }
+
+    // Ví dụ: Gọi hàm này khi một dòng sản phẩm được nhấp vào
+    function detailProduct(productId) {
+        // Tải chi tiết sản phẩm bằng AJAX
+        loadProductDetails(productId);
+    };
+    function changeImg(newSrc) {
+        var img_center = document.getElementById('img_center');
+        if (img_center) {
+            img_center.src = newSrc;
+        }
+    }
 </script>
+<script src="slider/owlcarousel/owl.carousel.min.js"></script>
 </html>
