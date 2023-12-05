@@ -73,15 +73,19 @@
                     <div class="col-lg-6">
                         <h5 >Quản lý tài khoản</h5>
                     </div>
+                    <div class="col-lg-6 text-end">
+                        <button class="btnAdd bgcolor bd-full" id ="btnAddAccount"><i class="fa fa-plus-circle text-color" aria-hidden="true" title="Thêm sản phẩm" data-bs-toggle="modal" data-bs-target="#addProduct"></i></button>
+                    </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-lg-12 overflow-auto">
                         <table class="mb-3">
                             <thead>
                                 <tr>
-                                    <td class="w40">ID</td>
-                                    <td>CHỨC VỤ</td>
+                                    <td class="w40">STT</td>
+                                    <td>HỌ TÊN</td>
                                     <td>EMAIL</td>
+                                    <td>CHỨC VỤ</td>
                                     <td>XÁC THỰC</td>
                                     <td>TRẠNG THÁI</td>
                                 </tr>
@@ -89,15 +93,16 @@
                             <tbody>
                                 <tr data-bs-toggle="modal" data-bs-target="#detailAccount">
                                     <td class="w40">1</td>
-                                    <td>Admin</td>
+                                    <td>minhquanpro</td>
                                     <td>qle29202@gmail.com</td>
+                                    <td>Admin</td>
                                     <td >1</td>
                                     <td class = "status"></td>
                                     <td>
                                         <div class="d-flex w-100 justify-content-center">
-                                            <button class="delete btnAdd bgcolor bd-full" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#"></i></button>
-                                            <button class="block btnAdd bgcolor bd-full mx-1" ><i class="fa fa-lock text-color" title="Khóa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#"></i></button>
-                                            <button class="editAccount btnAdd bgcolor bd-full me-1"><i class="fa fa-pencil text-color" title="Chỉnh sửa quyền truy cập" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editAccount"></i></button>
+                                            <button class="delete btnAdd bgcolor bd-full" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#"><i class="fa fa-trash-o text-color"  title="Xóa" ></i></button>
+                                            <button class="block btnAdd bgcolor bd-full mx-1" data-bs-toggle="modal" data-bs-target="#"><i class="fa fa-lock text-color" title="Khóa" aria-hidden="true" ></i></button>
+                                            <button class="editAccount btnAdd bgcolor bd-full me-1" title="Chỉnh sửa quyền truy cập" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editAccount"><i class="fa fa-pencil text-color" ></i></button>
                                         </div>
                                     </td>
                                 </tr>
@@ -143,6 +148,10 @@
                                     <h5 class="text-center title">CHI TIẾT TÀI KHOẢN</h5>
                                     <hr>
                                     <div class="col-md-12">
+                                        <div class="mb-3">
+                                            <label class="form-label"> Mã khách hàng </label>
+                                            <input type="text" class="form-control" id="idAccountDetail" name="nameAccountDetail" readonly>
+                                        </div>
                                         <div class="mb-3">
                                             <label class="form-label"> Tên khách hàng </label>
                                             <input type="text" class="form-control" id="nameAccountDetail" name="nameAccountDetail" readonly>
@@ -195,12 +204,12 @@
                         <table class="mb-3">
                             <thead>
                                 <tr>
-                                    <td class="w40">ID</td>
+                                    <td class="w40">STT</td>
                                     <td class="w260">SẢN PHẨM</td>
-                                    <td>GIÁ NHẬP</td>
                                     <td>GIÁ BÁN</td>
                                     <td>MÀU SẮC</td>
                                     <td>SỐ LƯỢNG</td>
+                                    <td>TRẠNG THÁI</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -215,14 +224,15 @@
                                         <span class="item_text">Ghế massage siêu cấp prO</span>
                                     </div>
                                 </td>
-                                <td>₫<span>1.000.000</span></td>
                                 <td>₫<span>1.200.000</span></td>
                                 <td>Màu đen</td>
                                 <td>50</td>
+                                <td>Đang bán</td>
                                 <td>
                                     <div class="d-flex justify-content-center">
-                                        <button class="delete btnAdd bgcolor bd-full" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="" ></i></button>
-                                        <button class="editProduct btnAdd bgcolor bd-full mx-1"><i class="fa fa-pencil text-color" title="Chỉnh sửa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editProduct"></i></button>
+                                        <button class="delete btnAdd bgcolor bd-full" title="Xóa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="" ><i class="fa fa-trash-o text-color"></i></button>
+                                        <button class="editProduct btnAdd bgcolor bd-full mx-1" title="Chỉnh sửa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editProduct"><i class="fa fa-pencil text-color" ></i></button>
+                                        <button class="hideProduct btnAdd bgcolor bd-full" title="Ẩn/hiện sản phẩm" aria-hidden="true" data-bs-toggle="modal" data-bs-target=""><i class="fa fa-lock text-color"></i></button>
                                     </div>
                                 </td>
                             </tr>
@@ -361,8 +371,11 @@
                                                 </div>
                                             </div>
                                             </div>
-
                                         <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Mã sản phẩm</label>
+                                                <input type="text" class="form-control" id="idProductdetail" name="nameProductdetail" readonly>
+                                            </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Tên sản phẩm</label>
                                                 <input type="text" class="form-control" id="nameProductdetail" name="nameProductdetail" readonly>
@@ -522,6 +535,7 @@
                         <table class="mb-3">
                             <thead>
                                 <tr>
+                                    <td class="w40">STT</td>
                                     <td class="w40">ID</td>
                                     <td class="w260">SẢN PHẨM</td>
                                     <td>ĐƠN GIÁ</td>
@@ -533,6 +547,7 @@
                             </thead>
                             <tbody>
                                 <tr>
+                                    <td class="w40">1</td>
                                     <td class="w40">1</td>
                                     <td class="w260">
                                         <div class="item d-flex justify-content-center">
@@ -569,7 +584,8 @@
                         <table class="mb-3" >
                             <thead>
                                 <tr>
-                                    <td class="w40">ID</td>
+                                    <td class="w40">STT</td>
+                                    <td>ID</td>
                                     <td>MÃ KHÁCH HÀNG</td>
                                     <td>NGÀY XUẤT</td>
                                 </tr>
@@ -577,6 +593,7 @@
                             <tbody>
                                 <tr data-bs-toggle="modal" data-bs-target="#detailInvoice">
                                 <td class="w40">2</td>
+                                <td>1</td>
                                 <td>1</td>
                                 <td>28/02/2023</td>
                                 <td>
@@ -603,6 +620,7 @@
                                             <p class="fw-bold">Số điện thoại: <span id="phoneCus">0812295775</span> </p>
                                             <p class="fw-bold">Email: <span id="emailCus">qle29210@gmail.com</span></p>
                                             <p class="fw-bold">Địa chỉ: <span id="addressCus">230A Tô Ngọc Vân</span> </p>
+                                            <p class="fw-bold">Mã hóa đơn: <span id="idInvoice">1</span> </p>
                                             <p class="fw-bold">Phí vận chuyển: ₫<span id="transFee">0</span> </p>
                                             <p class="fw-bold">Phương thức thanh toán: <span id="payMethod">Thanh toán khi nhận hàng</span> </p>
                                             <table  class="table table-bordered">
@@ -656,12 +674,14 @@
                         <table class="mb-3">
                             <thead>
                             <tr>
+                                <td>STT</td>
                                 <td>ID</td>
                                 <td>TÊN</td>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
+                                <td>1</td>
                                 <td>1</td>
                                 <td >Ghế trang trí</td>
                                 <td>
@@ -750,23 +770,25 @@
                         <table class="mb-3">
                             <thead>
                                 <tr>
+                                    <td class="w40">STT</td>
                                     <td class="w40">ID</td>
                                     <td>TÊN NCC</td>
                                     <td class="w225">ĐỊA CHỈ</td>
                                     <td>SỐ ĐIỆN THOẠI</td>
                                     <td>EMAIL</td>
-                                    <td>PHÂN PHỐI CHO</td>
+                                    <td>PHÂN PHỐI</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
+                                    <td class="w40">1</td>
                                     <td class="w40">1</td>
                                     <td>SimpleHome</td>
                                     <td class="w225">280 Lương Định Của, Q.2, TP.HCM</td>
                                     <td>0123456789</td>
                                     <td>simplehome@gmail.com</td>
                                     <td>Ghế văn phòng</td>
-                                    <td>
+                                    <td class="w110">
                                         <div class="d-flex w-100 justify-content-center">
                                             <button class="delete btnAdd bgcolor bd-full me-1" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="" ></i></button>
                                             <button class="editAccount btnAdd bgcolor bd-full "><i class="fa fa-pencil text-color" title="Chỉnh sửa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editSup"></i></button>

@@ -355,6 +355,37 @@ public class DAOProduct {
         }
         return re;
     }
+    public static ArrayList<Product> listAllProduct() {
+        ArrayList<Product> re = new ArrayList<>();
+        Connection connection = JDBCUtil.getConnection();
+        try {
+            String sql = "select p.id,p.idCate, p.name, p.price, p.priceImport, p.quantity, p.color, p.material, p.description, p.height, p.width, p.length, p.status " +
+                    "from products as p ";
+            PreparedStatement pr = connection.prepareStatement(sql);
+            ResultSet resultSet = pr.executeQuery();
+            while(resultSet.next()) {
+                int idProduct = resultSet.getInt("id");
+                int idCate = resultSet.getInt("idCate");
+                String name = resultSet.getString("name");
+                double priceImport = resultSet.getDouble("priceImport");
+                double price = resultSet.getDouble("price");
+                String description = resultSet.getString("description");
+                String color = resultSet.getString("color");
+                String material = resultSet.getString("material");
+                double width = resultSet.getDouble("width");
+                double height = resultSet.getDouble("height");
+                double lenght = resultSet.getDouble("length");
+                int quantity = resultSet.getInt("quantity");
+                boolean status = resultSet.getBoolean("status");
+                Product product = new Product(idProduct, idCate, name, priceImport, price,description,color,material,width,height,lenght,1,quantity, status);
+                re.add(product);
+            }
+            JDBCUtil.closeConnection(connection);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return re;
+    }
     public static void main(String[] args) {
    System.out.println(latestProduct());
     }
