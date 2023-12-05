@@ -188,7 +188,6 @@ public class Account {
     public void setVerifyAccount(VerifyAccount verifyAccount) {
         this.verifyAccount = verifyAccount;
     }
-
     @Override
     public String toString() {
         return "Account{" +

@@ -288,7 +288,8 @@ public class DAOAccount {
                 String address = resultSet.getString("address");
                 String addressReceive = resultSet.getString("addressReceive");
                 int role = resultSet.getInt("role");
-                boolean status = resultSet.getBoolean("status");
+                int statusFromDB = resultSet.getInt("status");
+                boolean status = (statusFromDB == 1);
                 re = new Account(id, name,userName, password, email, phoneNumber, gender, birthDay, address, addressReceive, role, status);
             }
             JDBCUtil.closeConnection(connection);
