@@ -268,7 +268,7 @@ public class DAOAccount {
             // Tạo kết nối đến database
             Connection connection = JDBCUtil.getConnection();
             // Tạo đối tượng statement
-            String sql = "select a.id,a.name, a.userName, a.password, a.gender, a.phoneNumber, a.birthDay, a.address, a.addressReceive, a.email, a.role, a.status " +
+            String sql = "select a.id, a.userName, a.password, a.name, a.gender, a.phoneNumber, a.birthDay, a.address, a.addressReceive, a.email, a.role, a.status " +
                     "from accounts as a " +
                     "where a.userName =? and a.password =?";
             PreparedStatement pr = connection.prepareStatement(sql);
@@ -289,7 +289,7 @@ public class DAOAccount {
                 String addressReceive = resultSet.getString("addressReceive");
                 int role = resultSet.getInt("role");
                 boolean status = resultSet.getBoolean("status");
-                re = new Account(id, name,usName, pw, email, phoneNumber, gender, birthDay, address, addressReceive, role, status);
+                re = new Account(id, name,userName, password, email, phoneNumber, gender, birthDay, address, addressReceive, role, status);
             }
             JDBCUtil.closeConnection(connection);
         } catch (Exception e) {

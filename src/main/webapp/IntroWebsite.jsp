@@ -28,6 +28,10 @@
     <link rel="stylesheet" href="css/Style.css">
 </head>
 <body>
+<%
+    String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+            + request.getContextPath();
+%>
 <!--header-->
 <header>
     <jsp:include page="Header.jsp"></jsp:include>
@@ -35,7 +39,8 @@
 <!--end header-->
 <!--page content-->
 <div class="container mgt">
-    <div id="para">
+    <a href="<%=url%>/homePage" class="color-gray lbhv text-decoration-none">Trang chủ  <i class="fa fa-angle-right color-gray" aria-hidden="true"></i>  </a> <span class="text-color">Giới thiệu</span>
+    <div class="mt-3" id="para">
         <div id="Part2">
             <h5> GIỚI THIỆU </h5>
             <p> HomeDecor là trang thương mại chuyên cung cấp các sản phẩm nội thất chủ yếu là ghế, phục vụ nhu cầu của

@@ -50,6 +50,16 @@
           <artifactId>javax.mail</artifactId>
           <version>1.6.2</version> <!-- (hoặc phiên bản mới nhất) -->
       </dependency>
+      <dependency>
+          <groupId>org.json</groupId>
+          <artifactId>json</artifactId>
+          <version>20210307</version> <!-- Hoặc sử dụng phiên bản mới nhất -->
+      </dependency>
+      <dependency>
+          <groupId>com.google.code.gson</groupId>
+          <artifactId>gson</artifactId>
+          <version>2.10.1</version>
+      </dependency>
   </dependencies>
   <build>
     <finalName>DoanLTWNhom60</finalName>

@@ -114,7 +114,7 @@
                             </div>
                             <div class="col-lg-2  d-lg-block d-md-none d-none ">
                                 <ul class="navbar-nav justify-content-end">
-                                    <li class="nav-item hv pe-2"><a class="nav-link" href="#"><button class = "position-relative border-0 bg-light "><i class="fa fa-shopping-cart" aria-hidden="true" style="font-size: 25px"></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">99+<span class="visually-hidden">unread messages</span></span>
+                                    <li class="nav-item hv pe-2"><a class="nav-link" href="<%=url%>/Cart.jsp"><button class = "position-relative border-0 bg-light "><i class="fa fa-shopping-cart" aria-hidden="true" style="font-size: 25px"></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">99+<span class="visually-hidden">unread messages</span></span>
                                     </button> </a> </li>
                                     <%
                                         if (obj == null) {

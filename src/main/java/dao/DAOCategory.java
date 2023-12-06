@@ -32,4 +32,22 @@ public class DAOCategory {
         }
         return list;
     }
+    public static Category getCategoryById(int id) {
+        Category category = null;
+        Connection connection = JDBCUtil.getConnection();
+        String sql = "Select id, name from categories where id =?";
+        try {
+            PreparedStatement pr = connection.prepareStatement(sql);
+            pr.setInt(1, id);
+            ResultSet resultSet = pr.executeQuery();
+            while (resultSet.next()) {
+                int idCate = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                category = new Category(id, name);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return category;
+    }
 }
