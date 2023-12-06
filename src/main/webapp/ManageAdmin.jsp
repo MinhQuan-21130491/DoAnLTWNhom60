@@ -1,3 +1,6 @@
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="model.Product" %>
+<%@ page import="java.text.NumberFormat" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -26,17 +29,26 @@
     <link rel="stylesheet" href="slider/owlcarousel//assets/owl.theme.default.min.css">
     <script src="https://code.jquery.com/jquery-3.7.1.js"
             integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-    <script src="jquery.min.js"></script>
-    <script src="slider/owlcarousel/owl.carousel.min.js"></script>    <link rel="stylesheet" href="css/Style.css">
+<%--    <script src="jquery.min.js"></script>--%>
+    <link rel="stylesheet" href="css/Style.css">
     <link rel="stylesheet" href="css/Manage.css">
 </head>
 <body>
+<%
+    String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+    NumberFormat nF = NumberFormat.getCurrencyInstance();
+
+%>
+<%--header--%>
 <header>
     <jsp:include page="Header.jsp"></jsp:include>
 </header>
-<div class="container-fluid mgt">
-    <div class="container ">
-        <div class="row">
+<%--end header--%>
+<%--content--%>
+<div class="container p-0 mgt">
+        <a href="<%=url%>/homePage" class="color-gray lbhv text-decoration-none">Trang chủ  <i class="fa fa-angle-right color-gray" aria-hidden="true"></i>  </a> <span class="color-gray" id ="sp">Quản lý</span>
+        <span class="text-color" id ="typeMa"><i class="fa fa-angle-right color-gray" aria-hidden="true"></i> Quản lý tài khoản</span>
+        <div class="row mt-3">
             <!--menu-left-->
             <div class="col-lg-3 p-0 mb-2 pe-2">
                 <div class="list-group  ">
@@ -64,32 +76,36 @@
                     <div class="col-lg-6">
                         <h5 >Quản lý tài khoản</h5>
                     </div>
+                    <div class="col-lg-6 text-end">
+                        <button class="btnAdd bgcolor bd-full" id ="btnAddAccount"><i class="fa fa-plus-circle text-color" aria-hidden="true" title="Thêm sản phẩm" data-bs-toggle="modal" data-bs-target="#addProduct"></i></button>
+                    </div>
                 </div>
-                <hr>
-                <div class="row">
+                <div class="row mt-3">
                     <div class="col-lg-12 overflow-auto">
-                        <table>
+                        <table class="mb-3">
                             <thead>
                                 <tr>
-                                    <td>ID</td>
-                                    <td>CHỨC VỤ</td>
+                                    <td class="w40">STT</td>
+                                    <td>HỌ TÊN</td>
                                     <td>EMAIL</td>
+                                    <td>CHỨC VỤ</td>
                                     <td>XÁC THỰC</td>
                                     <td>TRẠNG THÁI</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr data-bs-toggle="modal" data-bs-target="#detailAccount">
-                                    <td>1</td>
-                                    <td>Admin</td>
+                                    <td class="w40">1</td>
+                                    <td>minhquanpro</td>
                                     <td>qle29202@gmail.com</td>
+                                    <td>Admin</td>
                                     <td >1</td>
                                     <td class = "status"></td>
                                     <td>
                                         <div class="d-flex w-100 justify-content-center">
-                                            <button class="delete btnAdd bgcolor bd-full" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#"></i></button>
-                                            <button class="block btnAdd bgcolor bd-full mx-1" ><i class="fa fa-lock text-color" title="Khóa" aria-hidden="true"></i></button>
-                                            <button class="editAccount btnAdd bgcolor bd-full me-1"><i class="fa fa-pencil text-color" title="Chỉnh sửa quyền truy cập" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editAccount"></i></button>
+                                            <button class="delete btnAdd bgcolor bd-full" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#"><i class="fa fa-trash-o text-color"  title="Xóa" ></i></button>
+                                            <button class="block btnAdd bgcolor bd-full mx-1" data-bs-toggle="modal" data-bs-target="#"><i class="fa fa-lock text-color" title="Khóa" aria-hidden="true" ></i></button>
+                                            <button class="editAccount btnAdd bgcolor bd-full me-1" title="Chỉnh sửa quyền truy cập" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editAccount"><i class="fa fa-pencil text-color" ></i></button>
                                         </div>
                                     </td>
                                 </tr>
@@ -136,6 +152,10 @@
                                     <hr>
                                     <div class="col-md-12">
                                         <div class="mb-3">
+                                            <label class="form-label"> Mã khách hàng </label>
+                                            <input type="text" class="form-control" id="idAccountDetail" name="nameAccountDetail" readonly>
+                                        </div>
+                                        <div class="mb-3">
                                             <label class="form-label"> Tên khách hàng </label>
                                             <input type="text" class="form-control" id="nameAccountDetail" name="nameAccountDetail" readonly>
                                         </div>
@@ -177,43 +197,62 @@
                         <button class="btnAdd bgcolor bd-full" id ="btnAddProduct"><i class="fa fa-plus-circle text-color" aria-hidden="true" title="Thêm sản phẩm" data-bs-toggle="modal" data-bs-target="#addProduct"></i></button>
                     </div>
                 </div>
-                <hr>
-                <div class="row">
+                <div class="row mt-3">
                     <div class="col-lg-12 overflow-auto mheight" >
-                        <table>
+                        <%
+                            String res = (String) request.getAttribute("res");
+                            res = (res == null) ? "" : res;
+                            ArrayList<Product> listAllProduct = (ArrayList<Product>) request.getAttribute("listAllProduct");
+                            int sttP = 1;
+                        %>
+                        <input type="hidden" id="res"></input>
+                        <table class="mb-3">
                             <thead>
                                 <tr>
-                                    <td>ID</td>
-                                    <td>SẢN PHẨM</td>
-                                    <td>GIÁ NHẬP</td>
+                                    <td class="w40">STT</td>
+                                    <td class="w260">SẢN PHẨM</td>
                                     <td>GIÁ BÁN</td>
                                     <td>MÀU SẮC</td>
                                     <td>SỐ LƯỢNG</td>
+                                    <td>TRẠNG THÁI</td>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr  data-bs-toggle ="modal" data-bs-target="#detailProduct">
-                                <td>1</td>
-                                <td>
-                                    <div class="item">
+                            <% if (listAllProduct != null && !listAllProduct.isEmpty()) {
+                                for (Product p: listAllProduct) {%>
+                                <tr id="detailProductRow" data-bs-toggle ="modal" data-bs-target="#detailProduct" onclick="detailProduct('<%=p.getIdProduct()%>')">
+                                    <input type="hidden" class ="idProduct" value="<%=p.getIdProduct()%>">
+                                <td class="w40"><%=sttP%></td>
+                                <td class="w260">
+                                    <div class="item d-flex justify-content-center">
                                         <div class="item_img">
-                                            <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
+                                            <img src="<%=url%>/Products/<%=p.getImages().get(0).getUrl()%>"
                                                  class="card-img-top img_p_cart" alt="..."/>
                                         </div>
-                                        <span class="item_text">Ghế massage siêu cấp prO</span>
+                                        <span class="item_text"><%=p.getName()%></span>
                                     </div>
                                 </td>
-                                <td>₫<span>1.000.000</span></td>
-                                <td>₫<span>1.200.000</span></td>
-                                <td>Màu đen</td>
-                                <td>50</td>
+                                <td><%=nF.format(p.getPrice())%></td>
+                                <td><%=p.getColor()%></td>
+                                <td><%=p.getQuantityAvailable()%></td>
+                                    <%if (p.isStatus()) {%>
+                                    <td>Đang bán</td>
+                                    <%} else {%>
+                                    <td>Ngưng bán</td>
+                                    <%}%>
                                 <td>
                                     <div class="d-flex justify-content-center">
-                                        <button class="delete btnAdd bgcolor bd-full" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="" ></i></button>
-                                        <button class="editProduct btnAdd bgcolor bd-full mx-1"><i class="fa fa-pencil text-color" title="Chỉnh sửa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editProduct"></i></button>
+                                        <button class="delete btnAdd bgcolor bd-full" title="Xóa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="" ><i class="fa fa-trash-o text-color"></i></button>
+                                        <button class="editProduct btnAdd bgcolor bd-full mx-1" title="Chỉnh sửa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editProduct"><i class="fa fa-pencil text-color" ></i></button>
+                                        <button class="hideProduct btnAdd bgcolor bd-full" title="Ẩn/hiện sản phẩm" aria-hidden="true" data-bs-toggle="modal" data-bs-target=""><i class="fa fa-lock text-color"></i></button>
                                     </div>
                                 </td>
                             </tr>
+                            <%
+                                        sttP++;
+                                    }
+                                }
+                            %>
                             </tbody>
                         </table>
                     </div>
@@ -305,10 +344,9 @@
                 <div class="modal fade" id="detailProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content ">
-                            <div class="modal-body">
+                            <div class="modal-body" id="detail">
                                 <div class="container">
                                     <div class="row ">
-                                        <span class="d-none" id ="detail"></span>
                                         <div class=" text-end">
                                             <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
@@ -320,37 +358,18 @@
                                                     <img src="https://anphat.com.vn/media/product/40998_sihoo_m18_black_grey__2_.JPG" alt=""
                                                          class="img_p2" id="img_center">
                                                 </div>
-                                                <div class="col-md-12 mt-3">
-                                                    <div class="owl-carousel">
-                                                        <div class="pe-2" ><img src="https://i.pinimg.com/236x/28/02/b8/2802b872a06a99b8576dff4af0403723.jpg?fbclid=IwAR0AGtm9P18DGDrpzcnKZFmbaepyaS7_yzOTHX5jfolMiJD8VgEJ5K1HqEI"
-                                                                                alt=""
-                                                                                class="img_p_detail"
-                                                                                onmouseover="changeImg('https://i.pinimg.com/236x/28/02/b8/2802b872a06a99b8576dff4af0403723.jpg?fbclid=IwAR0AGtm9P18DGDrpzcnKZFmbaepyaS7_yzOTHX5jfolMiJD8VgEJ5K1HqEI')">
-                                                        </div>
-                                                        <div class="pe-2" >
-                                                            <img src="https://i.pinimg.com/236x/bb/be/90/bbbe9068896348d6ab9a7fffd06f5828.jpg?fbclid=IwAR3a0JkYfqdqHb6Angr_5owVHkV3RiKK7mdswjIv_t5ro2TUrUolQByhbGk"
-                                                                 alt=""
-                                                                 class="img_p_detail"
-                                                                 onmouseover="changeImg('https://i.pinimg.com/236x/bb/be/90/bbbe9068896348d6ab9a7fffd06f5828.jpg?fbclid=IwAR3a0JkYfqdqHb6Angr_5owVHkV3RiKK7mdswjIv_t5ro2TUrUolQByhbGk')">
-                                                        </div >
-                                                        <div class="pe-2">
-                                                            <img src="https://i.pinimg.com/564x/c0/8d/43/c08d432a2d040829cae57cd31c7726a7.jpg?fbclid=IwAR2V0qO9Z2t9BG7hpYX-2EGnkPdlg74cOd5qU55H7SxONL-BNLEpvqSmLck"
-                                                                 alt=""
-                                                                 class="img_p_detail"
-                                                                 onmouseover="changeImg('https://i.pinimg.com/564x/c0/8d/43/c08d432a2d040829cae57cd31c7726a7.jpg?fbclid=IwAR2V0qO9Z2t9BG7hpYX-2EGnkPdlg74cOd5qU55H7SxONL-BNLEpvqSmLck')">
-                                                        </div>
-                                                        <div class="pe-2">
-                                                            <img src="https://i.pinimg.com/564x/c0/8d/43/c08d432a2d040829cae57cd31c7726a7.jpg?fbclid=IwAR2V0qO9Z2t9BG7hpYX-2EGnkPdlg74cOd5qU55H7SxONL-BNLEpvqSmLck"
-                                                                 alt=""
-                                                                 class="img_p_detail"
-                                                                 onmouseover="changeImg('https://i.pinimg.com/564x/c0/8d/43/c08d432a2d040829cae57cd31c7726a7.jpg?fbclid=IwAR2V0qO9Z2t9BG7hpYX-2EGnkPdlg74cOd5qU55H7SxONL-BNLEpvqSmLck')">
-                                                        </div>
+                                                <div class="col-md-12 mt-3 imgdetail" >
+                                                    <div class="owl-carousel" id ="owl">
+
                                                     </div>
                                                 </div>
                                             </div>
                                             </div>
-
                                         <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Mã sản phẩm</label>
+                                                <input type="text" class="form-control" id="idProductdetail" name="nameProductdetail" readonly>
+                                            </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Tên sản phẩm</label>
                                                 <input type="text" class="form-control" id="nameProductdetail" name="nameProductdetail" readonly>
@@ -392,7 +411,7 @@
                                                 </div>
                                                 <div class="col-md-4 col-4 mb-3">
                                                     <label class="form-label">Số lượng</label>
-                                                    <input type="number" class="form-control" id="amountdetail" name="amountdetail"readonly>
+                                                    <input type="number" class="form-control" id="quantitydetail" name="amountdetail"readonly>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Mô tả</label>
@@ -403,7 +422,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -412,7 +430,7 @@
                     <div class="modal-dialog modal-md">
                         <div class="modal-content ">
                             <div class="modal-body">
-                                <form  action="" method="post" id="add-product" onsubmit="return addProduct()">
+                                <form  action="addProduct" method="post" id="add-product" enctype="multipart/form-data" onsubmit="return addProduct()">
                                     <div class="row px-2">
                                         <div class=" text-end">
                                             <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
@@ -426,11 +444,11 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Giá nhập (₫)</label><span id="errImpPriceAdd"  class="text-danger"></span>
-                                                <input type="text" class="form-control" id="priceImpProductAdd" name="priceProduct">
+                                                <input type="text" class="form-control" id="priceImpProductAdd" name="priceImpProductAdd">
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Giá bán (₫)</label><span id="errPriceAdd"  class="text-danger"></span>
-                                                <input type="text" class="form-control" id="priceProductAdd" name="delivery">
+                                                <input type="text" class="form-control" id="priceProductAdd" name="priceProductAdd">
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Thể loại</label>
@@ -466,7 +484,7 @@
                                                 </div>
                                                 <div class="col-md-4 col-4 mb-3">
                                                     <label class="form-label">Số lượng</label>
-                                                    <input type="number" class="form-control" id="amount" name="amount">
+                                                    <input type="number" class="form-control" id="quantity" name="quantity">
                                                 </div>
                                             </div>
                                             <div class="mb-3">
@@ -505,14 +523,14 @@
                         <h5 >Quản lý bán hàng</h5>
                     </div>
                 </div>
-                <hr>
-                <div class="row">
+                <div class="row mt-3">
                     <div class="col-lg-12 overflow-auto mheight">
-                        <table >
+                        <table class="mb-3">
                             <thead>
                                 <tr>
-                                    <td>ID</td>
-                                    <td>SẢN PHẨM</td>
+                                    <td class="w40">STT</td>
+                                    <td class="w40">ID</td>
+                                    <td class="w260">SẢN PHẨM</td>
                                     <td>ĐƠN GIÁ</td>
                                     <td>MÀU SẮC</td>
                                     <td>KÍCH THƯỚC</td>
@@ -522,9 +540,10 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>1</td>
-                                    <td>
-                                        <div class="item">
+                                    <td class="w40">1</td>
+                                    <td class="w40">1</td>
+                                    <td class="w260">
+                                        <div class="item d-flex justify-content-center">
                                             <div class="item_img">
                                                 <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
                                                      class="card-img-top img_p_cart" alt="..."/>
@@ -552,14 +571,13 @@
                         <h5 >Quản lý hóa đơn</h5>
                     </div>
                     <div class="col-lg-8 pt-4"><label for = "filterInvoice" >Ngày xuất hóa đơn:</label> <input type="date" id="filterInvoice"><button class ="bd-full bgcolor-orange ms-2 rounded-1" id ="btnFilter">Lọc</button></div>
-
                 </div>
-                <hr class = "mt-1">
-                <div class="row">
+                <div class="row mt-3">
                     <div class="col-lg-12 overflow-auto">
-                        <table >
+                        <table class="mb-3" >
                             <thead>
                                 <tr>
+                                    <td class="w40">STT</td>
                                     <td>ID</td>
                                     <td>MÃ KHÁCH HÀNG</td>
                                     <td>NGÀY XUẤT</td>
@@ -567,7 +585,8 @@
                             </thead>
                             <tbody>
                                 <tr data-bs-toggle="modal" data-bs-target="#detailInvoice">
-                                <td>2</td>
+                                <td class="w40">2</td>
+                                <td>1</td>
                                 <td>1</td>
                                 <td>28/02/2023</td>
                                 <td>
@@ -594,6 +613,7 @@
                                             <p class="fw-bold">Số điện thoại: <span id="phoneCus">0812295775</span> </p>
                                             <p class="fw-bold">Email: <span id="emailCus">qle29210@gmail.com</span></p>
                                             <p class="fw-bold">Địa chỉ: <span id="addressCus">230A Tô Ngọc Vân</span> </p>
+                                            <p class="fw-bold">Mã hóa đơn: <span id="idInvoice">1</span> </p>
                                             <p class="fw-bold">Phí vận chuyển: ₫<span id="transFee">0</span> </p>
                                             <p class="fw-bold">Phương thức thanh toán: <span id="payMethod">Thanh toán khi nhận hàng</span> </p>
                                             <table  class="table table-bordered">
@@ -642,18 +662,19 @@
                         <button class="btnAdd bgcolor bd-full" id ="btnAddCate"><i class="fa fa-plus-circle text-color" aria-hidden="true" title="Thêm danh mục" data-bs-toggle="modal" data-bs-target="#addCate"></i></button>
                     </div>
                 </div>
-                <hr>
-                <div class="row">
+                <div class="row mt-3">
                     <div class="col-lg-12 overflow-auto mheight">
-                        <table>
+                        <table class="mb-3">
                             <thead>
                             <tr>
+                                <td>STT</td>
                                 <td>ID</td>
                                 <td>TÊN</td>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
+                                <td>1</td>
                                 <td>1</td>
                                 <td >Ghế trang trí</td>
                                 <td>
@@ -724,7 +745,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
             <!--end giao diện quản lý danh mục -->
             <!--giao diện quản lý nhà cung cấp-->
@@ -737,29 +757,30 @@
                         <button class="btnAdd bgcolor bd-full" id ="btnAddSupplier"><i class="fa fa-plus-circle text-color" aria-hidden="true" title="Thêm sản phẩm" data-bs-toggle="modal" data-bs-target="#addSup"></i></button>
                     </div>
                 </div>
-                <hr>
-                <div class="row">
+                <div class="row mt-3">
                     <div class="col-lg-12 overflow-auto mheight">
-                        <table>
+                        <table class="mb-3">
                             <thead>
                                 <tr>
-                                    <td>ID</td>
+                                    <td class="w40">STT</td>
+                                    <td class="w40">ID</td>
                                     <td>TÊN NCC</td>
-                                    <td>ĐỊA CHỈ</td>
+                                    <td class="w225">ĐỊA CHỈ</td>
                                     <td>SỐ ĐIỆN THOẠI</td>
                                     <td>EMAIL</td>
-                                    <td>PHÂN PHỐI CHO</td>
+                                    <td>PHÂN PHỐI</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>1</td>
+                                    <td class="w40">1</td>
+                                    <td class="w40">1</td>
                                     <td>SimpleHome</td>
-                                    <td>280 Lương Định Của, Q.2, TP.HCM</td>
+                                    <td class="w225">280 Lương Định Của, Q.2, TP.HCM</td>
                                     <td>0123456789</td>
                                     <td>simplehome@gmail.com</td>
                                     <td>Ghế văn phòng</td>
-                                    <td>
+                                    <td class="w110">
                                         <div class="d-flex w-100 justify-content-center">
                                             <button class="delete btnAdd bgcolor bd-full me-1" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="" ></i></button>
                                             <button class="editAccount btnAdd bgcolor bd-full "><i class="fa fa-pencil text-color" title="Chỉnh sửa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editSup"></i></button>
@@ -882,8 +903,8 @@
             </div>
             <!--end giao diện quản lý nhà cung cấp -->
         </div>
-    </div>
 </div>
+<%--end content--%>
 <!--footer-->
 <footer>
     <jsp:include page="Footer.jsp"></jsp:include>
@@ -892,11 +913,6 @@
 </body>
 <script>
     $(document).ready(function () {
-        //load header
-        // $('header').load('Header.jsp')
-        //load footer
-        // $('footer').load('Footer.jsp')
-        // ẩn hiển danh mục quản lý
         $('#cate').click(function () {
             var typeManage = $('#typeManage');
             if (typeManage.css("display") === "none") {
@@ -919,16 +935,16 @@
             $(this).closest('tr').remove();
         })
         //chặn account
-        $('.block').click(function () {
-            var state = $(this).closest('tr').find('.status');
-            if(state.text() == 'Khóa') {
-                state.text(" ");
-                $(this).html("<i class=\"fa fa-lock text-color\" aria-hidden=\"true\"></i>");
-            }else {
-                state.text("Khóa")
-                $(this).html("<i class=\"fa fa-unlock-alt text-color\" aria-hidden=\"true\"></i>");
-            }
-        })
+        // $('.block').click(function () {
+        //     var state = $(this).closest('tr').find('.status');
+        //     if(state.text() == 'Khóa') {
+        //         state.text(" ");
+        //         $(this).html("<i class=\"fa fa-lock text-color\" aria-hidden=\"true\" ></i>");
+        //     }else {
+        //         state.text("Khóa")
+        //         $(this).html("<i class=\"fa fa-unlock-alt text-color\" aria-hidden=\"true\"></i>");
+        //     }
+        // })
         $('.img_p_detail').each(function () {
             $(this).hover(function () {
                 $('#img_center').attr('src', $(this).attr('src'));
@@ -939,6 +955,7 @@
             var selectedType = $(this).text();
             $('#typeManage a').css('color', '')
             $(this).css('color', '#f68e2e');
+            $('#typeMa').html('<i class="fa fa-angle-right color-gray" aria-hidden="true"></i> ' + selectedType)
             if (selectedType === "Quản lý tài khoản") {
                 $('#mngAccount').removeClass('d-none');
                 $('#mngProduct').addClass('d-none');
@@ -1000,7 +1017,7 @@
         var height = document.getElementById("height");
         var material = document.getElementById("material");
         var color = document.getElementById("color");
-        var amount = document.getElementById("amount");
+        var quantity = document.getElementById("quantity");
         var priceReg = /^\d+$/;
 
         var errNameP = document.getElementById("errNameP");
@@ -1085,17 +1102,16 @@
         } else {
             color.style.borderColor = '#dee2e6';
         }
-        //amount
-        if (amount.value === "") {
-            amount.style.borderColor = 'red';
+        //quantity
+        if (quantity.value === "") {
+            quantity.style.borderColor = 'red';
             flag = false;
         } else {
-            amount.style.borderColor = '#dee2e6';
+            quantity.style.borderColor = '#dee2e6';
         }
         console.log(flag)
         return flag;
     }
-
     function editProduct() {
         var flag = true;
         var nameP = document.getElementById("nameProductEdit");
@@ -1203,7 +1219,6 @@
         console.log(flag)
         return flag;
     }
-
     function editSup() {
         var name = document.getElementById("nameSupEdit");
         var address = document.getElementById("addressSupEdit");
@@ -1252,8 +1267,11 @@
         }
 
         return flag;
-
-
+    }
+    window.onload = function () {
+        if ($('#res').text() !== "") {
+            alert($('#res').text());
+        }
     }
     function addSup() {
         var name = document.getElementById("nameSupAdd");
@@ -1301,12 +1319,8 @@
         } else {
             errEmailSup.innerHTML = ''
         }
-
         return flag;
-
-
     }
-
     function addCate() {
         var flag = true;
         var name = document.getElementById("nameCateAdd");
@@ -1336,5 +1350,63 @@
         newInput.innerHTML = '<input type="file" class="form-control" name="image"">';
         container.appendChild(newInput);
     }
+    // Sử dụng hàm này để tải chi tiết sản phẩm bằng AJAX
+    function loadProductDetails(productId) {
+        $.ajax({
+            type: "GET",
+            url: "loadDetailProduct",
+            data: {
+                idProduct: productId
+            },
+            success: function (data) {
+                // Cập nhật nội dung modal với dữ liệu JSON nhận được
+                updateModalContent(data);
+            },
+            error: function () {
+                console.error("Không thể tải chi tiết sản phẩm");
+            }
+        });
+    }
+
+    // Sử dụng hàm này để cập nhật nội dung modal
+    function updateModalContent(data) {
+        var p = data.product;
+        //Cập nhật các phần tử HTML với chi tiết sản phẩm
+        $("#idProductdetail").val(p.idProduct);
+        $("#nameProductdetail").val(p.name);
+        $("#priceImpProductdetail").val(p.priceImport);
+        $("#priceProductDetail").val(p.price);
+        $("#lengthdetail").val(p.length);
+        $("#widthdetail").val(p.width);
+        $("#heightdetail").val(p.height);
+        $("#materialdetail").val(p.material);
+        $("#cateTypedetail").val(p.typeCate)
+        $("#colordetail").val(p.color);
+        $("#quantitydetail").val(p.quantityAvailable);
+        $("#desdetail").val(p.description);
+        // cập nhật ảnh chính
+        $('#img_center').attr('src',p.imageCenter);
+        $('.owl-carousel').owlCarousel('destroy'); // Khởi tạo lại Owl Carousel
+        // Cập nhật carousel ảnh chi tiết
+        $(".owl-carousel").empty();
+        for (var img of p.imageDetail) {
+            $(".owl-carousel").append(`<div class="pe-2"><img src="Products/${img.url}" alt="" class="img_p_detail" onmouseover="changeImg('Products/${img.url}')"></div>`);
+        }
+        $('.owl-carousel').owlCarousel()
+        $('.owl-carousel').removeClass("owl-hidden");
+    }
+
+    // Ví dụ: Gọi hàm này khi một dòng sản phẩm được nhấp vào
+    function detailProduct(productId) {
+        // Tải chi tiết sản phẩm bằng AJAX
+        loadProductDetails(productId);
+    };
+    function changeImg(newSrc) {
+        var img_center = document.getElementById('img_center');
+        if (img_center) {
+            img_center.src = newSrc;
+        }
+    }
 </script>
+<script src="slider/owlcarousel/owl.carousel.min.js"></script>
 </html>

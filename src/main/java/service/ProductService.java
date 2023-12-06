@@ -93,6 +93,21 @@ public class ProductService {
         }
         return listProduct;
     }
+    public int insertProduct(Product p) {
+        return DAOProduct.insertProduct(p);
+    }
+    public int insertImageProduct(int id, String url) {
+        return DAOProduct.insertImageProduct(id, url);
+    }
+    public ArrayList<Product> listAllProduct() {
+        ArrayList<Product> listProduct = DAOProduct.listAllProduct();
+        ArrayList<Image> listImageOfProduct = null;
+        for(Product p:listProduct) {
+            listImageOfProduct = DAOProduct.listImageOfProduct(p);
+            p.setImages(listImageOfProduct);
+        }
+        return listProduct;
+    }
     public static void main(String[] args) {
 //        System.out.println(ProductService.getInstance().listSixProduct(0));
     }

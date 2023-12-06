@@ -2,7 +2,9 @@ package dao;
 
 import model.Account;
 import model.VerifyAccount;
+import util.Encrypt;
 import util.JDBCUtil;
+
 import java.sql.Date;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -42,6 +44,39 @@ public class DAOAccount {
             }
             JDBCUtil.closeConnection(connection);
         } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return re;
+    }
+
+    public static Account selectById(Account account) {
+        Account re = null;
+        try {
+            // Tạo kết nối đến database
+            Connection connection = JDBCUtil.getConnection();
+            // Tạo đối tượng statement
+            String sql = "select a.id,a.name, a.userName, a.password, a.gender, a.phoneNumber, a.birthDay, a.address, a.addressReceive, a.email " +
+                    "from accounts as a " +
+                    "where a.userName =? ";
+            PreparedStatement pr = connection.prepareStatement(sql);
+            pr.setString(1, account.getUserName());
+            // Thực thi câu lệnh sql
+            ResultSet resultSet = pr.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                String userName = resultSet.getString("userName");
+                String password = resultSet.getString("password");
+                String gender = resultSet.getString("gender");
+                String phoneNumber = resultSet.getString("phoneNumber");
+                String email = resultSet.getString("email");
+                Date birthDay = resultSet.getDate("birthDay");
+                String address = resultSet.getString("address");
+                String addressReceive = resultSet.getString("addressReceive");
+                re = new Account(id, name, userName, password, email, phoneNumber, gender, birthDay, address, addressReceive);
+            }
+            JDBCUtil.closeConnection(connection);
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
         return re;
@@ -166,17 +201,18 @@ public class DAOAccount {
         return account;
     }
 
+
     public static VerifyAccount selectVerifyAccountByIdAccount(int idAccount) {
         VerifyAccount verifyAccount = null;
         Connection connection = JDBCUtil.getConnection();
         String sql = "Select idAccount, verifyCode, timeCode, stateVerify " +
-                     "from verify_account " +
-                     "where idAccount = ?";
+                "from verify_account " +
+                "where idAccount = ?";
         try {
             PreparedStatement pr = connection.prepareStatement(sql);
             pr.setInt(1, idAccount);
             ResultSet resultSet = pr.executeQuery();
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 int id = resultSet.getInt("idAccount");
                 int verifyCode = resultSet.getInt("verifyCode");
                 LocalDateTime timeCode = resultSet.getObject("timeCode", LocalDateTime.class);
@@ -189,10 +225,11 @@ public class DAOAccount {
         JDBCUtil.closeConnection(connection);
         return verifyAccount;
     }
+
     public static int updateVerifyCode(int newCode, int idAccount) {
         int re = 0;
         Connection connection = JDBCUtil.getConnection();
-        String sql ="update verify_account set verifyCode =? where idAccount =?";
+        String sql = "update verify_account set verifyCode =? where idAccount =?";
         try {
             PreparedStatement pr = connection.prepareStatement(sql);
             pr.setInt(1, newCode);
@@ -204,10 +241,11 @@ public class DAOAccount {
         }
         return re;
     }
-    public static int updatePassword( String passEnCrypt, int idAccount) {
+
+    public static int updatePassword(String passEnCrypt, int idAccount) {
         int re = 0;
         Connection connection = JDBCUtil.getConnection();
-        String sql ="update accounts set password =? where id =?";
+        String sql = "update accounts set password =? where id =?";
         try {
             PreparedStatement pr = connection.prepareStatement(sql);
             pr.setString(1, passEnCrypt);
@@ -215,14 +253,90 @@ public class DAOAccount {
             re = pr.executeUpdate();
             JDBCUtil.closeConnection(connection);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+
+            // Thay đổi thông tin khách hàng
+            public static int updateInfor (Account account){
+                int re = 0;
+                Connection connection = JDBCUtil.getConnection();
+                String sql = "UPDATE accounts " +
+                        "SET name=?, phoneNumber=?, email=?, gender=?, birthDay=?, address=?, addressReceive=? " +
+                        "WHERE id=?";
+                try (PreparedStatement pr = connection.prepareStatement(sql)) {
+                    pr.setString(1, account.getName());
+                    pr.setString(2, account.getPhoneNumber());
+                    pr.setString(3, account.getEmail());
+                    pr.setString(4, account.getGender());
+                    pr.setDate(5, account.getBirthDay());
+                    pr.setString(6, account.getAddress());
+                    pr.setString(7, account.getAddressReceive());
+                    pr.setInt(8, account.getId());
+                    re = pr.executeUpdate();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                } finally {
+                    JDBCUtil.closeConnection(connection);
+                }
+                return re;
+            }
+            public static Account getAccount (String userName, String password){
+                Account re = null;
+                try {
+                    // Tạo kết nối đến database
+                    Connection connection = JDBCUtil.getConnection();
+                    // Tạo đối tượng statement
+                    String sql = "select a.id, a.userName, a.password, a.name, a.gender, a.phoneNumber, a.birthDay, a.address, a.addressReceive, a.email, a.role, a.status " +
+                            "from accounts as a " +
+                            "where a.userName =? and a.password =?";
+                    PreparedStatement pr = connection.prepareStatement(sql);
+                    pr.setString(1, userName);
+                    pr.setString(2, password);
+                    // Thực thi câu lệnh sql
+                    ResultSet resultSet = pr.executeQuery();
+                    while (resultSet.next()) {
+                        int id = resultSet.getInt("id");
+                        String name = resultSet.getString("name");
+                        String usName = resultSet.getString("userName");
+                        String pw = resultSet.getString("password");
+                        String gender = resultSet.getString("gender");
+                        String phoneNumber = resultSet.getString("phoneNumber");
+                        String email = resultSet.getString("email");
+                        Date birthDay = resultSet.getDate("birthDay");
+                        String address = resultSet.getString("address");
+                        String addressReceive = resultSet.getString("addressReceive");
+                        int role = resultSet.getInt("role");
+                        boolean status = resultSet.getBoolean("status");
+                        re = new Account(id, name, userName, password, email, phoneNumber, gender, birthDay, address, addressReceive, role, status);
+                    }
+                    JDBCUtil.closeConnection(connection);
+                } catch (Exception e) {
+
+                    throw new RuntimeException(e);
+                }
+                return re;
+            }
+
+
+            public static VerifyAccount getVrfOfAccount ( int idAccount){
+                VerifyAccount verifyAccount = null;
+                Connection connection = JDBCUtil.getConnection();
+                String sql = "Select stateVerify from verify_account where idAccount =?";
+                try {
+                    PreparedStatement pr = connection.prepareStatement(sql);
+                    pr.setInt(1, idAccount);
+                    ResultSet resultSet = pr.executeQuery();
+                    while (resultSet.next()) {
+                        verifyAccount = new VerifyAccount(resultSet.getBoolean("stateVerify"));
+                    }
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                return verifyAccount;
+            }
+
+            public static void main (String[]args){
+                System.out.println(selectVerifyAccountByIdAccount(14));
+            }
+
+
         }
-        return re;
     }
-
-    public static void main(String[] args) {
-    System.out.println(selectVerifyAccountByIdAccount(14));
-    }
-
-
-}

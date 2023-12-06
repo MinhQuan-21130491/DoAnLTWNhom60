@@ -52,18 +52,26 @@
     </div>
 </header>
 <div class="mt-5 sigin">
-    <form id="form-login" action="" onsubmit="return my_submit()">
+    <%
+        String userName = request.getParameter("idFormInput");
+        String password = request.getParameter("idFormPass");
+        userName = (userName == null)? "": userName;
+        password = (password == null)? "": password;
+        String err = (String) request.getAttribute("err");
+        err =(err == null)?"":err;
+    %>
+    <form id="form-login" action="signInAccount" onsubmit="return my_submit()" method="post">
         <div id="imgHinh">
-            <img src="image/logoWeb.png">
+            <img src="image/logo.png">
         </div>
         <div class="thongtin">
             <h5 class="heading">ĐĂNG NHẬP</h5>
             <div class="form-group-p">
-                <div class="text-danger pb-2" id="inputError"></div>
-                <input class="form-input" id="idFormInput" name="idFormInput" type="text" placeholder="Tên đăng nhập">
+                <div class="text-danger pb-2" id="inputError"><%=err%></div>
+                <input class="form-input" id="idFormInput" name="idFormInput" type="text" placeholder="Tên đăng nhập" value ="<%=userName%>">
             </div>
             <div class="form-group-p">
-                <input class="form-pass" id="idFormPass" name="idFormPass" type="password" placeholder="Mật khẩu">
+                <input class="form-pass" id="idFormPass" name="idFormPass" type="password" placeholder="Mật khẩu" value ="<%=password%>">
             </div>
             <div class="form-group-p" id="idFPass">
                 <p id="idMK"><a href="">Quên mật khẩu?</a></p>
@@ -83,6 +91,7 @@
         let inputElement = document.getElementById("idFormInput");
         let passElement = document.getElementById("idFormPass");
         let inputError = document.getElementById("inputError");
+        var specialCharactersAndSpace = /[!@#$%^&*(),.?":{}|<> ]/;
         inputError.textContent = "";
         if (inputElement.value === "" && passElement.value === "") {
             inputError.textContent = "Bạn chưa nhập tên đăng nhập hoặc mật khẩu!";
@@ -90,28 +99,12 @@
         } else if (inputElement.value === "") {
             inputError.textContent = "Bạn chưa nhập tên đăng nhập!";
             flag = false;
+        } else if (specialCharactersAndSpace.test(inputValue.value)) {
+            inputError.textContent = "Tên tài khoản không hợp lệ!";
+            flag = false;
         } else if (passElement.value === "") {
             inputError.textContent = "Bạn chưa nhập mật khẩu!";
             flag = false;
-            //tạo ra sẵn 3 tài khoản cho admin, nhân viên, khách hàng để test chức năng đăng nhập cho từng phân quyền tài khoản
-            /*admin -tài khoản: root
-                    -mật khẩu: 1*/
-            /*nhân viên -tài khoản: nhanvien1
-                    -mật khẩu: 1*/
-            /*khách hàng -tài khoản: khachhang1
-                    -mật khẩu: 1*/
-        } else if ((inputElement.value !== "root" || inputElement.value !== "nhanvien1" || inputElement.value !== "khachhang1") && passElement.value !== "1") {
-            inputError.textContent = "Tài khoản hoặc mật khẩu chưa chính xác!";
-            flag = false;
-        }
-        if (flag) {
-            //giao diện của từng phân quyền
-            var formLogin = document.getElementById("form-login");
-            if (inputElement.value === "root" || inputElement.value === "nhanvien1") {
-                formLogin.action = "homeAdmin.html"
-            } else if (inputElement.value === "khachhang1") {
-                formLogin.action = "homeCustomer.html"
-            }
         }
         return flag;
     }

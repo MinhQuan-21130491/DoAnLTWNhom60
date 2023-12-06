@@ -20,7 +20,6 @@ public class Encrypt {
 		return result;
 	}
 	public static void main(String[] args) {
-		System.out.println(toSHA1("12345678"));
 	}
 
 }

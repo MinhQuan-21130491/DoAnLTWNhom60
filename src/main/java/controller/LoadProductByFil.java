@@ -1,5 +1,6 @@
 package controller;
 
+import model.Cart;
 import model.Product;
 import service.ProductService;
 
@@ -7,9 +8,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import org.json.JSONObject;
+import org.json.JSONArray;
 
 @WebServlet(name = "filterProduct", value = "/filterProduct")
 public class LoadProductByFil extends HttpServlet {
@@ -30,25 +35,35 @@ public class LoadProductByFil extends HttpServlet {
         if(idCateText != null) {
             idCate = Integer.parseInt(idCateText);
         }
-        ArrayList<Product> listProduct = ProductService.getInstance().listProductByFil(command,price, color, material, idCate );
-        PrintWriter out = response.getWriter();
-        for(Product p: listProduct){
-            out.println(" <div class=\"col-lg-4 col-sm-6 mt-3 product\">\n" +
-                    "                            <div class=\"card\">\n" +
-                    "                                <a href=\"detail-product?pid="+p.getIdProduct()+"\">\n" +
-                    "                                    <img src=\""+p.getImages().get(0).getUrl()+"\" class=\"card-img-top img_p\" alt=\"...\">\n" +
-                    "                                </a>\n" +
-                    "                                <div class=\"card-body\">\n" +
-                    "                                    <h5 class=\"card-title\">"+p.getName()+"</h5>\n" +
-                    "                                    <p class=\"card-text\">\n" +
-                    "                                    <p class=\"price\">₫"+p.getPriceFormatted()+"\n" +
-                    "                                    <a href=\"Cart.jsp\"><i class=\"fa fa-shopping-cart cart\" aria-hidden=\"true\" title=\"Thêm vào giỏ hàng\"></i></a>\n" +
-                    "                                    </p>\n" +
-                    "                                </div>\n" +
-                    "                            </div>\n" +
-                    "                        </div>");
-        }
+        HttpSession session = request.getSession();
+        Cart cart = (Cart) session.getAttribute("Cart");        PrintWriter out = response.getWriter();
 
+        String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+        int quantity = 1;
+        ArrayList<Product> listProduct = ProductService.getInstance().listProductByFil(command,price, color, material, idCate );
+        JSONObject jsonResponse = new JSONObject();
+        JSONArray htmlDataArray = new JSONArray();
+        NumberFormat nF = NumberFormat.getCurrencyInstance();
+        for (Product p : listProduct) {
+            if (cart != null) {
+                if (cart.get(p.getIdProduct()) != null) {
+                    quantity = cart.get(p.getIdProduct()).getQuantity() + 1;
+                } else {
+                    quantity = p.getQuantity();
+                }
+            }
+            JSONObject productJSON = new JSONObject();
+            productJSON.put("idProduct", p.getIdProduct());
+            productJSON.put("imageUrl", url +"\\Products\\" +p.getImages().get(0).getUrl());
+            productJSON.put("name", p.getName());
+            productJSON.put("price", nF.format(p.getPrice()));
+            productJSON.put("quantity", quantity);
+            htmlDataArray.put(productJSON);
+        }
+        jsonResponse.put("htmlData", htmlDataArray);
+        jsonResponse.put("productExits", listProduct.size());
+        jsonResponse.put("url", url);
+        out.println(jsonResponse.toString());
     }
 }
 

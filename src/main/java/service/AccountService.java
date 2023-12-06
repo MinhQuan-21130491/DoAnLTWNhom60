@@ -51,15 +51,43 @@ public class AccountService {
         return DAOAccount.selectAccountByEmail(email);
     }
 
+
     public VerifyAccount selectVerifyAccountByIdAccount(int idAccount) {
         return DAOAccount.selectVerifyAccountByIdAccount(idAccount);
+    }
+
+    public VerifyAccount selectVerifyAccountByIdAccount(int idAccount) {
+        return DAOAccount.selectVerifyAccountByIdAccount(idAccount);
+    }
+}
+    public int updateVerifyCode(int newCode, int idAccount) {
+        return DAOAccount.updateVerifyCode(newCode, idAccount);
+
+    }
+
+    public int updateInfor(Account account) {
+        return DAOAccount.updateInfor(account);
+    }
+
+    public Account selectById(Account account) {
+        return DAOAccount.selectById(account);
+    }
+
+    public Account getAccount(String userName, String password) {
+        return DAOAccount.getAccount(userName, password);
+    }
+
+    public VerifyAccount getVrfOfAccount(int idAccount) {
+        return DAOAccount.getVrfOfAccount(idAccount);
     }
 
     public static int updateVerifyCode(int newCode, int idAccount) {
         return DAOAccount.updateVerifyCode(newCode, idAccount);
     }
-    public static int updatePassword( String passEnCrypt, int idAccount) {
-        return DAOAccount.updatePassword(passEnCrypt,idAccount);
+
+    public static int updatePassword(String passEnCrypt, int idAccount) {
+        return DAOAccount.updatePassword(passEnCrypt, idAccount);
     }
 
+}
 }

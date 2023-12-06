@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -23,7 +24,15 @@ public class Verify extends HttpServlet {
         String verifyCodeString = request.getParameter("verify");
         int verifyCode = Integer.parseInt(verifyCodeString);
         String email = request.getParameter("email");
-        Account account = AccountService.getInstance().selectAccountByEmail(email);
+        String url = "";
+        HttpSession session = request.getSession();
+        Object obj = session.getAttribute("account");
+        Account account = null;
+        if(obj != null) {
+            account = (Account) obj; //lấy ra account bằng session với trường hợp là đăng nhập rồi nhưng tài khoản chưa xác thực, xác thực lại
+        }else{
+            account = AccountService.getInstance().selectAccountByEmail(email);
+        }
         VerifyAccount verifyAccount = AccountService.getInstance().selectVerifyAccountByIdAccount(account.getId());
         LocalDateTime currentTime = LocalDateTime.now();
         Duration duration = Duration.between(verifyAccount.getTimeCode(), currentTime);
@@ -39,8 +48,14 @@ public class Verify extends HttpServlet {
         }else {
             verifyAccount.setStateVerify(true);
             AccountService.getInstance().updateStateVerify(verifyAccount);
+            account.setVerifyAccount(verifyAccount);
+            if(obj != null) {
+                session.setAttribute("account", account);
+                url ="homePage";
+            }else{
+                url = "SignIn.jsp";
+            }
         }
-        String url = "SignIn.jsp";
         if(err.length() > 0) {
             url ="VerifyAccount.jsp";
         }

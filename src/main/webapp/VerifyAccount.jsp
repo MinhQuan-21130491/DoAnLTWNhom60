@@ -63,7 +63,8 @@
         <div class="signup-content">
             <form id="verify-form" class="signup-form" action="<%=url%>/verifyAccount" method ="GET" onsubmit="return verifyAccount()">
                 <div class="text-end pe-4">
-                    <a class="text-decoration-none" href="<%=url%>/SignIn.jsp">Bỏ qua</a>
+                    <%Object obj = session.getAttribute("account");%>
+                    <a class="text-decoration-none" href="<%=url%>/<%=(obj==null)?"SignIn.jsp":"homePage"%>">Bỏ qua</a>
                 </div>
                 <img src="images/verify.jpg" alt="" width="400px">
                 <h5>Xác thực tài khoản của bạn</h5>
