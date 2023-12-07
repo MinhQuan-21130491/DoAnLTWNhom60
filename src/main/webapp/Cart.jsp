@@ -106,27 +106,10 @@
                             </form>
                         </td>
                         <td>
-                                <button class="delete" title="Xóa sản phẩm" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#delProduct"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                <div class="modal fade" id="delProduct">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <form action="delProductInCart" method="post" >
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title">Xác nhận</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>Bạn có chắc muốn xóa?</p>
-                                                    <input type="hidden" name="id"value="<%=p.getIdProduct()%>"/>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy bỏ</button>
-                                                    <button type="submit" class="btn btn-primary">Đồng ý</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
+                            <form action="delProductInCart" method="post" onsubmit="return getConfirmation()">
+                                <input type="hidden" name="id" value="<%=p.getIdProduct()%>"/>
+                                 <button class="delete" title="Xóa sản phẩm" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#delProduct"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                            </form>
                         </td>
                     </tr>
                 <%
@@ -189,5 +172,12 @@
         // Gọi hàm tính tổng tiền khi tải trang
         calculateTotal()
     });
+    function getConfirmation(){
+        var retVal = confirm("Bạn có chắc muốn xóa ?");
+        if( retVal == true ){
+            return true;
+        }
+        return false;
+    }
 </script>
 </html>

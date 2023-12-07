@@ -3,6 +3,7 @@ import dao.DAOProduct;
 import model.Image;
 import model.Product;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -108,7 +109,14 @@ public class ProductService {
         }
         return listProduct;
     }
-    public static void main(String[] args) {
+    public  int delProduct(int id) {
+        try {
+            return  DAOProduct.delProduct(id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+        public static void main(String[] args) {
 //        System.out.println(ProductService.getInstance().listSixProduct(0));
     }
 }

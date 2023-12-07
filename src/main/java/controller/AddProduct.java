@@ -1,13 +1,10 @@
 package controller;
-
-import model.Image;
 import model.Product;
 import service.ProductService;
-import java.nio.file.Files;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.UUID;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -49,7 +46,7 @@ public class AddProduct extends HttpServlet {
         String description = request.getParameter("des");
         Product p = new Product(idCate,  name,  priceImport,  price,  description,  color,  material,  width,  height,  length, quantity);
         String realPath = getServletContext().getRealPath("/Products");
-        String res = "<i class=\"fa fa-check-circle-o text-success\" aria-hidden=\"true\"></i> Thêm sản phẩm thành công!";
+        String res = "Thêm sản phẩm thành công!";
         if(ProductService.getInstance().insertProduct(p)>0) {
             Product productLatest = ProductService.getInstance().latestProduct();
             for (Part part : request.getParts()) {
@@ -66,7 +63,9 @@ public class AddProduct extends HttpServlet {
                 }
             }
         }
+        ArrayList<Product> listProduct = ProductService.getInstance().listAllProduct();
         request.setAttribute("res", res);
+        request.setAttribute("listAllProduct", listProduct);
         request.getRequestDispatcher("ManageAdmin.jsp#mngProduct").forward(request, response);
     }
 

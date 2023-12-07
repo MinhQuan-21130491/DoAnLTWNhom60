@@ -48,8 +48,8 @@
                             <div class="col-md-12 col-lg-3 col-sm-12">
                                 <ul class="navbar-nav w-100  mb-2 mb-lg-0">
                                     <li class="nav-item hv "><a class="nav-link ps-0 " aria-current="page" href=<%=url%>/homePage>Trang chủ</a></li>
-                                    <li class="nav-item hv"><a class="nav-link" href="IntroWebsite.jsp">Giới thiệu</a></li>
-                                    <li class="nav-item hv"><a class="nav-link" href="IntroWebsite.jsp#contact">Liên hệ</a></li>
+                                    <li class="nav-item hv"><a class="nav-link" href="<%=url%>/IntroWebsite.jsp">Giới thiệu</a></li>
+                                    <li class="nav-item hv"><a class="nav-link" href="<%=url%>/product">Sản phẩm</a></li>
                                     <li class="nav-item hv d-lg-none ">
                                         <ul class="navbar-nav justify-content-end ">
                                             <%

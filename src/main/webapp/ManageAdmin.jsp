@@ -37,7 +37,7 @@
 <%
     String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
     NumberFormat nF = NumberFormat.getCurrencyInstance();
-
+    String res  = (String) request.getAttribute("res");
 %>
 <%--header--%>
 <header>
@@ -70,6 +70,7 @@
                     </div>
                 </div>
             </div>
+            <input type="hidden" id="res" value="<%=(res==null)?"":res%>">
             <!--giao diện quản lý tài khoản-->
             <div class="col-lg-9 bgcolor " id ="mngAccount">
                 <div class="row mt-2">
@@ -103,7 +104,7 @@
                                     <td class = "status"></td>
                                     <td>
                                         <div class="d-flex w-100 justify-content-center">
-                                            <button class="delete btnAdd bgcolor bd-full" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#"><i class="fa fa-trash-o text-color"  title="Xóa" ></i></button>
+                                            <button type="submit" class="delete btnAdd bgcolor bd-full" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#"><i class="fa fa-trash-o text-color"  title="Xóa" ></i></button>
                                             <button class="block btnAdd bgcolor bd-full mx-1" data-bs-toggle="modal" data-bs-target="#"><i class="fa fa-lock text-color" title="Khóa" aria-hidden="true" ></i></button>
                                             <button class="editAccount btnAdd bgcolor bd-full me-1" title="Chỉnh sửa quyền truy cập" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editAccount"><i class="fa fa-pencil text-color" ></i></button>
                                         </div>
@@ -200,12 +201,9 @@
                 <div class="row mt-3">
                     <div class="col-lg-12 overflow-auto mheight" >
                         <%
-                            String res = (String) request.getAttribute("res");
-                            res = (res == null) ? "" : res;
                             ArrayList<Product> listAllProduct = (ArrayList<Product>) request.getAttribute("listAllProduct");
                             int sttP = 1;
                         %>
-                        <input type="hidden" id="res"></input>
                         <table class="mb-3">
                             <thead>
                                 <tr>
@@ -217,7 +215,7 @@
                                     <td>TRẠNG THÁI</td>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id ="innerProduct">
                             <% if (listAllProduct != null && !listAllProduct.isEmpty()) {
                                 for (Product p: listAllProduct) {%>
                                 <tr id="detailProductRow" data-bs-toggle ="modal" data-bs-target="#detailProduct" onclick="detailProduct('<%=p.getIdProduct()%>')">
@@ -242,7 +240,7 @@
                                     <%}%>
                                 <td>
                                     <div class="d-flex justify-content-center">
-                                        <button class="delete btnAdd bgcolor bd-full" title="Xóa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="" ><i class="fa fa-trash-o text-color"></i></button>
+                                    <button class="delete btnAdd bgcolor bd-full" title="Xóa" aria-hidden="true" onclick="deleteProduct('<%=p.getIdProduct()%>')" data-bs-toggle="modal" data-bs-target=""><i class="fa fa-trash-o text-color"></i></button>
                                         <button class="editProduct btnAdd bgcolor bd-full mx-1" title="Chỉnh sửa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editProduct"><i class="fa fa-pencil text-color" ></i></button>
                                         <button class="hideProduct btnAdd bgcolor bd-full" title="Ẩn/hiện sản phẩm" aria-hidden="true" data-bs-toggle="modal" data-bs-target=""><i class="fa fa-lock text-color"></i></button>
                                     </div>
@@ -930,10 +928,10 @@
             })
         }
         setColorFirt();
-        //xoá 1 dòng
-        $('.delete').click(function () {
-            $(this).closest('tr').remove();
-        })
+      //  xoá 1 dòng
+      //   $('.delete').click(function () {
+      //       $(this).closest('tr').remove();
+      //   })
         //chặn account
         // $('.block').click(function () {
         //     var state = $(this).closest('tr').find('.status');
@@ -1269,8 +1267,8 @@
         return flag;
     }
     window.onload = function () {
-        if ($('#res').text() !== "") {
-            alert($('#res').text());
+        if ($('#res').val() !== "") {
+            alert($('#res').val());
         }
     }
     function addSup() {
@@ -1370,6 +1368,7 @@
 
     // Sử dụng hàm này để cập nhật nội dung modal
     function updateModalContent(data) {
+        console.log(typeof  data);
         var p = data.product;
         //Cập nhật các phần tử HTML với chi tiết sản phẩm
         $("#idProductdetail").val(p.idProduct);
@@ -1405,6 +1404,61 @@
         var img_center = document.getElementById('img_center');
         if (img_center) {
             img_center.src = newSrc;
+        }
+    }
+    // function getConfirmation(){
+    //     var retVal = confirm("Bạn có chắc muốn xóa ?");
+    //     if( retVal == true ){
+    //         return true;
+    //     }
+    //     return false;
+    // }
+    function deleteProduct(productId) {
+        var confirmation = confirm("Bạn có chắc muốn xóa ?");
+        if (confirmation) {
+            $.ajax({
+                type: "POST",
+                url: "delProduct",
+                data: { id: productId },
+                success: function(data) {
+                    var jsonData = JSON.parse(data);
+                    var htmlData = jsonData.htmlData;
+                    var res = jsonData.res;
+                    alert(res);
+                    var row = document.getElementById("innerProduct");
+                    row.innerHTML = ""; // Clear existing content
+                    for (var i = 0; i < htmlData.length; i++) {
+                        var p = htmlData[i];
+                        row.innerHTML += "  <tr  data-bs-toggle =\"modal\" data-bs-target=\"#detailProduct\" onclick=\"detailProduct('"+p.idProduct+"')\">\n" +
+                        "<input type=\"hidden\" className =\"idProduct\" value=\""+p.idProduct+"\">"+
+                        "                                <td class=\"w40\">"+(i+1)+"</td>\n" +
+                        "                                <td class=\"w260\">\n" +
+                        "                                    <div class=\"item d-flex justify-content-center\">\n" +
+                        "                                        <div class=\"item_img\">\n" +
+                        "                                            <img src=\""+p.imageUrl+"\"\n" +
+                        "                                                 class=\"card-img-top img_p_cart\" alt=\"...\"/>\n" +
+                        "                                        </div>\n" +
+                            "<span class=\"item_text\">" + p.name + "</span>\n" +
+                        "                                    </div>\n" +
+                        "                                </td>\n" +
+                        "                                <td>"+p.price+"</td>\n" +
+                        "                                <td>"+p.color+"</td>\n" +
+                        "                                <td>"+p.quantity+"\n" +
+                        "                                <td>"+p.status+"</td>\n" +
+                        "                                <td>\n" +
+                        "                                    <div class=\"d-flex justify-content-center\">\n" +
+                        "                                        <button class=\"delete btnAdd bgcolor bd-full\" title=\"Xóa\" aria-hidden=\"true\" onclick=\"deleteProduct('"+p.idProduct+"')\" data-bs-toggle=\"modal\" data-bs-target=\"\"><i class=\"fa fa-trash-o text-color\"></i></button>"+
+                        "                                        <button class=\"editProduct btnAdd bgcolor bd-full mx-1\"><i class=\"fa fa-pencil text-color\" title=\"Chỉnh sửa\" aria-hidden=\"true\" data-bs-toggle=\"modal\" data-bs-target=\"#editProduct\"></i></button>\n" +
+                        "                                        <button class=\"hideProduct btnAdd bgcolor bd-full\" title=\"Ẩn/hiện sản phẩm\" aria-hidden=\"true\" data-bs-toggle=\"modal\" data-bs-target=\"\"><i class=\"fa fa-lock text-color\"></i></button>"+
+                        "                                    </div>\n" +
+                        "                                </td>\n" +
+                        "                            </tr>";
+                    }
+                },
+                error: function(error) {
+                    console.error("Lỗi khi xóa sản phẩm:", error);
+                }
+            });
         }
     }
 </script>
