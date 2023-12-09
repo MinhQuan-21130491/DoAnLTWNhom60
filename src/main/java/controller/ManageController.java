@@ -1,7 +1,9 @@
 package controller;
 
 import model.Product;
+import model.Supplier;
 import service.ProductService;
+import service.SupplierService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,6 +21,8 @@ public class ManageController extends HttpServlet {
         response.setContentType("html/text; charset= UTF-8");
         ArrayList<Product> listAll = ProductService.getInstance().listAllProduct();
         request.setAttribute("listAllProduct", listAll);
+        ArrayList<Supplier> suplist = SupplierService.getInstance().listAllSupplier();
+        request.setAttribute("listAllSup", suplist);
         try {
             request.getRequestDispatcher("ManageAdmin.jsp").forward(request, response);
         } catch (ServletException e) {

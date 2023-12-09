@@ -52,18 +52,13 @@ public class AccountService {
     }
 
 
-    public VerifyAccount selectVerifyAccountByIdAccount(int idAccount) {
-        return DAOAccount.selectVerifyAccountByIdAccount(idAccount);
-    }
+
 
     public VerifyAccount selectVerifyAccountByIdAccount(int idAccount) {
         return DAOAccount.selectVerifyAccountByIdAccount(idAccount);
     }
-}
-    public int updateVerifyCode(int newCode, int idAccount) {
-        return DAOAccount.updateVerifyCode(newCode, idAccount);
 
-    }
+
 
     public int updateInfor(Account account) {
         return DAOAccount.updateInfor(account);
@@ -89,5 +84,4 @@ public class AccountService {
         return DAOAccount.updatePassword(passEnCrypt, idAccount);
     }
 
-}
 }
