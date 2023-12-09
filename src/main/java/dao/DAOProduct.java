@@ -2,10 +2,8 @@ package dao;
 import model.Image;
 import model.Product;
 import util.JDBCUtil;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -56,7 +54,7 @@ public class DAOProduct {
         Product product = null;
         Connection connection = JDBCUtil.getConnection();
         try {
-            String sql = "select id, name, idCate, price, priceImport, quantity, color, material, description, height, width, length "+
+            String sql = "select id, name, idCate, price, priceImport, quantity, color, material, description, height, width, length, status "+
                          "from products " +
                          "where id =?";
             PreparedStatement  pr = connection.prepareStatement(sql);
@@ -75,7 +73,8 @@ public class DAOProduct {
                 double height = resultSet.getDouble("height");
                 double lenght = resultSet.getDouble("length");
                 int quantity = resultSet.getInt("quantity");
-                product = new Product(idProduct, idCate, name, priceImport, price,description,color,material,width,height,lenght,1, quantity);
+                boolean status = resultSet.getBoolean("status");
+                product = new Product(idProduct, idCate, name, priceImport, price,description,color,material,width,height,lenght,1, quantity, status);
             }
             JDBCUtil.closeConnection(connection);
         } catch (SQLException e) {
@@ -288,7 +287,7 @@ public class DAOProduct {
             if(command.equalsIgnoreCase("D")) {
                 sql += "p.price < ? ";
             }else if(command.equalsIgnoreCase("T")) {
-                sql += "p.price > ? ";
+                sql += "p.price >= ? ";
             }
         }
         if (!colorFil.isEmpty()) {
@@ -327,13 +326,13 @@ public class DAOProduct {
             pr.setInt(2, p.getIdCate());
             pr.setDouble(3, p.getPrice());
             pr.setDouble(4, p.getPriceImport());
-            pr.setInt(5, p.getQuantity());
+            pr.setInt(5, p.getQuantityAvailable());
             pr.setString(6, p.getColor());
             pr.setString(7, p.getMaterial());
             pr.setString(8, p.getDescription());
             pr.setDouble(9, p.getHeight());
             pr.setDouble(10, p.getWidth());
-            pr.setDouble(11, p.getHeight());
+            pr.setDouble(11, p.getLength());
             re = pr.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -386,7 +385,64 @@ public class DAOProduct {
         }
         return re;
     }
-    public static void main(String[] args) {
-   System.out.println(latestProduct());
+    public static int delProduct(int id) throws SQLException {
+        int re = 0;
+        Connection connection = JDBCUtil.getConnection();
+        Statement  s = connection.createStatement();
+        synchronized(s) {
+            try {
+                ResultSet resultSet = s.executeQuery("select id from products where id=" + id);
+                if (resultSet.next()) {
+                    int idP = resultSet.getInt("id");
+                       s.executeUpdate("delete from images_product where idProduct =" + id);
+                        re = s.executeUpdate("delete from products where id =" + id);
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            JDBCUtil.closeConnection(connection);
+        }
+        return re;
+    }
+    public static int updateStatusProduct(int id, boolean status) throws SQLException {
+        int re = 0;
+        Connection connection = JDBCUtil.getConnection();
+        Statement  s = connection.createStatement();
+        synchronized(s) {
+            try {
+                ResultSet resultSet = s.executeQuery("select id from products where id=" + id);
+                if (resultSet.next()) {
+                    int idP = resultSet.getInt("id");
+                    s.executeUpdate("update products set status ="+status +" where id =" + idP);
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            JDBCUtil.closeConnection(connection);
+        }
+        return re;
+    }
+    public static int updateProduct(Product p) throws SQLException {
+        int re = 0;
+        Connection connection = JDBCUtil.getConnection();
+        Statement  s = connection.createStatement();
+        synchronized(s) {
+            try {
+                ResultSet resultSet = s.executeQuery("select id from products where id=" + p.getIdProduct());
+                if (resultSet.next()) {
+                    int idP = resultSet.getInt("id");
+                    s.executeUpdate("update products set name ="+p.getName()+", priceImport "+p.getPriceImport()+", price "+p.getPrice()+", description "+p.getDescription()+", color "+p.getColor()+", material "+p.getMaterial()+", width "+p.getWidth()+", height "+p.getHeight()+", length "+p.getLength()+", quantity "+p.getQuantityAvailable()+",  " +
+                            " where id =" + idP);
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            JDBCUtil.closeConnection(connection);
+        }
+        return re;
+    }
+    public static void main(String[] args) throws SQLException {
+   System.out.println(delProduct(52));
+   System.out.println(delProduct(52));
     }
  }

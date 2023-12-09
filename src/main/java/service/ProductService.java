@@ -116,6 +116,10 @@ public class ProductService {
             throw new RuntimeException(e);
         }
     }
+    public int updateStatusProduct(int id, boolean status) throws SQLException {
+        return DAOProduct.updateStatusProduct(id, status);
+    }
+
         public static void main(String[] args) {
 //        System.out.println(ProductService.getInstance().listSixProduct(0));
     }

@@ -4,7 +4,6 @@ import model.Product;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import service.ProductService;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,30 +11,32 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.text.NumberFormat;
 import java.util.ArrayList;
-
-@WebServlet(name = "delProduct", value = "/delProduct")
-public class DelProduct extends HttpServlet {
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+@WebServlet(name = "updateStatusProduct", value = "/updateStatusProduct")
+public class UpdateStatusProduct extends HttpServlet {
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("html/text; charset= UTF-8");
-        String idProductText = request.getParameter("id");
-        int idProduct = Integer.parseInt(idProductText);
+        String id = request.getParameter("id");
+        int idP = Integer.parseInt(id);
         String res = "";
+        Product p1 = ProductService.getInstance().getProductById(idP);
+        try {
+            ProductService.getInstance().updateStatusProduct(idP, !p1.isStatus());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        Product p2 = ProductService.getInstance().getProductById(idP);
+        res = (p2.isStatus())?"Mở bán sản phẩm thành công!":"Khóa sản phẩm thành công!";
         JSONObject jsonResponse = new JSONObject();
         JSONArray htmlDataArray = new JSONArray();
         NumberFormat nF = NumberFormat.getCurrencyInstance();
         String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
-        ArrayList<Product> listProduct = null;
-        if(ProductService.getInstance().delProduct(idProduct)>0) {
-            listProduct = ProductService.getInstance().listAllProduct();
-            res = "Xóa thành công!";
-        }else {
-            res = "Đã xảy ra lỗi!";
-            listProduct = ProductService.getInstance().listAllProduct();
-        }
+        ArrayList<Product> listProduct = ProductService.getInstance().listAllProduct();
         for (Product p : listProduct) {
             JSONObject productJSON = new JSONObject();
             productJSON.put("idProduct", p.getIdProduct());
@@ -52,9 +53,4 @@ public class DelProduct extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println(jsonResponse.toString());
     }
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
-        doGet(request, response);
-    }
 }
-

@@ -1,9 +1,6 @@
 package controller;
 
 import model.Cart;
-import model.Product;
-import service.ProductService;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
