@@ -289,7 +289,7 @@ public class DAOAccount {
                 String addressReceive = resultSet.getString("addressReceive");
                 int role = resultSet.getInt("role");
                 boolean status = resultSet.getBoolean("status");
-                re = new Account(id, name,userName, password, email, phoneNumber, gender, birthDay, address, addressReceive, role, status);
+                re = new Account(id, name,usName, pw, email, phoneNumber, gender, birthDay, address, addressReceive, role, status);
             }
             JDBCUtil.closeConnection(connection);
         } catch (Exception e) {
@@ -312,6 +312,21 @@ public class DAOAccount {
             throw new RuntimeException(e);
         }
         return verifyAccount;
+    }
+    public static int updatePassword( String passEnCrypt, int idAccount) {
+        int re = 0;
+        Connection connection = JDBCUtil.getConnection();
+        String sql ="update accounts set password =? where id =?";
+        try {
+            PreparedStatement pr = connection.prepareStatement(sql);
+            pr.setString(1, passEnCrypt);
+            pr.setInt(2, idAccount);
+            re = pr.executeUpdate();
+            JDBCUtil.closeConnection(connection);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return re;
     }
     public static void main(String[] args) {
     System.out.println(selectVerifyAccountByIdAccount(14));
