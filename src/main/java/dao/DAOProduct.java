@@ -408,7 +408,7 @@ public class DAOProduct {
         int re = 0;
         Connection connection = JDBCUtil.getConnection();
         Statement  s = connection.createStatement();
-        synchronized(s) {
+            synchronized(s) {
             try {
                 ResultSet resultSet = s.executeQuery("select id from products where id=" + id);
                 if (resultSet.next()) {
