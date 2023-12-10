@@ -431,8 +431,18 @@ public class DAOProduct {
                 ResultSet resultSet = s.executeQuery("select id from products where id=" + p.getIdProduct());
                 if (resultSet.next()) {
                     int idP = resultSet.getInt("id");
-                    s.executeUpdate("update products set name ="+p.getName()+", priceImport "+p.getPriceImport()+", price "+p.getPrice()+", description "+p.getDescription()+", color "+p.getColor()+", material "+p.getMaterial()+", width "+p.getWidth()+", height "+p.getHeight()+", length "+p.getLength()+", quantity "+p.getQuantityAvailable()+",  " +
-                            " where id =" + idP);
+                    re = s.executeUpdate("UPDATE products SET " +
+                            "name = '" + p.getName() + "', " +
+                            "priceImport = " + p.getPriceImport() + ", " +
+                            "price = " + p.getPrice() + ", " +
+                            "description = '" + p.getDescription() + "', " +
+                            "color = '" + p.getColor() + "', " +
+                            "material = '" + p.getMaterial() + "', " +
+                            "width = " + p.getWidth() + ", " +
+                            "height = " + p.getHeight() + ", " +
+                            "length = " + p.getLength() + ", " +
+                            "quantity = " + p.getQuantityAvailable() +
+                            " WHERE id = " + idP);
                 }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
@@ -440,6 +450,44 @@ public class DAOProduct {
             JDBCUtil.closeConnection(connection);
         }
         return re;
+    }
+    public static int delImgOfProduct(int id, String urlImage) throws SQLException {
+        int re = 0;
+        Connection connection = JDBCUtil.getConnection();
+        Statement  s = connection.createStatement();
+        synchronized(s) {
+            try {
+                ResultSet resultSet = s.executeQuery("select id from images_product where idProduct=" + id);
+                if (resultSet.next()) {
+                   re = s.executeUpdate("DELETE FROM images_product WHERE urlImage = '" + urlImage + "'");
+
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            JDBCUtil.closeConnection(connection);
+        }
+        return re;
+    }
+    public static ArrayList<Image> getImgsByIdP(int idP) {
+        ArrayList<Image> imgs = new ArrayList<>();
+        Connection connection = JDBCUtil.getConnection();
+        String sql ="select id, idProduct, urlImage from images_product where idProduct =?";
+        try {
+            PreparedStatement pr = connection.prepareStatement(sql);
+            pr.setInt(1, idP);
+            ResultSet resultSet = pr.executeQuery();
+            while(resultSet.next()) {
+                int id = resultSet.getInt("id");
+                int idProduct = resultSet.getInt("idProduct");
+                String urlImage = resultSet.getString("urlImage");
+                Image image = new Image(id, idProduct, urlImage);
+                imgs.add(image);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return imgs;
     }
     public static void main(String[] args) throws SQLException {
    System.out.println(delProduct(52));

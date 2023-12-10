@@ -64,7 +64,7 @@ public class AddProduct extends HttpServlet {
                         part.write(realPath + File.separator + newFileName);
                         part.write("D:\\ltw\\DoAn\\DoanLTWNhom60\\src\\main\\webapp\\Products" + File.separator + newFileName);
                     }
-            }
+                }
         }
         ArrayList<Product> listProduct = ProductService.getInstance().listAllProduct();
         JSONObject jsonResponse = new JSONObject();
@@ -74,7 +74,8 @@ public class AddProduct extends HttpServlet {
         for (Product p : listProduct) {
             JSONObject productJSON = new JSONObject();
             productJSON.put("idProduct", p.getIdProduct());
-            productJSON.put("imageUrl", url +"/Products/" +p.getImages().get(0).getUrl());
+            String urlImage = (p.getImages().isEmpty())?"":p.getImages().get(0).getUrl();
+            productJSON.put("imageUrl", url +"/Products/" +urlImage);
             productJSON.put("name", p.getName());
             productJSON.put("price", nF.format(p.getPrice()));
             productJSON.put("color", p.getColor());

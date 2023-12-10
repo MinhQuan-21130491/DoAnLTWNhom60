@@ -80,7 +80,7 @@
                         <td class="w300">
                             <div class="item d-flex justify-content-center">
                                 <div class="item_img">
-                                    <img src="<%=url%>\Products\<%=p.getImages().get(0).getUrl()%>" class="card-img-top img_p_cart" alt="..."/>
+                                    <img src="<%=url%>/Products/<%=(p.getImages().isEmpty())?"":p.getImages().get(0).getUrl()%>" class="card-img-top img_p_cart" alt="..."/>
                                 </div>
                                 <span class="item_text"><%=p.getName()%></span>
                             </div>

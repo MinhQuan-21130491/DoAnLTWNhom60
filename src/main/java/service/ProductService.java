@@ -109,17 +109,26 @@ public class ProductService {
         }
         return listProduct;
     }
-    public  int delProduct(int id) {
+    public int delProduct(int id) {
         try {
             return  DAOProduct.delProduct(id);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+
     public int updateStatusProduct(int id, boolean status) throws SQLException {
         return DAOProduct.updateStatusProduct(id, status);
     }
-
+    public ArrayList<Image> getImgsByIdP(int idP) {
+        return DAOProduct.getImgsByIdP(idP);
+    }
+    public int delImgOfProduct(int id, String urlImage) throws SQLException {
+        return DAOProduct.delImgOfProduct(id, urlImage);
+    }
+    public int updateProduct(Product p) throws SQLException {
+        return DAOProduct.updateProduct(p);
+    }
         public static void main(String[] args) {
 //        System.out.println(ProductService.getInstance().listSixProduct(0));
     }

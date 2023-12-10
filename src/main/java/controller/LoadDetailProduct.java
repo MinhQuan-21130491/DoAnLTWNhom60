@@ -30,7 +30,8 @@
             JSONObject jsonRes = new JSONObject();
             JSONObject productJSON = new JSONObject();
             productJSON.put("idProduct", p.getIdProduct());
-            productJSON.put("imageCenter", url +"\\Products\\" +p.getImages().get(0).getUrl());
+            String urlImage = (p.getImages().isEmpty())?"":p.getImages().get(0).getUrl();
+            productJSON.put("imageCenter", url +"/Products/" +urlImage);
             productJSON.put("imageDetail",p.getImages());
             productJSON.put("name", p.getName());
             productJSON.put("priceImport", nF.format(p.getPriceImport()));

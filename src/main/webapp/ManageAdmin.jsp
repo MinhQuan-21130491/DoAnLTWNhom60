@@ -220,8 +220,7 @@
                                 <td class="w260">
                                     <div class="item d-flex justify-content-center">
                                         <div class="item_img">
-                                            <img src="<%=url%>/Products/<%=p.getImages().get(0).getUrl()%>"
-                                                 class="card-img-top img_p_cart" alt="..."/>
+                                            <img src="<%=url%>/Products/<%=(p.getImages().isEmpty())?"":p.getImages().get(0).getUrl()%>" class="card-img-top img_p_cart" alt="..."/>
                                         </div>
                                         <span class="item_text"><%=p.getName()%></span>
                                     </div>
@@ -237,7 +236,7 @@
                                 <td>
                                     <div class="d-flex justify-content-center">
                                         <button class="delete btnAdd bgcolor bd-full" title="Xóa" aria-hidden="true" onclick="deleteProduct('<%=p.getIdProduct()%>')" data-bs-toggle="modal" data-bs-target=""><i class="fa fa-trash-o text-color"></i></button>
-                                        <button class="editProduct btnAdd bgcolor bd-full mx-1" title="Chỉnh sửa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editProduct"><i class="fa fa-pencil text-color" ></i></button>
+                                        <button class="editProduct btnAdd bgcolor bd-full mx-1" title="Chỉnh sửa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editProduct" onclick="innerEditProduct('<%=p.getIdProduct()%>')"><i class="fa fa-pencil text-color" ></i></button>
                                         <button class="block btnAdd bgcolor bd-full" title="Ẩn/hiện sản phẩm" onclick="hideProduct('<%=p.getIdProduct()%>')" aria-hidden="true" data-bs-toggle="modal" data-bs-target=""><i class="fa fa-lock text-color"></i></button>
                                     </div>
                                 </td>
@@ -255,9 +254,8 @@
                     <div class="modal-dialog modal-md">
                         <div class="modal-content ">
                             <div class="modal-body">
-                                <form class ="editProduct" action="" method="post" id ="edit-Product" onsubmit="return editProduct()" >
+                                <form class ="" action="" method="post" id ="edit-Product" >
                                     <div class="row px-2">
-                                        <span class="d-none" id ="id"></span>
                                         <div class=" text-end">
                                             <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
@@ -265,29 +263,25 @@
                                         <hr>
                                         <div class="col-md-12">
                                             <div class="mb-3">
-                                                <label class="form-label">Tên sản phẩm<span class="text-danger">*</span></label><span id="errNamePEdit"  class="text-danger"></span>
+                                                <label class="form-label">Tên sản phẩm<span class="text-danger">*</span></label><span id="errNamePEdit" class="text-danger"></span>
                                                 <input type="text" class="form-control" id="nameProductEdit" name="nameProductEdit">
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Giá nhập (₫)<span class="text-danger">*</span></label><span id="errImpPriceEdit"  class="text-danger"></span>
-                                                <input type="text" class="form-control" id="priceImpProductEdit" name="priceProduct">
+                                                <input type="text" class="form-control" id="priceImpProductEdit" name="priceImpProductEdit">
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Giá bán (₫)<span class="text-danger">*</span></label><span id="errPriceEdit"  class="text-danger"></span>
-                                                <input type="text" class="form-control" id="priceProductEdit" name="delivery">
+                                                <input type="text" class="form-control" id="priceProductEdit" name="priceProductEdit">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label" id = "cateTypeEdit">Thể loại<span class="text-danger">*</span></label>
+                                                <label class="form-label" id ="cateTypeEdit">Thể loại<span class="text-danger">*</span></label>
                                                 <select class="form-control" name="cateChairEdit" id="cateChairEdit">
                                                     <option value="Ghế văn phòng">Ghế văn phòng</option>
                                                     <option value="Ghế thư giãn">Ghế thư giãn</option>
                                                     <option value="Ghế trang trí">Ghế trang trí</option>
                                                     <option value="Ghế gaming">Ghế gaming</option>
                                                 </select>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Hình ảnh<span class="text-danger">*</span></label><span id="errImg1Edit"  class="text-danger"></span>
-                                                <input type="text" class="form-control" id="image1Edit" name="image1Edit">
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-4 col-4 mb-3">
@@ -314,18 +308,24 @@
                                                 </div>
                                                 <div class="col-md-4 col-4 mb-3">
                                                     <label class="form-label">Số lượng<span class="text-danger">*</span></label>
-                                                    <input type="number" class="form-control" id="amountEdit" name="amountEdit">
+                                                    <input type="number" class="form-control" id="quantityEdit" name="quantityEdit">
                                                 </div>
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Mô tả<span class="text-danger">*</span></label><span id="errDesEdit"  class="text-danger"></span>
+                                                <label class="form-label">Mô tả<span class ="text-danger">*</span></label><span id="errDesEdit"  class="text-danger"></span>
                                                 <textarea type="text" class="form-control" id="desEdit" name="desEdit"></textarea>
+                                            </div>
+                                            <div id ="imageEdit">
+                                                <label class="form-label">Hình ảnh<span class="text-danger">*</span></label><span id="errImg" class="text-danger"></span>
+                                            </div>
+                                            <div class="text-end mb-3">
+                                                <button type ="button" class="btnAdd bgcolor bd-full" id ="btnAddImageEdit" onclick="addInputInEdit()"><i class="fa fa-plus-circle text-color" aria-hidden="true" title="Thêm hình ảnh" ></i></button>
                                             </div>
                                         </div>
                                         <div class="row p-0">
                                             <div class="col-md-12 p-0">
                                                 <div class="text-end">
-                                                    <button class="save " type="submit">LƯU</button>
+                                                    <button class="save " type="button" onclick="editProduct()">LƯU</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -482,14 +482,11 @@
                                                 </div>
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Mô tả<span class="text-danger">*</span></label><span id="errDes"  class="text-danger"></span>
+                                                <label class="form-label">Mô tả<span class="text-danger">*</span></label><span id="errDes" class="text-danger"></span>
                                                 <textarea type="text" class="form-control" id="des" name="des"></textarea>
                                             </div>
-                                            <div  id = "image">
+                                            <div id ="image">
                                                 <label class="form-label">Hình ảnh<span class="text-danger">*</span></label><span id="errImg1" class="text-danger"></span>
-                                                <div class="mb-3">
-                                                    <input type="file" class="form-control" name="image">
-                                                </div>
                                             </div>
                                             <div class="text-end mb-3">
                                                 <button type ="button" class="btnAdd bgcolor bd-full" id ="btnAddImage" onclick="addInput()"><i class="fa fa-plus-circle text-color" aria-hidden="true" title="Thêm hình ảnh" ></i></button>
@@ -913,7 +910,6 @@
                 typeManage.css("display", "none");
             }
         });
-
         function setColorFirt() {
             $('#typeManage a').each(function () {
                 if($(this).text() === "Quản lý tài khoản" ) {
@@ -1140,7 +1136,7 @@
                             "                                <td>\n" +
                             "                                    <div class=\"d-flex justify-content-center\">\n" +
                             "                                        <button class=\"delete btnAdd bgcolor bd-full\" title=\"Xóa\" aria-hidden=\"true\" onclick=\"deleteProduct('"+p.idProduct+"')\" data-bs-toggle=\"modal\" data-bs-target=\"\"><i class=\"fa fa-trash-o text-color\"></i></button>"+
-                            "                                        <button class=\"editProduct btnAdd bgcolor bd-full mx-1\"><i class=\"fa fa-pencil text-color\" title=\"Chỉnh sửa\" aria-hidden=\"true\" data-bs-toggle=\"modal\" data-bs-target=\"#editProduct\"></i></button>\n" +
+                            "                                        <button class=\"editProduct btnAdd bgcolor bd-full mx-1\" data-bs-toggle=\"modal\" data-bs-target=\"#editProduct\" onclick=\"innerEditProduct('"+p.idProduct+"')\"><i class=\"fa fa-pencil text-color\" title=\"Chỉnh sửa\" aria-hidden=\"true\"></i></button>\n" +
                             "                                        <button class=\"hideProduct btnAdd bgcolor bd-full\" title=\"Ẩn/hiện sản phẩm\" aria-hidden=\"true\" onclick=\"hideProduct('"+p.idProduct+"')\" data-bs-toggle=\"modal\" data-bs-target=\"\"><i class=\"fa fa-lock text-color\"></i></button>"+
                             "                                    </div>\n" +
                             "                                </td>\n" +
@@ -1153,21 +1149,24 @@
             });
         }
     }
+    var id ="";
     function editProduct() {
         var flag = true;
         var nameP = document.getElementById("nameProductEdit");
         var priceImp = document.getElementById("priceImpProductEdit");
+        var priceImp = priceImp.value.replace(/[^\d]/g, '');
         var price = document.getElementById("priceProductEdit");
+        var price = price.value.replace(/[^\d]/g, '');
         var des = document.getElementById("desEdit");
         var img1 = document.getElementById("image1Edit");
         var length = document.getElementById("lengthEdit");
         var width = document.getElementById("widthEdit");
         var height = document.getElementById("heightEdit");
+        var cate = document.getElementById("cateChairEdit");
         var material = document.getElementById("materialEdit");
         var color = document.getElementById("colorEdit");
-        var amount = document.getElementById("amountEdit");
+        var quantity = document.getElementById("quantityEdit");
         var priceReg = /^\d+$/;
-
         var errNameP = document.getElementById("errNamePEdit");
         var errImpPriceAdd = document.getElementById("errImpPriceEdit");
         var errPriceAdd = document.getElementById("errPriceEdit");
@@ -1182,20 +1181,20 @@
             errNameP.innerHTML = '';
         }
         //giá nhập
-        if (priceImp.value === "") {
+        if (priceImp === "") {
             errImpPriceAdd.innerHTML = 'Vui lòng nhập giá sản phẩm!';
             flag = false;
-        } else if (!priceImp.value.match(priceReg)) {
+        } else if (!priceImp.match(priceReg)) {
             errImpPriceAdd.innerHTML = 'Giá tiền không hợp lệ!';
             flag = false;
         } else {
             errImpPriceAdd.innerHTML = '';
         }
         //giá bán
-        if (price.value === "") {
+        if (price === "") {
             errPriceAdd.innerHTML = 'Vui lòng nhập giá bán!';
             flag = false;
-        } else if (!price.value.match(priceReg)) {
+        } else if (!price.match(priceReg)) {
             errPriceAdd.innerHTML = 'Giá tiền không hợp lệ!';
             flag = false;
         } else {
@@ -1207,13 +1206,6 @@
             flag = false;
         } else {
             errDes.innerHTML = ''
-        }
-        //hình
-        if (img1.value === "") {
-            errImg1.innerHTML = 'Vui lòng nhập đường dẫn các hình ảnh';
-            flag = false;
-        } else {
-            errImg1.innerHTML = '';
         }
         //length
         if (length.value === "") {
@@ -1251,14 +1243,82 @@
             color.style.borderColor = '#dee2e6';
         }
         //amount
-        if (amount.value === "") {
-            amount.style.borderColor = 'red';
+        if (quantity.value === "") {
+            quantity.style.borderColor = 'red';
             flag = false;
         } else {
-            amount.style.borderColor = '#dee2e6';
+            quantity.style.borderColor = '#dee2e6';
         }
-        console.log(flag)
-        return flag;
+        if(flag) {
+            var formData = new FormData();
+            var fileInputs = document.getElementsByName('imageEdit');
+            for (var i = 0; i < fileInputs.length; i++) {
+                var fileInput = fileInputs[i];
+                formData.append('image', fileInput.files[0]);
+            }
+            var imgAvai = document.getElementsByName("imageAvai");
+            for (var i = 0; i < imgAvai.length; i++) {
+                formData.append('imageAvai', imgAvai[i].value);
+            }
+            formData.append('nameProductEdit', nameP.value);
+            formData.append('priceImpProductEdit', priceImp);
+            formData.append('priceProductEdit', price);
+            formData.append('cateChairEdit', cate.value);
+            formData.append('lengthEdit', length.value);
+            formData.append('widthEdit', width.value);
+            formData.append('heightEdit', height.value);
+            formData.append('materialEdit', material.value);
+            formData.append('colorEdit', color.value);
+            formData.append('quantityEdit', quantity.value);
+            formData.append('desEdit', des.value);
+            formData.append("id", id);
+
+            $.ajax({
+                url: 'editProduct',
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    var jsonData = JSON.parse(data);
+                    var htmlData = jsonData.htmlData;
+                    var res = jsonData.res;
+                    alert(res);
+                    var row = document.getElementById("innerProduct");
+                    row.innerHTML = ""; // Clear existing content
+                    for (var i = 0; i < htmlData.length; i++) {
+                        var p = htmlData[i];
+                        row.innerHTML += "  <tr  data-bs-toggle =\"modal\" data-bs-target=\"#detailProduct\" onclick=\"detailProduct('"+p.idProduct+"')\">\n" +
+                            "<input type=\"hidden\" className =\"idProduct\" value=\""+p.idProduct+"\">"+
+                            "                                <td class=\"w40\">"+(i+1)+"</td>\n" +
+                            "                                <td class=\"w260\">\n" +
+                            "                                    <div class=\"item d-flex justify-content-center\">\n" +
+                            "                                        <div class=\"item_img\">\n" +
+                            "                                            <img src=\""+p.imageUrl+"\"\n" +
+                            "                                                 class=\"card-img-top img_p_cart\" alt=\"...\"/>\n" +
+                            "                                        </div>\n" +
+                            "<span class=\"item_text\">" + p.name + "</span>\n" +
+                            "                                    </div>\n" +
+                            "                                </td>\n" +
+                            "                                <td>"+p.price+"</td>\n" +
+                            "                                <td>"+p.color+"</td>\n" +
+                            "                                <td>"+p.quantity+"\n" +
+                            "                                <td>"+p.status+"</td>\n" +
+                            "                                <td>\n" +
+                            "                                    <div class=\"d-flex justify-content-center\">\n" +
+                            "                                        <button class=\"delete btnAdd bgcolor bd-full\" title=\"Xóa\" aria-hidden=\"true\" onclick=\"deleteProduct('"+p.idProduct+"')\" data-bs-toggle=\"modal\" data-bs-target=\"\"><i class=\"fa fa-trash-o text-color\"></i></button>"+
+                            "                                        <button class=\"editProduct btnAdd bgcolor bd-full mx-1\" data-bs-toggle=\"modal\" data-bs-target=\"#editProduct\" onclick=\"innerEditProduct('"+p.idProduct+"')\"><i class=\"fa fa-pencil text-color\" title=\"Chỉnh sửa\" aria-hidden=\"true\"></i></button>\n" +
+                            "                                        <button class=\"hideProduct btnAdd bgcolor bd-full\" title=\"Ẩn/hiện sản phẩm\" aria-hidden=\"true\" onclick=\"hideProduct('"+p.idProduct+"')\" data-bs-toggle=\"modal\" data-bs-target=\"\"><i class=\"fa fa-lock text-color\"></i></button>"+
+                            "                                    </div>\n" +
+                            "                                </td>\n" +
+                            "                            </tr>";
+                    }
+                },
+                error: function(error) {
+                    console.error("Xảy ra lỗi:", error);
+                }
+            });
+        }
     }
     function editSup() {
         var name = document.getElementById("nameSupEdit");
@@ -1376,16 +1436,33 @@
             error.innerHTML = ' *Vui lòng nhập danh mục mới!';
             flag = false;
         }
-
         return flag;
     }
     function addInput() {
         var container = document.getElementById('image');
         var newInput = document.createElement('div');
-        newInput.className = 'mb-3';
-        newInput.innerHTML = '<input type="file" class="form-control" name="image"">';
+        newInput.className = 'mb-3 d-flex';
+        newInput.innerHTML = '<input type="file" class="form-control" name="image"><button type ="button" class="btnAdd bgcolor bd-full ms-2 remove" onclick="removeInput(this)"><i class="fa fa-minus-circle text-color" aria-hidden="true" title="Xóa hình ảnh" ></i></button>';
         container.appendChild(newInput);
     }
+    function removeInput(button) {
+        var container = document.getElementById('image');
+        var divToRemove = button.parentNode; // Lấy đến div chứa nút xóa
+        container.removeChild(divToRemove);
+    }
+    function addInputInEdit() {
+        var container = document.getElementById('imageEdit');
+        var newInput = document.createElement('div');
+        newInput.className = 'mb-3 d-flex';
+        newInput.innerHTML = '<input type="file" class="form-control" name="imageEdit"> <button type ="button" class="btnAdd bgcolor bd-full ms-2 remove" onclick="removeInputEdit(this)"><i class="fa fa-minus-circle text-color" aria-hidden="true" title="Xóa hình ảnh" ></i></button>';
+        container.appendChild(newInput);
+    }
+    function removeInputEdit(button) {
+        var container = document.getElementById('imageEdit');
+        var divToRemove = button.parentNode; // Lấy đến div chứa nút xóa
+        container.removeChild(divToRemove);
+    }
+
     // Sử dụng hàm này để tải chi tiết sản phẩm bằng AJAX
     function loadProductDetails(productId) {
         $.ajax({
@@ -1437,6 +1514,55 @@
         // Tải chi tiết sản phẩm bằng AJAX
         loadProductDetails(productId);
     };
+    // Sử dụng hàm này để tải chi tiết sản phẩm trong edit sản phẩm bằng AJAX
+    function loadEditProductDetails(productId) {
+        id = productId;
+        $.ajax({
+            type: "GET",
+            url: "loadDetailProduct",
+            data: {
+                idProduct: productId
+            },
+            success: function (data) {
+                // Cập nhật nội dung modal với dữ liệu JSON nhận được
+                updateEditModalContent(data);
+            },
+            error: function () {
+                console.error("Không thể tải chi tiết sản phẩm");
+            }
+        });
+    }
+
+    // Sử dụng hàm này để cập nhật nội dung modal
+    function updateEditModalContent(data) {
+        var p = data.product;
+        //Cập nhật các phần tử HTML với chi tiết sản phẩm
+        $("#nameProductEdit").val(p.name);
+        $("#priceImpProductEdit").val(p.priceImport);
+        $("#priceProductEdit").val(p.price);
+        $("#lengthEdit").val(p.length);
+        $("#widthEdit").val(p.width);
+        $("#heightEdit").val(p.height);
+        $("#materialEdit").val(p.material);
+        $("#cateTypeEdit").val(p.typeCate)
+        $("#colorEdit").val(p.color);
+        $("#quantityEdit").val(p.quantityAvailable);
+        $("#desEdit").val(p.description);
+        var container = document.getElementById('imageEdit');
+        container.innerHTML = "";
+        for (var img of p.imageDetail) {
+            var newInput = document.createElement('div');
+            newInput.className = 'mb-3 d-flex align-items-center';
+            newInput.innerHTML = `<img src="Products/${img.url}"" class="card-img-top img_p_cart" alt="..."/> <input type="text" class="form-control " name="imageAvai" value="Products/${img.url}" style ="height:40px"> <button type="button" class="btnAdd bgcolor bd-full ms-2  remove" style ="height:40px" onclick="removeInputEdit(this)"><i class="fa fa-minus-circle text-color" aria-hidden="true" title="Xóa hình ảnh"></i></button>`;
+            container.appendChild(newInput);
+        }
+    }
+
+    // Ví dụ: Gọi hàm này khi một dòng sản phẩm được nhấp vào
+    function innerEditProduct(productId) {
+        // Tải chi tiết sản phẩm bằng AJAX
+        loadEditProductDetails(productId);
+    };
     function changeImg(newSrc) {
         var img_center = document.getElementById('img_center');
         if (img_center) {
@@ -1478,7 +1604,7 @@
                         "                                <td>\n" +
                         "                                    <div class=\"d-flex justify-content-center\">\n" +
                         "                                        <button class=\"delete btnAdd bgcolor bd-full\" title=\"Xóa\" aria-hidden=\"true\" onclick=\"deleteProduct('"+p.idProduct+"')\" data-bs-toggle=\"modal\" data-bs-target=\"\"><i class=\"fa fa-trash-o text-color\"></i></button>"+
-                        "                                        <button class=\"editProduct btnAdd bgcolor bd-full mx-1\"><i class=\"fa fa-pencil text-color\" title=\"Chỉnh sửa\" aria-hidden=\"true\" data-bs-toggle=\"modal\" data-bs-target=\"#editProduct\"></i></button>\n" +
+                            "                                        <button class=\"editProduct btnAdd bgcolor bd-full mx-1\" data-bs-toggle=\"modal\" data-bs-target=\"#editProduct\" onclick=\"innerEditProduct('"+p.idProduct+"')\"><i class=\"fa fa-pencil text-color\" title=\"Chỉnh sửa\" aria-hidden=\"true\"></i></button>\n" +
                         "                                        <button class=\"hideProduct btnAdd bgcolor bd-full\" title=\"Ẩn/hiện sản phẩm\" aria-hidden=\"true\" onclick=\"hideProduct('"+p.idProduct+"')\" data-bs-toggle=\"modal\" data-bs-target=\"\"><i class=\"fa fa-lock text-color\"></i></button>"+
                         "                                    </div>\n" +
                         "                                </td>\n" +
@@ -1526,7 +1652,7 @@
                             "                                <td>\n" +
                             "                                    <div class=\"d-flex justify-content-center\">\n" +
                             "                                        <button class=\"delete btnAdd bgcolor bd-full\" title=\"Xóa\" aria-hidden=\"true\" onclick=\"deleteProduct('"+p.idProduct+"')\" data-bs-toggle=\"modal\" data-bs-target=\"\"><i class=\"fa fa-trash-o text-color\"></i></button>"+
-                            "                                        <button class=\"editProduct btnAdd bgcolor bd-full mx-1\"><i class=\"fa fa-pencil text-color\" title=\"Chỉnh sửa\" aria-hidden=\"true\" data-bs-toggle=\"modal\" data-bs-target=\"#editProduct\"></i></button>\n" +
+                            "                                        <button class=\"editProduct btnAdd bgcolor bd-full mx-1\" data-bs-toggle=\"modal\" data-bs-target=\"#editProduct\" onclick=\"innerEditProduct('"+p.idProduct+"')\"><i class=\"fa fa-pencil text-color\" title=\"Chỉnh sửa\" aria-hidden=\"true\"></i></button>\n" +
                             "                                        <button class=\"hideProduct btnAdd bgcolor bd-full\" title=\"Ẩn/hiện sản phẩm\" aria-hidden=\"true\" onclick=\"hideProduct('"+p.idProduct+"')\" data-bs-toggle=\"modal\" data-bs-target=\"\"><i class=\"fa fa-lock text-color\"></i></button>"+
                             "                                    </div>\n" +
                             "                                </td>\n" +
