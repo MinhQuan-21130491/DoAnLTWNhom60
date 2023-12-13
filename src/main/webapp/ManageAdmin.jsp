@@ -1,6 +1,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="model.Product" %>
 <%@ page import="java.text.NumberFormat" %>
+<%@ page import="model.Account" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -42,6 +43,11 @@
 </header>
 <%--end header--%>
 <%--content--%>
+<%
+    Object obj = session.getAttribute("account");
+    Account account = (Account) obj;
+    if (account != null && (account.getRole() == 0 || account.getRole() == 1)) {
+%>
 <div class="container p-0 mgt">
         <a href="<%=url%>/homePage" class="color-gray lbhv text-decoration-none">Trang chủ  <i class="fa fa-angle-right color-gray" aria-hidden="true"></i>  </a> <span class="color-gray" id ="sp">Quản lý</span>
         <span class="text-color" id ="typeMa"><i class="fa fa-angle-right color-gray" aria-hidden="true"></i> Quản lý tài khoản</span>
@@ -74,7 +80,9 @@
                         <h5 >Quản lý tài khoản</h5>
                     </div>
                     <div class="col-lg-6 text-end">
-                        <button class="btnAdd bgcolor bd-full" id ="btnAddAccount"><i class="fa fa-plus-circle text-color" aria-hidden="true" title="Thêm sản phẩm" data-bs-toggle="modal" data-bs-target="#addProduct"></i></button>
+                        <%if(account.getRole() == 0) {%>
+                            <button class="btnAdd bgcolor bd-full" id ="btnAddAccount" data-bs-toggle="modal" data-bs-target="#addAccount" ><i class="fa fa-plus-circle text-color" aria-hidden="true" title="Thêm sản phẩm"></i></button>
+                        <%}%>
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -90,48 +98,162 @@
                                     <td>TRẠNG THÁI</td>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr data-bs-toggle="modal" data-bs-target="#detailAccount">
-                                    <td class="w40">1</td>
-                                    <td>minhquanpro</td>
-                                    <td>qle29202@gmail.com</td>
+                            <tbody id ="innerAccount">
+                            <%
+                                ArrayList<Account> listAllAccount = (ArrayList<Account>) request.getAttribute("listAllAccount");
+                                if (!listAllAccount.isEmpty() && listAllAccount != null) {
+                                    int sttA = 1;
+                                    for(Account a: listAllAccount) {
+                            %>
+                                <tr data-bs-toggle="modal" data-bs-target="#detailAccount" onclick="detailAccount('<%=a.getId()%>')">
+                                    <td class="w40"><%=sttA%></td>
+                                    <td><%=a.getName()%></td>
+                                    <td><%=a.getEmail()%></td>
+                                    <%if (a.getRole() == 0) {%>
                                     <td>Admin</td>
-                                    <td >1</td>
-                                    <td class = "status"></td>
+                                    <%} else if(a.getRole() == 1){%>
+                                    <td>Nhân viên</td>
+                                    <%}else {%>
+                                    <td>Khách hàng</td>
+                                    <%}%>
+                                    <%if(a.getVerifyAccount().isStateVerify()) {%>
+                                    <td>Đã xác thực</td>
+                                    <%}else {%>
+                                    <td>Chưa xác thực</td>
+                                    <%}%>
+                                    <%if(a.isStatus()){%>
+                                    <td class="status">Hoạt động</td>
+                                    <%}else {%>
+                                    <td class="status">Đã khóa</td>
+                                    <%}%>
                                     <td>
-                                        <div class="d-flex w-100 justify-content-center">
-                                            <button type="submit" class="delete btnAdd bgcolor bd-full" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#"><i class="fa fa-trash-o text-color"  title="Xóa" ></i></button>
-                                            <button class="block btnAdd bgcolor bd-full mx-1" data-bs-toggle="modal" data-bs-target="#"><i class="fa fa-lock text-color" title="Khóa" aria-hidden="true" ></i></button>
-                                            <button class="editAccount btnAdd bgcolor bd-full me-1" title="Chỉnh sửa quyền truy cập" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editAccount"><i class="fa fa-pencil text-color" ></i></button>
-                                        </div>
+                                        <%if(account.getRole() == 0) {%>
+                                            <div class="d-flex w-100 justify-content-center">
+                                                    <button class="delete btnAdd bgcolor bd-full" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#" onclick="deleteAccount(<%=a.getId()%>)"><i class="fa fa-trash-o text-color"  title="Xóa" ></i></button>
+                                                <button class="editAccount btnAdd bgcolor bd-full mx-1" title="Chỉnh sửa thông tin" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editAccount" onclick="innerAccount(<%=a.getId()%>)"><i class="fa fa-pencil text-color" ></i></button>
+                                                    <button class="block btnAdd bgcolor bd-full " data-bs-toggle="modal" data-bs-target="#" onclick="banAccount(<%=a.getId()%>)"><i class="fa fa-lock text-color" title="Khóa" aria-hidden="true" ></i></button>
+                                            </div>
+                                        <%}%>
                                     </td>
                                 </tr>
+                            <%
+                                        sttA++;
+                                    }
+                                }%>
                             </tbody>
                         </table>
                     </div>
                 </div>
                 <div class="modal fade" id="editAccount" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
+                    <div class="modal-dialog modal-md">
+                        <div class="modal-content ">
                             <div class="modal-body">
-                                <form class="" action="" method="post">
-                                    <div class="row px-4  pt-0">
+                                <form id="edit">
+                                    <table class="tbChane-infor px-2">
+                                        <thead>
                                         <div class=" text-end">
                                             <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        <h5 class="text-center title">QUYỀN TRUY CẬP</h5>
-                                        <hr>
-                                        <div class="col-md-12 text-center">
-                                            <input class ="ms-4" type="checkbox" id ="staff" name="per" value="Nhân viên"><label for="staff">Nhân viên</label>
-                                        </div>
-                                        <div class="row p-0">
-                                            <div class="col-md-12 p-0">
-                                                <div class="text-end">
-                                                    <button class="save " type="submit">LƯU</button>
+                                        <tr>
+                                            <td class="py-0" colspan ="4">
+                                                <h5 class = "pt-3 fw-bold text-center"> CHỈNH SỬA THÔNG TIN </h5>
+                                                <hr>
+                                                <div class="text-danger text-center w-100" id="error"></div>
+                                            </td>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr id="changeName">
+                                            <td >
+                                                <label>Họ và tên<span class="text-danger">*</span></label>
+                                            </td>
+                                            <td class="w-50">
+                                                <div id="InName">
+                                                    <input class="form-control" id="HienThiTen" name="TenHT" type="text">
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                            </td>
+                                        </tr>
+                                        <tr id="changeSDT">
+                                            <td>
+                                                <label>Số điện thoại<span class="text-danger">*</span></label>
+                                            </td>
+                                            <td>
+                                                <div id="InSDT">
+                                                    <input class="form-control" id="HienThiSDT" name="SDTHT" type="text">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr id="changegGmail">
+                                            <td>
+                                                <label>Email<span class="text-danger">*</span></label>
+                                            </td>
+                                            <td>
+                                                <div id="InGmail">
+                                                    <input class="form-control" id="HienThiGmail" name="GmailHT" type="text">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label>Giới tính<span class="text-danger">*</span></label>
+                                            </td>
+                                            <td >
+                                                <div class = "gender">
+                                                    <label class="ms-0" for="male">Nam</label><input class="ms-2 me-3" type="radio" id="male" name="gender" value="Nam">
+                                                    <label for="female">Nữ</label> <input class="ms-2 me-3" type="radio" id="female" name="gender" value="Nữ" >
+                                                    <label for="other">Khác</label> <input class="ms-2 me-3" type="radio" id="other" name="gender" value="Khác">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label>Chức vụ</label>
+                                            </td>
+                                            <td >
+                                                <div class ="role">
+                                                    <label for="staff">Nhân viên</label><input class="me-1" type="radio" id="staff" name="role" value="Nhân viên" >
+                                                    <label for="Admin">Admin</label><input class="me-1" type="radio" id="admin" name="role" value="Admin" >
+                                                    <label for="cus">Khách</label><input type="radio" id="cus" name="role" value="Khách hàng" >
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr id="changeNgaySinh">
+                                            <td>
+                                                <label>Ngày sinh<span class="text-danger">*</span></label>
+                                            </td>
+                                            <td>
+                                                <div id="InNS">
+                                                    <input class="form-control" id="HienThiNS" name="HienThiNS" type="date">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr id="changeDC">
+                                            <td>
+                                                <label>Địa chỉ<span class="text-danger">*</span></label>
+                                            </td>
+                                            <td>
+                                                <div id="InDiaChi">
+                                                    <input class="form-control" id="HienThiDC" name="DCHT" type="text">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr id="changeDCReceive">
+                                            <td>
+                                                <label>Địa chỉ nhận hàng<span class="text-danger">*</span></label>
+                                            </td>
+                                            <td>
+                                                <div id="">
+                                                    <input class="form-control" id="HienThiDCReice" name="DCHT" type="text">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr id="SubmitSB">
+                                            <td class="py-0" colspan="2">
+                                                <div><button type="button" class="m-0" id="submit" name="SB" onclick="editAccount()" style="color: white"> LƯU </button></div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
                                 </form>
                             </div>
                         </div>
@@ -149,11 +271,11 @@
                                     <hr>
                                     <div class="col-md-12">
                                         <div class="mb-3">
-                                            <label class="form-label"> Mã khách hàng </label>
-                                            <input type="text" class="form-control" id="idAccountDetail" name="nameAccountDetail" readonly>
+                                            <label class="form-label"> Mã tài khoản </label>
+                                            <input type="text" class="form-control" id="idAccountDetail" name="idAccountDetail" readonly>
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label"> Tên khách hàng </label>
+                                            <label class="form-label"> Họ và tên </label>
                                             <input type="text" class="form-control" id="nameAccountDetail" name="nameAccountDetail" readonly>
                                         </div>
                                         <div class="mb-3">
@@ -176,7 +298,53 @@
                                             <label class="form-label">Địa chỉ</label>
                                             <input type="text" class="form-control" id="addressAccountDetail" name="addressAccountDetail" readonly>
                                         </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Địa chỉ nhận hàng</label>
+                                            <input type="text" class="form-control" id="addressReAccountDetail" name="addressReAccountDetail" readonly>
+                                        </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="addAccount" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="row p-4">
+                                    <div class=" text-end">
+                                        <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <h5 class="text-center title">THÊM TÀI KHOẢN</h5>
+                                    <hr>
+                                    <form class="p-0" action="">
+                                        <div class="col-md-12">
+                                            <div class="mb-3">
+                                                <label class="form-label">Tên đăng nhập<span class="text-danger">*</span></label><span class="text-danger" id="errUser"></span>
+                                                <input type="text" class="form-control" placeholder="Nhập tên đăng nhập" name="userName" id="userName" value =""/>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Mật khẩu<span class="text-danger">*</span></label><span class="text-danger" id="errPW"></span>
+                                                <input type="password" class="form-control" placeholder="Nhập mật khẩu" name="password" id="password" value =""/>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Nhập lại mật khẩu<span class="text-danger">*</span></label><span class="text-danger" id="errRePW"></span>
+                                                <input type="password" class="form-control" placeholder="Nhập lại mật khẩu" name="rePassword" id="rePassword" value =""/>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Email<span class="text-danger">*</span></label><span class="text-danger" id="errEmail"></span>
+                                                <input type="text" class="form-control" placeholder="Nhập Email" name="email" id="email" value =""/>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="text-end">
+                                                        <button class="save" type="button" onclick="addAccount()">LƯU</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -254,7 +422,7 @@
                     <div class="modal-dialog modal-md">
                         <div class="modal-content ">
                             <div class="modal-body">
-                                <form class ="" action="" method="post" id ="edit-Product" >
+                                <form action="" method="post" id ="edit-Product" >
                                     <div class="row px-2">
                                         <div class=" text-end">
                                             <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
@@ -893,6 +1061,17 @@
             <!--end giao diện quản lý nhà cung cấp -->
         </div>
 </div>
+<%
+} else {
+    if (account == null) {
+%>
+<div class="container p-0 mgt text-center fw-bold">Bạn chưa đăng nhập! <a href = <%=url%>/SignIn.jsp>Đăng nhập</a></div>
+<%} else {%>
+<div class="container p-0 mgt text-center fw-bold">Bạn không có quyền quản lý! <a href = <%=url%>/homePage>Quay lại</a></div>
+<%
+        }
+    }
+%>
 <%--end content--%>
 <!--footer-->
 <footer>
@@ -1462,7 +1641,6 @@
         var divToRemove = button.parentNode; // Lấy đến div chứa nút xóa
         container.removeChild(divToRemove);
     }
-
     // Sử dụng hàm này để tải chi tiết sản phẩm bằng AJAX
     function loadProductDetails(productId) {
         $.ajax({
@@ -1480,7 +1658,6 @@
             }
         });
     }
-
     // Sử dụng hàm này để cập nhật nội dung modal
     function updateModalContent(data) {
         var p = data.product;
@@ -1508,7 +1685,6 @@
         $('.owl-carousel').owlCarousel()
         $('.owl-carousel').removeClass("owl-hidden");
     }
-
     // Ví dụ: Gọi hàm này khi một dòng sản phẩm được nhấp vào
     function detailProduct(productId) {
         // Tải chi tiết sản phẩm bằng AJAX
@@ -1532,7 +1708,6 @@
             }
         });
     }
-
     // Sử dụng hàm này để cập nhật nội dung modal
     function updateEditModalContent(data) {
         var p = data.product;
@@ -1557,7 +1732,6 @@
             container.appendChild(newInput);
         }
     }
-
     // Ví dụ: Gọi hàm này khi một dòng sản phẩm được nhấp vào
     function innerEditProduct(productId) {
         // Tải chi tiết sản phẩm bằng AJAX
@@ -1665,7 +1839,333 @@
             });
         }
     }
-
+    function detailAccount(id) {
+        $.ajax({
+            type: "GET",
+            url: "loadDetailAccount",
+            data: {
+                id: id
+            },
+            success: function (data) {
+                // Cập nhật nội dung modal với dữ liệu JSON nhận được
+                var a = data.account;
+                $('#idAccountDetail').val(a.id);
+                $('#nameAccountDetail').val(a.name);
+                $('#phoneAccountDetail').val(a.phoneNumber);
+                $('#genderAccountDetail').val(a.gender);
+                $('#EmailAccountDetail').val(a.email);
+                $('#dateAccountDetail').val(a.birthDay);
+                $('#addressAccountDetail').val(a.address);
+                $('#addressReAccountDetail').val(a.addressRecei);
+            },
+            error: function () {
+                console.error("Không thể tải chi tiết tài khoản");
+            }
+        });
+    }
+    function deleteAccount(id) {
+        var confirmation = confirm("Bạn có chắc muốn xóa ?");
+        if (confirmation) {
+            $.ajax({
+                type: "POST",
+                url: "delAccount",
+                data: { id: id},
+                success: function(data) {
+                    var jsonData = JSON.parse(data);
+                    var htmlData = jsonData.htmlData;
+                    var res = jsonData.res;
+                    alert(res);
+                    var row = document.getElementById("innerAccount");
+                    row.innerHTML = ""; // Clear existing content
+                    for (var i = 0; i < htmlData.length; i++) {
+                        var a = htmlData[i];
+                            row.innerHTML += "<tr data-bs-toggle=\"modal\" data-bs-target=\"#detailAccount\" onclick=\"detailAccount('" + a.id + "')\">\n" +
+                                "                                    <td class=\"w40\">" + (i+1) + "</td>\n" +
+                                "                                    <td>" + a.name + "</td>\n" +
+                                "                                    <td>" + a.email + "</td>\n" +
+                                "                                    <td>" + a.role + "</td>\n" +
+                                "                                    <td>" + a.vrf + "</td>\n" +
+                                "                                    <td class = \"status\">" + a.status + "</td>\n" +
+                                "                                    <td>\n" +
+                                "                                        <div class=\"d-flex w-100 justify-content-center\">\n" +
+                                "                                            <button class=\"delete btnAdd bgcolor bd-full\" aria-hidden=\"true\" data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"deleteAccount('" + a.id + "')\" ><i class=\"fa fa-trash-o text-color\"  title=\"Xóa\" ></i></button>\n" +
+                                "                                            <button class=\"editAccount btnAdd bgcolor bd-full mx-1\" title=\"Chỉnh sửa quyền truy cập\" aria-hidden=\"true\" data-bs-toggle=\"modal\" data-bs-target=\"#editAccount\" onclick=\"innerAccount('" + a.id + "')\"><i class=\"fa fa-pencil text-color\" ></i></button>\n" +
+                                "                                            <button class=\"block btnAdd bgcolor bd-full \" data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"banAccount('" + a.id + "')\"><i class=\"fa fa-lock text-color\" title=\"Khóa\" aria-hidden=\"true\" ></i></button>\n" +
+                                "                                        </div>\n" +
+                                "                                    </td>\n" +
+                                "                                </tr>";
+                    }
+                },
+                error: function(error) {
+                    console.error("Lỗi khi xóa sản phẩm:", error);
+                }
+            });
+        }
+    }
+    function banAccount(id) {
+        var confirmation = confirm("Bạn có chắc với lựa chọn này ?");
+        if (confirmation) {
+            $.ajax({
+                type: "POST",
+                url: "updateStatusAccount",
+                data: {id: id},
+                success: function (data) {
+                    var jsonData = JSON.parse(data);
+                    var htmlData = jsonData.htmlData;
+                    var res = jsonData.res;
+                    alert(res);
+                    var row = document.getElementById("innerAccount");
+                    row.innerHTML = ""; // Clear existing content
+                    for (var i = 0; i < htmlData.length; i++) {
+                        var a = htmlData[i];
+                            row.innerHTML += "<tr data-bs-toggle=\"modal\" data-bs-target=\"#detailAccount\" onclick=\"detailAccount('" + a.id + "')\">\n" +
+                                "                                    <td class=\"w40\">" + (i + 1) + "</td>\n" +
+                                "                                    <td>" + a.name + "</td>\n" +
+                                "                                    <td>" + a.email + "</td>\n" +
+                                "                                    <td>" + a.role + "</td>\n" +
+                                "                                    <td>" + a.vrf + "</td>\n" +
+                                "                                    <td class = \"status\">" + a.status + "</td>\n" +
+                                "                                    <td>\n" +
+                                "                                        <div class=\"d-flex w-100 justify-content-center\">\n" +
+                                "                                            <button class=\"delete btnAdd bgcolor bd-full\" aria-hidden=\"true\" data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"deleteAccount('" + a.id + "')\" ><i class=\"fa fa-trash-o text-color\"  title=\"Xóa\" ></i></button>\n" +
+                                "                                            <button class=\"editAccount btnAdd bgcolor bd-full mx-1\" title=\"Chỉnh sửa quyền truy cập\" aria-hidden=\"true\" data-bs-toggle=\"modal\" data-bs-target=\"#editAccount\" onclick=\"innerAccount('" + a.id + "')\"><i class=\"fa fa-pencil text-color\" ></i></button>\n" +
+                                "                                            <button class=\"block btnAdd bgcolor bd-full \" data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"banAccount('" + a.id + "')\"><i class=\"fa fa-lock text-color\" title=\"Khóa\" aria-hidden=\"true\" ></i></button>\n" +
+                                "                                        </div>\n" +
+                                "                                    </td>\n" +
+                                "                                </tr>";
+                    }
+                },
+                error: function (error) {
+                    console.error("Xảy ra lỗi:", error);
+                }
+            });
+        }
+    }
+    var idAccount ="";
+    function innerAccount(id) {
+        idAccount = id;
+        $.ajax({
+            type: "GET",
+            url: "loadDetailAccount",
+            data: {
+                id: id,
+            },
+            success: function (data) {
+                var a = data.account;
+                $("#HienThiTen").val(a.name);
+                $("#HienThiGmail").val(a.email);
+                $("#HienThiSDT").val(a.phoneNumber);
+                $("#HienThiDC").val(a.address);
+                $("#HienThiDCReice").val(a.addressRecei);
+                $("#HienThiNS").val(a.birthDay);
+                var gender = a.gender;
+                if(gender === "Nam") {
+                    $("#male").prop("checked", true);
+                }else if(gender === "Nữ") {
+                    $("#female").prop("checked", true);
+                }else {
+                    $("#other").prop("checked", true);
+                }
+                console.log(a.checkStaff)
+                if(a.checkStaff === "Khách hàng") {
+                    $('#cus').prop("checked", true);
+                }else if(a.checkStaff === "Nhân viên"){
+                    $('#staff').prop("checked", true);
+                }else {
+                    $('#admin').prop("checked", true);
+                }
+                var error = document.getElementById("res");
+            },
+            error: function () {
+                console.error("Không thể tải chi tiết tài khoản");
+            }
+        });
+    }
+    function editAccount() {
+        var flag = true;
+        var tenElement = document.getElementById("HienThiTen");
+        var gmailElement = document.getElementById("HienThiGmail");
+        var sdtElement = document.getElementById("HienThiSDT");
+        var dcElement = document.getElementById("HienThiDC");
+        var dcReElement = document.getElementById("HienThiDCReice");
+        var nsElement = document.getElementById("HienThiNS");
+        var error = document.getElementById("error");
+        var gmailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        var phoneReg = /^\d{10}/;
+        if(tenElement.value == "") {
+            error.innerHTML = "Vui lòng nhập họ và tên!";
+            flag = false;
+        }else if(gmailElement.value == "") {
+            error.innerHTML = "Vui lòng nhập Email!";
+            flag = false;
+        }else if(!gmailElement.value.match(gmailReg)) {
+            error.innerHTML = "Email không hợp lệ!";
+            flag = false;
+        }else if(sdtElement.value == "") {
+            error.innerHTML = "Vui lòng nhập số điện thoại!";
+            flag = false;
+        }else if(!sdtElement.value.match(phoneReg)) {
+            error.innerHTML = "Số điện thoại không hợp lệ!";
+            flag = false;
+        }
+        else if(dcElement.value == "") {
+            error.innerHTML = "Vui lòng nhập địa chỉ!";
+            flag = false;
+        }else if(dcReElement.value ==""){
+            error.innerHTML = "Vui lòng nhập địa chỉ nhận hàng!";
+            flag = false;
+        } else if(nsElement.value == "") {
+            error.innerHTML = "Vui lòng chọn ngày sinh!";
+            flag = false;
+        }
+        if(flag) {
+            var gender = $('input[type="radio"][name="gender"]:checked');
+            var role = $('input[type="radio"][name="role"]:checked');
+            $.ajax({
+                url: 'editAccount',
+                type: 'POST',
+                data: {
+                    name:tenElement.value,
+                    email: gmailElement.value,
+                    phoneNumber:sdtElement.value,
+                    address:dcElement.value,
+                    gender:gender.val(),
+                    addressRecei:dcReElement.value,
+                    birthDay:nsElement.value,
+                    role: role.val(),
+                    id: idAccount
+                },
+                success: function (data) {
+                    var jsonData = JSON.parse(data);
+                    var htmlData = jsonData.htmlData;
+                    var res = jsonData.res;
+                    alert(res);
+                    var row = document.getElementById("innerAccount");
+                    row.innerHTML = ""; // Clear existing content
+                    for (var i = 0; i < htmlData.length; i++) {
+                        var a = htmlData[i];
+                            row.innerHTML += "<tr data-bs-toggle=\"modal\" data-bs-target=\"#detailAccount\" onclick=\"detailAccount('" + a.id + "')\">\n" +
+                                "                                    <td class=\"w40\">" + (i+1) + "</td>\n" +
+                                "                                    <td>" + a.name + "</td>\n" +
+                                "                                    <td>" + a.email + "</td>\n" +
+                                "                                    <td>" + a.role + "</td>\n" +
+                                "                                    <td>" + a.vrf + "</td>\n" +
+                                "                                    <td class = \"status\">" + a.status + "</td>\n" +
+                                "                                    <td>\n" +
+                                "                                        <div class=\"d-flex w-100 justify-content-center\">\n" +
+                                "                                            <button class=\"delete btnAdd bgcolor bd-full\" aria-hidden=\"true\" data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"deleteAccount('" + a.id + "')\" ><i class=\"fa fa-trash-o text-color\"  title=\"Xóa\" ></i></button>\n" +
+                                "                                            <button class=\"editAccount btnAdd bgcolor bd-full mx-1\" title=\"Chỉnh sửa thông tin\" aria-hidden=\"true\" data-bs-toggle=\"modal\" data-bs-target=\"#editAccount\" onclick=\"innerAccount('" + a.id + "')\"><i class=\"fa fa-pencil text-color\" ></i></button>\n" +
+                                "                                            <button class=\"block btnAdd bgcolor bd-full \" data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"banAccount('" + a.id + "')\"><i class=\"fa fa-lock text-color\" title=\"Khóa\" aria-hidden=\"true\" ></i></button>\n" +
+                                "                                        </div>\n" +
+                                "                                    </td>\n" +
+                                "                                </tr>";
+                    }
+                },
+                error: function(error) {
+                    console.error("Xảy ra lỗi:", error);
+                }
+            });
+        }
+    }
+    function addAccount() {
+        var condition = true;
+        var user = $('#userName').val();
+        var password = $('#password').val();
+        var rePW = $('#rePassword').val();
+        var email = $('#email').val();
+        var passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*()-+])(?=.*[0-9]).{8,}$/;
+        var emailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        var specialCharacters = /[!@#$%^&*(),.?":{}|<>' -]/;
+        if (user === "") {
+            $("#errUser").text('Vui lòng nhập tên đăng nhập!');
+            $('#errUser').attr('style', 'color:red');
+            condition = false;
+        } else if (specialCharacters.test(user)) {
+            $("#errUser").text('Tên đăng nhập không chứa kí tự đặc biệt!');
+            $('#errUser').attr('style', 'color:red');
+            condition = false;
+        } else {
+            $("#errUser").text('');
+        }
+        if(password===""){
+            $("#errPW").text('Vui lòng nhập mật khẩu!');
+            $('#errPW').attr('style', 'color:red');
+            condition = false;
+        }else if(password.length < 6 || password.length > 50){
+            $("#errPW").text('Mật khẩu dài từ 6 đến 50 ký tự!');
+            $('#errPW').attr('style', 'color:red');
+            condition = false;
+        }else if(!password.match(passwordRegex)){
+            $("#errPW").text('Mật khẩu có ít nhất 1 chữ hoa, 1 ký tự đặc biệt và 1 số!');
+            $('#errPW').attr('style', 'color:red');
+            condition = false;
+        }else {
+            $("#errPW").text('');
+        }
+        if(rePW === ""){
+            $("#errRePW").text('Vui lòng xác nhận lại mật khẩu!');
+            $('#errRePW').attr('style', 'color:red');
+            condition = false;
+        }else if(rePW !==password){
+            $("#errRePW").text('Mật khẩu xác nhận không đúng!');
+            $('#errRePW').attr('style', 'color:red');
+            condition = false;
+        }else{
+            $("#errRePW").text('');
+        }
+        if(email===""){
+            $("#errEmail").text('Vui lòng nhập Email!');
+            $('#errEmail').attr('style', 'color:red');
+            condition = false;
+        }else if(!email.match(emailReg)){
+            $("#errEmail").text('Email không hợp lệ!');
+            $('#errEmail').attr('style', 'color:red');
+            condition = false;
+        }else{
+            $("#errEmail").text('');
+        }
+        if(condition) {
+            $.ajax({
+                url: 'addAccount',
+                type: 'POST',
+                data:{
+                    userName: user,
+                    password: password,
+                    rePW: rePW,
+                    email: email,
+                },
+                success: function(data) {
+                    var jsonData = JSON.parse(data);
+                    var htmlData = jsonData.htmlData;
+                    var res = jsonData.res;
+                    alert(res);
+                    var row = document.getElementById("innerAccount");
+                    row.innerHTML = ""; // Clear existing content
+                    for (var i = 0; i < htmlData.length; i++) {
+                        var a = htmlData[i];
+                        row.innerHTML += "<tr data-bs-toggle=\"modal\" data-bs-target=\"#detailAccount\" onclick=\"detailAccount('" + a.id + "')\">\n" +
+                            "                                    <td class=\"w40\">" + (i+1) + "</td>\n" +
+                            "                                    <td>" + a.name + "</td>\n" +
+                            "                                    <td>" + a.email + "</td>\n" +
+                            "                                    <td>" + a.role + "</td>\n" +
+                            "                                    <td>" + a.vrf + "</td>\n" +
+                            "                                    <td class = \"status\">" + a.status + "</td>\n" +
+                            "                                    <td>\n" +
+                            "                                        <div class=\"d-flex w-100 justify-content-center\">\n" +
+                            "                                            <button class=\"delete btnAdd bgcolor bd-full\" aria-hidden=\"true\" data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"deleteAccount('" + a.id + "')\" ><i class=\"fa fa-trash-o text-color\"  title=\"Xóa\" ></i></button>\n" +
+                            "                                            <button class=\"editAccount btnAdd bgcolor bd-full mx-1\" title=\"Chỉnh sửa thông tin\" aria-hidden=\"true\" data-bs-toggle=\"modal\" data-bs-target=\"#editAccount\" onclick=\"innerAccount('" + a.id + "')\"><i class=\"fa fa-pencil text-color\" ></i></button>\n" +
+                            "                                            <button class=\"block btnAdd bgcolor bd-full \" data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"banAccount('" + a.id + "')\"><i class=\"fa fa-lock text-color\" title=\"Khóa\" aria-hidden=\"true\" ></i></button>\n" +
+                            "                                        </div>\n" +
+                            "                                    </td>\n" +
+                            "                                </tr>";
+                    }
+                },
+                error: function(error) {
+                    console.error("Xảy ra lỗi:", error);
+                }
+            });
+        }
+    }
 </script>
 <script src="slider/owlcarousel/owl.carousel.min.js"></script>
 </html>
