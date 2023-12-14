@@ -4,10 +4,7 @@ import model.Supplier;
 import model.VerifyAccount;
 import util.JDBCUtil;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,12 +65,61 @@ public class DAOSupplier {
         }
         return re;
     }
+    public static Supplier selectSupById(int idSup) {
+        Supplier re = null;
+        try{
+            // Tạo kết nối đến database
+            Connection connection = JDBCUtil.getConnection();
+            // Tạo đối tượng statement
+            String sql = "select id, name, phoneNumber, email, idCate, address " +
+                    "from suppliers " +
+                    "where id = ? ";
+            PreparedStatement pr = connection.prepareStatement(sql);
+            pr.setInt(1, idSup);
+            ResultSet resultSet = pr.executeQuery();
+            while (resultSet.next()){
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                String phone = resultSet.getString("phoneNumber");
+                String email = resultSet.getString("email");
+                int idCate = resultSet.getInt("idCate");
+                String address = resultSet.getString("address");
+                re = new Supplier(id,name,phone,email,idCate,address);
+            }
+
+            JDBCUtil.closeConnection(connection);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return re;
+    }
+    public static int updateInforSupplier(Supplier sup) throws SQLException {
+        int re = 0;
+        Connection connection = JDBCUtil.getConnection();
+        Statement s = connection.createStatement();
+        synchronized(s) {
+            try {
+                ResultSet resultSet = s.executeQuery("select id from suppliers where id=" + sup.getIdSup());
+                if (resultSet.next()) {
+                    re = s.executeUpdate("UPDATE suppliers SET name='" + sup.getNameSup() +
+                            "', phoneNumber='" + sup.getPhoneNumber() +
+                            "', email='" + sup.getEmail() +
+                            "', idCate='" + sup.getIdCate() +
+                            "', address='" + sup.getAddress() +
+                            "' WHERE id=" + sup.getIdSup());
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            JDBCUtil.closeConnection(connection);
+        }
+        return re;
+    }
 
     public static void main(String[] args) {
-        DAOSupplier sup = new DAOSupplier();
-        ArrayList<Supplier> suplist = listAllSupplier();
-        for (Supplier s : suplist) {
-            System.out.println(s.getId());
-        }
+
+        Supplier s=selectSupById(41);
+        System.out.println(s.toString());
     }
 }

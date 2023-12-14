@@ -4,6 +4,7 @@
 <%@ page import="model.Supplier" %>
 <%@ page import="service.SupplierService" %>
 <%@ page import="dao.DAOSupplier" %>
+<%@ page import="controller.AddSupplier" %>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
@@ -878,6 +879,10 @@
             </div>
             <div class="row mt-3">
                 <div class="col-lg-12 overflow-auto mheight">
+                    <%
+                        ArrayList<Supplier> suplist = (ArrayList<Supplier>) request.getAttribute("listAllSup");
+                        int sttS = 1;
+                    %>
                     <table class="mb-3">
                         <thead>
                         <tr>
@@ -891,11 +896,7 @@
                         </tr>
                         </thead>
 
-                        <tbody>
-                        <%
-                            ArrayList<Supplier> suplist = (ArrayList<Supplier>) request.getAttribute("listAllSup");
-                            int sttS = 1;
-                        %>
+                        <tbody id="innerSupplier">
                         <%
                             if (suplist != null && !suplist.isEmpty()) {
                                 for (Supplier s : suplist) {
@@ -903,7 +904,7 @@
                         <tr>
                             <td class="w40"><%=sttS%>
                             </td>
-                            <td class="w40"><%=s.getId()%>
+                            <td class="w40"><%=s.getIdSup()%>
                             </td>
                             <td><%=s.getNameSup()%>
                             </td>
@@ -913,25 +914,19 @@
                             </td>
                             <td><%=s.getEmail()%>
                             </td>
-                            <%if (s.getIdCate() == 4) {%>
-                            <td>Ghế thư giãn</td>
-                            <% } else if (s.getIdCate() == 1) {%>
-                            <td>Ghế trang trí</td>
-                            <% } else if (s.getIdCate() == 2) {%>
-                            <td>Ghế gaming</td>
-                            <% } else if (s.getIdCate() == 3) {%>
-                            <td>Ghế văn phòng</td>
-                            <%
-                                }
-                            %>
+                            <td>
+                                <%=s.typeCate(s.getIdCate())%>
+                            </td>
 
                             <td class="w110">
                                 <div class="d-flex w-100 justify-content-center">
-                                    <button class="delete btnAdd bgcolor bd-full me-1" onclick="deleteSupplier('<%=s.getId()%>')"><i
+                                    <button class="delete btnAdd bgcolor bd-full me-1"
+                                            onclick="deleteSupplier('<%=s.getIdSup()%>')" data-bs-toggle="modal"
+                                            data-bs-target=""><i
                                             class="fa fa-trash-o text-color" title="Xóa" aria-hidden="true"
                                             data-bs-toggle="modal" data-bs-target=""></i></button>
                                     <button class="editAccount btnAdd bgcolor bd-full "><i
-                                            class="fa fa-pencil text-color" title="Chỉnh sửa" aria-hidden="true"
+                                            class="fa fa-pencil text-color" title="Chỉnh sửa" aria-hidden="true" onclick="innerSupplier('<%=s.getIdSup()%>')"
                                             data-bs-toggle="modal" data-bs-target="#editSup"></i></button>
                                 </div>
                             </td>
@@ -950,7 +945,7 @@
                 <div class="modal-dialog ">
                     <div class="modal-content">
                         <div class="modal-body">
-                            <form class="form " id="supEdit" action="" method="post" onsubmit="return editSup()">
+                            <form class="form " id="supEdit" method="post">
                                 <div class="row px-2">
                                     <div class=" text-end">
                                         <button type="button" class="btn-close " data-bs-dismiss="modal"
@@ -984,7 +979,7 @@
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Cung cấp loại</label>
-                                            <select class="form-control" name="cateChairSupEdit">
+                                            <select class="form-control" name="cateChairSupEdit" id="cateChairSupEdit">
                                                 <option value="Ghế văn phòng">Ghế văn phòng</option>
                                                 <option value="Ghế thư giãn">Ghế thư giãn</option>
                                                 <option value="Ghế trang trí">Ghế trang trí</option>
@@ -995,7 +990,7 @@
                                     <div class="row p-0">
                                         <div class="col-md-12 p-0">
                                             <div class="text-end">
-                                                <button class="save " type="submit">LƯU</button>
+                                                <button class="save " type="button" onclick="editSup()">LƯU</button>
                                             </div>
                                         </div>
                                     </div>
@@ -1031,8 +1026,7 @@
                                 errEmailSupAdd = (errEmailSupAdd == null) ? "" : errEmailSupAdd;
                                 errAddressSupAdd = (errAddressSupAdd == null) ? "" : errAddressSupAdd;
                             %>
-                            <form class="form" id="supAdd" action="AddSupplier" method="post"
-                                  onsubmit="return addSup()">
+                            <form class="form" id="supAdd" method="post" enctype="multipart/form-data">
                                 <div class="row p-4">
                                     <div class=" text-end">
                                         <button type="button" class="btn-close " data-bs-dismiss="modal"
@@ -1082,7 +1076,7 @@
                                     <div class="row p-0">
                                         <div class="col-md-12 p-0">
                                             <div class="text-end">
-                                                <button class="save " type="submit">LƯU</button>
+                                                <button class="save " type="button" onclick="addSup()">LƯU</button>
                                             </div>
                                         </div>
                                     </div>
@@ -1413,7 +1407,33 @@
         console.log(flag)
         return flag;
     }
+    var idSup ="";
+    function innerSupplier(id) {
+        idSup=id;
+        console.log(id);
+        $.ajax({
+            type: "GET",
+            url: "LoadDetailSupplier",
+            data: {
+                id: id,
+            },
 
+            success: function (data) {
+                var s = data.supplier;
+                $("#nameSupEdit").val(s.name);
+                console.log(s.name);
+                $("#phoneNumberSupEdit").val(s.phoneNumber);
+                $("#emailSupEdit").val(s.email);
+                $("#addressSupEdit").val(s.address);
+
+                $('#cateChairSupEdit').val(s.typeCate);
+
+            },
+            error: function () {
+                console.error("Không thể tải chi tiết nhà cung cấp");
+            }
+        });
+    }
     function editSup() {
         var name = document.getElementById("nameSupEdit");
         var address = document.getElementById("addressSupEdit");
@@ -1459,8 +1479,54 @@
         } else {
             errEmailSup.innerHTML = ''
         }
+        if(flag) {
+            var formData = new FormData();
 
-        return flag;
+            formData.append('id', idSup);
+            formData.append('nameSupEdit', name.value);
+            formData.append('addressSupEdit', address.value);
+            formData.append('phoneSupEdit', phone.value);
+            formData.append('emailSupEdit', email.value);
+            let cateChaiValue =$("#cateChairSupAdd :selected").text();
+            formData.append('cateChairSupEdit', cateChaiValue);
+            $.ajax({
+                url: 'EditSupplier',
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    var jsonData = JSON.parse(data);
+                    var htmlData = jsonData.htmlData;
+                    var res = jsonData.res;
+                    alert(res);
+                    var row = document.getElementById("innerSupplier");
+                    row.innerHTML = ""; // Clear existing content
+                    for (var i = 0; i < htmlData.length; i++) {
+                        var s = htmlData[i];
+                        row.innerHTML +=  "<tr>\n" +
+                            "<td class=\"w40\">" + (i + 1) + "</td>\n" +
+                            "<td class=\"w40\">" + s.idSup + "</td>\n" +
+                            "<td>" + s.nameSup + "</td>\n" +
+                            "<td class=\"w225\">" + s.addressSup + "</td>\n" +
+                            "<td>" + s.phoneSup + "</td>\n" +
+                            "<td>" + s.emailSup + "</td>\n" +
+                            "<td>" + s.nameCate + "</td>\n" +
+                            "<td class=\"w110\">\n" +
+                            "<div class=\"d-flex w-100 justify-content-center\">\n" +
+                            "<button class=\"delete btnAdd bgcolor bd-full me-1\"onclick=\"deleteSupplier('" + s.idSup + "')\" data-bs-toggle=\"modal\"data-bs-target=\"\"><i class=\"fa fa-trash-o text-color\" title=\"Xóa\" aria-hidden=\"true\"data-bs-toggle=\"modal\" data-bs-target=\"\"></i></button>\n" +
+                            "<button class=\"editAccount btnAdd bgcolor bd-full \"><i class=\"fa fa-pencil text-color\" title=\"Chỉnh sửa\" aria-hidden=\"true\" onclick=\"innerSupplier('"+s.idSup+"')\" data-bs-toggle=\"modal\" data-bs-target=\"#editSup\"></i></button>\n" +
+                            "</div>\n" +
+                            "</td>\n" +
+                            "</tr>";
+                    }
+                },
+                error: function(error) {
+                    console.error("Xảy ra lỗi:", error);
+                }
+            });
+        }
+        document.getElementById("supEdit").close();
     }
 
     window.onload = function () {
@@ -1474,6 +1540,7 @@
         var address = document.getElementById("addressSupAdd");
         var phone = document.getElementById("phoneSupAdd");
         var email = document.getElementById("emailSupAdd");
+        var cateChair = document.getElementById("cateChairSupAdd");
 
         var errNameSup = document.getElementById("errNameSupAdd");
         var errAdd = document.getElementById("errAddressSupAdd");
@@ -1514,7 +1581,52 @@
         } else {
             errEmailSup.innerHTML = ''
         }
-        return flag;
+
+        if (flag) {
+            var formData2 = new FormData();
+            formData2.append('nameSupAdd', name.value);
+            formData2.append('addressSupAdd', address.value);
+            formData2.append('phoneSupAdd', phone.value);
+            formData2.append('emailSupAdd', email.value);
+            let cateChaiValue =$("#cateChairSupAdd :selected").text();
+            formData2.append('cateChairSupAdd', cateChaiValue);
+            $.ajax({
+                url: 'AddSupplier',
+                type: 'POST',
+                data: formData2,
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    var jsonData = JSON.parse(data);
+                    var htmlData = jsonData.htmlData;
+                    var res = jsonData.res;
+                    alert(res);
+                    var row = document.getElementById("innerSupplier");
+                    row.innerHTML = ""; // Clear existing content
+                    for (var i = 0; i < htmlData.length; i++) {
+                        var s = htmlData[i];
+                        row.innerHTML +=  "<tr>\n" +
+                            "<td class=\"w40\">" + (i + 1) + "</td>\n" +
+                            "<td class=\"w40\">" + s.idSup + "</td>\n" +
+                            "<td>" + s.nameSup + "</td>\n" +
+                            "<td class=\"w225\">" + s.addressSup + "</td>\n" +
+                            "<td>" + s.phoneSup + "</td>\n" +
+                            "<td>" + s.emailSup + "</td>\n" +
+                            "<td>" + s.nameCate + "</td>\n" +
+                            "<td class=\"w110\">\n" +
+                            "<div class=\"d-flex w-100 justify-content-center\">\n" +
+                            "<button class=\"delete btnAdd bgcolor bd-full me-1\"onclick=\"deleteSupplier('" + s.idSup + "')\" data-bs-toggle=\"modal\"data-bs-target=\"\"><i class=\"fa fa-trash-o text-color\" title=\"Xóa\" aria-hidden=\"true\"data-bs-toggle=\"modal\" data-bs-target=\"\"></i></button>\n" +
+                            "<button class=\"editAccount btnAdd bgcolor bd-full \"><i class=\"fa fa-pencil text-color\" title=\"Chỉnh sửa\" aria-hidden=\"true\" onclick=\"innerSupplier('"+s.idSup+"')\" data-bs-toggle=\"modal\" data-bs-target=\"#editSup\"></i></button>\n" +
+                            "</div>\n" +
+                            "</td>\n" +
+                            "</tr>";
+                    }
+                },
+                error: function(error) {
+                    console.error("Xảy ra lỗi:", error);
+                }
+            });
+        }
     }
 
     function addCate() {
@@ -1608,58 +1720,39 @@
         }
     }
 
-    function deleteSupplier(productId) {
+    function deleteSupplier(idSup) {
         var confirmation = confirm("Bạn có chắc muốn xóa ?");
         if (confirmation) {
             $.ajax({
                 type: "POST",
                 url: "DelSupplierInManage",
-                data: {id: productId},
+                data: {id: idSup},
                 success: function (data) {
                     var jsonData = JSON.parse(data);
                     var htmlData = jsonData.htmlData;
                     var res = jsonData.res;
                     alert(res);
-                    var row = document.getElementById("innerProduct");
+                    var row = document.getElementById("innerSupplier");
                     row.innerHTML = ""; // Clear existing content
+                    // console.log("length" + htmlData.length);
                     for (var i = 0; i < htmlData.length; i++) {
-                        var p = htmlData[i];
-                        row.innerHTML += "<tr>
-                            <td class="w40"><%=sttS%>
-                            </td>
-                        <td class="w40"><%=s.getId()%>
-                        </td>
-                        <td><%=s.getNameSup()%>
-                        </td>
-                        <td class="w225"><%=s.getAddress()%>
-                        </td>
-                        <td><%=s.getPhoneNumber()%>
-                        </td>
-                        <td><%=s.getEmail()%>
-                        </td>
-                        <%if (s.getIdCate() == 4) {%>
-                        <td>Ghế thư giãn</td>
-                        <% } else if (s.getIdCate() == 1) {%>
-                        <td>Ghế trang trí</td>
-                        <% } else if (s.getIdCate() == 2) {%>
-                        <td>Ghế gaming</td>
-                        <% } else if (s.getIdCate() == 3) {%>
-                        <td>Ghế văn phòng</td>
-                        <%
-                            }
-                        %>
-
-                        <td class="w110">
-                            <div class="d-flex w-100 justify-content-center">
-                                <button class="delete btnAdd bgcolor bd-full me-1" onclick="deleteSupplier('<%=s.getId()%>')"><i
-                                    class="fa fa-trash-o text-color" title="Xóa" aria-hidden="true"
-                                    data-bs-toggle="modal" data-bs-target=""></i></button>
-                                <button class="editAccount btnAdd bgcolor bd-full "><i
-                                    class="fa fa-pencil text-color" title="Chỉnh sửa" aria-hidden="true"
-                                    data-bs-toggle="modal" data-bs-target="#editSup"></i></button>
-                            </div>
-                        </td>
-                    </tr>";
+                        // console.log("i" + i);
+                        var s = htmlData[i];
+                        row.innerHTML += "<tr>\n" +
+                            "<td class=\"w40\">" + (i + 1) + "</td>\n" +
+                            "<td class=\"w40\">" + s.idSup + "</td>\n" +
+                            "<td>" + s.nameSup + "</td>\n" +
+                            "<td class=\"w225\">" + s.addressSup + "</td>\n" +
+                            "<td>" + s.phoneSup + "</td>\n" +
+                            "<td>" + s.emailSup + "</td>\n" +
+                            "<td>" + s.nameCate + "</td>\n" +
+                            "<td class=\"w110\">\n" +
+                            "<div class=\"d-flex w-100 justify-content-center\">\n" +
+                            "<button class=\"delete btnAdd bgcolor bd-full me-1\"onclick=\"deleteSupplier('" + s.idSup + "')\" data-bs-toggle=\"modal\"data-bs-target=\"\"><i class=\"fa fa-trash-o text-color\" title=\"Xóa\" aria-hidden=\"true\"data-bs-toggle=\"modal\" data-bs-target=\"\"></i></button>\n" +
+                            "<button class=\"editAccount btnAdd bgcolor bd-full \"><i class=\"fa fa-pencil text-color\" title=\"Chỉnh sửa\" aria-hidden=\"true\" onclick=\"innerSupplier('"+s.idSup+"')\" data-bs-toggle=\"modal\" data-bs-target=\"#editSup\"></i></button>\n" +
+                            "</div>\n" +
+                            "</td>\n" +
+                            "</tr>";
                     }
                 },
                 error: function (error) {
@@ -1668,6 +1761,7 @@
             });
         }
     }
+
 </script>
 <script src="slider/owlcarousel/owl.carousel.min.js"></script>
 </html>

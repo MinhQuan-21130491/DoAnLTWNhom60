@@ -1,7 +1,7 @@
 package model;
 
 public class Supplier {
-    private int id;
+    private int idSup;
     private String nameSup;
     private String phoneNumber;
     private String email;
@@ -18,8 +18,8 @@ public class Supplier {
     }
 
 
-    public Supplier(int id, String nameSup, String phoneNumber, String email, int idCate, String address) {
-        this.id = id;
+    public Supplier(int idSup, String nameSup, String phoneNumber, String email, int idCate, String address) {
+        this.idSup = idSup;
         this.nameSup = nameSup;
         this.phoneNumber = phoneNumber;
         this.email = email;
@@ -67,11 +67,30 @@ public class Supplier {
         this.address = address;
     }
 
-    public int getId() {
-        return id;
+    public int getIdSup() {
+        return idSup;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int idSup) {
+        this.idSup = idSup;
+    }
+    public String typeCate(int idCate){
+        if(idCate==3)return "Ghế văn phòng";
+        else if(idCate==4) return "Ghế thư giãn";
+        else if(idCate==1) return "Ghế trang trí";
+        else if(idCate==2) return "Ghế gaming";
+        return null;
+    }
+
+    @Override
+    public String toString() {
+        return "Supplier{" +
+                "idSup=" + idSup +
+                ", nameSup='" + nameSup + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", idCate=" + idCate +
+                ", address='" + address + '\'' +
+                '}';
     }
 }

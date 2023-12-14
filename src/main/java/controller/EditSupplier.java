@@ -1,5 +1,6 @@
 package controller;
 
+import dao.DAOSupplier;
 import model.Supplier;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -10,27 +11,28 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.file.Paths;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
-@WebServlet(name = "AddSupplier", value = "/AddSupplier")
+@WebServlet(name = "EditSupplier", value = "/EditSupplier")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
         maxFileSize = 1024 * 1024 * 10, // 10MB
         maxRequestSize = 1024 * 1024 * 50)
-public class AddSupplier extends HttpServlet {
-
+public class EditSupplier extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("pót");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("html/text; charset= UTF-8");
-        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-        String nameSup = request.getParameter("nameSupAdd");
-        String addressSup = request.getParameter("addressSupAdd");
-        String phoneSup = request.getParameter("phoneSupAdd");
-        String emailSup = request.getParameter("emailSupAdd");
-        String typeCate = request.getParameter("cateChairSupAdd");
+        String idText = request.getParameter("id");
+        System.out.println(idText);
+        int id = Integer.parseInt(idText);
+        String name = request.getParameter("nameSupEdit");
+        String address = request.getParameter("addressSupEdit");
+        String phone = request.getParameter("phoneSupEdit");
+        String email = request.getParameter("emailSupEdit");
+        String typeCate = request.getParameter("cateChairSupEdit");
         int idCate = 3;
         if (typeCate.equals("Ghế thư giãn")) {
             idCate = 4;
@@ -39,30 +41,17 @@ public class AddSupplier extends HttpServlet {
         } else if (typeCate.equals("Ghế gaming")) {
             idCate = 2;
         }
-        System.out.println("sau ghe gaming");
-        String err = "";
         String res = "";
-        if (nameSup.equals("")) {
-            err = "Vui lòng nhập tên nhà cung cấp!";
-            request.setAttribute("errNameSupAdd", err);
-        } else if (phoneSup.equals("")) {
-            err = "Vui lòng nhập số điện thoại nhà cung cấp!";
-            request.setAttribute("errPhoneSupAdd", err);
-        } else if (emailSup.equals("")) {
-            err = "Vui lòng nhập Email nhà cung cấp!";
-            request.setAttribute("errEmailSupAdd", err);
-        } else if (addressSup.equals("")) {
-            err = "Vui lòng nhập địa chỉ!";
-            request.setAttribute("errAddressSupAdd", err);
-        } else {
-            Supplier supplier = new Supplier(nameSup, phoneSup, emailSup, idCate, addressSup);
-            System.out.println(supplier);
-            if (SupplierService.getInstance().insertSupplier(supplier) > 0) {
-                res = "Thêm nhà cung cấp thành công!";
-                System.out.println("abc");
+        Supplier sup = new Supplier(id,name,phone,email,idCate,address);
+        try {
+            if(DAOSupplier.updateInforSupplier(sup)>0) {
+                res = "Thay đổi thông tin thành công!";
+            }else {
+                res = "Thay đổi thông tin thất bại!";
             }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-
         ArrayList<Supplier> suplist = SupplierService.getInstance().listAllSupplier();
         JSONObject jsonResponse = new JSONObject();
         JSONArray htmlDataArray = new JSONArray();
@@ -80,15 +69,5 @@ public class AddSupplier extends HttpServlet {
         jsonResponse.put("res", res);
         PrintWriter out = response.getWriter();
         out.println(jsonResponse.toString());
-    }
-
-
-    public static void main(String[] args) {
-        ArrayList<Supplier> suplist = SupplierService.getInstance().listAllSupplier();
-        for (Supplier s : suplist
-        ) {
-            System.out.println(s.toString());
-        }
-
     }
 }

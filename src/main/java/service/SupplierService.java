@@ -25,5 +25,7 @@ public class SupplierService {
     public  ArrayList<Supplier> listAllSupplier() {
         return DAOSupplier.listAllSupplier();
     }
-
+    public Supplier selectSupById(int idSup){
+        return DAOSupplier.selectSupById(idSup);
+    }
 }
