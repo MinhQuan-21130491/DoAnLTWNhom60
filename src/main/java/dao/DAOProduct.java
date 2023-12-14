@@ -18,10 +18,11 @@ public class DAOProduct {
         Connection connection = JDBCUtil.getConnection();
         try {
             String sql = "select p.id,p.idCate, p.name, p.price, p.priceImport, p.quantity, p.color, p.material, p.description, p.height, p.width, p.length " +
-                    "from products as p " +
+                    "from products as p where p.status =? " +
                     "limit 6 offset ? ";
             PreparedStatement pr = connection.prepareStatement(sql);
-            pr.setInt(1,offset);
+            pr.setInt(1,1);
+            pr.setInt(2,offset);
             ResultSet resultSet = pr.executeQuery();
             while(resultSet.next()) {
                 int idProduct = resultSet.getInt("id");
@@ -116,12 +117,13 @@ public class DAOProduct {
         Connection connection = JDBCUtil.getConnection();
         String sql = "select p.id, p.idCate, p.name, p.price, p.priceImport, p.quantity, p.color, p.material, p.description, p.height, p.width, p.length " +
                 "from products as p " +
-                "where p.idCate =? " +
+                "where p.idCate =? and p.status =? " +
                 "limit 6 offset ?";
         try {
             PreparedStatement pr = connection.prepareStatement(sql);
             pr.setInt(1, id);
-            pr.setInt(2, offset);
+            pr.setInt(2, 1);
+            pr.setInt(3, offset);
             ResultSet resultSet = pr.executeQuery();
             while (resultSet.next()) {
                 int idProduct = resultSet.getInt("id");
@@ -277,11 +279,11 @@ public class DAOProduct {
         if(idCate == 0) {
            sql = "SELECT p.id, p.idCate, p.name, p.price, p.priceImport, p.quantity, p.color, p.material, p.description, p.height, p.width, p.length " +
                     "FROM products AS p " +
-                    "WHERE ";
+                    "WHERE p.status = 1 and ";
         }else {
             sql = "SELECT p.id, p.idCate, p.name, p.price, p.priceImport, p.quantity, p.color, p.material, p.description, p.height, p.width, p.length " +
                     "FROM ( SELECT id, idCate, name, price, priceImport, quantity, color, material, description, height, width, length  from products where idCate =" + idCate +" ) as p " +
-                    "WHERE ";
+                    "WHERE p.status = 1 and";
         }
         if (priceFil != 0) {
             if(command.equalsIgnoreCase("D")) {
@@ -412,8 +414,7 @@ public class DAOProduct {
             try {
                 ResultSet resultSet = s.executeQuery("select id from products where id=" + id);
                 if (resultSet.next()) {
-                    int idP = resultSet.getInt("id");
-                    s.executeUpdate("update products set status ="+status +" where id =" + idP);
+                    s.executeUpdate("update products set status ="+status +" where id =" + id);
                 }
             } catch (SQLException e) {
                 throw new RuntimeException(e);

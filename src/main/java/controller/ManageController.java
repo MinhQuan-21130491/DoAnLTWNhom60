@@ -1,6 +1,8 @@
 package controller;
 
+import model.Account;
 import model.Product;
+import service.AccountService;
 import service.ProductService;
 
 import javax.servlet.ServletException;
@@ -17,8 +19,10 @@ public class ManageController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("html/text; charset= UTF-8");
-        ArrayList<Product> listAll = ProductService.getInstance().listAllProduct();
-        request.setAttribute("listAllProduct", listAll);
+        ArrayList<Product> listAllProduct = ProductService.getInstance().listAllProduct();
+        request.setAttribute("listAllProduct", listAllProduct);
+        ArrayList<Account> listAllAccount = AccountService.getInstance().listAllAccount();
+        request.setAttribute("listAllAccount", listAllAccount);
         try {
             request.getRequestDispatcher("ManageAdmin.jsp").forward(request, response);
         } catch (ServletException e) {

@@ -21,15 +21,15 @@ public class DelProduct extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("html/text; charset= UTF-8");
-        String idProductText = request.getParameter("id");
-        int idProduct = Integer.parseInt(idProductText);
+        String idText = request.getParameter("id");
+        int id = Integer.parseInt(idText);
         String res = "";
         JSONObject jsonResponse = new JSONObject();
         JSONArray htmlDataArray = new JSONArray();
         NumberFormat nF = NumberFormat.getCurrencyInstance();
         String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
         ArrayList<Product> listProduct = null;
-        if(ProductService.getInstance().delProduct(idProduct)>0) {
+        if(ProductService.getInstance().delProduct(id)>0) {
             listProduct = ProductService.getInstance().listAllProduct();
             res = "Xóa thành công!";
         }else {

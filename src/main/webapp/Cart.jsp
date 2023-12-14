@@ -130,9 +130,9 @@
     </div>
     <%} else {%>
     <div class="text-center mt-4 mb-3 fs-2 color-gray ">Giỏ hàng gì mà trống vậy nè >.<<a href="<%=url%>/product" class="text-color text-decoration-none fs-5"> Lấp đầy ở đây nè ^.^</a></div>
-    <div class="text-center mb-4">
-        <img src="image/cart-empty.png" alt="" class="imgbg">
-    </div>
+        <div class="text-center mb-4">
+            <img src="image/cart-empty.png" alt="" class="imgbg">
+        </div>
 
     <%}%>
 </div>

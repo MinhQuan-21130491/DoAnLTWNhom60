@@ -66,7 +66,7 @@
                                             <%
                                             }else {
                                                 account = (Account) obj;
-                                                if (account != null && (account.getRole() == 0 || account.getRole() == 2)) {
+                                                if (account != null && (account.getRole() == 0 || account.getRole() ==1)) {
                                             %>
                                             <li class="nav-item dropdown hv"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tài khoản </a>
                                                 <ul class="dropdown-menu" aria-labelledby="">
@@ -130,13 +130,13 @@
                                     <%
                                     }else {
                                         account = (Account) obj;
-                                        if (account != null && (account.getRole() == 0 || account.getRole() == 2)) {
+                                        if (account != null && (account.getRole() == 0 || account.getRole() == 1)) {
                                     %>
                                     <li class="nav-item dropdown hv"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tài khoản </a>
                                         <ul class="dropdown-menu" aria-labelledby="">
                                             <li class ="dropdown-item"> Xin chào: <span class = "fw-bold " class = "name"><%=account.getName()%></span></li>
                                             <li><hr class="dropdown-divider"></li>
-                                            <li><a class="dropdown-item" href="<%=url%>/ManageAdmin.jsp">Quản lý</a></li>
+                                            <li><a class="dropdown-item" href="<%=url%>/manage">Quản lý</a></li>
                                             <li><hr class="dropdown-divider"></li>
                                             <li><a class="dropdown-item" href="<%=url%>/ChangeInfor.jsp">Thay đổi thông tin</a></li><li>
                                             <hr class="dropdown-divider"></li>

@@ -25,6 +25,21 @@ textarea {
 .title {
     font-weight: 700;
 }
+.tbChane-infor {
+    border-collapse: unset; !important;
+    text-align: start;
+}
+.tbChane-infor >tbody >tr > td {
+    border-right:none !important;
+    padding: 5px 0; !important;
+}
+.tbChane-infor >thead >tr > td {
+    border-right:none !important;
+}
+.tbChane-infor > tbody > tr:hover {
+    background-color: white;
+}
+
 
 @media screen and (max-width: 992px) {
     .typeManage {
@@ -42,5 +57,23 @@ textarea {
     .pst {
         left: 45%;
     }
+}
+#wait {
+    border-left:1px solid #dedbdb;
+    border-top:1px solid #dedbdb;
+}
+#approved {
+    border-top:1px solid #dedbdb;
+}
+#cancle {
+    border-top:1px solid #dedbdb;
+    border-right:1px solid #dedbdb;
+}
+.btn {
+    border-radius: unset; !important;
+    transition: 0.2s;
+}
+.btn:hover {
+   background-color: var(--color_backgroud);
 }
 
