@@ -66,6 +66,7 @@
                     <div class="typeManage " id ="typeManage" >
                         <a href="#" class="list-group-item list-group-item-action">Quản lý tài khoản</a>
                         <a href="#" class="list-group-item list-group-item-action">Quản lý sản phẩm</a>
+                        <a href="#" class="list-group-item list-group-item-action">Quản lý đơn hàng</a>
                         <a href="#" class="list-group-item list-group-item-action">Quản lý nhà cung cấp</a>
                         <a href="#" class="list-group-item list-group-item-action">Quản lý danh mục</a>
                         <a href="#" class="list-group-item list-group-item-action">Quản lý bán hàng</a>
@@ -675,6 +676,59 @@
                 </div>
             </div>
             <!--end giao diện quản lý sản phẩm-->
+            <%-- giao diện quản lý đơn hàng--%>
+            <div class="col-lg-9 bgcolor d-none " id="mngOrder">
+                <div class="row mt-2">
+                  <div class = "col-md-12 ">
+                      <div class="d-flex">
+                          <button class="btn" id ="wait" type="button">Chờ xác nhận (10)</button>
+                          <button class="btn" id ="approved" type="button">Đã xác nhận (10)</button>
+                          <button class="btn" id ="cancle"type="button">Đã hủy (10)</button>
+                      </div>
+                  </div>
+                </div>
+                <div class ="row">
+                    <div class="col-lg-12 overflow-auto mheight">
+                        <table class="mb-3">
+                            <thead>
+                            <tr>
+                                <td class="w40">STT</td>
+                                <td class="w40">ID</td>
+                                <td class="w260">SẢN PHẨM</td>
+                                <td>ĐƠN GIÁ</td>
+                                <td>MÀU SẮC</td>
+                                <td>KÍCH THƯỚC</td>
+                                <td>ĐÃ BÁN</td>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="w40">1</td>
+                                <td class="w40">1</td>
+                                <td class="w260">
+                                    <div class="item d-flex justify-content-center">
+                                        <div class="item_img">
+                                            <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
+                                                 class="card-img-top img_p_cart" alt="..."/>
+                                        </div>
+                                        <span class="item_text">Ghế massage siêu cấp pro</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    ₫<span>1.000.000</span>
+                                </td>
+                                <td>Màu đen</td>
+                                <td>100x50x70</td>
+                                <td>50</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        <%--end giao diện quản lý đơn hàng--%>
             <!--giao diện quản lý bán hàng-->
             <div class="col-lg-9 bgcolor d-none " id ="mngSale">
                 <div class="row mt-2">
@@ -905,7 +959,7 @@
                     </div>
                 </div>
             </div>
-            <!--end giao diện quản lý danh mục -->
+            <!--end giao diện quản lý danh mục-->
             <!--giao diện quản lý nhà cung cấp-->
             <div class="col-lg-9 bgcolor d-none " id ="mngSup">
                 <div class="row mt-2">
@@ -1115,6 +1169,7 @@
                 $('#mngInvoice').addClass('d-none');
                 $('#mngCate').addClass('d-none');
                 $('#mngSup').addClass('d-none');
+                $('#mngOrder').addClass('d-none');
             } else if (selectedType === "Quản lý sản phẩm") {
                 $('#mngAccount').addClass('d-none');
                 $('#mngSale').addClass('d-none');
@@ -1122,6 +1177,7 @@
                 $('#mngProduct').removeClass('d-none');
                 $('#mngCate').addClass('d-none');
                 $('#mngSup').addClass('d-none');
+                $('#mngOrder').addClass('d-none');
             }else if (selectedType === "Quản lý bán hàng") {
                 $('#mngProduct').addClass('d-none');
                 $('#mngAccount').addClass('d-none');
@@ -1129,6 +1185,7 @@
                 $('#mngSale').removeClass('d-none');
                 $('#mngCate').addClass('d-none');
                 $('#mngSup').addClass('d-none');
+                $('#mngOrder').addClass('d-none');
             }else if (selectedType === "Quản lý hóa đơn") {
                 $('#mngProduct').addClass('d-none');
                 $('#mngAccount').addClass('d-none');
@@ -1136,6 +1193,7 @@
                 $('#mngInvoice').removeClass('d-none');
                 $('#mngCate').addClass('d-none');
                 $('#mngSup').addClass('d-none');
+                $('#mngOrder').addClass('d-none');
             }else if (selectedType === "Quản lý danh mục") {
                 $('#mngProduct').addClass('d-none');
                 $('#mngAccount').addClass('d-none');
@@ -1143,6 +1201,7 @@
                 $('#mngInvoice').addClass('d-none');
                 $('#mngCate').removeClass('d-none');
                 $('#mngSup').addClass('d-none');
+                $('#mngOrder').addClass('d-none');
             }
             else if (selectedType === "Quản lý nhà cung cấp") {
                 $('#mngProduct').addClass('d-none');
@@ -1151,6 +1210,15 @@
                 $('#mngInvoice').addClass('d-none');
                 $('#mngCate').addClass('d-none');
                 $('#mngSup').removeClass('d-none');
+                $('#mngOrder').addClass('d-none');
+            }else if (selectedType === "Quản lý đơn hàng") {
+                $('#mngProduct').addClass('d-none');
+                $('#mngAccount').addClass('d-none');
+                $('#mngSale').addClass('d-none');
+                $('#mngInvoice').addClass('d-none');
+                $('#mngCate').addClass('d-none');
+                $('#mngSup').addClass('d-none');
+                $('#mngOrder').removeClass('d-none');
             }
         })
         $(".owl-carousel").owlCarousel();
@@ -1641,8 +1709,8 @@
         var divToRemove = button.parentNode; // Lấy đến div chứa nút xóa
         container.removeChild(divToRemove);
     }
-    // Sử dụng hàm này để tải chi tiết sản phẩm bằng AJAX
-    function loadProductDetails(productId) {
+    // Ví dụ: Gọi hàm này khi một dòng sản phẩm được nhấp vào
+    function detailProduct(productId) {
         $.ajax({
             type: "GET",
             url: "loadDetailProduct",
@@ -1650,48 +1718,38 @@
                 idProduct: productId
             },
             success: function (data) {
-                // Cập nhật nội dung modal với dữ liệu JSON nhận được
-                updateModalContent(data);
+                var p = data.product;
+                //Cập nhật các phần tử HTML với chi tiết sản phẩm
+                $("#idProductdetail").val(p.idProduct);
+                $("#nameProductdetail").val(p.name);
+                $("#priceImpProductdetail").val(p.priceImport);
+                $("#priceProductDetail").val(p.price);
+                $("#lengthdetail").val(p.length);
+                $("#widthdetail").val(p.width);
+                $("#heightdetail").val(p.height);
+                $("#materialdetail").val(p.material);
+                $("#cateTypedetail").val(p.typeCate)
+                $("#colordetail").val(p.color);
+                $("#quantitydetail").val(p.quantityAvailable);
+                $("#desdetail").val(p.description);
+                // cập nhật ảnh chính
+                $('#img_center').attr('src',p.imageCenter);
+                $('.owl-carousel').owlCarousel('destroy'); // Khởi tạo lại Owl Carousel
+                // Cập nhật carousel ảnh chi tiết
+                $(".owl-carousel").empty();
+                for (var img of p.imageDetail) {
+                    $(".owl-carousel").append(`<div class="pe-2"><img src="Products/${img.url}" alt="" class="img_p_detail" onmouseover="changeImg('Products/${img.url}')"></div>`);
+                }
+                $('.owl-carousel').owlCarousel()
+                $('.owl-carousel').removeClass("owl-hidden");
             },
             error: function () {
                 console.error("Không thể tải chi tiết sản phẩm");
             }
         });
-    }
-    // Sử dụng hàm này để cập nhật nội dung modal
-    function updateModalContent(data) {
-        var p = data.product;
-        //Cập nhật các phần tử HTML với chi tiết sản phẩm
-        $("#idProductdetail").val(p.idProduct);
-        $("#nameProductdetail").val(p.name);
-        $("#priceImpProductdetail").val(p.priceImport);
-        $("#priceProductDetail").val(p.price);
-        $("#lengthdetail").val(p.length);
-        $("#widthdetail").val(p.width);
-        $("#heightdetail").val(p.height);
-        $("#materialdetail").val(p.material);
-        $("#cateTypedetail").val(p.typeCate)
-        $("#colordetail").val(p.color);
-        $("#quantitydetail").val(p.quantityAvailable);
-        $("#desdetail").val(p.description);
-        // cập nhật ảnh chính
-        $('#img_center').attr('src',p.imageCenter);
-        $('.owl-carousel').owlCarousel('destroy'); // Khởi tạo lại Owl Carousel
-        // Cập nhật carousel ảnh chi tiết
-        $(".owl-carousel").empty();
-        for (var img of p.imageDetail) {
-            $(".owl-carousel").append(`<div class="pe-2"><img src="Products/${img.url}" alt="" class="img_p_detail" onmouseover="changeImg('Products/${img.url}')"></div>`);
-        }
-        $('.owl-carousel').owlCarousel()
-        $('.owl-carousel').removeClass("owl-hidden");
-    }
-    // Ví dụ: Gọi hàm này khi một dòng sản phẩm được nhấp vào
-    function detailProduct(productId) {
-        // Tải chi tiết sản phẩm bằng AJAX
-        loadProductDetails(productId);
     };
-    // Sử dụng hàm này để tải chi tiết sản phẩm trong edit sản phẩm bằng AJAX
-    function loadEditProductDetails(productId) {
+    // Ví dụ: Gọi hàm này khi một dòng sản phẩm được nhấp vào
+    function innerEditProduct(productId) {
         id = productId;
         $.ajax({
             type: "GET",
@@ -1700,42 +1758,32 @@
                 idProduct: productId
             },
             success: function (data) {
-                // Cập nhật nội dung modal với dữ liệu JSON nhận được
-                updateEditModalContent(data);
+                var p = data.product;
+                //Cập nhật các phần tử HTML với chi tiết sản phẩm
+                $("#nameProductEdit").val(p.name);
+                $("#priceImpProductEdit").val(p.priceImport);
+                $("#priceProductEdit").val(p.price);
+                $("#lengthEdit").val(p.length);
+                $("#widthEdit").val(p.width);
+                $("#heightEdit").val(p.height);
+                $("#materialEdit").val(p.material);
+                $("#cateTypeEdit").val(p.typeCate)
+                $("#colorEdit").val(p.color);
+                $("#quantityEdit").val(p.quantityAvailable);
+                $("#desEdit").val(p.description);
+                var container = document.getElementById('imageEdit');
+                container.innerHTML = "";
+                for (var img of p.imageDetail) {
+                    var newInput = document.createElement('div');
+                    newInput.className = 'mb-3 d-flex align-items-center';
+                    newInput.innerHTML = `<img src="Products/${img.url}"" class="card-img-top img_p_cart" alt="..."/> <input type="text" class="form-control " name="imageAvai" value="Products/${img.url}" style ="height:40px"> <button type="button" class="btnAdd bgcolor bd-full ms-2  remove" style ="height:40px" onclick="removeInputEdit(this)"><i class="fa fa-minus-circle text-color" aria-hidden="true" title="Xóa hình ảnh"></i></button>`;
+                    container.appendChild(newInput);
+                }
             },
             error: function () {
                 console.error("Không thể tải chi tiết sản phẩm");
             }
         });
-    }
-    // Sử dụng hàm này để cập nhật nội dung modal
-    function updateEditModalContent(data) {
-        var p = data.product;
-        //Cập nhật các phần tử HTML với chi tiết sản phẩm
-        $("#nameProductEdit").val(p.name);
-        $("#priceImpProductEdit").val(p.priceImport);
-        $("#priceProductEdit").val(p.price);
-        $("#lengthEdit").val(p.length);
-        $("#widthEdit").val(p.width);
-        $("#heightEdit").val(p.height);
-        $("#materialEdit").val(p.material);
-        $("#cateTypeEdit").val(p.typeCate)
-        $("#colorEdit").val(p.color);
-        $("#quantityEdit").val(p.quantityAvailable);
-        $("#desEdit").val(p.description);
-        var container = document.getElementById('imageEdit');
-        container.innerHTML = "";
-        for (var img of p.imageDetail) {
-            var newInput = document.createElement('div');
-            newInput.className = 'mb-3 d-flex align-items-center';
-            newInput.innerHTML = `<img src="Products/${img.url}"" class="card-img-top img_p_cart" alt="..."/> <input type="text" class="form-control " name="imageAvai" value="Products/${img.url}" style ="height:40px"> <button type="button" class="btnAdd bgcolor bd-full ms-2  remove" style ="height:40px" onclick="removeInputEdit(this)"><i class="fa fa-minus-circle text-color" aria-hidden="true" title="Xóa hình ảnh"></i></button>`;
-            container.appendChild(newInput);
-        }
-    }
-    // Ví dụ: Gọi hàm này khi một dòng sản phẩm được nhấp vào
-    function innerEditProduct(productId) {
-        // Tải chi tiết sản phẩm bằng AJAX
-        loadEditProductDetails(productId);
     };
     function changeImg(newSrc) {
         var img_center = document.getElementById('img_center');
