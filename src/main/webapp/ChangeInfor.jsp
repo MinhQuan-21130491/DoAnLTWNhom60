@@ -99,7 +99,7 @@
             </tr>
             <tr id="changeName">
                 <td >
-                    <label>Họ và tên</label>
+                    <label>Họ và tên <span class="text-danger">*</span></label>
                 </td>
                 <td class="w-50">
                     <div id="InName">
@@ -109,7 +109,7 @@
             </tr>
             <tr id="changeSDT">
                 <td>
-                    <label> Số điện thoại </label>
+                    <label> Số điện thoại <span class="text-danger">*</span></label>
                 </td>
                 <td>
                     <div id="InSDT">
@@ -119,7 +119,7 @@
             </tr>
             <tr id="changegGmail">
                 <td>
-                    <label>Email</label>
+                    <label>Email<span class="text-danger">*</span></label>
                 </td>
                 <td>
                     <div id="InGmail">
@@ -129,7 +129,7 @@
             </tr>
             <tr>
                 <td>
-                    <label>Giới tính</label>
+                    <label>Giới tính<span class="text-danger">*</span></label>
                 </td>
                 <td >
                     <div class = "gender">
@@ -141,7 +141,7 @@
             </tr>
             <tr id="changeNgaySinh">
                 <td>
-                    <label>Ngày sinh</label>
+                    <label>Ngày sinh<span class="text-danger">*</span></label>
                 </td>
                 <td>
                     <div id="InNS">
@@ -151,7 +151,7 @@
             </tr>
             <tr id="changeDC">
                 <td>
-                    <label> Địa chỉ</label>
+                    <label> Địa chỉ<span class="text-danger">*</span></label>
                 </td>
                 <td>
                     <div id="InDiaChi">
@@ -161,7 +161,7 @@
             </tr>
             <tr id="changeDCReceive">
                 <td>
-                    <label> Địa chỉ nhận hàng</label>
+                    <label> Địa chỉ nhận hàng<span class="text-danger">*</span></label>
                 </td>
                 <td>
                     <div id="">

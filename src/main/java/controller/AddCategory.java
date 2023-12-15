@@ -11,7 +11,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 @WebServlet(name = "addCategory", value = "/addCategory")
 public class AddCategory extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -19,10 +18,9 @@ public class AddCategory extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("html/text; charset= UTF-8");
         response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-        // Đọc thông tin danh mục từ request
+
         String categoryName = request.getParameter("nameCateAdd");
         Category category = new Category(categoryName);
-        System.out.println("Tên danh mục nhận được: " + categoryName);
         String res = "";
         // Thêm danh mục vào cơ sở dữ liệu
         if (CategoryService.getInstance().insertCategory(category) > 0) {
@@ -33,7 +31,6 @@ public class AddCategory extends HttpServlet {
         ArrayList<Category> listCategory = CategoryService.getInstance().listCategory();
         JSONObject jsonResponse = new JSONObject();
         JSONArray htmlDataArray = new JSONArray();
-        // Chuẩn bị dữ liệu trả về cho client
         for (Category c : listCategory) {
             JSONObject cateJSON = new JSONObject();
             cateJSON.put("id", c.getId());
@@ -46,6 +43,4 @@ public class AddCategory extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println(jsonResponse.toString());
     }
-
-    }
-
+}

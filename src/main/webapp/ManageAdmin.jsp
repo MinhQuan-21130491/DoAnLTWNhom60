@@ -29,11 +29,7 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="slider/owlcarousel/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="slider/owlcarousel//assets/owl.theme.default.min.css">
-    <script src="https://code.jquery.com/jquery-3.7.1.js"
-            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<%--    <script src="jquery.min.js"></script>--%>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/Style.css">
     <link rel="stylesheet" href="css/Manage.css">
 </head>
@@ -50,378 +46,377 @@
 <%--end header--%>
 <%--content--%>
 <div class="container p-0 mgt">
-        <a href="<%=url%>/homePage" class="color-gray lbhv text-decoration-none">Trang chủ  <i class="fa fa-angle-right color-gray" aria-hidden="true"></i>  </a> <span class="color-gray" id ="sp">Quản lý</span>
-        <span class="text-color" id ="typeMa"><i class="fa fa-angle-right color-gray" aria-hidden="true"></i> Quản lý tài khoản</span>
-        <div class="row mt-3">
-            <!--menu-left-->
-            <div class="col-lg-3 p-0 mb-2 pe-2">
-                <div class="list-group  ">
-                    <div class="cate" id="cate">
-                        <div class="icon-bar my-2 py-1">
-                            <i class="fa fa-bars" aria-hidden="true"></i>
-                        </div>
-                        <div class="cateList d-flex align-items-center justify-content-center p-0" id ="cateList">
-                            <h5 class ="my-2 cateP">DANH MỤC QUẢN LÝ </h5>
-                        </div>
+    <a href="<%=url%>/homePage" class="color-gray lbhv text-decoration-none">Trang chủ  <i class="fa fa-angle-right color-gray" aria-hidden="true"></i>  </a> <span class="color-gray" id ="sp">Quản lý</span>
+    <span class="text-color" id ="typeMa"><i class="fa fa-angle-right color-gray" aria-hidden="true"></i> Quản lý tài khoản</span>
+    <div class="row mt-3">
+        <!--menu-left-->
+        <div class="col-lg-3 p-0 mb-2 pe-2">
+            <div class="list-group  ">
+                <div class="cate" id="cate">
+                    <div class="icon-bar my-2 py-1">
+                        <i class="fa fa-bars" aria-hidden="true"></i>
                     </div>
-                    <div class="typeManage " id ="typeManage" >
-                        <a href="#" class="list-group-item list-group-item-action">Quản lý tài khoản</a>
-                        <a href="#" class="list-group-item list-group-item-action">Quản lý sản phẩm</a>
-                        <a href="#" class="list-group-item list-group-item-action">Quản lý nhà cung cấp</a>
-                        <a href="#" class="list-group-item list-group-item-action">Quản lý danh mục</a>
-                        <a href="#" class="list-group-item list-group-item-action">Quản lý bán hàng</a>
-                        <a href="#" class="list-group-item list-group-item-action">Quản lý hóa đơn</a>
+                    <div class="cateList d-flex align-items-center justify-content-center p-0" id ="cateList">
+                        <h5 class ="my-2 cateP">DANH MỤC QUẢN LÝ </h5>
                     </div>
+                </div>
+                <div class="typeManage " id ="typeManage" >
+                    <a href="#" class="list-group-item list-group-item-action">Quản lý tài khoản</a>
+                    <a href="#" class="list-group-item list-group-item-action">Quản lý sản phẩm</a>
+                    <a href="#" class="list-group-item list-group-item-action">Quản lý nhà cung cấp</a>
+                    <a href="#" class="list-group-item list-group-item-action">Quản lý danh mục</a>
+                    <a href="#" class="list-group-item list-group-item-action">Quản lý bán hàng</a>
+                    <a href="#" class="list-group-item list-group-item-action">Quản lý hóa đơn</a>
                 </div>
             </div>
-            <!--giao diện quản lý tài khoản-->
-            <div class="col-lg-9 bgcolor " id ="mngAccount">
-                <div class="row mt-2">
-                    <div class="col-lg-6">
-                        <h5 >Quản lý tài khoản</h5>
-                    </div>
-                    <div class="col-lg-6 text-end">
-                        <button class="btnAdd bgcolor bd-full" id ="btnAddAccount"><i class="fa fa-plus-circle text-color" aria-hidden="true" title="Thêm sản phẩm" data-bs-toggle="modal" data-bs-target="#addProduct"></i></button>
-                    </div>
+        </div>
+        <!--giao diện quản lý tài khoản-->
+        <div class="col-lg-9 bgcolor " id ="mngAccount">
+            <div class="row mt-2">
+                <div class="col-lg-6">
+                    <h5 >Quản lý tài khoản</h5>
                 </div>
-                <div class="row mt-3">
-                    <div class="col-lg-12 overflow-auto">
-                        <table class="mb-3">
-                            <thead>
-                                <tr>
-                                    <td class="w40">STT</td>
-                                    <td>HỌ TÊN</td>
-                                    <td>EMAIL</td>
-                                    <td>CHỨC VỤ</td>
-                                    <td>XÁC THỰC</td>
-                                    <td>TRẠNG THÁI</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr data-bs-toggle="modal" data-bs-target="#detailAccount">
-                                    <td class="w40">1</td>
-                                    <td>minhquanpro</td>
-                                    <td>qle29202@gmail.com</td>
-                                    <td>Admin</td>
-                                    <td >1</td>
-                                    <td class = "status"></td>
-                                    <td>
-                                        <div class="d-flex w-100 justify-content-center">
-                                            <button class="delete btnAdd bgcolor bd-full" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#"><i class="fa fa-trash-o text-color"  title="Xóa" ></i></button>
-                                            <button class="block btnAdd bgcolor bd-full mx-1" data-bs-toggle="modal" data-bs-target="#"><i class="fa fa-lock text-color" title="Khóa" aria-hidden="true" ></i></button>
-                                            <button class="editAccount btnAdd bgcolor bd-full me-1" title="Chỉnh sửa quyền truy cập" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editAccount"><i class="fa fa-pencil text-color" ></i></button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                <div class="col-lg-6 text-end">
+                    <button class="btnAdd bgcolor bd-full" id ="btnAddAccount"><i class="fa fa-plus-circle text-color" aria-hidden="true" title="Thêm sản phẩm" data-bs-toggle="modal" data-bs-target="#addProduct"></i></button>
                 </div>
-                <div class="modal fade" id="editAccount" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <form class="" action="" method="post">
-                                    <div class="row px-4  pt-0">
-                                        <div class=" text-end">
-                                            <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <h5 class="text-center title">QUYỀN TRUY CẬP</h5>
-                                        <hr>
-                                        <div class="col-md-12 text-center">
-                                            <input class ="ms-4" type="checkbox" id ="staff" name="per" value="Nhân viên"><label for="staff">Nhân viên</label>
-                                        </div>
-                                        <div class="row p-0">
-                                            <div class="col-md-12 p-0">
-                                                <div class="text-end">
-                                                    <button class="save " type="submit">LƯU</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-lg-12 overflow-auto">
+                    <table class="mb-3">
+                        <thead>
+                        <tr>
+                            <td class="w40">STT</td>
+                            <td>HỌ TÊN</td>
+                            <td>EMAIL</td>
+                            <td>CHỨC VỤ</td>
+                            <td>XÁC THỰC</td>
+                            <td>TRẠNG THÁI</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr data-bs-toggle="modal" data-bs-target="#detailAccount">
+                            <td class="w40">1</td>
+                            <td>minhquanpro</td>
+                            <td>qle29202@gmail.com</td>
+                            <td>Admin</td>
+                            <td >1</td>
+                            <td class = "status"></td>
+                            <td>
+                                <div class="d-flex w-100 justify-content-center">
+                                    <button class="delete btnAdd bgcolor bd-full" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#"><i class="fa fa-trash-o text-color"  title="Xóa" ></i></button>
+                                    <button class="block btnAdd bgcolor bd-full mx-1" data-bs-toggle="modal" data-bs-target="#"><i class="fa fa-lock text-color" title="Khóa" aria-hidden="true" ></i></button>
+                                    <button class="editAccount btnAdd bgcolor bd-full me-1" title="Chỉnh sửa quyền truy cập" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editAccount"><i class="fa fa-pencil text-color" ></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="modal fade" id="detailAccount" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <div class="row p-4">
+            </div>
+            <div class="modal fade" id="editAccount" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <form class="" action="" method="post">
+                                <div class="row px-4  pt-0">
                                     <div class=" text-end">
                                         <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <h5 class="text-center title">CHI TIẾT TÀI KHOẢN</h5>
+                                    <h5 class="text-center title">QUYỀN TRUY CẬP</h5>
+                                    <hr>
+                                    <div class="col-md-12 text-center">
+                                        <input class ="ms-4" type="checkbox" id ="staff" name="per" value="Nhân viên"><label for="staff">Nhân viên</label>
+                                    </div>
+                                    <div class="row p-0">
+                                        <div class="col-md-12 p-0">
+                                            <div class="text-end">
+                                                <button class="save " type="submit">LƯU</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="detailAccount" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="row p-4">
+                                <div class=" text-end">
+                                    <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <h5 class="text-center title">CHI TIẾT TÀI KHOẢN</h5>
+                                <hr>
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label"> Mã khách hàng </label>
+                                        <input type="text" class="form-control" id="idAccountDetail" name="nameAccountDetail" readonly>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label"> Tên khách hàng </label>
+                                        <input type="text" class="form-control" id="nameAccountDetail" name="nameAccountDetail" readonly>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Số điện thoại</label>
+                                        <input type="text" class="form-control" id="phoneAccountDetail" name="phoneAccountDetail" readonly>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Email</label>
+                                        <input type="text" class="form-control" id="EmailAccountDetail" name="EmailAccountDetail">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Giới tính</label>
+                                        <input type="text" class="form-control" id="genderAccountDetail" name="genderAccountDetail" readonly>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Ngày sinh</label>
+                                        <input type="text" class="form-control" id="dateAccountDetail" name="dateAccountDetail" readonly>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Địa chỉ</label>
+                                        <input type="text" class="form-control" id="addressAccountDetail" name="addressAccountDetail" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end giao diện quản lý tài khoản -->
+        <!--giao diện quản lý sản phẩm-->
+        <div class="col-lg-9 bgcolor d-none " id="mngProduct">
+            <div class="row mt-2">
+                <div class="col-lg-6">
+                    <h5 >Quản lý sản phẩm</h5>
+                </div>
+                <div class="col-lg-6 text-end">
+                    <button class="btnAdd bgcolor bd-full" id ="btnAddProduct"><i class="fa fa-plus-circle text-color" aria-hidden="true" title="Thêm sản phẩm" data-bs-toggle="modal" data-bs-target="#addProduct"></i></button>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-lg-12 overflow-auto mheight" >
+                    <%
+                        String res = (String) request.getAttribute("res");
+                        res = (res == null) ? "" : res;
+                        ArrayList<Product> listAllProduct = (ArrayList<Product>) request.getAttribute("listAllProduct");
+                        int sttP = 1;
+                    %>
+                    <input type="hidden" id="res"></input>
+                    <table class="mb-3">
+                        <thead>
+                        <tr>
+                            <td class="w40">STT</td>
+                            <td class="w260">SẢN PHẨM</td>
+                            <td>GIÁ BÁN</td>
+                            <td>MÀU SẮC</td>
+                            <td>SỐ LƯỢNG</td>
+                            <td>TRẠNG THÁI</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <% if (listAllProduct != null && !listAllProduct.isEmpty()) {
+                            for (Product p: listAllProduct) {%>
+                        <tr id="detailProductRow" data-bs-toggle ="modal" data-bs-target="#detailProduct" onclick="detailProduct('<%=p.getIdProduct()%>')">
+                            <input type="hidden" class ="idProduct" value="<%=p.getIdProduct()%>">
+                            <td class="w40"><%=sttP%></td>
+                            <td class="w260">
+                                <div class="item d-flex justify-content-center">
+                                    <div class="item_img">
+                                        <img src="<%=url%>/Products/<%=p.getImages().get(0).getUrl()%>"
+                                             class="card-img-top img_p_cart" alt="..."/>
+                                    </div>
+                                    <span class="item_text"><%=p.getName()%></span>
+                                </div>
+                            </td>
+                            <td><%=nF.format(p.getPrice())%></td>
+                            <td><%=p.getColor()%></td>
+                            <td><%=p.getQuantityAvailable()%></td>
+                            <%if (p.isStatus()) {%>
+                            <td>Đang bán</td>
+                            <%} else {%>
+                            <td>Ngưng bán</td>
+                            <%}%>
+                            <td>
+                                <div class="d-flex justify-content-center">
+                                    <button class="delete btnAdd bgcolor bd-full" title="Xóa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="" ><i class="fa fa-trash-o text-color"></i></button>
+                                    <button class="editProduct btnAdd bgcolor bd-full mx-1" title="Chỉnh sửa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editProduct"><i class="fa fa-pencil text-color" ></i></button>
+                                    <button class="hideProduct btnAdd bgcolor bd-full" title="Ẩn/hiện sản phẩm" aria-hidden="true" data-bs-toggle="modal" data-bs-target=""><i class="fa fa-lock text-color"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <%
+                                    sttP++;
+                                }
+                            }
+                        %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal fade" id="editProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content ">
+                        <div class="modal-body">
+                            <form class ="editProduct" action="" method="post" id ="edit-Product" onsubmit="return editProduct()" >
+                                <div class="row px-2">
+                                    <span class="d-none" id ="id"></span>
+                                    <div class=" text-end">
+                                        <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <h5 class=" pb-2 text-center title">CHỈNH SỬA SẢN PHẨM</h5>
                                     <hr>
                                     <div class="col-md-12">
                                         <div class="mb-3">
-                                            <label class="form-label"> Mã khách hàng </label>
-                                            <input type="text" class="form-control" id="idAccountDetail" name="nameAccountDetail" readonly>
+                                            <label class="form-label">Tên sản phẩm</label><span id="errNamePEdit"  class="text-danger"></span>
+                                            <input type="text" class="form-control" id="nameProductEdit" name="nameProductEdit">
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label"> Tên khách hàng </label>
-                                            <input type="text" class="form-control" id="nameAccountDetail" name="nameAccountDetail" readonly>
+                                            <label class="form-label">Giá nhập (₫)</label><span id="errImpPriceEdit"  class="text-danger"></span>
+                                            <input type="text" class="form-control" id="priceImpProductEdit" name="priceProduct">
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label">Số điện thoại</label>
-                                            <input type="text" class="form-control" id="phoneAccountDetail" name="phoneAccountDetail" readonly>
+                                            <label class="form-label">Giá bán (₫)</label><span id="errPriceEdit"  class="text-danger"></span>
+                                            <input type="text" class="form-control" id="priceProductEdit" name="delivery">
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label">Email</label>
-                                            <input type="text" class="form-control" id="EmailAccountDetail" name="EmailAccountDetail">
+                                            <label class="form-label" id = "cateTypeEdit">Thể loại</label>
+                                            <select class="form-control" name="cateChairEdit" id="cateChairEdit">
+                                                <option value="Ghế văn phòng">Ghế văn phòng</option>
+                                                <option value="Ghế thư giãn">Ghế thư giãn</option>
+                                                <option value="Ghế trang trí">Ghế trang trí</option>
+                                                <option value="Ghế gaming">Ghế gaming</option>
+                                            </select>
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label">Giới tính</label>
-                                            <input type="text" class="form-control" id="genderAccountDetail" name="genderAccountDetail" readonly>
+                                            <label class="form-label">Hình ảnh</label><span id="errImg1Edit"  class="text-danger"></span>
+                                            <input type="text" class="form-control" id="image1Edit" name="image1Edit">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4 col-4 mb-3">
+                                                <label class="form-label">Chiều dài<span class="fs">(cm)</span></label>
+                                                <input type="number" class="form-control" id="lengthEdit" name="lengthEdit">
+                                            </div>
+                                            <div class="col-md-4 col-4 mb-3">
+                                                <label class="form-label">Chiều rộng<span class="fs">(cm)</span></label>
+                                                <input type="number" class="form-control" id="widthEdit" name="widthEdit">
+                                            </div>
+                                            <div class="col-md-4 col-4 mb-3">
+                                                <label class="form-label">Chiều cao<span class="fs">(cm)</span></label>
+                                                <input type="number" class="form-control" id="heightEdit" name="heightEdit">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4 col-4 mb-3">
+                                                <label class="form-label">Vật liệu</label>
+                                                <input type="text" class="form-control" id="materialEdit" name="materialEdit">
+                                            </div>
+                                            <div class="col-md-4 col-4 mb-3">
+                                                <label class="form-label">Màu sắc</label>
+                                                <input type="text" class="form-control" id="colorEdit" name="colorEdit">
+                                            </div>
+                                            <div class="col-md-4 col-4 mb-3">
+                                                <label class="form-label">Số lượng</label>
+                                                <input type="number" class="form-control" id="amountEdit" name="amountEdit">
+                                            </div>
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label">Ngày sinh</label>
-                                            <input type="text" class="form-control" id="dateAccountDetail" name="dateAccountDetail" readonly>
+                                            <label class="form-label">Mô tả</label><span id="errDesEdit"  class="text-danger"></span>
+                                            <textarea type="text" class="form-control" id="desEdit" name="desEdit"></textarea>
                                         </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Địa chỉ</label>
-                                            <input type="text" class="form-control" id="addressAccountDetail" name="addressAccountDetail" readonly>
+                                    </div>
+                                    <div class="row p-0">
+                                        <div class="col-md-12 p-0">
+                                            <div class="text-end">
+                                                <button class="save " type="submit">LƯU</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--end giao diện quản lý tài khoản -->
-            <!--giao diện quản lý sản phẩm-->
-            <div class="col-lg-9 bgcolor d-none " id="mngProduct">
-                <div class="row mt-2">
-                    <div class="col-lg-6">
-                        <h5 >Quản lý sản phẩm</h5>
-                    </div>
-                    <div class="col-lg-6 text-end">
-                        <button class="btnAdd bgcolor bd-full" id ="btnAddProduct"><i class="fa fa-plus-circle text-color" aria-hidden="true" title="Thêm sản phẩm" data-bs-toggle="modal" data-bs-target="#addProduct"></i></button>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-lg-12 overflow-auto mheight" >
-                        <%
-                            String res = (String) request.getAttribute("res");
-                            res = (res == null) ? "" : res;
-                            ArrayList<Product> listAllProduct = (ArrayList<Product>) request.getAttribute("listAllProduct");
-                            int sttP = 1;
-                        %>
-                        <input type="hidden" id="res"></input>
-                        <table class="mb-3">
-                            <thead>
-                                <tr>
-                                    <td class="w40">STT</td>
-                                    <td class="w260">SẢN PHẨM</td>
-                                    <td>GIÁ BÁN</td>
-                                    <td>MÀU SẮC</td>
-                                    <td>SỐ LƯỢNG</td>
-                                    <td>TRẠNG THÁI</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <% if (listAllProduct != null && !listAllProduct.isEmpty()) {
-                                for (Product p: listAllProduct) {%>
-                                <tr id="detailProductRow" data-bs-toggle ="modal" data-bs-target="#detailProduct" onclick="detailProduct('<%=p.getIdProduct()%>')">
-                                    <input type="hidden" class ="idProduct" value="<%=p.getIdProduct()%>">
-                                <td class="w40"><%=sttP%></td>
-                                <td class="w260">
-                                    <div class="item d-flex justify-content-center">
-                                        <div class="item_img">
-                                            <img src="<%=url%>/Products/<%=p.getImages().get(0).getUrl()%>"
-                                                 class="card-img-top img_p_cart" alt="..."/>
-                                        </div>
-                                        <span class="item_text"><%=p.getName()%></span>
+            <div class="modal fade" id="detailProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content ">
+                        <div class="modal-body" id="detail">
+                            <div class="container">
+                                <div class="row ">
+                                    <div class=" text-end">
+                                        <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                </td>
-                                <td><%=nF.format(p.getPrice())%></td>
-                                <td><%=p.getColor()%></td>
-                                <td><%=p.getQuantityAvailable()%></td>
-                                    <%if (p.isStatus()) {%>
-                                    <td>Đang bán</td>
-                                    <%} else {%>
-                                    <td>Ngưng bán</td>
-                                    <%}%>
-                                <td>
-                                    <div class="d-flex justify-content-center">
-                                        <button class="delete btnAdd bgcolor bd-full" title="Xóa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="" ><i class="fa fa-trash-o text-color"></i></button>
-                                        <button class="editProduct btnAdd bgcolor bd-full mx-1" title="Chỉnh sửa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editProduct"><i class="fa fa-pencil text-color" ></i></button>
-                                        <button class="hideProduct btnAdd bgcolor bd-full" title="Ẩn/hiện sản phẩm" aria-hidden="true" data-bs-toggle="modal" data-bs-target=""><i class="fa fa-lock text-color"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <%
-                                        sttP++;
-                                    }
-                                }
-                            %>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="modal fade" id="editProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-md">
-                        <div class="modal-content ">
-                            <div class="modal-body">
-                                <form class ="editProduct" action="" method="post" id ="edit-Product" onsubmit="return editProduct()" >
-                                    <div class="row px-2">
-                                        <span class="d-none" id ="id"></span>
-                                        <div class=" text-end">
-                                            <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <h5 class=" pb-2 text-center title">CHỈNH SỬA SẢN PHẨM</h5>
-                                        <hr>
-                                        <div class="col-md-12">
-                                            <div class="mb-3">
-                                                <label class="form-label">Tên sản phẩm</label><span id="errNamePEdit"  class="text-danger"></span>
-                                                <input type="text" class="form-control" id="nameProductEdit" name="nameProductEdit">
+                                    <h5 class="pb-2 text-center title">CHI TIẾT SẢN PHẨM</h5>
+                                    <hr>
+                                    <div class="col-md-6 col-sm-12 col-12">
+                                        <div class="row pt-2">
+                                            <div class="col-md-12 col-sm-8 col-8">
+                                                <img src="https://anphat.com.vn/media/product/40998_sihoo_m18_black_grey__2_.JPG" alt=""
+                                                     class="img_p2" id="img_center">
                                             </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Giá nhập (₫)</label><span id="errImpPriceEdit"  class="text-danger"></span>
-                                                <input type="text" class="form-control" id="priceImpProductEdit" name="priceProduct">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Giá bán (₫)</label><span id="errPriceEdit"  class="text-danger"></span>
-                                                <input type="text" class="form-control" id="priceProductEdit" name="delivery">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label" id = "cateTypeEdit">Thể loại</label>
-                                                <select class="form-control" name="cateChairEdit" id="cateChairEdit">
-                                                    <option value="Ghế văn phòng">Ghế văn phòng</option>
-                                                    <option value="Ghế thư giãn">Ghế thư giãn</option>
-                                                    <option value="Ghế trang trí">Ghế trang trí</option>
-                                                    <option value="Ghế gaming">Ghế gaming</option>
-                                                </select>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Hình ảnh</label><span id="errImg1Edit"  class="text-danger"></span>
-                                                <input type="text" class="form-control" id="image1Edit" name="image1Edit">
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Chiều dài<span class="fs">(cm)</span></label>
-                                                    <input type="number" class="form-control" id="lengthEdit" name="lengthEdit">
-                                                </div>
-                                                <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Chiều rộng<span class="fs">(cm)</span></label>
-                                                    <input type="number" class="form-control" id="widthEdit" name="widthEdit">
-                                                </div>
-                                                <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Chiều cao<span class="fs">(cm)</span></label>
-                                                    <input type="number" class="form-control" id="heightEdit" name="heightEdit">
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Vật liệu</label>
-                                                    <input type="text" class="form-control" id="materialEdit" name="materialEdit">
-                                                </div>
-                                                <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Màu sắc</label>
-                                                    <input type="text" class="form-control" id="colorEdit" name="colorEdit">
-                                                </div>
-                                                <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Số lượng</label>
-                                                    <input type="number" class="form-control" id="amountEdit" name="amountEdit">
-                                                </div>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Mô tả</label><span id="errDesEdit"  class="text-danger"></span>
-                                                <textarea type="text" class="form-control" id="desEdit" name="desEdit"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="row p-0">
-                                            <div class="col-md-12 p-0">
-                                                <div class="text-end">
-                                                    <button class="save " type="submit">LƯU</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal fade" id="detailProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content ">
-                            <div class="modal-body" id="detail">
-                                <div class="container">
-                                    <div class="row ">
-                                        <div class=" text-end">
-                                            <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <h5 class="pb-2 text-center title">CHI TIẾT SẢN PHẨM</h5>
-                                        <hr>
-                                        <div class="col-md-6 col-sm-12 col-12">
-                                            <div class="row pt-2">
-                                                <div class="col-md-12 col-sm-8 col-8">
-                                                    <img src="https://anphat.com.vn/media/product/40998_sihoo_m18_black_grey__2_.JPG" alt=""
-                                                         class="img_p2" id="img_center">
-                                                </div>
-                                                <div class="col-md-12 mt-3 imgdetail" >
-                                                    <div class="owl-carousel" id ="owl">
+                                            <div class="col-md-12 mt-3 imgdetail" >
+                                                <div class="owl-carousel" id ="owl">
 
-                                                    </div>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Mã sản phẩm</label>
+                                            <input type="text" class="form-control" id="idProductdetail" name="nameProductdetail" readonly>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Tên sản phẩm</label>
+                                            <input type="text" class="form-control" id="nameProductdetail" name="nameProductdetail" readonly>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Giá nhập (₫)</label>
+                                            <input type="text" class="form-control" id="priceImpProductdetail" name="priceImpProductdetail" readonly>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Giá bán (₫)</label>
+                                            <input type="text" class="form-control" id="priceProductDetail" name="priceProductDetail" readonly>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Thể loại</label>
+                                            <input type="text" class="form-control" id="cateTypedetail" name="cateTypedetail" readonly>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4 col-4 mb-3">
+                                                <label class="form-label">Chiều dài<span class="fs">(cm)</span></label>
+                                                <input type="number" class="form-control" id="lengthdetail" name="lengthdetail"readonly>
                                             </div>
-                                        <div class="col-md-6">
+                                            <div class="col-md-4 col-4 mb-3">
+                                                <label class="form-label">Chiều rộng<span class="fs">(cm)</span></label>
+                                                <input type="number" class="form-control" id="widthdetail" name="widthdetail"readonly>
+                                            </div>
+                                            <div class="col-md-4 col-4 mb-3">
+                                                <label class="form-label">Chiều cao<span class="fs">(cm)</span></label>
+                                                <input type="number" class="form-control" id="heightdetail" name="heightdetail"readonly>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4 col-4 mb-3">
+                                                <label class="form-label">Vật liệu</label>
+                                                <input type="text" class="form-control" id="materialdetail" name="materialdetail"readonly>
+                                            </div>
+                                            <div class="col-md-4 col-4 mb-3">
+                                                <label class="form-label">Màu sắc</label>
+                                                <input type="text" class="form-control" id="colordetail" name="colordetail"readonly>
+                                            </div>
+                                            <div class="col-md-4 col-4 mb-3">
+                                                <label class="form-label">Số lượng</label>
+                                                <input type="number" class="form-control" id="quantitydetail" name="amountdetail"readonly>
+                                            </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Mã sản phẩm</label>
-                                                <input type="text" class="form-control" id="idProductdetail" name="nameProductdetail" readonly>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Tên sản phẩm</label>
-                                                <input type="text" class="form-control" id="nameProductdetail" name="nameProductdetail" readonly>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Giá nhập (₫)</label>
-                                                <input type="text" class="form-control" id="priceImpProductdetail" name="priceImpProductdetail" readonly>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Giá bán (₫)</label>
-                                                <input type="text" class="form-control" id="priceProductDetail" name="priceProductDetail" readonly>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Thể loại</label>
-                                                <input type="text" class="form-control" id="cateTypedetail" name="cateTypedetail" readonly>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Chiều dài<span class="fs">(cm)</span></label>
-                                                    <input type="number" class="form-control" id="lengthdetail" name="lengthdetail"readonly>
-                                                </div>
-                                                <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Chiều rộng<span class="fs">(cm)</span></label>
-                                                    <input type="number" class="form-control" id="widthdetail" name="widthdetail"readonly>
-                                                </div>
-                                                <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Chiều cao<span class="fs">(cm)</span></label>
-                                                    <input type="number" class="form-control" id="heightdetail" name="heightdetail"readonly>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Vật liệu</label>
-                                                    <input type="text" class="form-control" id="materialdetail" name="materialdetail"readonly>
-                                                </div>
-                                                <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Màu sắc</label>
-                                                    <input type="text" class="form-control" id="colordetail" name="colordetail"readonly>
-                                                </div>
-                                                <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Số lượng</label>
-                                                    <input type="number" class="form-control" id="quantitydetail" name="amountdetail"readonly>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label">Mô tả</label>
-                                                    <textarea type="text" class="form-control" id="desdetail" name="desdetail" readonly>
+                                                <label class="form-label">Mô tả</label>
+                                                <textarea type="text" class="form-control" id="desdetail" name="desdetail" readonly>
                                                     </textarea>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -430,494 +425,494 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal fade" id="addProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-md">
-                        <div class="modal-content ">
-                            <div class="modal-body">
-                                <form  action="addProduct" method="post" id="add-product" enctype="multipart/form-data" onsubmit="return addProduct()">
-                                    <div class="row px-2">
-                                        <div class=" text-end">
-                                            <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal fade" id="addProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content ">
+                        <div class="modal-body">
+                            <form  action="addProduct" method="post" id="add-product" enctype="multipart/form-data" onsubmit="return addProduct()">
+                                <div class="row px-2">
+                                    <div class=" text-end">
+                                        <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <h5 class="text-center title">  THÊM SẢN PHẨM</h5>
+                                    <hr>
+                                    <div class="col-md-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Tên sản phẩm</label><span id="errNameP" class="text-danger"></span>
+                                            <input type="text" class="form-control" id="nameProduct" name="nameProduct">
                                         </div>
-                                        <h5 class="text-center title">  THÊM SẢN PHẨM</h5>
-                                        <hr>
-                                        <div class="col-md-12">
-                                            <div class="mb-3">
-                                                <label class="form-label">Tên sản phẩm</label><span id="errNameP" class="text-danger"></span>
-                                                <input type="text" class="form-control" id="nameProduct" name="nameProduct">
+                                        <div class="mb-3">
+                                            <label class="form-label">Giá nhập (₫)</label><span id="errImpPriceAdd"  class="text-danger"></span>
+                                            <input type="text" class="form-control" id="priceImpProductAdd" name="priceImpProductAdd">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Giá bán (₫)</label><span id="errPriceAdd"  class="text-danger"></span>
+                                            <input type="text" class="form-control" id="priceProductAdd" name="priceProductAdd">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Thể loại</label>
+                                            <select class="form-control" name="cateChair" id="cateChair">
+                                                <option value="Ghế văn phòng">Ghế văn phòng</option>
+                                                <option value="Ghế thư giãn">Ghế thư giãn</option>
+                                                <option value="Ghế trang trí">Ghế trang trí</option>
+                                                <option value="Ghế gaming">Ghế gaming</option>
+                                            </select>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4 col-4 mb-3">
+                                                <label class="form-label">Chiều dài<span class="fs">(cm)</span></label>
+                                                <input type="number" class="form-control" id="length" name="length">
                                             </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Giá nhập (₫)</label><span id="errImpPriceAdd"  class="text-danger"></span>
-                                                <input type="text" class="form-control" id="priceImpProductAdd" name="priceImpProductAdd">
+                                            <div class="col-md-4 col-4 mb-3">
+                                                <label class="form-label">Chiều rộng<span class="fs">(cm)</span></label>
+                                                <input type="number" class="form-control" id="width" name="width">
                                             </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Giá bán (₫)</label><span id="errPriceAdd"  class="text-danger"></span>
-                                                <input type="text" class="form-control" id="priceProductAdd" name="priceProductAdd">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Thể loại</label>
-                                                <select class="form-control" name="cateChair" id="cateChair">
-                                                    <option value="Ghế văn phòng">Ghế văn phòng</option>
-                                                    <option value="Ghế thư giãn">Ghế thư giãn</option>
-                                                    <option value="Ghế trang trí">Ghế trang trí</option>
-                                                    <option value="Ghế gaming">Ghế gaming</option>
-                                                </select>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Chiều dài<span class="fs">(cm)</span></label>
-                                                    <input type="number" class="form-control" id="length" name="length">
-                                                </div>
-                                                <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Chiều rộng<span class="fs">(cm)</span></label>
-                                                    <input type="number" class="form-control" id="width" name="width">
-                                                </div>
-                                                <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Chiều cao<span class="fs">(cm)</span></label>
-                                                    <input type="number" class="form-control" id="height" name="height">
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Vật liệu</label>
-                                                    <input type="text" class="form-control" id="material" name="material">
-                                                </div>
-                                                <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Màu sắc</label>
-                                                    <input type="text" class="form-control" id="color" name="color">
-                                                </div>
-                                                <div class="col-md-4 col-4 mb-3">
-                                                    <label class="form-label">Số lượng</label>
-                                                    <input type="number" class="form-control" id="quantity" name="quantity">
-                                                </div>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Mô tả</label><span id="errDes"  class="text-danger"></span>
-                                                <textarea type="text" class="form-control" id="des" name="des"></textarea>
-                                            </div>
-                                            <div  id = "image">
-                                                <label class="form-label">Hình ảnh</label><span id="errImg1" class="text-danger"></span>
-                                                <div class="mb-3">
-                                                    <input type="file" class="form-control" name="image">
-                                                </div>
-                                            </div>
-                                            <div class="text-end mb-3">
-                                                <button type ="button" class="btnAdd bgcolor bd-full" id ="btnAddImage" onclick="addInput()"><i class="fa fa-plus-circle text-color" aria-hidden="true" title="Thêm hình ảnh" ></i></button>
+                                            <div class="col-md-4 col-4 mb-3">
+                                                <label class="form-label">Chiều cao<span class="fs">(cm)</span></label>
+                                                <input type="number" class="form-control" id="height" name="height">
                                             </div>
                                         </div>
-                                        <div class="row p-0">
-                                            <div class="col-md-12 p-0">
-                                                <div class="text-end">
-                                                    <button class="save " type="submit">LƯU</button>
-                                                </div>
+                                        <div class="row">
+                                            <div class="col-md-4 col-4 mb-3">
+                                                <label class="form-label">Vật liệu</label>
+                                                <input type="text" class="form-control" id="material" name="material">
                                             </div>
+                                            <div class="col-md-4 col-4 mb-3">
+                                                <label class="form-label">Màu sắc</label>
+                                                <input type="text" class="form-control" id="color" name="color">
+                                            </div>
+                                            <div class="col-md-4 col-4 mb-3">
+                                                <label class="form-label">Số lượng</label>
+                                                <input type="number" class="form-control" id="quantity" name="quantity">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Mô tả</label><span id="errDes"  class="text-danger"></span>
+                                            <textarea type="text" class="form-control" id="des" name="des"></textarea>
+                                        </div>
+                                        <div  id = "image">
+                                            <label class="form-label">Hình ảnh</label><span id="errImg1" class="text-danger"></span>
+                                            <div class="mb-3">
+                                                <input type="file" class="form-control" name="image">
+                                            </div>
+                                        </div>
+                                        <div class="text-end mb-3">
+                                            <button type ="button" class="btnAdd bgcolor bd-full" id ="btnAddImage" onclick="addInput()"><i class="fa fa-plus-circle text-color" aria-hidden="true" title="Thêm hình ảnh" ></i></button>
                                         </div>
                                     </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--end giao diện quản lý sản phẩm-->
-            <!--giao diện quản lý bán hàng-->
-            <div class="col-lg-9 bgcolor d-none " id ="mngSale">
-                <div class="row mt-2">
-                    <div class="col-lg-6">
-                        <h5 >Quản lý bán hàng</h5>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-lg-12 overflow-auto mheight">
-                        <table class="mb-3">
-                            <thead>
-                                <tr>
-                                    <td class="w40">STT</td>
-                                    <td class="w40">ID</td>
-                                    <td class="w260">SẢN PHẨM</td>
-                                    <td>ĐƠN GIÁ</td>
-                                    <td>MÀU SẮC</td>
-                                    <td>KÍCH THƯỚC</td>
-                                    <td>ĐÃ BÁN</td>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="w40">1</td>
-                                    <td class="w40">1</td>
-                                    <td class="w260">
-                                        <div class="item d-flex justify-content-center">
-                                            <div class="item_img">
-                                                <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
-                                                     class="card-img-top img_p_cart" alt="..."/>
+                                    <div class="row p-0">
+                                        <div class="col-md-12 p-0">
+                                            <div class="text-end">
+                                                <button class="save " type="submit">LƯU</button>
                                             </div>
-                                            <span class="item_text">Ghế massage siêu cấp pro</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        ₫<span>1.000.000</span>
-                                    </td>
-                                    <td>Màu đen</td>
-                                    <td>100x50x70</td>
-                                    <td>50</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <!--end giao diện quản lý bán hàng -->
-            <!--giao diện quản lý hóa đơn-->
-            <div class="col-lg-9 bgcolor d-none " id ="mngInvoice">
-                <div class="row mt-2">
-                    <div class="col-lg-4">
-                        <h5 >Quản lý hóa đơn</h5>
-                    </div>
-                    <div class="col-lg-8 pt-4"><label for = "filterInvoice" >Ngày xuất hóa đơn:</label> <input type="date" id="filterInvoice"><button class ="bd-full bgcolor-orange ms-2 rounded-1" id ="btnFilter">Lọc</button></div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-lg-12 overflow-auto">
-                        <table class="mb-3" >
-                            <thead>
-                                <tr>
-                                    <td class="w40">STT</td>
-                                    <td>ID</td>
-                                    <td>MÃ KHÁCH HÀNG</td>
-                                    <td>NGÀY XUẤT</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr data-bs-toggle="modal" data-bs-target="#detailInvoice">
-                                <td class="w40">2</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>28/02/2023</td>
-                                <td>
-                                    <button class="delete btnAdd bgcolor bd-full" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#" ></i></button>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="modal fade" id="detailInvoice" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-xl">
-                        <div class="modal-content ">
-                            <div class="modal-body">
-                                <div class="container">
-                                    <div class="row ">
-                                        <div class=" text-end">
-                                            <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <h5 class="pb-2 text-center title">CHI TIẾT HOÁ ĐƠN</h5>
-                                        <hr>
-                                        <div class="col-md-12">
-                                            <p class="fw-bold">Tên khách hàng: <span id="nameCus">Minh Quân</span></p>
-                                            <p class="fw-bold">Số điện thoại: <span id="phoneCus">0812295775</span> </p>
-                                            <p class="fw-bold">Email: <span id="emailCus">qle29210@gmail.com</span></p>
-                                            <p class="fw-bold">Địa chỉ: <span id="addressCus">230A Tô Ngọc Vân</span> </p>
-                                            <p class="fw-bold">Mã hóa đơn: <span id="idInvoice">1</span> </p>
-                                            <p class="fw-bold">Phí vận chuyển: ₫<span id="transFee">0</span> </p>
-                                            <p class="fw-bold">Phương thức thanh toán: <span id="payMethod">Thanh toán khi nhận hàng</span> </p>
-                                            <table  class="table table-bordered">
-                                                <thead>
-                                                <tr>
-                                                    <td>STT</td>
-                                                    <td>MÃ SẢN PHẨM</td>
-                                                    <td>TÊN SẢN PHẨM</td>
-                                                    <td>SỐ LƯỢNG</td>
-                                                    <td>ĐƠN GIÁ</td>
-                                                    <td>THÀNH TIỀN</td>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>1</td>
-                                                    <td>Ghế vip</td>
-                                                    <td>1</td>
-                                                    <td>₫<span>2.000.000</span></td>
-                                                    <td>₫<span>2.000.000</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="fw-bold">TỔNG TIỀN</td>
-                                                    <td colspan="5">₫<span>2.000.000</span></td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <!--end giao diện quản lý hóa đơn -->
-            <!--giao diện quản lý danh mục-->
-            <div class="col-lg-9 bgcolor d-none " id ="mngCate">
-                <div class="row mt-2">
-                    <div class="col-lg-6">
-                        <h5 >Quản lý danh mục</h5>
-                    </div>
-                    <div class="col-lg-6 text-end">
-                        <button class="btnAdd bgcolor bd-full" id ="btnAddCate"><i class="fa fa-plus-circle text-color" aria-hidden="true" title="Thêm danh mục" data-bs-toggle="modal" data-bs-target="#addCate"></i></button>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-lg-12 overflow-auto mheight">
-                        <%
-                            ArrayList<Category> listCategory = CategoryService.getInstance().listCategory();
-                            int sttC = 1;
-                        %>
-                        <table class="mb-3">
-                            <thead>
-                            <tr >
-                                <td>STT</td>
-                                <td>ID</td>
-                                <td>TÊN</td>
-                            </tr>
-                            </thead>
-                            <tbody id ="innerCategory">
-                            <% if (listCategory != null && !listCategory.isEmpty()) {
-                                for (Category c: listCategory) {%>
-                            <tr data-category-id="<%= c.getId() %>">
-                                <td><%=sttC%></td>
-                                <td><%=c.getId()%></td>
-                                <td ><%=c.getName()%></td>
-                                <td>
-                                    <div class="d-flex w-100 justify-content-center">
-                                        <button class="delete btnAdd bgcolor bd-full me-1" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true" onclick="deleteCategory('<%=c.getId()%>')" data-bs-toggle="modal" data-bs-target=""></i></button>
-                                        <button class="editCate btnAdd bgcolor bd-full "><i class="fa fa-pencil text-color" title="Chỉnh sửa danh mục" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editCate" onclick="innerEditCategory('<%=c.getId()%>')"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <%
-                                sttC++;
-                                }
-                                }
-                            %>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="modal fade" id="editCate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog ">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <form class="cateEdit" id="cateEdit" action="" method="post" onsubmit="return editCate()">
-                                    <div class="row px-2">
-                                        <div class=" text-end">
-                                            <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <h5 class="text-center">CHỈNH SỬA DANH MỤC</h5>
-                                        <hr>
-                                        <div class="col-md-12">
-                                            <div class="mb-3">
-                                                <label class="form-label">Tên danh mục</label><span id="errNameCate" class="text-danger"></span>
-                                                <input type="text" class="form-control" id="nameCateEdit" name="nameCateEdit">
-                                            </div>
-                                        </div>
-                                        <div class="row p-0">
-                                            <div class="col-lg-12 text-end p-0">
-                                                <button class="save" type="button" onclick="editCate()">LƯU</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal fade" id="addCate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog ">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <form id="add-Cate" action="" method="post">
-                                    <div class="row px-2">
-                                        <div class=" text-end">
-                                            <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"data-bs-target="#addCate"></button>
-                                        </div>
-                                        <h5 class="text-center">THÊM DANH MỤC</h5>
-                                        <hr>
-                                        <div class="col-md-12">
-                                            <div class="mb-3">
-                                                <label class="form-label">Tên danh mục</label><span id="errNameCateAdd" class="text-danger"></span>
-                                                <input type="text" class="form-control" id="nameCateAdd" name="nameCateAdd">
-                                            </div>
-
-                                        </div>
-                                        <div class="row p-0">
-                                            <div class="col-lg-12 text-end p-0">
-                                                <button class="save" type="button" onclick="addCate()">LƯU</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--end giao diện quản lý danh mục -->
-            <!--giao diện quản lý nhà cung cấp-->
-            <div class="col-lg-9 bgcolor d-none " id ="mngSup">
-                <div class="row mt-2">
-                    <div class="col-lg-6">
-                        <h5 >Quản lý nhà cung cấp</h5>
-                    </div>
-                    <div class="col-lg-6 text-end">
-                        <button class="btnAdd bgcolor bd-full" id ="btnAddSupplier"><i class="fa fa-plus-circle text-color" aria-hidden="true" title="Thêm sản phẩm" data-bs-toggle="modal" data-bs-target="#addSup"></i></button>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-lg-12 overflow-auto mheight">
-                        <table class="mb-3">
-                            <thead>
-                                <tr>
-                                    <td class="w40">STT</td>
-                                    <td class="w40">ID</td>
-                                    <td>TÊN NCC</td>
-                                    <td class="w225">ĐỊA CHỈ</td>
-                                    <td>SỐ ĐIỆN THOẠI</td>
-                                    <td>EMAIL</td>
-                                    <td>PHÂN PHỐI</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="w40">1</td>
-                                    <td class="w40">1</td>
-                                    <td>SimpleHome</td>
-                                    <td class="w225">280 Lương Định Của, Q.2, TP.HCM</td>
-                                    <td>0123456789</td>
-                                    <td>simplehome@gmail.com</td>
-                                    <td>Ghế văn phòng</td>
-                                    <td class="w110">
-                                        <div class="d-flex w-100 justify-content-center">
-                                            <button class="delete btnAdd bgcolor bd-full me-1" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="" ></i></button>
-                                            <button class="editAccount btnAdd bgcolor bd-full "><i class="fa fa-pencil text-color" title="Chỉnh sửa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editSup"></i></button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="modal fade" id="editSup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog ">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <form class="form " id="supEdit" action="" method="post" onsubmit="return editSup()">
-                                    <div class="row px-2">
-                                        <div class=" text-end">
-                                            <button type="button" class="btn-close " data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                        </div>
-                                        <h5 class="text-center">CHỈNH SỬA NHÀ CUNG CẤP</h5>
-                                        <hr>
-                                        <div class="col-md-12">
-                                            <div class="mb-3">
-                                                <label class="form-label">Tên nhà cung cấp</label><span id="errNameSupEdit" class="text-danger"></span>
-                                                <input type="text" class="form-control" id="nameSupEdit" name="nameSupEdit">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Địa chỉ</label><span id="errAddEdit" class="text-danger"></span>
-                                                <input type="text" class="form-control" id="addressSupEdit" name="addressSupEdit">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Số điện thoại</label><span id="errphoneNumberSupEdit" class="text-danger"></span>
-                                                <input type="text" class="form-control" id="phoneNumberSupEdit" name="phoneNumberSupEdit">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Email</label><span id="errEmailSupEdit" class="text-danger"></span>
-                                                <input type="text" class="form-control" id="emailSupEdit" name="emailSupEdit">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Cung cấp loại</label>
-                                                <select class="form-control" name="cateChairSupEdit" >
-                                                    <option value="Ghế văn phòng">Ghế văn phòng</option>
-                                                    <option value="Ghế thư giãn">Ghế thư giãn</option>
-                                                    <option value="Ghế trang trí">Ghế trang trí</option>
-                                                    <option value="Ghế gaming">Ghế gaming</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="row p-0">
-                                            <div class="col-md-12 p-0">
-                                                <div class="text-end">
-                                                    <button class="save " type="submit">LƯU</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal fade" id="addSup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog ">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <form class="form" id="supAdd" action="" method="post" onsubmit="return addSup()">
-                                    <div class="row p-4">
-                                        <div class=" text-end">
-                                            <button type="button" class="btn-close " data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                        </div>
-                                        <h5 class="text-center">THÊM NHÀ CUNG CẤP</h5>
-                                        <hr>
-                                        <div class="col-md-12">
-                                            <div class="mb-3">
-                                                <label class="form-label">Tên nhà cung cấp</label><span id="errNameSupAdd" class="text-danger"></span>
-                                                <input type="text" class="form-control" id="nameSupAdd" name="nameSupAdd">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Địa chỉ</label><span id="errAddressSupAdd" class="text-danger"></span>
-                                                <input type="text" class="form-control" id="addressSupAdd" name="addressSupAdd">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Số điện thoại</label><span id="errphoneSupAdd" class="text-danger"></span>
-                                                <input type="text" class="form-control" id="phoneSupAdd" name="phoneSupAdd">
-                                            </div>
-
-
-                                            <div class="mb-3">
-                                                <label class="form-label">Email</label><span id="errEmailSupAdd" class="text-danger"></span>
-                                                <input type="text" class="form-control" id="emailSupAdd" name="emailSupAdd">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Phân phối cho</label>
-                                                <select class="form-control" name="cateChairSupAdd" id="cateChairSupAdd">
-                                                    <option value="Ghế văn phòng">Ghế văn phòng</option>
-                                                    <option value="Ghế thư giãn">Ghế thư giãn</option>
-                                                    <option value="Ghế trang trí">Ghế trang trí</option>
-                                                    <option value="Ghế gaming">Ghế gaming</option>
-                                                </select>
-                                            </div>
-
-
-                                        </div>
-                                        <div class="row p-0">
-                                            <div class="col-md-12 p-0">
-                                                <div class="text-end">
-                                                    <button class="save " type="submit">LƯU</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <!--end giao diện quản lý nhà cung cấp -->
         </div>
+        <!--end giao diện quản lý sản phẩm-->
+        <!--giao diện quản lý bán hàng-->
+        <div class="col-lg-9 bgcolor d-none " id ="mngSale">
+            <div class="row mt-2">
+                <div class="col-lg-6">
+                    <h5 >Quản lý bán hàng</h5>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-lg-12 overflow-auto mheight">
+                    <table class="mb-3">
+                        <thead>
+                        <tr>
+                            <td class="w40">STT</td>
+                            <td class="w40">ID</td>
+                            <td class="w260">SẢN PHẨM</td>
+                            <td>ĐƠN GIÁ</td>
+                            <td>MÀU SẮC</td>
+                            <td>KÍCH THƯỚC</td>
+                            <td>ĐÃ BÁN</td>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="w40">1</td>
+                            <td class="w40">1</td>
+                            <td class="w260">
+                                <div class="item d-flex justify-content-center">
+                                    <div class="item_img">
+                                        <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
+                                             class="card-img-top img_p_cart" alt="..."/>
+                                    </div>
+                                    <span class="item_text">Ghế massage siêu cấp pro</span>
+                                </div>
+                            </td>
+                            <td>
+                                ₫<span>1.000.000</span>
+                            </td>
+                            <td>Màu đen</td>
+                            <td>100x50x70</td>
+                            <td>50</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!--end giao diện quản lý bán hàng -->
+        <!--giao diện quản lý hóa đơn-->
+        <div class="col-lg-9 bgcolor d-none " id ="mngInvoice">
+            <div class="row mt-2">
+                <div class="col-lg-4">
+                    <h5 >Quản lý hóa đơn</h5>
+                </div>
+                <div class="col-lg-8 pt-4"><label for = "filterInvoice" >Ngày xuất hóa đơn:</label> <input type="date" id="filterInvoice"><button class ="bd-full bgcolor-orange ms-2 rounded-1" id ="btnFilter">Lọc</button></div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-lg-12 overflow-auto">
+                    <table class="mb-3" >
+                        <thead>
+                        <tr>
+                            <td class="w40">STT</td>
+                            <td>ID</td>
+                            <td>MÃ KHÁCH HÀNG</td>
+                            <td>NGÀY XUẤT</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr data-bs-toggle="modal" data-bs-target="#detailInvoice">
+                            <td class="w40">2</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>28/02/2023</td>
+                            <td>
+                                <button class="delete btnAdd bgcolor bd-full" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#" ></i></button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal fade" id="detailInvoice" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content ">
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="row ">
+                                    <div class=" text-end">
+                                        <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <h5 class="pb-2 text-center title">CHI TIẾT HOÁ ĐƠN</h5>
+                                    <hr>
+                                    <div class="col-md-12">
+                                        <p class="fw-bold">Tên khách hàng: <span id="nameCus">Minh Quân</span></p>
+                                        <p class="fw-bold">Số điện thoại: <span id="phoneCus">0812295775</span> </p>
+                                        <p class="fw-bold">Email: <span id="emailCus">qle29210@gmail.com</span></p>
+                                        <p class="fw-bold">Địa chỉ: <span id="addressCus">230A Tô Ngọc Vân</span> </p>
+                                        <p class="fw-bold">Mã hóa đơn: <span id="idInvoice">1</span> </p>
+                                        <p class="fw-bold">Phí vận chuyển: ₫<span id="transFee">0</span> </p>
+                                        <p class="fw-bold">Phương thức thanh toán: <span id="payMethod">Thanh toán khi nhận hàng</span> </p>
+                                        <table  class="table table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <td>STT</td>
+                                                <td>MÃ SẢN PHẨM</td>
+                                                <td>TÊN SẢN PHẨM</td>
+                                                <td>SỐ LƯỢNG</td>
+                                                <td>ĐƠN GIÁ</td>
+                                                <td>THÀNH TIỀN</td>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>Ghế vip</td>
+                                                <td>1</td>
+                                                <td>₫<span>2.000.000</span></td>
+                                                <td>₫<span>2.000.000</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="fw-bold">TỔNG TIỀN</td>
+                                                <td colspan="5">₫<span>2.000.000</span></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--end giao diện quản lý hóa đơn -->
+        <!--giao diện quản lý danh mục-->
+        <div class="col-lg-9 bgcolor d-none " id ="mngCate">
+            <div class="row mt-2">
+                <div class="col-lg-6">
+                    <h5 >Quản lý danh mục</h5>
+                </div>
+                <div class="col-lg-6 text-end">
+                    <button class="btnAdd bgcolor bd-full" id ="btnAddCate"><i class="fa fa-plus-circle text-color" aria-hidden="true" title="Thêm danh mục" data-bs-toggle="modal" data-bs-target="#addCate"></i></button>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-lg-12 overflow-auto mheight">
+                    <%
+                        ArrayList<Category> listCategory = CategoryService.getInstance().listCategory();
+                        int sttC = 1;
+                    %>
+                    <table class="mb-3">
+                        <thead>
+                        <tr >
+                            <td>STT</td>
+                            <td>ID</td>
+                            <td>TÊN</td>
+                        </tr>
+                        </thead>
+                        <tbody id ="innerCategory">
+                        <% if (listCategory != null && !listCategory.isEmpty()) {
+                            for (Category c: listCategory) {%>
+                        <tr>
+                            <input type="hidden" class="id" id="categoryIdEdit" value="<%= c.getId()%>">
+                            <td><%=sttC%></td>
+                            <td><%=c.getId()%></td>
+                            <td ><%=c.getName()%></td>
+                            <td>
+                                <div class="d-flex w-100 justify-content-center">
+                                    <button class="delete btnAdd bgcolor bd-full me-1" title="Xóa" aria-hidden="true" onclick="deleteCategory('<%=c.getId()%>')" data-bs-toggle="modal" data-bs-target=""><i class="fa fa-trash-o text-color"></i></button>
+                                    <button class="editCate btnAdd bgcolor bd-full" title="Chỉnh sửa danh mục" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editCate" onclick="innerEditCategory('<%=c.getId()%>')"><i class="fa fa-pencil text-color"></i></button>                                </div>
+                            </td>
+                        </tr>
+                        <%
+                                    sttC++;
+                                }
+                            }
+                        %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal fade" id="editCate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog ">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <form class="cateEdit" id="cateEdit" action="" method="post">
+                                <div class="row px-2">
+                                    <div class=" text-end">
+                                        <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <h5 class="text-center">CHỈNH SỬA DANH MỤC</h5>
+                                    <hr>
+                                    <div class="col-md-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Tên danh mục</label><span id="errNameCate" class="text-danger"></span>
+                                            <input type="text" class="form-control" id="nameCateEdit" name="nameCateEdit">
+                                        </div>
+                                    </div>
+                                    <div class="row p-0">
+                                        <div class="col-lg-12 text-end p-0">
+                                            <button class="save" type="button" onclick="editCate()">LƯU</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="addCate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog ">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <form id="add-Cate" action="" method="post" enctype="multipart/form-data">
+                                <div class="row px-2">
+                                    <div class=" text-end">
+                                        <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"data-bs-target="#addCate"></button>
+                                    </div>
+                                    <h5 class="text-center">THÊM DANH MỤC</h5>
+                                    <hr>
+                                    <div class="col-md-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Tên danh mục</label><span id="errNameCateAdd" class="text-danger"></span>
+                                            <input type="text" class="form-control" id="nameCateAdd" name="nameCateAdd">
+                                        </div>
+                                    </div>
+                                    <div class="row p-0">
+                                        <div class="col-lg-12 text-end p-0">
+                                            <button class="save" type="button" id="saveButton">LƯU</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end giao diện quản lý danh mục -->
+        <!--giao diện quản lý nhà cung cấp-->
+        <div class="col-lg-9 bgcolor d-none " id ="mngSup">
+            <div class="row mt-2">
+                <div class="col-lg-6">
+                    <h5 >Quản lý nhà cung cấp</h5>
+                </div>
+                <div class="col-lg-6 text-end">
+                    <button class="btnAdd bgcolor bd-full" id ="btnAddSupplier"><i class="fa fa-plus-circle text-color" aria-hidden="true" title="Thêm sản phẩm" data-bs-toggle="modal" data-bs-target="#addSup"></i></button>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-lg-12 overflow-auto mheight">
+                    <table class="mb-3">
+                        <thead>
+                        <tr>
+                            <td class="w40">STT</td>
+                            <td class="w40">ID</td>
+                            <td>TÊN NCC</td>
+                            <td class="w225">ĐỊA CHỈ</td>
+                            <td>SỐ ĐIỆN THOẠI</td>
+                            <td>EMAIL</td>
+                            <td>PHÂN PHỐI</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="w40">1</td>
+                            <td class="w40">1</td>
+                            <td>SimpleHome</td>
+                            <td class="w225">280 Lương Định Của, Q.2, TP.HCM</td>
+                            <td>0123456789</td>
+                            <td>simplehome@gmail.com</td>
+                            <td>Ghế văn phòng</td>
+                            <td class="w110">
+                                <div class="d-flex w-100 justify-content-center">
+                                    <button class="delete btnAdd bgcolor bd-full me-1" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="" ></i></button>
+                                    <button class="editAccount btnAdd bgcolor bd-full "><i class="fa fa-pencil text-color" title="Chỉnh sửa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editSup"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal fade" id="editSup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog ">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <form class="form " id="supEdit" action="" method="post" onsubmit="return editSup()">
+                                <div class="row px-2">
+                                    <div class=" text-end">
+                                        <button type="button" class="btn-close " data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <h5 class="text-center">CHỈNH SỬA NHÀ CUNG CẤP</h5>
+                                    <hr>
+                                    <div class="col-md-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Tên nhà cung cấp</label><span id="errNameSupEdit" class="text-danger"></span>
+                                            <input type="text" class="form-control" id="nameSupEdit" name="nameSupEdit">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Địa chỉ</label><span id="errAddEdit" class="text-danger"></span>
+                                            <input type="text" class="form-control" id="addressSupEdit" name="addressSupEdit">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Số điện thoại</label><span id="errphoneNumberSupEdit" class="text-danger"></span>
+                                            <input type="text" class="form-control" id="phoneNumberSupEdit" name="phoneNumberSupEdit">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Email</label><span id="errEmailSupEdit" class="text-danger"></span>
+                                            <input type="text" class="form-control" id="emailSupEdit" name="emailSupEdit">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Cung cấp loại</label>
+                                            <select class="form-control" name="cateChairSupEdit" >
+                                                <option value="Ghế văn phòng">Ghế văn phòng</option>
+                                                <option value="Ghế thư giãn">Ghế thư giãn</option>
+                                                <option value="Ghế trang trí">Ghế trang trí</option>
+                                                <option value="Ghế gaming">Ghế gaming</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row p-0">
+                                        <div class="col-md-12 p-0">
+                                            <div class="text-end">
+                                                <button class="save " type="submit">LƯU</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="addSup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog ">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <form class="form" id="supAdd" action="" method="post" onsubmit="return addSup()">
+                                <div class="row p-4">
+                                    <div class=" text-end">
+                                        <button type="button" class="btn-close " data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <h5 class="text-center">THÊM NHÀ CUNG CẤP</h5>
+                                    <hr>
+                                    <div class="col-md-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Tên nhà cung cấp</label><span id="errNameSupAdd" class="text-danger"></span>
+                                            <input type="text" class="form-control" id="nameSupAdd" name="nameSupAdd">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Địa chỉ</label><span id="errAddressSupAdd" class="text-danger"></span>
+                                            <input type="text" class="form-control" id="addressSupAdd" name="addressSupAdd">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Số điện thoại</label><span id="errphoneSupAdd" class="text-danger"></span>
+                                            <input type="text" class="form-control" id="phoneSupAdd" name="phoneSupAdd">
+                                        </div>
+
+
+                                        <div class="mb-3">
+                                            <label class="form-label">Email</label><span id="errEmailSupAdd" class="text-danger"></span>
+                                            <input type="text" class="form-control" id="emailSupAdd" name="emailSupAdd">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Phân phối cho</label>
+                                            <select class="form-control" name="cateChairSupAdd" id="cateChairSupAdd">
+                                                <option value="Ghế văn phòng">Ghế văn phòng</option>
+                                                <option value="Ghế thư giãn">Ghế thư giãn</option>
+                                                <option value="Ghế trang trí">Ghế trang trí</option>
+                                                <option value="Ghế gaming">Ghế gaming</option>
+                                            </select>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="row p-0">
+                                        <div class="col-md-12 p-0">
+                                            <div class="text-end">
+                                                <button class="save " type="submit">LƯU</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--end giao diện quản lý nhà cung cấp -->
+    </div>
 </div>
 <%--end content--%>
 <!--footer-->
@@ -1016,7 +1011,7 @@
                 $('#mngSup').removeClass('d-none');
             }
         })
-        $(".owl-carousel").owlCarousel();
+       // $(".owl-carousel").owlCarousel();
     })
 </script>
 <script>
@@ -1337,6 +1332,7 @@
         return flag;
     }
     function addCate() {
+        console.log('Button clicked!'); // Thêm dòng này
         var flag = true;
         var nameInput = document.getElementById("nameCateAdd");
         var error = document.getElementById("errNameCateAdd");
@@ -1345,9 +1341,8 @@
             error.innerHTML = ' *Vui lòng nhập danh mục mới!';
             flag = false;
         } else {
-            error.innerHTML = ''; // Xóa thông báo lỗi nếu trường nhập không trống
+            error.innerHTML = '';
         }
-
         if (flag) {
             var name = nameInput.value;
             $.ajax({
@@ -1365,18 +1360,18 @@
                         row.innerHTML = "";
                         for (var i = 0; i < htmlData.length; i++) {
                             var c = htmlData[i];
-                            row.innerHTML += "  <tr data-bs-toggle=\"modal\" data-bs-target=\"#editCate\" onclick=\"innerEditCategory('"+c.id+"')\">\n" +
-                                "    <td" + (i + 1) + "</td>\n" +
-                                "    <td>\n" +
-                                "        <span class=\"item_text\">" + c.nameCateAdd + "</span>\n" +
-                                "    </td>\n" +
-                                "    <td>\n" +
-                                "        <div class=\"d-flex justify-content-center\">\n" +
-                                "            <button class=\"delete btnAdd bgcolor bd-full\" title=\"Xóa\" aria-hidden=\"true\" onclick=\"deleteCategory('"+c.id+"')\" data-bs-toggle=\"modal\" data-bs-target=\"\"><i class=\"fa fa-trash-o text-color\"></i></button>\n" +
-                                "            <button class=\"editCategory btnAdd bgcolor bd-full mx-1\" data-bs-toggle=\"modal\" data-bs-target=\"#editCate\" onclick=\"innerEditCategory('"+c.id+"')\"><i class=\"fa fa-pencil text-color\" title=\"Chỉnh sửa\" aria-hidden=\"true\"></i></button>\n" +
-                                "        </div>\n" +
-                                "    </td>\n" +
-                                "  </tr>";
+                            row.innerHTML +=  "<tr>" +
+                                "<input type='hidden' class='id' value='" + c.id + "'>" +
+                                "<td>" + (i + 1) + "</td>" +
+                                "<td>" + c.id + "</td>" +
+                                "<td>" + c.name + "</td>" +
+                                "<td>" +
+                                "<div class='d-flex w-100 justify-content-center'>" +
+                                "<button class='delete btnAdd bgcolor bd-full me-1' title='Xóa' aria-hidden='true' onclick='deleteCategory(\"" + c.id + "\")' data-bs-toggle='modal' data-bs-target=''><i class='fa fa-trash-o text-color'></i></button>" +
+                                "<button class='editCate btnAdd bgcolor bd-full' title='Chỉnh sửa danh mục' aria-hidden='true' data-bs-toggle='modal' data-bs-target='#editCate' onclick='innerEditCategory(\"" + c.id + "\")'><i class='fa fa-pencil text-color'></i></button>" +
+                                "</div>" +
+                                "</td>" +
+                                "</tr>";
                         }
                     } catch (e) {
                         console.error("Xảy ra lỗi khi xử lý phản hồi JSON:", e);
@@ -1389,88 +1384,7 @@
         }
         return false; // Ngăn chặn sự kiện mặc định của biểu mẫu
     }
-    // var id = "";
-    // function editCate() {
-    //     var flag = true;
-    //     var name = document.getElementById("nameCateEdit");
-    //     var error = document.getElementById("errNameCate");
-    //
-    //     if (name.value === "") {
-    //         error.innerHTML = ' *Vui lòng nhập tên danh mục mới!';
-    //         flag = false;
-    //     } else {
-    //         error.innerHTML = ''; // Clear error message if there was any
-    //     }
-    //     if (flag) {
-    //         var formData = new FormData();
-    //         formData.append('nameCategoryEdit', name.value);
-    //         formData.append('id', id);
-    //         $.ajax({
-    //             url: 'editCategory',
-    //             type: 'POST',
-    //             data: formData,
-    //             contentType: false,
-    //             processData: false,
-    //             success: function(data) {
-    //                 try {
-    //                     var jsonData = JSON.parse(data);
-    //                     var htmlData = jsonData.htmlData;
-    //                     var res = jsonData.res;
-    //                     alert(res);
-    //                     // Cập nhật danh sách danh mục trên giao diện
-    //                     var row = document.getElementById("innerCategory");
-    //                     row.innerHTML = "";
-    //                     var htmlData = jsonData.htmlData;
-    //                     for (var i = 0; i < htmlData.length; i++) {
-    //                         var c = htmlData[i];
-    //                         row.innerHTML += "<tr>\n" +
-    //                             "    <td>" + (i + 1) + "</td>\n" +
-    //                             "    <td>" + c.id + "</td>\n" +
-    //                             "    <td>" + c.nameCateAdd + "</td>\n" +
-    //                             "    <td>\n" +
-    //                             "        <div class=\"d-flex w-100 justify-content-center\">\n" +
-    //                             "            <button class=\"delete btnAdd bgcolor bd-full me-1\"><i class=\"fa fa-trash-o text-color\" title=\"Xóa\" aria-hidden=\"true\" onclick=\"deleteCategory('" + c.id + "')\" data-bs-toggle=\"modal\" data-bs-target=\"\"></i></button>\n" +
-    //                             "            <button class=\"editCate btnAdd bgcolor bd-full\"><i class=\"fa fa-pencil text-color\" title=\"Chỉnh sửa danh mục\" aria-hidden=\"true\" data-bs-toggle=\"modal\" data-bs-target=\"#editCate\" onclick=\"innerEditCategory('" + c.id + "')\"></i></button>\n" +
-    //                             "        </div>\n" +
-    //                             "    </td>\n" +
-    //                             "</tr>";
-    //                     }
-    //                 } catch (e) {
-    //                     console.error("Xảy ra lỗi khi xử lý phản hồi JSON:", e);
-    //                 }
-    //             },
-    //             error: function(error) {
-    //                 console.error("Xảy ra lỗi:", error);
-    //             }
-    //         });
-    //     }
-    // }
-    // function innerEditCategory(categoryId) {
-    //     // Sử dụng AJAX để lấy thông tin chi tiết danh mục dựa trên ID
-    //     $.ajax({
-    //         url: '/loadDetailCategory',
-    //         type: 'GET',
-    //         data: { categoryId: categoryId },
-    //         success: function (data) {
-    //             try {
-    //                 var jsonData = JSON.parse(data);
-    //                 var category = jsonData.category;
-    //
-    //                 // Điền thông tin chi tiết vào form chỉnh sửa
-    //                 document.getElementById("nameCateEdit").value = category.name;
-    //                 // Lưu ID của danh mục đang chỉnh sửa
-    //                 id = category.id;
-    //                 // Gọi modal chỉnh sửa danh mục
-    //                 $('#editCate').modal('show');
-    //             } catch (e) {
-    //                 console.error("Xảy ra lỗi khi xử lý phản hồi JSON:", e);
-    //             }
-    //         },
-    //         error: function (error) {
-    //             console.error("Xảy ra lỗi:", error);
-    //         }
-    //     });
-    // }
+    document.getElementById('saveButton').addEventListener('click', addCate);
     function addInput() {
         var container = document.getElementById('image');
         var newInput = document.createElement('div');
@@ -1536,7 +1450,6 @@
         }
     }
     function deleteCategory(categoryId) {
-        if (categoryId !== null && categoryId !== undefined) {
             var confirmation = confirm("Bạn có chắc muốn xóa ?");
             if (confirmation) {
                 $.ajax({
@@ -1552,15 +1465,15 @@
                         row.innerHTML = ""; // Clear existing content
                         for (var i = 0; i < htmlData.length; i++) {
                             var c = htmlData[i];
-                            row.innerHTML += "<tr>" +
-                                "<td" + (i + 1) + "</td>" +
-                                "<td" +
-                                "<span>" + c.name + "</span>" +
-                                "</td>" +
+                            row.innerHTML +=  "<tr>" +
+                                "<input type='hidden' class='id' value='" + c.id + "'>" +
+                                "<td>" + (i + 1) + "</td>" +
+                                "<td>" + c.id + "</td>" +
+                                "<td>" + c.name + "</td>" +
                                 "<td>" +
-                                "<div class=\"d-flex justify-content-center\">" +
-                                "<button class=\"delete btnAdd bgcolor bd-full\" title=\"Xóa\" aria-hidden=\"true\" onclick=\"deleteCategory(" + c.id + ")\" data-bs-toggle=\"modal\" data-bs-target=\"\"><i class=\"fa fa-trash-o text-color\"></i></button>" +
-                                "<button class=\"editCategory btnAdd bgcolor bd-full mx-1\"><i class=\"fa fa-pencil text-color\" title=\"Chỉnh sửa\" aria-hidden=\"true\" data-bs-toggle=\"modal\" data-bs-target=\"#editCategory\"></i></button>" +
+                                "<div class='d-flex w-100 justify-content-center'>" +
+                                "<button class='delete btnAdd bgcolor bd-full me-1' title='Xóa' aria-hidden='true' onclick='deleteCategory(\"" + c.id + "\")' data-bs-toggle='modal' data-bs-target=''><i class='fa fa-trash-o text-color'></i></button>" +
+                                "<button class='editCate btnAdd bgcolor bd-full' title='Chỉnh sửa danh mục' aria-hidden='true' data-bs-toggle='modal' data-bs-target='#editCate' onclick='innerEditCategory(\"" + c.id + "\")'><i class='fa fa-pencil text-color'></i></button>" +
                                 "</div>" +
                                 "</td>" +
                                 "</tr>";
@@ -1571,82 +1484,70 @@
                     }
                 });
             }
-        } else {
-            console.error("ID không tồn tại");
-        }
     }
-    function innerEditCategory(categoryId) {
-        // Sử dụng AJAX để lấy thông tin chi tiết danh mục dựa trên ID
-        $.ajax({
-            url: '/loadDetailCategory',
-            type: 'GET',
-            data: { categoryId: categoryId },
-            success: function (data) {
-                try {
-                    var jsonData = JSON.parse(data);
-                    var category = jsonData.category;
-
-                    // Điền thông tin chi tiết vào form chỉnh sửa
-                    document.getElementById("nameCateEdit").value = category.name;
-                    // Lưu ID của danh mục đang chỉnh sửa
-                    id = categoryId;
-                    // Gọi modal chỉnh sửa danh mục
-                    $('#editCate').modal('show');
-                } catch (e) {
-                    console.error("Xảy ra lỗi khi xử lý phản hồi JSON:", e);
-                }
-            },
-            error: function (error) {
-                console.error("Xảy ra lỗi:", error);
-            }
-        });
-    }
+    var categoryId = "";
     function editCate() {
         var flag = true;
-        var name = document.getElementById("nameCateEdit");
-        var error = document.getElementById("errNameCate");
+        var nameCate = document.getElementById("nameCateEdit");
+        var errNameCate = document.getElementById("errNameCate");
 
-        if (name.value === "") {
-            error.innerHTML = ' *Vui lòng nhập tên danh mục mới!';
+        if (nameCate.value === "") {
+            errNameCate.innerHTML = 'Vui lòng nhập tên danh mục';
             flag = false;
         } else {
-            error.innerHTML = ''; // Clear error message if there was any
+            errNameCate.innerHTML = '';
         }
         if (flag) {
-            var formData = new FormData();
-            formData.append('nameCategoryEdit', name.value);
-            formData.append('id', id);
             $.ajax({
                 url: 'editCategory',
                 type: 'POST',
-                data: formData,
-                contentType: false,
-                processData: false,
-                success: function(data) {
-                    try {
-                        var jsonData = JSON.parse(data);
-                        var res = jsonData.res;
-                        alert(res);
-
-                        // Cập nhật tên danh mục trong bảng HTML
-                        var editedRow = document.getElementById("innerCategory").querySelector("tr[data-category-id='" + id + "']");
-                        editedRow.querySelector("td:nth-child(3)").innerHTML = name.value;
-
-                        // Đóng modal
-                        $('#editCate').modal('hide');
-                    } catch (e) {
-                        console.error("Xảy ra lỗi khi xử lý phản hồi JSON:", e);
+                data: {
+                    nameCateEdit: nameCate.value,
+                    categoryId: categoryId,
+                },
+                success: function (data) {
+                    var jsonData = JSON.parse(data);
+                    var htmlData = jsonData.htmlData;
+                    var res = jsonData.res;
+                    alert(res);
+                    var row = document.getElementById("innerCategory");
+                    row.innerHTML = "";
+                    for (var i = 0; i < htmlData.length; i++) {
+                        var c = htmlData[i];
+                        row.innerHTML += "<tr>" +
+                            "<input type='hidden' class='id' value='" + c.id + "'>" +
+                            "<td>" + (i + 1) + "</td>" +
+                            "<td>" + c.id + "</td>" +
+                            "<td>" + c.name + "</td>" +
+                            "<td>" +
+                            "<div class='d-flex w-100 justify-content-center'>" +
+                            "<button class='delete btnAdd bgcolor bd-full me-1' title='Xóa' aria-hidden='true' onclick='deleteCategory(\"" + c.id + "\")' data-bs-toggle='modal' data-bs-target=''><i class='fa fa-trash-o text-color'></i></button>" +
+                            "<button class='editCate btnAdd bgcolor bd-full' title='Chỉnh sửa danh mục' aria-hidden='true' data-bs-toggle='modal' data-bs-target='#editCate' onclick='innerEditCategory(\"" + c.id + "\")'><i class='fa fa-pencil text-color'></i></button>" +
+                            "</div>" +
+                            "</td>" +
+                            "</tr>";
                     }
                 },
-                error: function(error) {
-                    console.error("Xảy ra lỗi:", error);
-                }
             });
         }
     }
-
-
-
+    function innerEditCategory(cateId) {
+        categoryId = cateId;
+        $.ajax({
+            type: "GET",
+            url: "loadDetailCategory",
+            data: {
+                id: cateId
+            },
+            success: function (data) {
+                var c = data.category;
+                $("#nameCateEdit").val(c.name);
+            },
+            error: function () {
+                console.error("Không thể tải chi tiết sản phẩm");
+            }
+        });
+    }
 
 </script>
 <script src="slider/owlcarousel/owl.carousel.min.js"></script>

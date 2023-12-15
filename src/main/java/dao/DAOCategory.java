@@ -66,26 +66,26 @@ public class DAOCategory {
         return re;
     }
     //Xoá danh mục
-    public static int delCategory(int id) throws SQLException {
+    public static synchronized int delCategory(int id) throws SQLException {
         int re = 0;
         Connection connection = JDBCUtil.getConnection();
-        Statement s = connection.createStatement();
-        synchronized(s) {
-            try {
-                ResultSet resultSet = s.executeQuery("select id from categories where id=" + id);
-                if (resultSet.next()) {
-                    resultSet.getInt("id");
-                    re = s.executeUpdate("delete from categories where id =" + id);
-                }
-                resetAutoIncrement("categories", connection);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
+        try {
+            PreparedStatement s = connection.prepareStatement("select id from categories where id =?");
+            s.setInt(1, id);
+            ResultSet resultSet = s.executeQuery();
+            if (resultSet.next()) {
+                s = connection.prepareStatement("delete from categories where id =?");
+                s.setInt(1, id);
+                re = s.executeUpdate();
             }
-            JDBCUtil.closeConnection(connection);
+            resetAutoIncrement("categories", connection);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
+        JDBCUtil.closeConnection(connection);
         return re;
     }
-    // Phương thức reset giá trị tự động tăng
+    // Phương thức reset id
     private static void resetAutoIncrement(String categories, Connection connection) throws SQLException {
         String resetQuery = "ALTER TABLE " + categories + " AUTO_INCREMENT = 1";
         try (Statement statement = connection.createStatement()) {
@@ -93,44 +93,23 @@ public class DAOCategory {
         }
     }
     // Cập nhật danh mục
-    public static int editCategory(int categoryId, String newName) throws SQLException {
-        int result = 0;
-
-        try (Connection connection = JDBCUtil.getConnection();
-             PreparedStatement prSelect = connection.prepareStatement("SELECT id FROM categories WHERE id = ?");
-             PreparedStatement prUpdate = connection.prepareStatement("UPDATE categories SET name = ? WHERE id = ?")) {
-
-            prSelect.setInt(1, categoryId);
-            if (prSelect.executeQuery().next()) {
-                prUpdate.setString(1, newName);
-                prUpdate.setInt(2, categoryId);
-                result = prUpdate.executeUpdate();
-            }
-
-        } catch (SQLException e) {
-            throw new RuntimeException();
-        }
-
-        return result;
-    }
-    public static int updateCategory(Category c) throws SQLException {
+    public static synchronized int updateCategory(Category c) throws SQLException {
         int re = 0;
         Connection connection = JDBCUtil.getConnection();
-        Statement  s = connection.createStatement();
-        synchronized(s) {
-            try {
-                ResultSet resultSet = s.executeQuery("select id from categories where id=" + c.getId());
-                if (resultSet.next()) {
-                    int idC = resultSet.getInt("id");
-                    re = s.executeUpdate("UPDATE categories SET " +
-                            "name = '" + c.getName() +
-                            " WHERE id = " + idC);
-                }
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
+        try {
+            PreparedStatement s = connection.prepareStatement("select id from categories where id =?");
+            s.setInt(1, c.getId());
+            ResultSet resultSet = s.executeQuery();
+            if (resultSet.next()) {
+                s = connection.prepareStatement("UPDATE categories SET " + "name = ? " + "WHERE id =?");
+                s.setString(1, c.getName());
+                s.setInt(2, c.getId());
+                re = s.executeUpdate();
             }
-            JDBCUtil.closeConnection(connection);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
+        JDBCUtil.closeConnection(connection);
         return re;
     }
 }

@@ -35,14 +35,7 @@ public class CategoryService {
             throw new RuntimeException(e);
         }
     }
-    // Chỉnh sửa danh mục
-    public int editCategory(int id, String newName) {
-        try {
-            return DAOCategory.editCategory(id, newName);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
+    // Chỉnh sửa cập nhật danh mục
     public int updateCategory(Category c) throws SQLException {
         return DAOCategory.updateCategory(c);
     }
