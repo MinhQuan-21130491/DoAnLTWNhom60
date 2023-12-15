@@ -680,16 +680,16 @@
             <div class="col-lg-9 bgcolor d-none " id="mngOrder">
                 <div class="row mt-2">
                   <div class = "col-md-12 ">
-                      <div class="d-flex">
-                          <button class="btn" id ="wait" type="button">Chờ xác nhận (10)</button>
-                          <button class="btn" id ="approved" type="button">Đã xác nhận (10)</button>
-                          <button class="btn" id ="cancle"type="button">Đã hủy (10)</button>
+                      <div class="d-flex" id="status">
+                          <button class="btn" id ="wait" type="button">Chờ xác nhận</button>
+                          <button class="btn" id ="confirm" type="button">Đã xác nhận</button>
+                          <button class="btn" id ="cancle"type="button">Đã hủy</button>
                       </div>
                   </div>
                 </div>
-                <div class ="row">
+                <div class ="row mt-2">
                     <div class="col-lg-12 overflow-auto mheight">
-                        <table class="mb-3">
+                        <table class="mb-3" id ="wattingConfirm">
                             <thead>
                             <tr>
                                 <td class="w40">STT</td>
@@ -698,8 +698,6 @@
                                 <td>ĐƠN GIÁ</td>
                                 <td>MÀU SẮC</td>
                                 <td>KÍCH THƯỚC</td>
-                                <td>ĐÃ BÁN</td>
-
                             </tr>
                             </thead>
                             <tbody>
@@ -720,14 +718,80 @@
                                 </td>
                                 <td>Màu đen</td>
                                 <td>100x50x70</td>
-                                <td>50</td>
+                                <td>
+                                    <button class="success btnAdd me-1 border border-1" title="Xác nhận đơn hàng" aria-hidden="true">Xác nhận</button>
+                                    <button class="cancle btnAdd  border border-1" title="Hủy đơn hàng" aria-hidden="true">Hủy</button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <table class="mb-3 d-none" id ="confirmed">
+                            <thead>
+                            <tr>
+                                <td class="w40">STT</td>
+                                <td class="w40">ID</td>
+                                <td class="w260">SẢN PHẨM</td>
+                                <td>ĐƠN GIÁ</td>
+                                <td>MÀU SẮC</td>
+                                <td>KÍCH THƯỚC</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="w40">1</td>
+                                <td class="w40">1</td>
+                                <td class="w260">
+                                    <div class="item d-flex justify-content-center">
+                                        <div class="item_img">
+                                            <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
+                                                 class="card-img-top img_p_cart" alt="..."/>
+                                        </div>
+                                        <span class="item_text">Ghế massage siêu cấp pro</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    ₫<span>1.000.000</span>
+                                </td>
+                                <td>Màu đen</td>
+                                <td>100x50x70</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <table class="mb-3 d-none" id ="cancled">
+                            <thead>
+                            <tr>
+                                <td class="w40">STT</td>
+                                <td class="w40">ID</td>
+                                <td class="w260">SẢN PHẨM</td>
+                                <td>ĐƠN GIÁ</td>
+                                <td>MÀU SẮC</td>
+                                <td>KÍCH THƯỚC</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="w40">1</td>
+                                <td class="w40">1</td>
+                                <td class="w260">
+                                    <div class="item d-flex justify-content-center">
+                                        <div class="item_img">
+                                            <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
+                                                 class="card-img-top img_p_cart" alt="..."/>
+                                        </div>
+                                        <span class="item_text">Ghế massage siêu cấp pro</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    ₫<span>1.000.000</span>
+                                </td>
+                                <td>Màu đen</td>
+                                <td>100x50x70</td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-
         <%--end giao diện quản lý đơn hàng--%>
             <!--giao diện quản lý bán hàng-->
             <div class="col-lg-9 bgcolor d-none " id ="mngSale">
@@ -1143,18 +1207,48 @@
                 typeManage.css("display", "none");
             }
         });
-        function setColorFirt() {
+        function setColorFirst() {
             $('#typeManage a').each(function () {
                 if($(this).text() === "Quản lý tài khoản" ) {
                     $(this).css('color','#f68e2e');
                 }
             })
         }
-        setColorFirt();
+        function setBgFirt() {
+            $('#status button').each(function () {
+                if($(this).text() === "Chờ xác nhận" ) {
+                    $(this).css('color','#f68e2e');
+                    $(this).css('border-bottom','1px solid #f68e2e');
+                }
+            })
+        }
+        setColorFirst();
+        setBgFirt();
         $('.img_p_detail').each(function () {
             $(this).hover(function () {
                 $('#img_center').attr('src', $(this).attr('src'));
             })
+        })
+        //chọn bảng trạng thái đơn hàng
+        $('#status button').click(function () {
+            var selectedType = $(this).text();
+            $('#status button').css('color','');
+            $('#status button').css('border-bottom','');
+            $(this).css('color','#f68e2e');
+            $(this).css('border-bottom','1px solid #f68e2e');
+            if(selectedType === "Chờ xác nhận") {
+                $('#wattingConfirm').removeClass('d-none');
+                $('#confirmed').addClass('d-none');
+                $('#cancled').addClass('d-none');
+            }else if(selectedType === "Đã xác nhận") {
+                $('#confirmed').removeClass('d-none');
+                $('#wattingConfirm').addClass('d-none');
+                $('#cancled').addClass('d-none');
+            }else if(selectedType === "Đã hủy") {
+                $('#cancled').removeClass('d-none');
+                $('#wattingConfirm').addClass('d-none');
+                $('#confirmed').addClass('d-none');
+            }
         })
         // Chọn danh mục quản lý
         $('#typeManage a').click(function () {
@@ -2186,7 +2280,21 @@
                     var jsonData = JSON.parse(data);
                     var htmlData = jsonData.htmlData;
                     var res = jsonData.res;
-                    alert(res);
+                    var errUser = jsonData.errUser;
+                    var errEmail = jsonData.errEmail;
+                    var userName = jsonData.user;
+                    var emaill = jsonData.email;
+                    if(errUser !== "") {
+                        $("#errUser").text(errUser);
+                        user.val(userName);
+                    }
+                    if(errEmail !== "") {
+                        $("#errEmail").text(errEmail);
+                        email.val(emaill);
+                    }
+                    if(res !== "") {
+                        alert(res);
+                    }
                     var row = document.getElementById("innerAccount");
                     row.innerHTML = ""; // Clear existing content
                     for (var i = 0; i < htmlData.length; i++) {

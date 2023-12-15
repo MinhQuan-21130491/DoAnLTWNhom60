@@ -41,13 +41,12 @@ public class AddAccount extends HttpServlet {
         String rePassword = request.getParameter("rePw");
         String email = request.getParameter("email");
         String res = "";
-        String err ="";
+        String errUser ="";
+        String errEmail ="";
         if (AccountService.getInstance().checkExistUserName(userName)) {
-            err = "Tên tài khoản đã tồn tại!";
-            request.setAttribute("errUserName", err);
+            errUser = "Tên tài khoản đã tồn tại!";
         } else if (AccountService.getInstance().checkExistEmail(email)) {
-            err = "Email đã tồn tại!";
-            request.setAttribute("errEmail", err);
+            errEmail = "Email đã tồn tại!";
         } else {
             Account account = new Account(userName, passwordEncrypt, email);
             if (AccountService.getInstance().registerAccount(account) > 0) {
@@ -94,7 +93,10 @@ public class AddAccount extends HttpServlet {
         }
         jsonResponse.put("htmlData", htmlDataArray);
         jsonResponse.put("res", res);
-        jsonResponse.put("err", err);
+        jsonResponse.put("user", userName);
+        jsonResponse.put("email", email);
+        jsonResponse.put("errUser", errUser);
+        jsonResponse.put("errEmail", errEmail);
         PrintWriter out = response.getWriter();
         out.println(jsonResponse.toString());
     }
