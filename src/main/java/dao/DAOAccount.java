@@ -336,11 +336,26 @@ public class DAOAccount {
                 Account account = new Account(id, name,usName, pw, email, phoneNumber, gender, birthDay, address, addressReceive, role, status);
                 list.add(account);
             }
+           JDBCUtil.closeConnection(connection);
+       } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return  list;
+    }
+    public static int updatePassword( String passEnCrypt, int idAccount) {
+        int re = 0;
+        Connection connection = JDBCUtil.getConnection();
+        String sql ="update accounts set password =? where id =?";
+        try {
+            PreparedStatement pr = connection.prepareStatement(sql);
+            pr.setString(1, passEnCrypt);
+            pr.setInt(2, idAccount);
+            re = pr.executeUpdate();
             JDBCUtil.closeConnection(connection);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return  list;
+        return re;
     }
     public static synchronized int delAccount(int id) throws SQLException {
         int re = 0;
