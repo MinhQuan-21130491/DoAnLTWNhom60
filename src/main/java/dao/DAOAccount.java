@@ -357,64 +357,70 @@ public class DAOAccount {
         }
         return re;
     }
-    public static int delAccount(int id) throws SQLException {
+    public static synchronized int delAccount(int id) throws SQLException {
         int re = 0;
         Connection connection = JDBCUtil.getConnection();
-        Statement s = connection.createStatement();
-        synchronized(s) {
             try {
-                ResultSet resultSet = s.executeQuery("select id from accounts where id=" + id);
+                PreparedStatement s = connection.prepareStatement("select id from accounts where id= ?");
+                s.setInt(1, id);
+                ResultSet resultSet = s.executeQuery();
                 if (resultSet.next()) {
-                    s.executeUpdate("delete from verify_account where idAccount =" + id);
-                    re = s.executeUpdate("delete from accounts where id =" + id);
+                    s = connection.prepareStatement("delete from verify_account where idAccount = ?");
+                    s.setInt(1, id);
+                    s.executeUpdate();
+                    s = connection.prepareStatement("delete from accounts where id = ?");
+                    s.setInt(1, id);
+                    re = s.executeUpdate();
                 }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
             JDBCUtil.closeConnection(connection);
-        }
         return re;
     }
-    public static int updateStatus(int id, boolean status) throws SQLException {
+    public static synchronized int updateStatus(int id, boolean status) throws SQLException {
         int re = 0;
         Connection connection = JDBCUtil.getConnection();
-        Statement  s = connection.createStatement();
-        synchronized(s) {
             try {
-                ResultSet resultSet = s.executeQuery("select id from accounts where id=" + id);
+                PreparedStatement  s = connection.prepareStatement("select id from accounts where id = ?");
+                s.setInt(1, id);
+                ResultSet resultSet = s.executeQuery();
                 if (resultSet.next()) {
-                    s.executeUpdate("update accounts set status ="+status +" where id =" + id);
+                    s = connection.prepareStatement("update accounts set status =? where id = ?");
+                    s.setBoolean(1, status);
+                    s.setInt(2, id);
+                    re = s.executeUpdate();
                 }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
             JDBCUtil.closeConnection(connection);
-        }
         return re;
     }
-    public static int updateInforAccount(Account a) throws SQLException {
+    public static synchronized int updateInforAccount(Account a) throws SQLException {
         int re = 0;
         Connection connection = JDBCUtil.getConnection();
-        Statement  s = connection.createStatement();
-        synchronized(s) {
             try {
-                ResultSet resultSet = s.executeQuery("select id from accounts where id=" + a.getId());
+                PreparedStatement  s = connection.prepareStatement("select id from accounts where id =?");
+                s.setInt(1, a.getId());
+                ResultSet resultSet = s.executeQuery();
                 if (resultSet.next()) {
-                    re = s.executeUpdate("UPDATE accounts SET name='" + a.getName() +
-                            "', gender='" + a.getGender() +
-                            "', email='" + a.getEmail() +
-                            "', phoneNumber='" + a.getPhoneNumber() +
-                            "', birthDay='" + a.getBirthDay() +
-                            "', address='" + a.getAddress() +
-                            "', addressReceive='" + a.getAddressReceive() +
-                            "', role='" + a.getRole() +
-                            "' WHERE id=" + a.getId());
+                    s = connection.prepareStatement("UPDATE accounts SET name =?, gender =?, email =?, phoneNumber =?, birthDay =?, address =?, addressReceive =?, role =? where id =?");
+                    s.setString(1, a.getName());
+                    s.setString(2, a.getGender());
+                    s.setString(3, a.getEmail());
+                    s.setString(4, a.getPhoneNumber());
+                    s.setDate(5, a.getBirthDay());
+                    s.setString(6, a.getAddress());
+                    s.setString(7, a.getAddressReceive());
+                    s.setInt(8, a.getRole());
+                    s.setInt(9, a.getId());
+                    re = s.executeUpdate();
                 }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
             JDBCUtil.closeConnection(connection);
-        }
         return re;
     }
     public static void main(String[] args) {
