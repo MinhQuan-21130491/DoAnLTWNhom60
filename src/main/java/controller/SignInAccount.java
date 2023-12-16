@@ -41,7 +41,7 @@ public class SignInAccount extends HttpServlet {
                 String encryptPass = Encrypt.toSHA1(password);
                 Account account = AccountService.getInstance().getAccount(userName, encryptPass);
                 if(account != null){
-                    if(account.isStatus()){
+                    if(!account.isStatus()){
                         err = "Tài khoản của bạn đã bị cấm!";
                     }else {
                         VerifyAccount vrf = AccountService.getInstance().getVrfOfAccount(account.getId());
