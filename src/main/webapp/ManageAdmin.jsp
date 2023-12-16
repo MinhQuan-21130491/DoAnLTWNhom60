@@ -66,7 +66,6 @@
                     <div class="typeManage " id ="typeManage" >
                         <a href="#" class="list-group-item list-group-item-action">Quản lý tài khoản</a>
                         <a href="#" class="list-group-item list-group-item-action">Quản lý sản phẩm</a>
-                        <a href="#" class="list-group-item list-group-item-action">Quản lý đơn hàng</a>
                         <a href="#" class="list-group-item list-group-item-action">Quản lý nhà cung cấp</a>
                         <a href="#" class="list-group-item list-group-item-action">Quản lý danh mục</a>
                         <a href="#" class="list-group-item list-group-item-action">Quản lý bán hàng</a>
@@ -676,123 +675,6 @@
                 </div>
             </div>
             <!--end giao diện quản lý sản phẩm-->
-            <%-- giao diện quản lý đơn hàng--%>
-            <div class="col-lg-9 bgcolor d-none " id="mngOrder">
-                <div class="row mt-2">
-                  <div class = "col-md-12 ">
-                      <div class="d-flex" id="status">
-                          <button class="btn" id ="wait" type="button">Chờ xác nhận</button>
-                          <button class="btn" id ="confirm" type="button">Đã xác nhận</button>
-                          <button class="btn" id ="cancle"type="button">Đã hủy</button>
-                      </div>
-                  </div>
-                </div>
-                <div class ="row mt-2">
-                    <div class="col-lg-12 overflow-auto mheight">
-                        <table class="mb-3" id ="wattingConfirm">
-                            <thead>
-                            <tr>
-                                <td class="w40">STT</td>
-                                <td class="w40">ID</td>
-                                <td class="w260">SẢN PHẨM</td>
-                                <td>ĐƠN GIÁ</td>
-                                <td>MÀU SẮC</td>
-                                <td>KÍCH THƯỚC</td>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td class="w40">1</td>
-                                <td class="w40">1</td>
-                                <td class="w260">
-                                    <div class="item d-flex justify-content-center">
-                                        <div class="item_img">
-                                            <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
-                                                 class="card-img-top img_p_cart" alt="..."/>
-                                        </div>
-                                        <span class="item_text">Ghế massage siêu cấp pro</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    ₫<span>1.000.000</span>
-                                </td>
-                                <td>Màu đen</td>
-                                <td>100x50x70</td>
-                                <td>
-                                    <button class="success btnAdd me-1 border border-1" title="Xác nhận đơn hàng" aria-hidden="true">Xác nhận</button>
-                                    <button class="cancle btnAdd  border border-1" title="Hủy đơn hàng" aria-hidden="true">Hủy</button>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <table class="mb-3 d-none" id ="confirmed">
-                            <thead>
-                            <tr>
-                                <td class="w40">STT</td>
-                                <td class="w40">ID</td>
-                                <td class="w260">SẢN PHẨM</td>
-                                <td>ĐƠN GIÁ</td>
-                                <td>MÀU SẮC</td>
-                                <td>KÍCH THƯỚC</td>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td class="w40">1</td>
-                                <td class="w40">1</td>
-                                <td class="w260">
-                                    <div class="item d-flex justify-content-center">
-                                        <div class="item_img">
-                                            <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
-                                                 class="card-img-top img_p_cart" alt="..."/>
-                                        </div>
-                                        <span class="item_text">Ghế massage siêu cấp pro</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    ₫<span>1.000.000</span>
-                                </td>
-                                <td>Màu đen</td>
-                                <td>100x50x70</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <table class="mb-3 d-none" id ="cancled">
-                            <thead>
-                            <tr>
-                                <td class="w40">STT</td>
-                                <td class="w40">ID</td>
-                                <td class="w260">SẢN PHẨM</td>
-                                <td>ĐƠN GIÁ</td>
-                                <td>MÀU SẮC</td>
-                                <td>KÍCH THƯỚC</td>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td class="w40">1</td>
-                                <td class="w40">1</td>
-                                <td class="w260">
-                                    <div class="item d-flex justify-content-center">
-                                        <div class="item_img">
-                                            <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
-                                                 class="card-img-top img_p_cart" alt="..."/>
-                                        </div>
-                                        <span class="item_text">Ghế massage siêu cấp pro</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    ₫<span>1.000.000</span>
-                                </td>
-                                <td>Màu đen</td>
-                                <td>100x50x70</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        <%--end giao diện quản lý đơn hàng--%>
             <!--giao diện quản lý bán hàng-->
             <div class="col-lg-9 bgcolor d-none " id ="mngSale">
                 <div class="row mt-2">
@@ -858,6 +740,7 @@
                                     <td>ID</td>
                                     <td>MÃ KHÁCH HÀNG</td>
                                     <td>NGÀY XUẤT</td>
+                                    <td>TRẠNG THÁI</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -866,8 +749,11 @@
                                 <td>1</td>
                                 <td>1</td>
                                 <td>28/02/2023</td>
+                                <td>Chờ xác nhận</td>
                                 <td>
-                                    <button class="delete btnAdd bgcolor bd-full" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#" ></i></button>
+                                    <button class="btnAdd bgcolor bd-full"  data-bs-toggle="modal" data-bs-target="#" ><i class="fa fa-check text-color"  title="Xác nhận đơn hàng" aria-hidden="true"></i></button>
+                                    <button class="btnAdd bgcolor bd-full"  data-bs-toggle="modal" data-bs-target="#" ><i class="fa fa-times text-color"  title="Hủy đơn hàng" aria-hidden="true"></i></button>
+                                    <button class="btnAdd bgcolor bd-full"  data-bs-toggle="modal" data-bs-target="#" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true"></i></button>
                                 </td>
                             </tr>
                             </tbody>
@@ -1214,41 +1100,11 @@
                 }
             })
         }
-        function setBgFirt() {
-            $('#status button').each(function () {
-                if($(this).text() === "Chờ xác nhận" ) {
-                    $(this).css('color','#f68e2e');
-                    $(this).css('border-bottom','1px solid #f68e2e');
-                }
-            })
-        }
         setColorFirst();
-        setBgFirt();
         $('.img_p_detail').each(function () {
             $(this).hover(function () {
                 $('#img_center').attr('src', $(this).attr('src'));
             })
-        })
-        //chọn bảng trạng thái đơn hàng
-        $('#status button').click(function () {
-            var selectedType = $(this).text();
-            $('#status button').css('color','');
-            $('#status button').css('border-bottom','');
-            $(this).css('color','#f68e2e');
-            $(this).css('border-bottom','1px solid #f68e2e');
-            if(selectedType === "Chờ xác nhận") {
-                $('#wattingConfirm').removeClass('d-none');
-                $('#confirmed').addClass('d-none');
-                $('#cancled').addClass('d-none');
-            }else if(selectedType === "Đã xác nhận") {
-                $('#confirmed').removeClass('d-none');
-                $('#wattingConfirm').addClass('d-none');
-                $('#cancled').addClass('d-none');
-            }else if(selectedType === "Đã hủy") {
-                $('#cancled').removeClass('d-none');
-                $('#wattingConfirm').addClass('d-none');
-                $('#confirmed').addClass('d-none');
-            }
         })
         // Chọn danh mục quản lý
         $('#typeManage a').click(function () {
@@ -1263,7 +1119,6 @@
                 $('#mngInvoice').addClass('d-none');
                 $('#mngCate').addClass('d-none');
                 $('#mngSup').addClass('d-none');
-                $('#mngOrder').addClass('d-none');
             } else if (selectedType === "Quản lý sản phẩm") {
                 $('#mngAccount').addClass('d-none');
                 $('#mngSale').addClass('d-none');
@@ -1271,7 +1126,6 @@
                 $('#mngProduct').removeClass('d-none');
                 $('#mngCate').addClass('d-none');
                 $('#mngSup').addClass('d-none');
-                $('#mngOrder').addClass('d-none');
             }else if (selectedType === "Quản lý bán hàng") {
                 $('#mngProduct').addClass('d-none');
                 $('#mngAccount').addClass('d-none');
@@ -1279,7 +1133,6 @@
                 $('#mngSale').removeClass('d-none');
                 $('#mngCate').addClass('d-none');
                 $('#mngSup').addClass('d-none');
-                $('#mngOrder').addClass('d-none');
             }else if (selectedType === "Quản lý hóa đơn") {
                 $('#mngProduct').addClass('d-none');
                 $('#mngAccount').addClass('d-none');
@@ -1287,7 +1140,6 @@
                 $('#mngInvoice').removeClass('d-none');
                 $('#mngCate').addClass('d-none');
                 $('#mngSup').addClass('d-none');
-                $('#mngOrder').addClass('d-none');
             }else if (selectedType === "Quản lý danh mục") {
                 $('#mngProduct').addClass('d-none');
                 $('#mngAccount').addClass('d-none');
@@ -1295,7 +1147,6 @@
                 $('#mngInvoice').addClass('d-none');
                 $('#mngCate').removeClass('d-none');
                 $('#mngSup').addClass('d-none');
-                $('#mngOrder').addClass('d-none');
             }
             else if (selectedType === "Quản lý nhà cung cấp") {
                 $('#mngProduct').addClass('d-none');
@@ -1304,7 +1155,6 @@
                 $('#mngInvoice').addClass('d-none');
                 $('#mngCate').addClass('d-none');
                 $('#mngSup').removeClass('d-none');
-                $('#mngOrder').addClass('d-none');
             }else if (selectedType === "Quản lý đơn hàng") {
                 $('#mngProduct').addClass('d-none');
                 $('#mngAccount').addClass('d-none');
@@ -1312,7 +1162,6 @@
                 $('#mngInvoice').addClass('d-none');
                 $('#mngCate').addClass('d-none');
                 $('#mngSup').addClass('d-none');
-                $('#mngOrder').removeClass('d-none');
             }
         })
         $(".owl-carousel").owlCarousel();
