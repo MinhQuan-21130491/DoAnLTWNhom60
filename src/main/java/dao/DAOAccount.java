@@ -225,7 +225,6 @@ public class DAOAccount {
         JDBCUtil.closeConnection(connection);
         return verifyAccount;
     }
-
     public static int updateVerifyCode(int newCode, int idAccount) {
         int re = 0;
         Connection connection = JDBCUtil.getConnection();
@@ -241,7 +240,6 @@ public class DAOAccount {
         }
         return re;
     }
-
     public static int updatePassword(String passEnCrypt, int idAccount) {
         int re = 0;
         Connection connection = JDBCUtil.getConnection();
@@ -257,7 +255,6 @@ public class DAOAccount {
         }
         return re;
     }
-
     // Thay đổi thông tin khách hàng
     public static int updateInfor(Account account) {
         int re = 0;
@@ -282,7 +279,6 @@ public class DAOAccount {
         }
         return re;
     }
-
     public static Account getAccount(String userName, String password) {
         Account re = null;
         try {
@@ -314,13 +310,10 @@ public class DAOAccount {
             }
             JDBCUtil.closeConnection(connection);
         } catch (Exception e) {
-
             throw new RuntimeException(e);
         }
         return re;
     }
-
-
     public static VerifyAccount getVrfOfAccount(int idAccount) {
         VerifyAccount verifyAccount = null;
         Connection connection = JDBCUtil.getConnection();
@@ -338,12 +331,9 @@ public class DAOAccount {
         return verifyAccount;
     }
 
-
-
     public static void main(String[] args) {
         System.out.println(selectVerifyAccountByIdAccount(14));
     }
 
 
 }
-
