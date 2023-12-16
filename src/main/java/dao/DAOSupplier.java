@@ -68,9 +68,7 @@ public class DAOSupplier {
     public static Supplier selectSupById(int idSup) {
         Supplier re = null;
         try{
-            // Tạo kết nối đến database
             Connection connection = JDBCUtil.getConnection();
-            // Tạo đối tượng statement
             String sql = "select id, name, phoneNumber, email, idCate, address " +
                     "from suppliers " +
                     "where id = ? ";
@@ -94,13 +92,13 @@ public class DAOSupplier {
         }
         return re;
     }
-    public static int updateInforSupplier(Supplier sup) throws SQLException {
+    public static synchronized int updateInforSupplier(Supplier sup) throws SQLException {
         int re = 0;
         Connection connection = JDBCUtil.getConnection();
-        Statement s = connection.createStatement();
-        synchronized(s) {
             try {
-                ResultSet resultSet = s.executeQuery("select id from suppliers where id=" + sup.getIdSup());
+                PreparedStatement  s = connection.prepareStatement("select id from suppliers where id= ?" );
+                s.setInt(1, sup.getIdSup());
+                ResultSet resultSet = s.executeQuery();
                 if (resultSet.next()) {
                     re = s.executeUpdate("UPDATE suppliers SET name='" + sup.getNameSup() +
                             "', phoneNumber='" + sup.getPhoneNumber() +
@@ -113,13 +111,11 @@ public class DAOSupplier {
                 throw new RuntimeException(e);
             }
             JDBCUtil.closeConnection(connection);
-        }
+
         return re;
     }
 
     public static void main(String[] args) {
 
-        Supplier s=selectSupById(41);
-        System.out.println(s.toString());
     }
 }

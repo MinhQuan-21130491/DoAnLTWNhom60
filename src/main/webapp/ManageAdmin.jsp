@@ -1487,7 +1487,7 @@
             formData.append('addressSupEdit', address.value);
             formData.append('phoneSupEdit', phone.value);
             formData.append('emailSupEdit', email.value);
-            let cateChaiValue =$("#cateChairSupAdd :selected").text();
+            let cateChaiValue =$("#cateChairSupEdit :selected").text();
             formData.append('cateChairSupEdit', cateChaiValue);
             $.ajax({
                 url: 'EditSupplier',

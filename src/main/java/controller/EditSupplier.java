@@ -33,6 +33,7 @@ public class EditSupplier extends HttpServlet {
         String phone = request.getParameter("phoneSupEdit");
         String email = request.getParameter("emailSupEdit");
         String typeCate = request.getParameter("cateChairSupEdit");
+        System.out.println(typeCate);
         int idCate = 3;
         if (typeCate.equals("Ghế thư giãn")) {
             idCate = 4;
@@ -41,6 +42,7 @@ public class EditSupplier extends HttpServlet {
         } else if (typeCate.equals("Ghế gaming")) {
             idCate = 2;
         }
+        System.out.println(idCate);
         String res = "";
         Supplier sup = new Supplier(id,name,phone,email,idCate,address);
         try {

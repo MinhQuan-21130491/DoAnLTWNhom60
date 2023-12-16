@@ -39,7 +39,6 @@ public class AddSupplier extends HttpServlet {
         } else if (typeCate.equals("Ghế gaming")) {
             idCate = 2;
         }
-        System.out.println("sau ghe gaming");
         String err = "";
         String res = "";
         if (nameSup.equals("")) {
@@ -59,7 +58,6 @@ public class AddSupplier extends HttpServlet {
             System.out.println(supplier);
             if (SupplierService.getInstance().insertSupplier(supplier) > 0) {
                 res = "Thêm nhà cung cấp thành công!";
-                System.out.println("abc");
             }
         }
 
