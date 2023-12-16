@@ -1,7 +1,10 @@
 package service;
 
 import dao.DAOAccount;
+import dao.DAOProduct;
 import model.Account;
+import model.Image;
+import model.Product;
 import model.VerifyAccount;
 import util.JDBCUtil;
 
@@ -10,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class AccountService {
     static AccountService instance;
@@ -46,18 +50,25 @@ public class AccountService {
     public Account selectAccountByUserName(String userName) {
         return DAOAccount.selectAccountByUserName(userName);
     }
+
     public Account selectAccountByEmail(String email) {
         return DAOAccount.selectAccountByEmail(email);
     }
-    public  VerifyAccount selectVerifyAccountByIdAccount(int idAccount) {
-       return DAOAccount.selectVerifyAccountByIdAccount(idAccount);
+
+    public VerifyAccount selectVerifyAccountByIdAccount(int idAccount) {
+        return DAOAccount.selectVerifyAccountByIdAccount(idAccount);
     }
-    public  int updateVerifyCode(int newCode, int idAccount) {
-        return DAOAccount.updateVerifyCode(newCode,idAccount);
+
+    public static int updateVerifyCode(int newCode, int idAccount) {
+        return DAOAccount.updateVerifyCode(newCode, idAccount);
+    }
+    public static int updatePassword( String passEnCrypt, int idAccount) {
+        return DAOAccount.updatePassword(passEnCrypt,idAccount);
+
     }
     public  int updateInfor(Account account){ return DAOAccount.updateInfor(account);}
-    public  Account selectById(Account account){
-        return DAOAccount.selectById(account);
+    public  Account selectById(int id){
+        return DAOAccount.selectById(id);
     }
     public Account getAccount(String userName, String password) {
         return DAOAccount.getAccount(userName, password);
@@ -65,5 +76,26 @@ public class AccountService {
     public VerifyAccount getVrfOfAccount(int idAccount) {
         return  DAOAccount.getVrfOfAccount(idAccount);
     }
-
+    public ArrayList<Account> listAllAccount() {
+        ArrayList<Account> listAccount = DAOAccount.listAllAccount();
+        for(Account a:listAccount) {
+            VerifyAccount vrf = DAOAccount.selectVerifyAccountByIdAccount(a.getId());
+            a.setVerifyAccount(vrf);
+        }
+        return listAccount;
     }
+    public int delAccount(int id) throws SQLException {
+        return DAOAccount.delAccount(id);
+    }
+    public int updateStatus(int id, boolean status) {
+        try {
+            return DAOAccount.updateStatus(id, status);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public int updateInforAccount(Account a) throws SQLException {
+        return DAOAccount.updateInforAccount(a);
+    }
+
+}

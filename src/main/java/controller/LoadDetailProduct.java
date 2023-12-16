@@ -17,20 +17,19 @@
     @WebServlet(name = "loadDetailProduct", value = "/loadDetailProduct")
     public class LoadDetailProduct extends HttpServlet {
         public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-                    // Đoạn mã hiện tại để lấy chi tiết sản phẩm...
-                    request.setCharacterEncoding("UTF-8");
-                    response.setCharacterEncoding("UTF-8");
-                    response.setContentType("application/json");
-
-                    String id = request.getParameter("idProduct");
-                    String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
-                     NumberFormat nF = NumberFormat.getCurrencyInstance();
+            request.setCharacterEncoding("UTF-8");
+            response.setCharacterEncoding("UTF-8");
+            response.setContentType("application/json");
+            String id = request.getParameter("idProduct");
+            String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+            NumberFormat nF = NumberFormat.getCurrencyInstance();
             Product p = ProductService.getInstance().getProductById(Integer.parseInt(id));
             Category category = CategoryService.getInstance().getCategoryById(p.getIdCate());
             JSONObject jsonRes = new JSONObject();
             JSONObject productJSON = new JSONObject();
             productJSON.put("idProduct", p.getIdProduct());
-            productJSON.put("imageCenter", url +"\\Products\\" +p.getImages().get(0).getUrl());
+            String urlImage = (p.getImages().isEmpty())?"":p.getImages().get(0).getUrl();
+            productJSON.put("imageCenter", url +"/Products/" +urlImage);
             productJSON.put("imageDetail",p.getImages());
             productJSON.put("name", p.getName());
             productJSON.put("priceImport", nF.format(p.getPriceImport()));
