@@ -99,7 +99,7 @@
             </tr>
             <tr id="changeName">
                 <td >
-                    <label>Họ và tên</label>
+                    <label>Họ và tên <span class="text-danger">*</span></label>
                 </td>
                 <td class="w-50">
                     <div id="InName">
@@ -109,7 +109,7 @@
             </tr>
             <tr id="changeSDT">
                 <td>
-                    <label> Số điện thoại </label>
+                    <label> Số điện thoại <span class="text-danger">*</span></label>
                 </td>
                 <td>
                     <div id="InSDT">
@@ -119,7 +119,7 @@
             </tr>
             <tr id="changegGmail">
                 <td>
-                    <label>Email</label>
+                    <label>Email<span class="text-danger">*</span></label>
                 </td>
                 <td>
                     <div id="InGmail">
@@ -129,7 +129,7 @@
             </tr>
             <tr>
                 <td>
-                    <label>Giới tính</label>
+                    <label>Giới tính<span class="text-danger">*</span></label>
                 </td>
                 <td >
                     <div class = "gender">
@@ -141,7 +141,7 @@
             </tr>
             <tr id="changeNgaySinh">
                 <td>
-                    <label>Ngày sinh</label>
+                    <label>Ngày sinh<span class="text-danger">*</span></label>
                 </td>
                 <td>
                     <div id="InNS">
@@ -151,7 +151,7 @@
             </tr>
             <tr id="changeDC">
                 <td>
-                    <label> Địa chỉ</label>
+                    <label> Địa chỉ<span class="text-danger">*</span></label>
                 </td>
                 <td>
                     <div id="InDiaChi">
@@ -161,7 +161,7 @@
             </tr>
             <tr id="changeDCReceive">
                 <td>
-                    <label> Địa chỉ nhận hàng</label>
+                    <label> Địa chỉ nhận hàng<span class="text-danger">*</span></label>
                 </td>
                 <td>
                     <div id="">
@@ -179,52 +179,52 @@
     </form>
     <%}%>
 </div>
-<script>
-    $(document).ready(function () {
-        var res = $('#res');
-        if (res.text() === "Cập nhật thành công!") {
-            res.addClass("text-success");
-        } else {
-            res.addClass("text-danger");
-        }
-    });
-    function check() {
-        var flag = true;
-        var tenElement = document.getElementById("HienThiTen");
-        var gmailElement = document.getElementById("HienThiGmail");
-        var sdtElement = document.getElementById("HienThiSDT");
-        var dcElement = document.getElementById("HienThiDC");
-        var nsElement = document.getElementById("HienThiNS");
-        var error = document.getElementById("res");
+<%--<script>--%>
+<%--    $(document).ready(function () {--%>
+<%--        var res = $('#res');--%>
+<%--        if (res.text() === "Cập nhật thành công!") {--%>
+<%--            res.addClass("text-success");--%>
+<%--        } else {--%>
+<%--            res.addClass("text-danger");--%>
+<%--        }--%>
+<%--    });--%>
+<%--    function check() {--%>
+<%--        var flag = true;--%>
+<%--        var tenElement = document.getElementById("HienThiTen");--%>
+<%--        var gmailElement = document.getElementById("HienThiGmail");--%>
+<%--        var sdtElement = document.getElementById("HienThiSDT");--%>
+<%--        var dcElement = document.getElementById("HienThiDC");--%>
+<%--        var nsElement = document.getElementById("HienThiNS");--%>
+<%--        var error = document.getElementById("res");--%>
 
-        var gmailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        var phoneReg = /^\d{10}/;
-        if(tenElement.value == "") {
-            error.innerHTML = "Vui lòng nhập họ và tên!";
-            flag = false;
-        }else if(gmailElement.value == "") {
-            error.innerHTML = "Vui lòng nhập Email!";
-            flag = false;
-        }else if(!gmailElement.value.match(gmailReg)) {
-            error.innerHTML = "Email không hợp lệ!";
-            flag = false;
-        }else if(sdtElement.value == "") {
-            error.innerHTML = "Vui lòng nhập số điện thoại!";
-            flag = false;
-        }else if(!sdtElement.value.match(phoneReg)) {
-            error.innerHTML = "Số điện thoại không hợp lệ!";
-            flag = false;
-        }
-        else if(dcElement.value == "") {
-            error.innerHTML = "Vui lòng nhập địa chỉ!";
-            flag = false;
-        }else if(nsElement.value == "") {
-            error.innerHTML = "Vui lòng chọn ngày sinh!";
-            flag = false;
-        }
-        console.log(sdtElement.value);
-        return flag;
-    }
-</script>
+<%--        var gmailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;--%>
+<%--        var phoneReg = /^\d{10}/;--%>
+<%--        if(tenElement.value == "") {--%>
+<%--            error.innerHTML = "Vui lòng nhập họ và tên!";--%>
+<%--            flag = false;--%>
+<%--        }else if(gmailElement.value == "") {--%>
+<%--            error.innerHTML = "Vui lòng nhập Email!";--%>
+<%--            flag = false;--%>
+<%--        }else if(!gmailElement.value.match(gmailReg)) {--%>
+<%--            error.innerHTML = "Email không hợp lệ!";--%>
+<%--            flag = false;--%>
+<%--        }else if(sdtElement.value == "") {--%>
+<%--            error.innerHTML = "Vui lòng nhập số điện thoại!";--%>
+<%--            flag = false;--%>
+<%--        }else if(!sdtElement.value.match(phoneReg)) {--%>
+<%--            error.innerHTML = "Số điện thoại không hợp lệ!";--%>
+<%--            flag = false;--%>
+<%--        }--%>
+<%--        else if(dcElement.value == "") {--%>
+<%--            error.innerHTML = "Vui lòng nhập địa chỉ!";--%>
+<%--            flag = false;--%>
+<%--        }else if(nsElement.value == "") {--%>
+<%--            error.innerHTML = "Vui lòng chọn ngày sinh!";--%>
+<%--            flag = false;--%>
+<%--        }--%>
+<%--        console.log(sdtElement.value);--%>
+<%--        return flag;--%>
+<%--    }--%>
+<%--</script>--%>
 </body>
 </html>

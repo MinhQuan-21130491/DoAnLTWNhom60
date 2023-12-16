@@ -4,7 +4,6 @@ import model.Account;
 import model.VerifyAccount;
 import util.Encrypt;
 import util.JDBCUtil;
-
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;

@@ -85,29 +85,31 @@
         </div>
     </form>
 </div>
-<script>
-    function my_submit() {
-        var flag = true;
-        let inputElement = document.getElementById("idFormInput");
-        let passElement = document.getElementById("idFormPass");
-        let inputError = document.getElementById("inputError");
-        var specialCharactersAndSpace = /[!@#$%^&*(),.?":{}|<> ]/;
-        inputError.textContent = "";
-        if (inputElement.value === "" && passElement.value === "") {
-            inputError.textContent = "Bạn chưa nhập tên đăng nhập hoặc mật khẩu!";
-            flag = false;
-        } else if (inputElement.value === "") {
-            inputError.textContent = "Bạn chưa nhập tên đăng nhập!";
-            flag = false;
-        } else if (specialCharactersAndSpace.test(inputValue.value)) {
-            inputError.textContent = "Tên tài khoản không hợp lệ!";
-            flag = false;
-        } else if (passElement.value === "") {
-            inputError.textContent = "Bạn chưa nhập mật khẩu!";
-            flag = false;
-        }
-        return flag;
-    }
-</script>
+
+<%--<script>--%>
+<%--    function my_submit() {--%>
+<%--        var flag = true;--%>
+<%--        let inputElement = document.getElementById("idFormInput");--%>
+<%--        let passElement = document.getElementById("idFormPass");--%>
+<%--        let inputError = document.getElementById("inputError");--%>
+<%--        var specialCharacters = /[!@#$%^&*(),.?":{}|<>' -]/;--%>
+<%--        inputError.textContent = "";--%>
+
+<%--        if (inputElement.value === "" && passElement.value === "") {--%>
+<%--            inputError.textContent = "Bạn chưa nhập tên đăng nhập và mật khẩu!";--%>
+<%--            flag = false;--%>
+<%--        } else if (inputElement.value === "") {--%>
+<%--            inputError.textContent = "Bạn chưa nhập tên đăng nhập!";--%>
+<%--            flag = false;--%>
+<%--        } else if (specialCharacters.test(inputElement.value)) {--%>
+<%--            inputError.textContent = "Tên tài khoản không hợp lệ!";--%>
+<%--            flag = false;--%>
+<%--        } else if (passElement.value === "") {--%>
+<%--            inputError.textContent = "Bạn chưa nhập mật khẩu!";--%>
+<%--            flag = false;--%>
+<%--        }--%>
+<%--        return flag;--%>
+<%--    }--%>
+<%--</script>--%>
 </body>
 </html>
