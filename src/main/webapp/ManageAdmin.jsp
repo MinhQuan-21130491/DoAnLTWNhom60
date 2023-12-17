@@ -65,14 +65,15 @@
                             <h5 class ="my-2 cateP">DANH MỤC QUẢN LÝ </h5>
                         </div>
                 </div>
-                <div class="typeManage " id ="typeManage" >
-                    <a href="#" class="list-group-item list-group-item-action">Quản lý tài khoản</a>
-                    <a href="#" class="list-group-item list-group-item-action">Quản lý sản phẩm</a>
-                    <a href="#" class="list-group-item list-group-item-action">Quản lý đơn hàng</a>
-                    <a href="#" class="list-group-item list-group-item-action">Quản lý nhà cung cấp</a>
-                    <a href="#" class="list-group-item list-group-item-action">Quản lý danh mục</a>
-                    <a href="#" class="list-group-item list-group-item-action">Quản lý bán hàng</a>
-                    <a href="#" class="list-group-item list-group-item-action">Quản lý hóa đơn</a>
+                    <div class="typeManage " id ="typeManage" >
+                        <a href="#" class="list-group-item list-group-item-action">Quản lý tài khoản</a>
+                        <a href="#" class="list-group-item list-group-item-action">Quản lý sản phẩm</a>
+                        <a href="#" class="list-group-item list-group-item-action">Quản lý đơn hàng</a>
+                        <a href="#" class="list-group-item list-group-item-action">Quản lý nhà cung cấp</a>
+                        <a href="#" class="list-group-item list-group-item-action">Quản lý danh mục</a>
+                        <a href="#" class="list-group-item list-group-item-action">Quản lý bán hàng</a>
+                        <a href="#" class="list-group-item list-group-item-action">Quản lý hóa đơn</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -678,123 +679,6 @@
                 </div>
             </div>
             <!--end giao diện quản lý sản phẩm-->
-            <%-- giao diện quản lý đơn hàng--%>
-            <div class="col-lg-9 bgcolor d-none " id="mngOrder">
-                <div class="row mt-2">
-                  <div class = "col-md-12 ">
-                      <div class="d-flex" id="status">
-                          <button class="btn" id ="wait" type="button">Chờ xác nhận</button>
-                          <button class="btn" id ="confirm" type="button">Đã xác nhận</button>
-                          <button class="btn" id ="cancle"type="button">Đã hủy</button>
-                      </div>
-                  </div>
-                </div>
-                <div class ="row mt-2">
-                    <div class="col-lg-12 overflow-auto mheight">
-                        <table class="mb-3" id ="wattingConfirm">
-                            <thead>
-                            <tr>
-                                <td class="w40">STT</td>
-                                <td class="w40">ID</td>
-                                <td class="w260">SẢN PHẨM</td>
-                                <td>ĐƠN GIÁ</td>
-                                <td>MÀU SẮC</td>
-                                <td>KÍCH THƯỚC</td>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td class="w40">1</td>
-                                <td class="w40">1</td>
-                                <td class="w260">
-                                    <div class="item d-flex justify-content-center">
-                                        <div class="item_img">
-                                            <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
-                                                 class="card-img-top img_p_cart" alt="..."/>
-                                        </div>
-                                        <span class="item_text">Ghế massage siêu cấp pro</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    ₫<span>1.000.000</span>
-                                </td>
-                                <td>Màu đen</td>
-                                <td>100x50x70</td>
-                                <td>
-                                    <button class="success btnAdd me-1 border border-1" title="Xác nhận đơn hàng" aria-hidden="true">Xác nhận</button>
-                                    <button class="cancle btnAdd  border border-1" title="Hủy đơn hàng" aria-hidden="true">Hủy</button>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <table class="mb-3 d-none" id ="confirmed">
-                            <thead>
-                            <tr>
-                                <td class="w40">STT</td>
-                                <td class="w40">ID</td>
-                                <td class="w260">SẢN PHẨM</td>
-                                <td>ĐƠN GIÁ</td>
-                                <td>MÀU SẮC</td>
-                                <td>KÍCH THƯỚC</td>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td class="w40">1</td>
-                                <td class="w40">1</td>
-                                <td class="w260">
-                                    <div class="item d-flex justify-content-center">
-                                        <div class="item_img">
-                                            <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
-                                                 class="card-img-top img_p_cart" alt="..."/>
-                                        </div>
-                                        <span class="item_text">Ghế massage siêu cấp pro</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    ₫<span>1.000.000</span>
-                                </td>
-                                <td>Màu đen</td>
-                                <td>100x50x70</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <table class="mb-3 d-none" id ="cancled">
-                            <thead>
-                            <tr>
-                                <td class="w40">STT</td>
-                                <td class="w40">ID</td>
-                                <td class="w260">SẢN PHẨM</td>
-                                <td>ĐƠN GIÁ</td>
-                                <td>MÀU SẮC</td>
-                                <td>KÍCH THƯỚC</td>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td class="w40">1</td>
-                                <td class="w40">1</td>
-                                <td class="w260">
-                                    <div class="item d-flex justify-content-center">
-                                        <div class="item_img">
-                                            <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
-                                                 class="card-img-top img_p_cart" alt="..."/>
-                                        </div>
-                                        <span class="item_text">Ghế massage siêu cấp pro</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    ₫<span>1.000.000</span>
-                                </td>
-                                <td>Màu đen</td>
-                                <td>100x50x70</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        <%--end giao diện quản lý đơn hàng--%>
             <!--giao diện quản lý bán hàng-->
             <div class="col-lg-9 bgcolor d-none " id ="mngSale">
                 <div class="row mt-2">
@@ -931,110 +815,111 @@
 
             </div>
             <!--end giao diện quản lý hóa đơn -->
-        <!--giao diện quản lý danh mục-->
-        <div class="col-lg-9 bgcolor d-none " id ="mngCate">
-            <div class="row mt-2">
-                <div class="col-lg-6">
-                    <h5 >Quản lý danh mục</h5>
+            <!--giao diện quản lý danh mục-->
+            <div class="col-lg-9 bgcolor d-none " id ="mngCate">
+                <div class="row mt-2">
+                    <div class="col-lg-6">
+                        <h5 >Quản lý danh mục</h5>
+                    </div>
+                    <div class="col-lg-6 text-end">
+                        <button class="btnAdd bgcolor bd-full" id ="btnAddCate"><i class="fa fa-plus-circle text-color" aria-hidden="true" title="Thêm danh mục" data-bs-toggle="modal" data-bs-target="#addCate"></i></button>
+                    </div>
                 </div>
-                <div class="col-lg-6 text-end">
-                    <button class="btnAdd bgcolor bd-full" id ="btnAddCate"><i class="fa fa-plus-circle text-color" aria-hidden="true" title="Thêm danh mục" data-bs-toggle="modal" data-bs-target="#addCate"></i></button>
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-lg-12 overflow-auto mheight">
-                    <%
-                        ArrayList<Category> listCategory = CategoryService.getInstance().listCategory();
-                        int sttC = 1;
-                    %>
-                    <table class="mb-3">
-                        <thead>
-                        <tr >
-                            <td>STT</td>
-                            <td>ID</td>
-                            <td>TÊN</td>
-                        </tr>
-                        </thead>
-                        <tbody id ="innerCategory">
-                        <% if (listCategory != null && !listCategory.isEmpty()) {
-                            for (Category c: listCategory) {%>
-                        <tr>
-                            <input type="hidden" class="id" id="categoryIdEdit" value="<%= c.getId()%>">
-                            <td><%=sttC%></td>
-                            <td><%=c.getId()%></td>
-                            <td ><%=c.getName()%></td>
-                            <td>
-                                <div class="d-flex w-100 justify-content-center">
-                                    <button class="delete btnAdd bgcolor bd-full me-1" title="Xóa" aria-hidden="true" onclick="deleteCategory('<%=c.getId()%>')" data-bs-toggle="modal" data-bs-target=""><i class="fa fa-trash-o text-color"></i></button>
-                                    <button class="editCate btnAdd bgcolor bd-full" title="Chỉnh sửa danh mục" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editCate" onclick="innerEditCategory('<%=c.getId()%>')"><i class="fa fa-pencil text-color"></i></button>                                </div>
-                            </td>
-                        </tr>
+                <div class="row mt-3">
+                    <div class="col-lg-12 overflow-auto mheight">
                         <%
-                                    sttC++;
-                                }
-                            }
+                            ArrayList<Category> listCategory = CategoryService.getInstance().listCategory();
+                            int sttC = 1;
                         %>
-                        </tbody>
-                    </table>
+                        <table class="mb-3">
+                            <thead>
+                            <tr >
+                                <td>STT</td>
+                                <td>ID</td>
+                                <td>TÊN</td>
+                            </tr>
+                            </thead>
+                            <tbody id ="innerCategory">
+                            <% if (listCategory != null && !listCategory.isEmpty()) {
+                                for (Category c: listCategory) {%>
+                            <tr>
+                                <input type="hidden" class="id" id="categoryIdEdit" value="<%= c.getId()%>">
+                                <td><%=sttC%></td>
+                                <td><%=c.getId()%></td>
+                                <td ><%=c.getName()%></td>
+                                <td>
+                                    <div class="d-flex w-100 justify-content-center">
+                                        <button class="delete btnAdd bgcolor bd-full me-1" title="Xóa" aria-hidden="true" onclick="deleteCategory('<%=c.getId()%>')" data-bs-toggle="modal" data-bs-target=""><i class="fa fa-trash-o text-color"></i></button>
+                                        <button class="editCate btnAdd bgcolor bd-full" title="Chỉnh sửa danh mục" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editCate" onclick="innerEditCategory('<%=c.getId()%>')"><i class="fa fa-pencil text-color"></i></button>                                </div>
+                                </td>
+                            </tr>
+                            <%
+                                        sttC++;
+                                    }
+                                }
+                            %>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
-            <div class="modal fade" id="editCate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog ">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <form class="cateEdit" id="cateEdit" action="" method="post">
-                                <div class="row px-2">
-                                    <div class=" text-end">
-                                        <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <h5 class="text-center">CHỈNH SỬA DANH MỤC</h5>
-                                    <hr>
-                                    <div class="col-md-12">
-                                        <div class="mb-3">
-                                            <label class="form-label">Tên danh mục</label><span id="errNameCate" class="text-danger"></span>
-                                            <input type="text" class="form-control" id="nameCateEdit" name="nameCateEdit">
+                <div class="modal fade" id="editCate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog ">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <form class="cateEdit" id="cateEdit" action="" method="post">
+                                    <div class="row px-2">
+                                        <div class=" text-end">
+                                            <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <h5 class="text-center">CHỈNH SỬA DANH MỤC</h5>
+                                        <hr>
+                                        <div class="col-md-12">
+                                            <div class="mb-3">
+                                                <label class="form-label">Tên danh mục</label><span id="errNameCate" class="text-danger"></span>
+                                                <input type="text" class="form-control" id="nameCateEdit" name="nameCateEdit">
+                                            </div>
+                                        </div>
+                                        <div class="row p-0">
+                                            <div class="col-lg-12 text-end p-0">
+                                                <button class="save" type="button" onclick="editCate()">LƯU</button>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="row p-0">
-                                        <div class="col-lg-12 text-end p-0">
-                                            <button class="save" type="button" onclick="editCate()">LƯU</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="addCate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog ">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <form id="add-Cate" action="" method="post" enctype="multipart/form-data">
+                                    <div class="row px-2">
+                                        <div class=" text-end">
+                                            <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"data-bs-target="#addCate"></button>
+                                        </div>
+                                        <h5 class="text-center">THÊM DANH MỤC</h5>
+                                        <hr>
+                                        <div class="col-md-12">
+                                            <div class="mb-3">
+                                                <label class="form-label">Tên danh mục</label><span id="errNameCateAdd" class="text-danger"></span>
+                                                <input type="text" class="form-control" id="nameCateAdd" name="nameCateAdd">
+                                            </div>
+                                        </div>
+                                        <div class="row p-0">
+                                            <div class="col-lg-12 text-end p-0">
+                                                <button class="save" type="button" id="saveButton">LƯU</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="modal fade" id="addCate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog ">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <form id="add-Cate" action="" method="post" enctype="multipart/form-data">
-                                <div class="row px-2">
-                                    <div class=" text-end">
-                                        <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"data-bs-target="#addCate"></button>
-                                    </div>
-                                    <h5 class="text-center">THÊM DANH MỤC</h5>
-                                    <hr>
-                                    <div class="col-md-12">
-                                        <div class="mb-3">
-                                            <label class="form-label">Tên danh mục</label><span id="errNameCateAdd" class="text-danger"></span>
-                                            <input type="text" class="form-control" id="nameCateAdd" name="nameCateAdd">
-                                        </div>
-                                    </div>
-                                    <div class="row p-0">
-                                        <div class="col-lg-12 text-end p-0">
-                                            <button class="save" type="button" id="saveButton">LƯU</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--end giao diện quản lý danh mục-->
+                <!--end giao diện quản lý danh mục-->
             <!--giao diện quản lý nhà cung cấp-->
             <div class="col-lg-9 bgcolor d-none " id ="mngSup">
                 <div class="row mt-2">
@@ -1169,8 +1054,6 @@
                                                     <option value="Ghế gaming">Ghế gaming</option>
                                                 </select>
                                             </div>
-
-
                                         </div>
                                         <div class="row p-0">
                                             <div class="col-md-12 p-0">
@@ -1185,7 +1068,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
             <!--end giao diện quản lý nhà cung cấp -->
         </div>
@@ -1240,27 +1122,6 @@
                 $('#img_center').attr('src', $(this).attr('src'));
             })
         })
-        //chọn bảng trạng thái đơn hàng
-        $('#status button').click(function () {
-            var selectedType = $(this).text();
-            $('#status button').css('color','');
-            $('#status button').css('border-bottom','');
-            $(this).css('color','#f68e2e');
-            $(this).css('border-bottom','1px solid #f68e2e');
-            if(selectedType === "Chờ xác nhận") {
-                $('#wattingConfirm').removeClass('d-none');
-                $('#confirmed').addClass('d-none');
-                $('#cancled').addClass('d-none');
-            }else if(selectedType === "Đã xác nhận") {
-                $('#confirmed').removeClass('d-none');
-                $('#wattingConfirm').addClass('d-none');
-                $('#cancled').addClass('d-none');
-            }else if(selectedType === "Đã hủy") {
-                $('#cancled').removeClass('d-none');
-                $('#wattingConfirm').addClass('d-none');
-                $('#confirmed').addClass('d-none');
-            }
-        })
         // Chọn danh mục quản lý
         $('#typeManage a').click(function () {
             var selectedType = $(this).text();
@@ -1274,7 +1135,6 @@
                 $('#mngInvoice').addClass('d-none');
                 $('#mngCate').addClass('d-none');
                 $('#mngSup').addClass('d-none');
-                $('#mngOrder').addClass('d-none');
             } else if (selectedType === "Quản lý sản phẩm") {
                 $('#mngAccount').addClass('d-none');
                 $('#mngSale').addClass('d-none');
@@ -1282,7 +1142,6 @@
                 $('#mngProduct').removeClass('d-none');
                 $('#mngCate').addClass('d-none');
                 $('#mngSup').addClass('d-none');
-                $('#mngOrder').addClass('d-none');
             }else if (selectedType === "Quản lý bán hàng") {
                 $('#mngProduct').addClass('d-none');
                 $('#mngAccount').addClass('d-none');
@@ -1290,7 +1149,6 @@
                 $('#mngSale').removeClass('d-none');
                 $('#mngCate').addClass('d-none');
                 $('#mngSup').addClass('d-none');
-                $('#mngOrder').addClass('d-none');
             }else if (selectedType === "Quản lý hóa đơn") {
                 $('#mngProduct').addClass('d-none');
                 $('#mngAccount').addClass('d-none');
@@ -1298,7 +1156,6 @@
                 $('#mngInvoice').removeClass('d-none');
                 $('#mngCate').addClass('d-none');
                 $('#mngSup').addClass('d-none');
-                $('#mngOrder').addClass('d-none');
             }else if (selectedType === "Quản lý danh mục") {
                 $('#mngProduct').addClass('d-none');
                 $('#mngAccount').addClass('d-none');
@@ -1306,7 +1163,6 @@
                 $('#mngInvoice').addClass('d-none');
                 $('#mngCate').removeClass('d-none');
                 $('#mngSup').addClass('d-none');
-                $('#mngOrder').addClass('d-none');
             }
             else if (selectedType === "Quản lý nhà cung cấp") {
                 $('#mngProduct').addClass('d-none');
@@ -1315,7 +1171,6 @@
                 $('#mngInvoice').addClass('d-none');
                 $('#mngCate').addClass('d-none');
                 $('#mngSup').removeClass('d-none');
-                $('#mngOrder').addClass('d-none');
             }else if (selectedType === "Quản lý đơn hàng") {
                 $('#mngProduct').addClass('d-none');
                 $('#mngAccount').addClass('d-none');
@@ -1323,7 +1178,6 @@
                 $('#mngInvoice').addClass('d-none');
                 $('#mngCate').addClass('d-none');
                 $('#mngSup').addClass('d-none');
-                $('#mngOrder').removeClass('d-none');
             }
         })
        // $(".owl-carousel").owlCarousel();
