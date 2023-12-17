@@ -23,10 +23,10 @@ public class InvoiceService {
         }
         return list;
     }
-    public synchronized int delInvoice(int idInvoice) {
+    public int delInvoice(int idInvoice) {
         return  DAOInvoice.delInvoice(idInvoice);
     }
-    public synchronized int updateStatus(int idInvoice, int status) {
+    public int updateStatus(int idInvoice, int status) {
         return  DAOInvoice.updateStatus(idInvoice, status);
     }
     }

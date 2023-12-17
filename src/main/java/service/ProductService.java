@@ -74,8 +74,10 @@ public class ProductService {
     */
     public Product latestProduct() {
         Product product = DAOProduct.latestProduct();
-        ArrayList<Image> listImageOfProduct = DAOProduct.listImageOfProduct(product);
-        product.setImages(listImageOfProduct);
+        if(product != null) {
+            ArrayList<Image> listImageOfProduct = DAOProduct.listImageOfProduct(product);
+            product.setImages(listImageOfProduct);
+        }
         return product;
     }
     /*

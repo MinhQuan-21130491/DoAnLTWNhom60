@@ -75,14 +75,14 @@
                     %>
                 </div>
             </div>
+            <%
+                Product latestProduct = (Product) request.getAttribute("latestP");
+                if (latestProduct != null) {
+            %>
             <div class="mt-3 d-none d-md-none d-lg-block ">
                 <h5 class="m-0 text-center" id="titleCate">SẢN PHẨM MỚI NHẤT</h5>
                 <hr class="mt-2 mb-2"/>
                 <div class="card">
-                    <%
-                        Product latestProduct = (Product) request.getAttribute("latestP");
-                        if (latestProduct != null) {
-                    %>
                     <a href="<%=url%>/detail-product?pid=<%=latestProduct.getIdProduct()%>">
                         <img src="<%=url%>/Products/<%=(latestProduct.getImages().isEmpty())?"":latestProduct.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="">
                     </a>
@@ -103,11 +103,10 @@
                             }
                         %>
                         <a href ="<%=url%>/cartController?id=<%=latestProduct.getIdProduct()%>&quantity=<%=quantity%>"><i class="fa fa-shopping-cart cart" aria-hidden="true" title="Thêm vào giỏ hàng"></i></a>
-
                     </div>
-                    <%}%>
                 </div>
             </div>
+            <%}%>
             <div class="mt-3 d-none d-md-none d-lg-block">
                 <h5 class="m-0 text-center">SẢN PHẨM BÁN CHẠY NHẤT</h5>
                 <hr class="mt-2 mb-2"/>
