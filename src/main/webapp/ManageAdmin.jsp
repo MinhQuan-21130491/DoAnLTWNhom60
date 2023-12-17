@@ -45,24 +45,30 @@
 </header>
 <%--end header--%>
 <%--content--%>
-<div class="container p-0 mgt">
-    <a href="<%=url%>/homePage" class="color-gray lbhv text-decoration-none">Trang chủ  <i class="fa fa-angle-right color-gray" aria-hidden="true"></i>  </a> <span class="color-gray" id ="sp">Quản lý</span>
-    <span class="text-color" id ="typeMa"><i class="fa fa-angle-right color-gray" aria-hidden="true"></i> Quản lý tài khoản</span>
-    <div class="row mt-3">
-        <!--menu-left-->
-        <div class="col-lg-3 p-0 mb-2 pe-2">
-            <div class="list-group  ">
-                <div class="cate" id="cate">
-                    <div class="icon-bar my-2 py-1">
-                        <i class="fa fa-bars" aria-hidden="true"></i>
-                    </div>
-                    <div class="cateList d-flex align-items-center justify-content-center p-0" id ="cateList">
-                        <h5 class ="my-2 cateP">DANH MỤC QUẢN LÝ </h5>
-                    </div>
+<%
+    Object obj = session.getAttribute("account");
+    Account account = (Account) obj;
+    if (account != null && (account.getRole() == 0 || account.getRole() == 1)) {
+%>
+    <div class="container p-0 mgt">
+        <a href="<%=url%>/homePage" class="color-gray lbhv text-decoration-none">Trang chủ  <i class="fa fa-angle-right color-gray" aria-hidden="true"></i>  </a> <span class="color-gray" id ="sp">Quản lý</span>
+        <span class="text-color" id ="typeMa"><i class="fa fa-angle-right color-gray" aria-hidden="true"></i> Quản lý tài khoản</span>
+        <div class="row mt-3">
+            <!--menu-left-->
+            <div class="col-lg-3 p-0 mb-2 pe-2">
+                <div class="list-group  ">
+                    <div class="cate" id="cate">
+                        <div class="icon-bar my-2 py-1">
+                            <i class="fa fa-bars" aria-hidden="true"></i>
+                        </div>
+                        <div class="cateList d-flex align-items-center justify-content-center p-0" id ="cateList">
+                            <h5 class ="my-2 cateP">DANH MỤC QUẢN LÝ </h5>
+                        </div>
                 </div>
                 <div class="typeManage " id ="typeManage" >
                     <a href="#" class="list-group-item list-group-item-action">Quản lý tài khoản</a>
                     <a href="#" class="list-group-item list-group-item-action">Quản lý sản phẩm</a>
+                    <a href="#" class="list-group-item list-group-item-action">Quản lý đơn hàng</a>
                     <a href="#" class="list-group-item list-group-item-action">Quản lý nhà cung cấp</a>
                     <a href="#" class="list-group-item list-group-item-action">Quản lý danh mục</a>
                     <a href="#" class="list-group-item list-group-item-action">Quản lý bán hàng</a>
