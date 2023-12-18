@@ -130,7 +130,6 @@
                                     <td>
                                         <%if(account.getRole() == 0) {%>
                                             <div class="d-flex w-100 justify-content-center">
-                                                    <button class="delete btnAdd bgcolor bd-full" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#" onclick="deleteAccount(<%=a.getId()%>)"><i class="fa fa-trash-o text-color"  title="Xóa" ></i></button>
                                                 <button class="editAccount btnAdd bgcolor bd-full mx-1" title="Chỉnh sửa thông tin" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editAccount" onclick="innerAccount(<%=a.getId()%>)"><i class="fa fa-pencil text-color" ></i></button>
                                                     <button class="block btnAdd bgcolor bd-full " data-bs-toggle="modal" data-bs-target="#" onclick="banAccount(<%=a.getId()%>)"><i class="fa fa-lock text-color" title="Khóa" aria-hidden="true" ></i></button>
                                             </div>
@@ -1872,45 +1871,6 @@
             }
         });
     }
-    function deleteAccount(id) {
-        var confirmation = confirm("Bạn có chắc muốn xóa ?");
-        if (confirmation) {
-            $.ajax({
-                type: "POST",
-                url: "delAccount",
-                data: { id: id},
-                success: function(data) {
-                    var jsonData = JSON.parse(data);
-                    var htmlData = jsonData.htmlData;
-                    var res = jsonData.res;
-                    alert(res);
-                    var row = document.getElementById("innerAccount");
-                    row.innerHTML = ""; // Clear existing content
-                    for (var i = 0; i < htmlData.length; i++) {
-                        var a = htmlData[i];
-                            row.innerHTML += "<tr data-bs-toggle=\"modal\" data-bs-target=\"#detailAccount\" onclick=\"detailAccount('" + a.id + "')\">\n" +
-                                "                                    <td class=\"w40\">" + (i+1) + "</td>\n" +
-                                "                                    <td>" + a.name + "</td>\n" +
-                                "                                    <td>" + a.email + "</td>\n" +
-                                "                                    <td>" + a.role + "</td>\n" +
-                                "                                    <td>" + a.vrf + "</td>\n" +
-                                "                                    <td class = \"status\">" + a.status + "</td>\n" +
-                                "                                    <td>\n" +
-                                "                                        <div class=\"d-flex w-100 justify-content-center\">\n" +
-                                "                                            <button class=\"delete btnAdd bgcolor bd-full\" aria-hidden=\"true\" data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"deleteAccount('" + a.id + "')\" ><i class=\"fa fa-trash-o text-color\"  title=\"Xóa\" ></i></button>\n" +
-                                "                                            <button class=\"editAccount btnAdd bgcolor bd-full mx-1\" title=\"Chỉnh sửa quyền truy cập\" aria-hidden=\"true\" data-bs-toggle=\"modal\" data-bs-target=\"#editAccount\" onclick=\"innerAccount('" + a.id + "')\"><i class=\"fa fa-pencil text-color\" ></i></button>\n" +
-                                "                                            <button class=\"block btnAdd bgcolor bd-full \" data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"banAccount('" + a.id + "')\"><i class=\"fa fa-lock text-color\" title=\"Khóa\" aria-hidden=\"true\" ></i></button>\n" +
-                                "                                        </div>\n" +
-                                "                                    </td>\n" +
-                                "                                </tr>";
-                    }
-                },
-                error: function(error) {
-                    console.error("Lỗi khi xóa sản phẩm:", error);
-                }
-            });
-        }
-    }
     function banAccount(id) {
         var confirmation = confirm("Bạn có chắc với lựa chọn này ?");
         if (confirmation) {
@@ -1936,7 +1896,6 @@
                                 "                                    <td class = \"status\">" + a.status + "</td>\n" +
                                 "                                    <td>\n" +
                                 "                                        <div class=\"d-flex w-100 justify-content-center\">\n" +
-                                "                                            <button class=\"delete btnAdd bgcolor bd-full\" aria-hidden=\"true\" data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"deleteAccount('" + a.id + "')\" ><i class=\"fa fa-trash-o text-color\"  title=\"Xóa\" ></i></button>\n" +
                                 "                                            <button class=\"editAccount btnAdd bgcolor bd-full mx-1\" title=\"Chỉnh sửa quyền truy cập\" aria-hidden=\"true\" data-bs-toggle=\"modal\" data-bs-target=\"#editAccount\" onclick=\"innerAccount('" + a.id + "')\"><i class=\"fa fa-pencil text-color\" ></i></button>\n" +
                                 "                                            <button class=\"block btnAdd bgcolor bd-full \" data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"banAccount('" + a.id + "')\"><i class=\"fa fa-lock text-color\" title=\"Khóa\" aria-hidden=\"true\" ></i></button>\n" +
                                 "                                        </div>\n" +
@@ -2062,7 +2021,6 @@
                                 "                                    <td class = \"status\">" + a.status + "</td>\n" +
                                 "                                    <td>\n" +
                                 "                                        <div class=\"d-flex w-100 justify-content-center\">\n" +
-                                "                                            <button class=\"delete btnAdd bgcolor bd-full\" aria-hidden=\"true\" data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"deleteAccount('" + a.id + "')\" ><i class=\"fa fa-trash-o text-color\"  title=\"Xóa\" ></i></button>\n" +
                                 "                                            <button class=\"editAccount btnAdd bgcolor bd-full mx-1\" title=\"Chỉnh sửa thông tin\" aria-hidden=\"true\" data-bs-toggle=\"modal\" data-bs-target=\"#editAccount\" onclick=\"innerAccount('" + a.id + "')\"><i class=\"fa fa-pencil text-color\" ></i></button>\n" +
                                 "                                            <button class=\"block btnAdd bgcolor bd-full \" data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"banAccount('" + a.id + "')\"><i class=\"fa fa-lock text-color\" title=\"Khóa\" aria-hidden=\"true\" ></i></button>\n" +
                                 "                                        </div>\n" +
@@ -2175,7 +2133,6 @@
                             "                                    <td class = \"status\">" + a.status + "</td>\n" +
                             "                                    <td>\n" +
                             "                                        <div class=\"d-flex w-100 justify-content-center\">\n" +
-                            "                                            <button class=\"delete btnAdd bgcolor bd-full\" aria-hidden=\"true\" data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"deleteAccount('" + a.id + "')\" ><i class=\"fa fa-trash-o text-color\"  title=\"Xóa\" ></i></button>\n" +
                             "                                            <button class=\"editAccount btnAdd bgcolor bd-full mx-1\" title=\"Chỉnh sửa thông tin\" aria-hidden=\"true\" data-bs-toggle=\"modal\" data-bs-target=\"#editAccount\" onclick=\"innerAccount('" + a.id + "')\"><i class=\"fa fa-pencil text-color\" ></i></button>\n" +
                             "                                            <button class=\"block btnAdd bgcolor bd-full \" data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"banAccount('" + a.id + "')\"><i class=\"fa fa-lock text-color\" title=\"Khóa\" aria-hidden=\"true\" ></i></button>\n" +
                             "                                        </div>\n" +

@@ -77,9 +77,6 @@ public class AccountService {
         }
         return listAccount;
     }
-    public int delAccount(int id) throws SQLException {
-        return DAOAccount.delAccount(id);
-    }
     public int updateStatus(int id, boolean status) {
         try {
             return DAOAccount.updateStatus(id, status);

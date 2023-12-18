@@ -342,27 +342,6 @@ public class DAOAccount {
         }
         return  list;
     }
-    public static synchronized int delAccount(int id) throws SQLException {
-        int re = 0;
-        Connection connection = JDBCUtil.getConnection();
-            try {
-                PreparedStatement s = connection.prepareStatement("select id from accounts where id= ?");
-                s.setInt(1, id);
-                ResultSet resultSet = s.executeQuery();
-                if (resultSet.next()) {
-                    s = connection.prepareStatement("delete from verify_account where idAccount = ?");
-                    s.setInt(1, id);
-                    s.executeUpdate();
-                    s = connection.prepareStatement("delete from accounts where id = ?");
-                    s.setInt(1, id);
-                    re = s.executeUpdate();
-                }
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-            JDBCUtil.closeConnection(connection);
-        return re;
-    }
     public static synchronized int updateStatus(int id, boolean status) throws SQLException {
         int re = 0;
         Connection connection = JDBCUtil.getConnection();
