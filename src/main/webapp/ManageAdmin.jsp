@@ -1532,7 +1532,6 @@
         var address = document.getElementById("addressSupEdit");
         var phone = document.getElementById("phoneNumberSupEdit");
         var email = document.getElementById("emailSupEdit");
-
         var errNameSup = document.getElementById("errNameSupEdit");
         var errAdd = document.getElementById("errAddEdit");
         var errphoneNumberSup = document.getElementById("errphoneNumberSupEdit");
@@ -1645,11 +1644,28 @@
         }
         return flag;
     }
+    function displaySelectedImage(input) {
+        var fileInput = input;
+        var selectedFile = fileInput.files[0];
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            // Tìm img tương ứng trong phạm vi cha của input
+            var imgElement = input.parentElement.querySelector('.selectedImage');
+            imgElement.classList.remove("d-none");
+            imgElement.src = e.target.result;
+        };
+
+        if (selectedFile) {
+            reader.readAsDataURL(selectedFile);
+        }
+    }
+
     function addInput() {
         var container = document.getElementById('image');
         var newInput = document.createElement('div');
-        newInput.className = 'mb-3 d-flex';
-        newInput.innerHTML = '<input type="file" class="form-control" name="image"><button type ="button" class="btnAdd bgcolor bd-full ms-2 remove" onclick="removeInput(this)"><i class="fa fa-minus-circle text-color" aria-hidden="true" title="Xóa hình ảnh" ></i></button>';
+        newInput.className = 'mb-3 d-flex align-items-center';
+        newInput.innerHTML = `<img src="" class="card-img-top img_p_cart selectedImage me-2 d-none" alt="..."/> <input type="file" name ="image" class="form-control imageInput" onchange="displaySelectedImage(this)" style ="height:40px"> <button type ="button" class="btnAdd bgcolor bd-full ms-2 remove" onclick="removeInput(this)" style ="height:40px"><i class="fa fa-minus-circle text-color" aria-hidden="true" title="Xóa hình ảnh" ></i></button>`;
         container.appendChild(newInput);
     }
     function removeInput(button) {
@@ -1660,8 +1676,8 @@
     function addInputInEdit() {
         var container = document.getElementById('imageEdit');
         var newInput = document.createElement('div');
-        newInput.className = 'mb-3 d-flex';
-        newInput.innerHTML = '<input type="file" class="form-control" name="imageEdit"> <button type ="button" class="btnAdd bgcolor bd-full ms-2 remove" onclick="removeInputEdit(this)"><i class="fa fa-minus-circle text-color" aria-hidden="true" title="Xóa hình ảnh" ></i></button>';
+        newInput.className = 'mb-3 d-flex align-items-center';
+        newInput.innerHTML = `<img src="" class="card-img-top img_p_cart selectedImage me-2 d-none" alt="..."/> <input type="file" name ="imageEdit" class="form-control imageInput" onchange="displaySelectedImage(this)" style ="height:40px"> <button type ="button" class="btnAdd bgcolor bd-full ms-2 remove" onclick="removeInputEdit(this)" style ="height:40px"><i class="fa fa-minus-circle text-color" aria-hidden="true" title="Xóa hình ảnh" ></i></button>`;
         container.appendChild(newInput);
     }
     function removeInputEdit(button) {
@@ -1736,7 +1752,7 @@
                 for (var img of p.imageDetail) {
                     var newInput = document.createElement('div');
                     newInput.className = 'mb-3 d-flex align-items-center';
-                    newInput.innerHTML = `<img src="Products/${img.url}"" class="card-img-top img_p_cart" alt="..."/> <input type="text" class="form-control " name="imageAvai" value="Products/${img.url}" style ="height:40px"> <button type="button" class="btnAdd bgcolor bd-full ms-2  remove" style ="height:40px" onclick="removeInputEdit(this)"><i class="fa fa-minus-circle text-color" aria-hidden="true" title="Xóa hình ảnh"></i></button>`;
+                    newInput.innerHTML = `<img src="Products/${img.url}"" class="card-img-top img_p_cart me-2" alt="..."/> <input type="text" class="form-control " name="imageAvai" value="Products/${img.url}" style ="height:40px"> <button type="button" class="btnAdd bgcolor bd-full ms-2  remove" style ="height:40px" onclick="removeInputEdit(this)"><i class="fa fa-minus-circle text-color" aria-hidden="true" title="Xóa hình ảnh"></i></button>`;
                     container.appendChild(newInput);
                 }
             },
