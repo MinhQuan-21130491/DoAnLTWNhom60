@@ -3,6 +3,9 @@ import model.Category;
 import service.CategoryService;
 import model.Account;
 import model.Product;
+import model.Supplier;
+import service.ProductService;
+import service.SupplierService;
 import service.AccountService;
 import service.ProductService;
 import javax.servlet.ServletException;
@@ -19,6 +22,8 @@ public class ManageController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("html/text; charset= UTF-8");
+        ArrayList<Supplier> suplist = SupplierService.getInstance().listAllSupplier();
+        request.setAttribute("listAllSup", suplist);
         ArrayList<Category> listCategory = CategoryService.getInstance().listCategory();
         request.setAttribute("listCategory", listCategory);
         ArrayList<Product> listAllProduct = ProductService.getInstance().listAllProduct();
