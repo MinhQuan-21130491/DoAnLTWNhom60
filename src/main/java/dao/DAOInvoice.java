@@ -31,6 +31,28 @@ public class DAOInvoice {
         }
         return list;
     }
+    public static Invoice selectById(int idInvoice) {
+        Invoice invoice = null;
+        Connection connection = JDBCUtil.getConnection();
+        String sql = "select id, idAccount, address, transFee, payMethod, startDate, status from invoices";
+        try {
+            PreparedStatement pr = connection.prepareStatement(sql);
+            ResultSet resultSet = pr.executeQuery();
+            while(resultSet.next()) {
+                int id = resultSet.getInt("id");
+                int idAccount = resultSet.getInt("idAccount");
+                String address = resultSet.getString("address");
+                double transFee = resultSet.getDouble("transFee");
+                String payMethod = resultSet.getString("payMethod");
+                Date startDate = resultSet.getDate("startDate");
+                int status = resultSet.getInt("status");
+                invoice = new Invoice(id, idAccount, address, transFee, payMethod, startDate, status);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+           return invoice;
+    }
     public static ArrayList<InvoiceDetail> listDetail(int idInvoice) {
         ArrayList<InvoiceDetail> list = new ArrayList<>();
         Connection connection = JDBCUtil.getConnection();

@@ -1,8 +1,10 @@
 package controller;
 
 import model.Account;
+import model.Invoice;
 import model.Product;
 import service.AccountService;
+import service.InvoiceService;
 import service.ProductService;
 
 import javax.servlet.ServletException;
@@ -23,6 +25,8 @@ public class ManageController extends HttpServlet {
         request.setAttribute("listAllProduct", listAllProduct);
         ArrayList<Account> listAllAccount = AccountService.getInstance().listAllAccount();
         request.setAttribute("listAllAccount", listAllAccount);
+        ArrayList<Invoice> listAllInvoice = InvoiceService.getInstance().listInvoice();
+        request.setAttribute("listAllInvoice", listAllInvoice);
         try {
             request.getRequestDispatcher("ManageAdmin.jsp").forward(request, response);
         } catch (ServletException e) {

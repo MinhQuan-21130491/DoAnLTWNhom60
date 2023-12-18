@@ -91,7 +91,7 @@
         let inputElement = document.getElementById("idFormInput");
         let passElement = document.getElementById("idFormPass");
         let inputError = document.getElementById("inputError");
-        var specialCharactersAndSpace = /[!@#$%^&*(),.?":{}|<> ]/;
+        var specialCharacters = /[!@#$%^&*(),.?":{}|<>' -]/;
         inputError.textContent = "";
         if (inputElement.value === "" && passElement.value === "") {
             inputError.textContent = "Bạn chưa nhập tên đăng nhập hoặc mật khẩu!";
@@ -99,8 +99,8 @@
         } else if (inputElement.value === "") {
             inputError.textContent = "Bạn chưa nhập tên đăng nhập!";
             flag = false;
-        } else if (specialCharactersAndSpace.test(inputValue.value)) {
-            inputError.textContent = "Tên tài khoản không hợp lệ!";
+        } else if (specialCharacters.test(inputElement.value)) {
+            inputError.textContent = 'Tên đăng nhập không chứa kí tự đặc biệt!';
             flag = false;
         } else if (passElement.value === "") {
             inputError.textContent = "Bạn chưa nhập mật khẩu!";

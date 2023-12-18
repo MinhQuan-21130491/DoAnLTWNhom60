@@ -24,7 +24,6 @@
             response.setContentType("application/json");
             String idText = request.getParameter("id");
             int id = Integer.parseInt(idText);
-            String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
             Account a = AccountService.getInstance().selectById(id);
             JSONObject jsonRes = new JSONObject();
             JSONObject accountJSON = new JSONObject();

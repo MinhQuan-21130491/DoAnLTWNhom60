@@ -2,6 +2,7 @@
 <%@ page import="model.Product" %>
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="model.Account" %>
+<%@ page import="model.Invoice" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -744,18 +745,33 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr data-bs-toggle="modal" data-bs-target="#detailInvoice">
-                                <td class="w40">2</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>28/02/2023</td>
-                                <td>Chờ xác nhận</td>
+                            <%
+                                ArrayList<Invoice> listInvoice = (ArrayList<Invoice>) request.getAttribute("listAllInvoice");
+                                if (!listInvoice.isEmpty() && listInvoice != null) {
+                                    int sttI = 1;
+                                    for(Invoice i: listInvoice) {
+                            %>
+                                <tr data-bs-toggle="modal" data-bs-target="#detailInvoice" onclick="detailInvoice(<%=i.getIdInvoice()%>)">
+                                <td class="w40"><%=sttI%></td>
+                                <td><%=i.getIdInvoice()%></td>
+                                <td><%=i.getIdAccount()%></td>
+                                <td><%=i.getStartDate()%></td>
+                                    <%if(i.getStatus() == 0) {%>
+                                    <td>Chờ xác nhận</td>
+                                    <%}else if(i.getStatus() == 1) {%>
+                                    <td>Đã xác nhận</td>
+                                    <%}%>
                                 <td>
                                     <button class="btnAdd bgcolor bd-full"  data-bs-toggle="modal" data-bs-target="#" ><i class="fa fa-check text-color"  title="Xác nhận đơn hàng" aria-hidden="true"></i></button>
                                     <button class="btnAdd bgcolor bd-full"  data-bs-toggle="modal" data-bs-target="#" ><i class="fa fa-times text-color"  title="Hủy đơn hàng" aria-hidden="true"></i></button>
                                     <button class="btnAdd bgcolor bd-full"  data-bs-toggle="modal" data-bs-target="#" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true"></i></button>
                                 </td>
                             </tr>
+                            <%
+                                        sttI++;
+                                    }
+                                }
+                            %>
                             </tbody>
                         </table>
                     </div>
@@ -779,29 +795,31 @@
                                             <p class="fw-bold">Mã hóa đơn: <span id="idInvoice">1</span> </p>
                                             <p class="fw-bold">Phí vận chuyển: ₫<span id="transFee">0</span> </p>
                                             <p class="fw-bold">Phương thức thanh toán: <span id="payMethod">Thanh toán khi nhận hàng</span> </p>
-                                            <table  class="table table-bordered">
+                                            <table  class="table table-bordered overflow-auto">
                                                 <thead>
                                                 <tr>
-                                                    <td>STT</td>
+                                                    <td class="w40">STT</td>
                                                     <td>MÃ SẢN PHẨM</td>
                                                     <td>TÊN SẢN PHẨM</td>
-                                                    <td>SỐ LƯỢNG</td>
-                                                    <td>ĐƠN GIÁ</td>
+                                                    <td class="w110">MÀU SẮC</td>
+                                                    <td class="w110">SỐ LƯỢNG</td>
+                                                    <td class="w110">ĐƠN GIÁ</td>
                                                     <td>THÀNH TIỀN</td>
                                                 </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody id ="innerDetailInvoice">
                                                 <tr>
-                                                    <td>1</td>
+                                                    <td class="w40">1</td>
                                                     <td>1</td>
                                                     <td>Ghế vip</td>
-                                                    <td>1</td>
-                                                    <td>₫<span>2.000.000</span></td>
-                                                    <td>₫<span>2.000.000</span></td>
+                                                    <td class="w110">Xanh</td>
+                                                    <td class="w110">1</td>
+                                                    <td class="w110"></td>
+                                                    <td></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="fw-bold">TỔNG TIỀN</td>
-                                                    <td colspan="5">₫<span>2.000.000</span></td>
+                                                    <td colspan="5"></td>
                                                 </tr>
                                                 </tbody>
                                             </table>
@@ -2170,6 +2188,50 @@
                 }
             });
         }
+    }
+    function detailInvoice(idInvoice) {
+        $.ajax({
+            type: "GET",
+            url: "loadDetailInvoice",
+            data: {
+                id: idInvoice,
+            },
+            success: function (data) {
+                // Cập nhật nội dung modal với dữ liệu JSON nhận được
+                console.log(data)
+                var htmlData = data.htmlData;
+                var i = data.invoice;
+                var total = data.total;
+                $('#nameCus').text(i.name);
+                $('#phoneCus').text(i.phoneNumber);
+                $('#emailCus').text(i.email);
+                $('#addressCus').text(i.address);
+                $('#idInvoice').text(i.idInvoice);
+                $('#transFee').text(i.transFee);
+                $('#payMethod').text(i.payMethod);
+                var row = document.getElementById("innerDetailInvoice");
+                row.innerHTML ="";
+                for (var i = 0; i < htmlData.length; i++) {
+                    var p = htmlData[i];
+                row.innerHTML += "<tr>\n" +
+                "                                                <td>"+(i+1)+"</td>\n" +
+                "                                                <td>"+p.idProduct+"</td>\n" +
+                "                                                <td>"+p.nameProduct+"</td>\n" +
+                "                                                <td>"+p.color+"</td>\n" +
+                "                                                <td>"+p.quantity+"</td>\n" +
+                "                                                <td>"+p.price+"</td>\n" +
+                "                                                <td>"+p.totalPrice+"</td>\n" +
+                "                                            </tr>\n";
+                }
+                row.innerHTML += "<tr>" +
+                                 "<td class=\"fw-bold\">TỔNG TIỀN</td>"+
+                                  "<td colspan=\"5\">"+total+"</td>"+
+                                "</tr>";
+            },
+            error: function () {
+                console.error("Không thể tải chi tiết tài khoản");
+            }
+        });
     }
 </script>
 <script src="slider/owlcarousel/owl.carousel.min.js"></script>
