@@ -48,8 +48,8 @@
                             <div class="col-md-12 col-lg-3 col-sm-12">
                                 <ul class="navbar-nav w-100  mb-2 mb-lg-0">
                                     <li class="nav-item hv "><a class="nav-link ps-0 " aria-current="page" href=<%=url%>/homePage>Trang chủ</a></li>
-                                    <li class="nav-item hv"><a class="nav-link" href="IntroWebsite.jsp">Giới thiệu</a></li>
-                                    <li class="nav-item hv"><a class="nav-link" href="IntroWebsite.jsp#contact">Liên hệ</a></li>
+                                    <li class="nav-item hv"><a class="nav-link" href="<%=url%>/IntroWebsite.jsp">Giới thiệu</a></li>
+                                    <li class="nav-item hv"><a class="nav-link" href="<%=url%>/product">Sản phẩm</a></li>
                                     <li class="nav-item hv d-lg-none ">
                                         <ul class="navbar-nav justify-content-end ">
                                             <%
@@ -66,7 +66,7 @@
                                             <%
                                             }else {
                                                 account = (Account) obj;
-                                                if (account != null && (account.getRole() == 0 || account.getRole() == 2)) {
+                                                if (account != null && (account.getRole() == 0 || account.getRole() ==1)) {
                                             %>
                                             <li class="nav-item dropdown hv"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tài khoản </a>
                                                 <ul class="dropdown-menu" aria-labelledby="">
@@ -130,13 +130,13 @@
                                     <%
                                     }else {
                                         account = (Account) obj;
-                                        if (account != null && (account.getRole() == 0 || account.getRole() == 2)) {
+                                        if (account != null && (account.getRole() == 0 || account.getRole() == 1)) {
                                     %>
                                     <li class="nav-item dropdown hv"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tài khoản </a>
                                         <ul class="dropdown-menu" aria-labelledby="">
                                             <li class ="dropdown-item"> Xin chào: <span class = "fw-bold " class = "name"><%=account.getName()%></span></li>
                                             <li><hr class="dropdown-divider"></li>
-                                            <li><a class="dropdown-item" href="<%=url%>/ManageAdmin.jsp">Quản lý</a></li>
+                                            <li><a class="dropdown-item" href="<%=url%>/manage">Quản lý</a></li>
                                             <li><hr class="dropdown-divider"></li>
                                             <li><a class="dropdown-item" href="<%=url%>/ChangeInfor.jsp">Thay đổi thông tin</a></li><li>
                                             <hr class="dropdown-divider"></li>
@@ -184,6 +184,7 @@
                         <a class="nav-link" href="#">
                             <button class = "position-relative border-0 bg-light "><i class="fa fa-shopping-cart" aria-hidden="true" style="font-size: 25px"></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">99+<span class="visually-hidden">unread messages</span></span></button>
                         </a>
+>>>>>>>>> Temporary merge branch 2
                     </div>
                 </div>
             </div>

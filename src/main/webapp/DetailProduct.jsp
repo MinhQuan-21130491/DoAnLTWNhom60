@@ -75,16 +75,22 @@
                     <div class="col-lg-5 col-md-7  ">
                         <div class="row pt-3">
                             <div class="col-md-12">
-                                <img src="<%=url%>\Products\<%=product.getImages().get(0).getUrl()%>" alt=""
-                                     class="img_p2" id="img_center">
+                                <img src="<%=url%>/Products/<%=(product.getImages().isEmpty())?"":product.getImages().get(0).getUrl()%>"class="img_p2" id="img_center" alt="..."/>
+
                             </div>
                             <div class="col-md-12 mt-3">
                                 <div class="owl-carousel">
-                                    <%for(Image img: product.getImages()) { %>
+                                    <%
+                                        if (!product.getImages().isEmpty() && product.getImages() != null ) {
+                                            for (Image img : product.getImages()) {
+                                    %>
                                     <div class="pe-2">
                                         <img src="<%=url%>/Products/<%=img.getUrl()%>" alt="" class="img_p_detail" onmouseover="changeImg('<%=url%>/Products/<%=img.getUrl()%>')">
                                     </div>
-                                    <%}%>
+                                    <%
+                                            }
+                                        }
+                                    %>
                                 </div>
                             </div>
                         </div>

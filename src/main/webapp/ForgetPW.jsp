@@ -55,17 +55,28 @@
     <!-- <img src="images/signup-bg.jpg" alt=""> -->
     <div class="contain">
         <div class="signup-content">
-            <form  id="signup-form" class="signup-form">
+            <%
+                String userName = (String) request.getAttribute("user_name");
+                String email = (String) request.getAttribute("email");
+                userName = (userName == null)? "": userName;
+                email = (email == null)? "": email;
+                String errUserName = (String)request.getAttribute("errUserName");
+                String errEmail = (String)request.getAttribute("errEmail");
+                errUserName =(errUserName == null)?"":errUserName;
+                errEmail =(errEmail == null)?"":errEmail;
+            %>
+            <form  id="signup-form" class="signup-form" action="forgetPassword" method="post">
+
                 <h5>QUÊN MẬT KHẨU</h5>
                 <div class="form-SignUp">
                     <div class="form-group">
-                        <label>Tên đăng nhập<span class="text-danger">*</span></label><span class="text-danger" id="errUser"></span>
+                        <label>Tên đăng nhập<span class="text-danger">*</span></label><span class="text-danger" id="errUser"><%=errUserName%></span>
                         <input type="text" class="form-input" placeholder="Nhập tên đăng nhập" name="user_name"
-                               id="user_name"/>
+                               id="user_name" value ="<%=userName%>"/>
                     </div>
                     <div class="form-group">
-                        <label>Email<span class="text-danger">*</span></label><span class="text-danger" id="errEmail"></span>
-                        <input type="text" class="form-input" placeholder="Nhập Email" name="email" id="email"/>
+                        <label>Email<span class="text-danger">*</span></label><span class="text-danger" id="errEmail"><%=errEmail%></span>
+                        <input type="text" class="form-input" placeholder="Nhập Email" name="email" id="email" value ="<%=email%>"/>
                     </div>
                 </div>
                 <div class="form-group">

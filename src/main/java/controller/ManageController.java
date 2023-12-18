@@ -1,10 +1,13 @@
 package controller;
-
 import model.Category;
-import model.Product;
 import service.CategoryService;
+import model.Account;
+import model.Product;
+import model.Supplier;
 import service.ProductService;
-
+import service.SupplierService;
+import service.AccountService;
+import service.ProductService;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,10 +22,14 @@ public class ManageController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("html/text; charset= UTF-8");
-        ArrayList<Product> listAll = ProductService.getInstance().listAllProduct();
-        request.setAttribute("listAllProduct", listAll);
+        ArrayList<Supplier> suplist = SupplierService.getInstance().listAllSupplier();
+        request.setAttribute("listAllSup", suplist);
         ArrayList<Category> listCategory = CategoryService.getInstance().listCategory();
         request.setAttribute("listCategory", listCategory);
+        ArrayList<Product> listAllProduct = ProductService.getInstance().listAllProduct();
+        request.setAttribute("listAllProduct", listAllProduct);
+        ArrayList<Account> listAllAccount = AccountService.getInstance().listAllAccount();
+        request.setAttribute("listAllAccount", listAllAccount);
         try {
             request.getRequestDispatcher("ManageAdmin.jsp").forward(request, response);
         } catch (ServletException e) {
