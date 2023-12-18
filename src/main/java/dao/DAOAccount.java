@@ -4,13 +4,9 @@ import model.Account;
 import model.VerifyAccount;
 import util.Encrypt;
 import util.JDBCUtil;
-
-import java.sql.Date;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class DAOAccount {
     public static boolean checkExistUserName(String userName) {
@@ -48,18 +44,17 @@ public class DAOAccount {
         }
         return re;
     }
-
-    public static Account selectById(Account account) {
+    public static Account selectById(int idA) {
         Account re = null;
         try {
             // Tạo kết nối đến database
             Connection connection = JDBCUtil.getConnection();
             // Tạo đối tượng statement
-            String sql = "select a.id,a.name, a.userName, a.password, a.gender, a.phoneNumber, a.birthDay, a.address, a.addressReceive, a.email " +
+            String sql = "select a.id,a.name, a.userName, a.password, a.gender, a.phoneNumber, a.birthDay, a.address, a.addressReceive, a.email, a.role, a.status " +
                     "from accounts as a " +
-                    "where a.userName =? ";
+                    "where a.id =? ";
             PreparedStatement pr = connection.prepareStatement(sql);
-            pr.setString(1, account.getUserName());
+            pr.setInt(1, idA);
             // Thực thi câu lệnh sql
             ResultSet resultSet = pr.executeQuery();
             while (resultSet.next()) {
@@ -73,8 +68,9 @@ public class DAOAccount {
                 Date birthDay = resultSet.getDate("birthDay");
                 String address = resultSet.getString("address");
                 String addressReceive = resultSet.getString("addressReceive");
-                re = new Account(id, name, userName, password, email, phoneNumber, gender, birthDay, address, addressReceive);
-            }
+                int role = resultSet.getInt("role");
+                boolean status = resultSet.getBoolean("status");
+                re = new Account(id, name,userName, password, email, phoneNumber, gender, birthDay, address, addressReceive, role, status);}
             JDBCUtil.closeConnection(connection);
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -306,7 +302,7 @@ public class DAOAccount {
                 String addressReceive = resultSet.getString("addressReceive");
                 int role = resultSet.getInt("role");
                 boolean status = resultSet.getBoolean("status");
-                re = new Account(id, name, userName, password, email, phoneNumber, gender, birthDay, address, addressReceive, role, status);
+                re = new Account(id, name,usName, pw, email, phoneNumber, gender, birthDay, address, addressReceive, role, status);
             }
             JDBCUtil.closeConnection(connection);
         } catch (Exception e) {
@@ -329,6 +325,118 @@ public class DAOAccount {
             throw new RuntimeException(e);
         }
         return verifyAccount;
+    }
+
+    public static ArrayList<Account> listAllAccount() {
+        ArrayList<Account> list = new ArrayList<>();
+        Connection connection = JDBCUtil.getConnection();
+        String sql = "select id, userName, password, name, gender, phoneNumber, birthDay, address, addressReceive, email, role, status " +
+                "from accounts ";
+        try {
+            PreparedStatement pr = connection.prepareStatement(sql);
+            ResultSet resultSet = pr.executeQuery();
+            while(resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                String usName = resultSet.getString("userName");
+                String pw = resultSet.getString("password");
+                String gender = resultSet.getString("gender");
+                String phoneNumber = resultSet.getString("phoneNumber");
+                String email = resultSet.getString("email");
+                Date birthDay = resultSet.getDate("birthDay");
+                String address = resultSet.getString("address");
+                String addressReceive = resultSet.getString("addressReceive");
+                int role = resultSet.getInt("role");
+                boolean status = resultSet.getBoolean("status");
+                Account account = new Account(id, name,usName, pw, email, phoneNumber, gender, birthDay, address, addressReceive, role, status);
+                list.add(account);
+            }
+           JDBCUtil.closeConnection(connection);
+       } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return  list;
+    }
+    public static int updatePassword( String passEnCrypt, int idAccount) {
+        int re = 0;
+        Connection connection = JDBCUtil.getConnection();
+        String sql ="update accounts set password =? where id =?";
+        try {
+            PreparedStatement pr = connection.prepareStatement(sql);
+            pr.setString(1, passEnCrypt);
+            pr.setInt(2, idAccount);
+            re = pr.executeUpdate();
+            JDBCUtil.closeConnection(connection);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return re;
+    }
+    public static synchronized int delAccount(int id) throws SQLException {
+        int re = 0;
+        Connection connection = JDBCUtil.getConnection();
+            try {
+                PreparedStatement s = connection.prepareStatement("select id from accounts where id= ?");
+                s.setInt(1, id);
+                ResultSet resultSet = s.executeQuery();
+                if (resultSet.next()) {
+                    s = connection.prepareStatement("delete from verify_account where idAccount = ?");
+                    s.setInt(1, id);
+                    s.executeUpdate();
+                    s = connection.prepareStatement("delete from accounts where id = ?");
+                    s.setInt(1, id);
+                    re = s.executeUpdate();
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            JDBCUtil.closeConnection(connection);
+        return re;
+    }
+    public static synchronized int updateStatus(int id, boolean status) throws SQLException {
+        int re = 0;
+        Connection connection = JDBCUtil.getConnection();
+            try {
+                PreparedStatement  s = connection.prepareStatement("select id from accounts where id = ?");
+                s.setInt(1, id);
+                ResultSet resultSet = s.executeQuery();
+                if (resultSet.next()) {
+                    s = connection.prepareStatement("update accounts set status =? where id = ?");
+                    s.setBoolean(1, status);
+                    s.setInt(2, id);
+                    re = s.executeUpdate();
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            JDBCUtil.closeConnection(connection);
+        return re;
+    }
+    public static synchronized int updateInforAccount(Account a) throws SQLException {
+        int re = 0;
+        Connection connection = JDBCUtil.getConnection();
+            try {
+                PreparedStatement  s = connection.prepareStatement("select id from accounts where id =?");
+                s.setInt(1, a.getId());
+                ResultSet resultSet = s.executeQuery();
+                if (resultSet.next()) {
+                    s = connection.prepareStatement("UPDATE accounts SET name =?, gender =?, email =?, phoneNumber =?, birthDay =?, address =?, addressReceive =?, role =? where id =?");
+                    s.setString(1, a.getName());
+                    s.setString(2, a.getGender());
+                    s.setString(3, a.getEmail());
+                    s.setString(4, a.getPhoneNumber());
+                    s.setDate(5, a.getBirthDay());
+                    s.setString(6, a.getAddress());
+                    s.setString(7, a.getAddressReceive());
+                    s.setInt(8, a.getRole());
+                    s.setInt(9, a.getId());
+                    re = s.executeUpdate();
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            JDBCUtil.closeConnection(connection);
+        return re;
     }
 
     public static void main(String[] args) {
