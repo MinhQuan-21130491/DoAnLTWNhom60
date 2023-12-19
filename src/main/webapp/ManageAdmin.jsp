@@ -729,7 +729,21 @@
                     <div class="col-lg-4">
                         <h5 >Quản lý hóa đơn</h5>
                     </div>
-                    <div class="col-lg-8 pt-4"><label for = "filterInvoice" >Ngày xuất hóa đơn:</label> <input type="date" id="filterInvoice"><button class ="bd-full bgcolor-orange ms-2 rounded-1" id ="btnFilter">Lọc</button></div>
+                    <div class="d-flex">
+                        <div class="dropdown">
+                            <button class="bd-full bgcolor-orange dropdown-toggle rounded-1" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                Trạng thái
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="#">Chưa xác nhận</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Đã xác nhận</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Đã hủy</a></li>
+                            </ul>
+                        </div>
+                        <div class="ms-auto"><label for = "filterInvoice" >Ngày xuất hóa đơn:</label> <input type="date" id="filterInvoice"><button class ="bd-full bgcolor-orange ms-2 rounded-1" id ="btnFilter">Lọc</button></div>
+                    </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-lg-12 overflow-auto">
@@ -743,7 +757,7 @@
                                     <td>TRẠNG THÁI</td>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id = "innerInvoice">
                             <%
                                 ArrayList<Invoice> listInvoice = (ArrayList<Invoice>) request.getAttribute("listAllInvoice");
                                 if (!listInvoice.isEmpty() && listInvoice != null) {
@@ -751,21 +765,23 @@
                                     for(Invoice i: listInvoice) {
                             %>
                                 <tr data-bs-toggle="modal" data-bs-target="#detailInvoice" onclick="detailInvoice(<%=i.getIdInvoice()%>)">
-                                <td class="w40"><%=sttI%></td>
-                                <td><%=i.getIdInvoice()%></td>
-                                <td><%=i.getIdAccount()%></td>
-                                <td><%=i.getStartDate()%></td>
-                                    <%if(i.getStatus() == 0) {%>
-                                    <td>Chờ xác nhận</td>
-                                    <%}else if(i.getStatus() == 1) {%>
-                                    <td>Đã xác nhận</td>
-                                    <%}%>
-                                <td>
-                                    <button class="btnAdd bgcolor bd-full"  data-bs-toggle="modal" data-bs-target="#" ><i class="fa fa-check text-color"  title="Xác nhận đơn hàng" aria-hidden="true"></i></button>
-                                    <button class="btnAdd bgcolor bd-full"  data-bs-toggle="modal" data-bs-target="#" ><i class="fa fa-times text-color"  title="Hủy đơn hàng" aria-hidden="true"></i></button>
-                                    <button class="btnAdd bgcolor bd-full"  data-bs-toggle="modal" data-bs-target="#" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true"></i></button>
-                                </td>
-                            </tr>
+                                    <td class="w40"><%=sttI%></td>
+                                    <td><%=i.getIdInvoice()%></td>
+                                    <td><%=i.getIdAccount()%></td>
+                                    <td><%=i.getStartDate()%></td>
+                                        <%if(i.getStatus() == 0) {%>
+                                        <td>Chờ xác nhận</td>
+                                        <%}else if(i.getStatus() == 1) {%>
+                                        <td>Đã xác nhận</td>
+                                        <%}else {%>
+                                        <td>Đã hủy</td>
+                                        <%}%>
+                                    <td>
+                                        <button class="btnAdd bgcolor bd-full"  data-bs-toggle="modal" data-bs-target="#" onclick="acceptInvoice(<%=i.getIdInvoice()%>)"><i class="fa fa-check text-color"  title="Xác nhận đơn hàng" aria-hidden="true"></i></button>
+                                        <button class="btnAdd bgcolor bd-full"  data-bs-toggle="modal" data-bs-target="#" onclick="cancelInvoice(<%=i.getIdInvoice()%>)"><i class="fa fa-times text-color"  title="Hủy đơn hàng" aria-hidden="true"></i></button>
+                                        <button class="btnAdd bgcolor bd-full"  data-bs-toggle="modal" data-bs-target="#" onclick="delInvoice(<%=i.getIdInvoice()%>)"><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true"></i></button>
+                                    </td>
+                                </tr>
                             <%
                                         sttI++;
                                     }
@@ -794,7 +810,8 @@
                                             <p class="fw-bold">Mã hóa đơn: <span id="idInvoice">1</span> </p>
                                             <p class="fw-bold">Phí vận chuyển: ₫<span id="transFee">0</span> </p>
                                             <p class="fw-bold">Phương thức thanh toán: <span id="payMethod">Thanh toán khi nhận hàng</span> </p>
-                                            <table  class="table table-bordered overflow-auto">
+                                            <div class="col-lg-12 overflow-auto">
+                                                 <table >
                                                 <thead>
                                                 <tr>
                                                     <td class="w40">STT</td>
@@ -822,6 +839,7 @@
                                                 </tr>
                                                 </tbody>
                                             </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -2205,6 +2223,114 @@
                 console.error("Không thể tải chi tiết tài khoản");
             }
         });
+    }
+    function acceptInvoice(id) {
+        var confirmation = confirm("Bạn có chắc muốn xác nhận đơn hàng ?");
+        if (confirmation) {
+            $.ajax({
+                type: "POST",
+                url: "acceptInvoice",
+                data: { id: id },
+                success: function (data) {
+                    var jsonData = JSON.parse(data);
+                    var htmlData = jsonData.htmlData;
+                    var res = jsonData.res;
+                    alert(res);
+                    var row = document.getElementById("innerInvoice");
+                    row.innerHTML = ""; // Clear existing content
+                    for (var i = 0; i < htmlData.length; i++) {
+                        var ivc = htmlData[i];
+                        row.innerHTML += "<tr data-bs-toggle=\"modal\" data-bs-target=\"#detailInvoice\" onclick=\"detailInvoice("+ivc.id+")\">\n" +
+                        "                                    <td class=\"w40\">"+(i+1)+"</td>\n" +
+                        "                                    <td>"+ivc.id+"</td>\n" +
+                        "                                    <td>"+ivc.idAccount+"</td>\n" +
+                        "                                    <td>"+ivc.startDate+"</td>\n" +
+                        "                                     <td>"+ivc.status+"</td>\n" +
+                        "                                    <td>\n" +
+                        "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"acceptInvoice("+ivc.id+")\"><i class=\"fa fa-check text-color\"  title=\"Xác nhận đơn hàng\" aria-hidden=\"true\"></i></button>\n" +
+                        "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"cancelInvoice("+ivc.id+")\"><i class=\"fa fa-times text-color\"  title=\"Hủy đơn hàng\" aria-hidden=\"true\"></i></button>\n" +
+                        "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"delInvoice("+ivc.id+")\"><i class=\"fa fa-trash-o text-color\"  title=\"Xóa\" aria-hidden=\"true\"></i></button>\n" +
+                        "                                    </td>\n" +
+                        "                                </tr>";
+                    }
+                },
+                error: function(error) {
+                    console.error("Xảy ra lỗi:", error);
+                }
+            });
+        }
+    }
+    function cancelInvoice(id) {
+        var confirmation = confirm("Bạn có chắc muốn hủy đơn hàng ?");
+        if (confirmation) {
+            $.ajax({
+                type: "POST",
+                url: "cancelInvoice",
+                data: { id: id },
+                success: function (data) {
+                    var jsonData = JSON.parse(data);
+                    var htmlData = jsonData.htmlData;
+                    var res = jsonData.res;
+                    alert(res);
+                    var row = document.getElementById("innerInvoice");
+                    row.innerHTML = ""; // Clear existing content
+                    for (var i = 0; i < htmlData.length; i++) {
+                        var ivc = htmlData[i];
+                        row.innerHTML += "<tr data-bs-toggle=\"modal\" data-bs-target=\"#detailInvoice\" onclick=\"detailInvoice("+ivc.id+")\">\n" +
+                        "                                    <td class=\"w40\">"+(i+1)+"</td>\n" +
+                        "                                    <td>"+ivc.id+"</td>\n" +
+                        "                                    <td>"+ivc.idAccount+"</td>\n" +
+                        "                                    <td>"+ivc.startDate+"</td>\n" +
+                        "                                     <td>"+ivc.status+"</td>\n" +
+                        "                                    <td>\n" +
+                        "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"acceptInvoice("+ivc.id+")\"><i class=\"fa fa-check text-color\"  title=\"Xác nhận đơn hàng\" aria-hidden=\"true\"></i></button>\n" +
+                            "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"cancelInvoice("+ivc.id+")\"><i class=\"fa fa-times text-color\"  title=\"Hủy đơn hàng\" aria-hidden=\"true\"></i></button>\n" +
+                            "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"delInvoice("+ivc.id+")\"><i class=\"fa fa-trash-o text-color\"  title=\"Xóa\" aria-hidden=\"true\"></i></button>\n" +
+                        "                                    </td>\n" +
+                        "                                </tr>";
+                    }
+                },
+                error: function(error) {
+                    console.error("Xảy ra lỗi:", error);
+                }
+            });
+        }
+    }
+    function delInvoice(id) {
+        var confirmation = confirm("Bạn có chắc muốn xóa đơn hàng này ?");
+        if (confirmation) {
+            $.ajax({
+                type: "POST",
+                url: "delInvoice",
+                data: { id: id },
+                success: function (data) {
+                    var jsonData = JSON.parse(data);
+                    var htmlData = jsonData.htmlData;
+                    var res = jsonData.res;
+                    alert(res);
+                    var row = document.getElementById("innerInvoice");
+                    row.innerHTML = ""; // Clear existing content
+                    for (var i = 0; i < htmlData.length; i++) {
+                        var ivc = htmlData[i];
+                        row.innerHTML += "<tr data-bs-toggle=\"modal\" data-bs-target=\"#detailInvoice\" onclick=\"detailInvoice("+ivc.id+")\">\n" +
+                        "                                    <td class=\"w40\">"+(i+1)+"</td>\n" +
+                        "                                    <td>"+ivc.id+"</td>\n" +
+                        "                                    <td>"+ivc.idAccount+"</td>\n" +
+                        "                                    <td>"+ivc.startDate+"</td>\n" +
+                        "                                     <td>"+ivc.status+"</td>\n" +
+                        "                                    <td>\n" +
+                        "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"acceptInvoice("+ivc.id+")\"><i class=\"fa fa-check text-color\"  title=\"Xác nhận đơn hàng\" aria-hidden=\"true\"></i></button>\n" +
+                        "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"cancelInvoice("+ivc.id+")\"><i class=\"fa fa-times text-color\"  title=\"Hủy đơn hàng\" aria-hidden=\"true\"></i></button>\n" +
+                        "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"delInvoice("+ivc.id+")\"><i class=\"fa fa-trash-o text-color\"  title=\"Xóa\" aria-hidden=\"true\"></i></button>\n" +
+                        "                                    </td>\n" +
+                        "                                </tr>";
+                    }
+                },
+                error: function(error) {
+                    console.error("Xảy ra lỗi:", error);
+                }
+            });
+        }
     }
 </script>
 <script src="slider/owlcarousel/owl.carousel.min.js"></script>
