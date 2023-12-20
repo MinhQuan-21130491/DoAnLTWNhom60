@@ -735,18 +735,21 @@
                                 Trạng thái
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" href="#">Chưa xác nhận</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="filInvoice('')">Tất cả</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Đã xác nhận</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="filInvoice('Chưa xác nhận')">Chưa xác nhận</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Đã hủy</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="filInvoice('Đã xác nhận')">Đã xác nhận</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#" onclick="filInvoice('Đã hủy')">Đã hủy</a></li>
                             </ul>
                         </div>
-                        <div class="ms-auto"><label for = "filterInvoice" >Ngày xuất hóa đơn:</label> <input type="date" id="filterInvoice"><button class ="bd-full bgcolor-orange ms-2 rounded-1" id ="btnFilter">Lọc</button></div>
+                        <div class="ms-auto"><label for = "filterInvoice" >Ngày xuất hóa đơn:</label> <input type="date" id="filterInvoice"><button class ="bd-full bgcolor-orange ms-2 rounded-1" id ="btnFilter" onclick="searchByDate()">Lọc</button></div>
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-lg-12 overflow-auto">
+                        <p class="text-danger text-center my-0" id = "res"></p>
                         <table class="mb-3" >
                             <thead>
                                 <tr>
@@ -755,6 +758,7 @@
                                     <td>MÃ KHÁCH HÀNG</td>
                                     <td>NGÀY XUẤT</td>
                                     <td>TRẠNG THÁI</td>
+                                    <td></td>
                                 </tr>
                             </thead>
                             <tbody id = "innerInvoice">
@@ -2331,6 +2335,79 @@
                 }
             });
         }
+    }
+    function filInvoice(status) {
+            $.ajax({
+                type: "GET",
+                url: "filByStatus",
+                data: { status: status },
+                success: function (data) {
+                    var jsonData = JSON.parse(data);
+                    var htmlData = jsonData.htmlData;
+                    var res = jsonData.res;
+                    if(res !== "") {
+                        $('#res').text(res);
+                        $('#res').removeClass('my-0');
+                    }else {
+                        $('#res').text("");
+                        $('#res').addClass('my-0');
+                    }
+                    var row = document.getElementById("innerInvoice");
+                    row.innerHTML = ""; // Clear existing content
+                    for (var i = 0; i < htmlData.length; i++) {
+                        var ivc = htmlData[i];
+                        row.innerHTML += "<tr data-bs-toggle=\"modal\" data-bs-target=\"#detailInvoice\" onclick=\"detailInvoice("+ivc.id+")\">\n" +
+                        "                                    <td class=\"w40\">"+(i+1)+"</td>\n" +
+                        "                                    <td>"+ivc.id+"</td>\n" +
+                        "                                    <td>"+ivc.idAccount+"</td>\n" +
+                        "                                    <td>"+ivc.startDate+"</td>\n" +
+                        "                                     <td>"+ivc.status+"</td>\n" +
+                        "                                    <td>\n" +
+                        "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"acceptInvoice("+ivc.id+")\"><i class=\"fa fa-check text-color\"  title=\"Xác nhận đơn hàng\" aria-hidden=\"true\"></i></button>\n" +
+                        "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"cancelInvoice("+ivc.id+")\"><i class=\"fa fa-times text-color\"  title=\"Hủy đơn hàng\" aria-hidden=\"true\"></i></button>\n" +
+                        "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"delInvoice("+ivc.id+")\"><i class=\"fa fa-trash-o text-color\"  title=\"Xóa\" aria-hidden=\"true\"></i></button>\n" +
+                        "                                    </td>\n" +
+                        "                                </tr>";
+                    }
+                },
+                error: function(error) {
+                    console.error("Xảy ra lỗi:", error);
+                }
+            });
+    }
+    function searchByDate() {
+            $.ajax({
+                type: "GET",
+                url: "searchByDate",
+                data: { date: $('#filterInvoice').val(),},
+                success: function (data) {
+                    var jsonData = JSON.parse(data);
+                    var htmlData = jsonData.htmlData;
+                    var res = jsonData.res;
+                        $('#res').text(res);
+                        $('#res').removeClass('my-0');
+                    var row = document.getElementById("innerInvoice");
+                    row.innerHTML = ""; // Clear existing content
+                    for (var i = 0; i < htmlData.length; i++) {
+                        var ivc = htmlData[i];
+                        row.innerHTML += "<tr data-bs-toggle=\"modal\" data-bs-target=\"#detailInvoice\" onclick=\"detailInvoice("+ivc.id+")\">\n" +
+                        "                                    <td class=\"w40\">"+(i+1)+"</td>\n" +
+                        "                                    <td>"+ivc.id+"</td>\n" +
+                        "                                    <td>"+ivc.idAccount+"</td>\n" +
+                        "                                    <td>"+ivc.startDate+"</td>\n" +
+                        "                                     <td>"+ivc.status+"</td>\n" +
+                        "                                    <td>\n" +
+                        "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"acceptInvoice("+ivc.id+")\"><i class=\"fa fa-check text-color\"  title=\"Xác nhận đơn hàng\" aria-hidden=\"true\"></i></button>\n" +
+                        "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"cancelInvoice("+ivc.id+")\"><i class=\"fa fa-times text-color\"  title=\"Hủy đơn hàng\" aria-hidden=\"true\"></i></button>\n" +
+                        "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"delInvoice("+ivc.id+")\"><i class=\"fa fa-trash-o text-color\"  title=\"Xóa\" aria-hidden=\"true\"></i></button>\n" +
+                        "                                    </td>\n" +
+                        "                                </tr>";
+                    }
+                },
+                error: function(error) {
+                    console.error("Xảy ra lỗi:", error);
+                }
+            });
     }
 </script>
 <script src="slider/owlcarousel/owl.carousel.min.js"></script>

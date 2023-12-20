@@ -79,11 +79,10 @@ textarea {
 .btn:focus {
    border: none;
 }
-.success {
-    background-color:#198754;
-    color: white;
+.pot {
+    cursor: pointer;
+    transition: 0.4s;
 }
-.cancle {
-    background-color: #dc3545;
-    color: white;
+.pot:hover {
+    color: var(--color_backgroud);
 }

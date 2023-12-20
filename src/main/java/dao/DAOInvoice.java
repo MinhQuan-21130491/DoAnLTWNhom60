@@ -110,4 +110,52 @@ public class DAOInvoice {
         }
         return re;
     }
+    public static ArrayList<Invoice> getListByStatus(int st) {
+        ArrayList<Invoice> list = new ArrayList<>();
+        Connection connection = JDBCUtil.getConnection();
+        String sql = "select id, idAccount, address, transFee, payMethod, startDate, status from invoices where status =?" ;
+        try {
+            PreparedStatement pr = connection.prepareStatement(sql);
+            pr.setInt(1, st);
+            ResultSet resultSet = pr.executeQuery();
+            while(resultSet.next()) {
+                int id = resultSet.getInt("id");
+                int idAccount = resultSet.getInt("idAccount");
+                String address = resultSet.getString("address");
+                double transFee = resultSet.getDouble("transFee");
+                String payMethod = resultSet.getString("payMethod");
+                Date startDate = resultSet.getDate("startDate");
+                int status = resultSet.getInt("status");
+                Invoice invoice = new Invoice(id, idAccount, address, transFee, payMethod, startDate, status);
+                list.add(invoice);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
+    public static ArrayList<Invoice> searchByStartDate(Date d) {
+        ArrayList<Invoice> list = new ArrayList<>();
+        Connection connection = JDBCUtil.getConnection();
+        String sql = "select id, idAccount, address, transFee, payMethod, startDate, status from invoices where startDate =?" ;
+        try {
+            PreparedStatement pr = connection.prepareStatement(sql);
+            pr.setDate(1, d);
+            ResultSet resultSet = pr.executeQuery();
+            while(resultSet.next()) {
+                int id = resultSet.getInt("id");
+                int idAccount = resultSet.getInt("idAccount");
+                String address = resultSet.getString("address");
+                double transFee = resultSet.getDouble("transFee");
+                String payMethod = resultSet.getString("payMethod");
+                Date startDate = resultSet.getDate("startDate");
+                int status = resultSet.getInt("status");
+                Invoice invoice = new Invoice(id, idAccount, address, transFee, payMethod, startDate, status);
+                list.add(invoice);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
 }
