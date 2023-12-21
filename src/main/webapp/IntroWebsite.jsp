@@ -1,3 +1,5 @@
+<%@ page import="service.WebService" %>
+<%@ page import="model.InforWebsite" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -79,8 +81,12 @@
                                                                       aria-hidden="true" data-bs-toggle="modal"
                                                                       data-bs-target="#editPolicy"></i></button>
         </h5>
-        <p><strong>Bảo hành:</strong> <span id="contentGuarantee">24</span> tháng kể từ ngày mua hàng.</p>
-        <p><strong>Đổi trả:</strong> trong vòng <span id="exchangeProduct">1</span> tháng kể từ ngày mua hàng, với điều
+        <%
+            int idPolicy = 1;
+            InforWebsite inforWebsite = WebService.getInstance().getPolicyInformation(idPolicy);
+        %>
+        <p><strong>Bảo hành:</strong> <span id="contentGuarantee"><%= inforWebsite.getGuarantee() %></span> tháng kể từ ngày mua hàng.</p>
+        <p><strong>Đổi trả:</strong> trong vòng <span id="exchangeProduct"><%= inforWebsite.getExchange() %></span> tháng kể từ ngày mua hàng, với điều
             kiện là hàng hóa bị lỗi khi vận chuyển hoặc do nhà sản xuất, chúng tôi sẽ không chịu trách nhiệm đổi trả
             hàng hóa nếu lỗi là do phía khách hàng.</p>
     </div>
@@ -89,22 +95,23 @@
         <div class="modal-dialog modal-sm ">
             <div class="modal-content">
                 <div class="modal-body">
-                    <form class="form " action="" method="post" onsubmit="return editGua()">
+                    <form class="form " action="editPolicy" method="post" onsubmit="return editGua()">
+                        <input type="hidden" name="id" value="<%= inforWebsite.getId() %>">
                         <div class="row px-2">
                             <div class=" text-end">
                                 <button type="button" class="btn-close " data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
+                                        aria-label="Close" data-bs-target="#editPolicy"></button>
                             </div>
                             <h5 class="text-center">CHỈNH SỬA CHÍNH SÁCH</h5>
                             <hr>
                             <div class="col-md-12 m-auto">
                                 <div class="mb-3 ">
                                     <label class="form-label pe-3" for="monthGua">Bảo hành</label>
-                                    <input type="number" class="month" id="monthGua" name="monthGua"> tháng
+                                    <input type="number" class="month" id="monthGua" name="monthGua" value="<%= inforWebsite.getGuarantee() %>"> tháng
                                 </div>
                                 <div class="mb-3 ">
                                     <label class="form-label pe-3" for="monthChange">Đổi trả</label>
-                                    <input type="number" class="month" id="monthChange" name="monthChange"> tháng
+                                    <input type="number" class="month" id="monthChange" name="monthChange" value="<%= inforWebsite.getExchange() %>"> tháng
                                 </div>
                             </div>
                             <div class="row p-0">
@@ -128,17 +135,22 @@
                                                                        aria-hidden="true" data-bs-toggle="modal"
                                                                        data-bs-target="#editContact"></i></button>
         </h5>
-        <p><strong>Địa chỉ:</strong> <span id="address">230A Tô Ngọc Vân, Phường Linh Xuân, Thành phố Thủ Đức</span>.
+        <%
+            int idContact = 1;
+            InforWebsite inforContactWebsite = WebService.getInstance().getContactInformation(idContact);
+        %>
+        <p><strong>Địa chỉ:</strong> <span id="address"><%= inforContactWebsite.getAddress()%></span>.
         </p>
-        <p><strong>Email:</strong> <span id="email">homedecorsqn@gmail.com</span></p>
-        <p><strong>Số điện thoại:</strong> <span id="phoneNumber">0812295775</span></p>
+        <p><strong>Email:</strong> <span id="email"><%= inforContactWebsite.getEmail() %></span></p>
+        <p><strong>Số điện thoại:</strong> <span id="phoneNumber"><%= inforContactWebsite.getPhoneNumber() %></span></p>
     </div>
     <!--edit contact-->
     <div class="modal fade" id="editContact" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog ">
             <div class="modal-content">
                 <div class="modal-body">
-                    <form class="form " action="" method="post" onsubmit="return editContact()">
+                    <form class="form " action="editContact" method="post" onsubmit="return editContact()">
+                        <input type="hidden" name="id" value="<%= inforContactWebsite.getId() %>">
                         <div class="row px-2">
                             <span class="d-none" id="id"></span>
                             <div class=" text-end">
@@ -151,19 +163,19 @@
                                 <div class="mb-3">
                                     <label class="form-label">Địa chỉ</label><span class="text-danger"
                                                                                    id="errEditAddress"></span>
-                                    <input type="text" class="form-control" id="editAddress" name="editAddress">
+                                    <input type="text" class="form-control" id="editAddress" name="editAddress" value="<%=inforContactWebsite.getAddress()%>">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Email</label><span class="text-danger"
                                                                                  id="errEditEmail"></span>
                                     <input type="text" class="form-control" id="editEmail"
-                                           name="editEmail">
+                                           name="editEmail" value="<%= inforContactWebsite.getEmail() %>">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Số điện thoại</label><span class="text-danger"
                                                                                          id="errEditPhoneNumber"></span>
                                     <input type="text" class="form-control" id="editPhoneNumber"
-                                           name="editPhoneNumber">
+                                           name="editPhoneNumber" value="<%= inforContactWebsite.getPhoneNumber() %>">
                                 </div>
                             </div>
                             <div class="row p-0">
@@ -204,6 +216,18 @@
             flag = false;
             monthChange.style.borderColor = 'red';
         }else {
+            monthChange.style.borderColor = '#dee2e6';
+        }
+        if(monthGua.value <0){
+            flag = false;
+            monthGua.style.borderColor = 'red';
+        }else{
+            monthGua.style.borderColor = '#dee2e6';
+        }
+        if(monthChange.value < 0 ){
+            flag = false;
+            monthChange.style.borderColor = 'red';
+        }else{
             monthChange.style.borderColor = '#dee2e6';
         }
         return flag;
@@ -248,6 +272,7 @@
         }
         return flag;
     }
+
 </script>
 </body>
 

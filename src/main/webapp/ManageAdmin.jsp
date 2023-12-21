@@ -525,6 +525,12 @@
             </div>
             <div class="row mt-3">
                 <div class="col-lg-12 overflow-auto mheight">
+                    <%
+//                        String res = (String) request.getAttribute("res");
+//                        res = (res == null) ? "" : res;
+                        ArrayList<Product> listProductSell = (ArrayList<Product>) request.getAttribute("listAllProduct");
+                        int sttPS = 1;
+                    %>
                     <table class="mb-3">
                         <thead>
                         <tr>
@@ -539,25 +545,34 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <% if (listProductSell != null && !listProductSell.isEmpty()) {
+                            for (Product p: listProductSell) {
+                                if(p.getQuantity() >0){
+                            %>
                         <tr>
-                            <td class="w40">1</td>
-                            <td class="w40">1</td>
+                            <td class="w40"><%= sttPS++ %></td>
+                            <td class="w40"><%= p.getIdProduct() %></td>
                             <td class="w260">
                                 <div class="item d-flex justify-content-center">
                                     <div class="item_img">
                                         <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
                                              class="card-img-top img_p_cart" alt="..."/>
                                     </div>
-                                    <span class="item_text">Ghế massage siêu cấp pro</span>
+                                    <span class="item_text"><%= p.getName() %></span>
                                 </div>
                             </td>
                             <td>
-                                ₫<span>1.000.000</span>
+                                ₫<span><%=nF.format(p.getPrice())%></span>
                             </td>
-                            <td>Màu đen</td>
-                            <td>100x50x70</td>
-                            <td>50</td>
+                            <td><%= p.getColor() %></td>
+                            <td><%= p.getWidth() %>x<%= p.getHeight() %>x<%= p.getLength() %></td>
+                            <td><%= p.getQuantity() %></td>
                         </tr>
+                        <%
+                                    }
+                                }
+                            }
+                        %>
                         </tbody>
                     </table>
                 </div>

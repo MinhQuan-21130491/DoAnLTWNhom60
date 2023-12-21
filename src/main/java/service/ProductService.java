@@ -110,13 +110,6 @@ public class ProductService {
         }
         return listProduct;
     }
-    public  int delCategory(int id) {
-        try {
-            return  DAOCategory.delCategory(id);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
     public static void main(String[] args) {
 //        System.out.println(ProductService.getInstance().listSixProduct(0));
     }
