@@ -29,7 +29,7 @@ public class ChangePassword extends HttpServlet{
         String repassEncrypt = Encrypt.toSHA1(repassword);
         String err = "";
         HttpSession session = req.getSession();
-        Account account = (Account) session.getAttribute("auth");
+        Account account = (Account) session.getAttribute("account");
 //        String username = "sangcs321";
 //        Account account = AccountService.getInstance().selectAccountByUserName(username);
 
