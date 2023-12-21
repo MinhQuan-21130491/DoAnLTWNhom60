@@ -85,4 +85,9 @@ public class Invoice {
     public void setDetails(ArrayList<InvoiceDetail> details) {
         this.details = details;
     }
+    public double totalPrice() {
+        double re =0;
+        for (InvoiceDetail ivd: details) re += ivd.getPrice() * ivd.getQuantity();
+        return re;
+    }
 }

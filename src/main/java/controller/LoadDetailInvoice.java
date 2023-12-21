@@ -47,6 +47,7 @@
             invoiceJSON.put("phoneNumber", a.getPhoneNumber());
             NumberFormat nF = NumberFormat.getCurrencyInstance();
             double totalPrice = 0;
+            String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
             for(Product p: listP) {
                 JSONObject productJSON = new JSONObject();
                 productJSON.put("idProduct", p.getIdProduct());
@@ -54,6 +55,8 @@
                 productJSON.put("price", nF.format(p.getPrice()));
                 productJSON.put("quantity", p.getQuantity());
                 productJSON.put("color", p.getColor());
+                String urlImage = (p.getImages().isEmpty())?"":p.getImages().get(0).getUrl();
+                productJSON.put("image", url +"/Products/" +urlImage);
                 productJSON.put("totalPrice", nF.format(p.getPrice()*p.getQuantity()));
                 htmlDataArray.put(productJSON);
                 totalPrice += p.getPrice()*p.getQuantity();

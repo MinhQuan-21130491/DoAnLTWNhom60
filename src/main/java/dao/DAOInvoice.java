@@ -11,9 +11,35 @@ public class DAOInvoice {
     public static ArrayList<Invoice> listInvoice() {
         ArrayList<Invoice> list = new ArrayList<>();
         Connection connection = JDBCUtil.getConnection();
-        String sql = "select id, idAccount, address, transFee, payMethod, startDate, status from invoices";
+        String sql = "select id, idAccount, address, transFee, payMethod, startDate, status from invoices where hideAdmin =?";
         try {
             PreparedStatement pr = connection.prepareStatement(sql);
+            pr.setInt(1, 0);
+            ResultSet resultSet = pr.executeQuery();
+            while(resultSet.next()) {
+                int id = resultSet.getInt("id");
+                int idAccount = resultSet.getInt("idAccount");
+                String address = resultSet.getString("address");
+                double transFee = resultSet.getDouble("transFee");
+                String payMethod = resultSet.getString("payMethod");
+                Date startDate = resultSet.getDate("startDate");
+                int status = resultSet.getInt("status");
+                Invoice invoice = new Invoice(id, idAccount, address, transFee, payMethod, startDate, status);
+                list.add(invoice);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
+    public static ArrayList<Invoice> listInvoiceCus(int idAcc) {
+        ArrayList<Invoice> list = new ArrayList<>();
+        Connection connection = JDBCUtil.getConnection();
+        String sql = "select id, idAccount, address, transFee, payMethod, startDate, status from invoices where hideCus =? and idAccount =?";
+        try {
+            PreparedStatement pr = connection.prepareStatement(sql);
+            pr.setInt(1, 0);
+            pr.setInt(2, idAcc);
             ResultSet resultSet = pr.executeQuery();
             while(resultSet.next()) {
                 int id = resultSet.getInt("id");
@@ -83,8 +109,27 @@ public class DAOInvoice {
             pr.setInt(1, idInvoice);
             ResultSet resultSet = pr.executeQuery();
             while(resultSet.next()) {
-                pr = connection.prepareStatement("delete from invoices where id =?");
-                pr.setInt(1, idInvoice);
+                pr = connection.prepareStatement("update invoices set hideAdmin =? where id =?");
+                pr.setInt(1, 1);
+                pr.setInt(2, idInvoice);
+                re = pr.executeUpdate();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return re;
+    }
+    public static synchronized int delInvoiceCus(int idInvoice) {
+        int re = 0;
+        Connection connection = JDBCUtil.getConnection();
+        try {
+            PreparedStatement pr = connection.prepareStatement( "select id, idAccount, address, transFee, payMethod, startDate, status from invoices where id =?");
+            pr.setInt(1, idInvoice);
+            ResultSet resultSet = pr.executeQuery();
+            while(resultSet.next()) {
+                pr = connection.prepareStatement("update invoices set hideCus =? where id =?");
+                pr.setInt(1, 1);
+                pr.setInt(2, idInvoice);
                 re = pr.executeUpdate();
             }
         } catch (SQLException e) {
@@ -113,10 +158,36 @@ public class DAOInvoice {
     public static ArrayList<Invoice> getListByStatus(int st) {
         ArrayList<Invoice> list = new ArrayList<>();
         Connection connection = JDBCUtil.getConnection();
-        String sql = "select id, idAccount, address, transFee, payMethod, startDate, status from invoices where status =?" ;
+        String sql = "select id, idAccount, address, transFee, payMethod, startDate, status from invoices where status =? and hideAdmin =?" ;
         try {
             PreparedStatement pr = connection.prepareStatement(sql);
             pr.setInt(1, st);
+            pr.setInt(2, 0);
+            ResultSet resultSet = pr.executeQuery();
+            while(resultSet.next()) {
+                int id = resultSet.getInt("id");
+                int idAccount = resultSet.getInt("idAccount");
+                String address = resultSet.getString("address");
+                double transFee = resultSet.getDouble("transFee");
+                String payMethod = resultSet.getString("payMethod");
+                Date startDate = resultSet.getDate("startDate");
+                int status = resultSet.getInt("status");
+                Invoice invoice = new Invoice(id, idAccount, address, transFee, payMethod, startDate, status);
+                list.add(invoice);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
+    public static ArrayList<Invoice> getListOfCus(int st, int idAcc) {
+        ArrayList<Invoice> list = new ArrayList<>();
+        Connection connection = JDBCUtil.getConnection();
+        String sql = "select id, idAccount, address, transFee, payMethod, startDate, status from invoices where status =? and idAccount =?" ;
+        try {
+            PreparedStatement pr = connection.prepareStatement(sql);
+            pr.setInt(1, st);
+            pr.setInt(2, idAcc);
             ResultSet resultSet = pr.executeQuery();
             while(resultSet.next()) {
                 int id = resultSet.getInt("id");

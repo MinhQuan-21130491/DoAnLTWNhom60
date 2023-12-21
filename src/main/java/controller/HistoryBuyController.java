@@ -16,25 +16,26 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet(name = "manage", value = "/manage")
-public class ManageController extends HttpServlet {
+@WebServlet(name = "History", value = "/history")
+public class HistoryBuyController extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("html/text; charset= UTF-8");
         HttpSession session = request.getSession();
         Object obj = session.getAttribute("account");
-        if(obj == null) {
+        if (obj == null) {
             response.sendRedirect("SignIn.jsp");
-        }else {
-            ArrayList<Product> listAllProduct = ProductService.getInstance().listAllProduct();
-            request.setAttribute("listAllProduct", listAllProduct);
-            ArrayList<Account> listAllAccount = AccountService.getInstance().listAllAccount();
-            request.setAttribute("listAllAccount", listAllAccount);
-            ArrayList<Invoice> listAllInvoice = InvoiceService.getInstance().listInvoice();
-            request.setAttribute("listAllInvoice", listAllInvoice);
+        } else {
+            Account account = (Account) obj;
+            ArrayList<Invoice> listInvoiceWaitting = InvoiceService.getInstance().getListOfCus(0, account.getId());
+            request.setAttribute("listInvoiceWaitting", listInvoiceWaitting);
+            ArrayList<Invoice> listInvoiceConfirmed = InvoiceService.getInstance().getListOfCus(1, account.getId());
+            request.setAttribute("listInvoiceConfirmed", listInvoiceConfirmed);
+            ArrayList<Invoice> listInvoiceCanceled = InvoiceService.getInstance().getListOfCus(2, account.getId());
+            request.setAttribute("listInvoiceCanceled", listInvoiceCanceled);
             try {
-                request.getRequestDispatcher("ManageAdmin.jsp").forward(request, response);
+                request.getRequestDispatcher("HistoryBuy.jsp").forward(request, response);
             } catch (ServletException e) {
                 throw new RuntimeException(e);
             }

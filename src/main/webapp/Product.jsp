@@ -49,7 +49,7 @@
     ArrayList<Category> listCate = (ArrayList<Category>) request.getAttribute("listCate");
     Cart cart = (Cart) session.getAttribute("Cart");
     ArrayList<Product> listProductByName = (ArrayList<Product>) request.getAttribute("listProductByName");
-    if (listProductByName == null || listProductByName.isEmpty()) {
+    if (listProductByName == null) {
 %>
 <div class="container p-0 mgt" >
     <a href="<%=url%>/homePage" class="color-gray lbhv text-decoration-none">Trang chủ  <i class="fa fa-angle-right color-gray" aria-hidden="true"></i>  </a> <span class="text-color" id ="sp">Sản phẩm</span>

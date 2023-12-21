@@ -25,6 +25,13 @@ public class InvoiceService {
         }
         return list;
     }
+    public ArrayList<Invoice> listInvoiceCus(int idAcc) {
+        ArrayList<Invoice> list = DAOInvoice.listInvoiceCus(idAcc);
+        for (Invoice i : list) {
+            i.setDetails(DAOInvoice.listDetail(i.getIdInvoice()));
+        }
+        return list;
+    }
 
     public Invoice selectById(int idInvoice) {
         Invoice invoice = DAOInvoice.selectById(idInvoice);
@@ -36,6 +43,9 @@ public class InvoiceService {
 
     public int delInvoice(int idInvoice) {
         return DAOInvoice.delInvoice(idInvoice);
+    }
+    public int delInvoiceCus(int idInvoice) {
+        return DAOInvoice.delInvoiceCus(idInvoice);
     }
 
     public int updateStatus(int idInvoice, int status) {
@@ -55,6 +65,12 @@ public class InvoiceService {
         }
         return list;
     }
-
+    public ArrayList<Invoice> getListOfCus(int st, int idAcc) {
+        ArrayList<Invoice> list = DAOInvoice.getListOfCus(st, idAcc);
+        for (Invoice i : list) {
+            i.setDetails(DAOInvoice.listDetail(i.getIdInvoice()));
+        }
+        return list;
+    }
     }
 

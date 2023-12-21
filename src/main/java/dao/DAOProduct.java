@@ -153,6 +153,7 @@ public class DAOProduct {
     @return ArrayList<Product>
     */
     public static ArrayList<Product> listProductByName(String nameProduct) {
+        nameProduct = nameProduct.trim();
         ArrayList<Product> list = new ArrayList<>();
         Connection connection = JDBCUtil.getConnection();
         // Tách từng từ trong chuỗi tìm kiếm

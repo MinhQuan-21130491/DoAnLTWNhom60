@@ -64,7 +64,6 @@ textarea {
 }
 #confirm {
     border-top:1px solid #dedbdb;
-    border-bot:1px solid #dedbdb;
 }
 #cancle {
     border-top:1px solid #dedbdb;
@@ -72,17 +71,11 @@ textarea {
 }
 .btn {
     border-radius: unset; !important;
+    border: 0px;
 }
 .btn:hover {
    color: var(--color_backgroud);
 }
 .btn:focus {
    border: none;
-}
-.pot {
-    cursor: pointer;
-    transition: 0.4s;
-}
-.pot:hover {
-    color: var(--color_backgroud);
 }
