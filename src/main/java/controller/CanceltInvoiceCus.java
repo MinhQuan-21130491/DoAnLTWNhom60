@@ -37,7 +37,7 @@ public class CanceltInvoiceCus extends HttpServlet {
             invoiceJSON.put("id", i.getIdInvoice());
             invoiceJSON.put("idAccount", i.getIdAccount());
             invoiceJSON.put("startDate", i.getStartDate());
-            invoiceJSON.put("status", "Đã hủy");
+            invoiceJSON.put("totalPrice", i.totalPrice());
             htmlDataArray.put(invoiceJSON);
         }
         jsonResponse.put("htmlData", htmlDataArray);

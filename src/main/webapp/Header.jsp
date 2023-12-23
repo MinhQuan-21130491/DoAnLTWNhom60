@@ -74,7 +74,7 @@
                                                     <li><hr class="dropdown-divider"></li>
                                                     <li><a class="dropdown-item" href="<%=url%>/manage">Quản lý</a></li>
                                                     <li><hr class="dropdown-divider"></li>
-                                                    <li><a class="dropdown-item" href="<%=url%>/changeInfo">Thay đổi thông tin</a></li><li>
+                                                    <li><a class="dropdown-item" href="<%=url%>/ChangeInfor.jsp">Thay đổi thông tin</a></li><li>
                                                     <hr class="dropdown-divider"></li>
                                                     <li><a class="dropdown-item" href="<%=url%>/ChangePW.jsp">Đổi mật khẩu</a></li>
                                                     <li><hr class="dropdown-divider"></li>
@@ -152,7 +152,7 @@
                                             <li><hr class="dropdown-divider"></li>
                                             <li><a class="dropdown-item" href="<%=url%>/history">Lịch sử mua hàng</a></li>
                                             <li><hr class="dropdown-divider"> </li>
-                                            <li><a class="dropdown-item" href="<%=url%>/changeInfo">Thay đổi thông tin</a></li><li>
+                                            <li><a class="dropdown-item" href="<%=url%>/ChangeInfor.jsp">Thay đổi thông tin</a></li><li>
                                             <hr class="dropdown-divider"></li>
                                             <li><a class="dropdown-item" href="<%=url%>/ChangePW.jsp">Đổi mật khẩu</a></li>
                                             <li><hr class="dropdown-divider"></li>

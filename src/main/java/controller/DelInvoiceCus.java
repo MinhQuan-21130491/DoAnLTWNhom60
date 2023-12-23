@@ -25,6 +25,7 @@ public class DelInvoiceCus extends HttpServlet {
         response.setContentType("html/text; charset= UTF-8");
         String idText = request.getParameter("id");
         int id = Integer.parseInt(idText);
+        String status = request.getParameter("status");
         String res = "";
         ArrayList<Invoice> listInvoice = null;
         NumberFormat nF = NumberFormat.getCurrencyInstance();
@@ -32,11 +33,11 @@ public class DelInvoiceCus extends HttpServlet {
         Object obj = session.getAttribute("account");
         Account account = (obj != null)?(Account) obj:null;
         if(InvoiceService.getInstance().delInvoiceCus(id)>0) {
-            listInvoice = InvoiceService.getInstance().listInvoiceCus(account.getId());
+            listInvoice = InvoiceService.getInstance().getListOfCus((status.equals("confirm")?1:2),0, account.getId());
             res = "Xóa thành công!";
         }else {
             res = "Đã xảy ra lỗi!";
-            listInvoice = InvoiceService.getInstance().listInvoiceCus(account.getId());
+            listInvoice = InvoiceService.getInstance().getListOfCus((status.equals("confirm")?1:2),0, account.getId());
         }
         JSONObject jsonResponse = new JSONObject();
         JSONArray htmlDataArray = new JSONArray();
@@ -44,7 +45,7 @@ public class DelInvoiceCus extends HttpServlet {
             JSONObject invoiceJSON = new JSONObject();
             invoiceJSON.put("id", i.getIdInvoice());
             invoiceJSON.put("startDate", i.getStartDate());
-            invoiceJSON.put("total", nF.format(i.totalPrice()));
+            invoiceJSON.put("totalPrice", nF.format(i.totalPrice()));
             htmlDataArray.put(invoiceJSON);
         }
         jsonResponse.put("htmlData", htmlDataArray);

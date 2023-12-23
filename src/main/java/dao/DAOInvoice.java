@@ -32,31 +32,6 @@ public class DAOInvoice {
         }
         return list;
     }
-    public static ArrayList<Invoice> listInvoiceCus(int idAcc) {
-        ArrayList<Invoice> list = new ArrayList<>();
-        Connection connection = JDBCUtil.getConnection();
-        String sql = "select id, idAccount, address, transFee, payMethod, startDate, status from invoices where hideCus =? and idAccount =?";
-        try {
-            PreparedStatement pr = connection.prepareStatement(sql);
-            pr.setInt(1, 0);
-            pr.setInt(2, idAcc);
-            ResultSet resultSet = pr.executeQuery();
-            while(resultSet.next()) {
-                int id = resultSet.getInt("id");
-                int idAccount = resultSet.getInt("idAccount");
-                String address = resultSet.getString("address");
-                double transFee = resultSet.getDouble("transFee");
-                String payMethod = resultSet.getString("payMethod");
-                Date startDate = resultSet.getDate("startDate");
-                int status = resultSet.getInt("status");
-                Invoice invoice = new Invoice(id, idAccount, address, transFee, payMethod, startDate, status);
-                list.add(invoice);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return list;
-    }
     public static Invoice selectById(int idInvoice) {
         Invoice invoice = null;
         Connection connection = JDBCUtil.getConnection();
@@ -180,14 +155,15 @@ public class DAOInvoice {
         }
         return list;
     }
-    public static ArrayList<Invoice> getListOfCus(int st, int idAcc) {
+    public static ArrayList<Invoice> getListOfCus(int st,int hide, int idAcc) {
         ArrayList<Invoice> list = new ArrayList<>();
         Connection connection = JDBCUtil.getConnection();
-        String sql = "select id, idAccount, address, transFee, payMethod, startDate, status from invoices where status =? and idAccount =?" ;
+        String sql = "select id, idAccount, address, transFee, payMethod, startDate, status from invoices where status =? and idAccount =? and hideCus =?" ;
         try {
             PreparedStatement pr = connection.prepareStatement(sql);
             pr.setInt(1, st);
             pr.setInt(2, idAcc);
+            pr.setInt(3, hide);
             ResultSet resultSet = pr.executeQuery();
             while(resultSet.next()) {
                 int id = resultSet.getInt("id");

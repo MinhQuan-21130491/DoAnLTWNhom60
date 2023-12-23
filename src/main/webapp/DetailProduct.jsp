@@ -125,7 +125,17 @@
                                 <div class="row" >
                                     <div class ="col-lg-12 d-flex" >
                                         <div class=" add-cart">
-                                            <a href="#">
+                                            <%
+                                                int quantity = 1;
+                                                if (cart != null) {
+                                                    if (cart.get(product.getIdProduct()) != null) {
+                                                        quantity = cart.get(product.getIdProduct()).getQuantity() + 1;
+                                                    }
+                                                } else {
+                                                    quantity = product.getQuantity();
+                                                }
+                                            %>
+                                            <a href="<%=url%>/cartController?id=<%=product.getIdProduct()%>&quantity=<%=quantity%>">
                                                 <button>Thêm vào giỏ hàng <i class="fa fa-shopping-cart cart"></i></button>
                                             </a>
 

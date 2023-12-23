@@ -93,7 +93,7 @@
                         if (account.getVerifyAccount().isStateVerify()) {%>
                     <label class="w-100">Tài khoản đã xác thực <i class="fa fa-check-circle text-success" aria-hidden="true"></i></label>
                     <%} else {%>
-                    <label class="w-100 ">Tài khoản của bạn chưa xác thực, <a href="VerifyAccount.jsp">xác thực ngay</a></label>
+                    <label class="w-100 ">Tài khoản của bạn chưa xác thực, <a href="reVerifyCode">xác thực ngay</a></label>
                     <%}%>
                 </td>
             </tr>

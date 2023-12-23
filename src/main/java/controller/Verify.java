@@ -14,9 +14,9 @@ import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
-@WebServlet(name = "verifyAccount", value = "/verifyAccount")
+@WebServlet(name = "VerifyAccount", value = "/verifyAccount")
 public class Verify extends HttpServlet {
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("html/text; charset= UTF-8");
@@ -64,10 +64,6 @@ public class Verify extends HttpServlet {
         } catch (ServletException e) {
             throw new RuntimeException(e);
         }
-    }
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
-        doGet(request, response);
     }
 }
 

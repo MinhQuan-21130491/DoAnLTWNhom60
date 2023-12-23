@@ -82,7 +82,7 @@
                     </div>
                     <div class="col-lg-6 text-end">
                         <%if(account.getRole() == 0) {%>
-                            <button class="btnAdd bgcolor bd-full" id ="btnAddAccount" data-bs-toggle="modal" data-bs-target="#addAccount" ><i class="fa fa-plus-circle text-color" aria-hidden="true" title="Thêm sản phẩm"></i></button>
+                            <button class="btnAdd bgcolor bd-full" id ="btnAddAccount" data-bs-toggle="modal" data-bs-target="#addAccount" ><i class="fa fa-plus-circle text-color" aria-hidden="true" title="Thêm tài khoản"></i></button>
                         <%}%>
                     </div>
                 </div>

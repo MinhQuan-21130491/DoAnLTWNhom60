@@ -28,11 +28,11 @@ public class HistoryBuyController extends HttpServlet {
             response.sendRedirect("SignIn.jsp");
         } else {
             Account account = (Account) obj;
-            ArrayList<Invoice> listInvoiceWaitting = InvoiceService.getInstance().getListOfCus(0, account.getId());
+            ArrayList<Invoice> listInvoiceWaitting = InvoiceService.getInstance().getListOfCus(0, 0, account.getId());
             request.setAttribute("listInvoiceWaitting", listInvoiceWaitting);
-            ArrayList<Invoice> listInvoiceConfirmed = InvoiceService.getInstance().getListOfCus(1, account.getId());
+            ArrayList<Invoice> listInvoiceConfirmed = InvoiceService.getInstance().getListOfCus(1, 0, account.getId());
             request.setAttribute("listInvoiceConfirmed", listInvoiceConfirmed);
-            ArrayList<Invoice> listInvoiceCanceled = InvoiceService.getInstance().getListOfCus(2, account.getId());
+            ArrayList<Invoice> listInvoiceCanceled = InvoiceService.getInstance().getListOfCus(2, 0, account.getId());
             request.setAttribute("listInvoiceCanceled", listInvoiceCanceled);
             try {
                 request.getRequestDispatcher("HistoryBuy.jsp").forward(request, response);
