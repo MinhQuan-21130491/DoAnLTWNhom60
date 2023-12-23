@@ -221,14 +221,15 @@ public class DAOAccount {
         JDBCUtil.closeConnection(connection);
         return verifyAccount;
     }
-    public static int updateVerifyCode(int newCode, int idAccount) {
+    public static int updateVerify(int newCode,LocalDateTime timeNew, int idAccount) {
         int re = 0;
         Connection connection = JDBCUtil.getConnection();
-        String sql = "update verify_account set verifyCode =? where idAccount =?";
+        String sql ="update verify_account set verifyCode =?, timeCode =? where idAccount =?";
         try {
             PreparedStatement pr = connection.prepareStatement(sql);
             pr.setInt(1, newCode);
-            pr.setInt(2, idAccount);
+            pr.setObject(2, timeNew);
+            pr.setInt(3, idAccount);
             re = pr.executeUpdate();
             JDBCUtil.closeConnection(connection);
         } catch (SQLException e) {
@@ -370,27 +371,6 @@ public class DAOAccount {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return re;
-    }
-    public static synchronized int delAccount(int id) throws SQLException {
-        int re = 0;
-        Connection connection = JDBCUtil.getConnection();
-            try {
-                PreparedStatement s = connection.prepareStatement("select id from accounts where id= ?");
-                s.setInt(1, id);
-                ResultSet resultSet = s.executeQuery();
-                if (resultSet.next()) {
-                    s = connection.prepareStatement("delete from verify_account where idAccount = ?");
-                    s.setInt(1, id);
-                    s.executeUpdate();
-                    s = connection.prepareStatement("delete from accounts where id = ?");
-                    s.setInt(1, id);
-                    re = s.executeUpdate();
-                }
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-            JDBCUtil.closeConnection(connection);
         return re;
     }
     public static synchronized int updateStatus(int id, boolean status) throws SQLException {

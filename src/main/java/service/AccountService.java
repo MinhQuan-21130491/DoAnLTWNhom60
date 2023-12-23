@@ -58,8 +58,8 @@ public class AccountService {
     public VerifyAccount selectVerifyAccountByIdAccount(int idAccount) {
         return DAOAccount.selectVerifyAccountByIdAccount(idAccount);
     }
-
-
+    public  int updateVerify(int newCode, LocalDateTime timeNew, int idAccount) {
+        return DAOAccount.updateVerify(newCode, timeNew, idAccount);
     public Account selectById(Account account) {
         return DAOAccount.selectById(account);
     public static int updateVerifyCode(int newCode, int idAccount) {
@@ -81,9 +81,6 @@ public class AccountService {
     public VerifyAccount getVrfOfAccount(int idAccount) {
         return DAOAccount.getVrfOfAccount(idAccount);
     }
-    public static int updateVerifyCode(int newCode, int idAccount) {
-        return DAOAccount.updateVerifyCode(newCode, idAccount);
-    }
     public static int updatePassword(String passEnCrypt, int idAccount) {
         return DAOAccount.updatePassword(passEnCrypt, idAccount);
     }
@@ -94,9 +91,6 @@ public class AccountService {
             a.setVerifyAccount(vrf);
         }
         return listAccount;
-    }
-    public int delAccount(int id) throws SQLException {
-        return DAOAccount.delAccount(id);
     }
     public int updateStatus(int id, boolean status) {
         try {

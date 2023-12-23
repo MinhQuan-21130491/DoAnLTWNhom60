@@ -26,12 +26,13 @@ public class UpdateStatusProduct extends HttpServlet {
         String res = "";
         Product p1 = ProductService.getInstance().getProductById(idP);
         try {
-            ProductService.getInstance().updateStatusProduct(idP, !p1.isStatus());
+            if(ProductService.getInstance().updateStatusProduct(idP, !p1.isStatus())>0) {
+                Product p2 = ProductService.getInstance().getProductById(idP);
+                res = (p2.isStatus())?"Mở bán sản phẩm thành công!":"Khóa sản phẩm thành công!";
+            }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            res ="Đã xảy ra lỗi!";
         }
-        Product p2 = ProductService.getInstance().getProductById(idP);
-        res = (p2.isStatus())?"Mở bán sản phẩm thành công!":"Khóa sản phẩm thành công!";
         JSONObject jsonResponse = new JSONObject();
         JSONArray htmlDataArray = new JSONArray();
         NumberFormat nF = NumberFormat.getCurrencyInstance();
