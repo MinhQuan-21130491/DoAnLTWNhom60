@@ -59,16 +59,7 @@ public class AccountService {
         return DAOAccount.selectVerifyAccountByIdAccount(idAccount);
     }
     public  int updateVerify(int newCode, LocalDateTime timeNew, int idAccount) {
-        return DAOAccount.updateVerify(newCode, timeNew, idAccount);
-    public Account selectById(Account account) {
-        return DAOAccount.selectById(account);
-    public static int updateVerifyCode(int newCode, int idAccount) {
-        return DAOAccount.updateVerifyCode(newCode, idAccount);
-    }
-    public static int updatePassword( String passEnCrypt, int idAccount) {
-        return DAOAccount.updatePassword(passEnCrypt,idAccount);
-
-    }
+        return DAOAccount.updateVerify(newCode, timeNew, idAccount);}
     public  int updateInfor(Account account){ return DAOAccount.updateInfor(account);}
     public  Account selectById(int id){
         return DAOAccount.selectById(id);
