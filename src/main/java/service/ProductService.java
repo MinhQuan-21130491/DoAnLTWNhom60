@@ -1,4 +1,5 @@
 package service;
+import dao.DAOCategory;
 import dao.DAOProduct;
 import model.Image;
 import model.Product;
@@ -118,7 +119,6 @@ public class ProductService {
             throw new RuntimeException(e);
         }
     }
-
     public int updateStatusProduct(int id, boolean status) throws SQLException {
         return DAOProduct.updateStatusProduct(id, status);
     }
@@ -130,8 +130,5 @@ public class ProductService {
     }
     public int updateProduct(Product p) throws SQLException {
         return DAOProduct.updateProduct(p);
-    }
-        public static void main(String[] args) {
-//        System.out.println(ProductService.getInstance().listSixProduct(0));
     }
 }
