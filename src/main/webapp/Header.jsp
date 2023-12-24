@@ -55,7 +55,7 @@
                                             <%
                                                 if (obj == null) {
                                             %>
-                                            <li class="nav-item dropdown hv"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tài khoản </a>
+                                            <li class="nav-item dropdown hv d-flex justify-content-center align-items-center"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tài khoản </a>
                                                 <ul class="dropdown-menu" aria-labelledby="">
                                                     <li><a class="dropdown-item" href="<%=url%>/SignIn.jsp">Đăng nhập</a></li>
                                                     <li><hr class="dropdown-divider"></li>
@@ -68,7 +68,7 @@
                                                 account = (Account) obj;
                                                 if ((account != null) &&(account.getRole() == 0 || account.getRole() ==1)) {
                                             %>
-                                            <li class="nav-item dropdown hv"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tài khoản </a>
+                                            <li class="nav-item dropdown hv d-flex justify-content-center align-items-center"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tài khoản </a>
                                                 <ul class="dropdown-menu" aria-labelledby="">
                                                     <li class ="dropdown-item"> Xin chào: <span class = "fw-bold " class = "name"><%=account.getName()%></span></li>
                                                     <li><hr class="dropdown-divider"></li>
@@ -105,7 +105,7 @@
                             <div class="col-lg-7 col-sm-8 col-8 bd-full  rounded-2 d-md-none d-sm-none d-none d-lg-block">
                                 <form action="<%=url%>/loadProductByName" method="get">
                                     <div class="form-search">
-                                        <input class="form-control border-0 search" type="text" aria-label="Search" name ="search">
+                                        <input class="form-control border-0 search" type="text" value="" aria-label="Search" name ="search">
                                         <button class="btn border-0" type="submit">
                                             <i class="fa fa-search" aria-hidden="true"></i>
                                         </button>
@@ -119,7 +119,7 @@
                                     <%
                                         if (obj == null) {
                                     %>
-                                    <li class="nav-item dropdown hv"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tài khoản </a>
+                                    <li class="nav-item dropdown hv d-flex justify-content-center align-items-center"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tài khoản </a>
                                         <ul class="dropdown-menu" aria-labelledby="">
                                             <li><a class="dropdown-item" href="<%=url%>/SignIn.jsp">Đăng nhập</a></li>
                                             <li><hr class="dropdown-divider"></li>
@@ -132,7 +132,7 @@
                                         account = (Account) obj;
                                         if ((account != null) &&(account.getRole() == 0 || account.getRole() ==1)) {
                                     %>
-                                    <li class="nav-item dropdown hv"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tài khoản </a>
+                                    <li class="nav-item dropdown hv d-flex justify-content-center align-items-center"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tài khoản </a>
                                         <ul class="dropdown-menu" aria-labelledby="">
                                             <li class ="dropdown-item"> Xin chào: <span class = "fw-bold " class = "name"><%=account.getName()%></span></li>
                                             <li><hr class="dropdown-divider"></li>
@@ -146,7 +146,7 @@
                                         </ul>
                                     </li>
                                     <%}else {%>
-                                    <li class="nav-item dropdown hv"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tài khoản </a>
+                                    <li class="nav-item dropdown hv d-flex justify-content-center align-items-center"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tài khoản </a>
                                         <ul class="dropdown-menu" aria-labelledby="">
                                             <li class ="dropdown-item"> Xin chào: <span class = "fw-bold " class = "name"><%= account.getName()%></span></li>
                                             <li><hr class="dropdown-divider"></li>
@@ -173,7 +173,7 @@
                     <div class="col-md-10 col-sm-10 col-10 bd-full rounded-2   ">
                         <form action="<%=url%>/loadProductByName" method="get">
                             <div class="form-search">
-                                <input class="form-control border-0 search" type="text " aria-label="Search" name ="search">
+                                <input class="form-control border-0 search" type="text " aria-label="Search" value="" name ="search">
                                 <button class="btn border-0" type="submit">
                                     <i class="fa fa-search" aria-hidden="true"></i>
                                 </button>
