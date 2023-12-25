@@ -54,7 +54,7 @@ public class ForgetPassword extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        //resp.setContentType("html/text; charset= UTF-8");
+        response.setContentType("html/text; charset= UTF-8");
         String username = request.getParameter("user_name");
         String email = request.getParameter("email");
         request.setAttribute("user_name", username);
@@ -81,30 +81,10 @@ public class ForgetPassword extends HttpServlet {
                 request.getRequestDispatcher(url).forward(request, response);
             }
         }
-        ;
-//        }
-//        try {
-//            String url = "";
-//            if (err.length() == 0) {
-//                url = "ForgetPW.jsp";
-//            } else {
-//                url = "SignIn.jsp";
-//            }
-//            req.getRequestDispatcher(url).forward(req, resp);
-//        } catch (ServletException e) {
-//            throw new RuntimeException(e);
-//        }
-
     }
 
     public static void main(String[] args) {
-//        String username = "abc";
-//        String err = "";
-//
-//        if (!AccountService.getInstance().checkExistUserName(username)) {
-//            err = "Tên tài khoản không tồn tại!";
-//            System.out.println(err);
-//        }
+
     }
 
 }
