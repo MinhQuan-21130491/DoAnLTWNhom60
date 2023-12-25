@@ -30,9 +30,13 @@ public class HomeController extends HttpServlet {
         ArrayList<String> listColorP = ProductService.getInstance().listColorP();
         request.setAttribute("listColorP", listColorP);
         try {
-            request.getRequestDispatcher("HomePage.jsp").forward(request,response);
+            request.getRequestDispatcher("HomePage.jsp").forward(request, response);
         } catch (ServletException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        doGet(request, response);
     }
 }

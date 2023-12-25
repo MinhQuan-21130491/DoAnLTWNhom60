@@ -58,15 +58,8 @@ public class AccountService {
     public VerifyAccount selectVerifyAccountByIdAccount(int idAccount) {
         return DAOAccount.selectVerifyAccountByIdAccount(idAccount);
     }
-
-
-    public static int updateVerifyCode(int newCode, int idAccount) {
-        return DAOAccount.updateVerifyCode(newCode, idAccount);
-    }
-    public static int updatePassword( String passEnCrypt, int idAccount) {
-        return DAOAccount.updatePassword(passEnCrypt,idAccount);
-
-    }
+    public  int updateVerify(int newCode, LocalDateTime timeNew, int idAccount) {
+        return DAOAccount.updateVerify(newCode, timeNew, idAccount);}
     public  int updateInfor(Account account){ return DAOAccount.updateInfor(account);}
     public  Account selectById(int id){
         return DAOAccount.selectById(id);
@@ -79,8 +72,9 @@ public class AccountService {
     public VerifyAccount getVrfOfAccount(int idAccount) {
         return DAOAccount.getVrfOfAccount(idAccount);
     }
-
-
+    public static int updatePassword(String passEnCrypt, int idAccount) {
+        return DAOAccount.updatePassword(passEnCrypt, idAccount);
+    }
     public ArrayList<Account> listAllAccount() {
         ArrayList<Account> listAccount = DAOAccount.listAllAccount();
         for(Account a:listAccount) {
@@ -89,9 +83,6 @@ public class AccountService {
         }
         return listAccount;
     }
-    public int delAccount(int id) throws SQLException {
-        return DAOAccount.delAccount(id);
-    }
     public int updateStatus(int id, boolean status) {
         try {
             return DAOAccount.updateStatus(id, status);
@@ -99,6 +90,8 @@ public class AccountService {
             throw new RuntimeException(e);
         }
     }
-
+    public int updateInforAccount(Account a) throws SQLException {
+        return DAOAccount.updateInforAccount(a);
+    }
 
 }

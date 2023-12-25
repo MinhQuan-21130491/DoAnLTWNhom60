@@ -28,9 +28,12 @@ public class UpdateStatusAccount extends HttpServlet {
         int id = Integer.parseInt(idText);
         String res = "";
         Account a1 = AccountService.getInstance().selectById(id);
-        AccountService.getInstance().updateStatus(id, !a1.isStatus());
-        Account a2 = AccountService.getInstance().selectById(id);
-        res = (a2.isStatus()) ? "Mở khóa tài khoản thành công!" : "Khóa tài khoản thành công!";
+        if(AccountService.getInstance().updateStatus(id, !a1.isStatus()) > 0) {
+            Account a2 = AccountService.getInstance().selectById(id);
+            res = (a2.isStatus()) ? "Mở khóa tài khoản thành công!" : "Khóa tài khoản thành công!";
+        }else {
+            res = "Đã xảy ra lỗi!";
+        }
         JSONObject jsonResponse = new JSONObject();
         JSONArray htmlDataArray = new JSONArray();
         String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();

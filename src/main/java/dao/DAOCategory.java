@@ -74,23 +74,21 @@ public class DAOCategory {
             s.setInt(1, id);
             ResultSet resultSet = s.executeQuery();
             if (resultSet.next()) {
+                s = connection.prepareStatement("delete from suppliers where idCate =?");
+                s.setInt(1, id);
+                s.executeUpdate();
+                s = connection.prepareStatement("delete from products where idCate =?");
+                s.setInt(1, id);
+                s.executeUpdate();
                 s = connection.prepareStatement("delete from categories where id =?");
                 s.setInt(1, id);
                 re = s.executeUpdate();
             }
-            resetAutoIncrement("categories", connection);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         JDBCUtil.closeConnection(connection);
         return re;
-    }
-    // Phương thức reset id
-    private static void resetAutoIncrement(String categories, Connection connection) throws SQLException {
-        String resetQuery = "ALTER TABLE " + categories + " AUTO_INCREMENT = 1";
-        try (Statement statement = connection.createStatement()) {
-            statement.executeUpdate(resetQuery);
-        }
     }
     // Cập nhật danh mục
     public static synchronized int updateCategory(Category c) throws SQLException {

@@ -153,6 +153,7 @@ public class DAOProduct {
     @return ArrayList<Product>
     */
     public static ArrayList<Product> listProductByName(String nameProduct) {
+        nameProduct = nameProduct.trim();
         ArrayList<Product> list = new ArrayList<>();
         Connection connection = JDBCUtil.getConnection();
         // Tách từng từ trong chuỗi tìm kiếm
@@ -200,10 +201,8 @@ public class DAOProduct {
     public static Product latestProduct() {
         Product product = null;
         Connection connection = JDBCUtil.getConnection();
-        String sql = "select p.id,p.idCate, p.name, p.price, p.priceImport, p.quantity, p.color, p.material, p.description, p.height, p.width, p.length " +
-                "from products as p " +
-                "where p.id = (select Max(id)" +
-                "              from products) ";
+        String sql = "select p.id,p.idCate, p.name, p.price, p.priceImport, p.quantity, p.color, p.material, p.description, p.height, p.width, p.length, p.status " +
+                "from products as p order by p.id DESC";
         try {
         PreparedStatement pr = connection.prepareStatement(sql);
         ResultSet resultSet = pr.executeQuery();
@@ -220,7 +219,10 @@ public class DAOProduct {
             double height = resultSet.getDouble("height");
             double length = resultSet.getDouble("length");
             int quantity = resultSet.getInt("quantity");
-            product = new Product(idProduct, idCate, name, priceImport, price, description, color, material, width, height, length, 1, quantity);
+            if(resultSet.getBoolean("status")) {
+                product = new Product(idProduct, idCate, name, priceImport, price, description, color, material, width, height, length, 1, quantity);
+                break;
+            }
         }
     } catch (SQLException e) {
         throw new RuntimeException(e);

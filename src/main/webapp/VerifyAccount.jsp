@@ -61,7 +61,7 @@
       err = (err == null)?" ": err;%>
     <div class="contain">
         <div class="signup-content">
-            <form id="verify-form" class="signup-form" action="<%=url%>/verifyAccount" method ="GET" onsubmit="return verifyAccount()">
+            <form id="verify-form" class="signup-form" action="<%=url%>/verifyAccount" method ="post" onsubmit="return verifyAccount()">
                 <div class="text-end pe-4">
                     <%Object obj = session.getAttribute("account");%>
                     <a class="text-decoration-none" href="<%=url%>/<%=(obj==null)?"SignIn.jsp":"homePage"%>">Bỏ qua</a>

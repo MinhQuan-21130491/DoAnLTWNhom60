@@ -32,7 +32,9 @@ public class ReVerify extends HttpServlet {
             account = AccountService.getInstance().selectAccountByEmail(email);
         }
         String code = NumberRandom.getSoNgauNhien();
-        if(AccountService.getInstance().updateVerifyCode(Integer.parseInt(code), account.getId()) > 0) {
+        int codeNew = Integer.parseInt(code);
+        LocalDateTime timeNew = LocalDateTime.now();
+        if(AccountService.getInstance().updateVerify(codeNew, timeNew,  account.getId()) > 0) {
             Email.sendEmail(account.getEmail(), "Xác thực tài khoản", "Mã xác thực tài khoản HomeDecor của bạn là: " + code);
             request.setAttribute("email", account.getEmail());
         }
