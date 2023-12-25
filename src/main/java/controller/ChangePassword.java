@@ -30,30 +30,35 @@ public class ChangePassword extends HttpServlet{
         String err = "";
         HttpSession session = req.getSession();
         Account account = (Account) session.getAttribute("account");
-//        String username = "sangcs321";
-//        Account account = AccountService.getInstance().selectAccountByUserName(username);
-
-        if(account==null){
-            err="Bạn chưa đăng nhập";
+        if(password==null){
+            err="Vui lòng nhập mật khẩu hiện tại!";
             req.setAttribute("errPass",err);
         }
-        if(passEncrypt.equals(account.getPassword())){
+        if(newpassword==null){
+            err="Vui lòng nhập mật khẩu hiện tại!";
+            req.setAttribute("errNewPass",err);
+        }
+        if(repassword==null){
+            err="Vui lòng nhập mật khẩu hiện tại!";
+            req.setAttribute("errReNewPass",err);
+        }else if(password==newpassword){
+            err="Mật khẩu mới trùng với mật khẩu hiện tại!";
+            req.setAttribute("errNewPass",err);
+        }
+        else if(!newpassword.equals(repassword)){
+            err="Mật khẩu mới không chính xác";
+            req.setAttribute("errReNewPass",err);
+        }
+        else if(passEncrypt.equals(account.getPassword())){
             AccountService.updatePassword(repassEncrypt,account.getId());
             session.setAttribute("password",newpassword);
+            boolean condition=true;
+            req.setAttribute("flag",condition);
         }else{
             err="Mật khẩu hiện tại không chính xác!";
             req.setAttribute("errPass",err);
         }
-        try {
-            String url = "";
-            if(err.length() == 0) {
-                url = "SignIn.jsp";
-            }else {
-                url = "ChangePW.jsp";
-            }
-            req.getRequestDispatcher(url).forward(req,resp);
-        } catch (ServletException e) {
-            throw new RuntimeException(e);
-        }
+            req.getRequestDispatcher("ChangePW.jsp").forward(req,resp);
+
     }
 }
