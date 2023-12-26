@@ -122,7 +122,7 @@
                 <span id="tt">THÀNH TIỀN: </span>  <%=nF.format(cart.total())%>
             </div>
             <div class="pay my-2">
-                <a href=#>
+                <a href="<%=url%>/Payment.jsp">
                     <button id="btnPay">Thanh toán</button>
                 </a>
             </div>
