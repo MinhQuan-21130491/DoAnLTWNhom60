@@ -29,6 +29,15 @@ public class HomeController extends HttpServlet {
         //load màu sản phẩm
         ArrayList<String> listColorP = ProductService.getInstance().listColorP();
         request.setAttribute("listColorP", listColorP);
+        //load carousel
+        String source = "D:\\ltw\\DoAn\\DoanLTWNhom60\\src\\main\\webapp\\image\\Carousel";
+        File fileSource = new File(source);
+        File[] filesNew = fileSource.listFiles();
+        ArrayList<String> listCarousel = new ArrayList<>();
+        for (File f: filesNew) {
+            listCarousel.add(f.getName());
+        }
+        request.setAttribute("listCarousel", listCarousel);
         try {
             request.getRequestDispatcher("HomePage.jsp").forward(request, response);
         } catch (ServletException e) {

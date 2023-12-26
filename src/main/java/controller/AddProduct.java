@@ -3,9 +3,8 @@ import model.Product;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import service.ProductService;
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
+
+import java.io.*;
 import java.nio.file.Paths;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -88,7 +87,6 @@ public class AddProduct extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println(jsonResponse.toString());
     }
-
     private boolean isFilePart(Part part) {
         return part.getSubmittedFileName() != null && !part.getSubmittedFileName().isEmpty();
     }

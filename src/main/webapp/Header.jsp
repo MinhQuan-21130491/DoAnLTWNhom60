@@ -1,13 +1,17 @@
 <%@ page import="model.Category" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="model.Account" %>
+<%@ page import="model.Cart" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <%
-    String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-            + request.getContextPath();
+    String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+    Cart cart = (Cart) session.getAttribute("Cart");
+    int qtt = (cart != null) ? cart.list().size() : 0;
+    String quantityItem = qtt + "";
+    if (qtt > 99) quantityItem = "99+";
 %>
 <% Object obj = session.getAttribute("account");
     Account account = null;%>
@@ -114,7 +118,7 @@
                             </div>
                             <div class="col-lg-2  d-lg-block d-md-none d-none ">
                                 <ul class="navbar-nav justify-content-end">
-                                    <li class="nav-item hv pe-2"><a class="nav-link" href="<%=url%>/Cart.jsp"><button class = "position-relative border-0 bg-light "><i class="fa fa-shopping-cart" aria-hidden="true" style="font-size: 25px"></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">99+<span class="visually-hidden">unread messages</span></span>
+                                    <li class="nav-item hv pe-2"><a class="nav-link" href="<%=url%>/Cart.jsp"><button class = "position-relative border-0 bg-light "><i class="fa fa-shopping-cart" aria-hidden="true" style="font-size: 25px"></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"><%=quantityItem%><span class="visually-hidden">unread messages</span></span>
                                     </button> </a> </li>
                                     <%
                                         if (obj == null) {
@@ -182,7 +186,7 @@
                     </div>
                     <div class="col-md-2 col-sm-2 col-2 ps-2 d-flex align-items-center">
                         <a class="nav-link" href="#">
-                            <button class = "position-relative border-0 bg-light "><i class="fa fa-shopping-cart" aria-hidden="true" style="font-size: 25px"></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">99+<span class="visually-hidden">unread messages</span></span></button>
+                            <button class = "position-relative border-0 bg-light "><i class="fa fa-shopping-cart" aria-hidden="true" style="font-size: 25px"></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"><%=quantityItem%>><span class="visually-hidden">unread messages</span></span></button>
                         </a>
                     </div>
                 </div>
