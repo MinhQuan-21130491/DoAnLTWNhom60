@@ -186,7 +186,7 @@
                     </div>
                     <div class="col-md-2 col-sm-2 col-2 ps-2 d-flex align-items-center">
                         <a class="nav-link" href="#">
-                            <button class = "position-relative border-0 bg-light "><i class="fa fa-shopping-cart" aria-hidden="true" style="font-size: 25px"></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"><%=quantityItem%>><span class="visually-hidden">unread messages</span></span></button>
+                            <button class = "position-relative border-0 bg-light "><i class="fa fa-shopping-cart" aria-hidden="true" style="font-size: 25px"></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"><%=quantityItem%><span class="visually-hidden">unread messages</span></span></button>
                         </a>
                     </div>
                 </div>
