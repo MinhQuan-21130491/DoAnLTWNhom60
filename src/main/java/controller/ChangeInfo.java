@@ -34,7 +34,9 @@ public class ChangeInfo extends HttpServlet {
             res = "Vui lòng nhập Email!";
         } else if (!email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
             res = "Email không hợp lệ!";
-        } else if (phoneNumber == null || phoneNumber.trim().isEmpty()) {
+        } else if(AccountService.getInstance().checkExistEmail(email)){
+            res = "Email đã tồn tại trong hệ thống!";
+        }else if (phoneNumber == null || phoneNumber.trim().isEmpty()) {
             res = "Vui lòng nhập số điện thoại!";
         } else if (!phoneNumber.matches("^\\d{10}$")) {
             res = "Số điện thoại không hợp lệ!";
