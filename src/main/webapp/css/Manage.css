@@ -43,4 +43,28 @@ textarea {
         left: 45%;
     }
 }
+<<<<<<< HEAD
 
+=======
+#wait {
+    border-left:1px solid #dedbdb;
+    border-top:1px solid #dedbdb;
+}
+#confirm {
+    border-top:1px solid #dedbdb;
+}
+#cancle {
+    border-top:1px solid #dedbdb;
+    border-right:1px solid #dedbdb;
+}
+.btn {
+    border-radius: unset; !important;
+    border: 0px;
+}
+.btn:hover {
+   color: var(--color_backgroud);
+}
+.btn:focus {
+   border: none;
+}
+>>>>>>> master

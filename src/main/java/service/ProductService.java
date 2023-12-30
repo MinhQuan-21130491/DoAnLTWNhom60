@@ -75,8 +75,10 @@ public class ProductService {
     */
     public Product latestProduct() {
         Product product = DAOProduct.latestProduct();
-        ArrayList<Image> listImageOfProduct = DAOProduct.listImageOfProduct(product);
-        product.setImages(listImageOfProduct);
+        if(product != null) {
+            ArrayList<Image> listImageOfProduct = DAOProduct.listImageOfProduct(product);
+            product.setImages(listImageOfProduct);
+        }
         return product;
     }
     /*
@@ -109,6 +111,18 @@ public class ProductService {
             p.setImages(listImageOfProduct);
         }
         return listProduct;
+    }
+    public int updateStatusProduct(int id, boolean status) throws SQLException {
+        return DAOProduct.updateStatusProduct(id, status);
+    }
+    public ArrayList<Image> getImgsByIdP(int idP) {
+        return DAOProduct.getImgsByIdP(idP);
+    }
+    public int delImgOfProduct(int id, String urlImage) throws SQLException {
+        return DAOProduct.delImgOfProduct(id, urlImage);
+    }
+    public int updateProduct(Product p) throws SQLException {
+        return DAOProduct.updateProduct(p);
     }
     public static void main(String[] args) {
 //        System.out.println(ProductService.getInstance().listSixProduct(0));

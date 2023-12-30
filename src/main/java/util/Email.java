@@ -63,10 +63,8 @@ public class Email {
 
 			// Gửi email
 			Transport.send(msg);
-			System.out.println("Gửi email thành công");
 			return true;
 		} catch (Exception e) {
-			System.out.println("Gặp lỗi trong quá trình gửi email");
 			e.printStackTrace();
 			return false;
 		}

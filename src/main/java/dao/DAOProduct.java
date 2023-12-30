@@ -2,12 +2,9 @@ package dao;
 import model.Image;
 import model.Product;
 import util.JDBCUtil;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
-import java.util.Date;
+
 
 public class DAOProduct {
     /*
@@ -152,6 +149,7 @@ public class DAOProduct {
     @return ArrayList<Product>
     */
     public static ArrayList<Product> listProductByName(String nameProduct) {
+        nameProduct = nameProduct.trim();
         ArrayList<Product> list = new ArrayList<>();
         Connection connection = JDBCUtil.getConnection();
         // Tách từng từ trong chuỗi tìm kiếm
@@ -199,10 +197,8 @@ public class DAOProduct {
     public static Product latestProduct() {
         Product product = null;
         Connection connection = JDBCUtil.getConnection();
-        String sql = "select p.id,p.idCate, p.name, p.price, p.priceImport, p.quantity, p.color, p.material, p.description, p.height, p.width, p.length " +
-                "from products as p " +
-                "where p.id = (select Max(id)" +
-                "              from products) ";
+        String sql = "select p.id,p.idCate, p.name, p.price, p.priceImport, p.quantity, p.color, p.material, p.description, p.height, p.width, p.length, p.status " +
+                "from products as p order by p.id DESC";
         try {
         PreparedStatement pr = connection.prepareStatement(sql);
         ResultSet resultSet = pr.executeQuery();
@@ -219,7 +215,10 @@ public class DAOProduct {
             double height = resultSet.getDouble("height");
             double length = resultSet.getDouble("length");
             int quantity = resultSet.getInt("quantity");
-            product = new Product(idProduct, idCate, name, priceImport, price, description, color, material, width, height, length, 1, quantity);
+            if(resultSet.getBoolean("status")) {
+                product = new Product(idProduct, idCate, name, priceImport, price, description, color, material, width, height, length, 1, quantity);
+                break;
+            }
         }
     } catch (SQLException e) {
         throw new RuntimeException(e);
@@ -384,6 +383,102 @@ public class DAOProduct {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return re;
+    }
+    public static synchronized int updateStatusProduct(int id, boolean status) throws SQLException {
+        int re = 0;
+        Connection connection = JDBCUtil.getConnection();
+        try {
+            PreparedStatement  s = connection.prepareStatement("select id from products where id =?");
+            s.setInt(1, id);
+            ResultSet resultSet = s.executeQuery();
+            if (resultSet.next()) {
+                s = connection.prepareStatement("update products set status =? where id =?");
+                s.setBoolean(1, status);
+                s.setInt(2, id);
+                re = s.executeUpdate();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        JDBCUtil.closeConnection(connection);
+        return re;
+    }
+    public static ArrayList<Image> getImgsByIdP(int idP) {
+        ArrayList<Image> imgs = new ArrayList<>();
+        Connection connection = JDBCUtil.getConnection();
+        String sql ="select id, idProduct, urlImage from images_product where idProduct =?";
+        try {
+            PreparedStatement pr = connection.prepareStatement(sql);
+            pr.setInt(1, idP);
+            ResultSet resultSet = pr.executeQuery();
+            while(resultSet.next()) {
+                int id = resultSet.getInt("id");
+                int idProduct = resultSet.getInt("idProduct");
+                String urlImage = resultSet.getString("urlImage");
+                Image image = new Image(id, idProduct, urlImage);
+                imgs.add(image);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return imgs;
+    }
+    public static int delImgOfProduct(int id, String urlImage) throws SQLException {
+        int re = 0;
+        Connection connection = JDBCUtil.getConnection();
+        Statement  s = connection.createStatement();
+        synchronized(s) {
+            try {
+                ResultSet resultSet = s.executeQuery("select id from images_product where idProduct=" + id);
+                if (resultSet.next()) {
+                    re = s.executeUpdate("DELETE FROM images_product WHERE urlImage = '" + urlImage + "'");
+
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            JDBCUtil.closeConnection(connection);
+        }
+        return re;
+    }
+    public static synchronized int updateProduct(Product p) throws SQLException {
+        int re = 0;
+        Connection connection = JDBCUtil.getConnection();
+        try {
+            PreparedStatement s = connection.prepareStatement("select id from products where id =?");
+            s.setInt(1, p.getIdProduct());
+            ResultSet resultSet = s.executeQuery();
+            if (resultSet.next()) {
+                s = connection.prepareStatement("UPDATE products SET " +
+                        "name = ?, " +
+                        "priceImport = ?, " +
+                        "price = ?, " +
+                        "description = ?, " +
+                        "color = ?, " +
+                        "material = ?, " +
+                        "width = ?, " +
+                        "height = ?, " +
+                        "length = ?, " +
+                        "quantity = ? " +
+                        "WHERE id = ?");
+                s.setString(1, p.getName());
+                s.setDouble(2, p.getPriceImport());
+                s.setDouble(3, p.getPrice());
+                s.setString(4, p.getDescription());
+                s.setString(5, p.getColor());
+                s.setString(6, p.getMaterial());
+                s.setDouble(7, p.getWidth());
+                s.setDouble(8, p.getHeight());
+                s.setDouble(9, p.getLength());
+                s.setInt(10, p.getQuantityAvailable());
+                s.setInt(11, p.getIdProduct());
+                re = s.executeUpdate();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        JDBCUtil.closeConnection(connection);
         return re;
     }
     public static void main(String[] args) {
