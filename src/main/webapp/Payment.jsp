@@ -81,7 +81,11 @@
             <div class="modal-dialog modal-md">
                 <div class="modal-content ">
                     <div class="modal-body">
-                            <form id="changeNam" onsubmit="return check()">
+                            <form id="changeNam" onsubmit="return check()" method="post" action="ChangeInforInPayment">
+                                <%
+                                    String res = (String) request.getAttribute("res");
+                                    res =(res == null)?"":res;
+                                %>
                                 <table>
                                     <thead>
                                     <div class=" text-end">
@@ -90,15 +94,19 @@
                                     <tr>
                                         <td colspan ="4">
                                             <h5 class = "pt-3 pb-1"> THAY ĐỔI THÔNG TIN </h5>
-                                            <div class="text-danger text-center w-100" id="error"></div>
+                                            <div class="text-danger text-center w-100" id="error"><%=res%></div>
                                         </td>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
                                         <td colspan="2">
+                                            <%
+                                                if (a.getVerifyAccount().isStateVerify()) {%>
                                             <label class="w-100">Tài khoản đã xác thực <i class="fa fa-check-circle text-success" aria-hidden="true"></i></label>
-                                            <label class="w-100 d-none">Tài khoản của bạn chưa xác thực, <a href="#">xác thực ngay</a></label>
+                                            <%} else {%>
+                                            <label class="w-100 ">Tài khoản của bạn chưa xác thực, <a href="reVerifyCode">xác thực ngay</a></label>
+                                            <%}%>
                                         </td>
                                     </tr>
                                     <tr id="changeName">
@@ -107,7 +115,7 @@
                                         </td>
                                         <td class="w-50">
                                             <div id="InName">
-                                                <input id="HienThiTen" name="TenHT" type="text">
+                                                <input id="HienThiTen" name="TenHT" type="text" value="<%=a.getName()%>">
                                             </div>
                                         </td>
                                     </tr>
@@ -117,7 +125,7 @@
                                         </td>
                                         <td>
                                             <div id="InSDT">
-                                                <input id="HienThiSDT" name="SDTHT" type="text">
+                                                <input id="HienThiSDT" name="SDTHT" type="text" value="<%=a.getPhoneNumber()%>">
                                             </div>
                                         </td>
                                     </tr>
@@ -127,7 +135,7 @@
                                         </td>
                                         <td>
                                             <div id="InGmail">
-                                                <input id="HienThiGmail" name="GmailHT" type="text">
+                                                <input id="HienThiGmail" name="GmailHT" type="text" value="<%=a.getEmail()%>">
                                             </div>
                                         </td>
                                     </tr>
@@ -137,9 +145,25 @@
                                         </td>
                                         <td >
                                             <div class = "gender">
+                                                <%
+                                                if(a.getGender().equals("Nam")){
+                                                %>
                                                 <label class="ms-0" for="male">Nam</label><input class="ms-2 me-3" type="radio" id="male" name="gender" value="Nam"  checked >
                                                 <label for="female">Nữ</label> <input class="ms-2 me-3" type="radio" id="female" name="gender" value="Nữ" >
                                                 <label for="other">Khác</label> <input class="ms-2 me-3" type="radio" id="other" name="gender" value="Khác">
+                                                <%
+                                                }else if(a.getGender().equals("Nữ")){
+                                                %>
+                                                <label class="ms-0" for="male">Nam</label><input class="ms-2 me-3" type="radio" id="male" name="gender" value="Nam">
+                                                <label for="female">Nữ</label> <input class="ms-2 me-3" type="radio" id="female" name="gender" value="Nữ" checked>
+                                                <label for="other">Khác</label> <input class="ms-2 me-3" type="radio" id="other" name="gender" value="Khác">
+                                                <%
+                                                    }else{
+                                                %>
+                                                <label class="ms-0" for="male">Nam</label><input class="ms-2 me-3" type="radio" id="male" name="gender" value="Nam">
+                                                <label for="female">Nữ</label> <input class="ms-2 me-3" type="radio" id="female" name="gender" value="Nữ" >
+                                                <label for="other">Khác</label> <input class="ms-2 me-3" type="radio" id="other" name="gender" value="Khác" checked>
+                                                <%}%>
                                             </div>
                                         </td>
                                     </tr>
@@ -149,7 +173,7 @@
                                         </td>
                                         <td>
                                             <div id="InNS">
-                                                <input id="HienThiNS" name="HienThiNS" type="date">
+                                                <input id="HienThiNS" name="HienThiNS" type="date" value="<%=a.getBirthDay()%>">
                                             </div>
                                         </td>
                                     </tr>
@@ -159,7 +183,7 @@
                                         </td>
                                         <td>
                                             <div id="InDiaChi">
-                                                <input id="HienThiDC" name="DCHT" type="text">
+                                                <input id="HienThiDC" name="DCHT" type="text" value="<%=a.getAddress()%>">
                                             </div>
                                         </td>
                                     </tr>
@@ -169,13 +193,13 @@
                                         </td>
                                         <td>
                                             <div id="">
-                                                <input id="HienThiDCReice" name="DCHT" type="text">
+                                                <input id="HienThiDCReice" name="DCNHHT" type="text" value="<%=a.getAddressReceive()%>">
                                             </div>
                                         </td>
                                     </tr>
                                     <tr id="SubmitSB">
                                         <td colspan="2">
-                                            <div><button id="submit" name="SB" onclick="my_function()" style="color: white"> LƯU </button></div>
+                                            <div><button id="submit" name="SB" onclick="" style="color: white"> LƯU </button></div>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -212,7 +236,7 @@
                             p = it.next();
                     %>
                     <tr class="tr">
-                        <td class="w40">1</td>
+                        <td class="w40"><%=stt%></td>
                         <td class="w300">
                             <div class="item d-flex justify-content-center">
                                 <div class="item_img">
@@ -286,6 +310,7 @@
 %>
 <div class="container p-0 mgt text-center fw-bold">Bạn chưa đăng nhập! <a href = <%=url%>/SignIn.jsp>Đăng nhập</a></div>
 <%      }
+
     }
 %>
 <!--end page content-->
@@ -324,7 +349,7 @@
             $('#totalMoney').text(total);
             $('#totalPay').text(total);
         }
-        totalMoneyPay()
+        totalMoneyPay();
 </script>
 </body>
 </html>

@@ -1,7 +1,11 @@
 package service;
 
 import dao.DAOInvoice;
+import dao.DAOProduct;
+import model.Image;
 import model.Invoice;
+import model.InvoiceDetail;
+import model.Product;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -64,5 +68,15 @@ public class InvoiceService {
         }
         return list;
     }
+    public int insertInvoice(Invoice in){
+        return DAOInvoice.insertInvoice(in);
+    }
+    public Invoice latestInvoice() {
+        return DAOInvoice.latestInvoice();
+    }
+    public int insertInvoiceDetail(InvoiceDetail idt){
+        return DAOInvoice.insertInvoiceDetail(idt);
+    }
+    public int idBestSaler(){return DAOInvoice.idBestSaler();}
     }
 
