@@ -1549,7 +1549,6 @@
             data: {
                 id: id,
             },
-
             success: function (data) {
                 var s = data.supplier;
                 $("#nameSupEdit").val(s.name);
@@ -1612,7 +1611,6 @@
         }
         if(flag) {
             var formData = new FormData();
-
             formData.append('id', idSup);
             formData.append('nameSupEdit', name.value);
             formData.append('addressSupEdit', address.value);
