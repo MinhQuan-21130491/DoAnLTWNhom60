@@ -222,10 +222,4 @@ public class Account {
                 ", status=" + status +
                 '}';
     }
-
-    public static void main(String[] args) {
-        Account account = new Account("Minhquan", "123", "qle2020202");
-        System.out.println(account.getAddress());
-
-    }
 }

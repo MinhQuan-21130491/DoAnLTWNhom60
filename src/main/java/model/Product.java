@@ -265,13 +265,4 @@ public class Product {
                 ", images=" + images +
                 '}';
     }
-    public static void main(String[] args) {
-        Product p = new Product();
-        NumberFormat nF
-                = NumberFormat
-                .getCurrencyInstance();
-
-        // Print amount in defined currency
-//        System.out.println(nF.format(price));
-    }
 }

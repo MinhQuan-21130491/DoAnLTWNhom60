@@ -1,29 +1,21 @@
 package controller;
 
 import model.Account;
-import model.Product;
 import model.VerifyAccount;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import service.AccountService;
-import service.ProductService;
 import util.Email;
 import util.Encrypt;
 import util.NumberRandom;
-
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.file.Paths;
-import java.sql.Date;
-import java.text.NumberFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.UUID;
