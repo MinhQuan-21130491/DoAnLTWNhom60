@@ -4,7 +4,11 @@ import model.Account;
 import model.VerifyAccount;
 import util.Encrypt;
 import util.JDBCUtil;
-import java.sql.*;
+import java.sql.Date;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -46,7 +50,7 @@ public class DAOAccount {
     }
     public static Account selectById(int idA) {
         Account re = null;
-        try {
+        try{
             // Tạo kết nối đến database
             Connection connection = JDBCUtil.getConnection();
             // Tạo đối tượng statement
@@ -57,7 +61,7 @@ public class DAOAccount {
             pr.setInt(1, idA);
             // Thực thi câu lệnh sql
             ResultSet resultSet = pr.executeQuery();
-            while (resultSet.next()) {
+            while (resultSet.next()){
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
                 String userName = resultSet.getString("userName");
@@ -312,7 +316,6 @@ public class DAOAccount {
         }
         return verifyAccount;
     }
-
     public static ArrayList<Account> listAllAccount() {
         ArrayList<Account> list = new ArrayList<>();
         Connection connection = JDBCUtil.getConnection();
@@ -403,7 +406,6 @@ public class DAOAccount {
             JDBCUtil.closeConnection(connection);
         return re;
     }
-
     public static void main(String[] args) {
         System.out.println(selectVerifyAccountByIdAccount(14));
     }

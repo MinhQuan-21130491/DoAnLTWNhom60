@@ -1,14 +1,13 @@
 package controller;
+
+import model.Image;
 import model.Product;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import service.ProductService;
+import java.nio.file.Files;
+
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.nio.file.Paths;
-import java.text.NumberFormat;
-import java.util.ArrayList;
 import java.util.UUID;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -21,6 +20,7 @@ import javax.servlet.http.Part;
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
         maxFileSize = 1024 * 1024 * 10, // 10MB
         maxRequestSize = 1024 * 1024 * 50)
+
 public class AddProduct extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -47,46 +47,27 @@ public class AddProduct extends HttpServlet {
         String color = request.getParameter("color");
         int quantity = Integer.parseInt(request.getParameter("quantity"));
         String description = request.getParameter("des");
-        Product product = new Product(idCate,  name,  priceImport,  price,  description,  color,  material,  width,  height,  length,quantity);
+        Product p = new Product(idCate,  name,  priceImport,  price,  description,  color,  material,  width,  height,  length, quantity);
         String realPath = getServletContext().getRealPath("/Products");
-        String res = "Thêm sản phẩm thành công!";
-        if(ProductService.getInstance().insertProduct(product)>0) {
+        String res = "<i class=\"fa fa-check-circle-o text-success\" aria-hidden=\"true\"></i> Thêm sản phẩm thành công!";
+        if(ProductService.getInstance().insertProduct(p)>0) {
             Product productLatest = ProductService.getInstance().latestProduct();
-                for (Part part : request.getParts()) {
-                    if (isFilePart(part)) {
-                        String fileName = Paths.get(part.getSubmittedFileName()).getFileName().toString();
-                        String newFileName = generateUniqueIdentifier() + "_" + fileName;
-                        if (fileName != null && !fileName.isEmpty()) {
-                            if(ProductService.getInstance().insertImageProduct(productLatest.getIdProduct(), newFileName)<1) {
-                                res = "Đã xảy ra lỗi!";
-                            }
+            for (Part part : request.getParts()) {
+                if (isFilePart(part)) {
+                    String fileName = Paths.get(part.getSubmittedFileName()).getFileName().toString();
+                    String newFileName = generateUniqueIdentifier() + "_" + fileName;
+                    if (fileName != null && !fileName.isEmpty()) {
+                        if(ProductService.getInstance().insertImageProduct(productLatest.getIdProduct(), newFileName)<1) {
+                            res = "Đã xảy ra lỗi!";
                         }
-                        part.write(realPath + File.separator + newFileName);
-                        part.write("D:\\ltw\\DoAn\\DoanLTWNhom60\\src\\main\\webapp\\Products" + File.separator + newFileName);
                     }
+                    part.write(realPath + File.separator + newFileName);
+                    part.write("D:\\ltw\\DoAn\\DoanLTWNhom60\\src\\main\\webapp\\Products" + File.separator + newFileName);
                 }
+            }
         }
-        ArrayList<Product> listProduct = ProductService.getInstance().listAllProduct();
-        JSONObject jsonResponse = new JSONObject();
-        JSONArray htmlDataArray = new JSONArray();
-        NumberFormat nF = NumberFormat.getCurrencyInstance();
-        String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
-        for (Product p : listProduct) {
-            JSONObject productJSON = new JSONObject();
-            productJSON.put("idProduct", p.getIdProduct());
-            String urlImage = (p.getImages().isEmpty())?"":p.getImages().get(0).getUrl();
-            productJSON.put("imageUrl", url +"/Products/" +urlImage);
-            productJSON.put("name", p.getName());
-            productJSON.put("price", nF.format(p.getPrice()));
-            productJSON.put("color", p.getColor());
-            productJSON.put("quantity", p.getQuantityAvailable());
-            productJSON.put("status", (p.isStatus())?"Đang bán":"Ngưng bán");
-            htmlDataArray.put(productJSON);
-        }
-        jsonResponse.put("htmlData", htmlDataArray);
-        jsonResponse.put("res", res);
-        PrintWriter out = response.getWriter();
-        out.println(jsonResponse.toString());
+        request.setAttribute("res", res);
+        request.getRequestDispatcher("ManageAdmin.jsp#mngProduct").forward(request, response);
     }
 
     private boolean isFilePart(Part part) {
