@@ -80,7 +80,7 @@
                         <td class="w300">
                             <div class="item d-flex justify-content-center">
                                 <div class="item_img">
-                                    <img src="<%=url%>/Products/<%=(p.getImages().isEmpty())?"":p.getImages().get(0).getUrl()%>" class="card-img-top img_p_cart" alt="..."/>
+                                    <img src="<%=url%>\Products\<%=p.getImages().get(0).getUrl()%>" class="card-img-top img_p_cart" alt="..."/>
                                 </div>
                                 <span class="item_text"><%=p.getName()%></span>
                             </div>
@@ -106,10 +106,27 @@
                             </form>
                         </td>
                         <td>
-                            <form action="delProductInCart" method="post" onsubmit="return getConfirmation()">
-                                <input type="hidden" name="id" value="<%=p.getIdProduct()%>"/>
-                                 <button class="delete" title="Xóa sản phẩm" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#delProduct"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                            </form>
+                                <button class="delete" title="Xóa sản phẩm" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#delProduct"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                <div class="modal fade" id="delProduct">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <form action="delProductInCart" method="post" >
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Xác nhận</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Bạn có chắc muốn xóa?</p>
+                                                    <input type="hidden" name="id"value="<%=p.getIdProduct()%>"/>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy bỏ</button>
+                                                    <button type="submit" class="btn btn-primary">Đồng ý</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                         </td>
                     </tr>
                 <%
@@ -130,9 +147,9 @@
     </div>
     <%} else {%>
     <div class="text-center mt-4 mb-3 fs-2 color-gray ">Giỏ hàng gì mà trống vậy nè >.<<a href="<%=url%>/product" class="text-color text-decoration-none fs-5"> Lấp đầy ở đây nè ^.^</a></div>
-        <div class="text-center mb-4">
-            <img src="image/cart-empty.png" alt="" class="imgbg">
-        </div>
+    <div class="text-center mb-4">
+        <img src="image/cart-empty.png" alt="" class="imgbg">
+    </div>
 
     <%}%>
 </div>
@@ -172,12 +189,5 @@
         // Gọi hàm tính tổng tiền khi tải trang
         calculateTotal()
     });
-    function getConfirmation(){
-        var retVal = confirm("Bạn có chắc muốn xóa ?");
-        if( retVal == true ){
-            return true;
-        }
-        return false;
-    }
 </script>
 </html>

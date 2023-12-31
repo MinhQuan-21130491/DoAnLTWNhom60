@@ -83,7 +83,7 @@
                 <hr class="mt-2 mb-2"/>
                 <div class="card">
                     <a href="<%=url%>/detail-product?pid=<%=latestProduct.getIdProduct()%>">
-                        <img src="<%=url%>/Products/<%=(latestProduct.getImages().isEmpty())?"":latestProduct.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="">
+                        <img src="<%=url%>/Products/<%=latestProduct.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="">
                     </a>
                     <div class="card-body">
                         <h5 class="card-title"><%=latestProduct.getName()%>
@@ -183,7 +183,7 @@
                 <div class="col-lg-4 col-sm-6 col-6 mt-3 product">
                     <div class="card">
                         <a href="<%=url%>/detail-product?pid=<%=p.getIdProduct()%>">
-                            <img src="<%=url%>/Products/<%=(p.getImages().isEmpty())?"":p.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="...">
+                            <img src="<%=url%>\Products\<%=p.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="...">
                         </a>
                         <div class="card-body">
                             <h5 class="card-title"><%=p.getName()%>
