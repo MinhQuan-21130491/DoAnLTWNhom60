@@ -92,13 +92,4 @@ public class AddAccount extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println(jsonResponse.toString());
     }
-
-    private boolean isFilePart(Part part) {
-        return part.getSubmittedFileName() != null && !part.getSubmittedFileName().isEmpty();
-    }
-    public static String generateUniqueIdentifier() {
-        UUID uuid = UUID.randomUUID();
-        return uuid.toString();
-    }
-
 }

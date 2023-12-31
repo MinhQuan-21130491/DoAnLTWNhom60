@@ -502,8 +502,4 @@ public class DAOProduct {
         }
         return imgs;
     }
-    public static void main(String[] args) throws SQLException {
-   System.out.println(delProduct(52));
-   System.out.println(delProduct(52));
-    }
  }
