@@ -1,13 +1,17 @@
 <%@ page import="model.Category" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="model.Account" %>
+<%@ page import="model.Cart" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <%
-    String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-            + request.getContextPath();
+    String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+    Cart cart = (Cart) session.getAttribute("Cart");
+    int qtt = (cart != null) ? cart.list().size() : 0;
+    String quantityItem = qtt + "";
+    if (qtt > 99) quantityItem = "99+";
 %>
 <% Object obj = session.getAttribute("account");
     Account account = null;%>
@@ -55,7 +59,7 @@
                                             <%
                                                 if (obj == null) {
                                             %>
-                                            <li class="nav-item dropdown hv"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tài khoản </a>
+                                            <li class="nav-item dropdown hv d-flex justify-content-center align-items-center"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tài khoản </a>
                                                 <ul class="dropdown-menu" aria-labelledby="">
                                                     <li><a class="dropdown-item" href="<%=url%>/SignIn.jsp">Đăng nhập</a></li>
                                                     <li><hr class="dropdown-divider"></li>
@@ -68,7 +72,7 @@
                                                 account = (Account) obj;
                                                 if ((account != null) &&(account.getRole() == 0 || account.getRole() ==1)) {
                                             %>
-                                            <li class="nav-item dropdown hv"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tài khoản </a>
+                                            <li class="nav-item dropdown hv d-flex justify-content-center align-items-center"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tài khoản </a>
                                                 <ul class="dropdown-menu" aria-labelledby="">
                                                     <li class ="dropdown-item"> Xin chào: <span class = "fw-bold " class = "name"><%=account.getName()%></span></li>
                                                     <li><hr class="dropdown-divider"></li>
@@ -105,7 +109,7 @@
                             <div class="col-lg-7 col-sm-8 col-8 bd-full  rounded-2 d-md-none d-sm-none d-none d-lg-block">
                                 <form action="<%=url%>/loadProductByName" method="get">
                                     <div class="form-search">
-                                        <input class="form-control border-0 search" type="text" aria-label="Search" name ="search">
+                                        <input class="form-control border-0 search" type="text" value="" aria-label="Search" name ="search">
                                         <button class="btn border-0" type="submit">
                                             <i class="fa fa-search" aria-hidden="true"></i>
                                         </button>
@@ -114,12 +118,12 @@
                             </div>
                             <div class="col-lg-2  d-lg-block d-md-none d-none ">
                                 <ul class="navbar-nav justify-content-end">
-                                    <li class="nav-item hv pe-2"><a class="nav-link" href="<%=url%>/Cart.jsp"><button class = "position-relative border-0 bg-light "><i class="fa fa-shopping-cart" aria-hidden="true" style="font-size: 25px"></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">99+<span class="visually-hidden">unread messages</span></span>
+                                    <li class="nav-item hv pe-2"><a class="nav-link" href="<%=url%>/Cart.jsp"><button class = "position-relative border-0 bg-light "><i class="fa fa-shopping-cart" aria-hidden="true" style="font-size: 25px"></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"><%=quantityItem%><span class="visually-hidden">unread messages</span></span>
                                     </button> </a> </li>
                                     <%
                                         if (obj == null) {
                                     %>
-                                    <li class="nav-item dropdown hv"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tài khoản </a>
+                                    <li class="nav-item dropdown hv d-flex justify-content-center align-items-center"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tài khoản </a>
                                         <ul class="dropdown-menu" aria-labelledby="">
                                             <li><a class="dropdown-item" href="<%=url%>/SignIn.jsp">Đăng nhập</a></li>
                                             <li><hr class="dropdown-divider"></li>
@@ -132,7 +136,7 @@
                                         account = (Account) obj;
                                         if ((account != null) &&(account.getRole() == 0 || account.getRole() ==1)) {
                                     %>
-                                    <li class="nav-item dropdown hv"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tài khoản </a>
+                                    <li class="nav-item dropdown hv d-flex justify-content-center align-items-center"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tài khoản </a>
                                         <ul class="dropdown-menu" aria-labelledby="">
                                             <li class ="dropdown-item"> Xin chào: <span class = "fw-bold " class = "name"><%=account.getName()%></span></li>
                                             <li><hr class="dropdown-divider"></li>
@@ -146,7 +150,7 @@
                                         </ul>
                                     </li>
                                     <%}else {%>
-                                    <li class="nav-item dropdown hv"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tài khoản </a>
+                                    <li class="nav-item dropdown hv d-flex justify-content-center align-items-center"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tài khoản </a>
                                         <ul class="dropdown-menu" aria-labelledby="">
                                             <li class ="dropdown-item"> Xin chào: <span class = "fw-bold " class = "name"><%= account.getName()%></span></li>
                                             <li><hr class="dropdown-divider"></li>
@@ -173,7 +177,7 @@
                     <div class="col-md-10 col-sm-10 col-10 bd-full rounded-2   ">
                         <form action="<%=url%>/loadProductByName" method="get">
                             <div class="form-search">
-                                <input class="form-control border-0 search" type="text " aria-label="Search" name ="search">
+                                <input class="form-control border-0 search" type="text " aria-label="Search" value="" name ="search">
                                 <button class="btn border-0" type="submit">
                                     <i class="fa fa-search" aria-hidden="true"></i>
                                 </button>
@@ -182,7 +186,7 @@
                     </div>
                     <div class="col-md-2 col-sm-2 col-2 ps-2 d-flex align-items-center">
                         <a class="nav-link" href="#">
-                            <button class = "position-relative border-0 bg-light "><i class="fa fa-shopping-cart" aria-hidden="true" style="font-size: 25px"></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">99+<span class="visually-hidden">unread messages</span></span></button>
+                            <button class = "position-relative border-0 bg-light "><i class="fa fa-shopping-cart" aria-hidden="true" style="font-size: 25px"></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"><%=quantityItem%><span class="visually-hidden">unread messages</span></span></button>
                         </a>
                     </div>
                 </div>
