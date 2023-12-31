@@ -2,6 +2,7 @@ package controller;
 import model.Category;
 import service.CategoryService;
 import model.Product;
+import service.InvoiceService;
 import service.ProductService;
 import java.io.*;
 import java.util.ArrayList;
@@ -29,6 +30,10 @@ public class HomeController extends HttpServlet {
         //load màu sản phẩm
         ArrayList<String> listColorP = ProductService.getInstance().listColorP();
         request.setAttribute("listColorP", listColorP);
+        //load sản phảm bán chạy nhất
+        int idProduct = InvoiceService.getInstance().idBestSaler();
+        Product bestProduct = ProductService.getInstance().getProductById(idProduct);
+        request.setAttribute("bestSaler", bestProduct);
         //load carousel
         String source = "D:\\ltw\\DoAn\\DoanLTWNhom60\\src\\main\\webapp\\image\\Carousel";
         File fileSource = new File(source);

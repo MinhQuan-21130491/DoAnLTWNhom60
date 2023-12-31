@@ -1911,7 +1911,7 @@
                     console.error("Lỗi khi xóa sản phẩm:", error);
                 }
             });
-        }
+
     }
     function hideProduct(productId) {
         var confirmation = confirm("Bạn có chắc với lựa chọn này ?");
@@ -2557,6 +2557,7 @@
                 console.error("Xảy ra lỗi:", error);
             }
         });
+    }
     }
 </script>
 <script src="slider/owlcarousel/owl.carousel.min.js"></script>
