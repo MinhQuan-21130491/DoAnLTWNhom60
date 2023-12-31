@@ -4,7 +4,6 @@ import model.Product;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import service.ProductService;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
