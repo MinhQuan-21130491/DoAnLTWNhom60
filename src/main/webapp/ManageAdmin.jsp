@@ -4,6 +4,8 @@
 <%@ page import="model.Account" %>
 <%@ page import="model.Invoice" %>
 <%@ page import="model.Supplier" %>
+<%@ page import="model.Category" %>
+<%@ page import="service.CategoryService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -869,95 +871,111 @@
                 <div class="col-lg-6">
                     <h5 >Quản lý danh mục</h5>
                 </div>
-                <div class="col-lg-6 text-end">
-                    <button class="btnAdd bgcolor bd-full" id ="btnAddCate"><i class="fa fa-plus-circle text-color" aria-hidden="true" title="Thêm danh mục" data-bs-toggle="modal" data-bs-target="#addCate"></i></button>
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-lg-12 overflow-auto mheight">
-                    <table class="mb-3">
-                        <thead>
-                        <tr>
-                            <td>STT</td>
-                            <td>ID</td>
-                            <td>TÊN</td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>1</td>
-                            <td >Ghế trang trí</td>
-                            <td>
-                                <div class="d-flex w-100 justify-content-center">
-                                    <button class="delete btnAdd bgcolor bd-full me-1" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true" data-bs-toggle="modal" data-bs-target=""></i></button>
-                                    <button class="editCate btnAdd bgcolor bd-full "><i class="fa fa-pencil text-color" title="Chỉnh sửa danh mục" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editCate"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="modal fade" id="editCate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog ">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <form class="cateEdit" id="cateEdit" action="" method="post" onsubmit="return editCate()">
-                                <div class="row px-2">
-                                    <div class=" text-end">
-                                        <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <h5 class="text-center">CHỈNH SỬA DANH MỤC</h5>
-                                    <hr>
-                                    <div class="col-md-12">
-                                        <div class="mb-3">
-                                            <label class="form-label">Tên danh mục</label><span id="errNameCate" class="text-danger"></span>
-                                            <input type="text" class="form-control" id="nameCateEdit" name="nameCateEdit">
-                                        </div>
-                                    </div>
-                                    <div class="row p-0">
-                                        <div class="col-lg-12 text-end p-0">
-                                            <button class="save" type="submit">LƯU</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
+                <div class="row mt-3">
+                    <div class="col-lg-12 overflow-auto mheight">
+                        <div class="col-lg-6 text-end">
+                            <button class="btnAdd bgcolor bd-full" id ="btnAddCate"><i class="fa fa-plus-circle text-color" aria-hidden="true" title="Thêm danh mục" data-bs-toggle="modal" data-bs-target="#addCate"></i></button>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="modal fade" id="addCate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog ">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <form id="add-Cate" action="" method="post" onsubmit="return addCate()">
-                                <div class="row px-2">
-                                    <div class=" text-end">
-                                        <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <h5 class="text-center">THÊM DANH MỤC</h5>
-                                    <hr>
-                                    <div class="col-md-12">
-                                        <div class="mb-3">
-                                            <label class="form-label">Tên danh mục</label><span id="errNameCateAdd" class="text-danger"></span>
-                                            <input type="text" class="form-control" id="nameCateAdd" name="nameCateAdd">
+                    <div class="row mt-3">
+                        <div class="col-lg-12 overflow-auto mheight">
+                            <%
+                                ArrayList<Category> listCategory = CategoryService.getInstance().listCategory();
+                                int sttC = 1;
+                            %>
+                            <table class="mb-3">
+                                <thead>
+                                <tr >
+                                    <td>STT</td>
+                                    <td>ID</td>
+                                    <td>TÊN</td>
+                                </tr>
+                                </thead>
+                                <tbody id ="innerCategory">
+                                    <% if (listCategory != null && !listCategory.isEmpty()) {
+                            for (Category c: listCategory) {%>
+                                <tr>
+                                    <input type="hidden" class="id" id="categoryIdEdit" value="<%= c.getId()%>">
+                                    <td><%=sttC%></td>
+                                    <td><%=c.getId()%></td>
+                                    <td ><%=c.getName()%></td>
+                                    <td>
+                                        <div class="d-flex w-100 justify-content-center">
+                                            <button class="delete btnAdd bgcolor bd-full me-1" title="Xóa" aria-hidden="true" onclick="deleteCategory('<%=c.getId()%>')" data-bs-toggle="modal" data-bs-target=""><i class="fa fa-trash-o text-color"></i></button>
+                                            <button class="editCate btnAdd bgcolor bd-full" title="Chỉnh sửa danh mục" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editCate" onclick="innerEditCategory('<%=c.getId()%>')"><i class="fa fa-pencil text-color"></i></button>                                </div>
+                                    </td>
+                                </tr>
+                                    <%
+                                                sttC++;
+                                            }
+                                        }
+                                    %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="editCate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog ">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <form class="cateEdit" id="cateEdit" action="" method="post" onsubmit="return editCate()">
+                                        <div class="row px-2">
+                                            <div class=" text-end">
+                                                <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <h5 class="text-center">CHỈNH SỬA DANH MỤC</h5>
+                                            <hr>
+                                            <div class="col-md-12">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Tên danh mục</label><span id="errNameCate" class="text-danger"></span>
+                                                    <input type="text" class="form-control" id="nameCateEdit" name="nameCateEdit">
+                                                </div>
+                                            </div>
+                                            <div class="row p-0">
+                                                <div class="col-lg-12 text-end p-0">
+                                                    <button class="save" type="button" onclick="editCate()">LƯU</button>
+                                                </div>
+                                            </div>
                                         </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="addCate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog ">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <form id="add-Cate" action="" method="post">
+                                            <div class="row px-2">
+                                                <div class=" text-end">
+                                                    <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"data-bs-target="#addCate"></button>
+                                                </div>
+                                                <h5 class="text-center">THÊM DANH MỤC</h5>
+                                                <hr>
+                                                <div class="col-md-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Tên danh mục</label><span id="errNameCateAdd" class="text-danger"></span>
+                                                        <input type="text" class="form-control" id="nameCateAdd" name="nameCateAdd">
+                                                    </div>
+                                                </div>
 
-                                    </div>
-                                    <div class="row p-0">
-                                        <div class="col-lg-12 text-end p-0">
-                                            <button class="save" type="submit">LƯU</button>
-                                        </div>
+                                                <div class="row p-0">
+                                                    <div class="col-lg-12 text-end p-0">
+                                                        <button class="save" type="button" onclick="addCate()">LƯU</button>
+                                                    </div>
+                                                </div>
+                                                <div class="row p-0">
+                                                    <div class="col-lg-12 text-end p-0">
+                                                        <button class="save" type="button" id="saveButton">LƯU</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--end giao diện quản lý danh mục-->
+        <!--end giao diện quản lý danh mục -->
         <!--giao diện quản lý nhà cung cấp-->
         <div class="col-lg-9 bgcolor d-none " id="mngSup">
             <div class="row mt-2">
@@ -1723,24 +1741,147 @@
     }
     function addCate() {
         var flag = true;
-        var name = document.getElementById("nameCateAdd");
+        var nameInput = document.getElementById("nameCateAdd");
         var error = document.getElementById("errNameCateAdd");
-        if(name.value === "") {
+        if (nameInput.value === "") {
             error.innerHTML = ' *Vui lòng nhập danh mục mới!';
             flag = false;
+        } else {
+            error.innerHTML = '';
         }
-        return flag;
-
+        if (flag) {
+            var name = nameInput.value;
+            $.ajax({
+                url: 'addCategory',
+                type: 'POST',
+                data: { nameCateAdd: name },
+                success: function (data) {
+                    try {
+                        var jsonData = JSON.parse(data);
+                        var res = jsonData.res;
+                        var htmlData = jsonData.htmlData;
+                        alert(res);
+                        var row = document.getElementById("innerCategory");
+                        row.innerHTML = "";
+                        for (var i = 0; i < htmlData.length; i++) {
+                            var c = htmlData[i];
+                            row.innerHTML += "<tr data-category-id='" + c.id + "'>" +
+                                "<input type='hidden' class='id' value='" + c.id + "'>" +
+                                "<td>" + (i + 1) + "</td>" +
+                                "<td>" + c.id + "</td>" +
+                                "<td>" + c.name + "</td>" +
+                                "<td>" +
+                                "<div class='d-flex w-100 justify-content-center'>" +
+                                "<button class='delete btnAdd bgcolor bd-full me-1' title='Xóa' aria-hidden='true' onclick='deleteCategory(\"" + c.id + "\")' data-bs-toggle='modal' data-bs-target=''><i class='fa fa-trash-o text-color'></i></button>" +
+                                "<button class='editCate btnAdd bgcolor bd-full' title='Chỉnh sửa danh mục' aria-hidden='true' data-bs-toggle='modal' data-bs-target='#editCate' onclick='innerEditCategory(\"" + c.id + "\")'><i class='fa fa-pencil text-color'></i></button>" +
+                                "</div>" +
+                                "</td>" +
+                                "</tr>";
+                        }
+                    } catch (e) {
+                        console.error("Xảy ra lỗi khi xử lý phản hồi JSON:", e);
+                    }
+                },
+                error: function (error) {
+                    console.error("Xảy ra lỗi:", error);
+                }
+            });
+        }
+        return false;
     }
+    function deleteCategory(categoryId) {
+        var confirmation = confirm("Bạn có chắc muốn xóa ?");
+        if (confirmation) {
+            $.ajax({
+                type: "POST",
+                url: "delCategory",
+                data: { id: categoryId },
+                success: function(data) {
+                    var jsonData = JSON.parse(data);
+                    var htmlData = jsonData.htmlData;
+                    var res = jsonData.res;
+                    alert(res);
+                    var row = document.getElementById("innerCategory");
+                    row.innerHTML = "";
+                        for (var i = 0; i < htmlData.length; i++) {
+                            var c = htmlData[i];
+                            row.innerHTML += "<tr>" +
+                                "<input type='hidden' class='id' value='" + c.id + "'>" +
+                                "<td>" + (i + 1) + "</td>" +
+                                "<td>" + c.id + "</td>" +
+                                "<td>" + c.name + "</td>" +
+                                "<td>" +
+                                "<div class='d-flex w-100 justify-content-center'>" +
+                                "<button class='delete btnAdd bgcolor bd-full me-1' title='Xóa' aria-hidden='true' onclick='deleteCategory(\"" + c.id + "\")' data-bs-toggle='modal' data-bs-target=''><i class='fa fa-trash-o text-color'></i></button>" +
+                                "<button class='editCate btnAdd bgcolor bd-full' title='Chỉnh sửa danh mục' aria-hidden='true' data-bs-toggle='modal' data-bs-target='#editCate' onclick='innerEditCategory(\"" + c.id + "\")'><i class='fa fa-pencil text-color'></i></button>" +
+                                "</div>" +
+                                "</td>" +
+                                "</tr>";
+                    }
+                },
+            });
+        }
+    }
+    function innerEditCategory(cateId) {
+        categoryId = cateId;
+        $.ajax({
+            type: "GET",
+            url: "loadDetailCategory",
+            data: {
+                id: cateId
+            },
+            success: function (data) {
+                var c = data.category;
+                $("#nameCateEdit").val(c.name);
+            },
+            error: function () {
+                console.error("Không thể tải chi tiết sản phẩm");
+            }
+        });
+    }
+    var categoryId = "";
     function editCate() {
         var flag = true;
-        var name = document.getElementById("nameCateEdit");
-        var error = document.getElementById("errNameCate");
-        if(name.value === "") {
-            error.innerHTML = ' *Vui lòng nhập danh mục mới!';
+        var nameCate = document.getElementById("nameCateEdit");
+        var errNameCate = document.getElementById("errNameCate");
+        if (nameCate.value === "") {
+            errNameCate.innerHTML = 'Vui lòng nhập tên danh mục';
             flag = false;
+        } else {
+            errNameCate.innerHTML = '';
+            }
+        if (flag) {
+            $.ajax({
+                url: 'editCategory',
+                type: 'POST',
+                data: {
+                    nameCateEdit: nameCate.value,
+                    categoryId: categoryId,},
+                    success: function (data) {
+                        var jsonData = JSON.parse(data);
+                        var htmlData = jsonData.htmlData;
+                        var res = jsonData.res;
+                        alert(res);
+                        var row = document.getElementById("innerCategory");
+                        row.innerHTML = "";
+                        for (var i = 0; i < htmlData.length; i++) {
+                            var c = htmlData[i];
+                            row.innerHTML += "<tr>" +
+                                "<input type='hidden' class='id' value='" + c.id + "'>" +
+                                "<td>" + (i + 1) + "</td>" +
+                                "<td>" + c.id + "</td>" +
+                                "<td>" + c.name + "</td>" +
+                                "<td>" +
+                                "<div class='d-flex w-100 justify-content-center'>" +
+                                "<button class='delete btnAdd bgcolor bd-full me-1' title='Xóa' aria-hidden='true' onclick='deleteCategory(\"" + c.id + "\")' data-bs-toggle='modal' data-bs-target=''><i class='fa fa-trash-o text-color'></i></button>" +
+                                "<button class='editCate btnAdd bgcolor bd-full' title='Chỉnh sửa danh mục' aria-hidden='true' data-bs-toggle='modal' data-bs-target='#editCate' onclick='innerEditCategory(\"" + c.id + "\")'><i class='fa fa-pencil text-color'></i></button>" +
+                                "</div>" +
+                                "</td>" +
+                                "</tr>";
+                        }
+                    },
+            });
         }
-        return flag;
     }
     function displaySelectedImage(input) {
         var fileInput = input;
