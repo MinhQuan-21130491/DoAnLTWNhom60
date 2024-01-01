@@ -370,16 +370,34 @@ public class DAOAccount {
                 s.setInt(1, a.getId());
                 ResultSet resultSet = s.executeQuery();
                 if (resultSet.next()) {
-                    s = connection.prepareStatement("UPDATE accounts SET name =?, gender =?, email =?, phoneNumber =?, birthDay =?, address =?, addressReceive =?, role =? where id =?");
-                    s.setString(1, a.getName());
-                    s.setString(2, a.getGender());
-                    s.setString(3, a.getEmail());
-                    s.setString(4, a.getPhoneNumber());
-                    s.setDate(5, a.getBirthDay());
-                    s.setString(6, a.getAddress());
-                    s.setString(7, a.getAddressReceive());
-                    s.setInt(8, a.getRole());
-                    s.setInt(9, a.getId());
+                    String sql = "";
+                    if(!a.getPassword().equals("")) {
+                        sql = "UPDATE accounts SET name =?, gender =?, email =?, phoneNumber =?, birthDay =?, address =?, addressReceive =?, role =?, password =? where id =?";
+                        s = connection.prepareStatement(sql);
+                        s.setString(1, a.getName());
+                        s.setString(2, a.getGender());
+                        s.setString(3, a.getEmail());
+                        s.setString(4, a.getPhoneNumber());
+                        s.setDate(5, a.getBirthDay());
+                        s.setString(6, a.getAddress());
+                        s.setString(7, a.getAddressReceive());
+                        s.setInt(8, a.getRole());
+                        s.setString(9, a.getPassword());
+                        s.setInt(10, a.getId());
+                    }else {
+                        sql = "UPDATE accounts SET name =?, gender =?, email =?, phoneNumber =?, birthDay =?, address =?, addressReceive =?, role =?  where id =?";
+                        s = connection.prepareStatement(sql);
+                        s.setString(1, a.getName());
+                        s.setString(2, a.getGender());
+                        s.setString(3, a.getEmail());
+                        s.setString(4, a.getPhoneNumber());
+                        s.setDate(5, a.getBirthDay());
+                        s.setString(6, a.getAddress());
+                        s.setString(7, a.getAddressReceive());
+                        s.setInt(8, a.getRole());
+                        s.setInt(9, a.getId());
+                    }
+
                     re = s.executeUpdate();
                 }
             } catch (SQLException e) {
@@ -388,9 +406,4 @@ public class DAOAccount {
             JDBCUtil.closeConnection(connection);
         return re;
     }
-    public static void main(String[] args) {
-    System.out.println(selectVerifyAccountByIdAccount(14));
-    }
-
-
 }

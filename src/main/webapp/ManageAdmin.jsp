@@ -193,6 +193,16 @@
                                                 </div>
                                             </td>
                                         </tr>
+                                        <tr id="changePw">
+                                            <td>
+                                                <label>Mật khẩu<span class="text-danger">*</span></label>
+                                            </td>
+                                            <td>
+                                                <div id="InPw">
+                                                    <input class="form-control" id="HienThiPw" name="HienThiPw" type="password">
+                                                </div>
+                                            </td>
+                                        </tr>
                                         <tr>
                                             <td>
                                                 <label>Giới tính<span class="text-danger">*</span></label>
@@ -1962,6 +1972,7 @@
                 var a = data.account;
                 $("#HienThiTen").val(a.name);
                 $("#HienThiGmail").val(a.email);
+                $("#HienThiPw").val(a.password);
                 $("#HienThiSDT").val(a.phoneNumber);
                 $("#HienThiDC").val(a.address);
                 $("#HienThiDCReice").val(a.addressRecei);
@@ -1993,6 +2004,7 @@
         var flag = true;
         var tenElement = document.getElementById("HienThiTen");
         var gmailElement = document.getElementById("HienThiGmail");
+        var pwElement = document.getElementById("HienThiPw");
         var sdtElement = document.getElementById("HienThiSDT");
         var dcElement = document.getElementById("HienThiDC");
         var dcReElement = document.getElementById("HienThiDCReice");
@@ -2000,6 +2012,7 @@
         var error = document.getElementById("error");
         var gmailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         var phoneReg = /^\d{10}/;
+        var passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*()-+])(?=.*[0-9]).{8,}$/;
         if(tenElement.value == "") {
             error.innerHTML = "Vui lòng nhập họ và tên!";
             flag = false;
@@ -2008,6 +2021,15 @@
             flag = false;
         }else if(!gmailElement.value.match(gmailReg)) {
             error.innerHTML = "Email không hợp lệ!";
+            flag = false;
+        }else if(pwElement.value ===""){
+            error.innerHTML = 'Vui lòng nhập mật khẩu!';
+            flag = false;
+        }else if(pwElement.value.length < 6 || pwElement.value.length > 50){
+            error.innerHTML ='Mật khẩu dài từ 6 đến 50 ký tự!';
+            flag = false;
+        }else if(!pwElement.value.match(passwordRegex)){
+            error.innerHTML ='Mật khẩu có ít nhất 1 chữ hoa, 1 ký tự đặc biệt và 1 số!';
             flag = false;
         }else if(sdtElement.value == "") {
             error.innerHTML = "Vui lòng nhập số điện thoại!";
@@ -2025,6 +2047,8 @@
         } else if(nsElement.value == "") {
             error.innerHTML = "Vui lòng chọn ngày sinh!";
             flag = false;
+        }else {
+            error.innerHTML = "";
         }
         if(flag) {
             var gender = $('input[type="radio"][name="gender"]:checked');
@@ -2035,6 +2059,7 @@
                 data: {
                     name:tenElement.value,
                     email: gmailElement.value,
+                    password: pwElement.value,
                     phoneNumber:sdtElement.value,
                     address:dcElement.value,
                     gender:gender.val(),

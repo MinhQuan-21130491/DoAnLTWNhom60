@@ -5,6 +5,8 @@ import model.Account;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import service.AccountService;
+import util.Encrypt;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,11 +25,15 @@ public class EditAccount extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("html/text; charset= UTF-8");
         String idText = request.getParameter("id");
-        System.out.println(idText);
         int id = Integer.parseInt(idText);
         String name = request.getParameter("name");
         String phoneNumber = request.getParameter("phoneNumber");
         String email = request.getParameter("email");
+        String pw = request.getParameter("password");
+        String password = "";
+        if(!pw.equals(AccountService.getInstance().selectById(id).getPassword())) {
+            password = Encrypt.toSHA1(pw);
+        }
         String gender = request.getParameter("gender");
         Date birthDay = Date.valueOf(request.getParameter("birthDay"));
         String address = request.getParameter("address");
@@ -40,7 +46,7 @@ public class EditAccount extends HttpServlet {
             role = 2;
         }
         String res = "";
-        Account account = new Account(id, name, email, phoneNumber, gender, birthDay, address, addressReceive,role);
+        Account account = new Account(id, name, email, password, phoneNumber, gender, birthDay, address, addressReceive,role);
         try {
             if(DAOAccount.updateInforAccount(account) > 0) {
                 res = "Thay đổi thông tin thành công!";
