@@ -93,7 +93,11 @@ public class Account {
         this.address = address;
         this.addressReceive = addressReceive;
     }
-
+    public Account(String userName, String password, String email) {
+        this.userName = userName;
+        this.password = password;
+        this.email = email;
+    }
     public Account() {
     }
 
