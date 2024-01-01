@@ -75,22 +75,16 @@
                     <div class="col-lg-5 col-md-7  ">
                         <div class="row pt-3">
                             <div class="col-md-12">
-                                <img src="<%=url%>/Products/<%=(product.getImages().isEmpty())?"":product.getImages().get(0).getUrl()%>"class="img_p2" id="img_center" alt="..."/>
-
+                                <img src="<%=url%>\Products\<%=product.getImages().get(0).getUrl()%>" alt=""
+                                     class="img_p2" id="img_center">
                             </div>
                             <div class="col-md-12 mt-3">
                                 <div class="owl-carousel">
-                                    <%
-                                        if (!product.getImages().isEmpty() && product.getImages() != null ) {
-                                            for (Image img : product.getImages()) {
-                                    %>
+                                    <%for(Image img: product.getImages()) { %>
                                     <div class="pe-2">
                                         <img src="<%=url%>/Products/<%=img.getUrl()%>" alt="" class="img_p_detail" onmouseover="changeImg('<%=url%>/Products/<%=img.getUrl()%>')">
                                     </div>
-                                    <%
-                                            }
-                                        }
-                                    %>
+                                    <%}%>
                                 </div>
                             </div>
                         </div>
@@ -115,11 +109,11 @@
                                         <p class="color-gray">Số lượng</p>
                                     </div>
                                     <div class="dai">
-                                        <button id="decrease">-</button>
+                                        <button id="decrease" type="button">-</button>
                                         <div class="amount">
-                                            <input type="text" id="amount"/>
+                                            <input type="text" id="amount" name="quantity"/>
                                         </div>
-                                        <button id="increase">+</button>
+                                        <button id="increase" type="button">+</button>
                                     </div>
                                 </div>
                                 <div class="row" >
@@ -136,12 +130,12 @@
                                                 }
                                             %>
                                             <a href="<%=url%>/cartController?id=<%=product.getIdProduct()%>&quantity=<%=quantity%>">
-                                                <button>Thêm vào giỏ hàng <i class="fa fa-shopping-cart cart"></i></button>
+                                                <button type="button">Thêm vào giỏ hàng <i class="fa fa-shopping-cart cart"></i></button>
                                             </a>
 
                                         </div>
                                         <div class="ms-3 pay">
-                                            <a href="#">
+                                            <a id="buy-now-link">
                                                 <button>Mua ngay</button>
                                             </a>
                                         </div>
@@ -152,22 +146,22 @@
                         <!--end thông tin sản phẩm-->
                     </div>
                 </div>
-                    <div class="row mt-2">
-                        <div class="col-md-12">
-                            <h5>MÔ TẢ SẢN PHẨM</h5>
-                            <p class="mb-2">- <%=product.getDescription()%></p>
-                        </div>
+                <div class="row mt-2">
+                    <div class="col-md-12">
+                        <h5>MÔ TẢ SẢN PHẨM</h5>
+                        <p class="mb-2">- <%=product.getDescription()%></p>
                     </div>
-                    <div class="row mt-1">
-                        <div class="col-md-12">
-                            <h5>CHI TIẾT SẢN PHẨM</h5>
-                            <p>- Chiều dài: <%=product.formatSize(product.getLength())%>cm</p>
-                            <p>- Chiều rộng: <%=product.formatSize(product.getWidth())%>cm</p>
-                            <p>- Chiều cao: <%=product.formatSize(product.getHeight())%>cm</p>
-                            <p>- Vật liệu: <%=product.getMaterial()%></p>
-                            <p>- Màu sắc: <%=product.getColor()%></p>
-                        </div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col-md-12">
+                        <h5>CHI TIẾT SẢN PHẨM</h5>
+                        <p>- Chiều dài: <%=product.formatSize(product.getLength())%>cm</p>
+                        <p>- Chiều rộng: <%=product.formatSize(product.getWidth())%>cm</p>
+                        <p>- Chiều cao: <%=product.formatSize(product.getHeight())%>cm</p>
+                        <p>- Vật liệu: <%=product.getMaterial()%></p>
+                        <p>- Màu sắc: <%=product.getColor()%></p>
                     </div>
+                </div>
             </div>
             <div class="col-md-3 d-lg-block d-md-none d-sm-none d-none pt-3">
                 <h5 class="m-0 text-center" id="titleCate">SẢN PHẨM TƯƠNG TỰ</h5>
@@ -203,23 +197,32 @@
     $(document).ready(function () {
         $(".owl-carousel").owlCarousel();
         //load header
-      //  $('header').load('Header.jsp')
+        //  $('header').load('Header.jsp')
         //load footer
-     //   $('footer').load('Footer.jsp')
+        //   $('footer').load('Footer.jsp')
         var count = 0;
         var increase = $('#increase');
         var decrease = $('#decrease');
         var amount = $('#amount');
+        var url="<%=url%>";
+        var productId=<%=product.getIdProduct()%>;
+        var buynowlink= document.getElementById("buy-now-link");
+
         increase.click(function () {
             count++;
             amount.val(count);
+            console.log(count);
+            buynowlink.href=`${url}/PaymentBuyNow?id=${productId}&quantity=${count}`
         })
         decrease.click(function () {
             if (count > 0) {
                 count--;
             }
             amount.val(count);
+            console.log(count);
+            buynowlink.href=`${url}/PaymentBuyNow?id=${productId}&quantity=${count}`
         })
+
     })
 
 

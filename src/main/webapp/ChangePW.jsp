@@ -1,3 +1,4 @@
+<%@ page import="model.Account" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -28,6 +29,9 @@
     <link rel="stylesheet" href="css/Style.css">
 </head>
 <body>
+<%
+    String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+%>
 <header>
     <div class="container-fluid bgcolor-orange" >
         <div class="container ">
@@ -51,6 +55,12 @@
         </div>
     </div>
 </header>
+<%
+    Object obj = session.getAttribute("account");
+    Object flag = request.getAttribute("flag");
+    Account account = (Account) obj;
+    if (account != null && flag==null) {
+%>
 <section class="signup mt-5">
     <!-- <img src="images/signup-bg.jpg" alt=""> -->
     <div class="contain">
@@ -58,18 +68,26 @@
             <form id="signup-form" class="signup-form" action="SignUp.jsp" >
                 <h5>ĐỔI MẬT KHẨU</h5>
                 <div class="form-SignUp">
+                    <%
+                        String errPassword = (String)request.getAttribute("errPass");
+                        errPassword =(errPassword == null)?"":errPassword;
+                        String errNewPassword = (String)request.getAttribute("errNewPass");
+                        errNewPassword =(errNewPassword == null)?"":errNewPassword;
+                        String errReNewPassword = (String)request.getAttribute("errReNewPass");
+                        errReNewPassword =(errReNewPassword == null)?"":errReNewPassword;
+                    %>
                     <div class="form-group">
                         <label>Mật khẩu hiện tại<span class="text-danger">*</span></label><span class="text-danger" id="errPW"></span>
                         <input type="password" class="form-input" placeholder="Nhập mật khẩu hiện tại" name="password"
                                id="password"/>
                     </div>
                     <div class="form-group">
-                        <label for="re_password">Mật khẩu mới<span class="text-danger">*</span></label><span class="text-danger" id="errNPW"></span>
+                        <label for="re_password">Mật khẩu mới<span class="text-danger">*</span></label><span class="text-danger" id="errNPW"><%=errNewPassword%></span>
                         <input type="password" class="form-input" placeholder="Nhập mật khẩu mới" name="new_password"
                                id="new_password"/>
                     </div>
                     <div class="form-group">
-                        <label for="re_password">Xác nhận mật khẩu<span class="text-danger">*</span></label><span class="text-danger" id="errReNPW"></span>
+                        <label for="re_password">Xác nhận mật khẩu<span class="text-danger">*</span></label><span class="text-danger" id="errReNPW"><%=errReNewPassword%></span>
                         <input type="password" class="form-input" placeholder="Nhập lại mật khẩu mới" name="re_password"
                                id="re_password"/>
                     </div>
@@ -82,6 +100,17 @@
             </form>
         </div>
     </div>
+<%
+} else {
+    if (account == null) {
+%>
+    <div class="container p-0 mgt text-center fw-bold">Bạn chưa đăng nhập! <a href = <%=url%>/SignIn.jsp>Đăng nhập</a></div>
+<%}else if((boolean)flag) {%>
+    <div class="container p-0 mgt text-center fw-bold">Đổi mật khẩu thành công! <a href = <%=url%>/homePage>Quay lại trang chủ</a></div>
+    <%
+            }
+    }
+%>
 </section>
 <script src="js/ChangePW.js"></script>
 </body>

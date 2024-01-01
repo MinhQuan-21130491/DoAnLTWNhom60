@@ -238,20 +238,6 @@ th, td {
     min-width: 110px !important;
 }
 
-element.style {
-    color: white;
-}
-#submit {
-    float: right;
-    background-color: #f68e2e;
-    font-weight: 700;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 3px;
-    margin: 10px 18px 20px 0;
-}
-
 
 
 

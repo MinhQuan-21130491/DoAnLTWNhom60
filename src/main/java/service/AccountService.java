@@ -1,10 +1,7 @@
 package service;
 
 import dao.DAOAccount;
-import dao.DAOProduct;
 import model.Account;
-import model.Image;
-import model.Product;
 import model.VerifyAccount;
 import util.JDBCUtil;
 
@@ -30,7 +27,7 @@ public class AccountService {
     public boolean checkExistUserName(String userName) {
         return DAOAccount.checkExistUserName(userName);
     }
-    
+
     public boolean checkExistEmail(String email) {
         return DAOAccount.checkExistEmail(email);
     }
@@ -57,17 +54,21 @@ public class AccountService {
        return DAOAccount.selectVerifyAccountByIdAccount(idAccount);
     }
     public  int updateVerify(int newCode, LocalDateTime timeNew, int idAccount) {
-        return DAOAccount.updateVerify(newCode, timeNew, idAccount);
-    }
+        return DAOAccount.updateVerify(newCode, timeNew, idAccount);}
     public  int updateInfor(Account account){ return DAOAccount.updateInfor(account);}
     public  Account selectById(int id){
         return DAOAccount.selectById(id);
     }
+
     public Account getAccount(String userName, String password) {
         return DAOAccount.getAccount(userName, password);
     }
+
     public VerifyAccount getVrfOfAccount(int idAccount) {
-        return  DAOAccount.getVrfOfAccount(idAccount);
+        return DAOAccount.getVrfOfAccount(idAccount);
+    }
+    public static int updatePassword(String passEnCrypt, int idAccount) {
+        return DAOAccount.updatePassword(passEnCrypt, idAccount);
     }
     public ArrayList<Account> listAllAccount() {
         ArrayList<Account> listAccount = DAOAccount.listAllAccount();

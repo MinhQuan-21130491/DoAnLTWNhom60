@@ -267,6 +267,7 @@ public class DAOProduct {
                 Product product = new Product(idProduct, idCate, name, priceImport, price,description,color,material,width,height,lenght, 1,quantity);
                 list.add(product);
             }
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

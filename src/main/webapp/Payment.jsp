@@ -1,4 +1,8 @@
-
+<%@ page import="model.Account" %>
+<%@ page import="model.Cart" %>
+<%@ page import="java.text.NumberFormat" %>
+<%@ page import="model.Product" %>
+<%@ page import="java.util.Iterator" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -42,24 +46,31 @@
 </header>
 <!--end header-->
 <!--page content-->
+<%
+    Account a =(Account) session.getAttribute("account");
+    Cart c =(Cart) session.getAttribute("Cart");
+    double sumPay = 0;
+    double shippingFee=0;
+    if (a != null ) {
+%>
 <div class="container p-0 mgt">
     <a href="<%=url%>/homePage" class="color-gray lbhv text-decoration-none">Trang chủ  <i class="fa fa-angle-right color-gray" aria-hidden="true"></i>  </a> <span class="text-color">Thanh toán</span>
     <div class="row p-2 mt-3 bgcolor">
         <div class="col-lg-4 col-sm-4 my-1">
             <h5 class="text-color text-start"><i class="fa fa-user-circle-o text-color" aria-hidden="true"></i> THÔNG TIN KHÁCH HÀNG</h5>
             <div class="mt-3">
-                <label for="fullName">Họ tên: <span id="fullName">Minh Quân</span></label>
+                <label for="fullName">Họ tên: <span id="fullName"><%=a.getName()%></span></label>
             </div>
             <div class="mt-2">
-                <label for="phoneNumber">Số điện thoại: <span id="phoneNumber">0811295775</span></label>
+                <label for="phoneNumber">Số điện thoại: <span id="phoneNumber"><%=a.getPhoneNumber()%></span></label>
             </div>
             <div class="mt-2">
-                <label for="email">Email:</label> <span id="email">qle29210@gmail.com</span>
+                <label for="email">Email:</label> <span id="email"><%=a.getEmail()%></span>
             </div>
         </div>
         <div class="col-lg-6 col-sm-6 mt-1 ">
             <h5 class="text-color text-start"> <i class="fa fa-map-marker text-color" aria-hidden="true"></i> ĐỊA CHỈ NHẬN HÀNG</h5>
-            <span class="mt-3 d-block" id="address">Trường Đại Học Khoa Học Tự Nhiên đường A2, Phường Linh Trung, Thành Phố Thủ Đức, TP. Hồ Chí Minh </span>
+            <span class="mt-3 d-block" id="address"><%=a.getAddressReceive()%></span>
         </div>
         <div class="col-lg-2 col-sm-2 mt-1 text-end">
             <button class="btnAdd bgcolor bd-full" id ="editInFor" data-bs-toggle="modal"
@@ -70,7 +81,11 @@
             <div class="modal-dialog modal-md">
                 <div class="modal-content ">
                     <div class="modal-body">
-                            <form id="changeNam" onsubmit="return check()">
+                            <form id="changeNam" onsubmit="return check()" method="post" action="ChangeInforInPayment">
+                                <%
+                                    String res = (String) request.getAttribute("res");
+                                    res =(res == null)?"":res;
+                                %>
                                 <table>
                                     <thead>
                                     <div class=" text-end">
@@ -79,15 +94,19 @@
                                     <tr>
                                         <td colspan ="4">
                                             <h5 class = "pt-3 pb-1"> THAY ĐỔI THÔNG TIN </h5>
-                                            <div class="text-danger text-center w-100" id="error"></div>
+                                            <div class="text-danger text-center w-100" id="error"><%=res%></div>
                                         </td>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
                                         <td colspan="2">
+                                            <%
+                                                if (a.getVerifyAccount().isStateVerify()) {%>
                                             <label class="w-100">Tài khoản đã xác thực <i class="fa fa-check-circle text-success" aria-hidden="true"></i></label>
-                                            <label class="w-100 d-none">Tài khoản của bạn chưa xác thực, <a href="#">xác thực ngay</a></label>
+                                            <%} else {%>
+                                            <label class="w-100 ">Tài khoản của bạn chưa xác thực, <a href="reVerifyCode">xác thực ngay</a></label>
+                                            <%}%>
                                         </td>
                                     </tr>
                                     <tr id="changeName">
@@ -96,7 +115,7 @@
                                         </td>
                                         <td class="w-50">
                                             <div id="InName">
-                                                <input id="HienThiTen" name="TenHT" type="text">
+                                                <input id="HienThiTen" name="TenHT" type="text" value="<%=a.getName()%>">
                                             </div>
                                         </td>
                                     </tr>
@@ -106,7 +125,7 @@
                                         </td>
                                         <td>
                                             <div id="InSDT">
-                                                <input id="HienThiSDT" name="SDTHT" type="text">
+                                                <input id="HienThiSDT" name="SDTHT" type="text" value="<%=a.getPhoneNumber()%>">
                                             </div>
                                         </td>
                                     </tr>
@@ -116,7 +135,7 @@
                                         </td>
                                         <td>
                                             <div id="InGmail">
-                                                <input id="HienThiGmail" name="GmailHT" type="text">
+                                                <input id="HienThiGmail" name="GmailHT" type="text" value="<%=a.getEmail()%>">
                                             </div>
                                         </td>
                                     </tr>
@@ -126,9 +145,25 @@
                                         </td>
                                         <td >
                                             <div class = "gender">
+                                                <%
+                                                if(a.getGender().equals("Nam")){
+                                                %>
                                                 <label class="ms-0" for="male">Nam</label><input class="ms-2 me-3" type="radio" id="male" name="gender" value="Nam"  checked >
                                                 <label for="female">Nữ</label> <input class="ms-2 me-3" type="radio" id="female" name="gender" value="Nữ" >
                                                 <label for="other">Khác</label> <input class="ms-2 me-3" type="radio" id="other" name="gender" value="Khác">
+                                                <%
+                                                }else if(a.getGender().equals("Nữ")){
+                                                %>
+                                                <label class="ms-0" for="male">Nam</label><input class="ms-2 me-3" type="radio" id="male" name="gender" value="Nam">
+                                                <label for="female">Nữ</label> <input class="ms-2 me-3" type="radio" id="female" name="gender" value="Nữ" checked>
+                                                <label for="other">Khác</label> <input class="ms-2 me-3" type="radio" id="other" name="gender" value="Khác">
+                                                <%
+                                                    }else{
+                                                %>
+                                                <label class="ms-0" for="male">Nam</label><input class="ms-2 me-3" type="radio" id="male" name="gender" value="Nam">
+                                                <label for="female">Nữ</label> <input class="ms-2 me-3" type="radio" id="female" name="gender" value="Nữ" >
+                                                <label for="other">Khác</label> <input class="ms-2 me-3" type="radio" id="other" name="gender" value="Khác" checked>
+                                                <%}%>
                                             </div>
                                         </td>
                                     </tr>
@@ -138,7 +173,7 @@
                                         </td>
                                         <td>
                                             <div id="InNS">
-                                                <input id="HienThiNS" name="HienThiNS" type="date">
+                                                <input id="HienThiNS" name="HienThiNS" type="date" value="<%=a.getBirthDay()%>">
                                             </div>
                                         </td>
                                     </tr>
@@ -148,7 +183,7 @@
                                         </td>
                                         <td>
                                             <div id="InDiaChi">
-                                                <input id="HienThiDC" name="DCHT" type="text">
+                                                <input id="HienThiDC" name="DCHT" type="text" value="<%=a.getAddress()%>">
                                             </div>
                                         </td>
                                     </tr>
@@ -158,13 +193,13 @@
                                         </td>
                                         <td>
                                             <div id="">
-                                                <input id="HienThiDCReice" name="DCHT" type="text">
+                                                <input id="HienThiDCReice" name="DCNHHT" type="text" value="<%=a.getAddressReceive()%>">
                                             </div>
                                         </td>
                                     </tr>
                                     <tr id="SubmitSB">
                                         <td colspan="2">
-                                            <div><button id="submit" name="SB" onclick="my_function()" style="color: white"> LƯU </button></div>
+                                            <div><button id="submit" name="SB" onclick="" style="color: white"> LƯU </button></div>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -191,36 +226,51 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <%
+                        NumberFormat nF = NumberFormat.getCurrencyInstance();
+                        Iterator<Product> it = c.list().iterator();
+                        int stt = 1;
+                        Product p;
+
+                        while(it.hasNext()) {
+                            p = it.next();
+                    %>
                     <tr class="tr">
-                        <td class="w40">1</td>
+                        <td class="w40"><%=stt%></td>
                         <td class="w300">
                             <div class="item d-flex justify-content-center">
                                 <div class="item_img">
-                                    <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
+                                    <img src="<%=url%>/Products/<%=(p.getImages().isEmpty())?"":p.getImages().get(0).getUrl()%>"
                                          class="card-img-top img_p_cart" alt="..."/>
                                 </div>
-                                <span class="item_text">Ghế massage siêu cấp pro</span>
+                                <span class="item_text"><%=p.getName()%></span>
                             </div>
                         </td>
                         <td>
-                            <span>Màu đen</span>
+                            <%=p.getColor()%>
                         </td>
                         <td>
-                            <span>Hợp kim, bọc da</span>
+                            <%=p.getMaterial()%>
                         </td>
                         <td>
-                            <span>100x50x70</span>
+                            <%=p.formatSize(p.getLength())%>x<%=p.formatSize(p.getWidth())%>x<%=p.formatSize(p.getHeight())%>
                         </td>
                         <td>
-                            ₫<span>1.000.000</span>
+                            <%=nF.format(p.getPrice())%>
                         </td>
                         <td>
-                            <span>2</span>
+                            <%=p.getQuantity()%>
                         </td>
                         <td>
-                            ₫<span></span>
+                            <%=nF.format(p.getPrice()*p.getQuantity())%>
                         </td>
                     </tr>
+                    <%
+                            sumPay+=(double) p.getPrice()*p.getQuantity();
+                            stt++;
+                        }
+                        session.setAttribute("Sum",sumPay);
+                    %>
                 </tbody>
             </table>
         </div>
@@ -233,27 +283,20 @@
             <div class="row">
                 <div class="col-lg-8 col-sm-4 col-3"></div>
                 <div class="col-lg-4 col-sm-8 col-9 mt-1 ps-5">
-                    <input class="" type="radio" id="cash" name="pay" value="Tiền mặt"><label for="cash">Tiền mặt <i class="fa fa-money" aria-hidden="true"></i> </label>
-                    <input class="ms-3" type="radio" id="bank" name="pay" value="Thẻ tín dụng"><label for="bank">Thẻ tín dụng <i class="fa fa-cc-visa" aria-hidden="true"></i></label>
                     <div class=" mt-3">
                         <p class="mb-3 color-gray">Tổng tiền hàng:
-                            <span class="float-end">
-                            <span> ₫</span>
-                            <span id="totalMoney"></span>
-                        </span>
+                            <span class="float-end"><%=nF.format(sumPay)%></span>
                         </p>
                         <p class="mb-3 color-gray">Tiền vận chuyển:
-                            <span class="float-end" id="moneyShip">₫0</span></p>
+                            <span class="float-end" id="moneyShip"><%=nF.format(shippingFee)%></span>
+                        </p>
                         <p class="mb-3 color-gray">Tổng thanh toán:
-                            <span class="float-end">
-                            <span class="price "> ₫</span>
-                            <span class="price" id="totalPay"></span>
-                        </span>
+                            <span class="float-end"><%=nF.format(sumPay+shippingFee)%></span>
                         </p>
                     </div>
                     <div class="pay text-end mt-2">
-                        <a href=#>
-                            <button id="btnPay">Đặt hàng</button>
+                        <a href="<%=url%>/Payment">
+                            <button id="btnPay" >Đặt hàng</button>
                         </a>
                     </div>
                 </div>
@@ -261,6 +304,15 @@
         </div>
     </div>
 </div>
+<%
+    } else {
+        if (a == null) {
+%>
+<div class="container p-0 mgt text-center fw-bold">Bạn chưa đăng nhập! <a href = <%=url%>/SignIn.jsp>Đăng nhập</a></div>
+<%      }
+
+    }
+%>
 <!--end page content-->
 <!--footer-->
 <footer>
@@ -297,7 +349,7 @@
             $('#totalMoney').text(total);
             $('#totalPay').text(total);
         }
-        totalMoneyPay()
+        totalMoneyPay();
 </script>
 </body>
 </html>

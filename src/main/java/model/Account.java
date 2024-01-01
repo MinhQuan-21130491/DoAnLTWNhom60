@@ -81,11 +81,6 @@ public class Account {
         this.address = address;
         this.addressReceive = addressReceive;
     }
-    public Account(String userName, String password, String email) {
-        this.userName = userName;
-        this.password = password;
-        this.email = email;
-    }
     public Account(int id, String name, String userName, String password, String email, String phoneNumber, String gender, Date birthDay, String address, String addressReceive) {
         this.id = id;
         this.name = name;
@@ -205,7 +200,6 @@ public class Account {
     public void setVerifyAccount(VerifyAccount verifyAccount) {
         this.verifyAccount = verifyAccount;
     }
-
     @Override
     public String toString() {
         return "Account{" +

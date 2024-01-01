@@ -36,8 +36,8 @@ public class LoadProductByFil extends HttpServlet {
             idCate = Integer.parseInt(idCateText);
         }
         HttpSession session = request.getSession();
-        Cart cart = (Cart) session.getAttribute("Cart");
-        PrintWriter out = response.getWriter();
+        Cart cart = (Cart) session.getAttribute("Cart");        PrintWriter out = response.getWriter();
+
         String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
         int quantity = 1;
         ArrayList<Product> listProduct = ProductService.getInstance().listProductByFil(command,price, color, material, idCate );
