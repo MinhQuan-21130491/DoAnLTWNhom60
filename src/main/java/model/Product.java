@@ -70,7 +70,7 @@ public class Product {
         this.quantityAvailable = quantityAvailable;
     }
 
-    public Product(int idProduct, int idCate, String name, double priceImport, double price, String description, String color, String material, double width, double height, double length, int quantiy, int quantityAvailable, boolean status) {
+    public Product(int idProduct, int idCate, String name, double priceImport, double price, String description, String color, String material, double width, double height, double length, int quantity, int quantityAvailable, boolean status) {
         this.idProduct = idProduct;
         this.idCate = idCate;
         this.name = name;
@@ -85,6 +85,20 @@ public class Product {
         this.quantityAvailable = quantityAvailable;
         this.quantity = quantity;
         this.status = status;
+    }
+    public Product(int idProduct, int idCate, String name, double priceImport, double price, String description, String color, String material, double width, double height, double length, int quantityAvailable) {
+        this.idProduct = idProduct;
+        this.idCate = idCate;
+        this.name = name;
+        this.priceImport = priceImport;
+        this.price = price;
+        this.description = description;
+        this.color = color;
+        this.material = material;
+        this.width = width;
+        this.height = height;
+        this.length = length;
+        this.quantityAvailable = quantityAvailable;
     }
 
     public int getIdProduct() {
@@ -245,11 +259,12 @@ public class Product {
                 ", width=" + width +
                 ", height=" + height +
                 ", length=" + length +
+                ", quantityAvailable=" + quantityAvailable +
                 ", quantity=" + quantity +
+                ", status=" + status +
                 ", images=" + images +
                 '}';
     }
-
     public static void main(String[] args) {
         Product p = new Product();
         NumberFormat nF

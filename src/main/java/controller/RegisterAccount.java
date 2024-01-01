@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDateTime;
 
+
 @WebServlet(name = "registerAccount", value = "/registerAccount")
 public class RegisterAccount extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
