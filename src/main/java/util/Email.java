@@ -1,7 +1,9 @@
 package util;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Properties;
+
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
@@ -42,7 +44,7 @@ public class Email {
 			msg.addHeader("Content-type", "text/HTML; charset=UTF-8");
 
 			// Người gửi
-			msg.setFrom("HomeDecor");
+			msg.setFrom(from);
 
 			// Người nhận
 			msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to, false));

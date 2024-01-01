@@ -34,6 +34,15 @@ public class HomeController extends HttpServlet {
         int idProduct = InvoiceService.getInstance().idBestSaler();
         Product bestProduct = ProductService.getInstance().getProductById(idProduct);
         request.setAttribute("bestSaler", bestProduct);
+        //load carousel
+        String source = "D:\\ltw\\DoAn\\DoanLTWNhom60\\src\\main\\webapp\\image\\Carousel";
+        File fileSource = new File(source);
+        File[] filesNew = fileSource.listFiles();
+        ArrayList<String> listCarousel = new ArrayList<>();
+        for (File f: filesNew) {
+            listCarousel.add(f.getName());
+        }
+        request.setAttribute("listCarousel", listCarousel);
         try {
             request.getRequestDispatcher("HomePage.jsp").forward(request, response);
         } catch (ServletException e) {

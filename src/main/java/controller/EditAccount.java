@@ -2,32 +2,19 @@ package controller;
 
 import dao.DAOAccount;
 import model.Account;
-import model.Image;
-import model.Product;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import service.AccountService;
-import service.ProductService;
-
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.file.Paths;
 import java.sql.Date;
 import java.sql.SQLException;
-import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
-
 @WebServlet(name = "editAccount", value = "/editAccount")
 public class EditAccount extends HttpServlet {
     @Override

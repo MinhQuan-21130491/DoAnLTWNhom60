@@ -1,4 +1,5 @@
 package controller;
+
 import model.Category;
 import service.CategoryService;
 import model.Account;
@@ -9,7 +10,6 @@ import service.ProductService;
 import service.SupplierService;
 import service.AccountService;
 import service.InvoiceService;
-import service.ProductService;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

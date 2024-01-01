@@ -1549,6 +1549,7 @@
             data: {
                 id: id,
             },
+
             success: function (data) {
                 var s = data.supplier;
                 $("#nameSupEdit").val(s.name);
@@ -1750,60 +1751,26 @@
             });
         }
     }
-
     function addCate() {
-       console.log('Button clicked!'); // Thêm dòng này
         var flag = true;
-        var nameInput = document.getElementById("nameCateAdd");
+        var name = document.getElementById("nameCateAdd");
         var error = document.getElementById("errNameCateAdd");
-
-        if (nameInput.value === "") {
+        if(name.value === "") {
             error.innerHTML = ' *Vui lòng nhập danh mục mới!';
             flag = false;
-        } else {
-            error.innerHTML = '';
         }
-        if (flag) {
-            var name = nameInput.value;
-            $.ajax({
-                url: 'addCategory',
-                type: 'POST',
-                data: { nameCateAdd: name }, // tên danh mục nhập vào
-                success: function (data) {
-                    try {
-                        var jsonData = JSON.parse(data);
-                        var res = jsonData.res;
-                        var htmlData = jsonData.htmlData;
-                        alert(res);
-                        // Cập nhật danh sách danh mục trên giao diện
-                        var row = document.getElementById("innerCategory");
-                        row.innerHTML = "";
-                        for (var i = 0; i < htmlData.length; i++) {
-                            var c = htmlData[i];
-                            row.innerHTML +=  "<tr>" +
-                                "<input type='hidden' class='id' value='" + c.id + "'>" +
-                                "<td>" + (i + 1) + "</td>" +
-                                "<td>" + c.id + "</td>" +
-                                "<td>" + c.name + "</td>" +
-                                "<td>" +
-                                "<div class='d-flex w-100 justify-content-center'>" +
-                                "<button class='delete btnAdd bgcolor bd-full me-1' title='Xóa' aria-hidden='true' onclick='deleteCategory(\"" + c.id + "\")' data-bs-toggle='modal' data-bs-target=''><i class='fa fa-trash-o text-color'></i></button>" +
-                                "<button class='editCate btnAdd bgcolor bd-full' title='Chỉnh sửa danh mục' aria-hidden='true' data-bs-toggle='modal' data-bs-target='#editCate' onclick='innerEditCategory(\"" + c.id + "\")'><i class='fa fa-pencil text-color'></i></button>" +
-                                "</div>" +
-                                "</td>" +
-                                "</tr>";
-                        }
-                    } catch (e) {
-                        console.error("Xảy ra lỗi khi xử lý phản hồi JSON:", e);
-                    }
-                },
-                error: function (error) {
-                    console.error("Xảy ra lỗi:", error);
-                }
-            });
-        }
-        return false; // Ngăn chặn sự kiện mặc định của biểu mẫu
+        return flag;
 
+    }
+    function editCate() {
+        var flag = true;
+        var name = document.getElementById("nameCateEdit");
+        var error = document.getElementById("errNameCate");
+        if(name.value === "") {
+            error.innerHTML = ' *Vui lòng nhập danh mục mới!';
+            flag = false;
+        }
+        return flag;
     }
     document.getElementById('saveButton').addEventListener('click', addCate);
     function displaySelectedImage(input) {
@@ -1822,6 +1789,7 @@
             reader.readAsDataURL(selectedFile);
         }
     }
+
     function addInput() {
         var container = document.getElementById('image');
         var newInput = document.createElement('div');
@@ -1929,90 +1897,11 @@
             img_center.src = newSrc;
         }
     }
-    function deleteCategory(categoryId) {
-            var confirmation = confirm("Bạn có chắc muốn xóa ?");
-            if (confirmation) {
-                $.ajax({
-                    type: "POST",
-                    url: "delCategory", // Đường dẫn tới Servlet xử lý xóa danh mục
-                    data: { id: categoryId },
-                    success: function (data) {
-                        var jsonData = JSON.parse(data);
-                        var htmlData = jsonData.htmlData;
-                        var res = jsonData.res;
-                        alert(res);
-                        var row = document.getElementById("innerCategory");
-                        row.innerHTML = ""; // Clear existing content
-                        for (var i = 0; i < htmlData.length; i++) {
-                            var c = htmlData[i];
-                            row.innerHTML +=  "<tr>" +
-                                "<input type='hidden' class='id' value='" + c.id + "'>" +
-                                "<td>" + (i + 1) + "</td>" +
-                                "<td>" + c.id + "</td>" +
-                                "<td>" + c.name + "</td>" +
-                                "<td>" +
-                                "<div class='d-flex w-100 justify-content-center'>" +
-                                "<button class='delete btnAdd bgcolor bd-full me-1' title='Xóa' aria-hidden='true' onclick='deleteCategory(\"" + c.id + "\")' data-bs-toggle='modal' data-bs-target=''><i class='fa fa-trash-o text-color'></i></button>" +
-                                "<button class='editCate btnAdd bgcolor bd-full' title='Chỉnh sửa danh mục' aria-hidden='true' data-bs-toggle='modal' data-bs-target='#editCate' onclick='innerEditCategory(\"" + c.id + "\")'><i class='fa fa-pencil text-color'></i></button>" +
-                                "</div>" +
-                                "</td>" +
-                                "</tr>";
-                        }
-                    },
-                    error: function (error) {
-                        console.error("Lỗi khi xóa danh mục:", error);
-                    }
-                });
-            }
-    }
-    var categoryId = "";
-    function editCate() {
-        var flag = true;
-        var nameCate = document.getElementById("nameCateEdit");
-        var errNameCate = document.getElementById("errNameCate");
-
-        if (nameCate.value === "") {
-            errNameCate.innerHTML = 'Vui lòng nhập tên danh mục';
-            flag = false;
-        } else {
-            errNameCate.innerHTML = '';
-        }
-        if (flag) {
-            $.ajax({
-                url: 'editCategory',
-                type: 'POST',
-                data: {
-                    nameCateEdit: nameCate.value,
-                    categoryId: categoryId,
-                },
-               success: function (data) {
-                    var jsonData = JSON.parse(data);
-                    var htmlData = jsonData.htmlData;
-                    var res = jsonData.res;
-                    alert(res);
-                    var row = document.getElementById("innerCategory");
-                    row.innerHTML = "";
-                    for (var i = 0; i < htmlData.length; i++) {
-                        var c = htmlData[i];
-                        row.innerHTML += "<tr>" +
-                            "<input type='hidden' class='id' value='" + c.id + "'>" +
-                            "<td>" + (i + 1) + "</td>" +
-                            "<td>" + c.id + "</td>" +
-                            "<td>" + c.name + "</td>" +
-                            "<td>" +
-                            "<div class='d-flex w-100 justify-content-center'>" +
-                            "<button class='delete btnAdd bgcolor bd-full me-1' title='Xóa' aria-hidden='true' onclick='deleteCategory(\"" + c.id + "\")' data-bs-toggle='modal' data-bs-target=''><i class='fa fa-trash-o text-color'></i></button>" +
-                            "<button class='editCate btnAdd bgcolor bd-full' title='Chỉnh sửa danh mục' aria-hidden='true' data-bs-toggle='modal' data-bs-target='#editCate' onclick='innerEditCategory(\"" + c.id + "\")'><i class='fa fa-pencil text-color'></i></button>" +
-                            "</div>" +
-                            "</td>" +
-                            "</tr>";
-                    }
-                },
-            });
-        }
-    }
     function deleteProduct(productId) {
-        $.ajax({
+        var confirmation = confirm("Bạn có chắc muốn xóa ?");
+        if (confirmation) {
+            $.ajax({
+                type: "POST",
                 url: "delProduct",
                 data: { id: productId },
                 success: function(data) {
@@ -2025,29 +1914,29 @@
                     for (var i = 0; i < htmlData.length; i++) {
                         var p = htmlData[i];
                         row.innerHTML += "  <tr  data-bs-toggle =\"modal\" data-bs-target=\"#detailProduct\" onclick=\"detailProduct('"+p.idProduct+"')\">\n" +
-                        "<input type=\"hidden\" className =\"idProduct\" value=\""+p.idProduct+"\">"+
-                        "                                <td class=\"w40\">"+(i+1)+"</td>\n" +
-                        "                                <td class=\"w260\">\n" +
-                        "                                    <div class=\"item d-flex justify-content-center\">\n" +
-                        "                                        <div class=\"item_img\">\n" +
-                        "                                            <img src=\""+p.imageUrl+"\"\n" +
-                        "                                                 class=\"card-img-top img_p_cart\" alt=\"...\"/>\n" +
-                        "                                        </div>\n" +
+                            "<input type=\"hidden\" className =\"idProduct\" value=\""+p.idProduct+"\">"+
+                            "                                <td class=\"w40\">"+(i+1)+"</td>\n" +
+                            "                                <td class=\"w260\">\n" +
+                            "                                    <div class=\"item d-flex justify-content-center\">\n" +
+                            "                                        <div class=\"item_img\">\n" +
+                            "                                            <img src=\""+p.imageUrl+"\"\n" +
+                            "                                                 class=\"card-img-top img_p_cart\" alt=\"...\"/>\n" +
+                            "                                        </div>\n" +
                             "<span class=\"item_text\">" + p.name + "</span>\n" +
-                        "                                    </div>\n" +
-                        "                                </td>\n" +
-                        "                                <td>"+p.price+"</td>\n" +
-                        "                                <td>"+p.color+"</td>\n" +
-                        "                                <td>"+p.quantity+"\n" +
-                        "                                <td>"+p.status+"</td>\n" +
-                        "                                <td>\n" +
-                        "                                    <div class=\"d-flex justify-content-center\">\n" +
-                        "                                        <button class=\"delete btnAdd bgcolor bd-full\" title=\"Xóa\" aria-hidden=\"true\" onclick=\"deleteProduct('"+p.idProduct+"')\" data-bs-toggle=\"modal\" data-bs-target=\"\"><i class=\"fa fa-trash-o text-color\"></i></button>"+
+                            "                                    </div>\n" +
+                            "                                </td>\n" +
+                            "                                <td>"+p.price+"</td>\n" +
+                            "                                <td>"+p.color+"</td>\n" +
+                            "                                <td>"+p.quantity+"\n" +
+                            "                                <td>"+p.status+"</td>\n" +
+                            "                                <td>\n" +
+                            "                                    <div class=\"d-flex justify-content-center\">\n" +
+                            "                                        <button class=\"delete btnAdd bgcolor bd-full\" title=\"Xóa\" aria-hidden=\"true\" onclick=\"deleteProduct('"+p.idProduct+"')\" data-bs-toggle=\"modal\" data-bs-target=\"\"><i class=\"fa fa-trash-o text-color\"></i></button>"+
                             "                                        <button class=\"editProduct btnAdd bgcolor bd-full mx-1\" data-bs-toggle=\"modal\" data-bs-target=\"#editProduct\" onclick=\"innerEditProduct('"+p.idProduct+"')\"><i class=\"fa fa-pencil text-color\" title=\"Chỉnh sửa\" aria-hidden=\"true\"></i></button>\n" +
-                        "                                        <button class=\"hideProduct btnAdd bgcolor bd-full\" title=\"Ẩn/hiện sản phẩm\" aria-hidden=\"true\" onclick=\"hideProduct('"+p.idProduct+"')\" data-bs-toggle=\"modal\" data-bs-target=\"\"><i class=\"fa fa-lock text-color\"></i></button>"+
-                        "                                    </div>\n" +
-                        "                                </td>\n" +
-                        "                            </tr>";
+                            "                                        <button class=\"hideProduct btnAdd bgcolor bd-full\" title=\"Ẩn/hiện sản phẩm\" aria-hidden=\"true\" onclick=\"hideProduct('"+p.idProduct+"')\" data-bs-toggle=\"modal\" data-bs-target=\"\"><i class=\"fa fa-lock text-color\"></i></button>"+
+                            "                                    </div>\n" +
+                            "                                </td>\n" +
+                            "                            </tr>";
                     }
                 },
                 error: function(error) {
@@ -2105,7 +1994,7 @@
         }
     }
     function detailAccount(id) {
-       $.ajax({
+        $.ajax({
             type: "GET",
             url: "loadDetailAccount",
             data: {
@@ -2144,20 +2033,20 @@
                     row.innerHTML = ""; // Clear existing content
                     for (var i = 0; i < htmlData.length; i++) {
                         var a = htmlData[i];
-                            row.innerHTML += "<tr data-bs-toggle=\"modal\" data-bs-target=\"#detailAccount\" onclick=\"detailAccount('" + a.id + "')\">\n" +
-                                "                                    <td class=\"w40\">" + (i + 1) + "</td>\n" +
-                                "                                    <td>" + a.name + "</td>\n" +
-                                "                                    <td>" + a.email + "</td>\n" +
-                                "                                    <td>" + a.role + "</td>\n" +
-                                "                                    <td>" + a.vrf + "</td>\n" +
-                                "                                    <td class = \"status\">" + a.status + "</td>\n" +
-                                "                                    <td>\n" +
-                                "                                        <div class=\"d-flex w-100 justify-content-center\">\n" +
-                                "                                            <button class=\"editAccount btnAdd bgcolor bd-full mx-1\" title=\"Chỉnh sửa quyền truy cập\" aria-hidden=\"true\" data-bs-toggle=\"modal\" data-bs-target=\"#editAccount\" onclick=\"innerAccount('" + a.id + "')\"><i class=\"fa fa-pencil text-color\" ></i></button>\n" +
-                                "                                            <button class=\"block btnAdd bgcolor bd-full \" data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"banAccount('" + a.id + "')\"><i class=\"fa fa-lock text-color\" title=\"Khóa\" aria-hidden=\"true\" ></i></button>\n" +
-                                "                                        </div>\n" +
-                                "                                    </td>\n" +
-                                "                                </tr>";
+                        row.innerHTML += "<tr data-bs-toggle=\"modal\" data-bs-target=\"#detailAccount\" onclick=\"detailAccount('" + a.id + "')\">\n" +
+                            "                                    <td class=\"w40\">" + (i + 1) + "</td>\n" +
+                            "                                    <td>" + a.name + "</td>\n" +
+                            "                                    <td>" + a.email + "</td>\n" +
+                            "                                    <td>" + a.role + "</td>\n" +
+                            "                                    <td>" + a.vrf + "</td>\n" +
+                            "                                    <td class = \"status\">" + a.status + "</td>\n" +
+                            "                                    <td>\n" +
+                            "                                        <div class=\"d-flex w-100 justify-content-center\">\n" +
+                            "                                            <button class=\"editAccount btnAdd bgcolor bd-full mx-1\" title=\"Chỉnh sửa quyền truy cập\" aria-hidden=\"true\" data-bs-toggle=\"modal\" data-bs-target=\"#editAccount\" onclick=\"innerAccount('" + a.id + "')\"><i class=\"fa fa-pencil text-color\" ></i></button>\n" +
+                            "                                            <button class=\"block btnAdd bgcolor bd-full \" data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"banAccount('" + a.id + "')\"><i class=\"fa fa-lock text-color\" title=\"Khóa\" aria-hidden=\"true\" ></i></button>\n" +
+                            "                                        </div>\n" +
+                            "                                    </td>\n" +
+                            "                                </tr>";
                     }
                 },
                 error: function (error) {
@@ -2165,23 +2054,6 @@
                 }
             });
         }
-    }        
-    function innerEditCategory(cateId) {
-        categoryId = cateId;
-        $.ajax({
-            type: "GET",
-            url: "loadDetailCategory",
-            data: {
-                id: cateId
-            },
-            success: function (data) {
-                var c = data.category;
-                $("#nameCateEdit").val(c.name);
-            },
-            error: function () {
-                console.error("Không thể tải chi tiết sản phẩm");
-            }
-        });
     }
     var idAccount ="";
     function innerAccount(id) {
@@ -2286,20 +2158,20 @@
                     row.innerHTML = ""; // Clear existing content
                     for (var i = 0; i < htmlData.length; i++) {
                         var a = htmlData[i];
-                            row.innerHTML += "<tr data-bs-toggle=\"modal\" data-bs-target=\"#detailAccount\" onclick=\"detailAccount('" + a.id + "')\">\n" +
-                                "                                    <td class=\"w40\">" + (i+1) + "</td>\n" +
-                                "                                    <td>" + a.name + "</td>\n" +
-                                "                                    <td>" + a.email + "</td>\n" +
-                                "                                    <td>" + a.role + "</td>\n" +
-                                "                                    <td>" + a.vrf + "</td>\n" +
-                                "                                    <td class = \"status\">" + a.status + "</td>\n" +
-                                "                                    <td>\n" +
-                                "                                        <div class=\"d-flex w-100 justify-content-center\">\n" +
-                                "                                            <button class=\"editAccount btnAdd bgcolor bd-full mx-1\" title=\"Chỉnh sửa thông tin\" aria-hidden=\"true\" data-bs-toggle=\"modal\" data-bs-target=\"#editAccount\" onclick=\"innerAccount('" + a.id + "')\"><i class=\"fa fa-pencil text-color\" ></i></button>\n" +
-                                "                                            <button class=\"block btnAdd bgcolor bd-full \" data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"banAccount('" + a.id + "')\"><i class=\"fa fa-lock text-color\" title=\"Khóa\" aria-hidden=\"true\" ></i></button>\n" +
-                                "                                        </div>\n" +
-                                "                                    </td>\n" +
-                                "                                </tr>";
+                        row.innerHTML += "<tr data-bs-toggle=\"modal\" data-bs-target=\"#detailAccount\" onclick=\"detailAccount('" + a.id + "')\">\n" +
+                            "                                    <td class=\"w40\">" + (i+1) + "</td>\n" +
+                            "                                    <td>" + a.name + "</td>\n" +
+                            "                                    <td>" + a.email + "</td>\n" +
+                            "                                    <td>" + a.role + "</td>\n" +
+                            "                                    <td>" + a.vrf + "</td>\n" +
+                            "                                    <td class = \"status\">" + a.status + "</td>\n" +
+                            "                                    <td>\n" +
+                            "                                        <div class=\"d-flex w-100 justify-content-center\">\n" +
+                            "                                            <button class=\"editAccount btnAdd bgcolor bd-full mx-1\" title=\"Chỉnh sửa thông tin\" aria-hidden=\"true\" data-bs-toggle=\"modal\" data-bs-target=\"#editAccount\" onclick=\"innerAccount('" + a.id + "')\"><i class=\"fa fa-pencil text-color\" ></i></button>\n" +
+                            "                                            <button class=\"block btnAdd bgcolor bd-full \" data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"banAccount('" + a.id + "')\"><i class=\"fa fa-lock text-color\" title=\"Khóa\" aria-hidden=\"true\" ></i></button>\n" +
+                            "                                        </div>\n" +
+                            "                                    </td>\n" +
+                            "                                </tr>";
                     }
                 },
                 error: function(error) {
@@ -2328,54 +2200,54 @@
         } else {
             $("#errUser").text('');
         }
-        if(password===""){
+        if (password === "") {
             $("#errPW").text('Vui lòng nhập mật khẩu!');
             $('#errPW').attr('style', 'color:red');
             condition = false;
-        }else if(password.length < 6 || password.length > 50){
+        } else if (password.length < 6 || password.length > 50) {
             $("#errPW").text('Mật khẩu dài từ 6 đến 50 ký tự!');
             $('#errPW').attr('style', 'color:red');
             condition = false;
-        }else if(!password.match(passwordRegex)){
+        } else if (!password.match(passwordRegex)) {
             $("#errPW").text('Mật khẩu có ít nhất 1 chữ hoa, 1 ký tự đặc biệt và 1 số!');
             $('#errPW').attr('style', 'color:red');
             condition = false;
-        }else {
+        } else {
             $("#errPW").text('');
         }
-        if(rePW === ""){
+        if (rePW === "") {
             $("#errRePW").text('Vui lòng xác nhận lại mật khẩu!');
             $('#errRePW').attr('style', 'color:red');
             condition = false;
-        }else if(rePW !==password){
+        } else if (rePW !== password) {
             $("#errRePW").text('Mật khẩu xác nhận không đúng!');
             $('#errRePW').attr('style', 'color:red');
             condition = false;
-        }else{
+        } else {
             $("#errRePW").text('');
         }
-        if(email===""){
+        if (email === "") {
             $("#errEmail").text('Vui lòng nhập Email!');
             $('#errEmail').attr('style', 'color:red');
             condition = false;
-        }else if(!email.match(emailReg)){
+        } else if (!email.match(emailReg)) {
             $("#errEmail").text('Email không hợp lệ!');
             $('#errEmail').attr('style', 'color:red');
             condition = false;
-        }else{
+        } else {
             $("#errEmail").text('');
         }
-        if(condition) {
+        if (condition) {
             $.ajax({
                 url: 'addAccount',
                 type: 'POST',
-                data:{
+                data: {
                     userName: user,
                     password: password,
                     rePW: rePW,
                     email: email,
                 },
-                success: function(data) {
+                success: function (data) {
                     var jsonData = JSON.parse(data);
                     var htmlData = jsonData.htmlData;
                     var res = jsonData.res;
@@ -2383,15 +2255,15 @@
                     var errEmail = jsonData.errEmail;
                     var userName = jsonData.user;
                     var emaill = jsonData.email;
-                    if(errUser !== "") {
+                    if (errUser !== "") {
                         $("#errUser").text(errUser);
                         user.val(userName);
                     }
-                    if(errEmail !== "") {
+                    if (errEmail !== "") {
                         $("#errEmail").text(errEmail);
                         email.val(emaill);
                     }
-                    if(res !== "") {
+                    if (res !== "") {
                         alert(res);
                     }
                     var row = document.getElementById("innerAccount");
@@ -2399,7 +2271,7 @@
                     for (var i = 0; i < htmlData.length; i++) {
                         var a = htmlData[i];
                         row.innerHTML += "<tr data-bs-toggle=\"modal\" data-bs-target=\"#detailAccount\" onclick=\"detailAccount('" + a.id + "')\">\n" +
-                            "                                    <td class=\"w40\">" + (i+1) + "</td>\n" +
+                            "                                    <td class=\"w40\">" + (i + 1) + "</td>\n" +
                             "                                    <td>" + a.name + "</td>\n" +
                             "                                    <td>" + a.email + "</td>\n" +
                             "                                    <td>" + a.role + "</td>\n" +
@@ -2414,264 +2286,270 @@
                             "                                </tr>";
                     }
                 },
-                error: function(error) {
-                    console.error("Xảy ra lỗi:", error);
-                }
-            });
-        }
-      function deleteSupplier(idSup) {
-        var confirmation = confirm("Bạn có chắc muốn xóa ?");
-        if (confirmation) {
-            $.ajax({
-                type: "POST",
-                url: "DelSupplierInManage",
-                data: {id: idSup},
-                success: function (data) {
-                    var jsonData = JSON.parse(data);
-                    var htmlData = jsonData.htmlData;
-                    var res = jsonData.res;
-                    alert(res);
-                    var row = document.getElementById("innerSupplier");
-                    row.innerHTML = ""; // Clear existing content
-                    // console.log("length" + htmlData.length);
-                    for (var i = 0; i < htmlData.length; i++) {
-                        // console.log("i" + i);
-                        var s = htmlData[i];
-                        row.innerHTML += "<tr>\n" +
-                            "<td class=\"w40\">" + (i + 1) + "</td>\n" +
-                            "<td class=\"w40\">" + s.idSup + "</td>\n" +
-                            "<td>" + s.nameSup + "</td>\n" +
-                            "<td class=\"w225\">" + s.addressSup + "</td>\n" +
-                            "<td>" + s.phoneSup + "</td>\n" +
-                            "<td>" + s.emailSup + "</td>\n" +
-                            "<td>" + s.nameCate + "</td>\n" +
-                            "<td class=\"w110\">\n" +
-                            "<div class=\"d-flex w-100 justify-content-center\">\n" +
-                            "<button class=\"delete btnAdd bgcolor bd-full me-1\"onclick=\"deleteSupplier('" + s.idSup + "')\" data-bs-toggle=\"modal\"data-bs-target=\"\"><i class=\"fa fa-trash-o text-color\" title=\"Xóa\" aria-hidden=\"true\"data-bs-toggle=\"modal\" data-bs-target=\"\"></i></button>\n" +
-                            "<button class=\"editAccount btnAdd bgcolor bd-full \"><i class=\"fa fa-pencil text-color\" title=\"Chỉnh sửa\" aria-hidden=\"true\" onclick=\"innerSupplier('"+s.idSup+"')\" data-bs-toggle=\"modal\" data-bs-target=\"#editSup\"></i></button>\n" +
-                            "</div>\n" +
-                            "</td>\n" +
-                            "</tr>";
-                    }
-                },
                 error: function (error) {
-                    console.error("Lỗi khi xóa sản phẩm:", error);
+                    console.error("Xảy ra lỗi:", error);
                 }
             });
         }
-    }
-    function detailInvoice(idInvoice) {
-        $.ajax({
-            type: "GET",
-            url: "loadDetailInvoice",
-            data: {
-                id: idInvoice,
-            },
-            success: function (data) {
-                // Cập nhật nội dung modal với dữ liệu JSON nhận được
-                console.log(data)
-                var htmlData = data.htmlData;
-                var i = data.invoice;
-                var total = data.total;
-                $('#nameCus').text(i.name);
-                $('#phoneCus').text(i.phoneNumber);
-                $('#emailCus').text(i.email);
-                $('#addressCus').text(i.address);
-                $('#idInvoice').text(i.idInvoice);
-                $('#transFee').text(i.transFee);
-                $('#payMethod').text(i.payMethod);
-                var row = document.getElementById("innerDetailInvoice");
-                row.innerHTML ="";
-                for (var i = 0; i < htmlData.length; i++) {
-                    var p = htmlData[i];
-                    row.innerHTML += "<tr>\n" +
-                        "    <td class=\"w40\">" + (i+1) + "</td>\n" +
-                        "    <td>" + p.idProduct + "</td>\n" +
-                        "    <td class=\"w300\">\n" +
-                        "        <div class=\"item d-flex justify-content-center\">\n" +
-                        "            <div class=\"item_img\">\n" +
-                        "                <img src=\"" + p.image + "\" class=\"card-img-top img_p_cart\" alt=\"...\"/>\n" +
-                        "            </div>\n" +
-                        "            <span class=\"item_text\">" + p.nameProduct + "</span>\n" +
-                        "        </div>\n" +
-                        "    </td>\n" +
-                        "    <td class=\"w110\">" + p.color + "</td>\n" +
-                        "    <td class=\"w110\">" + p.quantity + "</td>\n" +
-                        "    <td class=\"w110\">" + p.price + "</td>\n" +
-                        "    <td>" + p.totalPrice + "</td>\n" +
-                        "</tr>\n";
 
-                }
-                row.innerHTML += "<tr>" +
-                                 "<td class=\"fw-bold\">TỔNG TIỀN</td>"+
-                                  "<td class=\"fw-bold\" colspan=\"6\">"+total+"</td>"+
+        function deleteSupplier(idSup) {
+            var confirmation = confirm("Bạn có chắc muốn xóa ?");
+            if (confirmation) {
+                $.ajax({
+                    type: "POST",
+                    url: "DelSupplierInManage",
+                    data: {id: idSup},
+                    success: function (data) {
+                        var jsonData = JSON.parse(data);
+                        var htmlData = jsonData.htmlData;
+                        var res = jsonData.res;
+                        alert(res);
+                        var row = document.getElementById("innerSupplier");
+                        row.innerHTML = ""; // Clear existing content
+                        // console.log("length" + htmlData.length);
+                        for (var i = 0; i < htmlData.length; i++) {
+                            // console.log("i" + i);
+                            var s = htmlData[i];
+                            row.innerHTML += "<tr>\n" +
+                                "<td class=\"w40\">" + (i + 1) + "</td>\n" +
+                                "<td class=\"w40\">" + s.idSup + "</td>\n" +
+                                "<td>" + s.nameSup + "</td>\n" +
+                                "<td class=\"w225\">" + s.addressSup + "</td>\n" +
+                                "<td>" + s.phoneSup + "</td>\n" +
+                                "<td>" + s.emailSup + "</td>\n" +
+                                "<td>" + s.nameCate + "</td>\n" +
+                                "<td class=\"w110\">\n" +
+                                "<div class=\"d-flex w-100 justify-content-center\">\n" +
+                                "<button class=\"delete btnAdd bgcolor bd-full me-1\"onclick=\"deleteSupplier('" + s.idSup + "')\" data-bs-toggle=\"modal\"data-bs-target=\"\"><i class=\"fa fa-trash-o text-color\" title=\"Xóa\" aria-hidden=\"true\"data-bs-toggle=\"modal\" data-bs-target=\"\"></i></button>\n" +
+                                "<button class=\"editAccount btnAdd bgcolor bd-full \"><i class=\"fa fa-pencil text-color\" title=\"Chỉnh sửa\" aria-hidden=\"true\" onclick=\"innerSupplier('" + s.idSup + "')\" data-bs-toggle=\"modal\" data-bs-target=\"#editSup\"></i></button>\n" +
+                                "</div>\n" +
+                                "</td>\n" +
                                 "</tr>";
-            },
-            error: function () {
-                console.error("Không thể tải chi tiết tài khoản");
+                        }
+                    },
+                    error: function (error) {
+                        console.error("Lỗi khi xóa sản phẩm:", error);
+                    }
+                });
             }
-        });
-    }
-    function acceptInvoice(id) {
-        var confirmation = confirm("Bạn có chắc muốn xác nhận đơn hàng ?");
-        if (confirmation) {
+        }
+
+        function detailInvoice(idInvoice) {
             $.ajax({
-                type: "POST",
-                url: "acceptInvoice",
-                data: { id: id },
-                success: function (data) {
-                    var jsonData = JSON.parse(data);
-                    var htmlData = jsonData.htmlData;
-                    var res = jsonData.res;
-                    alert(res);
-                    var row = document.getElementById("innerInvoice");
-                    row.innerHTML = ""; // Clear existing content
-                    for (var i = 0; i < htmlData.length; i++) {
-                        var ivc = htmlData[i];
-                        if (ivc.status === "Chưa xác nhận") {
-                            row.innerHTML += "<tr data-bs-toggle=\"modal\" data-bs-target=\"#detailInvoice\" onclick=\"detailInvoice(" + ivc.id + ")\">\n" +
-                                "                                    <td class=\"w40\">" + (i + 1) + "</td>\n" +
-                                "                                    <td>" + ivc.id + "</td>\n" +
-                                "                                    <td>" + ivc.idAccount + "</td>\n" +
-                                "                                    <td>" + ivc.startDate + "</td>\n" +
-                                "                                     <td>" + ivc.status + "</td>\n" +
-                                "                                    <td>\n" +
-                                "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"acceptInvoice(" + ivc.id + ")\"><i class=\"fa fa-check text-color\"  title=\"Xác nhận đơn hàng\" aria-hidden=\"true\"></i></button>\n" +
-                                "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"cancelInvoice(" + ivc.id + ")\"><i class=\"fa fa-times text-color\"  title=\"Hủy đơn hàng\" aria-hidden=\"true\"></i></button>\n" +
-                                "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"delInvoice(" + ivc.id + ")\"><i class=\"fa fa-trash-o text-color\"  title=\"Xóa\" aria-hidden=\"true\"></i></button>\n" +
-                                "                                    </td>\n" +
-                                "                                </tr>";
-                        } else {
-                            row.innerHTML += "<tr data-bs-toggle=\"modal\" data-bs-target=\"#detailInvoice\" onclick=\"detailInvoice(" + ivc.id + ")\">\n" +
-                                "  <td class=\"w40\">" + (i + 1) + "</td>\n" +
-                                "  <td>" + ivc.id + "</td>\n" +
-                                "  <td>" + ivc.idAccount + "</td>\n" +
-                                "  <td>" + ivc.startDate + "</td>\n" +
-                                "  <td>" + ivc.status + "</td>\n" +
-                                "                                    <td>\n" +
-                                "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"delInvoice(" + ivc.id + ")\"><i class=\"fa fa-trash-o text-color\"  title=\"Xóa\" aria-hidden=\"true\"></i></button>\n" +
-                                "                                    </td>\n" +
-                                "                                </tr>";
-                        }
-                    }
+                type: "GET",
+                url: "loadDetailInvoice",
+                data: {
+                    id: idInvoice,
                 },
-                error: function(error) {
-                    console.error("Xảy ra lỗi:", error);
+                success: function (data) {
+                    // Cập nhật nội dung modal với dữ liệu JSON nhận được
+                    console.log(data)
+                    var htmlData = data.htmlData;
+                    var i = data.invoice;
+                    var total = data.total;
+                    $('#nameCus').text(i.name);
+                    $('#phoneCus').text(i.phoneNumber);
+                    $('#emailCus').text(i.email);
+                    $('#addressCus').text(i.address);
+                    $('#idInvoice').text(i.idInvoice);
+                    $('#transFee').text(i.transFee);
+                    $('#payMethod').text(i.payMethod);
+                    var row = document.getElementById("innerDetailInvoice");
+                    row.innerHTML = "";
+                    for (var i = 0; i < htmlData.length; i++) {
+                        var p = htmlData[i];
+                        row.innerHTML += "<tr>\n" +
+                            "    <td class=\"w40\">" + (i + 1) + "</td>\n" +
+                            "    <td>" + p.idProduct + "</td>\n" +
+                            "    <td class=\"w300\">\n" +
+                            "        <div class=\"item d-flex justify-content-center\">\n" +
+                            "            <div class=\"item_img\">\n" +
+                            "                <img src=\"" + p.image + "\" class=\"card-img-top img_p_cart\" alt=\"...\"/>\n" +
+                            "            </div>\n" +
+                            "            <span class=\"item_text\">" + p.nameProduct + "</span>\n" +
+                            "        </div>\n" +
+                            "    </td>\n" +
+                            "    <td class=\"w110\">" + p.color + "</td>\n" +
+                            "    <td class=\"w110\">" + p.quantity + "</td>\n" +
+                            "    <td class=\"w110\">" + p.price + "</td>\n" +
+                            "    <td>" + p.totalPrice + "</td>\n" +
+                            "</tr>\n";
+
+                    }
+                    row.innerHTML += "<tr>" +
+                        "<td class=\"fw-bold\">TỔNG TIỀN</td>" +
+                        "<td class=\"fw-bold\" colspan=\"6\">" + total + "</td>" +
+                        "</tr>";
+                },
+                error: function () {
+                    console.error("Không thể tải chi tiết tài khoản");
                 }
             });
         }
-    }
-    function cancelInvoice(id) {
-        var confirmation = confirm("Bạn có chắc muốn hủy đơn hàng ?");
-        if (confirmation) {
-            $.ajax({
-                type: "POST",
-                url: "cancelInvoice",
-                data: { id: id },
-                success: function (data) {
-                    var jsonData = JSON.parse(data);
-                    var htmlData = jsonData.htmlData;
-                    var res = jsonData.res;
-                    alert(res);
-                    var row = document.getElementById("innerInvoice");
-                    row.innerHTML = ""; // Clear existing content
-                    for (var i = 0; i < htmlData.length; i++) {
-                        var ivc = htmlData[i];
-                        if (ivc.status === "Chưa xác nhận") {
-                            row.innerHTML += "<tr data-bs-toggle=\"modal\" data-bs-target=\"#detailInvoice\" onclick=\"detailInvoice(" + ivc.id + ")\">\n" +
-                                "                                    <td class=\"w40\">" + (i + 1) + "</td>\n" +
-                                "                                    <td>" + ivc.id + "</td>\n" +
-                                "                                    <td>" + ivc.idAccount + "</td>\n" +
-                                "                                    <td>" + ivc.startDate + "</td>\n" +
-                                "                                     <td>" + ivc.status + "</td>\n" +
-                                "                                    <td>\n" +
-                                "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"acceptInvoice(" + ivc.id + ")\"><i class=\"fa fa-check text-color\"  title=\"Xác nhận đơn hàng\" aria-hidden=\"true\"></i></button>\n" +
-                                "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"cancelInvoice(" + ivc.id + ")\"><i class=\"fa fa-times text-color\"  title=\"Hủy đơn hàng\" aria-hidden=\"true\"></i></button>\n" +
-                                "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"delInvoice(" + ivc.id + ")\"><i class=\"fa fa-trash-o text-color\"  title=\"Xóa\" aria-hidden=\"true\"></i></button>\n" +
-                                "                                    </td>\n" +
-                                "                                </tr>";
-                        } else {
-                            row.innerHTML += "<tr data-bs-toggle=\"modal\" data-bs-target=\"#detailInvoice\" onclick=\"detailInvoice(" + ivc.id + ")\">\n" +
-                                "  <td class=\"w40\">" + (i + 1) + "</td>\n" +
-                                "  <td>" + ivc.id + "</td>\n" +
-                                "  <td>" + ivc.idAccount + "</td>\n" +
-                                "  <td>" + ivc.startDate + "</td>\n" +
-                                "  <td>" + ivc.status + "</td>\n" +
-                                "                                    <td>\n" +
-                                "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"delInvoice(" + ivc.id + ")\"><i class=\"fa fa-trash-o text-color\"  title=\"Xóa\" aria-hidden=\"true\"></i></button>\n" +
-                                "                                    </td>\n" +
-                                "                                </tr>";
+
+        function acceptInvoice(id) {
+            var confirmation = confirm("Bạn có chắc muốn xác nhận đơn hàng ?");
+            if (confirmation) {
+                $.ajax({
+                    type: "POST",
+                    url: "acceptInvoice",
+                    data: {id: id},
+                    success: function (data) {
+                        var jsonData = JSON.parse(data);
+                        var htmlData = jsonData.htmlData;
+                        var res = jsonData.res;
+                        alert(res);
+                        var row = document.getElementById("innerInvoice");
+                        row.innerHTML = ""; // Clear existing content
+                        for (var i = 0; i < htmlData.length; i++) {
+                            var ivc = htmlData[i];
+                            if (ivc.status === "Chưa xác nhận") {
+                                row.innerHTML += "<tr data-bs-toggle=\"modal\" data-bs-target=\"#detailInvoice\" onclick=\"detailInvoice(" + ivc.id + ")\">\n" +
+                                    "                                    <td class=\"w40\">" + (i + 1) + "</td>\n" +
+                                    "                                    <td>" + ivc.id + "</td>\n" +
+                                    "                                    <td>" + ivc.idAccount + "</td>\n" +
+                                    "                                    <td>" + ivc.startDate + "</td>\n" +
+                                    "                                     <td>" + ivc.status + "</td>\n" +
+                                    "                                    <td>\n" +
+                                    "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"acceptInvoice(" + ivc.id + ")\"><i class=\"fa fa-check text-color\"  title=\"Xác nhận đơn hàng\" aria-hidden=\"true\"></i></button>\n" +
+                                    "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"cancelInvoice(" + ivc.id + ")\"><i class=\"fa fa-times text-color\"  title=\"Hủy đơn hàng\" aria-hidden=\"true\"></i></button>\n" +
+                                    "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"delInvoice(" + ivc.id + ")\"><i class=\"fa fa-trash-o text-color\"  title=\"Xóa\" aria-hidden=\"true\"></i></button>\n" +
+                                    "                                    </td>\n" +
+                                    "                                </tr>";
+                            } else {
+                                row.innerHTML += "<tr data-bs-toggle=\"modal\" data-bs-target=\"#detailInvoice\" onclick=\"detailInvoice(" + ivc.id + ")\">\n" +
+                                    "  <td class=\"w40\">" + (i + 1) + "</td>\n" +
+                                    "  <td>" + ivc.id + "</td>\n" +
+                                    "  <td>" + ivc.idAccount + "</td>\n" +
+                                    "  <td>" + ivc.startDate + "</td>\n" +
+                                    "  <td>" + ivc.status + "</td>\n" +
+                                    "                                    <td>\n" +
+                                    "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"delInvoice(" + ivc.id + ")\"><i class=\"fa fa-trash-o text-color\"  title=\"Xóa\" aria-hidden=\"true\"></i></button>\n" +
+                                    "                                    </td>\n" +
+                                    "                                </tr>";
+                            }
                         }
+                    },
+                    error: function (error) {
+                        console.error("Xảy ra lỗi:", error);
                     }
-                },
-                error: function(error) {
-                    console.error("Xảy ra lỗi:", error);
-                }
-            });
+                });
+            }
         }
-    }
-    function delInvoice(id) {
-        var confirmation = confirm("Bạn có chắc muốn xóa đơn hàng này ?");
-        if (confirmation) {
-            $.ajax({
-                type: "POST",
-                url: "delInvoice",
-                data: { id: id },
-                success: function (data) {
-                    var jsonData = JSON.parse(data);
-                    var htmlData = jsonData.htmlData;
-                    var res = jsonData.res;
-                    alert(res);
-                    var row = document.getElementById("innerInvoice");
-                    row.innerHTML = ""; // Clear existing content
-                    for (var i = 0; i < htmlData.length; i++) {
-                        var ivc = htmlData[i];
-                        if (ivc.status === "Chưa xác nhận") {
-                            row.innerHTML += "<tr data-bs-toggle=\"modal\" data-bs-target=\"#detailInvoice\" onclick=\"detailInvoice(" + ivc.id + ")\">\n" +
-                                "                                    <td class=\"w40\">" + (i + 1) + "</td>\n" +
-                                "                                    <td>" + ivc.id + "</td>\n" +
-                                "                                    <td>" + ivc.idAccount + "</td>\n" +
-                                "                                    <td>" + ivc.startDate + "</td>\n" +
-                                "                                     <td>" + ivc.status + "</td>\n" +
-                                "                                    <td>\n" +
-                                "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"acceptInvoice(" + ivc.id + ")\"><i class=\"fa fa-check text-color\"  title=\"Xác nhận đơn hàng\" aria-hidden=\"true\"></i></button>\n" +
-                                "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"cancelInvoice(" + ivc.id + ")\"><i class=\"fa fa-times text-color\"  title=\"Hủy đơn hàng\" aria-hidden=\"true\"></i></button>\n" +
-                                "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"delInvoice(" + ivc.id + ")\"><i class=\"fa fa-trash-o text-color\"  title=\"Xóa\" aria-hidden=\"true\"></i></button>\n" +
-                                "                                    </td>\n" +
-                                "                                </tr>";
-                        } else {
-                            row.innerHTML += "<tr data-bs-toggle=\"modal\" data-bs-target=\"#detailInvoice\" onclick=\"detailInvoice(" + ivc.id + ")\">\n" +
-                                "  <td class=\"w40\">" + (i + 1) + "</td>\n" +
-                                "  <td>" + ivc.id + "</td>\n" +
-                                "  <td>" + ivc.idAccount + "</td>\n" +
-                                "  <td>" + ivc.startDate + "</td>\n" +
-                                "  <td>" + ivc.status + "</td>\n" +
-                                "                                    <td>\n" +
-                                "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"delInvoice(" + ivc.id + ")\"><i class=\"fa fa-trash-o text-color\"  title=\"Xóa\" aria-hidden=\"true\"></i></button>\n" +
-                                "                                    </td>\n" +
-                                "                                </tr>";
+
+        function cancelInvoice(id) {
+            var confirmation = confirm("Bạn có chắc muốn hủy đơn hàng ?");
+            if (confirmation) {
+                $.ajax({
+                    type: "POST",
+                    url: "cancelInvoice",
+                    data: {id: id},
+                    success: function (data) {
+                        var jsonData = JSON.parse(data);
+                        var htmlData = jsonData.htmlData;
+                        var res = jsonData.res;
+                        alert(res);
+                        var row = document.getElementById("innerInvoice");
+                        row.innerHTML = ""; // Clear existing content
+                        for (var i = 0; i < htmlData.length; i++) {
+                            var ivc = htmlData[i];
+                            if (ivc.status === "Chưa xác nhận") {
+                                row.innerHTML += "<tr data-bs-toggle=\"modal\" data-bs-target=\"#detailInvoice\" onclick=\"detailInvoice(" + ivc.id + ")\">\n" +
+                                    "                                    <td class=\"w40\">" + (i + 1) + "</td>\n" +
+                                    "                                    <td>" + ivc.id + "</td>\n" +
+                                    "                                    <td>" + ivc.idAccount + "</td>\n" +
+                                    "                                    <td>" + ivc.startDate + "</td>\n" +
+                                    "                                     <td>" + ivc.status + "</td>\n" +
+                                    "                                    <td>\n" +
+                                    "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"acceptInvoice(" + ivc.id + ")\"><i class=\"fa fa-check text-color\"  title=\"Xác nhận đơn hàng\" aria-hidden=\"true\"></i></button>\n" +
+                                    "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"cancelInvoice(" + ivc.id + ")\"><i class=\"fa fa-times text-color\"  title=\"Hủy đơn hàng\" aria-hidden=\"true\"></i></button>\n" +
+                                    "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"delInvoice(" + ivc.id + ")\"><i class=\"fa fa-trash-o text-color\"  title=\"Xóa\" aria-hidden=\"true\"></i></button>\n" +
+                                    "                                    </td>\n" +
+                                    "                                </tr>";
+                            } else {
+                                row.innerHTML += "<tr data-bs-toggle=\"modal\" data-bs-target=\"#detailInvoice\" onclick=\"detailInvoice(" + ivc.id + ")\">\n" +
+                                    "  <td class=\"w40\">" + (i + 1) + "</td>\n" +
+                                    "  <td>" + ivc.id + "</td>\n" +
+                                    "  <td>" + ivc.idAccount + "</td>\n" +
+                                    "  <td>" + ivc.startDate + "</td>\n" +
+                                    "  <td>" + ivc.status + "</td>\n" +
+                                    "                                    <td>\n" +
+                                    "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"delInvoice(" + ivc.id + ")\"><i class=\"fa fa-trash-o text-color\"  title=\"Xóa\" aria-hidden=\"true\"></i></button>\n" +
+                                    "                                    </td>\n" +
+                                    "                                </tr>";
+                            }
                         }
+                    },
+                    error: function (error) {
+                        console.error("Xảy ra lỗi:", error);
                     }
-                },
-                error: function(error) {
-                    console.error("Xảy ra lỗi:", error);
-                }
-            });
+                });
+            }
         }
-    }
-    function filInvoice(status) {
+
+        function delInvoice(id) {
+            var confirmation = confirm("Bạn có chắc muốn xóa đơn hàng này ?");
+            if (confirmation) {
+                $.ajax({
+                    type: "POST",
+                    url: "delInvoice",
+                    data: {id: id},
+                    success: function (data) {
+                        var jsonData = JSON.parse(data);
+                        var htmlData = jsonData.htmlData;
+                        var res = jsonData.res;
+                        alert(res);
+                        var row = document.getElementById("innerInvoice");
+                        row.innerHTML = ""; // Clear existing content
+                        for (var i = 0; i < htmlData.length; i++) {
+                            var ivc = htmlData[i];
+                            if (ivc.status === "Chưa xác nhận") {
+                                row.innerHTML += "<tr data-bs-toggle=\"modal\" data-bs-target=\"#detailInvoice\" onclick=\"detailInvoice(" + ivc.id + ")\">\n" +
+                                    "                                    <td class=\"w40\">" + (i + 1) + "</td>\n" +
+                                    "                                    <td>" + ivc.id + "</td>\n" +
+                                    "                                    <td>" + ivc.idAccount + "</td>\n" +
+                                    "                                    <td>" + ivc.startDate + "</td>\n" +
+                                    "                                     <td>" + ivc.status + "</td>\n" +
+                                    "                                    <td>\n" +
+                                    "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"acceptInvoice(" + ivc.id + ")\"><i class=\"fa fa-check text-color\"  title=\"Xác nhận đơn hàng\" aria-hidden=\"true\"></i></button>\n" +
+                                    "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"cancelInvoice(" + ivc.id + ")\"><i class=\"fa fa-times text-color\"  title=\"Hủy đơn hàng\" aria-hidden=\"true\"></i></button>\n" +
+                                    "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"delInvoice(" + ivc.id + ")\"><i class=\"fa fa-trash-o text-color\"  title=\"Xóa\" aria-hidden=\"true\"></i></button>\n" +
+                                    "                                    </td>\n" +
+                                    "                                </tr>";
+                            } else {
+                                row.innerHTML += "<tr data-bs-toggle=\"modal\" data-bs-target=\"#detailInvoice\" onclick=\"detailInvoice(" + ivc.id + ")\">\n" +
+                                    "  <td class=\"w40\">" + (i + 1) + "</td>\n" +
+                                    "  <td>" + ivc.id + "</td>\n" +
+                                    "  <td>" + ivc.idAccount + "</td>\n" +
+                                    "  <td>" + ivc.startDate + "</td>\n" +
+                                    "  <td>" + ivc.status + "</td>\n" +
+                                    "                                    <td>\n" +
+                                    "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"delInvoice(" + ivc.id + ")\"><i class=\"fa fa-trash-o text-color\"  title=\"Xóa\" aria-hidden=\"true\"></i></button>\n" +
+                                    "                                    </td>\n" +
+                                    "                                </tr>";
+                            }
+                        }
+                    },
+                    error: function (error) {
+                        console.error("Xảy ra lỗi:", error);
+                    }
+                });
+            }
+        }
+
+        function filInvoice(status) {
             $.ajax({
                 type: "GET",
                 url: "filByStatus",
-                data: { status: status },
+                data: {status: status},
                 success: function (data) {
                     var jsonData = JSON.parse(data);
                     var htmlData = jsonData.htmlData;
                     var res = jsonData.res;
-                    if(res !== "") {
+                    if (res !== "") {
                         $('#res').text(res);
                         $('#res').removeClass('my-0');
-                    }else {
+                    } else {
                         $('#res').text("");
                         $('#res').addClass('my-0');
                     }
@@ -2706,22 +2584,23 @@
                         }
                     }
                 },
-                error: function(error) {
+                error: function (error) {
                     console.error("Xảy ra lỗi:", error);
                 }
             });
-    }
-    function searchByDate() {
+        }
+
+        function searchByDate() {
             $.ajax({
                 type: "GET",
                 url: "searchByDate",
-                data: { date: $('#filterInvoice').val(),},
+                data: {date: $('#filterInvoice').val(),},
                 success: function (data) {
                     var jsonData = JSON.parse(data);
                     var htmlData = jsonData.htmlData;
                     var res = jsonData.res;
-                        $('#res').text(res);
-                        $('#res').removeClass('my-0');
+                    $('#res').text(res);
+                    $('#res').removeClass('my-0');
                     var row = document.getElementById("innerInvoice");
                     row.innerHTML = ""; // Clear existing content
                     for (var i = 0; i < htmlData.length; i++) {
@@ -2753,10 +2632,11 @@
                         }
                     }
                 },
-                error: function(error) {
+                error: function (error) {
                     console.error("Xảy ra lỗi:", error);
                 }
             });
+        }
     }
     }
 </script>

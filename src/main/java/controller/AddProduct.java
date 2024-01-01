@@ -3,9 +3,7 @@ import model.Product;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import service.ProductService;
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.nio.file.Paths;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -55,14 +53,14 @@ public class AddProduct extends HttpServlet {
                 for (Part part : request.getParts()) {
                     if (isFilePart(part)) {
                         String fileName = Paths.get(part.getSubmittedFileName()).getFileName().toString();
-                        String newFileName = generateUniqueIdentifier() + "_" + fileName;
+                       // String newFileName = generateUniqueIdentifier() + "_" + fileName;
                         if (fileName != null && !fileName.isEmpty()) {
-                            if(ProductService.getInstance().insertImageProduct(productLatest.getIdProduct(), newFileName)<1) {
+                            if(ProductService.getInstance().insertImageProduct(productLatest.getIdProduct(), fileName)<1) {
                                 res = "Đã xảy ra lỗi!";
                             }
                         }
-                        part.write(realPath + File.separator + newFileName);
-                        part.write("D:\\ltw\\DoAn\\DoanLTWNhom60\\src\\main\\webapp\\Products" + File.separator + newFileName);
+                        part.write(realPath + File.separator + fileName);
+                        part.write("D:\\ltw\\DoAn\\DoanLTWNhom60\\src\\main\\webapp\\Products" + File.separator + fileName);
                     }
                 }
         }

@@ -1,10 +1,7 @@
 package service;
 
 import dao.DAOAccount;
-import dao.DAOProduct;
 import model.Account;
-import model.Image;
-import model.Product;
 import model.VerifyAccount;
 import util.JDBCUtil;
 
@@ -50,13 +47,11 @@ public class AccountService {
     public Account selectAccountByUserName(String userName) {
         return DAOAccount.selectAccountByUserName(userName);
     }
-
     public Account selectAccountByEmail(String email) {
         return DAOAccount.selectAccountByEmail(email);
     }
-
-    public VerifyAccount selectVerifyAccountByIdAccount(int idAccount) {
-        return DAOAccount.selectVerifyAccountByIdAccount(idAccount);
+    public  VerifyAccount selectVerifyAccountByIdAccount(int idAccount) {
+       return DAOAccount.selectVerifyAccountByIdAccount(idAccount);
     }
     public  int updateVerify(int newCode, LocalDateTime timeNew, int idAccount) {
         return DAOAccount.updateVerify(newCode, timeNew, idAccount);}
@@ -94,4 +89,4 @@ public class AccountService {
         return DAOAccount.updateInforAccount(a);
     }
 
-}
+    }

@@ -164,7 +164,7 @@
                 <div class="col-md-3 col-sm-4 col-4 mt-3 product">
                     <div class="card">
                         <a href="<%=url%>/detail-product?pid=<%=p.getIdProduct()%>">
-                            <img src="<%=url%>/Products/<%=(p.getImages().isEmpty())?"":p.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="..."/>
+                            <img src="<%=url%>\Products\<%=p.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="...">
                         </a>
                         <div class="card-body">
                             <h5 class="card-title"><%=p.getName()%>

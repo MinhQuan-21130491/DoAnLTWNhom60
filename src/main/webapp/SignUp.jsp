@@ -73,17 +73,9 @@
                 address = (address == null)? "": address;
                 addressReceive = (addressReceive == null)? "": addressReceive;
                 String errUserName = (String)request.getAttribute("errUserName");
-                String errPassword = (String)request.getAttribute("errPassword");
-                String errRePassword = (String)request.getAttribute("errRePassword");
-                String errName = (String)request.getAttribute("errName");
-                String errPhoneNumber = (String)request.getAttribute("errPhoneNumber");
                 String errEmail = (String)request.getAttribute("errEmail");
-                String errBday = (String)request.getAttribute("errBday");
-                String errAddress = (String)request.getAttribute("errAddress");
-                String errAddressReceive = (String)request.getAttribute("errAddressReceive");
                 errUserName =(errUserName == null)?"":errUserName;
                 errEmail =(errEmail == null)?"":errEmail;
-
             %>
             <form  id="signup-form" class="signup-form" action="registerAccount" method="POST">
                 <h5>ĐĂNG KÍ</h5>
@@ -94,23 +86,23 @@
                         <input type="text" class="form-input" placeholder="Nhập tên đăng nhập" name="userName" id="userName" value ="<%=userName%>"/>
                     </div>
                     <div class="form-group">
-                        <label>Mật khẩu<span class="text-danger">*</span></label><span class="text-danger" id="errPW"><%=(errPassword==null)?"":errPassword%></span>
+                        <label>Mật khẩu<span class="text-danger">*</span></label><span class="text-danger" id="errPW"></span>
                         <input type="password" class="form-input" placeholder="Nhập mật khẩu" name="password" id="password" value ="<%=password%>"/>
                     </div>
                     <div class="form-group">
-                        <label for="rePassword">Nhập lại mật khẩu<span class="text-danger">*</span></label><span class="text-danger" id="errRePW"><%=(errRePassword==null)?"":errRePassword%></span>
+                        <label for="rePassword">Nhập lại mật khẩu<span class="text-danger">*</span></label><span class="text-danger" id="errRePW"></span>
                         <input type="password" class="form-input" placeholder="Nhập lại mật khẩu" name="rePassword" id="rePassword" value ="<%=password%>"/>
                     </div>
                 </div>
                 <div class="form-info">
                     <div class="title fw-bold">THÔNG TIN KHÁCH HÀNG</div>
                     <div class="form-group">
-                        <label>Họ Tên<span class="text-danger">*</span></label><span class="text-danger" id="errName"><%=(errName==null)?"":errName%></span>
+                        <label>Họ Tên<span class="text-danger">*</span></label><span class="text-danger" id="errName"></span>
                         <input type="text" class="form-input" placeholder="Nhập họ và tên" name="name" id="name" value ="<%=name%>"/>
                     </div>
 
                     <div class="form-group">
-                        <label for="phoneNumber">Số điện thoại<span class="text-danger">*</span></label><span class="text-danger" id="errTell"><%=(errPhoneNumber==null)?"":errPhoneNumber%></span>
+                        <label for="phoneNumber">Số điện thoại<span class="text-danger">*</span></label><span class="text-danger" id="errTell"></span>
                         <input type="text" class="form-input" placeholder="Nhập số điện thoại" name="phoneNumber" id="phoneNumber" inputmode="numeric" value ="<%=phoneNumber%>"/>
                     </div>
                     <div class="form-group">
@@ -130,19 +122,19 @@
                         <input type="date" class="form-input" name="birthDay" id="birthDay" value ="<%=birthDay%>"/>
                     </div>
                     <div class="form-group">
-                        <label for="address" >Địa chỉ<span class="text-danger">*</span></label><span class="text-danger" id="errAd"><%=(errAddress==null)?"":errAddress%></span>
+                        <label for="address" >Địa chỉ<span class="text-danger">*</span></label><span class="text-danger" id="errAd"></span>
                         <input type="text" class="form-input" placeholder="Nhập địa chỉ của bạn" name="address" id="address" value ="<%=address%>"/>
                     </div>
                     <div class="form-group">
-                        <label for="addressRecei" >Địa chỉ nhận hàng<span class="text-danger">*</span></label><span class="text-danger" id="errAdRecei"><%=(errAddressReceive==null)?"":errAddressReceive%></span>
+                        <label for="addressRecei" >Địa chỉ nhận hàng<span class="text-danger">*</span></label><span class="text-danger" id="errAdRecei"></span>
                         <input type="text" class="form-input" placeholder="Nhập địa chỉ của bạn" name="addressRecei" id="addressRecei" value ="<%=addressReceive%>"/>
                     </div>
                     <div class="checkbox">
-                        <input type="checkbox" name="acp" id="acp" value="checked" onclick="showBtnResgis()"><label for="acp" class="ps-2 text-color">Bạn đồng ý với các điều khoản của HomeDecor<span class="text-danger">*</span></label>
+                        <input type="checkbox" name="acp" id="acp" onclick="showBtnResgis()"><label for="acp" class="ps-2 text-color">Bạn đồng ý với các điều khoản của HomeDecor<span class="text-danger">*</span></label>
                     </div>
                 </div>
                 <div class="form-group" >
-                    <button type="submit" id="confirm" style="display:none">XÁC NHẬN</button>
+                    <button type="submit" id="confirm" style="display: none">XÁC NHẬN</button>
                 </div>
             </form>
         </div>

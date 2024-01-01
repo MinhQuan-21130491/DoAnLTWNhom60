@@ -284,7 +284,7 @@ public class DAOProduct {
                     "WHERE p.status = 1 and ";
         }else {
             sql = "SELECT p.id, p.idCate, p.name, p.price, p.priceImport, p.quantity, p.color, p.material, p.description, p.height, p.width, p.length " +
-                    "FROM ( SELECT id, idCate, name, price, priceImport, quantity, color, material, description, height, width, length  from products where idCate =" + idCate +" ) as p " +
+                    "FROM ( SELECT id, idCate, name, price, priceImport, quantity, color, material, description, height, width, length, status  from products where idCate =" + idCate +" ) as p " +
                     "WHERE p.status = 1 and";
         }
         if (priceFil != 0) {
@@ -298,7 +298,7 @@ public class DAOProduct {
             if (priceFil != 0) {
                 sql += "AND ";
             }
-            sql += "p.color = ? ";
+            sql += " p.color = ? ";
         }
         if (!materialFil.isEmpty()) {
             if (priceFil != 0 || !colorFil.isEmpty()) {

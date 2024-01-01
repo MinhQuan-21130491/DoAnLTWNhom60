@@ -1,3 +1,5 @@
+<%@ page import="model.InforWebsite" %>
+<%@ page import="service.WebService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -39,11 +41,16 @@
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <h5 class = "">THÔNG TIN LIÊN HỆ</h5>
+                <%
+                    int contactId = 1;
+                    InforWebsite inforContactWebsite = WebService.getInstance().getContactInformation(contactId);
+                %>
                 <hr class ="w-50 ">
                 <ul class="navbar-nav ">
-                    <li class="nav-link"><i class="fa fa-map-marker" aria-hidden="true"></i> 230A Tô Ngọc Vân, Phường Linh Xuân, Thành phố Thủ Đức</li>
-                    <li class="nav-link" ><i class="fa fa-envelope" aria-hidden="true"></i> homedecorsqn@gmail.com</li>
-                    <li class="nav-link" ><i class="fa fa-phone" aria-hidden="true"></i> 0812295775</li>
+                    <input type="hidden" name="id" value="<%= inforContactWebsite.getId() %>">
+                    <li class="nav-link"><i class="fa fa-map-marker" aria-hidden="true"></i> <%= inforContactWebsite.getAddress()%></li>
+                    <li class="nav-link" ><i class="fa fa-envelope" aria-hidden="true"></i> <%= inforContactWebsite.getEmail() %></li>
+                    <li class="nav-link" ><i class="fa fa-phone" aria-hidden="true"></i> <%= inforContactWebsite.getPhoneNumber() %></li>
                 </ul>
             </div>
         </div>
