@@ -870,6 +870,99 @@
             </div>
         <!--end giao diện quản lý hóa đơn -->
         <!--giao diện quản lý danh mục-->
+        <div class="col-lg-9 bgcolor d-none " id ="mngCate">
+            <div class="row mt-2">
+                <div class="col-lg-6">
+                    <h5 >Quản lý danh mục</h5>
+                </div>
+                <div class="col-lg-6 text-end">
+                    <button class="btnAdd bgcolor bd-full" id ="btnAddCate"><i class="fa fa-plus-circle text-color" aria-hidden="true" title="Thêm danh mục" data-bs-toggle="modal" data-bs-target="#addCate"></i></button>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-lg-12 overflow-auto mheight">
+                    <table class="mb-3">
+                        <thead>
+                        <tr>
+                            <td>STT</td>
+                            <td>ID</td>
+                            <td>TÊN</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td >Ghế trang trí</td>
+                            <td>
+                                <div class="d-flex w-100 justify-content-center">
+                                    <button class="delete btnAdd bgcolor bd-full me-1" ><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true" data-bs-toggle="modal" data-bs-target=""></i></button>
+                                    <button class="editCate btnAdd bgcolor bd-full "><i class="fa fa-pencil text-color" title="Chỉnh sửa danh mục" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editCate"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal fade" id="editCate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog ">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <form class="cateEdit" id="cateEdit" action="" method="post" onsubmit="return editCate()">
+                                <div class="row px-2">
+                                    <div class=" text-end">
+                                        <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <h5 class="text-center">CHỈNH SỬA DANH MỤC</h5>
+                                    <hr>
+                                    <div class="col-md-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Tên danh mục</label><span id="errNameCate" class="text-danger"></span>
+                                            <input type="text" class="form-control" id="nameCateEdit" name="nameCateEdit">
+                                        </div>
+                                    </div>
+                                    <div class="row p-0">
+                                        <div class="col-lg-12 text-end p-0">
+                                            <button class="save" type="submit">LƯU</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="addCate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog ">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <form id="add-Cate" action="" method="post" onsubmit="return addCate()">
+                                <div class="row px-2">
+                                    <div class=" text-end">
+                                        <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <h5 class="text-center">THÊM DANH MỤC</h5>
+                                    <hr>
+                                    <div class="col-md-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Tên danh mục</label><span id="errNameCateAdd" class="text-danger"></span>
+                                            <input type="text" class="form-control" id="nameCateAdd" name="nameCateAdd">
+                                        </div>
+
+                                    </div>
+                                    <div class="row p-0">
+                                        <div class="col-lg-12 text-end p-0">
+                                            <button class="save" type="submit">LƯU</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
             <!--end giao diện quản lý danh mục-->
             <!--giao diện quản lý nhà cung cấp-->
             <div class="col-lg-9 bgcolor d-none " id="mngSup">
