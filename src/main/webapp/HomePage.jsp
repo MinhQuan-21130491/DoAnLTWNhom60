@@ -84,7 +84,7 @@
                 <hr class="mt-2 mb-2"/>
                 <div class="card">
                     <a href="<%=url%>/detail-product?pid=<%=latestProduct.getIdProduct()%>">
-                        <img src="<%=url%>/Products/<%=(latestProduct.getImages().isEmpty())?"":latestProduct.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="">
+                        <img src="<%=url%>/Products/<%=latestProduct.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="">
                     </a>
                     <div class="card-body">
                         <h5 class="card-title"><%=latestProduct.getName()%>
@@ -107,6 +107,9 @@
                 </div>
             </div>
             <%}%>
+            <%
+                Product bestSaler = (Product) request.getAttribute("bestSaler");
+            %>
             <div class="mt-3 d-none d-md-none d-lg-block">
                 <h5 class="m-0 text-center">SẢN PHẨM BÁN CHẠY NHẤT</h5>
                 <hr class="mt-2 mb-2"/>
@@ -115,11 +118,20 @@
                         <img src="https://down-vn.img.susercontent.com/file/sg-11134201-7r9a2-llujnaskifkp71" class="card-img-top img_p" alt="...">
                     </a>
                     <div class="card-body">
-                        <h5 class="card-title">Ghế xoay</h5>
+                        <h5 class="card-title"><%=bestSaler.getName()%></h5>
                         <p class="card-text">
-                        <p class="price">₫1.000.000</p></p>
-                        <a href =""><i class="fa fa-shopping-cart cart" aria-hidden="true"
-                                              title="Thêm vào giỏ hàng"></i></a>
+                        <p class="price"><%=nF.format(bestSaler.getPrice())%></p></p>
+                        <%
+                            int quantity = 1;
+                            if (cart != null) {
+                                if (cart.get(bestSaler.getIdProduct()) != null) {
+                                    quantity = cart.get(bestSaler.getIdProduct()).getQuantity() + 1;
+                                }
+                            } else {
+                                quantity = bestSaler.getQuantity();
+                            }
+                        %>
+                        <a href ="<%=url%>/cartController?id=<%=bestSaler.getIdProduct()%>&quantity=<%=quantity%>"><i class="fa fa-shopping-cart cart" aria-hidden="true" title="Thêm vào giỏ hàng"></i></a>
                     </div>
                 </div>
             </div>
@@ -222,7 +234,7 @@
                 <div class="col-lg-4 col-sm-6 col-6 mt-3 product">
                     <div class="card">
                         <a href="<%=url%>/detail-product?pid=<%=p.getIdProduct()%>">
-                            <img src="<%=url%>/Products/<%=(p.getImages().isEmpty())?"":p.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="...">
+                            <img src="<%=url%>\Products\<%=p.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="...">
                         </a>
                         <div class="card-body">
                             <h5 class="card-title"><%=p.getName()%>
@@ -230,16 +242,16 @@
                             <p class="card-text">
                             <p class="price"><%=nF.format(p.getPrice())%></p>
                             <%
-                                int quantity = 1;
+                                int quantityBS = 1;
                                 if (cart != null) {
                                     if (cart.get(p.getIdProduct()) != null) {
-                                        quantity = cart.get(p.getIdProduct()).getQuantity() + 1;
+                                        quantityBS = cart.get(p.getIdProduct()).getQuantity() + 1;
                                     } else {
-                                        quantity = p.getQuantity();
+                                        quantityBS = p.getQuantity();
                                     }
                                 }
                             %>
-                            <a href ="<%=url%>/cartController?id=<%=p.getIdProduct()%>&quantity=<%=quantity%>"><i class="fa fa-shopping-cart cart" aria-hidden="true" title="Thêm vào giỏ hàng"></i></a>
+                            <a href ="<%=url%>/cartController?id=<%=p.getIdProduct()%>&quantity=<%=quantityBS%>"><i class="fa fa-shopping-cart cart" aria-hidden="true" title="Thêm vào giỏ hàng"></i></a>
                             </p>
                         </div>
                     </div>

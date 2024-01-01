@@ -40,16 +40,12 @@
 %>
 <div class="container bgcolor mgt">
     <div class="row mt-2">
-        <div class = "col-md-12 ">
+        <div class="col-lg-4">
             <h5 >Lịch sử mua hàng <i class="fa fa-clock-o" aria-hidden="true"></i></h5>
-            <div class="d-flex" id="status">
-                <button class="btn" id ="wait" type="button">Chờ xác nhận</button>
-                <button class="btn" id ="confirm" type="button">Đã xác nhận</button>
-                <button class="btn" id ="cancle"type="button">Đã hủy</button>
-            </div>
         </div>
     </div>
-    <div class="row mt-2">
+    <hr class="mt-1">
+    <div class="row">
         <div class="col-lg-12 overflow-hidden">
             <table class="mb-3" id = "wattingConfirm">
                 <thead>
@@ -138,6 +134,7 @@
                 </tbody>
             </table>
             <table class="mb-3 d-none" id = "canceled">
+>>>>>>> master
                 <thead>
                 <tr>
                     <td class="w40">STT</td>
@@ -169,7 +166,12 @@
                     </td>
                     <td>
                         <div class="d-flex w-100 justify-content-center">
+<<<<<<< HEAD
+                            <a href="DetailProduct.jsp" class="btnAdd bgcolor bd-full me-1"><i class="fa fa-repeat text-color" aria-hidden="true" title="Mua lại"></i></a>
+                            <button class="delete btnAdd bgcolor bd-full me-1"><i class="fa fa-trash-o text-color" title="Xóa" aria-hidden="true"></i></button>
+=======
                             <button class="delete btnAdd bgcolor bd-full" data-bs-toggle="modal" data-bs-target="#" onclick="delInvoiceCancel('<%=i.getIdInvoice()%>', 'cancel')"><i class="fa fa-trash-o text-color" title="Xóa" aria-hidden="true"></i></button>
+>>>>>>> master
                         </div>
                     </td>
                 </tr>

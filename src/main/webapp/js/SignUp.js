@@ -18,11 +18,7 @@ $(document).ready(function () {
             $("#errUser").text('Vui lòng nhập tên đăng nhập!');
             $('#errUser').attr('style', 'color:red');
             condition = false;
-        } else if (specialCharacters.test(user)) {
-            $("#errUser").text('Tên đăng nhập không chứa kí tự đặc biệt!');
-            $('#errUser').attr('style', 'color:red');
-            condition = false;
-        } else {
+        }else{
             $("#errUser").text('');
         }
         if(password===""){
@@ -41,11 +37,11 @@ $(document).ready(function () {
             $("#errPW").text('');
         }
         if(rePW === ""){
-            $("#errRePW").text('Vui lòng xác nhận lại mật khẩu!');
+            $("#errRePW").text('Vui lòng nhập lại mật khẩu!');
             $('#errRePW').attr('style', 'color:red');
             condition = false;
         }else if(rePW !==password){
-            $("#errRePW").text('Mật khẩu xác nhận không đúng!');
+            $("#errRePW").text('Mật khẩu nhập lại không đúng!');
             $('#errRePW').attr('style', 'color:red');
             condition = false;
         }else{

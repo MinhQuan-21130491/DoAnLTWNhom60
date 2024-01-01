@@ -1,3 +1,5 @@
+<%@ page import="model.InforWebsite" %>
+<%@ page import="service.WebService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -39,11 +41,25 @@
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <h5 class = "">THÔNG TIN LIÊN HỆ</h5>
+                <%
+//                    Object o = request.getAttribute("contactInfo");
+//                    InforWebsite contactInfo = null;
+//                    if (o != null) {
+//                        contactInfo = (InforWebsite) o;
+//                        String address = contactInfo.getAddress();
+//                        String email = contactInfo.getEmail();
+//                        String phoneNumber = contactInfo.getPhoneNumber();
+                    InforWebsite contactInfo = (InforWebsite) session.getAttribute("contactInfo");
+                    String address = contactInfo.getAddress();
+                    String email = contactInfo.getEmail();
+                    String phoneNumber = contactInfo.getPhoneNumber();
+                %>
                 <hr class ="w-50 ">
                 <ul class="navbar-nav ">
-                    <li class="nav-link"><i class="fa fa-map-marker" aria-hidden="true"></i> 230A Tô Ngọc Vân, Phường Linh Xuân, Thành phố Thủ Đức</li>
-                    <li class="nav-link" ><i class="fa fa-envelope" aria-hidden="true"></i> homedecorsqn@gmail.com</li>
-                    <li class="nav-link" ><i class="fa fa-phone" aria-hidden="true"></i> 0812295775</li>
+                    <input type="hidden" name="id" value="<%= contactInfo.getId() %>">
+                    <li class="nav-link"><i class="fa fa-map-marker" aria-hidden="true"></i> <%= address%></li>
+                    <li class="nav-link" ><i class="fa fa-envelope" aria-hidden="true"></i> <%= email %></li>
+                    <li class="nav-link" ><i class="fa fa-phone" aria-hidden="true"></i> <%= phoneNumber %></li>
                 </ul>
             </div>
         </div>

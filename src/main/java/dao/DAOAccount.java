@@ -4,8 +4,11 @@ import model.Account;
 import model.VerifyAccount;
 import util.Encrypt;
 import util.JDBCUtil;
-
-import java.sql.*;
+import java.sql.Date;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -203,13 +206,13 @@ public class DAOAccount {
         VerifyAccount verifyAccount = null;
         Connection connection = JDBCUtil.getConnection();
         String sql = "Select idAccount, verifyCode, timeCode, stateVerify " +
-                     "from verify_account " +
-                     "where idAccount = ?";
+                "from verify_account " +
+                "where idAccount = ?";
         try {
             PreparedStatement pr = connection.prepareStatement(sql);
             pr.setInt(1, idAccount);
             ResultSet resultSet = pr.executeQuery();
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 int id = resultSet.getInt("idAccount");
                 int verifyCode = resultSet.getInt("verifyCode");
                 LocalDateTime timeCode = resultSet.getObject("timeCode", LocalDateTime.class);
@@ -264,7 +267,7 @@ public class DAOAccount {
     }
     public static Account getAccount(String userName, String password) {
         Account re = null;
-        try{
+        try {
             // Tạo kết nối đến database
             Connection connection = JDBCUtil.getConnection();
             // Tạo đối tượng statement
@@ -276,7 +279,7 @@ public class DAOAccount {
             pr.setString(2, password);
             // Thực thi câu lệnh sql
             ResultSet resultSet = pr.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
                 String usName = resultSet.getString("userName");
@@ -305,7 +308,7 @@ public class DAOAccount {
             PreparedStatement pr = connection.prepareStatement(sql);
             pr.setInt(1, idAccount);
             ResultSet resultSet = pr.executeQuery();
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 verifyAccount = new VerifyAccount(resultSet.getBoolean("stateVerify"));
             }
         } catch (SQLException e) {
@@ -337,11 +340,26 @@ public class DAOAccount {
                 Account account = new Account(id, name,usName, pw, email, phoneNumber, gender, birthDay, address, addressReceive, role, status);
                 list.add(account);
             }
+           JDBCUtil.closeConnection(connection);
+       } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return  list;
+    }
+    public static int updatePassword( String passEnCrypt, int idAccount) {
+        int re = 0;
+        Connection connection = JDBCUtil.getConnection();
+        String sql ="update accounts set password =? where id =?";
+        try {
+            PreparedStatement pr = connection.prepareStatement(sql);
+            pr.setString(1, passEnCrypt);
+            pr.setInt(2, idAccount);
+            re = pr.executeUpdate();
             JDBCUtil.closeConnection(connection);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return  list;
+        return re;
     }
     public static synchronized int updateStatus(int id, boolean status) throws SQLException {
         int re = 0;
