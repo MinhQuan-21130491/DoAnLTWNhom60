@@ -1,11 +1,14 @@
 package controller;
 import model.InforWebsite;
 import service.WebService;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 @WebServlet(name = "editPolicy", value = "/editPolicy")
@@ -23,7 +26,11 @@ public class EditPolicy extends HttpServlet {
                 InforWebsite updatedInfo = new InforWebsite(id, guarantee, exchange);
                 int result = WebService.getInstance().updatePolicy(updatedInfo);
                 if (result > 0) {
-                    response.sendRedirect("IntroWebsite.jsp");
+                    HttpSession session = request.getSession();
+                    InforWebsite policyInfo = (InforWebsite) session.getAttribute("policyInfo");
+                    policyInfo.setGuarantee(guarantee);
+                    policyInfo.setExchange(exchange);
+                    session.setAttribute("policyInfo", policyInfo);
                 } else {
                     response.getWriter().println("Không thể cập thông tin!");
                 }
@@ -31,5 +38,7 @@ public class EditPolicy extends HttpServlet {
         } catch (NumberFormatException | SQLException e) {
             throw new ServletException("Error processing form data", e);
         }
+        RequestDispatcher dispatcher = request.getRequestDispatcher("manageIntro");
+        dispatcher.forward(request, response);
     }
 }

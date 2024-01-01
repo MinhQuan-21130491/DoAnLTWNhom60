@@ -52,7 +52,6 @@ public class ChangeInfo extends HttpServlet {
             VerifyAccount vrf = AccountService.getInstance().getVrfOfAccount(account.getId());
             accountNew.setVerifyAccount(vrf);
             session.setAttribute("account", accountNew);
-
             if (AccountService.getInstance().updateInfor(accountNew) > 0) {
                 res = "Cập nhật thành công!";
             } else {

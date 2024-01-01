@@ -74,5 +74,17 @@ public class InforWebsite {
     public void setExchange(int exchange) {
         this.exchange = exchange;
     }
+
+    @Override
+    public String toString() {
+        return "InforWebsite{" +
+                "id=" + id +
+                ", address='" + address + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", guarantee=" + guarantee +
+                ", exchange=" + exchange +
+                '}';
+    }
 }
 
