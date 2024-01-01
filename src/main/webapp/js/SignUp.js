@@ -10,11 +10,10 @@ $(document).ready(function () {
         var address = $('#address').val();
         var addressReceive = $('#addressRecei').val();
         var condition = true;
-        // var nameReg = /^[A-Za-zÀ-ỹ\s]+$/;
         var passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*()-+])(?=.*[0-9]).{8,}$/;
         var emailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         var tellReg = /^\d{10}$/;
-
+        var specialCharacters = /[!@#$%^&*(),.?":{}|<>' -]/;
         if (user === "") {
             $("#errUser").text('Vui lòng nhập tên đăng nhập!');
             $('#errUser').attr('style', 'color:red');

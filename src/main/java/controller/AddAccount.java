@@ -8,7 +8,6 @@ import service.AccountService;
 import util.Email;
 import util.Encrypt;
 import util.NumberRandom;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -93,13 +92,4 @@ public class AddAccount extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println(jsonResponse.toString());
     }
-
-    private boolean isFilePart(Part part) {
-        return part.getSubmittedFileName() != null && !part.getSubmittedFileName().isEmpty();
-    }
-    public static String generateUniqueIdentifier() {
-        UUID uuid = UUID.randomUUID();
-        return uuid.toString();
-    }
-
 }

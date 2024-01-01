@@ -31,6 +31,7 @@
             accountJSON.put("name", a.getName());
             accountJSON.put("phoneNumber", a.getPhoneNumber());
             accountJSON.put("email", a.getEmail());
+            accountJSON.put("password", a.getPassword());
             accountJSON.put("gender", a.getGender());
             accountJSON.put("birthDay", a.getBirthDay());
             accountJSON.put("address", a.getAddress());

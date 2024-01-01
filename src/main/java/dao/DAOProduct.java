@@ -2,11 +2,8 @@ package dao;
 import model.Image;
 import model.Product;
 import util.JDBCUtil;
-
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Date;
-
 public class DAOProduct {
     /*
    load 6 sản phẩm, có tham số offset là vị trí sản phẩm bắt đầu load
@@ -505,9 +502,5 @@ public class DAOProduct {
             throw new RuntimeException(e);
         }
         return imgs;
-    }
-    public static void main(String[] args) throws SQLException {
-   System.out.println(delProduct(52));
-   System.out.println(delProduct(52));
     }
  }
