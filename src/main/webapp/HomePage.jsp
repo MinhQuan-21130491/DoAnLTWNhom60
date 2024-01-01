@@ -109,6 +109,7 @@
             <%}%>
             <%
                 Product bestSaler = (Product) request.getAttribute("bestSaler");
+                if(bestSaler != null) {
             %>
             <div class="mt-3 d-none d-md-none d-lg-block">
                 <h5 class="m-0 text-center">SẢN PHẨM BÁN CHẠY NHẤT</h5>
@@ -135,6 +136,7 @@
                     </div>
                 </div>
             </div>
+            <%}%>
         </div>
         <!-- end menu left -->
         <!-- carousel -->

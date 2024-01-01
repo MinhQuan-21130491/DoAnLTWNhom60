@@ -1,5 +1,4 @@
 <%@ page import="model.InforWebsite" %>
-<%@ page import="service.WebService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -42,13 +41,6 @@
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <h5 class = "">THÔNG TIN LIÊN HỆ</h5>
                 <%
-//                    Object o = request.getAttribute("contactInfo");
-//                    InforWebsite contactInfo = null;
-//                    if (o != null) {
-//                        contactInfo = (InforWebsite) o;
-//                        String address = contactInfo.getAddress();
-//                        String email = contactInfo.getEmail();
-//                        String phoneNumber = contactInfo.getPhoneNumber();
                     InforWebsite contactInfo = (InforWebsite) session.getAttribute("contactInfo");
                     String address = contactInfo.getAddress();
                     String email = contactInfo.getEmail();
