@@ -1,5 +1,4 @@
 <%@ page import="model.InforWebsite" %>
-<%@ page import="service.WebService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>

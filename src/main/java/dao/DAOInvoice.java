@@ -2,6 +2,7 @@ package dao;
 
 import model.Invoice;
 import model.InvoiceDetail;
+import model.Product;
 import util.JDBCUtil;
 
 import java.sql.*;
@@ -204,5 +205,85 @@ public class DAOInvoice {
             throw new RuntimeException(e);
         }
         return list;
+    }
+    public static int insertInvoice(Invoice in) {
+        int re = 0;
+        Connection connection = JDBCUtil.getConnection();
+        String date = new java.sql.Date(System.currentTimeMillis()).toString();
+        String sql = "insert into invoices(idAccount , address, transFee, payMethod, StartDate) " +
+                "values(?,?,?,?,?)";
+        try {
+            PreparedStatement pr = connection.prepareStatement(sql);
+            pr.setInt(1, in.getIdAccount());
+            pr.setString(2, in.getAddress());
+            pr.setDouble(3, in.getTransFee());
+            pr.setString(4, in.getPayMethod());
+            pr.setString(5, date);
+            re = pr.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return re;
+    }
+    public static Invoice latestInvoice() {
+        Invoice invoice = null;
+        Connection connection = JDBCUtil.getConnection();
+        String sql = "select i.id, i.idAccount, i.address, i.transFee, i.payMethod, i.startDate, i.status \n" +
+                "                              from invoices as i order by i.id DESC\n" +
+                "limit 1";
+        try {
+            PreparedStatement pr = connection.prepareStatement(sql);
+            ResultSet resultSet = pr.executeQuery();
+            while (resultSet.next()) {
+                int idInvoice = resultSet.getInt("id");
+                int idAccount = resultSet.getInt("idAccount");
+                String address = resultSet.getString("address");
+                double transFee = resultSet.getDouble("transFee");
+                String payMethod = resultSet.getString("payMethod");
+                Date startDate = resultSet.getDate("startDate");
+                int status = resultSet.getInt("status");
+                invoice = new Invoice(idInvoice,idAccount,address,transFee,payMethod,startDate,status);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return invoice;
+    }
+    public static int insertInvoiceDetail(InvoiceDetail idt) {
+        int re = 0;
+        Connection connection = JDBCUtil.getConnection();
+        String sql = "insert into invoice_details(id, IdProduct, price, quantity) " +
+                "values(?,?,?,?)";
+        try {
+            PreparedStatement pr = connection.prepareStatement(sql);
+            pr.setInt(1, idt.getIdInvoice());
+            pr.setInt(2, idt.getIdProduct());
+            pr.setDouble(3, idt.getPrice());
+            pr.setInt(4, idt.getQuantity());
+            re = pr.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return re;
+    }
+    public static int idBestSaler(){
+        int idProduct = 0;
+        Connection connection = JDBCUtil.getConnection();
+        String sql = "select idProduct, sum(d.quantity) as tong\n" +
+                "from invoice_details d inner join invoices i on d.id=i.id\n" +
+                "where i.`status`=2\n" +
+                "group by idProduct\n" +
+                "order by tong DESC\n" +
+                "limit 1";
+        try {
+            PreparedStatement pr = connection.prepareStatement(sql);
+            ResultSet resultSet = pr.executeQuery();
+            while (resultSet.next()) {
+                idProduct = resultSet.getInt("idProduct");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return idProduct;
     }
 }
