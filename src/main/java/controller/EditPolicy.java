@@ -1,44 +1,43 @@
 package controller;
 import model.InforWebsite;
 import service.WebService;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 @WebServlet(name = "editPolicy", value = "/editPolicy")
 public class EditPolicy extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("html/text; charset= UTF-8");
         try {
-            String idParameter = request.getParameter("id");
-            String guaranteeParameter = request.getParameter("monthGua");
-            String exchangeParameter = request.getParameter("monthChange");
-            if (idParameter != null && guaranteeParameter != null && exchangeParameter != null) {
-                int id = Integer.parseInt(idParameter);
-                int guarantee = Integer.parseInt(guaranteeParameter);
-                int exchange = Integer.parseInt(exchangeParameter);
-                InforWebsite updatedInfo = new InforWebsite(id, guarantee, exchange);
-                int result = WebService.getInstance().updatePolicy(updatedInfo);
-                if (result > 0) {
-                    HttpSession session = request.getSession();
-                    InforWebsite policyInfo = (InforWebsite) session.getAttribute("policyInfo");
-                    policyInfo.setGuarantee(guarantee);
-                    policyInfo.setExchange(exchange);
-                    session.setAttribute("policyInfo", policyInfo);
-                } else {
-                    response.getWriter().println("Không thể cập thông tin!");
-                }
+            String idText = request.getParameter("id");
+            String guaranteeText = request.getParameter("monthGua");
+            String exchangeText = request.getParameter("monthChange");
+            int id = Integer.parseInt(idText);
+            int guarantee = Integer.parseInt(guaranteeText);
+            int exchange = Integer.parseInt(exchangeText);
+            InforWebsite updatedInfo = new InforWebsite(id, guarantee, exchange);
+            int result = WebService.getInstance().updatePolicy(updatedInfo);
+            String res = "";
+            InforWebsite i = null;
+            if (result > 0) {
+                i = WebService.getInstance().selectByid(id);
+                res ="Cập nhật thành công!";
+            } else {
+                i = WebService.getInstance().selectByid(id);
+                res="Cập nhật không thành công!";
             }
+            request.setAttribute("infor", i);
+            request.setAttribute("res", res);
+
         } catch (NumberFormatException | SQLException e) {
             throw new ServletException("Error processing form data", e);
         }
-        RequestDispatcher dispatcher = request.getRequestDispatcher("manageIntro");
-        dispatcher.forward(request, response);
+        request.getRequestDispatcher("IntroWebsite.jsp").forward(request, response);
     }
 }

@@ -21,10 +21,8 @@ public class WebService {
     public int updateContact(InforWebsite i) throws SQLException {
         return DaoWeb.updateContact(i);
     }
-    public InforWebsite getPolicyInformation (int id) throws SQLException {
-        return DaoWeb.getPolicyInformation(id);
+    public InforWebsite selectByid (int id) throws SQLException {
+        return DaoWeb.selectByid(id);
     }
-    public InforWebsite getContactInformation (int id) throws SQLException {
-        return DaoWeb.getContactInformation(id);
-    }
+
 }
