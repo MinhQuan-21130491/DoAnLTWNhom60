@@ -124,7 +124,15 @@ public class ProductService {
     public int updateProduct(Product p) throws SQLException {
         return DAOProduct.updateProduct(p);
     }
-    public static void main(String[] args) {
+    public Product productSimilar(int idCate) {
+        Product product = DAOProduct.productSimilar(idCate);
+        if(product != null) {
+            ArrayList<Image> listImageOfProduct = DAOProduct.listImageOfProduct(product);
+            product.setImages(listImageOfProduct);
+        }
+        return product;
+    }
+        public static void main(String[] args) {
 //        System.out.println(ProductService.getInstance().listSixProduct(0));
     }
 }

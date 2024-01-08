@@ -4,6 +4,7 @@ import model.Product;
 import util.JDBCUtil;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Random;
 
 
 public class DAOProduct {
@@ -480,6 +481,41 @@ public class DAOProduct {
         }
         JDBCUtil.closeConnection(connection);
         return re;
+    }
+    public static Product productSimilar(int idCate) {
+        ArrayList<Product> listP = new ArrayList<>();
+        Product result = null;
+        Connection connection = JDBCUtil.getConnection();
+        String sql = "select p.id,p.idCate, p.name, p.price, p.priceImport, p.quantity, p.color, p.material, p.description, p.height, p.width, p.length, p.status " +
+                "from products as p where p.idCate =?";
+        try {
+            PreparedStatement pr = connection.prepareStatement(sql);
+            pr.setInt(1, idCate);
+            ResultSet resultSet = pr.executeQuery();
+            while (resultSet.next()) {
+                int idProduct = resultSet.getInt("id");
+                int idCategory = resultSet.getInt("idCate");
+                String name = resultSet.getString("name");
+                double priceImport = resultSet.getDouble("priceImport");
+                double price = resultSet.getDouble("price");
+                String description = resultSet.getString("description");
+                String color = resultSet.getString("color");
+                String material = resultSet.getString("material");
+                double width = resultSet.getDouble("width");
+                double height = resultSet.getDouble("height");
+                double length = resultSet.getDouble("length");
+                int quantity = resultSet.getInt("quantity");
+                if(resultSet.getBoolean("status")) {
+                    Product product = new Product(idProduct, idCategory, name, priceImport, price, description, color, material, width, height, length, 1, quantity);
+                    listP.add(product);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        Random random = new Random();
+        int numberRandom = random.nextInt(listP.size());
+        return result = listP.get(numberRandom);
     }
     public static void main(String[] args) {
    System.out.println(latestProduct());
