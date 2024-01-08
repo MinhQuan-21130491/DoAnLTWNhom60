@@ -111,7 +111,7 @@
                                     <div class="dai">
                                         <button id="decrease" type="button">-</button>
                                         <div class="amount">
-                                            <input type="text" id="amount" name="quantity"/>
+                                            <input type="text" id="amount" name="quantity" value="0"/>
                                         </div>
                                         <button id="increase" type="button">+</button>
                                     </div>

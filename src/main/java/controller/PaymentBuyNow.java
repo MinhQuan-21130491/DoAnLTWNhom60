@@ -1,8 +1,7 @@
 package controller;
 
-import dao.DAOProduct;
 import model.*;
-import service.InvoiceService;
+import service.ProductService;
 import util.Email;
 
 import javax.servlet.*;
@@ -26,14 +25,14 @@ public class PaymentBuyNow extends HttpServlet {
         int idProduct = Integer.parseInt(idProductText);
         String quantityText = request.getParameter("quantity");
         int quantity = Integer.parseInt(quantityText);
-        Product p = DAOProduct.getProductById(idProduct);
-        HttpSession session = request.getSession();
-        session.setAttribute("BuyNowProduct", p);
-        session.setAttribute("BuyNowQuantity", quantity);
-        try {
-            request.getRequestDispatcher("BuyNow.jsp").forward(request, response);
-        } catch (ServletException e) {
-            throw new RuntimeException(e);
+        if(quantity==0){
+            request.getRequestDispatcher(url+"/detail-product?pid="+idProductText);
+        }else {
+            Product p = ProductService.getInstance().getProductById(idProduct);
+            HttpSession session = request.getSession();
+            session.setAttribute("BuyNowProduct", p);
+            session.setAttribute("BuyNowQuantity", quantity);
+            response.sendRedirect(url + "/BuyNow.jsp");
         }
     }
     @Override

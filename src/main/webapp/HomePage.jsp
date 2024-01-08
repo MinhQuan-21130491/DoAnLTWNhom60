@@ -116,7 +116,7 @@
                 <hr class="mt-2 mb-2"/>
                 <div class="card">
                     <a href="<%=url%>/DetailProduct.jsp">
-                        <img src="https://down-vn.img.susercontent.com/file/sg-11134201-7r9a2-llujnaskifkp71" class="card-img-top img_p" alt="...">
+                        <img src="<%=url%>/Products/<%=(bestSaler.getImages().isEmpty())?"":bestSaler.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="...">
                     </a>
                     <div class="card-body">
                         <h5 class="card-title"><%=bestSaler.getName()%></h5>
