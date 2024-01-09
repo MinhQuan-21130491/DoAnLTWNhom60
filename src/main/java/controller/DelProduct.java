@@ -1,51 +1,50 @@
 package controller;
 
-import model.Account;
-import model.Invoice;
+import model.Product;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import service.InvoiceService;
+import service.ProductService;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 
-@WebServlet(name = "DelInvoiceCus", value = "/delInvoiceCus")
-public class DelInvoiceCus extends HttpServlet {
+@WebServlet(name = "delProduct", value = "/delProduct")
+public class DelProduct extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("html/text; charset= UTF-8");
         String idText = request.getParameter("id");
         int id = Integer.parseInt(idText);
-        String status = request.getParameter("status");
         String res = "";
-        ArrayList<Invoice> listInvoice = null;
+        JSONObject jsonResponse = new JSONObject();
+        JSONArray htmlDataArray = new JSONArray();
         NumberFormat nF = NumberFormat.getCurrencyInstance();
-        HttpSession session = request.getSession();
-        Object obj = session.getAttribute("account");
-        Account account = (obj != null)?(Account) obj:null;
-        if(InvoiceService.getInstance().delInvoiceCus(id)>0) {
-            listInvoice = InvoiceService.getInstance().getListOfCus((status.equals("confirm")?1:2),0, account.getId());
+        String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+        ArrayList<Product> listProduct = null;
+        if(ProductService.getInstance().delProduct(id)>0) {
+            listProduct = ProductService.getInstance().listAllProduct();
             res = "Xóa thành công!";
         }else {
             res = "Đã xảy ra lỗi!";
-            listInvoice = InvoiceService.getInstance().getListOfCus((status.equals("confirm")?1:2),0, account.getId());
+            listProduct = ProductService.getInstance().listAllProduct();
         }
-        JSONObject jsonResponse = new JSONObject();
-        JSONArray htmlDataArray = new JSONArray();
-        for (Invoice i : listInvoice) {
-            JSONObject invoiceJSON = new JSONObject();
-            invoiceJSON.put("id", i.getIdInvoice());
-            invoiceJSON.put("startDate", i.getStartDate());
-            invoiceJSON.put("totalPrice", nF.format(i.totalPrice()));
-            htmlDataArray.put(invoiceJSON);
+        for (Product p : listProduct) {
+            JSONObject productJSON = new JSONObject();
+            productJSON.put("idProduct", p.getIdProduct());
+            productJSON.put("imageUrl", url +"/Products/" +p.getImages().get(0).getUrl());
+            productJSON.put("name", p.getName());
+            productJSON.put("price", nF.format(p.getPrice()));
+            productJSON.put("color", p.getColor());
+            productJSON.put("quantity", p.getQuantityAvailable());
+            productJSON.put("status", (p.isStatus())?"Đang bán":"Ngưng bán");
+            htmlDataArray.put(productJSON);
         }
         jsonResponse.put("htmlData", htmlDataArray);
         jsonResponse.put("res", res);

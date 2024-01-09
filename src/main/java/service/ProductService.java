@@ -1,5 +1,4 @@
 package service;
-import dao.DAOCategory;
 import dao.DAOProduct;
 import model.Image;
 import model.Product;
@@ -132,7 +131,14 @@ public class ProductService {
         }
         return product;
     }
-        public static void main(String[] args) {
-//        System.out.println(ProductService.getInstance().listSixProduct(0));
+    public int delProduct(int id) {
+        try {
+            return  DAOProduct.delProduct(id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
+          public static void main(String[] args) {
+//        System.out.println(ProductService.getInstance().listSixProduct(0));
+          }
 }

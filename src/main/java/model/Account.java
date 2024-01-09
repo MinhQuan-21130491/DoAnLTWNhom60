@@ -46,6 +46,18 @@ public class Account {
         this.role = role;
         this.status = status;
     }
+    public Account(int id, String name, String email, String password, String phoneNumber, String gender, Date birthDay, String address, String addressReceive, int role) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.gender = gender;
+        this.birthDay = birthDay;
+        this.address = address;
+        this.addressReceive = addressReceive;
+        this.role = role;
+    }
     public Account(int id, String name, String email, String phoneNumber, String gender, Date birthDay, String address, String addressReceive) {
         this.id = id;
         this.name = name;
@@ -81,7 +93,11 @@ public class Account {
         this.address = address;
         this.addressReceive = addressReceive;
     }
-
+    public Account(String userName, String password, String email) {
+        this.userName = userName;
+        this.password = password;
+        this.email = email;
+    }
     public Account() {
     }
 

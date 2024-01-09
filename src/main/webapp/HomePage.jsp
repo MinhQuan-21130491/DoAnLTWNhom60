@@ -46,6 +46,7 @@
 <%
     NumberFormat nF = NumberFormat.getCurrencyInstance();
     ArrayList<String> listColor = (ArrayList<String>) request.getAttribute("listColorP");
+    ArrayList<String> listCarousel = (ArrayList<String>) request.getAttribute("listCarousel");
     Cart cart = (Cart) session.getAttribute("Cart");
 %>
 <div class="container p-0 mgt">
@@ -106,44 +107,81 @@
                 </div>
             </div>
             <%}%>
+            <%
+                Product bestSaler = (Product) request.getAttribute("bestSaler");
+                if(bestSaler != null) {
+            %>
             <div class="mt-3 d-none d-md-none d-lg-block">
                 <h5 class="m-0 text-center">SẢN PHẨM BÁN CHẠY NHẤT</h5>
                 <hr class="mt-2 mb-2"/>
                 <div class="card">
-                    <a href="<%=url%>/DetailProduct.jsp">
-                        <img src="https://down-vn.img.susercontent.com/file/sg-11134201-7r9a2-llujnaskifkp71"
-                             class="card-img-top img_p" alt="...">
+                    <a href="<%=url%>/detail-product?pid=<%=bestSaler.getIdProduct()%>">
+                        <img src="<%=url%>/Products/<%=(bestSaler.getImages().isEmpty())?"":bestSaler.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="...">
                     </a>
                     <div class="card-body">
-                        <h5 class="card-title">Ghế xoay</h5>
+                        <h5 class="card-title"><%=bestSaler.getName()%></h5>
                         <p class="card-text">
-                        <p class="price">₫1.000.000</p></p>
-                        <a href =""><i class="fa fa-shopping-cart cart" aria-hidden="true"
-                                              title="Thêm vào giỏ hàng"></i></a>
+                        <p class="price"><%=nF.format(bestSaler.getPrice())%></p></p>
+                        <%
+                            int quantity = 1;
+                            if (cart != null) {
+                                if (cart.get(bestSaler.getIdProduct()) != null) {
+                                    quantity = cart.get(bestSaler.getIdProduct()).getQuantity() + 1;
+                                }
+                            } else {
+                                quantity = bestSaler.getQuantity();
+                            }
+                        %>
+                        <a href ="<%=url%>/cartController?id=<%=bestSaler.getIdProduct()%>&quantity=<%=quantity%>"><i class="fa fa-shopping-cart cart" aria-hidden="true" title="Thêm vào giỏ hàng"></i></a>
                     </div>
                 </div>
             </div>
+            <%}%>
         </div>
         <!-- end menu left -->
         <!-- carousel -->
         <div class="col-lg-9 ">
+            <div class="text-end mb-1">
+                <button type ="button" class="btnAdd bgcolor bd-full" id ="btnAddImage" data-bs-toggle="modal" data-bs-target="#editCarousel" onclick="innerCarousel()">
+                    <i class="fa fa-pencil text-color" aria-hidden="true" title="Chỉnh sửa carousel" ></i>
+                </button>
+            </div>
+            <%if(listCarousel != null && !listCarousel.isEmpty()) {%>
             <div id="carouselExampleIndicators" class="carousel slide d-none d-md-none d-lg-block "
                  data-bs-ride="carousel">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <div id = "innerCarousel1">
+                    <div class="carousel-indicators">
+                        <%
+                            int i = 0;
+                            for (String s : listCarousel) {
+                        %>
+                        <button type="button" data-bs-target="#carouselExampleIndicators"
+                                data-bs-slide-to="<%=i%>" class="active" aria-current="true"
+                                aria-label="Slide <%=i+1%>"
+                        ></button>
+                        <%
+                                i++;
+                            }%>
+                    </div>
                 </div>
+                <div id = "innerCarousel2">
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="image/slide1.jpg" class="d-block img_p" alt="...">
+                    <%
+                        boolean firstItem = true;
+                        for (String s : listCarousel) {
+                    %>
+                    <div class="carousel-item <%= firstItem ? "active" : "" %>">
+                        <img src="image/Carousel/<%= s %>" class="d-block img_p" alt="...">
                     </div>
-                    <div class="carousel-item">
-                        <img src="image/slide2.jpg" class="d-block img_p" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="image/slide3.jpg" class="d-block img_p" alt="...">
-                    </div>
+                    <%
+                            firstItem = false; // Đánh dấu đã qua thẻ đầu tiên
+                        }
+                    %>
+                </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -154,6 +192,41 @@
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
+            <%}%>
+            <div class="modal fade" id="editCarousel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <form class="form " action="" method="post">
+                                <div class="row px-2">
+                                    <div class=" text-end">
+                                        <button type="button" class="btn-close " data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <h5 class="text-center">CHỈNH SỬA CAROUSEL</h5>
+                                    <hr>
+                                    <div class="col-md-12 m-auto">
+                                        <div id ="image">
+                                            <label class="form-label">Hình ảnh<span class="text-danger">*</span></label><span id="errImg1" class="text-danger"></span>
+                                        </div>
+                                        <div class="text-end mb-3">
+                                            <button type ="button" class="btnAdd bgcolor bd-full" id ="btnAddImageEdit" onclick="addInput()"><i class="fa fa-plus-circle text-color" aria-hidden="true" title="Thêm hình ảnh" ></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="row p-0">
+                                        <div class="col-md-12 p-0">
+                                            <div class="text-end">
+                                                <button class="save " type="button" onclick="editCarousel()">LƯU</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!--end carousel-->
             <!--product-->
             <h5 class="mt-3 mb-0">DANH SÁCH SẢN PHẨM</h5>
@@ -173,16 +246,16 @@
                             <p class="card-text">
                             <p class="price"><%=nF.format(p.getPrice())%></p>
                             <%
-                                int quantity = 1;
+                                int quantityBS = 1;
                                 if (cart != null) {
                                     if (cart.get(p.getIdProduct()) != null) {
-                                        quantity = cart.get(p.getIdProduct()).getQuantity() + 1;
+                                        quantityBS = cart.get(p.getIdProduct()).getQuantity() + 1;
                                     } else {
-                                        quantity = p.getQuantity();
+                                        quantityBS = p.getQuantity();
                                     }
                                 }
                             %>
-                            <a href ="<%=url%>/cartController?id=<%=p.getIdProduct()%>&quantity=<%=quantity%>"><i class="fa fa-shopping-cart cart" aria-hidden="true" title="Thêm vào giỏ hàng"></i></a>
+                            <a href ="<%=url%>/cartController?id=<%=p.getIdProduct()%>&quantity=<%=quantityBS%>"><i class="fa fa-shopping-cart cart" aria-hidden="true" title="Thêm vào giỏ hàng"></i></a>
                             </p>
                         </div>
                     </div>
@@ -276,6 +349,82 @@
                 var row = document.getElementById("content");
                 row.innerHTML = data;
             },
+        });
+    }
+    function displaySelectedImage(input) {
+        var fileInput = input;
+        var selectedFile = fileInput.files[0];
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            // Tìm img tương ứng trong phạm vi cha của input
+            var imgElement = input.parentElement.querySelector('.selectedImage');
+            imgElement.classList.remove("d-none");
+            imgElement.src = e.target.result;
+        };
+
+        if (selectedFile) {
+            reader.readAsDataURL(selectedFile);
+        }
+    }
+
+    function addInput() {
+        var container = document.getElementById('image');
+        var newInput = document.createElement('div');
+        newInput.className = 'mb-3 d-flex align-items-center';
+        newInput.innerHTML = `<img src="" class="card-img-top img_p_cart selectedImage me-2 d-none" alt="..."/> <input type="file" name ="image" class="form-control imageInput" onchange="displaySelectedImage(this)" style ="height:40px"> <button type ="button" class="btnAdd bgcolor bd-full ms-2 remove" onclick="removeInput(this)" style ="height:40px"><i class="fa fa-minus-circle text-color" aria-hidden="true" title="Xóa hình ảnh" ></i></button>`;
+        container.appendChild(newInput);
+    }
+    function removeInput(button) {
+        var container = document.getElementById('image');
+        var divToRemove = button.parentNode; // Lấy đến div chứa nút xóa
+        container.removeChild(divToRemove);
+    }
+    function innerCarousel() {
+        $.ajax({
+            type: "GET",
+            url: "loadCarousel",
+            success: function (data) {
+                var htmlData = data.htmlData;
+                var container = document.getElementById('image');
+                container.innerHTML = "";
+                for (var i = 0; i < htmlData.length; i++) {
+                    var c = htmlData[i];
+                    var newInput = document.createElement('div');
+                    newInput.className = 'mb-3 d-flex align-items-center';
+                    newInput.innerHTML = `<img src="image/Carousel/${c}"" class="card-img-top img_p_cart me-2" alt="..."/> <input type="text" class="form-control " name="imageAvai" value="image/Carousel/${c}" style ="height:40px"> <button type="button" class="btnAdd bgcolor bd-full ms-2  remove" style ="height:40px" onclick="removeInput(this)"><i class="fa fa-minus-circle text-color" aria-hidden="true" title="Xóa hình ảnh"></i></button>`;
+                    container.appendChild(newInput);
+                }
+            },
+            error: function () {
+                console.error("Không thể tải chi tiết sản phẩm");
+            }
+        });
+    };
+    function editCarousel() {
+        var formData = new FormData();
+        var fileInputs = document.getElementsByName('image');
+        for (var i = 0; i < fileInputs.length; i++) {
+            var fileInput = fileInputs[i];
+            formData.append('image', fileInput.files[0]);
+        }
+        var imgAvai = document.getElementsByName("imageAvai");
+        for (var i = 0; i < imgAvai.length; i++) {
+            formData.append('imageAvai', imgAvai[i].value);
+        }
+        $.ajax({
+            url: 'editCarousel',
+            type: 'post',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+                alert(data.res);
+                location.reload();
+            },
+            error: function(error) {
+                console.error("Xảy ra lỗi:", error);
+            }
         });
     }
 </script>
