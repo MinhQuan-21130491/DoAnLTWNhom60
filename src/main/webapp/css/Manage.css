@@ -25,6 +25,21 @@ textarea {
 .title {
     font-weight: 700;
 }
+.tbChane-infor {
+    border-collapse: unset; !important;
+    text-align: start;
+}
+.tbChane-infor >tbody >tr > td {
+    border-right:none !important;
+    padding: 5px 0; !important;
+}
+.tbChane-infor >thead >tr > td {
+    border-right:none !important;
+}
+.tbChane-infor > tbody > tr:hover {
+    background-color: white;
+}
+
 
 @media screen and (max-width: 992px) {
     .typeManage {
@@ -36,21 +51,18 @@ textarea {
 
 }
 @media screen and (max-width: 576px) {
-     textarea {
-         height: 156px;
-     }
+    textarea {
+        height: 156px;
+    }
     .pst {
         left: 45%;
     }
 }
-<<<<<<< HEAD
-
-=======
 #wait {
     border-left:1px solid #dedbdb;
     border-top:1px solid #dedbdb;
 }
-#confirm {
+#approved {
     border-top:1px solid #dedbdb;
 }
 #cancle {
@@ -59,12 +71,8 @@ textarea {
 }
 .btn {
     border-radius: unset; !important;
-    border: 0px;
+    transition: 0.2s;
 }
 .btn:hover {
-   color: var(--color_backgroud);
+    background-color: var(--color_backgroud);
 }
-.btn:focus {
-   border: none;
-}
->>>>>>> master

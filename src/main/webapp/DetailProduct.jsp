@@ -74,12 +74,12 @@
                     <div class="col-lg-5 col-md-7  ">
                         <div class="row pt-3">
                             <div class="col-md-12">
-                                <img src="<%=url%>\Products\<%=product.getImages().get(0).getUrl()%>" alt=""
-                                     class="img_p2" id="img_center">
+                                <img src="<%=url%>\Products\<%=(product.getImages().isEmpty())?"":product.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="...">
                             </div>
                             <div class="col-md-12 mt-3">
                                 <div class="owl-carousel">
-                                    <%for(Image img: product.getImages()) { %>
+                                    <%
+                                        for(Image img: product.getImages()) { %>
                                     <div class="pe-2">
                                         <img src="<%=url%>/Products/<%=img.getUrl()%>" alt="" class="img_p_detail" onmouseover="changeImg('<%=url%>/Products/<%=img.getUrl()%>')">
                                     </div>
@@ -171,7 +171,7 @@
                 <hr class="mt-2 mb-2"/>
                 <div class="card">
                     <a href="<%=url%>/detail-product?pid=<%=productSimilar.getIdProduct()%>&cid=<%=productSimilar.getIdCate()%>">
-                        <img src="<%=url%>/Products/<%=productSimilar.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="">
+                        <img src="<%=url%>\Products\<%=(productSimilar.getImages().isEmpty())?"":productSimilar.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="...">
                     </a>
                     <div class="card-body">
                         <h5 class="card-title"><%=productSimilar.getName()%></h5>

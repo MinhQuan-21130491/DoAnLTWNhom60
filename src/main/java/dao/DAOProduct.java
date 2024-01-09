@@ -283,7 +283,7 @@ public class DAOProduct {
         }else {
             sql = "SELECT p.id, p.idCate, p.name, p.price, p.priceImport, p.quantity, p.color, p.material, p.description, p.height, p.width, p.length " +
                     "FROM ( SELECT id, idCate, name, price, priceImport, quantity, color, material, description, height, width, length, status  from products where idCate =" + idCate +" ) as p " +
-                    "WHERE p.status = 1 and";
+                    "WHERE p.status = 1 and ";
         }
         if (priceFil != 0) {
             if(command.equalsIgnoreCase("D")) {
