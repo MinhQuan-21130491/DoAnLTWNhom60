@@ -27,6 +27,8 @@
     <link rel="stylesheet" href="css/Style.css">
 </head>
 <body>
+<% String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+%>
 <header class="hd">
     <div class="container-fluid bgcolor-orange">
         <div class="container ">
@@ -74,7 +76,7 @@
                 <input class="form-pass" id="idFormPass" name="idFormPass" type="password" placeholder="Mật khẩu" value ="<%=password%>">
             </div>
             <div class="form-group-p" id="idFPass">
-                <p id="idMK"><a href="">Quên mật khẩu?</a></p>
+                <p id="idMK"><a href=<%=url%>/ForgetPW.jsp>Quên mật khẩu?</a></p>
             </div>
             <div>
                 <button id="submitDangNhap">ĐĂNG NHẬP</button>
