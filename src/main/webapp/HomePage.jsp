@@ -83,7 +83,7 @@
                 <h5 class="m-0 text-center" id="titleCate">SẢN PHẨM MỚI NHẤT</h5>
                 <hr class="mt-2 mb-2"/>
                 <div class="card">
-                    <a href="<%=url%>/detail-product?pid=<%=latestProduct.getIdProduct()%>">
+                    <a href="<%=url%>/detail-product?pid=<%=latestProduct.getIdProduct()%>&cid=<%=latestProduct.getIdCate()%>">
                         <img src="<%=url%>/Products/<%=latestProduct.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="">
                     </a>
                     <div class="card-body">
@@ -109,13 +109,14 @@
             <%}%>
             <%
                 Product bestSaler = (Product) request.getAttribute("bestSaler");
+                if(bestSaler != null) {
             %>
             <div class="mt-3 d-none d-md-none d-lg-block">
                 <h5 class="m-0 text-center">SẢN PHẨM BÁN CHẠY NHẤT</h5>
                 <hr class="mt-2 mb-2"/>
                 <div class="card">
-                    <a href="<%=url%>/DetailProduct.jsp">
-                        <img src="https://down-vn.img.susercontent.com/file/sg-11134201-7r9a2-llujnaskifkp71" class="card-img-top img_p" alt="...">
+                    <a href="<%=url%>/detail-product?pid=<%=bestSaler.getIdProduct()%>">
+                        <img src="<%=url%>/Products/<%=(bestSaler.getImages().isEmpty())?"":bestSaler.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="...">
                     </a>
                     <div class="card-body">
                         <h5 class="card-title"><%=bestSaler.getName()%></h5>
@@ -135,6 +136,7 @@
                     </div>
                 </div>
             </div>
+            <%}%>
         </div>
         <!-- end menu left -->
         <!-- carousel -->
@@ -147,6 +149,10 @@
             <%if(listCarousel != null && !listCarousel.isEmpty()) {%>
             <div id="carouselExampleIndicators" class="carousel slide d-none d-md-none d-lg-block "
                  data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 <div id = "innerCarousel1">
                     <div class="carousel-indicators">
                         <%
@@ -177,13 +183,11 @@
                     %>
                 </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                        data-bs-slide="prev">
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                        data-bs-slide="next">
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
@@ -233,7 +237,7 @@
                 for (Product p : listProduct) {%>
                 <div class="col-lg-4 col-sm-6 col-6 mt-3 product">
                     <div class="card">
-                        <a href="<%=url%>/detail-product?pid=<%=p.getIdProduct()%>">
+                        <a href="<%=url%>/detail-product?pid=<%=p.getIdProduct()%>&cid=<%=p.getIdCate()%>">
                             <img src="<%=url%>\Products\<%=p.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="...">
                         </a>
                         <div class="card-body">

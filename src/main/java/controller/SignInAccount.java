@@ -27,7 +27,7 @@ public class SignInAccount extends HttpServlet {
         String userName = request.getParameter("idFormInput");
         String password = request.getParameter("idFormPass");
         String err = "";
-        //Kiểm tra điê kiện ở phía server
+        //Kiểm tra điều kiện ở phía server
         if ((userName == null || userName.trim().isEmpty()) && (password == null || password.trim().isEmpty())) {
             err = "Bạn chưa nhập tên đăng nhập hoặc mật khẩu!";
         } else if (userName == null || userName.trim().isEmpty()) {

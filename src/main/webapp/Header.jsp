@@ -52,7 +52,7 @@
                             <div class="col-md-12 col-lg-3 col-sm-12">
                                 <ul class="navbar-nav w-100  mb-2 mb-lg-0">
                                     <li class="nav-item hv "><a class="nav-link ps-0 " aria-current="page" href=<%=url%>/homePage>Trang chủ</a></li>
-                                    <li class="nav-item hv"><a class="nav-link" href="IntroWebsite.jsp">Giới thiệu</a></li>
+                                    <li class="nav-item hv"><a class="nav-link" href="<%=url%>/introWebsite">Giới thiệu</a></li>
                                     <li class="nav-item hv"><a class="nav-link" href="IntroWebsite.jsp#contact">Liên hệ</a></li>
                                     <li class="nav-item hv d-lg-none ">
                                         <ul class="navbar-nav justify-content-end ">
@@ -140,7 +140,7 @@
                                         <ul class="dropdown-menu" aria-labelledby="">
                                             <li class ="dropdown-item"> Xin chào: <span class = "fw-bold " class = "name"><%=account.getName()%></span></li>
                                             <li><hr class="dropdown-divider"></li>
-                                            <li><a class="dropdown-item" href="<%=url%>/ManageAdmin.jsp">Quản lý</a></li>
+                                            <li><a class="dropdown-item" href="<%=url%>/manage">Quản lý</a></li>
                                             <li><hr class="dropdown-divider"></li>
                                             <li><a class="dropdown-item" href="<%=url%>/ChangeInfor.jsp">Thay đổi thông tin</a></li><li>
                                             <hr class="dropdown-divider"></li>

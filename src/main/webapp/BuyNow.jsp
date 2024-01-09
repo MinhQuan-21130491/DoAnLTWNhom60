@@ -53,7 +53,8 @@
     sumPay+=p.getPrice()*quantity;
     session.setAttribute("Sum",sumPay);
     double shippingFee=0;
-    if (a != null ) {
+    if (a != null) {
+        System.out.println(a.getVerifyAccount().isStateVerify());
 %>
 <div class="container p-0 mgt">
     <a href="<%=url%>/homePage" class="color-gray lbhv text-decoration-none">Trang chủ  <i class="fa fa-angle-right color-gray" aria-hidden="true"></i>  </a> <span class="text-color">Thanh toán</span>
@@ -147,25 +148,9 @@
                                     </td>
                                     <td >
                                         <div class = "gender">
-                                            <%
-                                                if(a.getGender().equals("Nam")){
-                                            %>
-                                            <label class="ms-0" for="male">Nam</label><input class="ms-2 me-3" type="radio" id="male" name="gender" value="Nam"  checked >
-                                            <label for="female">Nữ</label> <input class="ms-2 me-3" type="radio" id="female" name="gender" value="Nữ" >
-                                            <label for="other">Khác</label> <input class="ms-2 me-3" type="radio" id="other" name="gender" value="Khác">
-                                            <%
-                                            }else if(a.getGender().equals("Nữ")){
-                                            %>
-                                            <label class="ms-0" for="male">Nam</label><input class="ms-2 me-3" type="radio" id="male" name="gender" value="Nam">
-                                            <label for="female">Nữ</label> <input class="ms-2 me-3" type="radio" id="female" name="gender" value="Nữ" checked>
-                                            <label for="other">Khác</label> <input class="ms-2 me-3" type="radio" id="other" name="gender" value="Khác">
-                                            <%
-                                            }else{
-                                            %>
-                                            <label class="ms-0" for="male">Nam</label><input class="ms-2 me-3" type="radio" id="male" name="gender" value="Nam">
-                                            <label for="female">Nữ</label> <input class="ms-2 me-3" type="radio" id="female" name="gender" value="Nữ" >
-                                            <label for="other">Khác</label> <input class="ms-2 me-3" type="radio" id="other" name="gender" value="Khác" checked>
-                                            <%}%>
+                                            <label class="ms-0" for="male">Nam</label><input type="radio" id="male" name="gender" value="Nam" <%= a.getGender().equals("Nam") ? "checked" : "" %> >
+                                            <label for="female">Nữ</label> <input type="radio" id="female" name="gender" value="Nữ" <%= a.getGender().equals("Nữ") ? "checked" : "" %>>
+                                            <label for="other">Khác</label> <input type="radio" id="other" name="gender" value="Khác" <%= a.getGender().equals("Khác") ? "checked" : "" %>>
                                         </div>
                                     </td>
                                 </tr>
@@ -291,7 +276,8 @@
         </div>
     </div>
 </div>
-<%} else if (a == null) {
+<%
+} else {
 %>
 <div class="container p-0 mgt text-center fw-bold">Bạn chưa đăng nhập! <a href = <%=url%>/SignIn.jsp>Đăng nhập</a></div>
 <%

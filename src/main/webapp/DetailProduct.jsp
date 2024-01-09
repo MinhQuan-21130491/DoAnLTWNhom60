@@ -33,7 +33,6 @@
     <script src="slider/owlcarousel/owl.carousel.min.js"></script>
     <link rel="stylesheet" href="slider/owlcarousel/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="slider/owlcarousel//assets/owl.theme.default.min.css">
-
     <link rel="stylesheet" href="css/Style.css">
     <link rel="stylesheet" href="css/DetailProduct.css">
 </head>
@@ -111,7 +110,7 @@
                                     <div class="dai">
                                         <button id="decrease" type="button">-</button>
                                         <div class="amount">
-                                            <input type="text" id="amount" name="quantity"/>
+                                            <input type="text" id="amount" name="quantity" value="0"/>
                                         </div>
                                         <button id="increase" type="button">+</button>
                                     </div>
@@ -163,21 +162,36 @@
                     </div>
                 </div>
             </div>
+            <%
+                Product productSimilar = (Product) request.getAttribute("productSimilar");
+                if (productSimilar != null) {
+            %>
             <div class="col-md-3 d-lg-block d-md-none d-sm-none d-none pt-3">
                 <h5 class="m-0 text-center" id="titleCate">SẢN PHẨM TƯƠNG TỰ</h5>
                 <hr class="mt-2 mb-2"/>
                 <div class="card">
-                    <a href="DetailProduct.html">
-                        <img src="https://i.pinimg.com/564x/c4/d8/88/c4d8881ff372b46b2b9f98ae07d9886a.jpg" class="card-img-top img_p" alt="...">
+                    <a href="<%=url%>/detail-product?pid=<%=productSimilar.getIdProduct()%>&cid=<%=productSimilar.getIdCate()%>">
+                        <img src="<%=url%>/Products/<%=productSimilar.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="">
                     </a>
                     <div class="card-body">
-                        <h5 class="card-title">Ghế gấu lông cừu</h5>
+                        <h5 class="card-title"><%=productSimilar.getName()%></h5>
                         <p class="card-text">
-                        <p class="price">₫1.000.000</p></p>
-                        <a href="Cart.jsp"><i class="fa fa-shopping-cart cart" aria-hidden="true" title ="Thêm vào giỏ hàng"></i></a>
+                        <p class="price"><%=nF.format(productSimilar.getPrice())%></p>
+                        <%
+                            int qty = 1;
+                            if (cart != null) {
+                                if (cart.get(productSimilar.getIdProduct()) != null) {
+                                    qty = cart.get(productSimilar.getIdProduct()).getQuantity() + 1;
+                                }
+                            } else {
+                                qty = productSimilar.getQuantity();
+                            }
+                        %>
+                        <a href="<%=url%>/cartController?id=<%=productSimilar.getIdProduct()%>&quantity=<%=qty%>"><i class="fa fa-shopping-cart cart" aria-hidden="true" title ="Thêm vào giỏ hàng"></i></a>
                     </div>
                 </div>
             </div>
+            <%}%>
         </div>
     </div>
 </div>

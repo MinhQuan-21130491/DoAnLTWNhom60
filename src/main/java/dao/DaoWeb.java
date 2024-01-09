@@ -6,39 +6,22 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 public class DaoWeb {
-    // Lấy thông tin chính sách
-    public static InforWebsite getPolicyInformation(int id) {
+    // Lấy thông tin website
+    public static InforWebsite selectByid(int id) {
         InforWebsite inforWebsite = null;
         Connection connection = JDBCUtil.getConnection();
-        String sql = "Select guarantee, exchange from infor_web where id=?";
+        String sql = "Select email, address, phoneNumber, guarantee, exchange from infor_web where id=?";
         try {
             PreparedStatement pr = connection.prepareStatement(sql);
             pr.setInt(1, id);
             ResultSet resultSet = pr.executeQuery();
             while (resultSet.next()) {
+                String email = resultSet.getString("email");
+                String address = resultSet.getString("address");
+                String phoneNumber = resultSet.getString("phoneNumber");
                 int guarantee = resultSet.getInt("guarantee");
                 int exchange = resultSet.getInt("exchange");
-                inforWebsite = new InforWebsite(id, guarantee, exchange);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return inforWebsite;
-    }
-    // Lấy thông tin liên hệ
-    public static InforWebsite getContactInformation(int id) {
-        InforWebsite inforWebsite = null;
-        Connection connection = JDBCUtil.getConnection();
-        String sql = "Select address, email, phoneNumber from infor_web where id=?";
-        try {
-            PreparedStatement pr = connection.prepareStatement(sql);
-            pr.setInt(1, id);
-            ResultSet resultSet = pr.executeQuery();
-            while (resultSet.next()) {
-                String address = resultSet.getString("address");
-                String email = resultSet.getString("email");
-                String phoneNumber = resultSet.getString("phoneNumber");
-                inforWebsite = new InforWebsite(id, address, email, phoneNumber);
+                inforWebsite = new InforWebsite(id, address, email, phoneNumber, guarantee, exchange);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

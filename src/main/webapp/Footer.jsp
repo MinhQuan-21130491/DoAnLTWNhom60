@@ -1,5 +1,4 @@
 <%@ page import="model.InforWebsite" %>
-<%@ page import="service.WebService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -41,25 +40,13 @@
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <h5 class = "">THÔNG TIN LIÊN HỆ</h5>
-                <%
-//                    Object o = request.getAttribute("contactInfo");
-//                    InforWebsite contactInfo = null;
-//                    if (o != null) {
-//                        contactInfo = (InforWebsite) o;
-//                        String address = contactInfo.getAddress();
-//                        String email = contactInfo.getEmail();
-//                        String phoneNumber = contactInfo.getPhoneNumber();
-                    InforWebsite contactInfo = (InforWebsite) session.getAttribute("contactInfo");
-                    String address = contactInfo.getAddress();
-                    String email = contactInfo.getEmail();
-                    String phoneNumber = contactInfo.getPhoneNumber();
-                %>
                 <hr class ="w-50 ">
                 <ul class="navbar-nav ">
-                    <input type="hidden" name="id" value="<%= contactInfo.getId() %>">
-                    <li class="nav-link"><i class="fa fa-map-marker" aria-hidden="true"></i> <%= address%></li>
-                    <li class="nav-link" ><i class="fa fa-envelope" aria-hidden="true"></i> <%= email %></li>
-                    <li class="nav-link" ><i class="fa fa-phone" aria-hidden="true"></i> <%= phoneNumber %></li>
+                    <div id = "contain-contact">
+                        <li class="nav-link"><i class="fa fa-map-marker" aria-hidden="true"></i></li>
+                        <li class="nav-link" ><i class="fa fa-envelope" aria-hidden="true"></i></li>
+                        <li class="nav-link" ><i class="fa fa-phone" aria-hidden="true"></i></li>
+                    </div>
                 </ul>
             </div>
         </div>
@@ -70,4 +57,22 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            url: "loadFooter",
+            success: function (data) {
+                var i = data.inforWebSite;
+                var row = document.getElementById("contain-contact");
+               row.innerHTML = " <li class=\"nav-link\"><i class=\"fa fa-map-marker\" aria-hidden=\"true\"> "+ i.address+"</i></li>\n" +
+                   "                        <li class=\"nav-link\" ><i class=\"fa fa-envelope\" aria-hidden=\"true\"> "+ i.email+"</i></li>\n" +
+                   "                        <li class=\"nav-link\" ><i class=\"fa fa-phone\" aria-hidden=\"true\"> "+ i.phoneNumber+"</i></li>"
+            },
+            error: function(error) {
+                console.error("Xảy ra lỗi:", error);
+            }
+        });
+    })
+</script>
 </html>

@@ -58,8 +58,8 @@
         <a href="<%=url%>/homePage" class="color-gray lbhv text-decoration-none">Trang chủ  <i class="fa fa-angle-right color-gray" aria-hidden="true"></i>  </a> <span class="color-gray" id ="sp">Quản lý</span>
         <span class="text-color" id ="typeMa"><i class="fa fa-angle-right color-gray" aria-hidden="true"></i> Quản lý tài khoản</span>
         <div class="row mt-3">
-            <!--menu-left-->
-            <div class="col-lg-3 p-0 mb-2 pe-2">
+             <!--menu-left-->
+             <div class="col-lg-3 p-0 mb-2 pe-2">
                 <div class="list-group  ">
                     <div class="cate" id="cate">
                         <div class="icon-bar my-2 py-1">
@@ -79,9 +79,9 @@
                     </div>
                 </div>
             </div>
-        </div>
-         <!--giao diện quản lý tài khoản-->
-           <div class="col-lg-9 bgcolor " id ="mngAccount">
+             <!--end menu-left-->
+             <!--giao diện quản lý tài khoản-->
+             <div class="col-lg-9 bgcolor " id ="mngAccount">
                 <div class="row mt-2">
                     <div class="col-lg-6">
                         <h5 >Quản lý tài khoản</h5>
@@ -367,9 +367,9 @@
                     </div>
                 </div>
             </div>
-        <!--end giao diện quản lý tài khoản -->
-        <!--giao diện quản lý sản phẩm-->
-        <div class="col-lg-9 bgcolor d-none " id="mngProduct">
+             <!--end giao diện quản lý tài khoản -->
+             <!--giao diện quản lý sản phẩm-->
+             <div class="col-lg-9 bgcolor d-none " id="mngProduct">
                 <div class="row mt-2">
                     <div class="col-lg-6">
                         <h5 >Quản lý sản phẩm</h5>
@@ -690,296 +690,259 @@
                     </div>
                 </div>
             </div>
-        <!--end giao diện quản lý sản phẩm-->
-        <!--giao diện quản lý bán hàng-->
-        <div class="col-lg-9 bgcolor d-none " id="mngSale">
-            <div class="row mt-2">
-                <div class="col-lg-6">
-                    <h5>Quản lý bán hàng</h5>
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-lg-12 overflow-auto mheight">
-                    <table class="mb-3">
-                        <thead>
-                        <tr>
-                            <td class="w40">STT</td>
-                            <td class="w40">ID</td>
-                            <td class="w260">SẢN PHẨM</td>
-                            <td>ĐƠN GIÁ</td>
-                            <td>MÀU SẮC</td>
-                            <td>KÍCH THƯỚC</td>
-                            <td>ĐÃ BÁN</td>
-
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td class="w40">1</td>
-                            <td class="w40">1</td>
-                            <td class="w260">
-                                <div class="item d-flex justify-content-center">
-                                    <div class="item_img">
-                                        <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
-                                             class="card-img-top img_p_cart" alt="..."/>
-                                    </div>
-                                    <span class="item_text">Ghế massage siêu cấp pro</span>
-                                </div>
-                            </td>
-                            <td>
-                                ₫<span>1.000.000</span>
-                            </td>
-                            <td>Màu đen</td>
-                            <td>100x50x70</td>
-                            <td>50</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-            <!--end giao diện quản lý bán hàng -->
-            <!--giao diện quản lý hóa đơn-->
-            <div class="col-lg-9 bgcolor d-none " id ="mngInvoice">
+            <!--end giao diện quản lý sản phẩm-->
+            <!--giao diện quản lý bán hàng-->
+            <div class="col-lg-9 bgcolor d-none " id="mngSale">
                 <div class="row mt-2">
-                    <div class="col-lg-4">
-                        <h5 >Quản lý hóa đơn</h5>
-                    </div>
-                    <div class="d-flex">
-                        <div class="dropdown">
-                            <button class="bd-full bgcolor-orange dropdown-toggle rounded-1" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                Trạng thái
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" href="#" onclick="filInvoice('')">Tất cả</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#" onclick="filInvoice('Chưa xác nhận')">Chưa xác nhận</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#" onclick="filInvoice('Đã xác nhận')">Đã xác nhận</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#" onclick="filInvoice('Đã hủy')">Đã hủy</a></li>
-                            </ul>
-                        </div>
-                        <div class="ms-auto"><label for = "filterInvoice" >Ngày xuất hóa đơn:</label> <input type="date" id="filterInvoice"><button class ="bd-full bgcolor-orange ms-2 rounded-1" id ="btnFilter" onclick="searchByDate()">Lọc</button></div>
+                    <div class="col-lg-6">
+                        <h5>Quản lý bán hàng</h5>
                     </div>
                 </div>
                 <div class="row mt-3">
-                    <div class="col-lg-12 overflow-auto">
-                        <p class="text-danger text-center my-0" id = "res"></p>
-                        <table class="mb-3" >
+                    <div class="col-lg-12 overflow-auto mheight">
+                        <table class="mb-3">
                             <thead>
-                                <tr>
-                                    <td class="w40">STT</td>
-                                    <td>ID</td>
-                                    <td>MÃ KHÁCH HÀNG</td>
-                                    <td>NGÀY XUẤT</td>
-                                    <td>TRẠNG THÁI</td>
-                                    <td></td>
-                                </tr>
+                            <tr>
+                                <td class="w40">STT</td>
+                                <td class="w40">ID</td>
+                                <td class="w260">SẢN PHẨM</td>
+                                <td>ĐƠN GIÁ</td>
+                                <td>MÀU SẮC</td>
+                                <td>KÍCH THƯỚC</td>
+                                <td>ĐÃ BÁN</td>
+
+                            </tr>
                             </thead>
-                            <tbody id = "innerInvoice">
-                            <%
-                                ArrayList<Invoice> listInvoice = (ArrayList<Invoice>) request.getAttribute("listAllInvoice");
-                                if (!listInvoice.isEmpty() && listInvoice != null) {
-                                    int sttI = 1;
-                                    for(Invoice i: listInvoice) {
-                            %>
-                                <tr data-bs-toggle="modal" data-bs-target="#detailInvoice" onclick="detailInvoice(<%=i.getIdInvoice()%>)">
-                                    <td class="w40"><%=sttI%></td>
-                                    <td><%=i.getIdInvoice()%></td>
-                                    <td><%=i.getIdAccount()%></td>
-                                    <td><%=i.getStartDate()%></td>
-                                        <%if(i.getStatus() == 0) {%>
-                                        <td>Chờ xác nhận</td>
-                                        <%}else if(i.getStatus() == 1) {%>
-                                        <td>Đã xác nhận</td>
-                                        <%}else {%>
-                                        <td>Đã hủy</td>
-                                        <%}%>
-                                    <td>
-                                        <%if(i.getStatus() == 0) {%>
-                                            <button class="btnAdd bgcolor bd-full"  data-bs-toggle="modal" data-bs-target="#" onclick="acceptInvoice(<%=i.getIdInvoice()%>)"><i class="fa fa-check text-color"  title="Xác nhận đơn hàng" aria-hidden="true"></i></button>
-                                            <button class="btnAdd bgcolor bd-full"  data-bs-toggle="modal" data-bs-target="#" onclick="cancelInvoice(<%=i.getIdInvoice()%>)"><i class="fa fa-times text-color"  title="Hủy đơn hàng" aria-hidden="true"></i></button>
-                                        <%}%>
-                                        <button class="btnAdd bgcolor bd-full"  data-bs-toggle="modal" data-bs-target="#" onclick="delInvoice(<%=i.getIdInvoice()%>)"><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true"></i></button>
-                                    </td>
-                                </tr>
-                            <%
-                                        sttI++;
-                                    }
-                                }
-                            %>
+                            <tbody>
+                            <tr>
+                                <td class="w40">1</td>
+                                <td class="w40">1</td>
+                                <td class="w260">
+                                    <div class="item d-flex justify-content-center">
+                                        <div class="item_img">
+                                            <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
+                                                 class="card-img-top img_p_cart" alt="..."/>
+                                        </div>
+                                        <span class="item_text">Ghế massage siêu cấp pro</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    ₫<span>1.000.000</span>
+                                </td>
+                                <td>Màu đen</td>
+                                <td>100x50x70</td>
+                                <td>50</td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
-                <div class="modal fade" id="detailInvoice" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-xl">
-                        <div class="modal-content ">
-                            <div class="modal-body">
-                                <div class="container">
-                                    <div class="row ">
-                                        <div class=" text-end">
-                                            <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <h5 class="pb-2 text-center title">CHI TIẾT HOÁ ĐƠN</h5>
-                                        <hr>
-                                        <div class="col-md-12">
-                                            <p class="fw-bold">Tên khách hàng: <span id="nameCus"></span></p>
-                                            <p class="fw-bold">Số điện thoại: <span id="phoneCus"></span> </p>
-                                            <p class="fw-bold">Email: <span id="emailCus"></span></p>
-                                            <p class="fw-bold">Địa chỉ: <span id="addressCus"></span> </p>
-                                            <p class="fw-bold">Mã hóa đơn: <span id="idInvoice"></span> </p>
-                                            <p class="fw-bold">Phí vận chuyển: ₫<span id="transFee">0</span> </p>
-                                            <p class="fw-bold">Phương thức thanh toán: <span id="payMethod">Thanh toán khi nhận hàng</span> </p>
-                                            <div class="col-lg-12 overflow-auto">
-                                                <table >
-                                                    <thead>
-                                                    <tr>
-                                                        <td class="w40">STT</td>
-                                                        <td>MÃ SẢN PHẨM</td>
-                                                        <td class="w300">TÊN SẢN PHẨM</td>
-                                                        <td class="w110">MÀU SẮC</td>
-                                                        <td class="w110">SỐ LƯỢNG</td>
-                                                        <td class="w110">ĐƠN GIÁ</td>
-                                                        <td>THÀNH TIỀN</td>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody id ="innerDetailInvoice">
-                                                    <tr>
-                                                        <td class="w40">1</td>
-                                                        <td>1</td>
-                                                        <td class="w300">
-                                                            <div class="item d-flex justify-content-center">
-                                                                <div class="item_img">
-                                                                    <img src="" class="card-img-top img_p_cart" alt="..."/>
-                                                                </div>
-                                                                <span class="item_text"></span>
-                                                            </div>
-                                                        </td>
-                                                        <td class="w110">Xanh</td>
-                                                        <td class="w110">1</td>
-                                                        <td class="w110"></td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="fw-bold">TỔNG TIỀN</td>
-                                                        <td class="fw-bold" colspan="6"></td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                   </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
-        <!--end giao diện quản lý hóa đơn -->
-        <!--giao diện quản lý danh mục-->
-        <div class="col-lg-9 bgcolor d-none " id ="mngCate">
-            <div class="row mt-2">
-                <div class="col-lg-6">
-                    <h5 >Quản lý danh mục</h5>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-lg-12 overflow-auto mheight">
-                        <div class="col-lg-6 text-end">
-                            <button class="btnAdd bgcolor bd-full" id ="btnAddCate"><i class="fa fa-plus-circle text-color" aria-hidden="true" title="Thêm danh mục" data-bs-toggle="modal" data-bs-target="#addCate"></i></button>
+            <!--end giao diện quản lý bán hàng -->
+            <!--giao diện quản lý hóa đơn-->
+            <div class="col-lg-9 bgcolor d-none " id ="mngInvoice">
+                    <div class="row mt-2">
+                        <div class="col-lg-4">
+                            <h5 >Quản lý hóa đơn</h5>
+                        </div>
+                        <div class="d-flex">
+                            <div class="dropdown">
+                                <button class="bd-full bgcolor-orange dropdown-toggle rounded-1" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Trạng thái</button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="#" onclick="filInvoice('')">Tất cả</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#" onclick="filInvoice('Chưa xác nhận')">Chưa xác nhận</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#" onclick="filInvoice('Đã xác nhận')">Đã xác nhận</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#" onclick="filInvoice('Đã hủy')">Đã hủy</a></li>
+                                </ul>
+                            </div>
+                            <div class="ms-auto"><label for = "filterInvoice" >Ngày xuất hóa đơn:</label> <input type="date" id="filterInvoice"><button class ="bd-full bgcolor-orange ms-2 rounded-1" id ="btnFilter" onclick="searchByDate()">Lọc</button></div>
                         </div>
                     </div>
                     <div class="row mt-3">
-                        <div class="col-lg-12 overflow-auto mheight">
-                            <%
-                                ArrayList<Category> listCategory = CategoryService.getInstance().listCategory();
-                                int sttC = 1;
-                            %>
-                            <table class="mb-3">
+                        <div class="col-lg-12 overflow-auto">
+                            <p class="text-danger text-center my-0" id = "res"></p>
+                            <table class="mb-3" >
                                 <thead>
-                                <tr >
-                                    <td>STT</td>
-                                    <td>ID</td>
-                                    <td>TÊN</td>
-                                </tr>
+                                    <tr>
+                                        <td class="w40">STT</td>
+                                        <td>ID</td>
+                                        <td>MÃ KHÁCH HÀNG</td>
+                                        <td>NGÀY XUẤT</td>
+                                        <td>TRẠNG THÁI</td>
+                                        <td></td>
+                                    </tr>
                                 </thead>
-                                <tbody id ="innerCategory">
-                                    <% if (listCategory != null && !listCategory.isEmpty()) {
-                            for (Category c: listCategory) {%>
-                                <tr>
-                                    <input type="hidden" class="id" id="categoryIdEdit" value="<%= c.getId()%>">
-                                    <td><%=sttC%></td>
-                                    <td><%=c.getId()%></td>
-                                    <td ><%=c.getName()%></td>
-                                    <td>
-                                        <div class="d-flex w-100 justify-content-center">
-                                            <button class="delete btnAdd bgcolor bd-full me-1" title="Xóa" aria-hidden="true" onclick="deleteCategory('<%=c.getId()%>')" data-bs-toggle="modal" data-bs-target=""><i class="fa fa-trash-o text-color"></i></button>
-                                            <button class="editCate btnAdd bgcolor bd-full" title="Chỉnh sửa danh mục" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editCate" onclick="innerEditCategory('<%=c.getId()%>')"><i class="fa fa-pencil text-color"></i></button>                                </div>
-                                    </td>
-                                </tr>
-                                    <%
-                                                sttC++;
-                                            }
+                                <tbody id = "innerInvoice">
+                                <%
+                                    ArrayList<Invoice> listInvoice = (ArrayList<Invoice>) request.getAttribute("listAllInvoice");
+                                    if (!listInvoice.isEmpty() && listInvoice != null) {
+                                        int sttI = 1;
+                                        for(Invoice i: listInvoice) {
+                                %>
+                                    <tr data-bs-toggle="modal" data-bs-target="#detailInvoice" onclick="detailInvoice(<%=i.getIdInvoice()%>)">
+                                        <td class="w40"><%=sttI%></td>
+                                        <td><%=i.getIdInvoice()%></td>
+                                        <td><%=i.getIdAccount()%></td>
+                                        <td><%=i.getStartDate()%></td>
+                                            <%if(i.getStatus() == 0) {%>
+                                            <td>Chờ xác nhận</td>
+                                            <%}else if(i.getStatus() == 1) {%>
+                                            <td>Đã xác nhận</td>
+                                            <%}else {%>
+                                            <td>Đã hủy</td>
+                                            <%}%>
+                                        <td>
+                                            <%if(i.getStatus() == 0) {%>
+                                                <button class="btnAdd bgcolor bd-full"  data-bs-toggle="modal" data-bs-target="#" onclick="acceptInvoice(<%=i.getIdInvoice()%>)"><i class="fa fa-check text-color"  title="Xác nhận đơn hàng" aria-hidden="true"></i></button>
+                                                <button class="btnAdd bgcolor bd-full"  data-bs-toggle="modal" data-bs-target="#" onclick="cancelInvoice(<%=i.getIdInvoice()%>)"><i class="fa fa-times text-color"  title="Hủy đơn hàng" aria-hidden="true"></i></button>
+                                            <%}%>
+                                            <button class="btnAdd bgcolor bd-full"  data-bs-toggle="modal" data-bs-target="#" onclick="delInvoice(<%=i.getIdInvoice()%>)"><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true"></i></button>
+                                        </td>
+                                    </tr>
+                                <%
+                                            sttI++;
                                         }
-                                    %>
+                                    }
+                                %>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    <div class="modal fade" id="editCate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog ">
-                            <div class="modal-content">
+                    <div class="modal fade" id="detailInvoice" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-xl">
+                            <div class="modal-content ">
                                 <div class="modal-body">
-                                    <form class="cateEdit" id="cateEdit" action="" method="post" onsubmit="return editCate()">
-                                        <div class="row px-2">
+                                    <div class="container">
+                                        <div class="row ">
                                             <div class=" text-end">
                                                 <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
-                                            <h5 class="text-center">CHỈNH SỬA DANH MỤC</h5>
+                                            <h5 class="pb-2 text-center title">CHI TIẾT HOÁ ĐƠN</h5>
                                             <hr>
                                             <div class="col-md-12">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Tên danh mục</label><span id="errNameCate" class="text-danger"></span>
-                                                    <input type="text" class="form-control" id="nameCateEdit" name="nameCateEdit">
+                                                <p class="fw-bold">Tên khách hàng: <span id="nameCus"></span></p>
+                                                <p class="fw-bold">Số điện thoại: <span id="phoneCus"></span> </p>
+                                                <p class="fw-bold">Email: <span id="emailCus"></span></p>
+                                                <p class="fw-bold">Địa chỉ: <span id="addressCus"></span> </p>
+                                                <p class="fw-bold">Mã hóa đơn: <span id="idInvoice"></span> </p>
+                                                <p class="fw-bold">Phí vận chuyển: ₫<span id="transFee">0</span> </p>
+                                                <p class="fw-bold">Phương thức thanh toán: <span id="payMethod">Thanh toán khi nhận hàng</span> </p>
+                                                <div class="col-lg-12 overflow-auto">
+                                                    <table >
+                                                        <thead>
+                                                        <tr>
+                                                            <td class="w40">STT</td>
+                                                            <td>MÃ SẢN PHẨM</td>
+                                                            <td class="w300">TÊN SẢN PHẨM</td>
+                                                            <td class="w110">MÀU SẮC</td>
+                                                            <td class="w110">SỐ LƯỢNG</td>
+                                                            <td class="w110">ĐƠN GIÁ</td>
+                                                            <td>THÀNH TIỀN</td>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody id ="innerDetailInvoice">
+                                                        <tr>
+                                                            <td class="w40">1</td>
+                                                            <td>1</td>
+                                                            <td class="w300">
+                                                                <div class="item d-flex justify-content-center">
+                                                                    <div class="item_img">
+                                                                        <img src="" class="card-img-top img_p_cart" alt="..."/>
+                                                                    </div>
+                                                                    <span class="item_text"></span>
+                                                                </div>
+                                                            </td>
+                                                            <td class="w110">Xanh</td>
+                                                            <td class="w110">1</td>
+                                                            <td class="w110"></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="fw-bold">TỔNG TIỀN</td>
+                                                            <td class="fw-bold" colspan="6"></td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
                                                 </div>
                                             </div>
-                                            <div class="row p-0">
-                                                <div class="col-lg-12 text-end p-0">
-                                                    <button class="save" type="button" onclick="editCate()">LƯU</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
+                                       </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="modal fade" id="addCate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    </div>
+                </div>
+            <!--end giao diện quản lý hóa đơn -->
+            <!--giao diện quản lý danh mục-->
+            <div class="col-lg-9 bgcolor d-none " id ="mngCate">
+                <div class="row mt-2">
+                    <div class="col-lg-6">
+                        <h5 >Quản lý danh mục</h5>
+                    </div>
+                    <div class="col-lg-6 text-end">
+                        <button class="btnAdd bgcolor bd-full" id ="btnAddCate"><i class="fa fa-plus-circle text-color" aria-hidden="true" title="Thêm danh mục" data-bs-toggle="modal" data-bs-target="#addCate"></i></button>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-lg-12 overflow-auto mheight">
+                          <%
+                              ArrayList<Category> listCategory = CategoryService.getInstance().listCategory();
+                                    int sttC = 1;
+                          %>
+                                <table class="mb-3">
+                                    <thead>
+                                    <tr >
+                                        <td>STT</td>
+                                        <td>ID</td>
+                                        <td>TÊN</td>
+                                    </tr>
+                                    </thead>
+                                    <tbody id ="innerCategory">
+                                        <% if (listCategory != null && !listCategory.isEmpty()) {
+                                for (Category c: listCategory) {%>
+                                    <tr>
+                                        <input type="hidden" class="id" id="categoryIdEdit" value="<%= c.getId()%>">
+                                        <td><%=sttC%></td>
+                                        <td><%=c.getId()%></td>
+                                        <td ><%=c.getName()%></td>
+                                        <td>
+                                            <div class="d-flex w-100 justify-content-center">
+                                                <button class="delete btnAdd bgcolor bd-full me-1" title="Xóa" aria-hidden="true" onclick="deleteCategory('<%=c.getId()%>')" data-bs-toggle="modal" data-bs-target=""><i class="fa fa-trash-o text-color"></i></button>
+                                                <button class="editCate btnAdd bgcolor bd-full" title="Chỉnh sửa danh mục" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editCate" onclick="innerEditCategory('<%=c.getId()%>')"><i class="fa fa-pencil text-color"></i></button>                                </div>
+                                        </td>
+                                    </tr>
+                                        <%
+                                                    sttC++;
+                                                }
+                                            }
+                                        %>
+                                    </tbody>
+                                </table>
+                       </div>
+                </div>
+                        <div class="modal fade" id="editCate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog ">
                                 <div class="modal-content">
                                     <div class="modal-body">
-                                        <form id="add-Cate" action="" method="post">
+                                        <form class="cateEdit" id="cateEdit" action="" method="post" onsubmit="return editCate()">
                                             <div class="row px-2">
                                                 <div class=" text-end">
-                                                    <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"data-bs-target="#addCate"></button>
+                                                    <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
-                                                <h5 class="text-center">THÊM DANH MỤC</h5>
+                                                <h5 class="text-center">CHỈNH SỬA DANH MỤC</h5>
                                                 <hr>
                                                 <div class="col-md-12">
                                                     <div class="mb-3">
-                                                        <label class="form-label">Tên danh mục</label><span id="errNameCateAdd" class="text-danger"></span>
-                                                        <input type="text" class="form-control" id="nameCateAdd" name="nameCateAdd">
-                                                    </div>
-                                                </div>
-
-                                                <div class="row p-0">
-                                                    <div class="col-lg-12 text-end p-0">
-                                                        <button class="save" type="button" onclick="addCate()">LƯU</button>
+                                                        <label class="form-label">Tên danh mục</label><span id="errNameCate" class="text-danger"></span>
+                                                        <input type="text" class="form-control" id="nameCateEdit" name="nameCateEdit">
                                                     </div>
                                                 </div>
                                                 <div class="row p-0">
                                                     <div class="col-lg-12 text-end p-0">
-                                                        <button class="save" type="button" id="saveButton">LƯU</button>
+                                                        <button class="save" type="button" onclick="editCate()">LƯU</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -987,240 +950,273 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="modal fade" id="addCate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog ">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <form id="add-Cate" action="" method="post">
+                                                <div class="row px-2">
+                                                    <div class=" text-end">
+                                                        <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"data-bs-target="#addCate"></button>
+                                                    </div>
+                                                    <h5 class="text-center">THÊM DANH MỤC</h5>
+                                                    <hr>
+                                                    <div class="col-md-12">
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Tên danh mục</label><span id="errNameCateAdd" class="text-danger"></span>
+                                                            <input type="text" class="form-control" id="nameCateAdd" name="nameCateAdd">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row p-0">
+                                                        <div class="col-lg-12 text-end p-0">
+                                                            <button class="save" type="button" onclick="addCate()">LƯU</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row p-0">
+                                                        <div class="col-lg-12 text-end p-0">
+                                                            <button class="save" type="button" id="saveButton">LƯU</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
             <!--end giao diện quản lý danh mục-->
             <!--giao diện quản lý nhà cung cấp-->
             <div class="col-lg-9 bgcolor d-none " id="mngSup">
-            <div class="row mt-2">
-                <div class="col-lg-6">
-                    <h5>Quản lý nhà cung cấp</h5>
-                </div>
-                <div class="col-lg-6 text-end">
-                    <button class="btnAdd bgcolor bd-full" id="btnAddSupplier"><i class="fa fa-plus-circle text-color"
-                                                                                  aria-hidden="true"
-                                                                                  title="Thêm sản phẩm"
-                                                                                  data-bs-toggle="modal"
-                                                                                  data-bs-target="#addSup"></i></button>
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-lg-12 overflow-auto mheight">
-                    <%
-                        ArrayList<Supplier> suplist = (ArrayList<Supplier>) request.getAttribute("listAllSup");
-                        int sttS = 1;
-                    %>
-                    <table class="mb-3">
-                        <thead>
-                        <tr>
-                            <td class="w40">STT</td>
-                            <td class="w40">ID</td>
-                            <td>TÊN NCC</td>
-                            <td class="w225">ĐỊA CHỈ</td>
-                            <td>SỐ ĐIỆN THOẠI</td>
-                            <td>EMAIL</td>
-                            <td>PHÂN PHỐI</td>
-                        </tr>
-                        </thead>
-
-                        <tbody id="innerSupplier">
-                        <%
-                            if (suplist != null && !suplist.isEmpty()) {
-                                for (Supplier s : suplist) {
-                        %>
-                        <tr>
-                            <td class="w40"><%=sttS%>
-                            </td>
-                            <td class="w40"><%=s.getIdSup()%>
-                            </td>
-                            <td><%=s.getNameSup()%>
-                            </td>
-                            <td class="w225"><%=s.getAddress()%>
-                            </td>
-                            <td><%=s.getPhoneNumber()%>
-                            </td>
-                            <td><%=s.getEmail()%>
-                            </td>
-                            <td>
-                                <%=s.typeCate(s.getIdCate())%>
-                            </td>
-
-                            <td class="w110">
-                                <div class="d-flex w-100 justify-content-center">
-                                    <button class="delete btnAdd bgcolor bd-full me-1"
-                                            onclick="deleteSupplier('<%=s.getIdSup()%>')" data-bs-toggle="modal"
-                                            data-bs-target=""><i
-                                            class="fa fa-trash-o text-color" title="Xóa" aria-hidden="true"
-                                            data-bs-toggle="modal" data-bs-target=""></i></button>
-                                    <button class="editAccount btnAdd bgcolor bd-full "><i
-                                            class="fa fa-pencil text-color" title="Chỉnh sửa" aria-hidden="true" onclick="innerSupplier('<%=s.getIdSup()%>')"
-                                            data-bs-toggle="modal" data-bs-target="#editSup"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <%
-                                    sttS++;
-                                }
-                            }
-                        %>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="modal fade" id="editSup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog ">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <form class="form " id="supEdit" method="post">
-                                <div class="row px-2">
-                                    <div class=" text-end">
-                                        <button type="button" class="btn-close " data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                    </div>
-                                    <h5 class="text-center">CHỈNH SỬA NHÀ CUNG CẤP</h5>
-                                    <hr>
-                                    <div class="col-md-12">
-                                        <div class="mb-3">
-                                            <label class="form-label">Tên nhà cung cấp</label><span id="errNameSupEdit"
-                                                                                                    class="text-danger"></span>
-                                            <input type="text" class="form-control" id="nameSupEdit" name="nameSupEdit">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Địa chỉ</label><span id="errAddEdit"
-                                                                                           class="text-danger"></span>
-                                            <input type="text" class="form-control" id="addressSupEdit"
-                                                   name="addressSupEdit">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Số điện thoại</label><span
-                                                id="errphoneNumberSupEdit" class="text-danger"></span>
-                                            <input type="text" class="form-control" id="phoneNumberSupEdit"
-                                                   name="phoneNumberSupEdit">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Email</label><span id="errEmailSupEdit"
-                                                                                         class="text-danger"></span>
-                                            <input type="text" class="form-control" id="emailSupEdit"
-                                                   name="emailSupEdit">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Cung cấp loại</label>
-                                            <select class="form-control" name="cateChairSupEdit" id="cateChairSupEdit">
-                                                <option value="Ghế văn phòng">Ghế văn phòng</option>
-                                                <option value="Ghế thư giãn">Ghế thư giãn</option>
-                                                <option value="Ghế trang trí">Ghế trang trí</option>
-                                                <option value="Ghế gaming">Ghế gaming</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="row p-0">
-                                        <div class="col-md-12 p-0">
-                                            <div class="text-end">
-                                                <button class="save " type="button" onclick="editSup()">LƯU</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                <div class="row mt-2">
+                    <div class="col-lg-6">
+                        <h5>Quản lý nhà cung cấp</h5>
+                    </div>
+                    <div class="col-lg-6 text-end">
+                        <button class="btnAdd bgcolor bd-full" id="btnAddSupplier"><i class="fa fa-plus-circle text-color"
+                                                                                      aria-hidden="true"
+                                                                                      title="Thêm sản phẩm"
+                                                                                      data-bs-toggle="modal"
+                                                                                      data-bs-target="#addSup"></i></button>
                     </div>
                 </div>
-            </div>
-            <div class="modal fade" id="addSup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog ">
-                    <div class="modal-content">
-                        <div class="modal-body">
+                <div class="row mt-3">
+                    <div class="col-lg-12 overflow-auto mheight">
+                        <%
+                            ArrayList<Supplier> suplist = (ArrayList<Supplier>) request.getAttribute("listAllSup");
+                            int sttS = 1;
+                        %>
+                        <table class="mb-3">
+                            <thead>
+                            <tr>
+                                <td class="w40">STT</td>
+                                <td class="w40">ID</td>
+                                <td>TÊN NCC</td>
+                                <td class="w225">ĐỊA CHỈ</td>
+                                <td>SỐ ĐIỆN THOẠI</td>
+                                <td>EMAIL</td>
+                                <td>PHÂN PHỐI</td>
+                            </tr>
+                            </thead>
+
+                            <tbody id="innerSupplier">
                             <%
-                                String nameSupAdd = (String) request.getAttribute("nameSupAdd");
-                                String addressSupAdd = (String) request.getAttribute("addressSupAdd");
-                                String phoneSupAdd = (String) request.getAttribute("phoneSupAdd");
-                                String emailSupAdd = (String) request.getAttribute("emailSupAdd");
-//                                    String cateSupAdd = (String) request.getAttribute("cateChairSupAdd");
-
-                                String errNameSupAdd = (String) request.getAttribute("errNameSupAdd");
-                                String errPhoneSupAdd = (String) request.getAttribute("errPhoneSupAdd");
-                                String errEmailSupAdd = (String) request.getAttribute("errEmailSupAdd");
-                                String errAddressSupAdd = (String) request.getAttribute("errAddressSupAdd");
-
-                                nameSupAdd = (nameSupAdd == null) ? "" : nameSupAdd;
-                                addressSupAdd = (addressSupAdd == null) ? "" : addressSupAdd;
-                                phoneSupAdd = (phoneSupAdd == null) ? "" : phoneSupAdd;
-                                emailSupAdd = (emailSupAdd == null) ? "" : emailSupAdd;
-
-                                errNameSupAdd = (errNameSupAdd == null) ? "" : errNameSupAdd;
-                                errPhoneSupAdd = (errPhoneSupAdd == null) ? "" : errPhoneSupAdd;
-                                errEmailSupAdd = (errEmailSupAdd == null) ? "" : errEmailSupAdd;
-                                errAddressSupAdd = (errAddressSupAdd == null) ? "" : errAddressSupAdd;
+                                if (suplist != null && !suplist.isEmpty()) {
+                                    for (Supplier s : suplist) {
                             %>
-                            <form class="form" id="supAdd" method="post" enctype="multipart/form-data">
-                                <div class="row p-4">
-                                    <div class=" text-end">
-                                        <button type="button" class="btn-close " data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
+                            <tr>
+                                <td class="w40"><%=sttS%>
+                                </td>
+                                <td class="w40"><%=s.getIdSup()%>
+                                </td>
+                                <td><%=s.getNameSup()%>
+                                </td>
+                                <td class="w225"><%=s.getAddress()%>
+                                </td>
+                                <td><%=s.getPhoneNumber()%>
+                                </td>
+                                <td><%=s.getEmail()%>
+                                </td>
+                                <td>
+                                    <%=s.typeCate(s.getIdCate())%>
+                                </td>
+
+                                <td class="w110">
+                                    <div class="d-flex w-100 justify-content-center">
+                                        <button class="delete btnAdd bgcolor bd-full me-1"
+                                                onclick="deleteSupplier('<%=s.getIdSup()%>')" data-bs-toggle="modal"
+                                                data-bs-target=""><i
+                                                class="fa fa-trash-o text-color" title="Xóa" aria-hidden="true"
+                                                data-bs-toggle="modal" data-bs-target=""></i></button>
+                                        <button class="editAccount btnAdd bgcolor bd-full "><i
+                                                class="fa fa-pencil text-color" title="Chỉnh sửa" aria-hidden="true" onclick="innerSupplier('<%=s.getIdSup()%>')"
+                                                data-bs-toggle="modal" data-bs-target="#editSup"></i></button>
                                     </div>
-                                    <h5 class="text-center">THÊM NHÀ CUNG CẤP</h5>
-                                    <hr>
-                                    <div class="col-md-12">
-                                        <div class="mb-3">
-                                            <label class="form-label">Tên nhà cung cấp</label><span id="errNameSupAdd"
-                                                                                                    class="text-danger"><%=errNameSupAdd%></span>
-                                            <input type="text" class="form-control" id="nameSupAdd" name="nameSupAdd"
-                                                   value="<%=nameSupAdd%>">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Địa chỉ</label><span id="errAddressSupAdd"
-                                                                                           class="text-danger"><%=errAddressSupAdd%></span>
-                                            <input type="text" class="form-control" id="addressSupAdd"
-                                                   name="addressSupAdd" value="<%=addressSupAdd%>">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Số điện thoại</label><span id="errphoneSupAdd"
-                                                                                                 class="text-danger"><%=errPhoneSupAdd%></span>
-                                            <input type="text" class="form-control" id="phoneSupAdd" name="phoneSupAdd"
-                                                   value="<%=phoneSupAdd%>">
-                                        </div>
+                                </td>
+                            </tr>
 
-
-                                        <div class="mb-3">
-                                            <label class="form-label">Email</label><span id="errEmailSupAdd"
-                                                                                         class="text-danger"><%=errEmailSupAdd%></span>
-                                            <input type="text" class="form-control" id="emailSupAdd" name="emailSupAdd"
-                                                   value="<%=emailSupAdd%>">
+                            <%
+                                        sttS++;
+                                    }
+                                }
+                            %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal fade" id="editSup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog ">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <form class="form " id="supEdit" method="post">
+                                    <div class="row px-2">
+                                        <div class=" text-end">
+                                            <button type="button" class="btn-close " data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
                                         </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Phân phối cho</label>
-                                            <select class="form-control" name="cateChairSupAdd" id="cateChairSupAdd">
-                                                <option value="Ghế văn phòng">Ghế văn phòng</option>
-                                                <option value="Ghế thư giãn">Ghế thư giãn</option>
-                                                <option value="Ghế trang trí">Ghế trang trí</option>
-                                                <option value="Ghế gaming">Ghế gaming</option>
-                                            </select>
+                                        <h5 class="text-center">CHỈNH SỬA NHÀ CUNG CẤP</h5>
+                                        <hr>
+                                        <div class="col-md-12">
+                                            <div class="mb-3">
+                                                <label class="form-label">Tên nhà cung cấp</label><span id="errNameSupEdit"
+                                                                                                        class="text-danger"></span>
+                                                <input type="text" class="form-control" id="nameSupEdit" name="nameSupEdit">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Địa chỉ</label><span id="errAddEdit"
+                                                                                               class="text-danger"></span>
+                                                <input type="text" class="form-control" id="addressSupEdit"
+                                                       name="addressSupEdit">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Số điện thoại</label><span
+                                                    id="errphoneNumberSupEdit" class="text-danger"></span>
+                                                <input type="text" class="form-control" id="phoneNumberSupEdit"
+                                                       name="phoneNumberSupEdit">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Email</label><span id="errEmailSupEdit"
+                                                                                             class="text-danger"></span>
+                                                <input type="text" class="form-control" id="emailSupEdit"
+                                                       name="emailSupEdit">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Cung cấp loại</label>
+                                                <select class="form-control" name="cateChairSupEdit" id="cateChairSupEdit">
+                                                    <option value="Ghế văn phòng">Ghế văn phòng</option>
+                                                    <option value="Ghế thư giãn">Ghế thư giãn</option>
+                                                    <option value="Ghế trang trí">Ghế trang trí</option>
+                                                    <option value="Ghế gaming">Ghế gaming</option>
+                                                </select>
+                                            </div>
                                         </div>
-
-
-                                    </div>
-                                    <div class="row p-0">
-                                        <div class="col-md-12 p-0">
-                                            <div class="text-end">
-                                                <button class="save " type="button" onclick="addSup()">LƯU</button>
+                                        <div class="row p-0">
+                                            <div class="col-md-12 p-0">
+                                                <div class="text-end">
+                                                    <button class="save " type="button" onclick="editSup()">LƯU</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+                <div class="modal fade" id="addSup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog ">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <%
+                                    String nameSupAdd = (String) request.getAttribute("nameSupAdd");
+                                    String addressSupAdd = (String) request.getAttribute("addressSupAdd");
+                                    String phoneSupAdd = (String) request.getAttribute("phoneSupAdd");
+                                    String emailSupAdd = (String) request.getAttribute("emailSupAdd");
+    //                                    String cateSupAdd = (String) request.getAttribute("cateChairSupAdd");
 
+                                    String errNameSupAdd = (String) request.getAttribute("errNameSupAdd");
+                                    String errPhoneSupAdd = (String) request.getAttribute("errPhoneSupAdd");
+                                    String errEmailSupAdd = (String) request.getAttribute("errEmailSupAdd");
+                                    String errAddressSupAdd = (String) request.getAttribute("errAddressSupAdd");
+
+                                    nameSupAdd = (nameSupAdd == null) ? "" : nameSupAdd;
+                                    addressSupAdd = (addressSupAdd == null) ? "" : addressSupAdd;
+                                    phoneSupAdd = (phoneSupAdd == null) ? "" : phoneSupAdd;
+                                    emailSupAdd = (emailSupAdd == null) ? "" : emailSupAdd;
+
+                                    errNameSupAdd = (errNameSupAdd == null) ? "" : errNameSupAdd;
+                                    errPhoneSupAdd = (errPhoneSupAdd == null) ? "" : errPhoneSupAdd;
+                                    errEmailSupAdd = (errEmailSupAdd == null) ? "" : errEmailSupAdd;
+                                    errAddressSupAdd = (errAddressSupAdd == null) ? "" : errAddressSupAdd;
+                                %>
+                                <form class="form" id="supAdd" method="post" enctype="multipart/form-data">
+                                    <div class="row p-4">
+                                        <div class=" text-end">
+                                            <button type="button" class="btn-close " data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <h5 class="text-center">THÊM NHÀ CUNG CẤP</h5>
+                                        <hr>
+                                        <div class="col-md-12">
+                                            <div class="mb-3">
+                                                <label class="form-label">Tên nhà cung cấp</label><span id="errNameSupAdd"
+                                                                                                        class="text-danger"><%=errNameSupAdd%></span>
+                                                <input type="text" class="form-control" id="nameSupAdd" name="nameSupAdd"
+                                                       value="<%=nameSupAdd%>">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Địa chỉ</label><span id="errAddressSupAdd"
+                                                                                               class="text-danger"><%=errAddressSupAdd%></span>
+                                                <input type="text" class="form-control" id="addressSupAdd"
+                                                       name="addressSupAdd" value="<%=addressSupAdd%>">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Số điện thoại</label><span id="errphoneSupAdd"
+                                                                                                     class="text-danger"><%=errPhoneSupAdd%></span>
+                                                <input type="text" class="form-control" id="phoneSupAdd" name="phoneSupAdd"
+                                                       value="<%=phoneSupAdd%>">
+                                            </div>
+
+
+                                            <div class="mb-3">
+                                                <label class="form-label">Email</label><span id="errEmailSupAdd"
+                                                                                             class="text-danger"><%=errEmailSupAdd%></span>
+                                                <input type="text" class="form-control" id="emailSupAdd" name="emailSupAdd"
+                                                       value="<%=emailSupAdd%>">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Phân phối cho</label>
+                                                <select class="form-control" name="cateChairSupAdd" id="cateChairSupAdd">
+                                                    <option value="Ghế văn phòng">Ghế văn phòng</option>
+                                                    <option value="Ghế thư giãn">Ghế thư giãn</option>
+                                                    <option value="Ghế trang trí">Ghế trang trí</option>
+                                                    <option value="Ghế gaming">Ghế gaming</option>
+                                                </select>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="row p-0">
+                                            <div class="col-md-12 p-0">
+                                                <div class="text-end">
+                                                    <button class="save " type="button" onclick="addSup()">LƯU</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--end giao diện quản lý nhà cung cấp -->
         </div>
-        <!--end giao diện quản lý nhà cung cấp -->
     </div>
-</div>
 <%} else {%>
 <div class="container p-0 mgt text-center fw-bold">Bạn không có quyền quản lý! <a href = <%=url%>/homePage>Quay lại</a></div>
 <%
@@ -1489,7 +1485,6 @@
             });
         }
     }
-
     var id ="";
     function editProduct() {
         var flag = true;
@@ -2034,7 +2029,6 @@
             reader.readAsDataURL(selectedFile);
         }
     }
-
     function addInput() {
         var container = document.getElementById('image');
         var newInput = document.createElement('div');
@@ -2135,7 +2129,6 @@
             }
         });
     };
-
     function changeImg(newSrc) {
         var img_center = document.getElementById('img_center');
         if (img_center) {
@@ -2148,8 +2141,8 @@
             $.ajax({
                 type: "POST",
                 url: "delProduct",
-                data: { id: productId },
-                success: function(data) {
+                data: {id: productId},
+                success: function (data) {
                     var jsonData = JSON.parse(data);
                     var htmlData = jsonData.htmlData;
                     var res = jsonData.res;
@@ -2158,37 +2151,37 @@
                     row.innerHTML = ""; // Clear existing content
                     for (var i = 0; i < htmlData.length; i++) {
                         var p = htmlData[i];
-                        row.innerHTML += "  <tr  data-bs-toggle =\"modal\" data-bs-target=\"#detailProduct\" onclick=\"detailProduct('"+p.idProduct+"')\">\n" +
-                            "<input type=\"hidden\" className =\"idProduct\" value=\""+p.idProduct+"\">"+
-                            "                                <td class=\"w40\">"+(i+1)+"</td>\n" +
+                        row.innerHTML += "  <tr  data-bs-toggle =\"modal\" data-bs-target=\"#detailProduct\" onclick=\"detailProduct('" + p.idProduct + "')\">\n" +
+                            "<input type=\"hidden\" className =\"idProduct\" value=\"" + p.idProduct + "\">" +
+                            "                                <td class=\"w40\">" + (i + 1) + "</td>\n" +
                             "                                <td class=\"w260\">\n" +
                             "                                    <div class=\"item d-flex justify-content-center\">\n" +
                             "                                        <div class=\"item_img\">\n" +
-                            "                                            <img src=\""+p.imageUrl+"\"\n" +
+                            "                                            <img src=\"" + p.imageUrl + "\"\n" +
                             "                                                 class=\"card-img-top img_p_cart\" alt=\"...\"/>\n" +
                             "                                        </div>\n" +
                             "<span class=\"item_text\">" + p.name + "</span>\n" +
                             "                                    </div>\n" +
                             "                                </td>\n" +
-                            "                                <td>"+p.price+"</td>\n" +
-                            "                                <td>"+p.color+"</td>\n" +
-                            "                                <td>"+p.quantity+"\n" +
-                            "                                <td>"+p.status+"</td>\n" +
+                            "                                <td>" + p.price + "</td>\n" +
+                            "                                <td>" + p.color + "</td>\n" +
+                            "                                <td>" + p.quantity + "\n" +
+                            "                                <td>" + p.status + "</td>\n" +
                             "                                <td>\n" +
                             "                                    <div class=\"d-flex justify-content-center\">\n" +
-                            "                                        <button class=\"delete btnAdd bgcolor bd-full\" title=\"Xóa\" aria-hidden=\"true\" onclick=\"deleteProduct('"+p.idProduct+"')\" data-bs-toggle=\"modal\" data-bs-target=\"\"><i class=\"fa fa-trash-o text-color\"></i></button>"+
-                            "                                        <button class=\"editProduct btnAdd bgcolor bd-full mx-1\" data-bs-toggle=\"modal\" data-bs-target=\"#editProduct\" onclick=\"innerEditProduct('"+p.idProduct+"')\"><i class=\"fa fa-pencil text-color\" title=\"Chỉnh sửa\" aria-hidden=\"true\"></i></button>\n" +
-                            "                                        <button class=\"hideProduct btnAdd bgcolor bd-full\" title=\"Ẩn/hiện sản phẩm\" aria-hidden=\"true\" onclick=\"hideProduct('"+p.idProduct+"')\" data-bs-toggle=\"modal\" data-bs-target=\"\"><i class=\"fa fa-lock text-color\"></i></button>"+
+                            "                                        <button class=\"delete btnAdd bgcolor bd-full\" title=\"Xóa\" aria-hidden=\"true\" onclick=\"deleteProduct('" + p.idProduct + "')\" data-bs-toggle=\"modal\" data-bs-target=\"\"><i class=\"fa fa-trash-o text-color\"></i></button>" +
+                            "                                        <button class=\"editProduct btnAdd bgcolor bd-full mx-1\" data-bs-toggle=\"modal\" data-bs-target=\"#editProduct\" onclick=\"innerEditProduct('" + p.idProduct + "')\"><i class=\"fa fa-pencil text-color\" title=\"Chỉnh sửa\" aria-hidden=\"true\"></i></button>\n" +
+                            "                                        <button class=\"hideProduct btnAdd bgcolor bd-full\" title=\"Ẩn/hiện sản phẩm\" aria-hidden=\"true\" onclick=\"hideProduct('" + p.idProduct + "')\" data-bs-toggle=\"modal\" data-bs-target=\"\"><i class=\"fa fa-lock text-color\"></i></button>" +
                             "                                    </div>\n" +
                             "                                </td>\n" +
                             "                            </tr>";
                     }
                 },
-                error: function(error) {
+                error: function (error) {
                     console.error("Lỗi khi xóa sản phẩm:", error);
                 }
             });
-
+        }
     }
     function hideProduct(productId) {
         var confirmation = confirm("Bạn có chắc với lựa chọn này ?");
@@ -2551,8 +2544,8 @@
                 }
             });
         }
-
-        function deleteSupplier(idSup) {
+    }
+    function deleteSupplier(idSup) {
             var confirmation = confirm("Bạn có chắc muốn xóa ?");
             if (confirmation) {
                 $.ajax({
@@ -2593,8 +2586,7 @@
                 });
             }
         }
-
-        function detailInvoice(idInvoice) {
+    function detailInvoice(idInvoice) {
             $.ajax({
                 type: "GET",
                 url: "loadDetailInvoice",
@@ -2646,8 +2638,7 @@
                 }
             });
         }
-
-        function acceptInvoice(id) {
+    function acceptInvoice(id) {
             var confirmation = confirm("Bạn có chắc muốn xác nhận đơn hàng ?");
             if (confirmation) {
                 $.ajax({
@@ -2696,8 +2687,7 @@
                 });
             }
         }
-
-        function cancelInvoice(id) {
+    function cancelInvoice(id) {
             var confirmation = confirm("Bạn có chắc muốn hủy đơn hàng ?");
             if (confirmation) {
                 $.ajax({
@@ -2746,8 +2736,7 @@
                 });
             }
         }
-
-        function delInvoice(id) {
+    function delInvoice(id) {
             var confirmation = confirm("Bạn có chắc muốn xóa đơn hàng này ?");
             if (confirmation) {
                 $.ajax({
@@ -2796,8 +2785,7 @@
                 });
             }
         }
-
-        function filInvoice(status) {
+    function filInvoice(status) {
             $.ajax({
                 type: "GET",
                 url: "filByStatus",
@@ -2849,12 +2837,11 @@
                 }
             });
         }
-
-        function searchByDate() {
+    function searchByDate() {
             $.ajax({
                 type: "GET",
                 url: "searchByDate",
-                data: {date: $('#filterInvoice').val(),},
+                data: {date: $('#filterInvoice').val()},
                 success: function (data) {
                     var jsonData = JSON.parse(data);
                     var htmlData = jsonData.htmlData;
@@ -2897,8 +2884,6 @@
                 }
             });
         }
-    }
-    }
 </script>
 <script src="slider/owlcarousel/owl.carousel.min.js"></script>
 </html>

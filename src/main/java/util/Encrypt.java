@@ -19,4 +19,8 @@ public class Encrypt {
 		}
 		return result;
 	}
+
+	public static void main(String[] args) {
+		System.out.println(Encrypt.toSHA1("Minhquan@1"));
+	}
 }

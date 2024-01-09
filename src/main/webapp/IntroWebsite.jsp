@@ -40,7 +40,12 @@
 </header>
 <!--end header-->
 <!--page content-->
+<%
+    InforWebsite i = (InforWebsite) request.getAttribute("infor");
+%>
 <div class="container mgt">
+    <%String res = (String) request.getAttribute("res");%>
+    <span id ="res"><%=(res == null)?"":res%></span>
     <a href="<%=url%>/homePage" class="color-gray lbhv text-decoration-none">Trang chủ  <i class="fa fa-angle-right color-gray" aria-hidden="true"></i>  </a> <span class="text-color">Giới thiệu</span>
     <div class="mt-3" id="para">
         <div id="Part2">
@@ -76,61 +81,40 @@
     </div>
     <div id="policy">
         <h5> CHÍNH SÁCH MUA HÀNG
-            <button class="editPolicy btnAdd bgcolor bd-full me-1"><i class="fa fa-pencil text-color"
-                                                                      title="Chỉnh sửa chính sách mua hàng"
-                                                                      aria-hidden="true" data-bs-toggle="modal"
-                                                                      data-bs-target="#editPolicy"></i></button>
+            <button class="editPolicy btnAdd bgcolor bd-full me-1"><i class="fa fa-pencil text-color" data-bs-toggle="modal" data-bs-target="#editPolicy"></i></button>
         </h5>
-        <%
-            Object object = session.getAttribute("policyInfo");
-            System.out.println(object);
-            InforWebsite policyInfo = null;
-            if (object != null) {
-                policyInfo = (InforWebsite) object;
-                int guarantee = policyInfo.getGuarantee();
-                int exchange = policyInfo.getExchange();
-        %>
-        <p><strong>Bảo hành:</strong> <span id="contentGuarantee"><%= guarantee %></span> tháng kể từ ngày mua hàng.</p>
-        <p><strong>Đổi trả:</strong> trong vòng <span id="exchangeProduct"><%= exchange %></span> tháng kể từ ngày mua hàng, với điều
+        <p><strong>Bảo hành:</strong> <span id="contentGuarantee"><%=i.getGuarantee()%></span> tháng kể từ ngày mua hàng.</p>
+        <p><strong>Đổi trả:</strong> trong vòng <span id="exchangeProduct"><%=i.getExchange() %></span> tháng kể từ ngày mua hàng, với điều
             kiện là hàng hóa bị lỗi khi vận chuyển hoặc do nhà sản xuất, chúng tôi sẽ không chịu trách nhiệm đổi trả
             hàng hóa nếu lỗi là do phía khách hàng.</p>
-        <%
-        } else {
-        %>
-        <p>Thông tin liên hệ không khả dụng.</p>
-        <%
-            }
-        %>
-
     </div>
-    <!--    edit policy-->
+    <!--edit policy-->
     <div class="modal fade" id="editPolicy" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm ">
             <div class="modal-content">
                 <div class="modal-body">
                     <form class="form " action="editPolicy" method="post" onsubmit="return editGua()">
-                        <input type="hidden" name="id" value="<%= policyInfo.getId() %>">
+                        <input type="hidden" name="id" value="<%= i.getId() %>">
                         <div class="row px-2">
                             <div class=" text-end">
-                                <button type="button" class="btn-close " data-bs-dismiss="modal"
-                                        aria-label="Close" data-bs-target="#editPolicy"></button>
+                                <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close" data-bs-target="#editPolicy"></button>
                             </div>
                             <h5 class="text-center">CHỈNH SỬA CHÍNH SÁCH</h5>
                             <hr>
                             <div class="col-md-12 m-auto">
                                 <div class="mb-3 ">
                                     <label class="form-label pe-3" for="monthGua">Bảo hành</label>
-                                    <input type="number" class="month" id="monthGua" name="monthGua" value="<%= policyInfo.getGuarantee() %>"> tháng
+                                    <input type="number" class="month" id="monthGua" name="monthGua" value="<%= i.getGuarantee() %>"> tháng
                                 </div>
                                 <div class="mb-3 ">
                                     <label class="form-label pe-3" for="monthChange">Đổi trả</label>
-                                    <input type="number" class="month" id="monthChange" name="monthChange" value="<%= policyInfo.getExchange() %>"> tháng
+                                    <input type="number" class="month" id="monthChange" name="monthChange" value="<%= i.getExchange() %>"> tháng
                                 </div>
                             </div>
                             <div class="row p-0">
                                 <div class="col-md-12 p-0">
                                     <div class="text-end">
-                                        <button class="save " type="submit">LƯU</button>
+                                        <button class="save" type="submit">LƯU</button>
                                     </div>
                                 </div>
                             </div>
@@ -143,32 +127,12 @@
     <!--end edit policy-->
     <div id="contact">
         <h5> THÔNG TIN LIÊN HỆ
-            <button class="editContact btnAdd bgcolor bd-full me-1"><i class="fa fa-pencil text-color"
-                                                                       title="Chỉnh sửa thông tin liên hệ"
-                                                                       aria-hidden="true" data-bs-toggle="modal"
-                                                                       data-bs-target="#editContact"></i></button>
+            <button class="editContact btnAdd bgcolor bd-full me-1"><i class="fa fa-pencil text-color" title="Chỉnh sửa thông tin liên hệ" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editContact"></i></button>
         </h5>
-        <%
-            Object o = session.getAttribute("contactInfo");
-            InforWebsite contactInfo = null;
-            if (o != null) {
-                contactInfo = (InforWebsite) o;
-                String address = contactInfo.getAddress();
-                String email = contactInfo.getEmail();
-                String phoneNumber = contactInfo.getPhoneNumber();
-        %>
-        <p><strong>Địa chỉ:</strong> <span id="address"><%= address%></span>.
+        <p><strong>Địa chỉ:</strong> <span id="address"><%=i.getAddress()%></span>.
         </p>
-        <p><strong>Email:</strong> <span id="email"><%= email %></span></p>
-        <p><strong>Số điện thoại:</strong> <span id="phoneNumber"><%= phoneNumber %></span></p>
-        <%
-        } else {
-        %>
-        <p>Thông tin liên hệ không khả dụng.</p>
-        <%
-            }
-        %>
-
+        <p><strong>Email:</strong> <span id="email"><%=i.getEmail()%></span></p>
+        <p><strong>Số điện thoại:</strong> <span id="phoneNumber"><%=i.getPhoneNumber()%></span></p>
     </div>
     <!--edit contact-->
     <div class="modal fade" id="editContact" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -176,7 +140,7 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <form class="form " action="editContact" method="post" onsubmit="return editContact()">
-                        <input type="hidden" name="id" value="<%= contactInfo.getId()%>">
+                        <input type="hidden" name="id" value="<%= i.getId()%>">
                         <div class="row px-2">
                             <span class="d-none" id="id"></span>
                             <div class=" text-end">
@@ -187,21 +151,16 @@
                             <hr>
                             <div class="col-md-12">
                                 <div class="mb-3">
-                                    <label class="form-label">Địa chỉ</label><span class="text-danger"
-                                                                                   id="errEditAddress"></span>
-                                    <input type="text" class="form-control" id="editAddress" name="editAddress" value="<%=contactInfo.getAddress()%>">
+                                    <label class="form-label">Địa chỉ</label><span class="text-danger" id="errEditAddress"></span>
+                                    <input type="text" class="form-control" id="editAddress" name="editAddress" value="<%=i.getAddress()%>">
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">Email</label><span class="text-danger"
-                                                                                 id="errEditEmail"></span>
-                                    <input type="text" class="form-control" id="editEmail"
-                                           name="editEmail" value="<%=contactInfo.getEmail()%>" >
+                                    <label class="form-label">Email</label><span class="text-danger" id="errEditEmail"></span>
+                                    <input type="text" class="form-control" id="editEmail" name="editEmail" value="<%=i.getEmail()%>" >
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">Số điện thoại</label><span class="text-danger"
-                                                                                         id="errEditPhoneNumber"></span>
-                                    <input type="text" class="form-control" id="editPhoneNumber"
-                                           name="editPhoneNumber" value="<%=contactInfo.getPhoneNumber()%>" >
+                                    <label class="form-label">Số điện thoại</label><span class="text-danger" id="errEditPhoneNumber"></span>
+                                    <input type="text" class="form-control" id="editPhoneNumber" name="editPhoneNumber" value="<%=i.getPhoneNumber()%>" >
                                 </div>
                             </div>
                             <div class="row p-0">
@@ -226,6 +185,11 @@
 </footer>
 <!--end footer-->
 <script>
+    $(document).ready(function () {
+        if($('#res').text() !== "") {
+            alert($('#res').text());
+        }
+    })
     function  editGua() {
         var monthGua = document.getElementById("monthGua");
         var monthChange = document.getElementById("monthChange");
@@ -273,32 +237,31 @@
         var tellReg = /^\d{10}$/;
 
         if(address.value === "") {
-            errorAddress.innerHTML ='(*)Vui lòng nhập địa chỉ!'
+            errorAddress.innerHTML ='*Vui lòng nhập địa chỉ!'
             flag = false;
         }else {
             errorAddress.innerHTML ='';
         }
         if(email.value === "") {
-            errEditEmail.innerHTML ='(*)Vui lòng nhập email!'
+            errEditEmail.innerHTML ='*Vui lòng nhập email!'
             flag = false;
         }else if(!email.value.match(emailReg)){
-            errEditEmail.innerHTML ='(*)Email không hợp lệ!';
+            errEditEmail.innerHTML ='*Email không hợp lệ!';
             flag = false;
         }else{
             errEditEmail.innerHTML = '';
         }
         if(phone.value === "") {
-            errEditPhoneNumber.innerHTML ='(*)Vui lòng nhập số điện thoại!'
+            errEditPhoneNumber.innerHTML ='*Vui lòng nhập số điện thoại!'
             flag = false;
         }else if(!phone.value.match(tellReg)){
-            errEditPhoneNumber.innerHTML ='(*)Số điện thoại không hợp lệ!';
+            errEditPhoneNumber.innerHTML ='*Số điện thoại không hợp lệ!';
             flag = false;
         }else{
             errEditPhoneNumber.innerHTML = '';
         }
         return flag;
     }
-
 </script>
 </body>
 

@@ -32,7 +32,10 @@ public class HomeController extends HttpServlet {
         request.setAttribute("listColorP", listColorP);
         //load sản phảm bán chạy nhất
         int idProduct = InvoiceService.getInstance().idBestSaler();
-        Product bestProduct = ProductService.getInstance().getProductById(idProduct);
+        Product bestProduct = null;
+        if(idProduct != 0) {
+            bestProduct = ProductService.getInstance().getProductById(idProduct);
+        }
         request.setAttribute("bestSaler", bestProduct);
         //load carousel
         String source = "D:\\ltw\\DoAn\\DoanLTWNhom60\\src\\main\\webapp\\image\\Carousel";
@@ -49,7 +52,6 @@ public class HomeController extends HttpServlet {
             throw new RuntimeException(e);
         }
     }
-
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         doGet(request, response);
     }
