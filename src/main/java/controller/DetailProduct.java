@@ -15,8 +15,11 @@ public class DetailProduct extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("html/text; charset= UTF-8");
         String pid = request.getParameter("pid");
+        String cid = request.getParameter("cid");
         Product product = ProductService.getInstance().getProductById(Integer.parseInt(pid));
         request.setAttribute("product", product);
+        Product productSimilar = ProductService.getInstance().productSimilar(Integer.parseInt(cid));
+        request.setAttribute("productSimilar", productSimilar);
         try {
             request.getRequestDispatcher("DetailProduct.jsp").forward(request,response);
         } catch (ServletException e) {

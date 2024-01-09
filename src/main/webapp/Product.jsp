@@ -119,7 +119,7 @@
                     for (Product p : listProduct) {%>
                     <div class="col-lg-4 col-sm-6 col-6 mt-3 product">
                         <div class="card">
-                            <a href="<%=url%>/detail-product?pid=<%=p.getIdProduct()%>">
+                            <a href="<%=url%>/detail-product?pid=<%=p.getIdProduct()%>&cid=<%=p.getIdCate()%>">
                                 <img src="<%=url%>\Products\<%=p.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="...">
                             </a>
                             <div class="card-body">
