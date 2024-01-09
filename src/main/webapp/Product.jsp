@@ -120,7 +120,7 @@
                     <div class="col-lg-4 col-sm-6 col-6 mt-3 product">
                         <div class="card">
                             <a href="<%=url%>/detail-product?pid=<%=p.getIdProduct()%>&cid=<%=p.getIdCate()%>">
-                                <img src="<%=url%>\Products\<%=p.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="...">
+                                <img src="<%=url%>\Products\<%=(p.getImages().isEmpty())?"":p.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="...">
                             </a>
                             <div class="card-body">
                                 <h5 class="card-title"><%=p.getName()%></h5>
@@ -163,8 +163,8 @@
                 <%for (Product p : listProductByName) {%>
                 <div class="col-md-3 col-sm-4 col-4 mt-3 product">
                     <div class="card">
-                        <a href="<%=url%>/detail-product?pid=<%=p.getIdProduct()%>">
-                            <img src="<%=url%>\Products\<%=p.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="...">
+                        <a href="<%=url%>/detail-product?pid=<%=p.getIdProduct()%>&cid=<%=p.getIdCate()%>">
+                            <img src="<%=url%>\Products\<%=(p.getImages().isEmpty())?"":p.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="...">
                         </a>
                         <div class="card-body">
                             <h5 class="card-title"><%=p.getName()%>
@@ -340,7 +340,7 @@
                         var p = htmlData[i];
                         row.innerHTML += "<div class=\"col-lg-4 col-sm-6 mt-3 product\">\n" +
                             "                            <div class=\"card\">\n" +
-                            "                                <a href=\"detail-product?pid=" + p.idProduct + "\">\n" +
+                            "                                <a href=\"detail-product?pid=" + p.idProduct + "&cid=" + p.idCate + "\">\n"+
                             "                                    <img src=\"" + p.imageUrl + "\" class=\"card-img-top img_p\" alt=\"...\">\n" +
                             "                                </a>\n" +
                             "                                <div class=\"card-body\">\n" +

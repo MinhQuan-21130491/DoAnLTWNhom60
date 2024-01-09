@@ -74,7 +74,6 @@
                         <a href="#" class="list-group-item list-group-item-action">Quản lý sản phẩm</a>
                         <a href="#" class="list-group-item list-group-item-action">Quản lý nhà cung cấp</a>
                         <a href="#" class="list-group-item list-group-item-action">Quản lý danh mục</a>
-                        <a href="#" class="list-group-item list-group-item-action">Quản lý bán hàng</a>
                         <a href="#" class="list-group-item list-group-item-action">Quản lý hóa đơn</a>
                     </div>
                 </div>
@@ -265,7 +264,9 @@
                                         </tr>
                                         <tr id="SubmitSB">
                                             <td class="py-0" colspan="2">
-                                                <div><button type="button" class="m-0" id="submit" name="SB" onclick="editAccount()" style="color: white"> LƯU </button></div>
+                                                <div class ="text-end">
+                                                    <button type="button" class="m-0 save " id="submit" name="SB" onclick="editAccount()" style="color: white"> LƯU </button>
+                                                </div>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -691,54 +692,6 @@
                 </div>
             </div>
             <!--end giao diện quản lý sản phẩm-->
-            <!--giao diện quản lý bán hàng-->
-            <div class="col-lg-9 bgcolor d-none " id="mngSale">
-                <div class="row mt-2">
-                    <div class="col-lg-6">
-                        <h5>Quản lý bán hàng</h5>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-lg-12 overflow-auto mheight">
-                        <table class="mb-3">
-                            <thead>
-                            <tr>
-                                <td class="w40">STT</td>
-                                <td class="w40">ID</td>
-                                <td class="w260">SẢN PHẨM</td>
-                                <td>ĐƠN GIÁ</td>
-                                <td>MÀU SẮC</td>
-                                <td>KÍCH THƯỚC</td>
-                                <td>ĐÃ BÁN</td>
-
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td class="w40">1</td>
-                                <td class="w40">1</td>
-                                <td class="w260">
-                                    <div class="item d-flex justify-content-center">
-                                        <div class="item_img">
-                                            <img src="https://images.elipsport.vn/sources/2021/12/13/ghe-massage-elip-galile-1690879452.jpg"
-                                                 class="card-img-top img_p_cart" alt="..."/>
-                                        </div>
-                                        <span class="item_text">Ghế massage siêu cấp pro</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    ₫<span>1.000.000</span>
-                                </td>
-                                <td>Màu đen</td>
-                                <td>100x50x70</td>
-                                <td>50</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <!--end giao diện quản lý bán hàng -->
             <!--giao diện quản lý hóa đơn-->
             <div class="col-lg-9 bgcolor d-none " id ="mngInvoice">
                     <div class="row mt-2">
@@ -950,7 +903,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="modal fade" id="addCate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        </div>
+                         <div class="modal fade" id="addCate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog ">
                                     <div class="modal-content">
                                         <div class="modal-body">
@@ -984,9 +938,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <!--end giao diện quản lý danh mục-->
             <!--giao diện quản lý nhà cung cấp-->
@@ -1212,7 +1163,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
             <!--end giao diện quản lý nhà cung cấp -->
         </div>
@@ -1261,35 +1211,24 @@
             if (selectedType === "Quản lý tài khoản") {
                 $('#mngAccount').removeClass('d-none');
                 $('#mngProduct').addClass('d-none');
-                $('#mngSale').addClass('d-none');
                 $('#mngInvoice').addClass('d-none');
                 $('#mngCate').addClass('d-none');
                 $('#mngSup').addClass('d-none');
             } else if (selectedType === "Quản lý sản phẩm") {
                 $('#mngAccount').addClass('d-none');
-                $('#mngSale').addClass('d-none');
                 $('#mngInvoice').addClass('d-none');
                 $('#mngProduct').removeClass('d-none');
-                $('#mngCate').addClass('d-none');
-                $('#mngSup').addClass('d-none');
-            }else if (selectedType === "Quản lý bán hàng") {
-                $('#mngProduct').addClass('d-none');
-                $('#mngAccount').addClass('d-none');
-                $('#mngInvoice').addClass('d-none');
-                $('#mngSale').removeClass('d-none');
                 $('#mngCate').addClass('d-none');
                 $('#mngSup').addClass('d-none');
             }else if (selectedType === "Quản lý hóa đơn") {
                 $('#mngProduct').addClass('d-none');
                 $('#mngAccount').addClass('d-none');
-                $('#mngSale').addClass('d-none');
                 $('#mngInvoice').removeClass('d-none');
                 $('#mngCate').addClass('d-none');
                 $('#mngSup').addClass('d-none');
             }else if (selectedType === "Quản lý danh mục") {
                 $('#mngProduct').addClass('d-none');
                 $('#mngAccount').addClass('d-none');
-                $('#mngSale').addClass('d-none');
                 $('#mngInvoice').addClass('d-none');
                 $('#mngCate').removeClass('d-none');
                 $('#mngSup').addClass('d-none');
@@ -1297,17 +1236,9 @@
             else if (selectedType === "Quản lý nhà cung cấp") {
                 $('#mngProduct').addClass('d-none');
                 $('#mngAccount').addClass('d-none');
-                $('#mngSale').addClass('d-none');
                 $('#mngInvoice').addClass('d-none');
                 $('#mngCate').addClass('d-none');
                 $('#mngSup').removeClass('d-none');
-            }else if (selectedType === "Quản lý đơn hàng") {
-                $('#mngProduct').addClass('d-none');
-                $('#mngAccount').addClass('d-none');
-                $('#mngSale').addClass('d-none');
-                $('#mngInvoice').addClass('d-none');
-                $('#mngCate').addClass('d-none');
-                $('#mngSup').addClass('d-none');
             }
         })
        // $(".owl-carousel").owlCarousel();

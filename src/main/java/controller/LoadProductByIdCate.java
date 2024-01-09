@@ -35,8 +35,8 @@ public class LoadProductByIdCate extends HttpServlet {
             }
             out.println(" <div class=\"col-lg-4 col-sm-6 mt-3 product\">\n" +
                     "                            <div class=\"card\">\n" +
-                    "                                <a href=\"detail-product?pid="+p.getIdProduct()+"\">\n" +
-                                                    "<img src=\"" + url + "\\Products\\" + p.getImages().get(0).getUrl() + "\" class=\"card-img-top img_p\" alt=\"...\">"+
+                    "                                <a href=\"detail-product?pid=" + p.getIdProduct() + "&cid=" + p.getIdCate() + "\">\n"+
+                                                    "<img src=\"" + url + "\\Products\\" + ((p.getImages().isEmpty())?"":p.getImages().get(0).getUrl()) + "\" class=\"card-img-top img_p\" alt=\"...\">"+
                     "                                </a>\n" +
                     "                                <div class=\"card-body\">\n" +
                     "                                    <h5 class=\"card-title\">"+p.getName()+"</h5>\n" +

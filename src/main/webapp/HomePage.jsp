@@ -84,7 +84,7 @@
                 <hr class="mt-2 mb-2"/>
                 <div class="card">
                     <a href="<%=url%>/detail-product?pid=<%=latestProduct.getIdProduct()%>&cid=<%=latestProduct.getIdCate()%>">
-                        <img src="<%=url%>/Products/<%=latestProduct.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="">
+                        <img src="<%=url%>\Products\<%=(latestProduct.getImages().isEmpty())?"":latestProduct.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="...">
                     </a>
                     <div class="card-body">
                         <h5 class="card-title"><%=latestProduct.getName()%>
@@ -115,7 +115,7 @@
                 <h5 class="m-0 text-center">SẢN PHẨM BÁN CHẠY NHẤT</h5>
                 <hr class="mt-2 mb-2"/>
                 <div class="card">
-                    <a href="<%=url%>/detail-product?pid=<%=bestSaler.getIdProduct()%>">
+                    <a href="<%=url%>/detail-product?pid=<%=bestSaler.getIdProduct()%>&cid=<%=bestSaler.getIdCate()%>">
                         <img src="<%=url%>/Products/<%=(bestSaler.getImages().isEmpty())?"":bestSaler.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="...">
                     </a>
                     <div class="card-body">
@@ -149,10 +149,6 @@
             <%if(listCarousel != null && !listCarousel.isEmpty()) {%>
             <div id="carouselExampleIndicators" class="carousel slide d-none d-md-none d-lg-block "
                  data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 <div id = "innerCarousel1">
                     <div class="carousel-indicators">
                         <%
@@ -169,25 +165,27 @@
                     </div>
                 </div>
                 <div id = "innerCarousel2">
-                <div class="carousel-inner">
-                    <%
-                        boolean firstItem = true;
-                        for (String s : listCarousel) {
-                    %>
-                    <div class="carousel-item <%= firstItem ? "active" : "" %>">
-                        <img src="image/Carousel/<%= s %>" class="d-block img_p" alt="...">
+                    <div class="carousel-inner">
+                        <%
+                            boolean firstItem = true;
+                            for (String s : listCarousel) {
+                        %>
+                        <div class="carousel-item <%= firstItem ? "active" : "" %>">
+                            <img src="image/Carousel/<%= s %>" class="d-block img_p" alt="...">
+                        </div>
+                        <%
+                                firstItem = false; // Đánh dấu đã qua thẻ đầu tiên
+                            }
+                        %>
                     </div>
-                    <%
-                            firstItem = false; // Đánh dấu đã qua thẻ đầu tiên
-                        }
-                    %>
                 </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
@@ -226,19 +224,18 @@
                     </div>
                 </div>
             </div>
-
             <!--end carousel-->
             <!--product-->
             <h5 class="mt-3 mb-0">DANH SÁCH SẢN PHẨM</h5>
             <h6 class="text-center text-color mt-2 mb-0" id="exits"></h6>
             <div class="row" id="content">
                 <%ArrayList<Product> listProduct = (ArrayList<Product>) request.getAttribute("listP");
-                if (!listProduct.isEmpty() && listProduct != null) {
-                for (Product p : listProduct) {%>
+                    if (!listProduct.isEmpty() && listProduct != null) {
+                        for (Product p : listProduct) {%>
                 <div class="col-lg-4 col-sm-6 col-6 mt-3 product">
                     <div class="card">
                         <a href="<%=url%>/detail-product?pid=<%=p.getIdProduct()%>&cid=<%=p.getIdCate()%>">
-                            <img src="<%=url%>\Products\<%=p.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="...">
+                            <img src="<%=url%>\Products\<%=(p.getImages().isEmpty())?"":p.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="...">
                         </a>
                         <div class="card-body">
                             <h5 class="card-title"><%=p.getName()%>

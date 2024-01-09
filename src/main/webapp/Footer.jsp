@@ -30,12 +30,9 @@
                 <h5 class ="">THEO DÕI CHÚNG TÔI</h5>
                 <hr class ="w-50">
                 <ul class="navbar-nav">
-                    <li class="px-3"><a class="nav-link link" href="#"><i
-                            class="fa fa-facebook-official" aria-hidden="true"></i> FaceBook</a></li>
-                    <li class="px-3"><a class="nav-link link" href="#"><i
-                            class="fa fa-instagram" aria-hidden="true"></i></i> Instagram</a></li>
-                    <li class="px-3"><a class="nav-link link" href="#"><i
-                            class="fa fa-twitter" aria-hidden="true"></i></i>Twitter</a></li>
+                    <li class="px-3"><a class="nav-link link" href="#"><i class="fa fa-facebook-official" aria-hidden="true"></i> FaceBook</a></li>
+                    <li class="px-3"><a class="nav-link link" href="#"><i class="fa fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+                    <li class="px-3"><a class="nav-link link" href="#"><i class="fa fa-twitter" aria-hidden="true"></i>Twitter</a></li>
                 </ul>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
@@ -65,9 +62,9 @@
             success: function (data) {
                 var i = data.inforWebSite;
                 var row = document.getElementById("contain-contact");
-               row.innerHTML = " <li class=\"nav-link\"><i class=\"fa fa-map-marker\" aria-hidden=\"true\"> "+ i.address+"</i></li>\n" +
-                   "                        <li class=\"nav-link\" ><i class=\"fa fa-envelope\" aria-hidden=\"true\"> "+ i.email+"</i></li>\n" +
-                   "                        <li class=\"nav-link\" ><i class=\"fa fa-phone\" aria-hidden=\"true\"> "+ i.phoneNumber+"</i></li>"
+               row.innerHTML = " <li class=\"nav-link\"><i class=\"fa fa-map-marker\" aria-hidden=\"true\"></i>"+ i.address+"</li>\n" +
+                   "                        <li class=\"nav-link\" ><i class=\"fa fa-envelope\" aria-hidden=\"true\"></i> "+ i.email+"</li>\n" +
+                   "                        <li class=\"nav-link\" ><i class=\"fa fa-phone\" aria-hidden=\"true\"></i> "+ i.phoneNumber+"</li>"
             },
             error: function(error) {
                 console.error("Xảy ra lỗi:", error);
