@@ -34,17 +34,18 @@ public class BuyNow extends HttpServlet {
         String content="Các sản phẩm đã đặt hàng:"+"<br>";
         NumberFormat nF = NumberFormat.getCurrencyInstance();
         String endContent="Tổng tiền: "+nF.format(sum);
-        Invoice invoice = new Invoice(0,a.getId(),address,0,"Tiền mặt",new Date(2023,12,27),0);
+        Invoice invoice = new Invoice(0,a.getId(),address,0,"Thanh toán khi nhận hàng",new Date(2023,12,27),0);
         if(InvoiceService.getInstance().insertInvoice(invoice)>0) {
             Invoice lastest = InvoiceService.getInstance().latestInvoice();
-                InvoiceDetail idt = new InvoiceDetail(lastest.getIdInvoice(), p.getIdProduct(), p.getPrice(), quantity);
-                InvoiceService.getInstance().insertInvoiceDetail(idt);
-                content = "-Sản phẩm: " + p.getName() +" Giá: "+nF.format(p.getPrice())+ " Số lượng: " + quantity + "<br>";
-            }
-            session.setAttribute("BuyNowProduct", null);
-            session.setAttribute("BuyNowQuantity", null);
-            Email.sendEmail(a.getEmail(), "Xác nhận đơn hàng từ HomeDecor", startContent + "<br>" + content + endContent);
-            response.sendRedirect(url + "/homePage");
+            InvoiceDetail idt = new InvoiceDetail(lastest.getIdInvoice(), p.getIdProduct(), p.getPrice(), quantity);
+            InvoiceService.getInstance().insertInvoiceDetail(idt);
+            content = "-Sản phẩm: " + p.getName() +" Giá: "+nF.format(p.getPrice())+ " Số lượng: " + quantity + "<br>";
+        }
+        session.setAttribute("BuyNowProduct", null);
+        session.setAttribute("BuyNowQuantity", null);
+        session.setAttribute("doneBuyNow","done");
+        Email.sendEmail(a.getEmail(), "Xác nhận đơn hàng từ HomeDecor", startContent + "<br>" + content + endContent);
+        response.sendRedirect(url + "/BuyNow.jsp");
     }
 
     @Override
