@@ -3,6 +3,7 @@
 <%@ page import="model.Category" %>
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="model.Cart" %>
+<%@ page import="model.Account" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,6 +49,7 @@
     ArrayList<String> listColor = (ArrayList<String>) request.getAttribute("listColorP");
     ArrayList<String> listCarousel = (ArrayList<String>) request.getAttribute("listCarousel");
     Cart cart = (Cart) session.getAttribute("Cart");
+    Account account = (Account) session.getAttribute("account");
 %>
 <div class="container p-0 mgt">
     <div class="row">
@@ -141,11 +143,13 @@
         <!-- end menu left -->
         <!-- carousel -->
         <div class="col-lg-9 ">
+            <%if(account != null && (account.getRole() == 0 || account.getRole() == 1)){%>
             <div class="text-end mb-1">
                 <button type ="button" class="btnAdd bgcolor bd-full" id ="btnAddImage" data-bs-toggle="modal" data-bs-target="#editCarousel" onclick="innerCarousel()">
                     <i class="fa fa-pencil text-color" aria-hidden="true" title="Chỉnh sửa carousel" ></i>
                 </button>
             </div>
+            <%}%>
             <%if(listCarousel != null && !listCarousel.isEmpty()) {%>
             <div id="carouselExampleIndicators" class="carousel slide d-none d-md-none d-lg-block "
                  data-bs-ride="carousel">

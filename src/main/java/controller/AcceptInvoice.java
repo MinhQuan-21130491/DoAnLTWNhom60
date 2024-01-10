@@ -40,7 +40,15 @@ public class AcceptInvoice extends HttpServlet {
             invoiceJSON.put("id", i.getIdInvoice());
             invoiceJSON.put("idAccount", i.getIdAccount());
             invoiceJSON.put("startDate", i.getStartDate());
-            invoiceJSON.put("status", "Đã xác nhận");
+            String status ="";
+            if(i.getStatus() == 0) {
+                status = "Chờ xác nhận";
+            }else if(i.getStatus() == 1) {
+                status ="Đã xác nhận";
+            }else {
+                status = "Đã hủy";
+            }
+            invoiceJSON.put("status", status);
             htmlDataArray.put(invoiceJSON);
         }
         jsonResponse.put("htmlData", htmlDataArray);

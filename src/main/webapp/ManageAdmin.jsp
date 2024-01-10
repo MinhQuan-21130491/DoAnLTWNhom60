@@ -2585,7 +2585,7 @@
                         row.innerHTML = ""; // Clear existing content
                         for (var i = 0; i < htmlData.length; i++) {
                             var ivc = htmlData[i];
-                            if (ivc.status === "Chưa xác nhận") {
+                            if (ivc.status === "Chờ xác nhận") {
                                 row.innerHTML += "<tr data-bs-toggle=\"modal\" data-bs-target=\"#detailInvoice\" onclick=\"detailInvoice(" + ivc.id + ")\">\n" +
                                     "                                    <td class=\"w40\">" + (i + 1) + "</td>\n" +
                                     "                                    <td>" + ivc.id + "</td>\n" +
@@ -2634,7 +2634,7 @@
                         row.innerHTML = ""; // Clear existing content
                         for (var i = 0; i < htmlData.length; i++) {
                             var ivc = htmlData[i];
-                            if (ivc.status === "Chưa xác nhận") {
+                            if (ivc.status === "Chờ xác nhận") {
                                 row.innerHTML += "<tr data-bs-toggle=\"modal\" data-bs-target=\"#detailInvoice\" onclick=\"detailInvoice(" + ivc.id + ")\">\n" +
                                     "                                    <td class=\"w40\">" + (i + 1) + "</td>\n" +
                                     "                                    <td>" + ivc.id + "</td>\n" +

@@ -82,7 +82,7 @@
                 <button id="submitDangNhap">ĐĂNG NHẬP</button>
             </div>
             <div class="form-group-p" id="idDK">
-                <p>Bạn chưa có tài khoản?<a href=""> Đăng ký</a></p>
+                <p>Bạn chưa có tài khoản?<a href="<%=url%>/SignUp.jsp"> Đăng ký</a></p>
             </div>
         </div>
     </form>
