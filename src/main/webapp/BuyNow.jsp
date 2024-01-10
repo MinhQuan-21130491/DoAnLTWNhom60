@@ -46,15 +46,28 @@
 <!--page content-->
 <%
     Account a =(Account) session.getAttribute("account");
+    if (a == null) {
+%>
+<div class="container p-0 mgt text-center fw-bold">Bạn chưa đăng nhập! <a href = <%=url%>/SignIn.jsp>Đăng nhập</a></div>
+<%
+        return;
+    }
+%>
+<%
     Product p =(Product) session.getAttribute("BuyNowProduct");
     Integer quantity =(Integer) session.getAttribute("BuyNowQuantity");
     NumberFormat nF = NumberFormat.getCurrencyInstance();
     double sumPay = 0;
+    if (!a.getVerifyAccount().isStateVerify()) {
+%>
+<div class="container p-0 mgt text-center fw-bold">Bạn chưa xác thực tài khoản <a href = <%=url%>/VerifyAccount.jsp>Xác thực ngay</a></div>
+<%
+
+
+}else if (a != null && p!=null) {
     sumPay+=p.getPrice()*quantity;
     session.setAttribute("Sum",sumPay);
     double shippingFee=0;
-    if (a != null) {
-        System.out.println(a.getVerifyAccount().isStateVerify());
 %>
 <div class="container p-0 mgt">
     <a href="<%=url%>/homePage" class="color-gray lbhv text-decoration-none">Trang chủ  <i class="fa fa-angle-right color-gray" aria-hidden="true"></i>  </a> <span class="text-color">Thanh toán</span>
@@ -181,6 +194,7 @@
                                     <td>
                                         <div id="">
                                             <input id="HienThiDCReice" name="DCNHHT" type="text" value="<%=a.getAddressReceive()%>">
+                                            <input hidden="hidden" name="buynow" value="buynow">
                                         </div>
                                     </td>
                                 </tr>
@@ -228,7 +242,7 @@
                         <%=p.getColor()%>
                     </td>
                     <td>
-                       <%=p.getMaterial()%>
+                        <%=p.getMaterial()%>
                     </td>
                     <td>
                         <%=p.formatSize(p.getLength())%>x<%=p.formatSize(p.getWidth())%>x<%=p.formatSize(p.getHeight())%>
@@ -277,12 +291,16 @@
     </div>
 </div>
 <%
-} else {
+}else if((String)session.getAttribute("doneBuyNow")!=null){
 %>
-<div class="container p-0 mgt text-center fw-bold">Bạn chưa đăng nhập! <a href = <%=url%>/SignIn.jsp>Đăng nhập</a></div>
+<div class="container p-0 mgt text-center fw-bold">Đơn hàng của bạn đã được đặt. Bạn có thể kiểm tra lại đơn hàng trên Gmail! <a href = <%=url%>/product>Mua hàng tiếp!</a></div>
+<div class="text-center mb-4">
+    <img src="image/comfirm.png" alt="" class="imgbg">
+</div>
 <%
-}
+    }
 %>
+
 <!--end page content-->
 <!--footer-->
 <footer>

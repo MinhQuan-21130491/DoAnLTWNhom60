@@ -29,6 +29,7 @@ public class ChangeInforInPayment extends HttpServlet {
         Date birthDay = Date.valueOf(request.getParameter("HienThiNS"));
         String address = request.getParameter("DCHT");
         String addressReceive = request.getParameter("DCNHHT");
+        String buynow = request.getParameter("buynow");
         String res = "";
         if (name == null || name.trim().isEmpty()) {
             res = "Vui lòng nhập họ và tên!";
@@ -59,6 +60,10 @@ public class ChangeInforInPayment extends HttpServlet {
             }
         }
         request.setAttribute("res", res);
-        request.getRequestDispatcher("Payment.jsp").forward(request, response);
+        if(buynow!=null) {
+            request.getRequestDispatcher("BuyNow.jsp").forward(request, response);
+        }else{
+            request.getRequestDispatcher("Payment.jsp").forward(request, response);
+        }
     }
 }

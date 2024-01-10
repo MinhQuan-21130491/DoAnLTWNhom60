@@ -52,13 +52,13 @@ public class ChangePassword extends HttpServlet{
         else if(passEncrypt.equals(account.getPassword())){
             AccountService.updatePassword(repassEncrypt,account.getId());
             session.setAttribute("password",newpassword);
-            boolean condition=true;
-            req.setAttribute("flag",condition);
+            err="Đổi mật khẩu thành công";
+            req.setAttribute("success",err);
         }else{
             err="Mật khẩu hiện tại không chính xác!";
             req.setAttribute("errPass",err);
         }
-            req.getRequestDispatcher("ChangePW.jsp").forward(req,resp);
+        req.getRequestDispatcher("ChangePW.jsp").forward(req,resp);
 
     }
 }
