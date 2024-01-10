@@ -61,13 +61,26 @@ public class ForgetPassword extends HttpServlet {
         request.setAttribute("email", email);
         String err = "";
         String url = "";
+        if(username==null){
+            err = "Vui lòng nhập tên tài khoản!";
+            request.setAttribute("errUserName", err);
+            url = "/ForgetPW.jsp";
+            request.getRequestDispatcher(url).forward(request, response);
+        }
+        if(email==null){
+            err = "Vui lòng nhập Email!";
+            request.setAttribute("errEmail", err);
+            url = "/ForgetPW.jsp";
+            request.getRequestDispatcher(url).forward(request, response);
+        }
         if (!AccountService.getInstance().checkExistUserName(username)) {
             err = "Tên tài khoản không tồn tại!";
             request.setAttribute("errUserName", err);
             url = "/ForgetPW.jsp";
             request.getRequestDispatcher(url).forward(request, response);
-        } else if (!AccountService.getInstance().checkExistEmail(email)) {
-            err = "Email không tồn tại!";
+        }
+        else if (!AccountService.getInstance().selectAccountByUserName(username).getEmail().equals(email)) {
+            err = "Email không chính xác!";
             request.setAttribute("errEmail", err);
             url = "/ForgetPW.jsp";
             request.getRequestDispatcher(url).forward(request, response);
@@ -77,7 +90,8 @@ public class ForgetPassword extends HttpServlet {
             String pwEncrypt = Encrypt.toSHA1(newpassword);
             if (AccountService.updatePassword(pwEncrypt, account.getId()) > 0) {
                 Email.sendEmail(account.getEmail(), "Mật khẩu mới của bạn", "Thông tin đăng nhập HomeDecor:"+"<br>" + "-Tên đăng nhập: " + username + "<br>" + "-Mật khẩu mới: " + newpassword);
-                url = "/SignIn.jsp";
+                request.setAttribute("done","oke");
+                url = "/ForgetPW.jsp";
                 request.getRequestDispatcher(url).forward(request, response);
             }
         }
