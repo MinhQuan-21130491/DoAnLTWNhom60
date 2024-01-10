@@ -38,7 +38,7 @@ public class Payment extends HttpServlet {
         NumberFormat nF = NumberFormat.getCurrencyInstance();
         String endContent="Tổng tiền: "+nF.format(sum);
         Product p;
-        Invoice invoice = new Invoice(0,a.getId(),address,0,"Tiền mặt",new Date(2023,12,27),0);
+        Invoice invoice = new Invoice(0,a.getId(),address,0,"Thanh toán khi nhận hàng",new Date(2023,12,27),0);
         if(InvoiceService.getInstance().insertInvoice(invoice)>0) {
             Invoice lastest = InvoiceService.getInstance().latestInvoice();
             while (it.hasNext()) {
@@ -47,9 +47,10 @@ public class Payment extends HttpServlet {
                 InvoiceService.getInstance().insertInvoiceDetail(idt);
                 content += "-Sản phẩm: " + p.getName() +" Giá: "+nF.format(p.getPrice())+ " Số lượng: " + p.getQuantity() + "<br>";
             }
+            session.setAttribute("donePayment","done");
             session.setAttribute("Cart", null);
             Email.sendEmail(a.getEmail(), "Xác nhận đơn hàng từ HomeDecor", startContent + "<br>" + content + endContent);
-            response.sendRedirect(url + "/homePage");
+            response.sendRedirect(url + "/Payment.jsp");
         }
     }
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
