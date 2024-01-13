@@ -55,12 +55,12 @@
         </div>
     </div>
 </header>
-<%
-    Object obj = session.getAttribute("account");
-    Object flag = request.getAttribute("flag");
-    Account account = (Account) obj;
-    if (account != null && flag==null) {
-%>
+<%--<%--%>
+<%--    Object obj = session.getAttribute("account");--%>
+<%--    Object flag = request.getAttribute("flag");--%>
+<%--    Account account = (Account) obj;--%>
+<%--    if (account != null && flag==null) {--%>
+<%--%>--%>
 <section class="signup mt-5">
     <!-- <img src="images/signup-bg.jpg" alt=""> -->
     <div class="contain">
@@ -70,7 +70,7 @@
                 <%String success  = (String)request.getAttribute("success");
                     success =(success == null)?"":success;
                 %>
-                <div class="text-primary text-center"><%=success%></div>
+                <div class="text-success text-center mt-3"><%=success%></div>
                 <div class="form-SignUp">
                     <%
                         String errPassword = (String)request.getAttribute("errPass");
@@ -103,15 +103,15 @@
             </form>
         </div>
     </div>
-    <%
-    } else {
-        if (account == null) {
-    %>
-    <div class="container p-0 mgt text-center fw-bold">Bạn chưa đăng nhập! <a href = <%=url%>/SignIn.jsp>Đăng nhập</a></div>
-    <%
-            }
-        }
-    %>
+<%--    <%--%>
+<%--    } else {--%>
+<%--        if (account == null) {--%>
+<%--    %>--%>
+<%--    <div class="container p-0 mgt text-center fw-bold">Bạn chưa đăng nhập! <a href = <%=url%>/SignIn.jsp>Đăng nhập</a></div>--%>
+<%--    <%--%>
+<%--            }--%>
+<%--        }--%>
+<%--    %>--%>
 
 </section>
 <script src="js/ChangePW.js"></script>
