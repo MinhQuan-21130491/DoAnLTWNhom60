@@ -70,7 +70,7 @@
                 <%String success  = (String)request.getAttribute("success");
                     success =(success == null)?"":success;
                 %>
-                <div class="text-primary text-center"><%=success%></div>
+                <div class="text-success text-center mt-3"><%=success%></div>
                 <div class="form-SignUp">
                     <%
                         String errPassword = (String)request.getAttribute("errPass");
