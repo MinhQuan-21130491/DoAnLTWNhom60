@@ -82,7 +82,7 @@
             <tr>
                 <td colspan ="4">
                     <h5 class = "pt-3 pb-1"> THAY ĐỔI THÔNG TIN </h5>
-                    <p class="text-center w-100 mb-0" id="res"><%=res%></p>
+                    <p class="text-center w-100 mb-0 <%=(res.equals("Cập nhật thành công!"))?"text-success":"text-danger"%>" id="res"><%=res%></p>
                 </td>
             </tr>
             </thead>
@@ -133,9 +133,9 @@
                 </td>
                 <td >
                     <div class = "gender">
-                        <label class="ms-0" for="male">Nam</label><input type="radio" id="male" name="gender" value="Nam" <%= gender.equals("Nam") ? "checked" : "" %> >
-                        <label for="female">Nữ</label> <input type="radio" id="female" name="gender" value="Nữ" <%= gender.equals("Nữ") ? "checked" : "" %>>
-                        <label for="other">Khác</label> <input type="radio" id="other" name="gender" value="Khác" <%= gender.equals("Khác") ? "checked" : "" %>>
+                        <label class="ms-0" for="male">Nam</label><input class="ms-2 me-3" type="radio" id="male" name="gender" value="Nam" <%= gender.equals("Nam") ? "checked" : "" %> >
+                        <label for="female">Nữ</label> <input class="ms-2 me-3" type="radio" id="female" name="gender" value="Nữ" <%= gender.equals("Nữ") ? "checked" : "" %>>
+                        <label for="other">Khác</label> <input class="ms-2 me-3" type="radio" id="other" name="gender" value="Khác" <%= gender.equals("Khác") ? "checked" : "" %>>
                     </div>
                 </td>
             </tr>
