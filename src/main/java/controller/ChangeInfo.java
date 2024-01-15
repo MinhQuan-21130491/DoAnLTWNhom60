@@ -27,6 +27,10 @@ public class ChangeInfo extends HttpServlet {
         Date birthDay = Date.valueOf(request.getParameter("HienThiNS"));
         String address = request.getParameter("DCHT");
         String addressReceive = request.getParameter("DCNHHT");
+        HttpSession session = request.getSession();
+        Object obj = session.getAttribute("account");
+        Account account = (Account) obj;
+        String emailInDb = account.getEmail();
         String res = "";
         if (name == null || name.trim().isEmpty()) {
             res = "Vui lòng nhập họ và tên!";
@@ -34,7 +38,7 @@ public class ChangeInfo extends HttpServlet {
             res = "Vui lòng nhập Email!";
         } else if (!email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
             res = "Email không hợp lệ!";
-        } else if(AccountService.getInstance().checkExistEmail(email)){
+        } else if(AccountService.getInstance().checkExistEmail(email) && !email.equals(emailInDb)){
             res = "Email đã tồn tại trong hệ thống!";
         }else if (phoneNumber == null || phoneNumber.trim().isEmpty()) {
             res = "Vui lòng nhập số điện thoại!";
@@ -45,9 +49,7 @@ public class ChangeInfo extends HttpServlet {
         } else if (birthDay == null) {
             res = "Vui lòng chọn ngày sinh!";
         } else {
-            HttpSession session = request.getSession();
-            Object obj = session.getAttribute("account");
-            Account account = (Account) obj;
+
             Account accountNew = new Account(account.getId(), name, email, phoneNumber, gender, birthDay, address, addressReceive);
             VerifyAccount vrf = AccountService.getInstance().getVrfOfAccount(account.getId());
             accountNew.setVerifyAccount(vrf);
