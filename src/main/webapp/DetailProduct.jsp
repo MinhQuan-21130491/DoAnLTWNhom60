@@ -134,7 +134,7 @@
 
                                         </div>
                                         <div class="ms-3 pay">
-                                            <a id="buy-now-link">
+                                            <a id="buy-now-link" onclick="">
                                                 <button>Mua ngay</button>
                                             </a>
                                         </div>
@@ -238,6 +238,22 @@
         })
 
     })
+    // Tạo một nút và một input
+    const button = document.getElementById("buy-now-link");
+    const input = document.getElementById("amount");
+
+    // Xử lý sự kiện click của nút
+    button.addEventListener("click", () => {
+        // Lấy giá trị của input
+        const value = input.value;
+        console.log(value);
+        // Nếu giá trị bằng 0 thì hiện đỏ viên của input
+        if (value > 0) {
+            console.log(value);
+        }else{
+            input.style.borderColor = "red";
+        }
+    });
 
 
 </script>
