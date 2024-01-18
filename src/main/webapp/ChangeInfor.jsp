@@ -29,9 +29,12 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/Style.css">
     <link rel="stylesheet" href="css/ChangeInfor.css">
-
 </head>
 <body>
+<%
+    String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+            + request.getContextPath();
+%>
 <header class = "hd">
     <div class="container-fluid bgcolor-orange">
         <div class="container ">
@@ -93,7 +96,7 @@
                         if (account.getVerifyAccount().isStateVerify()) {%>
                     <label class="w-100">Tài khoản đã xác thực <i class="fa fa-check-circle text-success" aria-hidden="true"></i></label>
                     <%} else {%>
-                    <label class="w-100 ">Tài khoản của bạn chưa xác thực, <a href="reVerifyCode">xác thực ngay</a></label>
+                    <label class="w-100 ">Tài khoản của bạn chưa xác thực, <a href="<%=url%>/reVerifyCode">xác thực ngay</a></label>
                     <%}%>
                 </td>
             </tr>
@@ -179,52 +182,52 @@
     </form>
     <%}%>
 </div>
-<%--<script>--%>
-<%--    $(document).ready(function () {--%>
-<%--        var res = $('#res');--%>
-<%--        if (res.text() === "Cập nhật thành công!") {--%>
-<%--            res.addClass("text-success");--%>
-<%--        } else {--%>
-<%--            res.addClass("text-danger");--%>
-<%--        }--%>
-<%--    });--%>
-<%--    function check() {--%>
-<%--        var flag = true;--%>
-<%--        var tenElement = document.getElementById("HienThiTen");--%>
-<%--        var gmailElement = document.getElementById("HienThiGmail");--%>
-<%--        var sdtElement = document.getElementById("HienThiSDT");--%>
-<%--        var dcElement = document.getElementById("HienThiDC");--%>
-<%--        var nsElement = document.getElementById("HienThiNS");--%>
-<%--        var error = document.getElementById("res");--%>
+<script>
+    $(document).ready(function () {
+        var res = $('#res');
+        if (res.text() === "Cập nhật thành công!") {
+            res.addClass("text-success");
+        } else {
+            res.addClass("text-danger");
+        }
+    });
+    function check() {
+        var flag = true;
+        var tenElement = document.getElementById("HienThiTen");
+        var gmailElement = document.getElementById("HienThiGmail");
+        var sdtElement = document.getElementById("HienThiSDT");
+        var dcElement = document.getElementById("HienThiDC");
+        var nsElement = document.getElementById("HienThiNS");
+        var error = document.getElementById("res");
 
-<%--        var gmailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;--%>
-<%--        var phoneReg = /^\d{10}/;--%>
-<%--        if(tenElement.value == "") {--%>
-<%--            error.innerHTML = "Vui lòng nhập họ và tên!";--%>
-<%--            flag = false;--%>
-<%--        }else if(gmailElement.value == "") {--%>
-<%--            error.innerHTML = "Vui lòng nhập Email!";--%>
-<%--            flag = false;--%>
-<%--        }else if(!gmailElement.value.match(gmailReg)) {--%>
-<%--            error.innerHTML = "Email không hợp lệ!";--%>
-<%--            flag = false;--%>
-<%--        }else if(sdtElement.value == "") {--%>
-<%--            error.innerHTML = "Vui lòng nhập số điện thoại!";--%>
-<%--            flag = false;--%>
-<%--        }else if(!sdtElement.value.match(phoneReg)) {--%>
-<%--            error.innerHTML = "Số điện thoại không hợp lệ!";--%>
-<%--            flag = false;--%>
-<%--        }--%>
-<%--        else if(dcElement.value == "") {--%>
-<%--            error.innerHTML = "Vui lòng nhập địa chỉ!";--%>
-<%--            flag = false;--%>
-<%--        }else if(nsElement.value == "") {--%>
-<%--            error.innerHTML = "Vui lòng chọn ngày sinh!";--%>
-<%--            flag = false;--%>
-<%--        }--%>
-<%--        console.log(sdtElement.value);--%>
-<%--        return flag;--%>
-<%--    }--%>
-<%--</script>--%>
+        var gmailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        var phoneReg = /^\d{10}/;
+        if(tenElement.value == "") {
+            error.innerHTML = "Vui lòng nhập họ và tên!";
+            flag = false;
+        }else if(gmailElement.value == "") {
+            error.innerHTML = "Vui lòng nhập Email!";
+            flag = false;
+        }else if(!gmailElement.value.match(gmailReg)) {
+            error.innerHTML = "Email không hợp lệ!";
+            flag = false;
+        }else if(sdtElement.value == "") {
+            error.innerHTML = "Vui lòng nhập số điện thoại!";
+            flag = false;
+        }else if(!sdtElement.value.match(phoneReg)) {
+            error.innerHTML = "Số điện thoại không hợp lệ!";
+            flag = false;
+        }
+        else if(dcElement.value == "") {
+            error.innerHTML = "Vui lòng nhập địa chỉ!";
+            flag = false;
+        }else if(nsElement.value == "") {
+            error.innerHTML = "Vui lòng chọn ngày sinh!";
+            flag = false;
+        }
+        console.log(sdtElement.value);
+        return flag;
+    }
+</script>
 </body>
 </html>

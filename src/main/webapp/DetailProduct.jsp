@@ -3,6 +3,7 @@
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="model.Category" %>
 <%@ page import="model.Cart" %>
+<%@ page import="controller.PaymentBuyNow" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -110,7 +111,7 @@
                                     <div class="dai">
                                         <button id="decrease" type="button">-</button>
                                         <div class="amount">
-                                            <input type="text" id="amount" name="quantity" value="0"/>
+                                            <input type="text" id="amount" name="quantity" value="1"/>
                                         </div>
                                         <button id="increase" type="button">+</button>
                                     </div>
@@ -134,7 +135,7 @@
 
                                         </div>
                                         <div class="ms-3 pay">
-                                            <a id="buy-now-link" onclick="">
+                                            <a href ="<%=url%>/PaymentBuyNow?id=<%=product.getIdProduct()%>&quantity=1" id="buy-now-link" onclick="">
                                                 <button>Mua ngay</button>
                                             </a>
                                         </div>
@@ -207,54 +208,29 @@
         var img_center = document.getElementById('img_center');
         img_center.src = newSrc;
     }
-
     $(document).ready(function () {
         $(".owl-carousel").owlCarousel();
-        //load header
-        //  $('header').load('Header.jsp')
-        //load footer
-        //   $('footer').load('Footer.jsp')
-        var count = 0;
+        var count = 1;
         var increase = $('#increase');
         var decrease = $('#decrease');
         var amount = $('#amount');
         var url="<%=url%>";
         var productId=<%=product.getIdProduct()%>;
         var buynowlink= document.getElementById("buy-now-link");
-
         increase.click(function () {
             count++;
             amount.val(count);
-            console.log(count);
             buynowlink.href=`${url}/PaymentBuyNow?id=${productId}&quantity=${count}`
         })
         decrease.click(function () {
-            if (count > 0) {
+            if (count > 1 ) {
                 count--;
             }
             amount.val(count);
-            console.log(count);
             buynowlink.href=`${url}/PaymentBuyNow?id=${productId}&quantity=${count}`
         })
 
     })
-    // Tạo một nút và một input
-    const button = document.getElementById("buy-now-link");
-    const input = document.getElementById("amount");
-
-    // Xử lý sự kiện click của nút
-    button.addEventListener("click", () => {
-        // Lấy giá trị của input
-        const value = input.value;
-        console.log(value);
-        // Nếu giá trị bằng 0 thì hiện đỏ viên của input
-        if (value > 0) {
-            console.log(value);
-        }else{
-            input.style.borderColor = "red";
-        }
-    });
-
 
 </script>
 </html>

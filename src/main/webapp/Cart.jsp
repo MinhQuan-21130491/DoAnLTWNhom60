@@ -34,8 +34,7 @@
 <link rel="stylesheet" href="css/Cart.css">
 <body>
 <%
-    String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-            + request.getContextPath();
+    String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
 %>
 <!--header-->
 <header>
@@ -122,7 +121,7 @@
                 <span id="tt">THÀNH TIỀN: </span>  <%=nF.format(cart.total())%>
             </div>
             <div class="pay my-2">
-                <a href=#>
+                <a href="<%=url%>/Payment.jsp">
                     <button id="btnPay">Thanh toán</button>
                 </a>
             </div>

@@ -269,12 +269,12 @@ public class DAOInvoice {
     public static int idBestSaler(){
         int idProduct = 0;
         Connection connection = JDBCUtil.getConnection();
-        String sql = "select idProduct, sum(d.quantity) as tong\n" +
-                "from invoice_details d inner join invoices i on d.id=i.id\n" +
-                "where i.`status`=2\n" +
-                "group by idProduct\n" +
-                "order by tong DESC\n" +
-                "limit 1";
+        String sql = "select d.idProduct, sum(d.quantity) as tong\n" +
+                "                from invoice_details as d join invoices as i on d.id = i.id \n" +
+                "                where i.status = 1 \n" +
+                "                group by d.idProduct \n" +
+                "                order by tong DESC  \n" +
+                "                limit 1;";
         try {
             PreparedStatement pr = connection.prepareStatement(sql);
             ResultSet resultSet = pr.executeQuery();

@@ -20,10 +20,10 @@
                 <h5>VỀ CHÚNG TÔI</h5>
                 <hr class ="w-50 ">
                 <ul class="navbar-nav ">
-                    <a class="nav-link link" href="IntroWebsite.jsp"><li>Giới thiệu</li></a>
-                    <a class="nav-link link" href="IntroWebsite.jsp#policy"><li>Bảo hành</li></a>
-                    <a class="nav-link link" href="IntroWebsite.jsp#policy"><li>Đổi trả</li></a>
-                    <a class="nav-link link" href="IntroWebsite.jsp#contact"><li>Liên hệ</li></a>
+                    <a class="nav-link link" href="introWebsite"><li>Giới thiệu</li></a>
+                    <a class="nav-link link" href="introWebsite"><li>Bảo hành</li></a>
+                    <a class="nav-link link" href="introWebsite"><li>Đổi trả</li></a>
+                    <a class="nav-link link" href="introWebsite"><li>Liên hệ</li></a>
                 </ul>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
@@ -62,7 +62,7 @@
             success: function (data) {
                 var i = data.inforWebSite;
                 var row = document.getElementById("contain-contact");
-               row.innerHTML = " <li class=\"nav-link\"><i class=\"fa fa-map-marker\" aria-hidden=\"true\"></i>"+ i.address+"</li>\n" +
+               row.innerHTML = " <li class=\"nav-link\"><i class=\"fa fa-map-marker\" aria-hidden=\"true\"></i> "+ i.address+"</li>\n" +
                    "                        <li class=\"nav-link\" ><i class=\"fa fa-envelope\" aria-hidden=\"true\"></i> "+ i.email+"</li>\n" +
                    "                        <li class=\"nav-link\" ><i class=\"fa fa-phone\" aria-hidden=\"true\"></i> "+ i.phoneNumber+"</li>"
             },
