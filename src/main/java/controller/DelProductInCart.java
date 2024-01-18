@@ -21,6 +21,7 @@ public class DelProductInCart extends HttpServlet {
         HttpSession session = request.getSession();
         String idProductText = request.getParameter("id");
         int idProduct = Integer.parseInt(idProductText);
+        System.out.println(idProduct);
         Cart cart = (Cart) session.getAttribute("Cart");
         cart.remove(idProduct);
         try {

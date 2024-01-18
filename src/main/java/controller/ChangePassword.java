@@ -52,7 +52,7 @@ public class ChangePassword extends HttpServlet{
         else if(passEncrypt.equals(account.getPassword())){
             AccountService.updatePassword(repassEncrypt,account.getId());
             session.setAttribute("password",newpassword);
-            err="Đổi mật khẩu thành công";
+            err="Đổi mật khẩu thành công!";
             req.setAttribute("success",err);
         }else{
             err="Mật khẩu hiện tại không chính xác!";
