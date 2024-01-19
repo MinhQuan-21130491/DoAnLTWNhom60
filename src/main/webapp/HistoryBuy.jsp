@@ -308,7 +308,7 @@
                 row.innerHTML ="";
                 for (var i = 0; i < htmlData.length; i++) {
                     var p = htmlData[i];
-                    row.innerHTML += "<tr onclick=\"buyBack("+p.idProduct+")\">\n" +
+                    row.innerHTML += "<tr onclick=\"buyBack("+p.idProduct+ "," +p.idCate + ")\">\n" +
                         "    <td class=\"w40\">" + (i+1) + "</td>\n" +
                         "    <td>" + p.idProduct + "</td>\n" +
                         "    <td class=\"w300\">\n" +
@@ -335,8 +335,8 @@
             }
         });
     }
-    function buyBack(idProduct) {
-        var redirectUrl = 'detail-product?pid=' + idProduct;
+    function buyBack(idProduct, idCate) {
+        var redirectUrl = 'detail-product?pid=' + idProduct +'&cid=' +idCate;
         window.location.href = redirectUrl;
     }
     function cancelInvoice(id) {

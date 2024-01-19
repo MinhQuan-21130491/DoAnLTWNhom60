@@ -51,6 +51,7 @@
             for(Product p: listP) {
                 JSONObject productJSON = new JSONObject();
                 productJSON.put("idProduct", p.getIdProduct());
+                productJSON.put("idCate", p.getIdCate());
                 productJSON.put("nameProduct", p.getName());
                 productJSON.put("price", nF.format(p.getPrice()));
                 productJSON.put("quantity", p.getQuantity());

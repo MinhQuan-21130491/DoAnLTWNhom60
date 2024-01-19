@@ -98,8 +98,8 @@
                     </td>
                     <td ><%=p.getQuantity()%></td>
                     <td >
-                        <form action="updateQuantity" method="post">
-                            <input type="text" class="quantity" name="quantity"/>
+                        <form action="updateQuantity" method="post"  onsubmit="return checkQuantity()" >
+                            <input type="text" class="quantity" id = "quantity"  name="quantity" value = "<%=p.getQuantity()%>"/>
                             <input type="hidden" name="id" value="<%=p.getIdProduct()%>"/>
                             <button class="update" type="submit" title="Cập nhật số lượng">Cập Nhật</button>
                         </form>
@@ -165,6 +165,14 @@
         // Gọi hàm tính tổng tiền khi tải trang
         calculateTotal()
     });
+    function checkQuantity() {
+        var numericCharacters = /^\d+$/;
+        if($('#quantity').val() < 0 || !$('#quantity').val().match(numericCharacters)) {
+            $('#quantity').css('border', '1px solid red')
+                return false;
+        }
+        return true;
+    }
     function getConfirmation(){
         var retVal = confirm("Bạn có chắc muốn xóa ?");
         if( retVal == true ){
