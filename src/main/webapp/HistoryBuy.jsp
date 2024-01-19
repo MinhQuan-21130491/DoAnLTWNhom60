@@ -49,7 +49,6 @@
             </div>
         </div>
     </div>
-    <hr class="mt-1">
     <div class="row">
         <div class="col-lg-12 overflow-hidden">
             <table class="mb-3" id = "wattingConfirm">

@@ -46,7 +46,7 @@ public class FilByStatusInvoice extends HttpServlet {
             invoiceJSON.put("startDate", i.getStartDate());
             String st ="" ;
             if(i.getStatus() == 0) {
-                st ="Chưa xác nhận";
+                st ="Chờ xác nhận";
             }else if(i.getStatus() == 1) {
                 st ="Đã xác nhận";
             }else {
