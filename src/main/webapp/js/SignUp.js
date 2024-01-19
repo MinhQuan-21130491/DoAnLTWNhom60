@@ -18,7 +18,11 @@ $(document).ready(function () {
             $("#errUser").text('Vui lòng nhập tên đăng nhập!');
             $('#errUser').attr('style', 'color:red');
             condition = false;
-        }else{
+        } else if (user.match(specialCharacters)) {
+            $("#errUser").text('Tên đăng nhập không được chứa kí tự đặc biệt!');
+            $('#errUser').attr('style', 'color:red');
+            condition = false;
+        } else {
             $("#errUser").text('');
         }
         if(password===""){
