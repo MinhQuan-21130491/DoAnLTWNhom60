@@ -61,7 +61,7 @@
     double shippingFee=0;
     if (!a.getVerifyAccount().isStateVerify()) {
 %>
-<div class="container p-0 mgt text-center fw-bold">Bạn chưa xác thực tài khoản <a href = <%=url%>/VerifyAccount.jsp>Xác thực ngay</a></div>
+<div class="container p-0 mgt text-center fw-bold">Bạn chưa xác thực tài khoản <a href = <%=url%>/reVerifyCode>Xác thực ngay</a></div>
 <%
 }else if (a != null && c!=null ) {
 %>
@@ -85,9 +85,7 @@
             <span class="mt-3 d-block" id="address"><%=a.getAddressReceive()%></span>
         </div>
         <div class="col-lg-2 col-sm-2 mt-1 text-end">
-            <button class="btnAdd bgcolor bd-full" id ="editInFor" data-bs-toggle="modal"
-                    data-bs-target="#changeInfor"><i class="fa fa-pencil text-color "
-                                                     title="Chỉnh sửa thông tin liên hệ" aria-hidden="true"></i></button>
+            <button class="btnAdd bgcolor bd-full" id ="editInFor" data-bs-toggle="modal" data-bs-target="#changeInfor"><i class="fa fa-pencil text-color " title="Chỉnh sửa thông tin liên hệ" aria-hidden="true"></i></button>
         </div>
         <div class="modal fade" id="changeInfor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-md">
@@ -157,25 +155,9 @@
                                     </td>
                                     <td >
                                         <div class = "gender">
-                                            <%
-                                                if(a.getGender().equals("Nam")){
-                                            %>
-                                            <label class="ms-0" for="male">Nam</label><input class="ms-2 me-3" type="radio" id="male" name="gender" value="Nam"  checked >
-                                            <label for="female">Nữ</label> <input class="ms-2 me-3" type="radio" id="female" name="gender" value="Nữ" >
-                                            <label for="other">Khác</label> <input class="ms-2 me-3" type="radio" id="other" name="gender" value="Khác">
-                                            <%
-                                            }else if(a.getGender().equals("Nữ")){
-                                            %>
-                                            <label class="ms-0" for="male">Nam</label><input class="ms-2 me-3" type="radio" id="male" name="gender" value="Nam">
-                                            <label for="female">Nữ</label> <input class="ms-2 me-3" type="radio" id="female" name="gender" value="Nữ" checked>
-                                            <label for="other">Khác</label> <input class="ms-2 me-3" type="radio" id="other" name="gender" value="Khác">
-                                            <%
-                                            }else{
-                                            %>
-                                            <label class="ms-0" for="male">Nam</label><input class="ms-2 me-3" type="radio" id="male" name="gender" value="Nam">
-                                            <label for="female">Nữ</label> <input class="ms-2 me-3" type="radio" id="female" name="gender" value="Nữ" >
-                                            <label for="other">Khác</label> <input class="ms-2 me-3" type="radio" id="other" name="gender" value="Khác" checked>
-                                            <%}%>
+                                            <label class="ms-0" for="male">Nam</label><input class="ms-2 me-3" type="radio" id="male" name="gender" value="Nam" <%= a.getGender().equals("Nam") ? "checked" : "" %> >
+                                            <label for="female">Nữ</label> <input class="ms-2 me-3" type="radio" id="female" name="gender" value="Nữ" <%= a.getGender().equals("Nữ") ? "checked" : "" %>>
+                                            <label for="other">Khác</label> <input class="ms-2 me-3" type="radio" id="other" name="gender" value="Khác" <%= a.getGender().equals("Khác") ? "checked" : "" %>>
                                         </div>
                                     </td>
                                 </tr>
@@ -319,7 +301,7 @@
 <%
 }else if((String)session.getAttribute("donePayment")!=null){
 %>
-<div class="container p-0 mgt text-center fw-bold">Đơn hàng của bạn đã được đặt. Bạn có thể kiểm tra lại đơn hàng trên Gmail! <a href = <%=url%>/product>Mua hàng tiếp!</a></div>
+<div class="container p-0 mgt text-center fw-bold">Đơn hàng của bạn đã được đặt. Bạn có thể kiểm tra lại đơn hàng trên Email! <a href = <%=url%>/product>Mua hàng tiếp!</a></div>
 <div class="text-center mb-4">
     <img src="image/comfirm.png" alt="" class="imgbg">
 </div>

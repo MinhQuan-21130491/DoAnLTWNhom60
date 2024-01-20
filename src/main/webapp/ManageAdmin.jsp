@@ -921,15 +921,9 @@
                                                             <input type="text" class="form-control" id="nameCateAdd" name="nameCateAdd">
                                                         </div>
                                                     </div>
-
                                                     <div class="row p-0">
                                                         <div class="col-lg-12 text-end p-0">
                                                             <button class="save" type="button" onclick="addCate()">LƯU</button>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row p-0">
-                                                        <div class="col-lg-12 text-end p-0">
-                                                            <button class="save" type="button" id="saveButton">LƯU</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1086,18 +1080,14 @@
                                     String addressSupAdd = (String) request.getAttribute("addressSupAdd");
                                     String phoneSupAdd = (String) request.getAttribute("phoneSupAdd");
                                     String emailSupAdd = (String) request.getAttribute("emailSupAdd");
-    //                                    String cateSupAdd = (String) request.getAttribute("cateChairSupAdd");
-
                                     String errNameSupAdd = (String) request.getAttribute("errNameSupAdd");
                                     String errPhoneSupAdd = (String) request.getAttribute("errPhoneSupAdd");
                                     String errEmailSupAdd = (String) request.getAttribute("errEmailSupAdd");
                                     String errAddressSupAdd = (String) request.getAttribute("errAddressSupAdd");
-
                                     nameSupAdd = (nameSupAdd == null) ? "" : nameSupAdd;
                                     addressSupAdd = (addressSupAdd == null) ? "" : addressSupAdd;
                                     phoneSupAdd = (phoneSupAdd == null) ? "" : phoneSupAdd;
                                     emailSupAdd = (emailSupAdd == null) ? "" : emailSupAdd;
-
                                     errNameSupAdd = (errNameSupAdd == null) ? "" : errNameSupAdd;
                                     errPhoneSupAdd = (errPhoneSupAdd == null) ? "" : errPhoneSupAdd;
                                     errEmailSupAdd = (errEmailSupAdd == null) ? "" : errEmailSupAdd;

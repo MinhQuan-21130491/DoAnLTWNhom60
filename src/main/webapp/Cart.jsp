@@ -34,8 +34,7 @@
 <link rel="stylesheet" href="css/Cart.css">
 <body>
 <%
-    String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-            + request.getContextPath();
+    String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
 %>
 <!--header-->
 <header>
@@ -55,16 +54,16 @@
                     errQuantity = (errQuantity == null) ? "" : errQuantity;
                 %>
                 <p class="mb-0 mt-4 text-danger text-center"><%=errQuantity%></p>
-                    <tr>
-                        <td class="w40">STT</td>
-                        <td class="w300">SẢN PHẨM</td>
-                        <td>MÀU SẮC</td>
-                        <td>VẬT LIỆU</td>
-                        <td>KÍCH THƯỚC</td>
-                        <td>ĐƠN GIÁ</td>
-                        <td>SỐ LƯỢNG</td>
-                        <td COLSPAN="2">THAO TÁC</td>
-                    </tr>
+                <tr>
+                    <td class="w40">STT</td>
+                    <td class="w300">SẢN PHẨM</td>
+                    <td>MÀU SẮC</td>
+                    <td>VẬT LIỆU</td>
+                    <td>KÍCH THƯỚC</td>
+                    <td>ĐƠN GIÁ</td>
+                    <td>SỐ LƯỢNG</td>
+                    <td COLSPAN="2">THAO TÁC</td>
+                </tr>
                 </thead>
                 <tbody>
                 <%
@@ -75,60 +74,43 @@
                     while(it.hasNext()) {
                         p = it.next();
                 %>
-                    <tr>
-                        <td class="w40"><%=stt%></td>
-                        <td class="w300">
-                            <div class="item d-flex justify-content-center">
-                                <div class="item_img">
-                                    <img src="<%=url%>\Products\<%=p.getImages().get(0).getUrl()%>" class="card-img-top img_p_cart" alt="..."/>
-                                </div>
-                                <span class="item_text"><%=p.getName()%></span>
+                <tr>
+                    <td class="w40"><%=stt%></td>
+                    <td class="w300">
+                        <div class="item d-flex justify-content-center">
+                            <div class="item_img">
+                                <img src="<%=url%>/Products/<%=(p.getImages().isEmpty())?"":p.getImages().get(0).getUrl()%>" class="card-img-top img_p_cart" alt="..."/>
                             </div>
-                        </td>
-                        <td >
-                            <%=p.getColor()%>
-                        </td>
-                        <td >
-                          <%=p.getMaterial()%>
-                        </td>
-                        <td >
-                            <%=p.formatSize(p.getLength())%>x<%=p.formatSize(p.getWidth())%>x<%=p.formatSize(p.getHeight())%>
-                        </td>
-                        <td >
-                            <%=nF.format(p.getPrice())%>
-                        </td>
-                        <td ><%=p.getQuantity()%></td>
-                        <td >
-                            <form action="updateQuantity" method="post">
-                                <input type="text" class="quantity" name="quantity"/>
-                                <input type="hidden" name="id" value="<%=p.getIdProduct()%>"/>
-                                <button class="update" type="submit" title="Cập nhật số lượng">Cập Nhật</button>
-                            </form>
-                        </td>
-                        <td>
-                                <button class="delete" title="Xóa sản phẩm" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#delProduct"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                <div class="modal fade" id="delProduct">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <form action="delProductInCart" method="post" >
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title">Xác nhận</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>Bạn có chắc muốn xóa?</p>
-                                                    <input type="hidden" name="id"value="<%=p.getIdProduct()%>"/>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy bỏ</button>
-                                                    <button type="submit" class="btn btn-primary">Đồng ý</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                        </td>
-                    </tr>
+                            <span class="item_text"><%=p.getName()%></span>
+                        </div>
+                    </td>
+                    <td >
+                        <%=p.getColor()%>
+                    </td>
+                    <td >
+                        <%=p.getMaterial()%>
+                    </td>
+                    <td >
+                        <%=p.formatSize(p.getLength())%>x<%=p.formatSize(p.getWidth())%>x<%=p.formatSize(p.getHeight())%>
+                    </td>
+                    <td >
+                        <%=nF.format(p.getPrice())%>
+                    </td>
+                    <td ><%=p.getQuantity()%></td>
+                    <td >
+                        <form action="updateQuantity" method="post"  onsubmit="return checkQuantity()" >
+                            <input type="text" class="quantity" id = "quantity"  name="quantity" value = "<%=p.getQuantity()%>"/>
+                            <input type="hidden" name="id" value="<%=p.getIdProduct()%>"/>
+                            <button class="update" type="submit" title="Cập nhật số lượng">Cập Nhật</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="delProductInCart" method="post" onsubmit="return getConfirmation()">
+                            <input type="hidden" name="id" value="<%=p.getIdProduct()%>"/>
+                            <button class="delete" title="Xóa sản phẩm" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#delProduct"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                        </form>
+                    </td>
+                </tr>
                 <%
                         stt++;
                     }
@@ -162,12 +144,6 @@
 </body>
 <script>
     $(document).ready(function () {
-        // // Xóa sản phẩm trong giỏ hàng
-        // $('.delete').click(function () {
-        //     $(this).closest('tr').remove();
-        //     calculateTotal(); //Gọi lại hàm tính tổng khi xóa
-        // })
-        //Tính tổng tiền khi load qua trang giỏ hàng
         function calculateTotal() {
             var totalMoney = 0;
             var money = 0;
@@ -189,5 +165,20 @@
         // Gọi hàm tính tổng tiền khi tải trang
         calculateTotal()
     });
+    function checkQuantity() {
+        var numericCharacters = /^\d+$/;
+        if($('#quantity').val() < 0 || !$('#quantity').val().match(numericCharacters)) {
+            $('#quantity').css('border', '1px solid red')
+                return false;
+        }
+        return true;
+    }
+    function getConfirmation(){
+        var retVal = confirm("Bạn có chắc muốn xóa ?");
+        if( retVal == true ){
+            return true;
+        }
+        return false;
+    }
 </script>
 </html>

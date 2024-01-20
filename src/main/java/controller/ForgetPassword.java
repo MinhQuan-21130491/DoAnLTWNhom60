@@ -96,9 +96,4 @@ public class ForgetPassword extends HttpServlet {
             }
         }
     }
-
-    public static void main(String[] args) {
-
-    }
-
 }
