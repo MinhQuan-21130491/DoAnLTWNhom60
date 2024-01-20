@@ -3,6 +3,7 @@ package controller;
 import com.google.gson.annotations.Until;
 import model.*;
 import service.InvoiceService;
+import service.ProductService;
 import util.Email;
 
 import javax.servlet.*;
@@ -45,6 +46,7 @@ public class Payment extends HttpServlet {
                 p = it.next();
                 InvoiceDetail idt = new InvoiceDetail(lastest.getIdInvoice(), p.getIdProduct(), p.getPrice(), p.getQuantity());
                 InvoiceService.getInstance().insertInvoiceDetail(idt);
+                ProductService.getInstance().decreaseQuantity(p,p.getQuantity());
                 content += "-Sản phẩm: " + p.getName() +" Giá: "+nF.format(p.getPrice())+ " Số lượng: " + p.getQuantity() + "<br>";
             }
             session.setAttribute("donePayment","done");

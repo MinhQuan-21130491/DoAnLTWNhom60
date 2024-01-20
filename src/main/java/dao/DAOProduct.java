@@ -539,6 +539,20 @@ public class DAOProduct {
         int numberRandom = random.nextInt(listP.size());
         return result = listP.get(numberRandom);
     }
+    public static int decreaseQuantity(Product p, int quantity) {
+        int re = 0;
+        Connection connection = JDBCUtil.getConnection();
+        String sql = "update products set quantity = ? where id =?";
+        try {
+            PreparedStatement pr = connection.prepareStatement(sql);
+            pr.setInt(1, p.getQuantityAvailable()-quantity);
+            pr.setInt(2, p.getIdCate());
+            re = pr.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return re;
+    }
     public static void main(String[] args) {
    System.out.println(latestProduct());
     }

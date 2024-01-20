@@ -2,6 +2,7 @@ package controller;
 
 import model.*;
 import service.InvoiceService;
+import service.ProductService;
 import util.Email;
 
 import javax.servlet.*;
@@ -39,6 +40,7 @@ public class BuyNow extends HttpServlet {
             Invoice lastest = InvoiceService.getInstance().latestInvoice();
             InvoiceDetail idt = new InvoiceDetail(lastest.getIdInvoice(), p.getIdProduct(), p.getPrice(), quantity);
             InvoiceService.getInstance().insertInvoiceDetail(idt);
+            ProductService.getInstance().decreaseQuantity(p,quantity);
             content = "-Sản phẩm: " + p.getName() +" Giá: "+nF.format(p.getPrice())+ " Số lượng: " + quantity + "<br>";
         }
         session.setAttribute("BuyNowProduct", null);
