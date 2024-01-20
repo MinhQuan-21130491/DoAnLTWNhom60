@@ -25,15 +25,11 @@ public class PaymentBuyNow extends HttpServlet {
         int idProduct = Integer.parseInt(idProductText);
         String quantityText = request.getParameter("quantity");
         int quantity = Integer.parseInt(quantityText);
-        if(quantity==0){
-            request.getRequestDispatcher(url+"/detail-product?pid="+idProductText);
-        }else {
-            Product p = ProductService.getInstance().getProductById(idProduct);
-            HttpSession session = request.getSession();
-            session.setAttribute("BuyNowProduct", p);
-            session.setAttribute("BuyNowQuantity", quantity);
-            response.sendRedirect(url + "/BuyNow.jsp");
-        }
+        Product p = ProductService.getInstance().getProductById(idProduct);
+        HttpSession session = request.getSession();
+        session.setAttribute("BuyNowProduct", p);
+        session.setAttribute("BuyNowQuantity", quantity);
+        response.sendRedirect(url + "/BuyNow.jsp");
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

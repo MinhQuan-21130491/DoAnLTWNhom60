@@ -546,7 +546,7 @@ public class DAOProduct {
         try {
             PreparedStatement pr = connection.prepareStatement(sql);
             pr.setInt(1, p.getQuantityAvailable()-quantity);
-            pr.setInt(2, p.getIdCate());
+            pr.setInt(2, p.getIdProduct());
             re = pr.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
