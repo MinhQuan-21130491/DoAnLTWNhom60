@@ -4,6 +4,7 @@ $(document).ready(function (){
         var password =$('#password').val();
         var newpassword =$('#new_password').val();
         var repassword =$('#re_password').val();
+        var passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*()-+])(?=.*[0-9]).{8,}$/;
         var condition=true;
         if(password ===""){
             $("#errPW").text('Vui lòng nhập mật khẩu hiện tại');
@@ -17,7 +18,12 @@ $(document).ready(function (){
             $("#errNPW").text('Vui lòng nhập mật khẩu mới');
             $('#errNPW').attr('style','color:red');
             condition=false;
-        }else if(newpassword===password){
+        }else if(!newpassword.match(passwordRegex)){
+            $("#errNPW").text('Mật khẩu có ít nhất 1 chữ hoa, 1 ký tự đặc biệt và 1 số!');
+            $('#errNPW').attr('style', 'color:red');
+            condition = false;
+        }
+        else if(newpassword===password){
             $("#errNPW").text('Mật khẩu mới trùng với mật khẩu hiện tại');
             $('#errNPW').attr('style','color:red');
             condition=false;

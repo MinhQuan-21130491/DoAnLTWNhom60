@@ -135,8 +135,8 @@
 
                                         </div>
                                         <div class="ms-3 pay">
-                                            <a href ="<%=url%>/PaymentBuyNow?id=<%=product.getIdProduct()%>&quantity=1" id="buy-now-link" onclick="">
-                                                <button>Mua ngay</button>
+                                            <a href ="<%=url%>/PaymentBuyNow?id=<%=product.getIdProduct()%>&quantity=1" id="buy-now-link">
+                                                <button id="buynow">Mua ngay</button>
                                             </a>
                                         </div>
                                     </div>
@@ -231,6 +231,20 @@
         })
 
     })
+    function checkQuantity(event) {
+        // Lấy giá trị của input
+        const inputValue = document.getElementById("amount").value;
+        var quantityAvai=<%=product.getQuantityAvailable()%>;
+        // Kiểm tra nếu input lớn hơn quantityAvai
+        if (parseInt(inputValue) > quantityAvai) {
+            // Không cho đi
+            event.preventDefault();
+            // Hiển thị alert thông báo
+            alert("Số lượng trong kho không đủ!");
+        }
+    }
 
+    // Gắn sự kiện cho nút submit
+    document.getElementById("buynow").addEventListener("click", checkQuantity);
 </script>
 </html>

@@ -138,7 +138,10 @@ public class ProductService {
             throw new RuntimeException(e);
         }
     }
-          public static void main(String[] args) {
+    public static int decreaseQuantity(Product p, int quantity){
+        return DAOProduct.decreaseQuantity(p,quantity);
+    }
+    public static void main(String[] args) {
 //        System.out.println(ProductService.getInstance().listSixProduct(0));
           }
 }

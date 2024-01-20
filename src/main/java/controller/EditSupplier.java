@@ -21,19 +21,16 @@ import java.util.ArrayList;
 public class EditSupplier extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("pót");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("html/text; charset= UTF-8");
         String idText = request.getParameter("id");
-        System.out.println(idText);
         int id = Integer.parseInt(idText);
         String name = request.getParameter("nameSupEdit");
         String address = request.getParameter("addressSupEdit");
         String phone = request.getParameter("phoneSupEdit");
         String email = request.getParameter("emailSupEdit");
         String typeCate = request.getParameter("cateChairSupEdit");
-        System.out.println(typeCate);
         int idCate = 3;
         if (typeCate.equals("Ghế thư giãn")) {
             idCate = 4;
@@ -42,7 +39,6 @@ public class EditSupplier extends HttpServlet {
         } else if (typeCate.equals("Ghế gaming")) {
             idCate = 2;
         }
-        System.out.println(idCate);
         String res = "";
         Supplier sup = new Supplier(id,name,phone,email,idCate,address);
         try {
