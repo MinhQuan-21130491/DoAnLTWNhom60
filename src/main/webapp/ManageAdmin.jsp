@@ -704,7 +704,7 @@
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                     <li><a class="dropdown-item" href="#" onclick="filInvoice('')">Tất cả</a></li>
                                     <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="#" onclick="filInvoice('Chưa xác nhận')">Chưa xác nhận</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="filInvoice('Chờ xác nhận')">Chờ xác nhận</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" href="#" onclick="filInvoice('Đã xác nhận')">Đã xác nhận</a></li>
                                     <li><hr class="dropdown-divider"></li>
@@ -2480,9 +2480,7 @@
                         alert(res);
                         var row = document.getElementById("innerSupplier");
                         row.innerHTML = ""; // Clear existing content
-                        // console.log("length" + htmlData.length);
                         for (var i = 0; i < htmlData.length; i++) {
-                            // console.log("i" + i);
                             var s = htmlData[i];
                             row.innerHTML += "<tr>\n" +
                                 "<td class=\"w40\">" + (i + 1) + "</td>\n" +
@@ -2673,7 +2671,7 @@
                         row.innerHTML = ""; // Clear existing content
                         for (var i = 0; i < htmlData.length; i++) {
                             var ivc = htmlData[i];
-                            if (ivc.status === "Chưa xác nhận") {
+                            if (ivc.status === "Chờ xác nhận") {
                                 row.innerHTML += "<tr data-bs-toggle=\"modal\" data-bs-target=\"#detailInvoice\" onclick=\"detailInvoice(" + ivc.id + ")\">\n" +
                                     "                                    <td class=\"w40\">" + (i + 1) + "</td>\n" +
                                     "                                    <td>" + ivc.id + "</td>\n" +
@@ -2726,7 +2724,7 @@
                     row.innerHTML = ""; // Clear existing content
                     for (var i = 0; i < htmlData.length; i++) {
                         var ivc = htmlData[i];
-                        if (ivc.status === "Chưa xác nhận") {
+                        if (ivc.status === "Chờ xác nhận") {
                             row.innerHTML += "<tr data-bs-toggle=\"modal\" data-bs-target=\"#detailInvoice\" onclick=\"detailInvoice(" + ivc.id + ")\">\n" +
                                 "                                    <td class=\"w40\">" + (i + 1) + "</td>\n" +
                                 "                                    <td>" + ivc.id + "</td>\n" +
@@ -2773,7 +2771,7 @@
                     row.innerHTML = ""; // Clear existing content
                     for (var i = 0; i < htmlData.length; i++) {
                         var ivc = htmlData[i];
-                        if (ivc.status === "Chưa xác nhận") {
+                        if (ivc.status === "Chờ xác nhận") {
                             row.innerHTML += "<tr data-bs-toggle=\"modal\" data-bs-target=\"#detailInvoice\" onclick=\"detailInvoice(" + ivc.id + ")\">\n" +
                                 "                                    <td class=\"w40\">" + (i + 1) + "</td>\n" +
                                 "                                    <td>" + ivc.id + "</td>\n" +

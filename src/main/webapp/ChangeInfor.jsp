@@ -40,7 +40,7 @@
         <div class="container ">
             <div class="row ">
                 <div class="col-md-9 col-sm-9 col-8 col-4 d-flex align-items-center  ">
-                    <a class="nav-link" href="homePage"> <img style="width: 150px" src="image/logoWeb.png">
+                    <a class="nav-link" href="<%=url%>/homePage"> <img style="width: 150px" src="image/logoWeb.png">
                     </a>
                 </div>
                 <div class="col-md-3 col-sm-3 col-4 py-3 px-0 d-flex align-items-center justify-content-end">
@@ -227,6 +227,13 @@
         }
         console.log(sdtElement.value);
         return flag;
+    }
+</script>
+<script>
+    if($('#res').text() === "Cập nhật thành công!") {
+        setTimeout(function () {
+            window.location.href = 'homePage';
+        }, 1000);
     }
 </script>
 </body>

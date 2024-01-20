@@ -553,6 +553,27 @@ public class DAOProduct {
         }
         return re;
     }
+    public static int updateQuantity(int id, int quantity) {
+        int re = 0;
+        int quantityOld = 0;
+        Connection connection = JDBCUtil.getConnection();
+        String sql = "update products set quantity = ? where id =?";
+        try {
+            PreparedStatement pr1 = connection.prepareStatement("select quantity from products where id =?");
+            pr1.setInt(1, id);
+            ResultSet rs = pr1.executeQuery();
+            while(rs.next()) {
+                quantityOld = rs.getInt("quantity");
+            }
+            PreparedStatement pr2 = connection.prepareStatement(sql);
+            pr2.setInt(1, quantityOld + quantity);
+            pr2.setInt(2, id);
+            re = pr2.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return re;
+    }
     public static void main(String[] args) {
    System.out.println(latestProduct());
     }

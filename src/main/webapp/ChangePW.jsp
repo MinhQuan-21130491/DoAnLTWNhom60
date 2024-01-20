@@ -70,7 +70,7 @@
                 <%String success  = (String)request.getAttribute("success");
                     success =(success == null)?"":success;
                 %>
-                <div class="text-success text-center mt-3"><%=success%></div>
+                <div class="text-success text-center mt-3" id ="res"><%=success%></div>
                 <div class="form-SignUp">
                     <%
                         String errPassword = (String)request.getAttribute("errPass");
@@ -112,8 +112,14 @@
             }
         }
     %>
-
 </section>
 <script src="js/ChangePW.js"></script>
+<script>
+    if($('#res').text() === "Đổi mật khẩu thành công!") {
+        setTimeout(function () {
+            window.location.href = 'homePage';
+        }, 1000);
+    }
+</script>
 </body>
 </html>

@@ -78,5 +78,10 @@ public class InvoiceService {
         return DAOInvoice.insertInvoiceDetail(idt);
     }
     public int idBestSaler(){return DAOInvoice.idBestSaler();}
+    public void backQuantity(int id) {
+        Invoice invoice = selectById(id);
+        for(InvoiceDetail i : invoice.getDetails()) {
+            ProductService.getInstance().updateQuantity(i.getIdProduct(), i.getQuantity());
+        }
     }
-
+}

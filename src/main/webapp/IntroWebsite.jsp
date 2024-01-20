@@ -1,5 +1,7 @@
 <%@ page import="service.WebService" %>
 <%@ page import="model.InforWebsite" %>
+<%@ page import="model.Account" %>
+<%@ page import="model.Cart" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -42,6 +44,8 @@
 <!--page content-->
 <%
     InforWebsite i = (InforWebsite) request.getAttribute("infor");
+    Cart cart = (Cart) session.getAttribute("Cart");
+    Account account = (Account) session.getAttribute("account");
 %>
 <div class="container mgt">
     <%String res = (String) request.getAttribute("res");%>
@@ -81,7 +85,9 @@
     </div>
     <div id="policy">
         <h5> CHÍNH SÁCH MUA HÀNG
+            <%if(account.getRole() == 0) {%>
             <button class="editPolicy btnAdd bgcolor bd-full me-1"><i class="fa fa-pencil text-color" data-bs-toggle="modal" data-bs-target="#editPolicy"></i></button>
+            <%}%>
         </h5>
         <p><strong>Bảo hành:</strong> <span id="contentGuarantee"><%=i.getGuarantee()%></span> tháng kể từ ngày mua hàng.</p>
         <p><strong>Đổi trả:</strong> trong vòng <span id="exchangeProduct"><%=i.getExchange() %></span> tháng kể từ ngày mua hàng, với điều
@@ -127,7 +133,9 @@
     <!--end edit policy-->
     <div id="contact">
         <h5> THÔNG TIN LIÊN HỆ
+            <%if(account.getRole() == 0) {%>
             <button class="editContact btnAdd bgcolor bd-full me-1"><i class="fa fa-pencil text-color" title="Chỉnh sửa thông tin liên hệ" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#editContact"></i></button>
+            <%}%>
         </h5>
         <p><strong>Địa chỉ:</strong> <span id="address"><%=i.getAddress()%></span>.
         </p>

@@ -24,7 +24,7 @@ public class UpdateQuantity extends HttpServlet {
         String quantityText = request.getParameter("quantity");
         int quantity = Integer.parseInt(quantityText);
         Cart c = (Cart) session.getAttribute("Cart");
-        int quantityAvailable = c.get(idProduct).getQuantityAvailable();
+        int quantityAvailable = ProductService.getInstance().getProductById(idProduct).getQuantityAvailable();
         if(quantity <= quantityAvailable) {
                 c.put(idProduct, quantity);
         }else {

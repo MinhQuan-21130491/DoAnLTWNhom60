@@ -25,6 +25,7 @@ public class CanceltInvoiceCus extends HttpServlet {
         int id = Integer.parseInt(idText);
         String res = "";
         if (InvoiceService.getInstance().updateStatus(id, 2) > 0) {
+            InvoiceService.getInstance().backQuantity(id);
              res = "Đã hủy đơn hàng!";
         } else {
             res = "Đã xảy ra lỗi!";

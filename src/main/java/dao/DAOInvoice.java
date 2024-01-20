@@ -286,4 +286,6 @@ public class DAOInvoice {
         }
         return idProduct;
     }
+
+
 }
