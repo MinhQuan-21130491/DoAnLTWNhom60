@@ -75,7 +75,7 @@
                     <div class="col-lg-5 col-md-7  ">
                         <div class="row pt-3">
                             <div class="col-md-12">
-                                <img src="<%=url%>\Products\<%=(product.getImages().isEmpty())?"":product.getImages().get(0).getUrl()%>" class="card-img-top img_p" alt="...">
+                                <img src="<%=url%>\Products\<%=(product.getImages().isEmpty())?"":product.getImages().get(0).getUrl()%>" class="card-img-top img_p" id = "img_center" alt="...">
                             </div>
                             <div class="col-md-12 mt-3">
                                 <div class="owl-carousel">
@@ -206,6 +206,7 @@
 <script>
     function changeImg(newSrc) {
         var img_center = document.getElementById('img_center');
+        console.log(newSrc)
         img_center.src = newSrc;
     }
     $(document).ready(function () {

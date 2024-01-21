@@ -534,12 +534,10 @@
                                         <div class="col-md-6 col-sm-12 col-12">
                                             <div class="row pt-2">
                                                 <div class="col-md-12 col-sm-8 col-8">
-                                                    <img src="https://anphat.com.vn/media/product/40998_sihoo_m18_black_grey__2_.JPG" alt=""
-                                                         class="img_p2" id="img_center">
+                                                    <img src="https://anphat.com.vn/media/product/40998_sihoo_m18_black_grey__2_.JPG" alt="" class="img_p2" id="img_center">
                                                 </div>
                                                 <div class="col-md-12 mt-3 imgdetail" >
                                                     <div class="owl-carousel" id ="owl">
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -889,7 +887,7 @@
                                                 <hr>
                                                 <div class="col-md-12">
                                                     <div class="mb-3">
-                                                        <label class="form-label">Tên danh mục</label><span id="errNameCate" class="text-danger"></span>
+                                                        <label class="form-label">Tên danh mục<span class="text-danger">*</span></label><span id="errNameCate" class="text-danger"></span>
                                                         <input type="text" class="form-control" id="nameCateEdit" name="nameCateEdit">
                                                     </div>
                                                 </div>
@@ -917,7 +915,7 @@
                                                     <hr>
                                                     <div class="col-md-12">
                                                         <div class="mb-3">
-                                                            <label class="form-label">Tên danh mục</label><span id="errNameCateAdd" class="text-danger"></span>
+                                                            <label class="form-label">Tên danh mục<span class="text-danger">*</span></label><span id="errNameCateAdd" class="text-danger"></span>
                                                             <input type="text" class="form-control" id="nameCateAdd" name="nameCateAdd">
                                                         </div>
                                                     </div>
@@ -1026,27 +1024,20 @@
                                         <hr>
                                         <div class="col-md-12">
                                             <div class="mb-3">
-                                                <label class="form-label">Tên nhà cung cấp</label><span id="errNameSupEdit"
-                                                                                                        class="text-danger"></span>
+                                                <label class="form-label">Tên nhà cung cấp<span class="text-danger">*</span></label><span id="errNameSupEdit" class="text-danger"></span>
                                                 <input type="text" class="form-control" id="nameSupEdit" name="nameSupEdit">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Địa chỉ</label><span id="errAddEdit"
-                                                                                               class="text-danger"></span>
-                                                <input type="text" class="form-control" id="addressSupEdit"
-                                                       name="addressSupEdit">
+                                                <label class="form-label">Địa chỉ<span class="text-danger">*</span></label><span id="errAddEdit" class="text-danger"></span>
+                                                <input type="text" class="form-control" id="addressSupEdit" name="addressSupEdit">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Số điện thoại</label><span
-                                                    id="errphoneNumberSupEdit" class="text-danger"></span>
-                                                <input type="text" class="form-control" id="phoneNumberSupEdit"
-                                                       name="phoneNumberSupEdit">
+                                                <label class="form-label">Số điện thoại<span class="text-danger">*</span></label><span id="errphoneNumberSupEdit" class="text-danger"></span>
+                                                <input type="text" class="form-control" id="phoneNumberSupEdit" name="phoneNumberSupEdit">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Email</label><span id="errEmailSupEdit"
-                                                                                             class="text-danger"></span>
-                                                <input type="text" class="form-control" id="emailSupEdit"
-                                                       name="emailSupEdit">
+                                                <label class="form-label">Email<span class="text-danger">*</span></label><span id="errEmailSupEdit" class="text-danger"></span>
+                                                <input type="text" class="form-control" id="emailSupEdit" name="emailSupEdit">
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Cung cấp loại</label>
@@ -1103,30 +1094,22 @@
                                         <hr>
                                         <div class="col-md-12">
                                             <div class="mb-3">
-                                                <label class="form-label">Tên nhà cung cấp</label><span id="errNameSupAdd"
-                                                                                                        class="text-danger"><%=errNameSupAdd%></span>
-                                                <input type="text" class="form-control" id="nameSupAdd" name="nameSupAdd"
-                                                       value="<%=nameSupAdd%>">
+                                                <label class="form-label">Tên nhà cung cấp<span class="text-danger">*</span></label><span id="errNameSupAdd" class="text-danger"><%=errNameSupAdd%></span>
+                                                <input type="text" class="form-control" id="nameSupAdd" name="nameSupAdd" value="<%=nameSupAdd%>">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Địa chỉ</label><span id="errAddressSupAdd"
-                                                                                               class="text-danger"><%=errAddressSupAdd%></span>
-                                                <input type="text" class="form-control" id="addressSupAdd"
-                                                       name="addressSupAdd" value="<%=addressSupAdd%>">
+                                                <label class="form-label">Địa chỉ<span class="text-danger">*</span></label><span id="errAddressSupAdd" class="text-danger"><%=errAddressSupAdd%></span>
+                                                <input type="text" class="form-control" id="addressSupAdd" name="addressSupAdd" value="<%=addressSupAdd%>">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Số điện thoại</label><span id="errphoneSupAdd"
-                                                                                                     class="text-danger"><%=errPhoneSupAdd%></span>
-                                                <input type="text" class="form-control" id="phoneSupAdd" name="phoneSupAdd"
-                                                       value="<%=phoneSupAdd%>">
+                                                <label class="form-label">Số điện thoại<span class="text-danger">*</span></label><span id="errphoneSupAdd" class="text-danger"><%=errPhoneSupAdd%></span>
+                                                <input type="text" class="form-control" id="phoneSupAdd" name="phoneSupAdd" value="<%=phoneSupAdd%>">
                                             </div>
 
 
                                             <div class="mb-3">
-                                                <label class="form-label">Email</label><span id="errEmailSupAdd"
-                                                                                             class="text-danger"><%=errEmailSupAdd%></span>
-                                                <input type="text" class="form-control" id="emailSupAdd" name="emailSupAdd"
-                                                       value="<%=emailSupAdd%>">
+                                                <label class="form-label">Email<span class="text-danger">*</span></label><span id="errEmailSupAdd" class="text-danger"><%=errEmailSupAdd%></span>
+                                                <input type="text" class="form-control" id="emailSupAdd" name="emailSupAdd" value="<%=emailSupAdd%>">
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Phân phối cho</label>
@@ -1620,31 +1603,31 @@
 
         if (name.value === "") {
             flag = false;
-            errNameSup.innerHTML = ' *Vui lòng nhập tên nhà cung cấp!';
+            errNameSup.innerHTML = 'Vui lòng nhập tên nhà cung cấp!';
         } else {
             errNameSup.innerHTML = '';
         }
         if (address.value === "") {
             flag = false;
-            errAdd.innerHTML = ' *Vui lòng nhập địa chỉ!';
+            errAdd.innerHTML = 'Vui lòng nhập địa chỉ!';
         } else {
             errAdd.innerHTML = '';
         }
         if (phone.value === "") {
-            errphoneNumberSup.innerHTML = ' *Vui lòng nhập số điện thoại nhà cung cấp!';
+            errphoneNumberSup.innerHTML = 'Vui lòng nhập số điện thoại nhà cung cấp!';
             flag = false;
         } else if (!phone.value.match(tellReg)) {
             flag = false;
-            errphoneNumberSup.innerHTML = ' *Số điện thoại không hợp lệ!';
+            errphoneNumberSup.innerHTML = 'Số điện thoại không hợp lệ!';
         } else {
             errphoneNumberSup.innerHTML = ''
         }
         if (email.value === "") {
-            errEmailSup.innerHTML = ' *Vui lòng nhập Email nhà cung cấp!';
+            errEmailSup.innerHTML = 'Vui lòng nhập Email nhà cung cấp!';
             flag = false;
         } else if (!email.value.match(emailReg)) {
             flag = false;
-            errEmailSup.innerHTML = ' *Email không hợp lệ!';
+            errEmailSup.innerHTML = 'Email không hợp lệ!';
         } else {
             errEmailSup.innerHTML = ''
         }
@@ -1714,31 +1697,31 @@
 
         if (name.value === "") {
             flag = false;
-            errNameSup.innerHTML = ' *Vui lòng nhập tên nhà cung cấp!';
+            errNameSup.innerHTML = 'Vui lòng nhập tên nhà cung cấp!';
         } else {
             errNameSup.innerHTML = '';
         }
         if (address.value === "") {
             flag = false;
-            errAdd.innerHTML = ' *Vui lòng nhập địa chỉ!';
+            errAdd.innerHTML = 'Vui lòng nhập địa chỉ!';
         } else {
             errAdd.innerHTML = '';
         }
         if (phone.value === "") {
-            errphoneNumberSup.innerHTML = ' *Vui lòng nhập số điện thoại nhà cung cấp!';
+            errphoneNumberSup.innerHTML = 'Vui lòng nhập số điện thoại nhà cung cấp!';
             flag = false;
         } else if (!phone.value.match(tellReg)) {
             flag = false;
-            errphoneNumberSup.innerHTML = ' *Số điện thoại không hợp lệ!';
+            errphoneNumberSup.innerHTML = 'Số điện thoại không hợp lệ!';
         } else {
             errphoneNumberSup.innerHTML = ''
         }
         if (email.value === "") {
-            errEmailSup.innerHTML = ' *Vui lòng nhập Email nhà cung cấp!';
+            errEmailSup.innerHTML = 'Vui lòng nhập Email nhà cung cấp!';
             flag = false;
         } else if (!email.value.match(emailReg)) {
             flag = false;
-            errEmailSup.innerHTML = ' *Email không hợp lệ!';
+            errEmailSup.innerHTML = 'Email không hợp lệ!';
         } else {
             errEmailSup.innerHTML = ''
         }
@@ -1794,7 +1777,7 @@
         var nameInput = document.getElementById("nameCateAdd");
         var error = document.getElementById("errNameCateAdd");
         if (nameInput.value === "") {
-            error.innerHTML = ' *Vui lòng nhập danh mục mới!';
+            error.innerHTML = 'Vui lòng nhập danh mục mới!';
             flag = false;
         } else {
             error.innerHTML = '';

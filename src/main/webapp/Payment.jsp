@@ -41,9 +41,9 @@
             + request.getContextPath();
 %>
 <!--header-->
-<header>
-    <jsp:include page="Header.jsp"></jsp:include>
-</header>
+    <header>
+        <jsp:include page="Header.jsp"></jsp:include>
+    </header>
 <!--end header-->
 <!--page content-->
 <%
