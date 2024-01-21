@@ -44,7 +44,7 @@ public class Email {
 			msg.addHeader("Content-type", "text/HTML; charset=UTF-8");
 
 			// Người gửi
-			msg.setFrom("HomeDecor");
+			msg.setFrom(new InternetAddress(from, "HomeDecor"));
 
 			// Người nhận
 			msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to, false));

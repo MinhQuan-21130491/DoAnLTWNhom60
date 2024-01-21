@@ -118,7 +118,7 @@
     if($('#res').text() === "Đổi mật khẩu thành công!") {
         setTimeout(function () {
             window.location.href = 'homePage';
-        }, 1000);
+        }, 2000);
     }
 </script>
 </body>

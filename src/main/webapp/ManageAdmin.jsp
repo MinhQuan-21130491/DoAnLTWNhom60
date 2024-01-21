@@ -749,8 +749,9 @@
                                             <%if(i.getStatus() == 0) {%>
                                                 <button class="btnAdd bgcolor bd-full"  data-bs-toggle="modal" data-bs-target="#" onclick="acceptInvoice(<%=i.getIdInvoice()%>)"><i class="fa fa-check text-color"  title="Xác nhận đơn hàng" aria-hidden="true"></i></button>
                                                 <button class="btnAdd bgcolor bd-full"  data-bs-toggle="modal" data-bs-target="#" onclick="cancelInvoice(<%=i.getIdInvoice()%>)"><i class="fa fa-times text-color"  title="Hủy đơn hàng" aria-hidden="true"></i></button>
-                                            <%}%>
+                                            <%}else  {%>
                                             <button class="btnAdd bgcolor bd-full"  data-bs-toggle="modal" data-bs-target="#" onclick="delInvoice(<%=i.getIdInvoice()%>)"><i class="fa fa-trash-o text-color"  title="Xóa" aria-hidden="true"></i></button>
+                                            <%}%>
                                         </td>
                                     </tr>
                                 <%
@@ -2566,7 +2567,6 @@
                                     "                                    <td>\n" +
                                     "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"acceptInvoice(" + ivc.id + ")\"><i class=\"fa fa-check text-color\"  title=\"Xác nhận đơn hàng\" aria-hidden=\"true\"></i></button>\n" +
                                     "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"cancelInvoice(" + ivc.id + ")\"><i class=\"fa fa-times text-color\"  title=\"Hủy đơn hàng\" aria-hidden=\"true\"></i></button>\n" +
-                                    "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"delInvoice(" + ivc.id + ")\"><i class=\"fa fa-trash-o text-color\"  title=\"Xóa\" aria-hidden=\"true\"></i></button>\n" +
                                     "                                    </td>\n" +
                                     "                                </tr>";
                             } else {
@@ -2615,7 +2615,6 @@
                                     "                                    <td>\n" +
                                     "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"acceptInvoice(" + ivc.id + ")\"><i class=\"fa fa-check text-color\"  title=\"Xác nhận đơn hàng\" aria-hidden=\"true\"></i></button>\n" +
                                     "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"cancelInvoice(" + ivc.id + ")\"><i class=\"fa fa-times text-color\"  title=\"Hủy đơn hàng\" aria-hidden=\"true\"></i></button>\n" +
-                                    "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"delInvoice(" + ivc.id + ")\"><i class=\"fa fa-trash-o text-color\"  title=\"Xóa\" aria-hidden=\"true\"></i></button>\n" +
                                     "                                    </td>\n" +
                                     "                                </tr>";
                             } else {
@@ -2664,7 +2663,6 @@
                                     "                                    <td>\n" +
                                     "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"acceptInvoice(" + ivc.id + ")\"><i class=\"fa fa-check text-color\"  title=\"Xác nhận đơn hàng\" aria-hidden=\"true\"></i></button>\n" +
                                     "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"cancelInvoice(" + ivc.id + ")\"><i class=\"fa fa-times text-color\"  title=\"Hủy đơn hàng\" aria-hidden=\"true\"></i></button>\n" +
-                                    "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"delInvoice(" + ivc.id + ")\"><i class=\"fa fa-trash-o text-color\"  title=\"Xóa\" aria-hidden=\"true\"></i></button>\n" +
                                     "                                    </td>\n" +
                                     "                                </tr>";
                             } else {
@@ -2717,7 +2715,6 @@
                                 "                                    <td>\n" +
                                 "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"acceptInvoice(" + ivc.id + ")\"><i class=\"fa fa-check text-color\"  title=\"Xác nhận đơn hàng\" aria-hidden=\"true\"></i></button>\n" +
                                 "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"cancelInvoice(" + ivc.id + ")\"><i class=\"fa fa-times text-color\"  title=\"Hủy đơn hàng\" aria-hidden=\"true\"></i></button>\n" +
-                                "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"delInvoice(" + ivc.id + ")\"><i class=\"fa fa-trash-o text-color\"  title=\"Xóa\" aria-hidden=\"true\"></i></button>\n" +
                                 "                                    </td>\n" +
                                 "                                </tr>";
                         } else {
@@ -2764,7 +2761,6 @@
                                 "                                    <td>\n" +
                                 "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"acceptInvoice(" + ivc.id + ")\"><i class=\"fa fa-check text-color\"  title=\"Xác nhận đơn hàng\" aria-hidden=\"true\"></i></button>\n" +
                                 "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"cancelInvoice(" + ivc.id + ")\"><i class=\"fa fa-times text-color\"  title=\"Hủy đơn hàng\" aria-hidden=\"true\"></i></button>\n" +
-                                "                                        <button class=\"btnAdd bgcolor bd-full\"  data-bs-toggle=\"modal\" data-bs-target=\"#\" onclick=\"delInvoice(" + ivc.id + ")\"><i class=\"fa fa-trash-o text-color\"  title=\"Xóa\" aria-hidden=\"true\"></i></button>\n" +
                                 "                                    </td>\n" +
                                 "                                </tr>";
                         } else {

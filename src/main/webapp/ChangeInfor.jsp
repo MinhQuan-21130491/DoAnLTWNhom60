@@ -233,7 +233,7 @@
     if($('#res').text() === "Cập nhật thành công!") {
         setTimeout(function () {
             window.location.href = 'homePage';
-        }, 1000);
+        }, 2000);
     }
 </script>
 </body>
